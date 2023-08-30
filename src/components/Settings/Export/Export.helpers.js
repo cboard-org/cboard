@@ -14,7 +14,8 @@ import {
   CBOARD_ZIP_OPTIONS,
   NOT_FOUND_IMAGE,
   EMPTY_IMAGE,
-  PDF_GRID_BORDER
+  PDF_GRID_BORDER,
+  FONTS
 } from './Export.constants';
 import {
   LABEL_POSITION_ABOVE,
@@ -34,27 +35,6 @@ import mongoose from 'mongoose';
 import * as utils from '../../../components/FixedGrid/utils';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
-// Add all supported fonts for languages
-pdfMake.fonts = {
-  Khmer: {
-    normal: 'Khmer-Regular.ttf',
-    bold: 'Khmer-Regular.ttf'
-  },
-  Roboto: {
-    normal: 'Roboto-Regular.ttf',
-    bold: 'Roboto-Medium.ttf',
-    italics: 'Roboto-Italic.ttf',
-    bolditalics: 'Roboto-MediumItalic.ttf'
-  },
-  Tajawal: {
-    normal: 'Tajawal-Regular.ttf',
-    bold: 'Tajawal-Bold.ttf'
-  },
-  THSarabunNew: {
-    normal: 'THSarabunNew.ttf',
-    bold: 'THSarabunNew.ttf'
-  }
-};
 
 const imageElement = new Image();
 
@@ -878,21 +858,7 @@ export async function cboardExportAdapter(allBoards = [], board) {
 }
 
 export async function pdfExportAdapter(boards = [], intl, picsee = false) {
-  // change font according to locale
-  let font = 'Roboto';
-  switch (intl?.locale) {
-    case 'km':
-      font = 'Khmer';
-      break;
-    case 'ar':
-      font = 'Tajawal';
-      break;
-    case 'th':
-      font = 'THSarabunNew';
-      break;
-    default:
-      font = 'Roboto';
-  }
+  const font = definePDFfont(intl);
 
   const docDefinition = {
     pageSize: 'A4',
@@ -989,6 +955,49 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
       pdfObj.download(prefix + EXPORT_CONFIG_BY_TYPE.pdf.filename);
     }
   }
+}
+
+function definePDFfont(intl) {
+  const pdfFonts = { Roboto: FONTS['Roboto'] };
+  // change font according to locale
+  let font = 'Roboto';
+  switch (intl?.locale) {
+    case 'km':
+      font = 'Khmer';
+      break;
+    case 'ar':
+      font = 'Tajawal';
+      break;
+    case 'th':
+      font = 'Sarabun';
+      break;
+    case 'hi':
+      font = 'Hind';
+      break;
+    case 'he':
+      font = 'NotoSansHebrew';
+      break;
+    case 'ja':
+      font = 'NotoSansJP';
+      break;
+    case 'ko':
+      font = 'NotoSansKR';
+      break;
+    case 'ne':
+      font = 'AnekDevanagari';
+      break;
+    case 'zh':
+      font = 'NotoSansSC';
+      break;
+    case 'bn':
+      font = 'NotoSerifBengali';
+      break;
+    default:
+      font = 'Roboto';
+  }
+  pdfFonts[font] = FONTS[font];
+  pdfMake.fonts = pdfFonts;
+  return font;
 }
 
 export default {
