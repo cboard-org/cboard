@@ -945,16 +945,38 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
     }
     if (isAndroid() || isIOS()) {
       requestCvaWritePermissions();
-      pdfObj.getBuffer(buffer => {
-        var blob = new Blob([buffer], { type: 'application/pdf' });
-        const name = 'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.pdf.filename;
-        writeCvaFile(name, blob);
-      });
+      const getBuffer = callback => {
+        pdfObj.getBuffer(buffer => {
+          var blob = new Blob([buffer], { type: 'application/pdf' });
+          const name =
+            'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.pdf.filename;
+          writeCvaFile(name, blob);
+          callback();
+        });
+      };
+      await generatePDF(getBuffer);
     } else {
       // On a browser simply use download!
-      pdfObj.download(prefix + EXPORT_CONFIG_BY_TYPE.pdf.filename);
+      const dowloadPDF = callback =>
+        pdfObj.download(prefix + EXPORT_CONFIG_BY_TYPE.pdf.filename, callback);
+      await generatePDF(dowloadPDF);
     }
   }
+}
+
+//To handle PDF generation errors
+function generatePDF(callback) {
+  return new Promise((resolve, reject) => {
+    function unhandled(e) {
+      reject(e);
+    }
+    setTimeout(() => {
+      window.removeEventListener('unhandledrejection', unhandled);
+      reject(new Error('timeout'));
+    }, 20000);
+    window.addEventListener('unhandledrejection', unhandled);
+    callback(resolve);
+  });
 }
 
 function definePDFfont(intl) {

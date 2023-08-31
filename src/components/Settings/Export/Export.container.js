@@ -33,40 +33,56 @@ export class ExportContainer extends PureComponent {
 
     const { boards, intl, activeBoardId, showNotification } = this.props;
     // TODO: Make this block easier to follow.
-    if (type === 'openboard' && singleBoard) {
-      await EXPORT_HELPERS.openboardExportAdapter(singleBoard, intl);
-    } else if (type === 'cboard') {
-      await EXPORT_HELPERS.cboardExportAdapter(boards, singleBoard);
-    } else if (type === 'picsee_pdf') {
-      if (singleBoard) {
-        await EXPORT_HELPERS[exportConfig.callback]([singleBoard], intl, true);
+    try {
+      if (type === 'openboard' && singleBoard) {
+        await EXPORT_HELPERS.openboardExportAdapter(singleBoard, intl);
+      } else if (type === 'cboard') {
+        await EXPORT_HELPERS.cboardExportAdapter(boards, singleBoard);
+      } else if (type === 'picsee_pdf') {
+        if (singleBoard) {
+          await EXPORT_HELPERS[exportConfig.callback](
+            [singleBoard],
+            intl,
+            true
+          );
+        } else {
+          const currentBoard = boards.filter(
+            board => board.id === activeBoardId
+          );
+          await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl, true);
+        }
+      } else if (type !== 'pdf' && !singleBoard) {
+        await EXPORT_HELPERS[exportConfig.callback](boards, intl);
       } else {
-        const currentBoard = boards.filter(board => board.id === activeBoardId);
-        await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl, true);
+        if (singleBoard) {
+          await EXPORT_HELPERS[exportConfig.callback]([singleBoard], intl);
+        } else {
+          const currentBoard = boards.filter(
+            board => board.id === activeBoardId
+          );
+          await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl);
+        }
       }
-    } else if (type !== 'pdf' && !singleBoard) {
-      await EXPORT_HELPERS[exportConfig.callback](boards, intl);
-    } else {
-      if (singleBoard) {
-        await EXPORT_HELPERS[exportConfig.callback]([singleBoard], intl);
-      } else {
-        const currentBoard = boards.filter(board => board.id === activeBoardId);
-        await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl);
-      }
-    }
-    const showBoardDowloadedNotification = () => {
-      if (isAndroid())
-        return showNotification(
-          intl.formatMessage(messages.boardDownloadedCva)
-        );
-      if (isIOS())
-        return showNotification(
-          intl.formatMessage(messages.boardDownloadedCvaIOS)
-        );
-      return showNotification(intl.formatMessage(messages.boardDownloaded));
-    };
+      const showBoardDowloadedNotification = () => {
+        if (isAndroid())
+          return showNotification(
+            intl.formatMessage(messages.boardDownloadedCva)
+          );
+        if (isIOS())
+          return showNotification(
+            intl.formatMessage(messages.boardDownloadedCvaIOS)
+          );
+        return showNotification(intl.formatMessage(messages.boardDownloaded));
+      };
 
-    showBoardDowloadedNotification();
+      showBoardDowloadedNotification();
+    } catch (e) {
+      console.error(e);
+      const message = e.reason?.message?.startsWith('Failed to fetch')
+        ? messages.downloadNoConnectionError
+        : messages.boardDownloadError;
+      showNotification(intl.formatMessage(message));
+    }
     doneCallback();
   };
 
