@@ -40,5 +40,13 @@ export default defineMessages({
   boards: {
     id: 'cboard.components.Settings.Export.boards',
     defaultMessage: 'Boards'
+  },
+  boardDownloadError: {
+    id: 'cboard.components.Settings.Export.boardDownloadedError',
+    defaultMessage: 'Ups..Something went wrong. Please try again'
+  },
+  downloadNoConnectionError: {
+    id: 'cboard.components.Settings.Export.downloadNoConnectionError',
+    defaultMessage: 'Need internet connection to download the PDF.'
   }
 });
