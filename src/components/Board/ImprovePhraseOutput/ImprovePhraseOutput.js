@@ -7,10 +7,8 @@ import { Typography } from '@material-ui/core';
 import { PlayArrow } from '@material-ui/icons';
 
 const propTypes = {
-  isRootBoardTourEnabled: PropTypes.bool,
-  isUnlockedTourEnabled: PropTypes.bool,
-  isLocked: PropTypes.bool,
-  disableTour: PropTypes.func.isRequired
+  improvedPhrase: PropTypes.string,
+  speak: PropTypes.func
 };
 
 function ImprovePhraseOutput({ improvedPhrase, speak }) {
