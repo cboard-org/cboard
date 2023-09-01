@@ -32,6 +32,7 @@
   "cboard.components.SignUp.agreement": "I agree with the {terms} and the {privacy}",
   "cboard.components.SignUp.termsAndConditions": "Terms",
   "cboard.components.SignUp.privacy": "Privacy Policy",
+  "cboard.components.SignUp.noConnection": "Unable to connect to the server. Please try again later.",
   "cboard.components.ChangePassword.password": "New Password",
   "cboard.components.ChangePassword.passwordRepeat": "Repeat New Password",
   "cboard.components.ChangePassword.send": "Send",
