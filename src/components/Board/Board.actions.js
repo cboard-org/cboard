@@ -56,6 +56,7 @@ import {
 import { isAndroid, writeCvaFile } from '../../cordova-util';
 import { DEFAULT_BOARDS } from '../../helpers';
 import history from './../../history';
+import { improvePhraseAbortController } from '../../api/api';
 
 const BOARDS_PAGE_LIMIT = 100;
 
@@ -351,6 +352,8 @@ export function improvePhrase(output) {
   return async (dispatch, getState) => {
     try {
       const language = getState().language.lang;
+      if (improvePhraseAbortController?.abort)
+        improvePhraseAbortController.abort();
       const improvedPhrase = await improvePhrase(language);
       dispatch({
         type: CHANGE_IMPROVED_PHRASE,

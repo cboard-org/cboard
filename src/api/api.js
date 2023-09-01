@@ -16,6 +16,7 @@ import { isAndroid } from '../cordova-util';
 
 const BASE_URL = API_URL;
 const LOCAL_COMMUNICATOR_ID = 'cboard_default';
+export let improvePhraseAbortController;
 
 const getUserData = () => {
   const store = getStore();
@@ -637,17 +638,19 @@ class API {
       const headers = {
         Authorization: `Bearer ${authToken}`
       };
-
+      improvePhraseAbortController = new AbortController();
       const { data } = await this.axiosInstance.post(
         `/gpt/edit`,
         { phrase, language },
         {
-          headers
+          headers,
+          signal: improvePhraseAbortController.signal
         }
       );
       return data;
     } catch (error) {
-      console.error(error);
+      if (error.message !== 'canceled') console.error(error);
+      return { phrase: '' };
     }
   }
 }
