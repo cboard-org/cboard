@@ -28,7 +28,9 @@ function ImprovePhraseOutput({ improvedPhrase, speak }) {
       className={enabledControllsClassname}
       onClick={handlePlay}
     >
-      <Typography variant="h5">{improvedPhrase}</Typography>
+      <Typography className={styles.text} variant="h5">
+        {improvedPhrase}
+      </Typography>
       {improvedPhrase && (
         <PlayArrow className={styles.playArrow} fontSize="large" />
       )}
