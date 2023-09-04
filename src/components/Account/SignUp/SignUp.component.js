@@ -52,7 +52,16 @@ export class SignUp extends Component {
 
     signUp(formValues)
       .then(signUpStatus => this.setState({ signUpStatus }))
-      .catch(signUpStatus => this.setState({ signUpStatus }))
+      .catch(error => {
+        const responseMessage = error?.response?.data?.message;
+        const message = responseMessage
+          ? responseMessage
+          : this.props.intl.formatMessage(messages.noConnection);
+
+        this.setState({
+          signUpStatus: { success: false, message: message }
+        });
+      })
       .finally(() => this.setState({ isSigningUp: false }));
   };
 
