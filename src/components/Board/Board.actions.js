@@ -341,7 +341,7 @@ export function changeOutput(output) {
 }
 
 export function improvePhrase(output) {
-  const improvePhrase = async language => {
+  const fetchImprovePhrase = async language => {
     const MIN_TILES_TO_IMPROVE = 1;
     if (output.length <= MIN_TILES_TO_IMPROVE) return '';
     const labels = output.map(symbol => symbol.label);
@@ -354,7 +354,7 @@ export function improvePhrase(output) {
       const language = getState().language.lang;
       if (improvePhraseAbortController?.abort)
         improvePhraseAbortController.abort();
-      const improvedPhrase = await improvePhrase(language);
+      const improvedPhrase = await fetchImprovePhrase(language);
       dispatch({
         type: CHANGE_IMPROVED_PHRASE,
         improvedPhrase
