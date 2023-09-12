@@ -16,7 +16,7 @@
 .text_and_controls.enabled:hover,
 .text_and_controls.enabled:focus {
   outline: none;
-  border: 2px solid #ffffff; /* Red border */
+  border: 2px solid #ffffff;
 }
 
 .text {
