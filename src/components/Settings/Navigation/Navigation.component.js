@@ -81,7 +81,7 @@ class Navigation extends React.Component {
     });
   };
 
-  toggleimprovePhraseActive = () => {
+  toggleImprovePhraseActive = () => {
     this.setState({
       improvePhraseActive: !this.state.improvePhraseActive
     });
@@ -313,7 +313,7 @@ class Navigation extends React.Component {
                   <PremiumFeature>
                     <Switch
                       checked={this.state.improvePhraseActive || false}
-                      onChange={this.toggleimprovePhraseActive}
+                      onChange={this.toggleImprovePhraseActive}
                       value="active"
                       color="secondary"
                     />
