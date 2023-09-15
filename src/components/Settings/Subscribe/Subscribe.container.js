@@ -218,6 +218,11 @@ export class SubscribeContainer extends PureComponent {
         }
       }
 
+      const filterInAppPurchaseIOSTransactions = uniqueReceipt =>
+        uniqueReceipt.transactions.filter(
+          transaction => transaction.transactionId !== 'appstore.application'
+        );
+
       try {
         // update the api
         const requestOrigin =
