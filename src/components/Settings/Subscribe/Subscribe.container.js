@@ -233,18 +233,40 @@ export class SubscribeContainer extends PureComponent {
         // check if current subscriber already bought in this device
         if (localReceipts.length) {
           const lastReceipt = localReceipts.slice(-1)[0];
-          if (
-            lastReceipt &&
-            lastReceipt?.transactions[0]?.nativePurchase?.orderId !==
-              subscriber.transaction?.transactionId
-          ) {
-            this.handleError({
-              code: '0001',
-              message: intl.formatMessage(messages.googleAccountAlreadyOwns)
-            });
-            return;
+          if (isAndroid()) {
+            if (
+              lastReceipt &&
+              lastReceipt?.transactions[0]?.nativePurchase?.orderId !==
+                subscriber.transaction?.transactionId
+            ) {
+              this.handleError({
+                code: '0001',
+                message: intl.formatMessage(messages.googleAccountAlreadyOwns)
+              });
+              return;
+            }
+          }
+          if (isIOS()) {
+            //IOS have a unique receipt here => 'lastReceipt'
+            const inAppPurchaseTransactions = filterInAppPurchaseIOSTransactions(
+              lastReceipt
+            );
+
+            const lastTransaction = inAppPurchaseTransactions.slice(-1)[0];
+            if (
+              inAppPurchaseTransactions.length > 0 &&
+              lastTransaction?.transactionId !==
+                subscriber.transaction?.transactionId
+            ) {
+              this.handleError({
+                code: '0001',
+                message: intl.formatMessage(messages.appleAccountAlreadyOwns)
+              });
+              return;
+            }
           }
         }
+
         await API.updateSubscriber(apiProduct);
 
         // proceed with the purchase
