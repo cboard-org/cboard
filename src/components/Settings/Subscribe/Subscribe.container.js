@@ -207,7 +207,10 @@ export class SubscribeContainer extends PureComponent {
         try {
           await window.CdvPurchase.store.update();
           offers = prod.offers;
-          offer = offers.find(offer => offer.tags[0] === product.tag);
+          const findCallback = isAndroid()
+            ? offer => offer.tags[0] === product.tag
+            : offer => offer.productId === product.subscriptionId;
+          offer = offers.find(findCallback);
         } catch (err) {
           console.error('Cannot subscribe product. Error: ', err.message);
           this.handleError(err);
