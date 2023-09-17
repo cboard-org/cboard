@@ -283,12 +283,27 @@ export class SubscribeContainer extends PureComponent {
       } catch (err) {
         if (err.response?.data.error === 'subscriber not found') {
           // check if current subscriber already bought in this device
-          if (localReceipts.length) {
-            this.handleError({
-              code: '0001',
-              message: intl.formatMessage(messages.googleAccountAlreadyOwns)
-            });
-            return;
+          if (isAndroid()) {
+            if (localReceipts.length) {
+              this.handleError({
+                code: '0001',
+                message: intl.formatMessage(messages.googleAccountAlreadyOwns)
+              });
+              return;
+            }
+          }
+          if (isIOS()) {
+            const localInAppPurchaseTransactions = filterInAppPurchaseIOSTransactions(
+              localReceipts[0]
+            );
+
+            if (localInAppPurchaseTransactions.length) {
+              this.handleError({
+                code: '0001',
+                message: intl.formatMessage(messages.appleAccountAlreadyOwns)
+              });
+              return;
+            }
           }
           try {
             const newSubscriber = {
