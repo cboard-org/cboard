@@ -131,14 +131,14 @@ const SubscriptionInfo = ({
       </div>
       <div className="Subscribe__Info__Button__Container">
         <Button
-          variant={isAndroid() ? 'contained' : 'text'}
+          variant={isAndroid() || isIOS() ? 'contained' : 'text'}
           fullWidth={false}
           color="primary"
           disabled={ownedProduct.platform === 'paypal' && status !== ACTIVE}
           onClick={() => {
             if (isAndroid() && ownedProduct.platform === 'android-playstore')
               window.CdvPurchase.store.manageSubscriptions();
-            if (isIOS() && ownedProduct.platform === 'app-store')
+            if (isIOS() && ownedProduct.platform === 'ios-appstore')
               window.CdvPurchase.store.manageSubscriptions();
             if (ownedProduct.platform === 'paypal') setCancelDialog(true);
             if (!isAndroid() && ownedProduct.platform === 'android-playstore') {
