@@ -148,6 +148,11 @@ export default defineMessages({
     defaultMessage:
       'It looks like your Google account has already purchased a product. Try restarting the app.'
   },
+  appleAccountAlreadyOwns: {
+    id: 'cboard.components.Settings.Subscribe.appleAccountAlreadyOwns',
+    defaultMessage:
+      'It looks like your Apple account has already purchased a product. Try restarting the app.'
+  },
   fallback: {
     id: 'cboard.components.Settings.Subscribe.fallback',
     defaultMessage: 'Wait please...'
