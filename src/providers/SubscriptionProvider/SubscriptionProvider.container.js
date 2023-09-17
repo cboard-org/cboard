@@ -16,7 +16,9 @@ import {
 import {
   ACTIVE,
   CANCELED,
-  IN_GRACE_PERIOD
+  IN_GRACE_PERIOD,
+  EXPIRED,
+  NOT_SUBSCRIBED
 } from './SubscriptionProvider.constants';
 import { isLogged } from '../../components/App/App.selectors';
 
@@ -124,6 +126,19 @@ export class SubscriptionProvider extends Component {
             isOnTrialPeriod: false,
             isSubscribed: true,
             expiryDate: receipt.collection[0].expiryDate
+          });
+          receipt.finish();
+          window.CdvPurchase.store.finish(receipt);
+          return;
+        }
+        if ([EXPIRED, NOT_SUBSCRIBED]) {
+          const { isInFreeCountry, isOnTrialPeriod } = this.props;
+          updateSubscription({
+            status: state,
+            isInFreeCountry: isInFreeCountry,
+            isOnTrialPeriod: isOnTrialPeriod,
+            isSubscribed: false,
+            expiryDate: null
           });
           receipt.finish();
           window.CdvPurchase.store.finish(receipt);
