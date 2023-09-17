@@ -83,8 +83,22 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
           })
         );
       } else {
-        if (isAndroid() && state.subscription.status === PROCCESING) {
-          const localReceipts = window.CdvPurchase.store.localReceipts;
+        if (
+          (isAndroid() || isIOS()) &&
+          state.subscription.status === PROCCESING
+        ) {
+          const filterInAppPurchaseIOSTransactions = uniqueReceipt =>
+            uniqueReceipt.transactions.filter(
+              transaction =>
+                transaction.transactionId !== 'appstore.application'
+            );
+
+          const localReceipts = isIOS()
+            ? filterInAppPurchaseIOSTransactions(
+                window.CdvPurchase.store.localReceipts[0]
+              )
+            : window.CdvPurchase.store.localReceipts;
+
           if (localReceipts.length) {
             //Restore purchases to pass to approved
             window.CdvPurchase.store.restorePurchases();
