@@ -69,7 +69,10 @@ export class SubscriptionProvider extends Component {
   configPurchaseValidator = () => {
     window.CdvPurchase.store.validator = async function(receipt, callback) {
       try {
-        const transaction = receipt.transactions[0];
+        const transaction = isIOS()
+          ? receipt.transaction
+          : receipt.transactions[0];
+
         const res = await API.postTransaction(transaction);
         if (!res.ok) throw res;
         callback({
