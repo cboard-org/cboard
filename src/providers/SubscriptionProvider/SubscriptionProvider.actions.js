@@ -11,7 +11,8 @@ import {
   CANCELLED,
   IN_GRACE_PERIOD,
   EXPIRED,
-  PROCCESING
+  PROCCESING,
+  UNVERIFIED
 } from './SubscriptionProvider.constants';
 import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
@@ -112,6 +113,21 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
             })
           );
           return;
+        }
+
+        if (isIOS()) {
+          const iosLocalReceipt = window.CdvPurchase.store.localReceipts[0];
+          if (state.subscription.status === UNVERIFIED && iosLocalReceipt) {
+            dispatch(
+              updateSubscription({
+                ownedProduct: state.subscription.ownedProduct,
+                status: PROCCESING,
+                isSubscribed,
+                expiryDate
+              })
+            );
+            return window.CdvPurchase.store.verify(iosLocalReceipt);
+          }
         }
 
         const userId = state.app.userData.id;

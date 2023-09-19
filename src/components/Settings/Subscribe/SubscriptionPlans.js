@@ -26,7 +26,8 @@ import {
   EXPIRED,
   NOT_SUBSCRIBED,
   PROCCESING,
-  ON_HOLD
+  ON_HOLD,
+  UNVERIFIED
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -95,6 +96,7 @@ const SubscriptionPlans = ({
 
   const subscriptionStatus = (function() {
     if (error.showError) return ERROR;
+    if (status === UNVERIFIED) return UNVERIFIED;
     if (isOnTrialPeriod && !isSubscribed && status !== PROCCESING)
       return ON_TRIAL_PERIOD;
     if (products.length || status !== NOT_SUBSCRIBED)
@@ -111,6 +113,7 @@ const SubscriptionPlans = ({
     error: 'error',
     empty_product: 'warning',
     on_trial_period: 'info',
+    unverified: 'warning',
 
     on_hold: 'warning', //TODO
     paused: 'info', //TODO

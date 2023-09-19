@@ -18,7 +18,8 @@ import {
   CANCELED,
   IN_GRACE_PERIOD,
   EXPIRED,
-  NOT_SUBSCRIBED
+  NOT_SUBSCRIBED,
+  UNVERIFIED
 } from './SubscriptionProvider.constants';
 import { isLogged } from '../../components/App/App.selectors';
 
@@ -116,6 +117,18 @@ export class SubscriptionProvider extends Component {
       .receiptUpdated(receipt => {})
       .approved(receipt => {
         if (isLogged) window.CdvPurchase.store.verify(receipt);
+      })
+      .unverified(response => {
+        if (isIOS()) {
+          const { isInFreeCountry, isOnTrialPeriod } = this.props;
+          updateSubscription({
+            status: UNVERIFIED,
+            isInFreeCountry: isInFreeCountry,
+            isOnTrialPeriod: isOnTrialPeriod,
+            isSubscribed: false,
+            expiryDate: null
+          });
+        }
       })
       .verified(async receipt => {
         const state = receipt.collection[0]?.subscriptionState;
