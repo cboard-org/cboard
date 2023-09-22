@@ -89,6 +89,11 @@ export default defineMessages({
     id: 'cboard.components.Settings.Subscribe.not_subscribed',
     defaultMessage: 'You are not subscribed. '
   },
+  unverified: {
+    id: 'cboard.components.Settings.Subscribe.unverified',
+    defaultMessage:
+      'An error ocurs during validation of your purchase. Please refresh'
+  },
   refresh: {
     id: 'cboard.components.Settings.Subscribe.refresh',
     defaultMessage: 'Refresh'
