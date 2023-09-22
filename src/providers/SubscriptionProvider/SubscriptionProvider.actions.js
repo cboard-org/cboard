@@ -137,7 +137,12 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
           requestOrigin
         );
         const getActualProduct = async (product, transaction) => {
-          if (isIOS() && transaction.product_id !== product.subscriptionId) {
+          if (
+            isIOS() &&
+            transaction &&
+            product &&
+            transaction.product_id !== product.subscriptionId
+          ) {
             try {
               const product = state.subscription.products.find(
                 product => product.subscriptionId === transaction.product_id
