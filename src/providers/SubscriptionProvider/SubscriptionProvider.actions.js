@@ -17,6 +17,7 @@ import {
 import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
 import { isAndroid, isIOS } from '../../cordova-util';
+import { formatTitle } from '../../components/Settings/Subscribe/Subscribe.helpers';
 
 export function updateIsInFreeCountry() {
   return (dispatch, getState) => {
@@ -135,7 +136,37 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
           userId,
           requestOrigin
         );
+        const getActualProduct = async (product, transaction) => {
+          if (isIOS() && transaction.product_id !== product.subscriptionId) {
+            try {
+              const product = state.subscription.products.find(
+                product => product.subscriptionId === transaction.product_id
+              );
 
+              const newProduct = {
+                title: formatTitle(product.title),
+                billingPeriod: product.billingPeriod,
+                price: product.price,
+                tag: product.tag,
+                subscriptionId: product.subscriptionId
+              };
+              const apiProduct = {
+                product: {
+                  ...newProduct
+                }
+              };
+
+              await API.updateSubscriber(apiProduct);
+              return newProduct;
+            } catch (err) {
+              console.error(err);
+              return product;
+            }
+          }
+          return product;
+        };
+
+        const actualProduct = await getActualProduct(product, transaction);
         isSubscribed =
           status.toLowerCase() === ACTIVE ||
           status.toLowerCase() === CANCELED ||
@@ -143,14 +174,14 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
           status.toLowerCase() === IN_GRACE_PERIOD
             ? true
             : false;
-        if (product && isSubscribed) {
+        if (actualProduct && isSubscribed) {
           ownedProduct = {
-            billingPeriod: product.billingPeriod,
-            id: product._id,
-            price: product.price,
-            subscriptionId: product.subscriptionId,
-            tag: product.tag,
-            title: product.title,
+            billingPeriod: actualProduct.billingPeriod,
+            id: actualProduct._id,
+            price: actualProduct.price,
+            subscriptionId: actualProduct.subscriptionId,
+            tag: actualProduct.tag,
+            title: actualProduct.title,
             paypalSubscriptionId: transaction ? transaction.subscriptionId : '',
             platform: transaction ? transaction.platform : ''
           };
