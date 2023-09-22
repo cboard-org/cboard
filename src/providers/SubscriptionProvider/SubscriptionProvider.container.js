@@ -120,9 +120,11 @@ export class SubscriptionProvider extends Component {
       })
       .unverified(response => {
         if (isIOS()) {
+          const isAccountAlreadyBought =
+            response.payload.message === 'Transaction ID already exists';
           const { isInFreeCountry, isOnTrialPeriod } = this.props;
           updateSubscription({
-            status: UNVERIFIED,
+            status: isAccountAlreadyBought ? NOT_SUBSCRIBED : UNVERIFIED,
             isInFreeCountry: isInFreeCountry,
             isOnTrialPeriod: isOnTrialPeriod,
             isSubscribed: false,

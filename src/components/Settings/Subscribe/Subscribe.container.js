@@ -249,7 +249,7 @@ export class SubscribeContainer extends PureComponent {
           if (isIOS()) {
             //IOS have a unique receipt here => 'lastReceipt'
             const inAppPurchaseTransactions = filterInAppPurchaseIOSTransactions(
-              lastReceipt
+              localReceipts[0]
             );
 
             const lastTransaction = inAppPurchaseTransactions.slice(-1)[0];

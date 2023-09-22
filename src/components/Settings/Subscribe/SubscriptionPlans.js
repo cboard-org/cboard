@@ -147,7 +147,8 @@ const SubscriptionPlans = ({
   const getMessage = () => {
     function errorMessage() {
       if (error && error.code === '0001') {
-        return messages.googleAccountAlreadyOwns;
+        if (isAndroid()) return messages.googleAccountAlreadyOwns;
+        if (isIOS()) return messages.appleAccountAlreadyOwns;
       }
       return messages.error;
     }
