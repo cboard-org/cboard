@@ -11,7 +11,8 @@ import {
   updateSubscription,
   updatePlans,
   updateIsOnTrialPeriod,
-  showPremiumRequired
+  showPremiumRequired,
+  updateSubscriptionError
 } from './SubscriptionProvider.actions';
 import {
   ACTIVE,
@@ -107,7 +108,7 @@ export class SubscriptionProvider extends Component {
   };
 
   configInAppPurchasePlugin = () => {
-    const { updateSubscription } = this.props;
+    const { updateSubscription, updateSubscriptionError } = this.props;
 
     this.configPurchaseValidator();
 
@@ -122,6 +123,23 @@ export class SubscriptionProvider extends Component {
         if (isIOS()) {
           const isAccountAlreadyBought =
             response.payload.message === 'Transaction ID already exists';
+          if (isAccountAlreadyBought) {
+            const localReceipt = window.CdvPurchase.store.localReceipts[0];
+            localReceipt.finish();
+            window.CdvPurchase.store.finish(localReceipt);
+            updateSubscriptionError({
+              showError: true,
+              message: response.payload.message,
+              code: '0001'
+            });
+            setTimeout(() => {
+              updateSubscriptionError({
+                showError: false,
+                message: '',
+                code: ''
+              });
+            }, 3000);
+          }
           const { isInFreeCountry, isOnTrialPeriod } = this.props;
           updateSubscription({
             status: isAccountAlreadyBought ? NOT_SUBSCRIBED : UNVERIFIED,
@@ -182,6 +200,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   updateIsSubscribed,
   updateSubscription,
+  updateSubscriptionError,
   updatePlans,
   updateIsInFreeCountry,
   updateIsOnTrialPeriod,
