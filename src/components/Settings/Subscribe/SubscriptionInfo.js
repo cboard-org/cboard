@@ -30,7 +30,7 @@ import {
 import RefreshIcon from '@material-ui/icons/Refresh';
 import IconButton from '../../UI/IconButton';
 import { isAndroid, isElectron, isIOS } from '../../../cordova-util';
-import { GOOGLE_PLAY_STORE_URL } from './Subscribe.constants';
+import { APP_STORE_URL, GOOGLE_PLAY_STORE_URL } from './Subscribe.constants';
 
 const propTypes = {
   ownedProduct: PropTypes.object.isRequired,
@@ -148,6 +148,13 @@ const SubscriptionInfo = ({
                 );
               } else {
                 window.open(GOOGLE_PLAY_STORE_URL, '_blank');
+              }
+            }
+            if (!isIOS() && ownedProduct.platform === 'ios-appstore') {
+              if (isElectron()) {
+                window.cordova.plugins.DefaultBrowser.open(APP_STORE_URL);
+              } else {
+                window.open(APP_STORE_URL, '_blank');
               }
             }
           }}
