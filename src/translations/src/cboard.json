@@ -427,6 +427,8 @@
   "cboard.components.Settings.Navigation.vocalizeFoldersSecondary": "Reads folders name out loud when clicked",
   "cboard.components.Settings.Navigation.showLiveMode": "Use the Live Mode",
   "cboard.components.Settings.Navigation.showLiveModeSecondary": "Live mode allows you to write text directly into the output bar and quickly play the sound. It is intended for users that can write.",
+  "cboard.components.Settings.Navigation.activeImprovePhrase": "Use Improve Phrase",
+  "cboard.components.Settings.Navigation.activeImprovePhraseSecondary": "Improve Phrase allows you to gramatically improve the output phrase using Artificial intelligence. It is intended for users of core boards",
   "cboard.components.Settings.Navigation.bigScroll": "Enable big scroll buttons",
   "cboard.components.Settings.Navigation.bigScrollSecondary": "Shows big scroll buttons. Select the desired style in navigation buttons style section",
   "cboard.components.Settings.Navigation.navigationButtonsStyle": "Navigation buttons style",

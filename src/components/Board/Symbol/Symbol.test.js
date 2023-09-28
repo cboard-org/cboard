@@ -21,7 +21,7 @@ it('renders with correct image source path', () => {
 
 it('renders with label', () => {
   const wrapper = shallow(
-    <Symbol label="dummy label" type="p" labelpos="Below" />,
+    <Symbol label="dummy label" type="p" labelpos="Below" />
   );
   expect(wrapper.find('.Symbol__label')).toHaveLength(1);
 });

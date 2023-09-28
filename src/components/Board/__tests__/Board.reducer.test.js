@@ -52,7 +52,8 @@ const initialState = {
   isFetching: false,
   isFixed: false,
   images: [],
-  isLiveMode: false
+  isLiveMode: false,
+  improvedPhrase: ''
 };
 
 describe('reducer', () => {

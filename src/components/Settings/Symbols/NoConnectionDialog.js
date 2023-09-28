@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 NoConnectionDialog.propTypes = {
   intl: intlShape.isRequired,
   open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
 function NoConnectionDialog(props) {
