@@ -141,11 +141,11 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
             isIOS() &&
             transaction &&
             product &&
-            transaction.product_id !== product.subscriptionId
+            transaction.productId !== product.subscriptionId
           ) {
             try {
               const product = state.subscription.products.find(
-                product => product.subscriptionId === transaction.product_id
+                product => product.subscriptionId === transaction.productId
               );
 
               const newProduct = {
