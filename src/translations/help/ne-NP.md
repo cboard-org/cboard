@@ -2,64 +2,66 @@
 
 ## सामग्रीको तालिका
 
-* [केबोर्ड भनेको के हो?](#WhatisCboard)
-* [दर्ता र लगईन](#Registrationandlogin) 
-    * [म कसरीबोर्डको लागि दर्ता गर्ने छु?](#HowdoIregisterforCboard)
-    * [के म मेरो सामाजिक मिडिया खाता प्रयोग गरेर आफूलाई दर्ता गर्न सक्छु?](#CanIregistermyselfusingmysocialmediaaccounts)
-    * [एक पटक दर्ता गरिएको प्रयोगकर्ता भएपछि मैले कसरीबोर्डमा लग इन गर्ने?](#HowdoIlogintoCboardonceIamaregistereduser)
-    * [म कसरी लग आउट गर्ने?](#HowdoIlogout)
-    * [एक पंजीकृत र गैर-पंजीकृत प्रयोगकर्ता बीच के भिन्नता छ?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
-    * [म कसरी मेरो प्रयोगकर्ता जानकारी अपडेट गर्ने?](#HowdoIupdatemyuserinformation)
-    * [म कसरी मेरो पासवर्ड रिसेट गर्ने?](#HowdoIresetmypassword)
-* [मूल्य](#Price) 
-    * [Cboard कति खर्च हुन्छ?](#HowmuchdoesCboardcost)
-* [विशेषताहरु](#Features) 
-    * [कुन उपकरणहरू र ओएस समर्थित छन्?](#WhatdevicesandOSaresupported)
-    * [कुन भाषाहरू Cboard द्वारा समर्थित छन्?](#WhichlanguagesaresupportedbyCboard)
-    * [केबोर्डले मेरो सन्देश ठूलो स्वरले पढ्न सक्छ?](#CanCboardreadmymessageoutaloud)
-    * [भाषण क्षमताहरू](#Speechcapabilities)
-    * [निर्यात र आयात](#Exportandimport)
-    * [क्षमता प्रदर्शन गर्नुहोस्](#Displaycapabilities)
-    * [के म कुनै नेभिगेशन सेटिंग्स परिवर्तन गर्न सक्दछु?](#CanIchangeanynavigationsettings)
-    * [इन्टरफेस मार्फत नेभिगेसन](#Navigationthroughtheinterface)
+* [What is Cboard?](#WhatisCboard)
+* [Registration and login](#Registrationandlogin) 
+    * [How do I register for Cboard?](#HowdoIregisterforCboard)
+    * [Can I register myself using my social media accounts?](#CanIregistermyselfusingmysocialmediaaccounts)
+    * [How do I log in to Cboard once I am a registered user?](#HowdoIlogintoCboardonceIamaregistereduser)
+    * [How do I logout?](#HowdoIlogout)
+    * [What is the difference between a registered and a non-registered user?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
+    * [How do I update my user information?](#HowdoIupdatemyuserinformation)
+    * [How do I reset my password?](#HowdoIresetmypassword)
+* [Price](#Price) 
+    * [How much does Cboard cost?](#HowmuchdoesCboardcost)
+* [Features](#Features) 
+    * [What devices and OS are supported?](#WhatdevicesandOSaresupported)
+    * [Which languages are supported by Cboard?](#WhichlanguagesaresupportedbyCboard)
+    * [Can Cboard read my message out aloud?](#CanCboardreadmymessageoutaloud)
+    * [Speech capabilities](#Speechcapabilities)
+    * [Export and import](#Exportandimport)
+    * [Display capabilities](#Displaycapabilities)
+    * [Can I change any navigation settings?](#CanIchangeanynavigationsettings)
+    * [Navigation through the interface](#Navigationthroughtheinterface)
 * [सेटिङहरू](#Settings) 
-    * [मैले कसरीबोर्डबोर्डमा सेटि accessहरू पहुँच गर्ने?](#HowdoIaccesssettingsinCboard)
-    * [म कसरी मेरो बोर्ड बोर्डमा सेट प्रिन्ट गर्ने?](#HowdoIprintmyboardsetinCboard)
-    * [कसरी म पूर्ण स्क्रीनमाबोर्ड हेर्नुहोस्?](#HowdoIseeCboardinfullscreen)
-    * [म कसरी बोर्ड साझेदारी गर्ने?](#HowdoIshareaboard)
-* [कुरा गर्दै](#Talking) 
-    * [म कसरीबोर्डमा व्यक्तिगत रूपमा रेकर्ड गरिएको आवाज प्रतीकहरूमा थप्न सक्छु?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [म कसरी फरक आवाजमा स्विच गर्न सक्छु?](#HowdoIswitchtoadifferentvoice)
-    * [कसरी आवाज बदल्ने भन्नेमा म कसरी परिवर्तन गर्ने?](#HowdoIchangehowavoicesounds)
-* [बोर्ड सम्पादन](#BoardEditing) 
-    * [म कसरी खाली बोर्ड सिर्जना गर्न सक्छु?](#HowdoIcreateanemptyboard)
-    * [म कसरी बोर्डमा अवस्थित बोर्ड निजीकृत गर्ने छु?](#HowdoIpersonalizeanexistingboardinCboard)
-    * [बोर्ड सम्पादन गर्दा के म आफ्नै तस्वीरहरू प्रयोग गर्न सक्छु?](#CanIusemyownpictureswheneditingaboard)
-    * [के म बोर्डमा एलिमेन्टहरूको क्रम परिवर्तन गर्न सक्छु?](#CanIchangetheorderingoftheelementsinaboard)
-    * [म कसरी सम्पादन गर्न बहु तत्वहरू चयन गर्न सक्छु?](#HowdoIselectmultipleelementstoedit)
-    * [म कसरी टाइल सम्पादन गर्दै गर्दा नयाँ प्रतीकहरू फेला पार्न सक्दछु?](#FindSymbols)
-    * [के म बोर्ड टाइलहरू स्थिर स्थानमा राख्न सक्छु?](#FixedBoards)
-    * [म कसरी मेरो बोर्डमा प number्क्ति र स्तम्भहरूको विशेष संख्या सेट गर्ने?](#FixedRows)
-* [निर्यात र आयात](#Exportandimport) 
-    * [म कसरी मेरो बोर्डबोर्डमा निर्यात गर्ने?](#HowdoIexportmyboardinCboard)
-    * [म कसरी बोर्डबोर्डमा आयात गर्ने?](#HowdoIimportaboardintoCboard)
-    * [क्याबोर्डले आयात / निर्यातको लागि कुन फाइल ढाँचा प्रयोग गर्दछ?](#WhatfileformatdoesCboarduseforimportexport)
-* [क्षमता प्रदर्शन गर्नुहोस्](#Displaycapabilities) 
-    * [म प्रदर्शनमा के परिवर्तन गर्न सक्दछु?](#WhatcanIchangeonthedisplay)
-    * [के मबोर्डमा बटनहरू पुनःआकार दिन सक्छु?](#CanIresizebuttonsonCboard)
-* [स्क्यान गर्दै](#Scanning) 
-    * [म प्रतीकहरू पहुँच गर्नका लागि स्क्यानिंग प्रविधिहरू प्रयोग गर्न सक्छु?](#CanIusescanningtechniquestoaccesssymbols)
-* [कम्युनिकेटर बिल्डर](#CommunicatorBuilder) 
-    * [कम्युनिकेटर बिल्डर के हो?](#Whatiscommbuilder)
-    * [कम्युनिकेटर बोर्डहरू](#CommunicatorBoards)
-    * [सार्वजनिक बोर्डहरू](#PublicBoards)
-    * [मेरा सबै बोर्डहरू](#Allmyboards)
+    * [How do I access settings in Cboard?](#HowdoIaccesssettingsinCboard)
+    * [How do I print my board set in Cboard?](#HowdoIprintmyboardsetinCboard)
+    * [How do I see Cboard in fullscreen?](#HowdoIseeCboardinfullscreen)
+    * [How do I share a board?](#HowdoIshareaboard)
+    * [How do I share a phrase?](#HowdoIshareaphrase)
+* [Talking](#Talking) 
+    * [How do I add a personally recorded voice to symbols on Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
+    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
+    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
+* [Board Editing](#BoardEditing) 
+    * [How do I create an empty board?](#HowdoIcreateanemptyboard)
+    * [How do I personalize an existing board in Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
+    * [Can I use my own pictures when editing a board?](#CanIusemyownpictureswheneditingaboard)
+    * [Can I change the ordering of the elements in a board?](#CanIchangetheorderingoftheelementsinaboard)
+    * [How do I select multiple elements to edit?](#HowdoIselectmultipleelementstoedit)
+    * [How can I find new symbols when I am editing a tile?](#FindSymbols)
+    * [Can I place board tiles in fixed positions?](#FixedBoards)
+    * [How do I set a specific number of rows and columns in my board?](#FixedRows)
+* [Export and import](#Exportandimport) 
+    * [How do I export my board in Cboard?](#HowdoIexportmyboardinCboard)
+    * [How do I import a board into Cboard?](#HowdoIimportaboardintoCboard)
+    * [What file format does Cboard use for import/export?](#WhatfileformatdoesCboarduseforimportexport)
+* [Display capabilities](#Displaycapabilities) 
+    * [What can I change on the display?](#WhatcanIchangeonthedisplay)
+    * [Can I resize buttons on Cboard?](#CanIresizebuttonsonCboard)
+    * [Screen scroll through big buttons](#BigScrollButtons)
+* [Scanning](#Scanning) 
+    * [Can I use scanning techniques to access symbols?](#CanIusescanningtechniquestoaccesssymbols)
+* [Communicator builder](#CommunicatorBuilder) 
+    * [What is the communicator builder?](#Whatiscommbuilder)
+    * [Communicator boards](#CommunicatorBoards)
+    * [Public boards](#PublicBoards)
+    * [All my boards](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>केबोर्ड भनेको के हो?
 
 Cboard बच्चाहरू र वयस्कहरूको लागि बोली र भाषा कमजोरीहरूको लागि नि: शुल्क वेब अनुप्रयोग हो, तस्वीरहरू र पाठ-देखि-भाषणको साथ सञ्चारको सुविधा प्रदान।
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>दर्ता र लगईन
 
@@ -79,39 +81,39 @@ Cboard का लागि दर्ता गर्न, स्वागत प�
 
 ![ईमेल साइनअप](/images/help/signupemail.png "Email signup")
 
-यो जानकारी केवल कम्पनीले Cboard को उपयोग समर्थन गर्न र आवश्यक छ जब मद्दत प्रस्ताव को लागी गरीएको हो। यो अन्य संगठनहरूसँग साझेदारी गरिएको छैन, ( [प्राइभेसी विवरण](https://www.cboard.io/privacy/)हेर्नुहोस्)।
+This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
 
 एक पटक तपाईले तपाईको खाता प्रमाणित गर्नुभए पछि तपाईकोबोर्डमा पहुँच हुनेछ, र तपाईको खाता प्रमाणित गरेर प्रमाणित गरिएको अर्को इ-मेल प्राप्त गर्नुहुनेछ।
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>के म मेरो सामाजिक मिडिया खाता प्रयोग गरेर आफूलाई दर्ता गर्न सक्छु?
 
-हो! लगइन पृष्ठमा तपाईलाई गुगल वा फेसबुक खातामा साईन अप गर्न विकल्प दिइनेछ यदि तपाईं त्यसो गर्न चाहानुहुन्छ भने। तपाई इ-मेल ठेगानाको साथ पनि दर्ता गर्न सक्नुहुनेछ।
+Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>एक पटक दर्ता गरिएको प्रयोगकर्ता भएपछि मैले कसरीबोर्डमा लग इन गर्ने?
 
-Cboard मा लग इन गर्न, तपाईले साइन अप गर्न प्रयोग भएको पहिलो चरण अनुसरण गर्नुहोस्, तर स्वागत स्क्रिनमा SIGN UP चयन गर्नुको सट्टा, LOGIN चयन गर्नुहोस्। त्यसोभए तपाईलाई सुरुमा साइन अप गरिएको इ-मेल, र पासवर्ड तपाईले सेटअप गर्न प्रदान गर्न सोधिनेछ।
+To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
 
 ![किबोर्ड लगइन](/images/help/login.png "Cboard login")
 
 ### Cboard कन्फिगर गर्नका लागि बिभिन्न विकल्पहरू के हुन्?
 
-एकचोटि तपाईंले Cboard मा लगईन गर्नुभयो भने, तपाईं कन्फिगर र कम्युनिकेशन बोर्ड विकास गर्न विभिन्न विकल्पहरूको पहुँच गर्न सक्नुहुनेछ जब Cboard अनलक गरिएको मोडमा हुन्छ। तल सबै कुञ्जी विकल्पहरूको सूची हेर्नुहोस्:
+Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
 
 ![किबोर्ड सेटिंग्स](/images/help/settings.png "Cboard settings")
 
 ### <a name='HowdoIlogout'></a>म कसरी लग आउट गर्ने?
 
-तपाईं सेटिंग्स आइकन चयन गरेर लग आउट गर्न सक्नुहुनेछ, र विकल्प रातो रंगमा देखा पर्नेछ। तपाईं दायाँ कुनामा लक लक पनि चयन गर्न सक्नुहुन्छ, तीन पटक क्लिक गर्नुहोस् र एकचोटि तपाईंले स्क्रिन अनलक गर्नुभयो र रातो बार देखा पर्‍यो भने लकको बायाँपट्टि आइकन चयन गर्नुहोस् (तपाईंको चित्र यदि लोड गरिएको छ भने) र लगइन विकल्प। बाहिर रातोमा देखा पर्नेछ।
+You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
 
 ![किबोर्ड लगआउट](/images/help/logout.png "Cboard logout")
 
 ### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>एक पंजीकृत र गैर-पंजीकृत प्रयोगकर्ता बीच के भिन्नता छ?
 
-एक दर्ता प्रयोगकर्ताले उनीहरूको बोर्डहरू निजीकृत गर्न सक्षम छ, र परिवर्तन परिवर्तनहरू उनीहरूको खातामा बचत गरिनेछ कि जब तिनीहरू फेरि लगइन हुन्छन्, उनीहरू आफ्नो अनुकूलित बोर्डहरू प्रयोग गर्न सक्दछन्। एक गैर-पंजीकृत उपयोगकर्ता सुरक्षित परिवर्तनहरू सुरक्षित गर्न सक्नेछैन। हामी केवल केसमा दर्ता गर्न सिफारिश गर्दछौं, ताकि तपाईंको परिवर्तनहरू सुरक्षित गर्न ग्यारेन्टी गरिएको छ।
+A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
 
 ### <a name='HowdoIupdatemyuserinformation'></a>म कसरी मेरो प्रयोगकर्ता जानकारी अपडेट गर्ने?
 
-तपाईंको प्रयोगकर्ता जानकारी अपडेट गर्न, तपाईं प्रयोग गर्नुहुने समान चरणहरू अनुसरण गर्नुहोस् यदि तपाईं लग आउट गर्न प्रयास गर्दै हुनुहुन्छ भने। बोर्डको शीर्ष दायाँ कुनामा लक चिन्ह चयन गर्नुहोस् - तीन क्लिकहरू वा ट्यापहरू, र एक पटक तपाईं स्क्रीन अनलक गर्नुभयो भने, लकको बायाँपट्टि आइकन चयन गर्नुहोस् (प्रयोगकर्ता नाम आद्याक्षर, फोटो), र तपाईं आफ्नो प्रयोगकर्ता जानकारी सम्पादन गर्न सक्नुहुनेछ। ।
+To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
 
 ### <a name='HowdoIresetmypassword'></a>म कसरी मेरो पासवर्ड रिसेट गर्ने?
 
@@ -127,11 +129,11 @@ Cboard मा लग इन गर्न, तपाईले साइन अप
 
 ### <a name='WhatdevicesandOSaresupported'></a>कुन उपकरणहरू र ओएस समर्थित छन्?
 
-Cboard डेस्कटपहरू, ट्याब्लेटहरू र म्याक, विन्डोज र एन्ड्रोइड अपरेटिंग प्रणाली प्रयोग गरेर मोबाइल फोन सहित, उपकरणको एक विस्तृत विविधता को प्रयोग गरी अनलाइन उपलब्ध छ। यो क्रोम, फायरफक्स, एज र सफारी जस्ता ब्राउजरहरूमा राम्रोसँग हेरेको छ र एन्ड्रोइड अनुप्रयोग गुगल प्लेबाट उपलब्ध छ।
+Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
 
 ![ब्राउजर समर्थन](/images/help/browsers.png "Browser support")
 
-किनभने किबोर्ड एक वेब आधारित अनुप्रयोग हो यो व्यक्तिगत ब्राउजरहरू द्वारा प्रदान सेटिंग्स प्रतिक्रिया हुनेछ। यसको मतलव तपाईको Cboard द्वारा प्रदान सेटिंग्स को लागी बिभिन्न नतीजाहरु हुन सक्छ। उदाहरण को लागी तपाईले बिभिन्न विकल्पहरु प्रस्तुत गरीरहनुभएको छ।
+Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
 
 नबिर्सनुहोस् तपाईं ब्राउजर म्याग्निफिकेसन पनि प्रयोग गर्न सक्नुहुनेछ वा कम्प्युटर, ट्याब्लेट वा फोन स्क्रिन आकारको आधारमा निश्चित डिग्रीमा जूम गर्न सक्नुहुन्छ।
 
@@ -139,39 +141,39 @@ Cboard डेस्कटपहरू, ट्याब्लेटहरू र 
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>कुन भाषाहरू Cboard द्वारा समर्थित छन्?
 
-Cboard languages 33 भाषाहरूको लागि समर्थनको साथ आउँदछ। फरक भाषा चयन गर्न SETTINGS मा जानुहोस् - LANGUAGE चयन गर्नुहोस् र ती उपलब्ध हुनेछन्। एक छनौट गर्नुहोस् र भाषाको छेउमा 'टिक' देखा पर्नेछ।
+Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>केबोर्डले मेरो सन्देश ठूलो स्वरले पढ्न सक्छ?
 
-हो, Cboard तपाईंको उपकरणमा उपलब्ध सिंथेटिक वाणी आउटपुट प्रयोग गर्दछ प्रत्येक प्रतीक मुनिको व्यक्तिगत लेबलहरू पढ्नको लागि तिनीहरूलाई सन्देश आउटपुट बक्समा थपिएको छ। तपाईं पूर्ण सन्देश चयन गर्न सक्नुहुनेछ र यो ठूलो स्वरले पढिनेछ। यदि एक आवाज, शब्द वा वाक्यांशको एक निजीकृत रेकर्डिंग प्रतीकमा थपिएको छ (कुरा गरिरहेको अन्तर्गत निर्देशनहरू - आवाज रेकर्डिingsहरू) तपाईंले सुन्नुहुनेछ संश्लेषित आवाजको सट्टामा त्यो रेकर्डि।। यो धेरै सहयोगी हुन सक्दछ जहाँ अनुवाद भाषामा उपलब्ध छैन, बच्चाको आवाज आवश्यक हुन्छ वा उच्चारण अस्वीकार्य हुन्छ। कृपया सुनिश्चित गर्नुहोस् कि वेब पहुँच तपाईंको माइक्रोफोनमा दिइएको छ।
+Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
 
 ### <a name='Speechcapabilities'></a>भाषण क्षमताहरू
 
-भाषण क्षमताहरू समायोजन गर्न, SETTINGS मा जानुहोस्, र LANGUAGE कोटि अन्तर्गत SPEECH कोटी हो। जब तपाईं SPEECH चयन गर्नुहुन्छ, तपाईंबोर्डमा पिच र बोलीको गति सम्पादन गर्न सक्षम हुनुहुनेछ।
+In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
 
 ![भाषण क्षमताहरू](/images/help/speech.png "Speech capabilities")
 
 ### <a name='Exportandimport'></a>निर्यात र आयात
 
-निर्यात गर्न दुबै विकल्पहरू SETTINGS भित्र SYSTEM कोटिमा, भाषा र स्पीच मुनि छन्। निर्यात कोटी तपाईंलाई एक ओपनबोर्ड वा पीडीएफ अपलोड गर्न विकल्प दिनेछ। एक पटक तपाईले RESTORE चयन गर्नुभए पछि आयात कोटीले तपाईका सुरक्षित फाईलहरू खोल्नेछ।
+Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
 
 ![क्षमताहरू निर्यात गर्नुहोस्](/images/help/export.png "Export capabilities")
 
 ### <a name='Displaycapabilities'></a>क्षमता प्रदर्शन गर्नुहोस्
 
-प्रदर्शन सेटिंग्स SETTINGS मा सम्पादन गर्न सकिन्छ, SYSTEM कोटि बीचमा। प्रदर्शन विकल्प तलको निर्यात र आयात तल छ। एक तपाईं DI DI छनौट, तपाईं UI आकार साथै अनुप्रयोग फन्ट आकार तपाईं चाहेको आकार चयन गरेर परिवर्तन गर्न सक्नुहुन्छ। रातो डट तपाईंले छनौट गर्न चाहानु भएको आकारमुनि हुनुपर्दछ।
+Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
 
 ![क्षमता प्रदर्शन गर्नुहोस्](/images/help/display.png "Display capabilities")
 
 ### <a name='CanIchangeanynavigationsettings'></a>के म कुनै नेभिगेशन सेटिंग्स परिवर्तन गर्न सक्दछु?
 
-NAVIGATION खण्ड प्रयोग गर्नुहोस् सम्पादन र सुविधा को लागी तपाईं Cboard वरिपरि सार्न को लागी र सन्देश बक्स मा प्रतीक हटाउन को लागी। SETTINGS मा SYSTEM कोटि अन्तमा नेभिगेसनले तपाईंलाई ठूलो 'पछाडि' बटन राख्न अनुमति दिन्छ जुन चयन गर्न सजिलो छ। यो पनि सम्भव छ कि मेटाउन ('x') बटन प्रत्येक प्रतीकको माथि देखा पर्नेछ किनकि ती सन्देश बाकस भित्र प्रस्तुत गरिन्छन्। यसले वाक्य भित्र प्रतीकहरू मेटाउन सजिलो बनाउन सक्छ। तर प्रयोगकर्ताका आवश्यकताहरू बारे सचेत हुनुहोस् किनकि यसले केही व्यक्तिहरूलाई भ्रमित पनि गर्न सक्छ।
+Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
 
 ### <a name='Navigationthroughtheinterface'></a>ईन्टरफेस मार्फत नेभिगेसन
 
-Cboard को माध्यमबाट नेभिगेट सम्पादन र सुविधाका लागि, NAVIGATION चयन गर्नुहोस्, SYSTEM भित्रको अन्तिम मेनु वस्तु (सबै सेटि Settingsहरूमा) तपाईंलाई बोर्डको प्रयोग सजिलो बनाउन केहि निश्चित विवरणहरू थप्न अनुमति दिन्छ। नेभिगेसन भित्र पहिलो विकल्पले ठूलो 'पछाडि' बटनलाई अनुमति दिन्छ जुन आकारको कारण चयन गर्न सजिलो छ। दोस्रोले प्रतीकहरू मेटाउन सजिलो बनाउनको लागि 'x' बटन थप्छ, र तेस्रोले यसलाई अनलक गर्न सजिलो बनाउँदछ केवल अनलक गर्न सेटिंग्स अनलक गर्न केवल एक क्लिकको आवश्यकता लिएर।
+In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
 
 ![नेभिगेसन क्षमताहरू](/images/help/navigation.png "Navigation capabilities")
 
@@ -181,11 +183,11 @@ Cboard को माध्यमबाट नेभिगेट सम्पा�
 
 एकचोटि तपाईंले Cboard मा लग इन गर्नुभयो भने, गृह पृष्ठ खुल्नेछ।
 
-SETTINGS पहुँच गर्न, दाँया-दाहिने तिरको सानो लकलाई तीर मुनि तीन पटक चयन गर्नुहोस्। एकचोटि तपाईंले यो गरेपछि, सेतो पट्टी कालो घर बारको तल देखा पर्नेछ, र 'सेटिंग्स' बटन देखा पर्नेछ लकको बायाँ तिर HOME बारमा, दायाँबाट दोस्रो।
+In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
 
 ### <a name='HowdoIprintmyboardsetinCboard'></a>कसरी म बोर्डमा मेरो बोर्ड सेट प्रिन्ट गर्ने?
 
-तपाइँको बोर्ड प्रिन्ट गर्न, कालो HOME बारको बाँया पट्टि प्रिन्टर लोगो थिच्नुहोस्, गृह पृष्ठ अनलक गरेपछि। एक एडोब पोर्टेबल कागजात (.pdf) तपाइँको टेक्नोलोजीमा डाउनलोड गरिनेछ।
+To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
 
 ### <a name='HowdoIseeCboardinfullscreen'></a>कसरी म पूर्ण स्क्रीनमाबोर्ड हेर्नुहोस्?
 
@@ -197,11 +199,21 @@ SETTINGS पहुँच गर्न, दाँया-दाहिने ति
 
 एउटा बोर्ड साझेदारी गर्न, दायाँ हातमा लक प्रतीक थिचेर स्क्रिन अनलक गर्नुहोस्, त्यसपछि माथिल्लो प row्क्ति (कालो पट्टी) मा, दायाँबाट तेस्रो प्रतीकले तपाईंलाई कि त ईमेल, फेसबुक, ट्विटर, वा लिंक कसैलाई पठाउन प्रतिलिपि गर्नुहोस्।
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
+
+### <a name='HowdoIshareaphrase'></a>How do I share a phrase?
+
+To share a phrase, only for the first time, unlock the screen, go to settings > Navigation and Buttons > and turn on the 'Show the share phrase button' option.
+
+![Phrase share Settings](https://user-images.githubusercontent.com/21298844/128038972-a2848d47-2675-4e2d-9a15-6f93186f29d6.png)
+
+Assemble a phrase. Then press the share icon that appears on the right of the output phrase bar. Select the social network where you want to share the phrase. One dialog would be open with the phrase in a text field. Press the submit button to share it. If you want to copy the phrase on your clipboard, press the share button and then 'copy to clipboard' option. One Notification would be shown on your screen with a succes message.
+
+![Phrase share button](https://user-images.githubusercontent.com/21298844/128044322-d61491c6-7168-4615-8117-244dc872091e.png)
 
 ## <a name='Talking'></a>कुरा गर्दै
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>म कसरीबोर्डमा व्यक्तिगत रूपमा रेकर्ड गरिएको आवाज प्रतीकहरूमा थप्न सक्छु?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>How do I add a personally recorded voice to symbols on Cboard?
 
 1. तपाइँ प्रयोग गर्न चाहानुभएको बोर्डमा जानुहोस्।
 
@@ -209,7 +221,7 @@ SETTINGS पहुँच गर्न, दाँया-दाहिने ति
 
 3. बाँया पट्टि EDIT बटन चयन गर्नुहोस्।
 
-4. कुन आवाज सेल वा टाइल जसलाई तपाइँ भ्वाइस रेकर्डिंग थप्न चाहानुहुन्छ छनौट गर्नुहोस्। एकचोटि तपाईंले टाइल वा टाईलहरूको श्रृंखला छान्नुभयो, नीलो टिक प्रत्येकमा देखा पर्नेछ र तिनीहरूलाई हाइलाइट गरिनेछ।
+4. Choose which symbol cell or tile to which you want to add a voice recording. Once you select the tile or a series of tiles, a blue tick will appear in each one and they will be highlighted.
 
 5. PENCIL आइकन चयन गर्नुहोस् टाढाको दायाँ पट्टीमा हल्का निलो पट्टीमा।
 
@@ -221,153 +233,163 @@ SETTINGS पहुँच गर्न, दाँया-दाहिने ति
     
     यदि तपाईंले बहु चिन्हहरू चयन गर्नुभएको छ भने अर्को प्रतीकमा जानुहोस् र प्रक्रिया दोहोर्याउनुहोस्।
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIswitchtoadifferentvoice'></a>म कसरी फरक आवाजमा स्विच गर्न सक्छु?
+### <a name='HowdoIswitchtoadifferentvoice'></a>How do I switch to a different voice?
 
-बोली क्षमता / आवाज समायोजन गर्न को लागी सेटिंग्स मा जानुहोस्, र LANGUAGE कोटि अन्तर्गत SPEECH कोटि हो। जब तपाईं SPEECH चयन गर्नुहुन्छ तपाईंबोर्डमा पिच र भाषणको गति सम्पादन गर्न सक्षम हुनुहुनेछ। तपाईं प्रतीकहरूको लागि तपाईंको आफ्नै आवाज रेकर्ड गर्न सक्नुहुनेछ उत्तरको लागि निम्न चरणहरूको अनुसरणका लागि "कसरीबोर्डमा व्यक्तिगत रूपमा रेकर्ड गरिएको आवाज मैले थप्न सक्छु?"
+In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
 
-### <a name='HowdoIchangehowavoicesounds'></a>म कसरी आवाज बदल्छु?
+### <a name='HowdoIchangehowavoicesounds'></a>How do I change how a voice sounds?
 
-आवाज क्षमता / आवाज / ध्वनी समायोजन गर्न, SETTINGS मा जानुहोस्, र LANGUAGE कोटि अन्तर्गत SPEECH कोटी चयन गर्नुहोस्। त्यसो भए तपाईलेबोर्डमा पिच र बोलीको गति सम्पादन गर्न सक्नुहुनेछ।
+In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
 
 ## <a name='BoardEditing'></a>बोर्ड सम्पादन
 
-### <a name='HowdoIcreateanemptyboard'></a>म कसरी खाली बोर्ड सिर्जना गर्न सक्छु?
+### <a name='HowdoIcreateanemptyboard'></a>How do I create an empty board?
 
-Cboard मा खाली बोर्ड एउटा फोल्डरको बराबर हुन्छ।
+In Cboard an empty board is equivalent to a folder.
 
-यदि तपाईं नयाँ वा खाली बोर्ड सिर्जना गर्न चाहानुहुन्छ भने तपाईंले नयाँ फोल्डर सिर्जना गर्नुपर्नेछ, र त्यसले किबोर्ड भण्डारण क्षेत्रमा नयाँ बोर्ड सिर्जना गर्दछ (जुन तपाईं सम्पादन मोडमा मध्य पट्टीमा बोर्डहरूमा जान सक्नुहुँदा देख्न सक्नुहुन्छ)।
+If you want to create a new or empty board you have to create a new folder, and that will create a new board in the Cboard storage area (which you can see when you go to BOARDS on the middle bar in edit mode).
 
-नयाँ खाली बोर्ड तुरून्त सम्पादनको लागि उपलब्ध हुनेछ र रूट बोर्ड (बिल्ड बटन प्रयोग गरेर) को रूपमा सेट गर्न सकिन्छ, जसको मतलब यो हो कि तपाईले पहिलो पटक बोर्ड खोल्दा देख्नु भएको पहिलो बोर्ड हुनेछ।
+The new empty board will be immediately available for editing and can be set as the root board (using the build button), which means that it will be the first board you see the next time you open Cboard.
 
-नयाँ फोल्डर सिर्जना गर्न, दायाँ पट्टि लक बटन चयन गरेर स्क्रिन अनलक गरेर शुरू गर्नुहोस्। एकचोटि तपाईंले स्क्रिन अनलक गर्नुभयो भने, दायाँ पट्टीमा प्लस (+) प्रतीक चयन गर्नुहोस्, टाईल थप्नको लागि। तपाईंलाई त्यसपछि एउटा टाइल / बटन थप्न विकल्प दिइनेछ जुन पहिलो र स्वचालित विकल्प हो वा फोल्डर चयन गर्नुहोस् यो कार्यले नयाँ बोर्ड बनाउँदछ जहाँ तपाईं थप टाईलहरू र फोल्डरहरू थप्न सक्नुहुन्छ।
+To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
 
-एकचोटि तपाईंले फोल्डरको नामाकरण गर्नुभयो भने तपाईं र color्ग सेटिंग र लेबलको साथ टाइल बनाउनको लागि समान रूपमा छवि अपलोड गर्न सक्नुहुनेछ। यो नयाँ फोल्डर स्वचालित रूपमा माथिको बोर्डमा लिंक हुनेछ (यदि टाईलहरूको प row्क्ति समावेश छ भने)। यो तपाइँको बोर्डहरूको सूचीमा खाली बोर्डको रूपमा देखा पर्नेछ जबसम्म यो प्रतीकहरू र लेबलहरूको साथ आबादी हुँदैन।
+Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>म कसरी बोर्डमा अवस्थित बोर्ड निजीकृत गर्ने छु?
+### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>How do I personalize an existing board in Cboard?
 
-अवस्थित बोर्ड निजीकृत गर्न क्रममा, बोर्डको माथिको बारको माथि दायाँ कुनामा LOCK चयन गर्नुहोस्, (क्रसको साथ एरको मुनि)। एकचोटि तपाईंले यो गरिसकेपछि, अर्को पट्टी कालो घर पट्टीको तल देखा पर्नेछ, र तपाईंले एउटा टाइल वा सेल थप्नको लागि बाँया पट्टि एउटा सानो ब्लक (EDIT) आइकन पाउनुहुनेछ। एक पटक ब्लक चयन गरिएपछि, खरानी पट्टी निलो बन्न जान्छ, र दायाँ तिर तपाईले एउटा सानो रद्दी टोकरी र पेन्सिल देख्नुहुनेछ।
+In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
 
-![अवस्थित बोर्ड निजीकृत गर्नुहोस्](/images/help/personalize.png "personalize an existing board")
+![personalize an existing board](/images/help/personalize.png "personalize an existing board")
 
-बोर्ड निजीकृत गर्न को लागी, पेन्सिल चयन गर्नुहोस् र तपाईं लेबल परिवर्तन गर्न, एक छवि अपलोड गर्न, र Vocalization थप्न को लागी सक्षम हुनुहुनेछ।
+In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='CanIusemyownpictureswheneditingaboard'></a>बोर्ड सम्पादन गर्दा के म आफ्नै तस्वीरहरू प्रयोग गर्न सक्छु?
+### <a name='CanIusemyownpictureswheneditingaboard'></a>Can I use my own pictures when editing a board?
 
-हो, बोर्ड सम्पादन गर्दा तपाईं आफ्नै तस्वीर प्रयोग गर्न सक्नुहुनेछ। तपाईंको आफ्नै तस्वीर प्रयोग गर्न, तपाईं छवि अपलोड गर्न सक्नुहुनेछ जब तपाईं नयाँ टाइल सिर्जना गर्नुहुन्छ (प्लस साइन इन (+) चयन गरेर ग्रे पट्टीमा पृष्ठ अनलक पछि)। तपाईं आफ्नो तस्वीरको साथ अवस्थित टाइललाई सम्पादन गर्न सक्नुहुनेछ।
+Yes, you can use your own picture when editing a board. In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). You can also edit an existing tile with your own picture.
 
-### <a name='CanIchangetheorderingoftheelementsinaboard'></a>के म बोर्डमा एलिमेन्टहरूको क्रम परिवर्तन गर्न सक्छु?
+### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Can I change the ordering of the elements in a board?
 
-हो! जब तपाईं एक बोर्ड सम्पादन गर्दै हुनुहुन्छ, LOCK प्रतीक प्रयोग गरेर स्क्रीन अनलक गर्नुहोस्। त्यसपछि बायाँ पट्टिको EDIT ब्लक आईकन छनौट गर्नुहोस् (BUILD आइकनको मुनि)। तपाईं त्यसपछि चित्रोग्राम / प्रतीक वा फोल्डर ड्र्याग गर्न सक्नुहुन्छ जहाँ तपाईं यसलाई समान बोर्ड भित्र राख्न चाहानुहुन्छ।
+Yes! When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
 
-### <a name='HowdoIselectmultipleelementstoedit'></a>म कसरी सम्पादन गर्न बहु तत्वहरू चयन गर्न सक्छु?
+### <a name='HowdoIselectmultipleelementstoedit'></a>How do I select multiple elements to edit?
 
-उस्तै तरीकाले तपाइँले बोर्डमा एलिमेन्टहरूको क्रम परिवर्तन गर्नुहुन्छ, तर चयन र तान्नुको सट्टा तपाई पिक्चरोग्राम / प्रतीक वर्ग भित्रको सर्कल छान्नुहुन्छ। धेरै प्रतीकहरू सम्पादन गर्न तपाईं एक भन्दा बढी छनौट गर्न सक्नुहुनेछ। त्यसो गरिसकेपछि, दायाँ पट्टिमा पेन्सिल प्रतिमा चयन गर्नुहोस् र यसले तपाईंलाई चयनित तत्वहरू सम्पादन गर्न अनुमति दिनेछ।
+The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FindSymbols'></a>म कसरी टाइल सम्पादन गर्दै गर्दा नयाँ प्रतीकहरू फेला पार्न सक्दछु?
+### <a name='FindSymbols'></a>How can I find new symbols when I am editing a tile?
 
-बोर्ड बारको बाँया पट्टिको EDIT ब्लक आइकन चयन गर्नुहोस् र तपाईंले परिवर्तन गर्न चाहानु भएको पिकोग्राम / प्रतीक छनौट गर्नुहोस्। यसलाई छनौट गर्नुहोस् र एक पटक नीलो रिंगमा टिक भयो भने दायाँ प्यानसिल आइकनमा जानुहोस्। पेन्सिल चयन गर्नाले तपाईले याद गर्नुहुनेछ कि प्रतीक खोजीका लागि त्यहाँ म्याग्निफाइ G ग्लास आइकन छ। जब खोजी सुविधा सक्रिय हुन्छ तपाईले सम्पादन पट्टीमा खोजी SYMBOL लाइब्रे देख्नुहुनेछ। अवधारणा / लेबल / शब्दमा टाइप गर्नुहोस् जुन तपाईले खोजिरहनु भएको थियो र प्रतीक देखा पर्नेछ। एकचोटि तपाईंले एक प्रतीक चयन गर्नुभयो भने यसले तपाईंलाई स्वचालित रूपमा सम्पादन टाईल पृष्ठमा फर्काउँछ।
+Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FixedBoards'></a>के म बोर्ड टाइलहरू स्थिर स्थानमा राख्न सक्छु?
+### <a name='FixedBoards'></a>Can I place board tiles in fixed positions?
 
-पूर्वनिर्धारित द्वारा, जब नयाँ बोर्ड सिर्जना हुन्छ, Cboard ले **धाराप्रवाह बोर्ड**थप्नेछ। जे भए पनि, बोर्ड **फिक्स बोर्ड**रूपान्तरण गर्न सम्भव छ। तिनीहरूसँग निम्न सुविधाहरू छन्:
+By default, when a new board is created, Cboard will add a **fluent board**. Anyway, it is possible to transform the board into a **fixed board**. They have the following features:
 
 * ग्रिड बिभिन्न स्क्रीन आकार वा उपकरण अभिमुखीकरण को लागी परिवर्तन हुँदैन। 
 * प r्क्ति र स्तम्भहरूको संख्या कन्फिगर योग्य छ। 
 * टाइलहरू ग्रिडमा निश्चित स्थान हुनेछ। 
 
-बोर्डलाई निश्चित बोर्डमा रूपान्तरण गर्न, केवल बोर्ड सम्पादन गर्नुहोस् र उपकरण पट्टीमा विकल्प स्विच गर्नुहोस् यसलाई स्थिर बनाउनको लागि। तपाईंको बोर्ड यसको उपस्थिति परिवर्तन हुनेछ र पows्क्ति र स्तम्भ सूचकहरू प्रदर्शित हुनेछ।
+To convert a board into a fixed board, simply edit the board and switch the option in the toolbar to make it fixed. Your board will change its appearance and the rows and columns indicators will be displayed.
 
-![फिक्स्ड बोर्ड](/images/help/fixedBoard.png "Fixed board")
+![Fixed board](/images/help/fixedBoard.png "Fixed board")
 
-### <a name='FixedRows'></a>म कसरी मेरो बोर्डमा प number्क्ति र स्तम्भहरूको विशेष संख्या सेट गर्ने?
+### <a name='FixedRows'></a>How do I set a specific number of rows and columns in my board?
 
-पहिले, तपाईंले बोर्ड **बोर्ड** परिवर्तन गर्नुपर्दछ (अघिल्लो शीर्षक हेर्नुहोस्)। संस्करण मोडमा, तपाईंको बोर्डले पows्क्ति र स्तम्भ सूचकहरू प्रदर्शन गर्दछ। तपाईले यी नियन्त्रणहरूको साथ अन्तर्क्रिया गर्न सक्नुहुन्छ पंक्तिहरू र स्तम्भहरूको संख्या बढाउन वा घटाउन जुन तपाईं चाहानुहुन्छ।
+First, you have to transform the board into a **fixed board** (see previous topic). In edition mode, your board will display rows and columns indicators. You can interact with these controls in order to increase or decrease the number of rows and columns you want.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>निर्यात र आयात
 
-### <a name='HowdoIexportmyboardinCboard'></a>म कसरी मेरो बोर्डबोर्डमा निर्यात गर्ने?
+### <a name='HowdoIexportmyboardinCboard'></a>How do I export my board in Cboard?
 
-तपाईको बोर्डलाई बोर्डमा निर्यात गर्नका लागि, SETTINGS मा जानुहोस्, र तपाईंले सेटिंग्स खोल्ने बित्तिकै, एक्सपोर्ट विकल्प तल र अनुहार तीरको रूपमा देखा पर्दछ, भाषा र स्पीच मुनि।
+In order to export your board in Cboard, go to SETTINGS, and as soon as you open Settings, the EXPORT option will appear as a downward facing arrow, below Language and Speech.
 
-निर्यात चयन गर्नुहोस्, र कि त OPENBOARD वा निर्यात चयन गरेर तपाईंकोबोर्ड डाउनलोड गर्नुहोस्।
+Select EXPORT, and download your Cboard by selecting either OPENBOARD or EXPORT.
 
-### <a name='HowdoIimportaboardintoCboard'></a>म कसरी बोर्डबोर्डमा आयात गर्ने?
+### <a name='HowdoIimportaboardintoCboard'></a>How do I import a board into Cboard?
 
-एक बोर्ड आयात गर्नका लागि, निर्यातमा प्रयोग गरिएको चरणहरू अनुसरण गर्नुहोस्। आयात आयात तल मुनिको तल एक तीरपट्टी एक अपवर्ड फेसिंग एर्रोको तल छ।
+In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>क्याबोर्डले आयात / निर्यातको लागि कुन फाइल ढाँचा प्रयोग गर्दछ?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>What file format does Cboard use for import/export?
 
-बोर्डहरू आयात र निर्यात गर्न क्रममा तपाईंसँग दुई विकल्पहरू छन्:
+In order to Import and Export boards you have two options:
 
 * Cboard नेटिभ फाइल बोर्डहरू प्रयोग गर्नुहोस्।
-* ओपनबोर्ड फर्म्याट गरिएका फाइलहरू प्रयोग गर्नुहोस्। [खुला बोर्ड ढाँचा](https://www.openboardformat.org/)बारेमा बढि जान्नुहोस्
+* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>क्षमता प्रदर्शन गर्नुहोस्
 
-### <a name='WhatcanIchangeonthedisplay'></a>म प्रदर्शनमा के परिवर्तन गर्न सक्दछु?
+### <a name='WhatcanIchangeonthedisplay'></a>What can I change on the display?
 
-प्रदर्शन सेटिंग्स SETTINGS मा सम्पादन गर्न सकिन्छ, SYSTEM कोटि बीचमा। प्रदर्शन विकल्प निर्यात र आयात मुनि छ। एकचोटि तपाईंले डिस्प्ले चयन गर्नुभयो, तपाईं प्रयोगकर्ता ईन्टरफेस (UI) आकार साथै अनुप्रयोग फन्ट साइज आफूले चाहेको आकार चयन गरेर परिवर्तन गर्न सक्नुहुनेछ। रातो डट तपाईंले छनौट गर्न चाहानु भएको आकारमुनि हुनुपर्दछ।
+Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
 
-### <a name='CanIresizebuttonsonCboard'></a>के मबोर्डमा बटनहरू पुनःआकार दिन सक्छु?
+### <a name='CanIresizebuttonsonCboard'></a>Can I resize buttons on Cboard?
 
-हो! तपाईं टाइलहरू वा बटनहरू SETTINGS मा पुनःआकार गर्न सक्नुहुनेछ। श्रेणी SYSTEM मा, चयन गर्नुहोस् DISPLAY र तपाईंलाई आकारका लागि options विकल्प दिइनेछ: मानक, ठूलो, अतिरिक्त ठूलो। तल चित्र हेर्नुहोस्:
+Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
 
-![क्षमता प्रदर्शन गर्नुहोस्](/images/help/display.png "Display capabilities")
+![Display capabilities](/images/help/display.png "Display capabilities")
+
+### <a name='BigScrollButtons'></a>Screen scroll through big buttons
+
+It is also possible to scroll up and down a board using a couple of big buttons that can be added from the settings section. This is especially useful for eye-tracker device users, as the buttons allow to scroll the board without needing to slide the screen. To enable this feature, go to the settings section and look for the "enable big scroll buttons " switch. Toggle the switch and save the settings. See figure below:
+
+![Enable big scroll buttons](/images/help/bigScrollSettings.png "Big scroll buttons settings")
+
+Then, you should see a couple of big buttons at the top and the bottom of a board if it is large enough, as displayed in the below image:
+
+![Big scroll buttons](/images/help/bigScrollButtons.png "Big scroll buttons")
 
 ## <a name='Scanning'></a>स्क्यान गर्दै
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>म प्रतीकहरू पहुँच गर्नका लागि स्क्यानिंग प्रविधिहरू प्रयोग गर्न सक्छु?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Can I use scanning techniques to access symbols?
 
-स्क्यानिंग त्यो हो जहाँ चयन सेटमा आईटमहरू समयसँग क्रमशः प्रस्तुत गरिन्छ र प्रयोगकर्ताले अप्रत्यक्ष रूपमा चयन गर्दछ, सामान्यतया स्विच पहुँच द्वारा। Cboard मा स्क्यानिंग SETTINGS र SYSTEM कोटि भित्र काम गर्दछ। स्क्यानका लागि त्यहाँ बिभिन्न सेटिंग्स छन्। तपाईंले पहिले ENABLE चयन गरेर स्क्यानिंग सेटिंग सक्षम गर्नुपर्नेछ। तपाईं त्यसपछि समय ढिलाइ, र विधि (स्वत: वा म्यानुअल) को रूपमा छनौट गर्न सक्नुहुनेछ। कृपया ध्यान दिनुहोस् कि ट्याब्लेट वा स्मार्टफोन प्रयोग गर्दा यसको आफ्नै बिल्ट-इन स्क्यानिंग विकल्प पनि हुन सक्छ।
+Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
 
 ## <a name='CommunicatorBuilder'></a>कम्युनिकेटर बिल्डर
 
-### <a name='Whatiscommbuilder'></a>कम्युनिकेटर बिल्डर के हो?
+### <a name='Whatiscommbuilder'></a>What is the communicator builder?
 
-कम्युनिकेटर बिल्डर एक यस्तो सुविधा हो जसले तपाईंलाई बोर्डहरू ह्यान्डल गर्न अनुमति दिन्छ प्रतिलिपि गर्न, मेटाउन, प्रकाशित गर्न, थप्न र हटाउनको लागि। कार्यक्षमतामा पहुँच गर्न तपाईले सेटिंग्स अनलक गर्न आवश्यक छ र 'निर्माण गर्नुहोस्' बटनमा। तपाईं तीन नयाँ ट्याबहरूमा संरचित नयाँ पृष्ठ देख्नुहुनेछ: बोर्डहरू, सार्वजनिक बोर्डहरू, मेरा सबै बोर्डहरू। तल चित्र हेर्नुहोस्:
+The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
 
-![कम्युनिकेटर बिल्डर](/images/help/communicator.png "Communicator builder")
+![Communicator builder](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>कम्युनिकेटर बोर्डहरू
+### <a name='CommunicatorBoards'></a>Communicator boards
 
-पूर्वनिर्धारित ट्याब तपाइँ कम्युनिकेटर बिल्डरमा देख्नुहुनेछ कम्युनिकेटर बोर्ड ट्याब हो, जुन तपाइँको कम्युनिकेटरमा समावेश सबै बोर्डहरू प्रदर्शन गर्दछ। तपाइँको कम्युनिकेटरमा निम्न कार्य बटनहरूबाट परिवर्तन गर्न सक्नुहुन्छ:
+The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
 
 * कम्युनिकेटरबाट बोर्ड हटाउनुहोस्: यो बटनले कम्युनिकेटरबाट बोर्ड छोड्नेछ तर डेटाबेसबाट बोर्ड मेटाउनेछैन र यो अझै पनी 'मेरो सबै बोर्डहरू' ट्याब अन्तर्गत उपलब्ध छ।
 
 * बोर्डलाई रुटको रूपमा सेट गर्नुहोस्: यो बटनले बोर्डलाई पहिलो बोर्डको रूपमा परिभाषित गर्दछ जब तपाईं कुबोर्डमा लगइन गर्नुहुन्छ प्रत्येक पटक प्रदर्शित हुन्छ।
 
-![कम्युनिकेटर बोर्डहरू](/images/help/communicatorBoards.png "Communicator boards")
+![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>सार्वजनिक बोर्डहरू
+### <a name='PublicBoards'></a>Public boards
 
-* प्रतिलिपि बोर्ड: यो बटनले बोर्डको एक प्रतिलिपि सिर्जना गर्दछ र यसले तपाईंको कम्युनिकेटरमा थप गर्दछ। किनकि यो सार्वजनिक बोर्डको प्रतिलिपि हो, तपाईं मूल बोर्डलाई असर नगरी तपाईं यो बोर्डलाई सम्पादन गर्न सक्नुहुनेछ।
+* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
 
-![सार्वजनिक बोर्डहरू](/images/help/PublicBoards.png "Public boards")
+![Public boards](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>मेरा सबै बोर्डहरू
+### <a name='Allmyboards'></a>All my boards
 
-कृपया नोट गर्नुहोस् कि JUST रेजिष्टर्ड प्रयोगकर्ताहरूले यस ट्याब कार्यक्षमतामा पहुँच गर्न सक्दछन्।
+Please note that JUST registered users can access to this tab functionality.
 
 * कम्युनिकेटरबाट बोर्ड हटाउनुहोस्: यो बटनले कम्युनिकेटरबाट बोर्ड छोड्नेछ तर डाटाबेसबाट बोर्ड मेटाउँदैन र यो अझै उपलब्ध छ।
 
 * सञ्चारकमा बोर्ड थप्नुहोस्: यो बटनले सञ्चारकर्तामा बोर्ड समावेश गर्दछ।
 
-* प्रकाशित बोर्ड: यो कार्यले सार्वजनिक बोर्ड बनाउँदछ र यो सार्वजनिक बोर्ड ट्याब अन्तर्गत प्रदर्शित हुन्छ। सबै जनाले तपाइँको बोर्ड देख्न सक्दछन्।
+* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
     
- * अप्रकाशित बोर्ड: यो कार्यले बोर्ड निजी बनाउँछ र यो सार्वजनिक बोर्ड ट्याब अन्तर्गत प्रदर्शित हुँदैन। तपाईको बोर्ड कसैले पनि देख्न सक्दैन।
+ * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
     
- * बोर्ड हटाउनुहोस्: यो कार्यले बोर्ड हटाउनेछ र यसलाई पुन: प्राप्त गर्न सकिदैन। बोर्ड डाटाबेसबाट हटाइनेछ।
+ * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
 
-![मेरा सबै बोर्डहरू](/images/help/AllmyBoards.png "All my boards")
+![All my boards](/images/help/AllmyBoards.png "All my boards")

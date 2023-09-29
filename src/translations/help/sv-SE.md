@@ -5,8 +5,8 @@
 * [Vad är Cboard?](#WhatisCboard)
 * [Registrering och inloggning](#Registrationandlogin) 
     * [Hur registrerar jag mig för Cboard?](#HowdoIregisterforCboard)
-    * [Kan jag registrera mig själv med mina sociala mediekonton?](#CanIregistermyselfusingmysocialmediaaccounts)
-    * [Hur loggar jag in på Cboard när jag är registrerad användare?](#HowdoIlogintoCboardonceIamaregistereduser)
+    * [Kan jag registrera mig med mina konton i sociala medier?](#CanIregistermyselfusingmysocialmediaaccounts)
+    * [Hur loggar jag in på Cboard när jag är registrerad?](#HowdoIlogintoCboardonceIamaregistereduser)
     * [Hur loggar jag ut?](#HowdoIlogout)
     * [Vad är skillnaden mellan en registrerad och en icke-registrerad användare?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
     * [Hur uppdaterar jag min användarinformation?](#HowdoIupdatemyuserinformation)
@@ -17,38 +17,40 @@
     * [Vilka enheter och operativsystem stöds?](#WhatdevicesandOSaresupported)
     * [Vilka språk stöds av Cboard?](#WhichlanguagesaresupportedbyCboard)
     * [Kan Cboard läsa mitt meddelande högt?](#CanCboardreadmymessageoutaloud)
-    * [Talfunktioner](#Speechcapabilities)
-    * [Export och import](#Exportandimport)
-    * [Displayfunktioner](#Displaycapabilities)
-    * [Kan jag ändra navigeringsinställningar?](#CanIchangeanynavigationsettings)
+    * [Röstförmåga](#Speechcapabilities)
+    * [Exportera och importera](#Exportandimport)
+    * [Visa funktioner](#Displaycapabilities)
+    * [Kan jag ändra alla navigeringsinställningar?](#CanIchangeanynavigationsettings)
     * [Navigering genom gränssnittet](#Navigationthroughtheinterface)
 * [inställningar](#Settings) 
-    * [Hur får jag åt inställningar i Cboard?](#HowdoIaccesssettingsinCboard)
-    * [Hur skriver jag ut mitt kortsats i Cboard?](#HowdoIprintmyboardsetinCboard)
-    * [Hur ser jag Cboard i fullskärm?](#HowdoIseeCboardinfullscreen)
-    * [Hur delar jag en styrelse?](#HowdoIshareaboard)
-* [Talande](#Talking) 
-    * [Hur lägger jag till en personligen inspelad röst till symbolerna på Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
+    * [Hur får jag åtkomst till inställningar i Cboard?](#HowdoIaccesssettingsinCboard)
+    * [Hur skriver jag ut mitt tavelset i Cboard?](#HowdoIprintmyboardsetinCboard)
+    * [Hur ser jag Cboard i helskärm?](#HowdoIseeCboardinfullscreen)
+    * [Hur delar jag en tavla?](#HowdoIshareaboard)
+    * [Hur delar jag en fras?](#HowdoIshareaphrase)
+* [Talar](#Talking) 
+    * [Hur lägger jag till en personligt inspelad röst till symboler på Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
     * [Hur byter jag till en annan röst?](#HowdoIswitchtoadifferentvoice)
     * [Hur ändrar jag hur en röst låter?](#HowdoIchangehowavoicesounds)
-* [Styrelse redigering](#BoardEditing) 
-    * [Hur skapar jag ett tomt bräde?](#HowdoIcreateanemptyboard)
-    * [Hur anpassar jag ett befintligt kort i Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
-    * [Kan jag använda egna bilder när jag redigerar ett bräde?](#CanIusemyownpictureswheneditingaboard)
-    * [Kan jag ändra beställningen av elementen i ett bräde?](#CanIchangetheorderingoftheelementsinaboard)
+* [Redigering av tavlor](#BoardEditing) 
+    * [Hur skapar jag en tom tavla?](#HowdoIcreateanemptyboard)
+    * [Hur personifierar jag en befintlig styrelse i Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
+    * [Kan jag använda mina egna bilder när jag redigerar en tavla?](#CanIusemyownpictureswheneditingaboard)
+    * [Kan jag ändra ordningen på elementen i en tavla?](#CanIchangetheorderingoftheelementsinaboard)
     * [Hur väljer jag flera element att redigera?](#HowdoIselectmultipleelementstoedit)
-    * [Hur hittar jag nya symboler när jag redigerar en sida?](#FindSymbols)
-    * [Kan jag placera brickor i fasta positioner?](#FixedBoards)
-    * [Hur ställer jag in ett specifikt antal rader och kolumner på mitt tavla?](#FixedRows)
-* [Export och import](#Exportandimport) 
-    * [Hur exporterar jag mitt kort på Cboard?](#HowdoIexportmyboardinCboard)
-    * [Hur importerar jag ett kort till Cboard?](#HowdoIimportaboardintoCboard)
-    * [Vilket filformat använder Cboard för import / export?](#WhatfileformatdoesCboarduseforimportexport)
-* [Displayfunktioner](#Displaycapabilities) 
+    * [Hur kan jag hitta nya symboler när jag redigerar en bricka?](#FindSymbols)
+    * [Kan jag placera brädplattor i fasta positioner?](#FixedBoards)
+    * [Hur ställer jag in ett visst antal rader och kolumner i min tavla?](#FixedRows)
+* [Exportera och importera](#Exportandimport) 
+    * [Hur exporterar jag min tavla till Cboard?](#HowdoIexportmyboardinCboard)
+    * [Hur importerar jag en tavla till Cboard?](#HowdoIimportaboardintoCboard)
+    * [Vilket filformat använder Cboard för import/export?](#WhatfileformatdoesCboarduseforimportexport)
+* [Visa funktioner](#Displaycapabilities) 
     * [Vad kan jag ändra på displayen?](#WhatcanIchangeonthedisplay)
-    * [Kan jag ändra storlek på knapparna på kortet?](#CanIresizebuttonsonCboard)
-* [Läser in](#Scanning) 
-    * [Kan jag använda skanningstekniker för att komma åt symboler?](#CanIusescanningtechniquestoaccesssymbols)
+    * [Kan jag ändra storlek på knapparna på Cboard?](#CanIresizebuttonsonCboard)
+    * [Skärmrullning genom stora knappar](#BigScrollButtons)
+* [Skannar](#Scanning) 
+    * [Kan jag använda skanningstekniker för att få tillgång till symboler?](#CanIusescanningtechniquestoaccesssymbols)
 * [Kommunikatörsbyggare](#CommunicatorBuilder) 
     * [Vad är kommunikatören?](#Whatiscommbuilder)
     * [Kommunikatörspaneler](#CommunicatorBoards)
@@ -85,7 +87,7 @@ När du har verifierat ditt konto kommer du att ha tillgång till Cboard, och ko
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>Kan jag registrera mig själv med mina sociala mediekonton?
 
-Ja! På inloggningssidan får du möjlighet att registrera dig med ditt Google- eller Facebook-konto om du vill göra det. Du kan också registrera dig med en e-postadress.
+Ja! På inloggningssidan, du får möjlighet att registrera dig med ditt Google- eller Facebook-konto om du vill göra det. Du kan också registrera dig med en e-postadress.
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>Hur loggar jag in på Cboard när jag är registrerad användare?
 
@@ -107,7 +109,7 @@ Du kan logga ut genom att välja inställningsikonen, och alternativet visas i r
 
 ### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>Vad är skillnaden mellan en registrerad och en icke-registrerad användare?
 
-En registrerad användare kan anpassa sina tavlor, och de ändringar som görs kommer att sparas på deras konto så att när de loggar in igen kan de använda sina anpassade tavlor. En icke-registrerad användare kommer inte att kunna spara ändringar på ett säkert sätt. Vi rekommenderar att du registrerar dig, så dina ändringar kommer garanterat att sparas.
+En registrerad användare kan anpassa sina tavlor, och de ändringar som görs kommer att sparas på deras konto så att när de loggar in igen kan de använda sina anpassade tavlor. En användare som inte är registrerad kommer inte att kunna spara ändringar på ett säkert sätt. Vi rekommenderar att du registrerar dig i fall så dina ändringar kommer garanterat att sparas.
 
 ### <a name='HowdoIupdatemyuserinformation'></a>Hur uppdaterar jag min användarinformation?
 
@@ -131,7 +133,7 @@ Cboard är tillgänglig online med ett brett utbud av enheter, inklusive station
 
 ![Stöd för webbläsare](/images/help/browsers.png "Browser support")
 
-Eftersom Cboard är en webbaserad app kommer den att svara på de inställningar som tillhandahålls av den enskilda webbläsaren. Detta kan innebära att du har olika resultat till de inställningar som tillhandahålls av Cboard. Till exempel kan du hitta olika talalternativ som erbjuds.
+Eftersom Cboard är en webbaserad app kommer den att svara på de inställningar som tillhandahålls av den enskilda webbläsaren. Detta kan betyda att du har olika resultat till de inställningar som tillhandahålls av Cboard. Till exempel kan du hitta olika talalternativ som erbjuds.
 
 Glöm inte att du också kan använda webbläsarens förstoring eller zoom till en viss grad beroende på datorn, surfplattan eller telefonens skärmstorlek.
 
@@ -139,7 +141,7 @@ Fråga Cboard om att använda högkontrastläge för personer med synnedsättnin
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Vilka språk stöds av Cboard?
 
-Cboard levereras med stöd för 33 språk. Om du vill välja ett annat språk går du till INSTÄLLNINGAR – välj SPRÅK så visas de tillgängliga språken. Gör ett val och en "tick" visas bredvid språket.
+Cboard har stöd för 33 språk. För att välja ett annat språk gå till INSTÄLLNINGAR – välj SPRÅK och de tillgängliga kommer att visas. Gör ett val och en "tick" visas bredvid språket.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
@@ -167,7 +169,7 @@ Visningsinställningar kan redigeras i INSTÄLLNINGAR inom kategorin SYSTEM. Vis
 
 ### <a name='CanIchangeanynavigationsettings'></a>Kan jag ändra alla navigeringsinställningar?
 
-Använd avsnittet NAVIGATION för att redigera och underlätta hur du använder för att flytta runt Cboard och ta bort symboler i meddelandefältet. Navigering i slutet av kategorin SYSTEM i INSTÄLLNINGAR gör att du kan ha en större "tillbaka" knapp som är lättare att välja. Det är också möjligt att tillåta att en radering ("x") knapp visas ovanför varje symbol som de presenteras i meddelandefältet. Detta kan göra det lättare att ta bort symboler i en mening. Men var medveten om användarens behov eftersom det också kan förvirra vissa individer.
+Använd avsnittet NAVIGATION för att redigera och underlätta hur du använder för att flytta runt Cboard och ta bort symboler i meddelandefältet. Navigering i slutet av kategorin SYSTEM i INSTÄLLNINGAR gör att du kan ha en större "tillbaka" knapp som är lättare att välja. Det är också möjligt att tillåta att en radering ("x") knapp visas ovanför varje symbol som de presenteras i meddelandefältet. Detta kan göra det lättare att ta bort symboler i en mening, men var medveten om användarens behov eftersom det också kan förvirra vissa individer.
 
 ### <a name='Navigationthroughtheinterface'></a>Navigering genom gränssnittet
 
@@ -199,6 +201,16 @@ För att dela en bräda, lås upp skärmen genom att trycka på låssymbolen på
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
+### <a name='HowdoIshareaphrase'></a>Hur delar jag en fras?
+
+För att dela en fras, endast för första gången, låsa upp skärmen, gå till inställningar > Navigering och knappar > och slå på alternativet 'Visa delningsfrasen'.
+
+![Inställningar för frasdelning](https://user-images.githubusercontent.com/21298844/128038972-a2848d47-2675-4e2d-9a15-6f93186f29d6.png)
+
+Montera en fras. Tryck sedan på dela-ikonen som visas till höger om utmatningsfrasfältet. Välj det sociala nätverket där du vill dela frasen. En dialog skulle vara öppen med frasen i ett textfält. Tryck på skicka knappen för att dela den. Om du vill kopiera frasen på urklippet, tryck på dela-knappen och sedan på 'kopiera till urklipp'. En notifikation skulle visas på skärmen med ett succes meddelande.
+
+![Fras dela-knapp](https://user-images.githubusercontent.com/21298844/128044322-d61491c6-7168-4615-8117-244dc872091e.png)
+
 ## <a name='Talking'></a>Talande
 
 ### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Hur lägger jag till en personligt inspelad röst till symboler på Cboard?
@@ -209,7 +221,7 @@ För att dela en bräda, lås upp skärmen genom att trycka på låssymbolen på
 
 3. Välj EDIT-knappen på vänster sida.
 
-4. Välj vilken symbolcell eller kakel som du vill lägga till en röstinspelning till. När du väljer brickan eller en serie brickor visas en blå bock i var och en och de kommer att markeras.
+4. Välj vilken symbolcell eller ruta som du vill lägga till en röstinspelning. När du väljer kakel eller en serie av plattor, kommer en blå bock visas i var och en och de kommer att markeras.
 
 5. Välj PENCIL-ikonen längst till höger på den ljusblå fältet.
 
@@ -223,7 +235,7 @@ För att dela en bräda, lås upp skärmen genom att trycka på låssymbolen på
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIswitchtoadifferentvoice'></a>Hur växlar jag till en annan röst?
+### <a name='HowdoIswitchtoadifferentvoice'></a>Hur byter jag till en annan röst?
 
 För att justera talkapacitet/röst, gå in i inställningar, och under kategorin SPEECH är kategorin. När du väljer SPEECH kommer du att kunna redigera tonhöjden och takten i tal på Cboard. Du kan också spela in din egen röst för symbolerna efter stegen på svaret för “Hur lägger jag till en personligen inspelad röst till symboler på Cboard?”
 
@@ -233,7 +245,7 @@ För att justera talfunktioner/röst/ljud går du in i INSTÄLLNINGAR och under 
 
 ## <a name='BoardEditing'></a>Styrelse redigering
 
-### <a name='HowdoIcreateanemptyboard'></a>Hur skapar jag ett tomt bräde?
+### <a name='HowdoIcreateanemptyboard'></a>Hur skapar jag en tom tavla?
 
 I Cboard motsvarar en tom tavla en mapp.
 
@@ -247,7 +259,7 @@ När du har namngett mappen kan du ladda upp en bild på ett liknande sätt som 
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Hur anpassar jag ett befintligt kort i Cboard?
+### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Hur personifierar jag en befintlig styrelse i Cboard?
 
 För att anpassa en befintlig tavla, Välj LOCK i det övre högra hörnet av stapeln ovanför brädet, (under pilen med ett kors). När du har gjort detta, kommer en annan bar visas under den svarta HOME bar, och du hittar en liten block (EDIT) ikon på vänster sida för att lägga till en kakel eller cell. När blocket är markerat ska den grå stapeln bli blå, och på höger sida ser du en liten soptunna och en penna.
 
@@ -257,117 +269,127 @@ För att anpassa tavlan, välj pennan och du kommer att kunna ändra etiketten, 
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='CanIusemyownpictureswheneditingaboard'></a>Kan jag använda egna bilder när jag redigerar ett bräde?
+### <a name='CanIusemyownpictureswheneditingaboard'></a>Kan jag använda mina egna bilder när jag redigerar en tavla?
 
-Ja, du kan använda din egen bild när du redigerar ett bräde. För att använda din egen bild, Du kan ladda upp bilden när du skapar en ny ruta (genom att välja PLUS SIGN (+) på den grå rutan efter att du låst upp sidan). Du kan också redigera en befintlig kakel med din egen bild.
+Ja, du kan använda din egen bild när du redigerar en tavla. För att använda din egen bild, Du kan ladda upp bilden när du skapar en ny ruta (genom att välja PLUS SIGN (+) på den grå rutan efter att du låst upp sidan). Du kan också redigera en befintlig bricka med din egen bild.
 
-### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Kan jag ändra beställningen av elementen i ett bräde?
+### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Kan jag ändra ordningen på elementen i en tavla?
 
-ja! När du redigerar en tavla låser du upp skärmen med hjälp av LOCK-symbolen. Välj sedan ikonen EDIT block på vänster sida (under BUILD ikonen). Du kan sedan dra piktogram/symbol eller mapp till var du vill lägga den på samma tavla.
+Ja! När du redigerar en tavla låser du upp skärmen med hjälp av LOCK-symbolen. Välj sedan ikonen EDIT block på vänster sida (under BUILD ikonen). Du kan sedan dra piktogram/symbol eller mapp till var du vill lägga den på samma tavla.
 
 ### <a name='HowdoIselectmultipleelementstoedit'></a>Hur väljer jag flera element att redigera?
 
-På samma sätt ändrar du ordningen på element i en tavla, men istället för att välja och dra, du väljer cirkeln inuti piktogram/symboltorget. För att redigera många symboler kan du välja mer än en. Efter att ha gjort det, välj PENCIL ikonen på höger sida och detta gör att du kan redigera de valda elementen.
+På samma sätt som du ändrar ordningen på element i en styrelse, men istället för att välja och dra väljer du cirkeln inuti piktogram/symboltorget. För att redigera många symboler kan du välja mer än en. Efter att ha gjort det, välj PENCIL ikonen på höger sida och detta gör att du kan redigera de valda elementen.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FindSymbols'></a>Hur hittar jag nya symboler när jag redigerar en sida?
+### <a name='FindSymbols'></a>Hur kan jag hitta nya symboler när jag redigerar en bricka?
 
 Välj ikonen för EDIT-block på vänster sida av forumfältet och välj den piktogram/symbol som du vill ändra. Välj den och när den blå ringen har en ticka, gå till PENCIL ikonen till höger. Efter att ha valt pennan kommer du att märka att det finns en MAGNIFYING GLASS-ikon för symbolsökning. När sökfunktionen är aktiverad kommer du att se SÖK SYMBOL LIBRARY i ett redigeringsfält. Skriv in begreppet/etiketten / ord du letar efter och symboler visas. När du har valt en symbol kommer den automatiskt tillbaka dig till redigera TILE sidan.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FixedBoards'></a>Kan jag placera brickor i fasta positioner?
+### <a name='FixedBoards'></a>Kan jag placera brädplattor i fasta positioner?
 
-När ett nytt kort skapas kommer Cboard som standard att lägga till ett **flytande kort**. Hur som helst är det möjligt att förvandla kortet till ett **fast kort**. De har följande funktioner:
+När en ny tavla skapas kommer Cboard att lägga till en **flytande tavla**. Hur som helst, det är möjligt att omvandla styrelsen till en **fast styrelse**. De har följande funktioner:
 
 * Rutnätet ändras inte för olika skärmstorlekar eller enhetsorientering. 
 * Antalet rader och kolumner kan konfigureras. 
 * Brickorna har fasta positioner i gallret. 
 
-För att konvertera ett kort till ett fast kort, redigerar du helt enkelt kortet och byter alternativet i verktygsfältet så att det fixas. Brädet kommer att ändra sitt utseende och raderna och kolumnerna visas.
+För att konvertera en bräda till ett fast bräde, helt enkelt redigera brädet och växla alternativet i verktygsfältet för att göra det fast. Tavlan kommer att ändra dess utseende och raderna och kolumnindikatorerna kommer att visas.
 
-![Fast bräda](/images/help/fixedBoard.png "Fixed board")
+![Fast tavla](/images/help/fixedBoard.png "Fixed board")
 
-### <a name='FixedRows'></a>Hur ställer jag in ett specifikt antal rader och kolumner på mitt tavla?
+### <a name='FixedRows'></a>Hur ställer jag in ett visst antal rader och kolumner i min tavla?
 
-Först måste du förvandla kortet till ett **fast kort** (se föregående ämne). I utgåvläge visar ditt bräde indikatorer för rader och kolumner. Du kan interagera med dessa kontroller för att öka eller minska antalet rader och kolumner du vill ha.
+Först måste du förvandla tavlan till en **fast tavla** (se föregående ämne). I upplagsläge, kommer din tavla att visa rader och kolumner indikatorer. Du kan interagera med dessa kontroller för att öka eller minska antalet rader och kolumner du vill.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Export och import
 
-### <a name='HowdoIexportmyboardinCboard'></a>Hur exporterar jag mitt kort till Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>Hur exporterar jag min tavla till Cboard?
 
-För att exportera ditt bräde till Cboard, gå till INSTÄLLNINGAR och så snart du öppnar Inställningar visas alternativet EXPORT som en nedåtvänd pil, under Språk och tal.
+För att exportera din tavla i Cboard, gå till INSTÄLLNINGAR och så snart du öppnar inställningar, EXPORT-alternativet visas som en nedåtvänd pil, under Språk och Tal.
 
-Välj EXPORT och ladda ner ditt Cboard genom att välja antingen OPENBOARD eller EXPORT.
+Välj EXPORT, och ladda ner ditt kort genom att välja antingen OPENBOARD eller EXPORT.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Hur importerar jag ett kort till Cboard?
+### <a name='HowdoIimportaboardintoCboard'></a>Hur importerar jag en tavla till Cboard?
 
-Följ stegen som används för att importera ett kort. IMPORT är under Export, en uppåtvänd pil med en horisontell stapel under den.
+För att importera en tavla, följ stegen som används för att exportera. IMPORT är under export, en uppåtvänd pil med en horisontell bar under den.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Vilket filformat använder Cboard för import / export?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Vilket filformat använder Cboard för import/export?
 
-För att importera och exportera kort har du två alternativ:
+För att importera och exportera tavlor har du två alternativ:
 
 * Använd inbyggda Cboard-filtavlor.
-* Använd OpenBoard-formaterade filer. [Läs mer om Open Board Format](https://www.openboardformat.org/)
+* Använd OpenBoard formaterade filer. [Läs mer om Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Displayfunktioner
 
-### <a name='WhatcanIchangeonthedisplay'></a>Vad kan jag ändra på skärmen?
+### <a name='WhatcanIchangeonthedisplay'></a>Vad kan jag ändra på displayen?
 
-Displayinställningar kan redigeras i INSTÄLLNINGAR, inom SYSTEM-kategorin. Visningsalternativet ligger under Exportera och importera. När du väl har valt DISPLAY kan du ändra storlek på användargränssnittet (UI) och appstorleken genom att välja den storlek du vill ha. Den röda pricken ska vara under den storlek du vill välja.
+Visningsinställningar kan redigeras i INSTÄLLNINGAR inom kategorin SYSTEM. Visningsalternativet är under Export och Import. När du väljer DISPLAY, kan du ändra användargränssnittet (UI) storlek samt appen teckenstorlek genom att välja den storlek du vill. Den röda pricken ska vara under den storlek du vill välja.
 
 ### <a name='CanIresizebuttonsonCboard'></a>Kan jag ändra storlek på knapparna på Cboard?
 
-ja! Du kan ändra storlek på brickor eller knappar i INSTÄLLNINGAR. I kategorin SYSTEM väljer du DISPLAY så får du 3 alternativ för storlek: Standard, Stor, Extra Stor. Se figur nedan:
+Ja! Du kan ändra storlek på brickor eller knappar i INSTÄLLNINGAR. I kategorin SYSTEM, välj DISPLAY och du kommer att få 3 alternativ för storlek: Standard, Large, Extra Large. Se figur nedan:
 
-![Skärmfunktioner](/images/help/display.png "Display capabilities")
+![Visa funktioner](/images/help/display.png "Display capabilities")
+
+### <a name='BigScrollButtons'></a>Skärmrullning genom stora knappar
+
+Det är också möjligt att rulla upp och ner en bräda med ett par stora knappar som kan läggas till från inställningsavsnittet. Detta är särskilt användbart för användare av eye-tracker enhet, eftersom knapparna gör det möjligt att rulla brädet utan att behöva skjuta skärmen. För att aktivera den här funktionen, gå till inställningssektionen och leta efter "aktivera stora rullningsknappar" -switchen. Växla och spara inställningarna. Se figur nedan:
+
+![Aktivera stora rullningsknappar](/images/help/bigScrollSettings.png "Big scroll buttons settings")
+
+Sedan bör du se ett par stora knappar på toppen och botten av en bräda om den är tillräckligt stor, som visas i bilden nedan:
+
+![Stora rullningsknappar](/images/help/bigScrollButtons.png "Big scroll buttons")
 
 ## <a name='Scanning'></a>Läser in
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Kan jag använda skanningstekniker för att komma åt symboler?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Kan jag använda skanningstekniker för att få tillgång till symboler?
 
-Skanning är där objekten i urvalsuppsättningen presenteras sekventiellt över tiden och användaren gör ett val indirekt, vanligtvis genom omkopplingsåtkomst. SCANNING på Cboard fungerar inom INSTÄLLNINGAR och SYSTEM-kategorin. Det finns olika inställningar för skanning. Du bör först aktivera skanningsinställningen genom att välja AKTIVERA. Du kan sedan välja tidsfördröjning samt metod (antingen automatisk eller manuell). Tänk på att när du använder en surfplatta eller smartphone kan den också ha ett eget inbyggt skanningsalternativ.
+Skanning är där objekten i urvalssatsen presenteras sekventiellt över tid och användaren gör ett urval indirekt, oftast genom att byta åtkomst. SCANNING på Cboard fungerar inom INSTÄLLNINGAR och kategorin SYSTEM. Det finns olika inställningar för skanning. Du bör först aktivera skanningsinställningen genom att välja ENABLE. Du kan sedan välja tidsfördröjning, liksom metoden (antingen automatisk eller manuell). Tänk på att när du använder en surfplatta eller smartphone kan den också ha ett eget inbyggt skanningsalternativ.
 
 ## <a name='CommunicatorBuilder'></a>Kommunikatörsbyggare
 
-### <a name='Whatiscommbuilder'></a>Vad är kommunikatörsbyggaren?
+### <a name='Whatiscommbuilder'></a>Vad är kommunikatören?
 
-Communicator Builder är en funktion som låter dig hantera kort för att kopiera, radera, publicera, lägga till och ta bort dem. För att få tillgång till funktionaliteten måste du låsa upp inställningarna och klicka på 'Bygg' -tangenten. Du kommer att se en ny sida strukturerad på tre olika flikar: styrelser, offentliga styrelser, alla mina styrelser. Se figur nedan:
+Kommunikatören är en funktion som låter dig hantera tavlor för att kopiera, ta bort, publicera, lägga till och ta bort dem. För att få tillgång till funktionaliteten måste du låsa upp inställningarna och klicka på 'Build' buttton. Du kommer att se en ny sida strukturerad på tre olika flikar: styrelser, styrelser, alla mina styrelser. Se figur nedan:
 
 ![Kommunikatörsbyggare](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Kommunikationskort
+### <a name='CommunicatorBoards'></a>Kommunikatörspaneler
 
-Standardfliken du ser i Communicator Builder är fliken Communicator Board, som visar alla kort som ingår i din Communicator. Du kan göra ändringar i din kommunikator från följande åtgärdsknappar:
+Den standardflik du kommer att se i kommunikatörsbyggare är fliken kommunikatörspaneler som kommer att visa alla tavlor som ingår i din kommunikatör. Du kan göra ändringar i din kommunikatör från följande åtgärdsknappar:
 
 * Ta bort kortet från communicator: denna buttton kommer att avsluta kortet från communicator men kommer INTE att radera kortet från databasen och det är fortfarande tillgängligt under fliken "Alla mina kort".
 
 * Ställ in brädet som root: denna buttton definierar brädet som det första brädet som ska visas varje gång du loggar in på Cboard.
 
-![Kommunikationskort](/images/help/communicatorBoards.png "Communicator boards")
+![Kommunikatörspaneler](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Offentliga styrelser
+### <a name='PublicBoards'></a>Offentliga tavlor
 
-* Kopiera tavla: denna buttton skapar en kopia av tavlan och den kommer att lägga till den i din kommunikatör. Eftersom detta är en kopia av den allmänna tavlan kan du redigera den här tavlan som du vill utan att den påverkar den ursprungliga tavlan.
+* Kopiera tavlan: denna buttton kommer att skapa en kopia av tavlan och den kommer att lägga till den i din kommunikatör. Eftersom detta är en kopia av den offentliga styrelsen, kan du redigera denna tavla som du vill utan att påverka den ursprungliga offentliga styrelsen.
 
-![Offentliga styrelser](/images/help/PublicBoards.png "Public boards")
+![Offentliga tavlor](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>Alla mina brädor
+### <a name='Allmyboards'></a>Alla mina tavlor
 
-Observera att BARA registrerade användare kan komma åt denna flikfunktion.
+Observera att JUST registrerade användare har tillgång till denna flik funktionalitet.
 
 * Ta bort kortet från communicator: denna buttton kommer att avsluta kortet från communicator men kommer INTE att radera kortet från databasen och det är fortfarande tillgängligt.
 
 * Lägg till styrelse i kommunikatören: denna buttton inkluderar styrelsen till kommunikatören.
 
-* Publicera tavla: Denna åtgärd kommer att göra tavlan offentlig och den visas under fliken offentliga tavlor. Alla kan se din tavla.
+* Publicera tavlan: Denna åtgärd kommer att göra tavlan offentlig och den kommer att visas under fliken offentliga tavlor. Alla kan se tavlan.
     
- * Avpublicera tavlan: Den här åtgärden gör tavlan privat och den visas inte under fliken offentliga tavlor. Ingen kan se din tavla.
+ * Avpublicera tavlan: Denna åtgärd kommer att göra tavlan privat och den kommer inte att visas under fliken offentliga tavlor. Ingen kan se din tavla.
     
- * Radera kort: Den här åtgärden tar bort kortet och kan inte återställas. Tavlan tas bort från databasen.
+ * Ta bort tavlan: Denna åtgärd kommer att ta bort tavlan och den kan inte återställas. Tavlan kommer att tas bort från databasen.
 
-![Alla mina brädor](/images/help/AllmyBoards.png "All my boards")
+![Alla mina tavlor](/images/help/AllmyBoards.png "All my boards")
