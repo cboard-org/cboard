@@ -279,7 +279,7 @@ export function updatePlans() {
       const products = plans.map(plan => {
         const price = iosProducts
           ? getIOSPrice(iosProducts, plan.subscriptionId)
-          : getPrice(plan.countries, 'US');
+          : getPrice(plan.countries, locationCode);
         const result = {
           id: plan.planId,
           subscriptionId: plan.subscriptionId,
