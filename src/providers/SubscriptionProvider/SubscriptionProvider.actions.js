@@ -18,6 +18,7 @@ import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
 import { isAndroid, isIOS } from '../../cordova-util';
 import { formatTitle } from '../../components/Settings/Subscribe/Subscribe.helpers';
+import { updateNavigationSettings } from '../../components/App/App.actions';
 
 export function updateIsInFreeCountry() {
   return (dispatch, getState) => {
@@ -45,6 +46,12 @@ export function updateIsOnTrialPeriod() {
         isOnTrialPeriod
       })
     );
+
+    const isInFreeCountry = state.subscription?.isInFreeCountry;
+    const isSubscribed = state.subscription?.isSubscribed;
+    if (!isOnTrialPeriod && !(isSubscribed || isInFreeCountry))
+      disablePremiumFeaturesOnTrialPeriodEnded();
+
     return isOnTrialPeriod;
 
     function isUserOnTrialPeriod(createdAt) {
@@ -57,6 +64,10 @@ export function updateIsOnTrialPeriod() {
       );
       if (actualDate >= tryLimitDate) return false;
       return true;
+    }
+
+    function disablePremiumFeaturesOnTrialPeriodEnded() {
+      dispatch(updateNavigationSettings({ improvePhraseActive: false }));
     }
   };
 }

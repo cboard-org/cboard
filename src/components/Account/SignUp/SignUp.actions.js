@@ -5,8 +5,5 @@ import { API_URL } from '../../../constants';
 
 export function signUp(formValues) {
   const endpoint = `${API_URL}user`;
-  return axios
-    .post(endpoint, formValues)
-    .then(get('data'))
-    .catch(get('response.data'));
+  return axios.post(endpoint, formValues).then(get('data'));
 }

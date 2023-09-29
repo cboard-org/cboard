@@ -1,0 +1,35 @@
+.text_and_controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 3px 4px 3px #c1c1c1;
+  padding: 0.5em 1.5em 0.5em 2em;
+  margin: 0.5em 0.5em;
+  border-radius: 0.5em;
+  transition: box-shadow 0.3s;
+  border: 2px solid transparent;
+  height: 3.2em;
+  background-color: indigo;
+  color: white;
+}
+
+.text_and_controls.enabled:hover,
+.text_and_controls.enabled:focus {
+  outline: none;
+  border: 2px solid #ffffff;
+}
+
+.text {
+  width: auto;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.text_and_controls .playArrow,
+.text_and_controls {
+  transition: all 0.3s;
+}
+.text_and_controls.enabled:hover .playArrow,
+.text_and_controls.enabled:focus .playArrow {
+  transform: scale(1.2);
+}

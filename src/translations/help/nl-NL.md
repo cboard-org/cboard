@@ -2,53 +2,55 @@
 
 ## Inhoudsopgave
 
-* [Wat is Cboard?](#WhatisCboard)
-* [Registratie en inloggen](#Registrationandlogin) 
-    * [Hoe registreer ik me voor Cboard?](#HowdoIregisterforCboard)
-    * [Kan ik mezelf registreren met mijn sociale media-accounts?](#CanIregistermyselfusingmysocialmediaaccounts)
-    * [Hoe log ik in op Cboard als ik een geregistreerde gebruiker ben?](#HowdoIlogintoCboardonceIamaregistereduser)
-    * [Hoe log ik uit?](#HowdoIlogout)
+* [Wat is het board?](#WhatisCboard)
+* [Registratie en login](#Registrationandlogin) 
+    * [Hoe registreer ik voor het board?](#HowdoIregisterforCboard)
+    * [Kan ik mezelf registreren met behulp van mijn sociale mediaaccounts?](#CanIregistermyselfusingmysocialmediaaccounts)
+    * [Hoe kan ik inloggen op het Cboard zodra ik een geregistreerde gebruiker ben?](#HowdoIlogintoCboardonceIamaregistereduser)
+    * [Hoe kan ik uitloggen?](#HowdoIlogout)
     * [Wat is het verschil tussen een geregistreerde en een niet-geregistreerde gebruiker?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
-    * [Hoe kan ik mijn gebruikersinformatie bijwerken?](#HowdoIupdatemyuserinformation)
-    * [Hoe reset ik mijn wachtwoord?](#HowdoIresetmypassword)
+    * [Hoe kan ik mijn gebruikersgegevens bijwerken?](#HowdoIupdatemyuserinformation)
+    * [Hoe kan ik mijn wachtwoord opnieuw instellen?](#HowdoIresetmypassword)
 * [Prijs](#Price) 
-    * [Hoeveel kost Cboard?](#HowmuchdoesCboardcost)
-* [Kenmerken](#Features) 
-    * [Welke apparaten en besturingssystemen worden ondersteund?](#WhatdevicesandOSaresupported)
-    * [Welke talen worden ondersteund door Cboard?](#WhichlanguagesaresupportedbyCboard)
-    * [Kan Cboard mijn bericht voorlezen?](#CanCboardreadmymessageoutaloud)
-    * [Spraakmogelijkheden](#Speechcapabilities)
-    * [Export en import](#Exportandimport)
-    * [Weergavemogelijkheden](#Displaycapabilities)
+    * [Hoeveel kost de karton?](#HowmuchdoesCboardcost)
+* [Eigenschappen](#Features) 
+    * [Welke apparaten en OS worden ondersteund?](#WhatdevicesandOSaresupported)
+    * [Welke talen worden ondersteund door het Cboard?](#WhichlanguagesaresupportedbyCboard)
+    * [Kan Cboard mijn bericht toch wel eens lezen?](#CanCboardreadmymessageoutaloud)
+    * [Spraak mogelijkheden](#Speechcapabilities)
+    * [Exporteren en importeren](#Exportandimport)
+    * [Weergave mogelijkheden](#Displaycapabilities)
     * [Kan ik navigatie-instellingen wijzigen?](#CanIchangeanynavigationsettings)
     * [Navigatie door de interface](#Navigationthroughtheinterface)
 * [instellingen](#Settings) 
-    * [Hoe krijg ik toegang tot instellingen in Cboard?](#HowdoIaccesssettingsinCboard)
-    * [Hoe druk ik mijn bordenset af in Cboard?](#HowdoIprintmyboardsetinCboard)
-    * [Hoe zie ik Cboard op volledig scherm?](#HowdoIseeCboardinfullscreen)
-    * [Hoe deel ik een bord?](#HowdoIshareaboard)
-* [pratend](#Talking) 
-    * [Hoe voeg ik een persoonlijk opgenomen stem toe aan symbolen op Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
+    * [Hoe krijg ik toegang tot instellingen in het board?](#HowdoIaccesssettingsinCboard)
+    * [Hoe print ik mijn bord in het bord op?](#HowdoIprintmyboardsetinCboard)
+    * [Hoe kan ik het bord op volledig scherm zien?](#HowdoIseeCboardinfullscreen)
+    * [Hoe deel ik een board?](#HowdoIshareaboard)
+    * [Hoe deel ik een zin?](#HowdoIshareaphrase)
+* [Praten](#Talking) 
+    * [Hoe voeg ik een stem toe die persoonlijk is opgenomen aan symbolen op het board?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
     * [Hoe schakel ik over op een andere stem?](#HowdoIswitchtoadifferentvoice)
     * [Hoe verander ik hoe een stem klinkt?](#HowdoIchangehowavoicesounds)
-* [Bordbewerking](#BoardEditing) 
+* [Bord bewerken](#BoardEditing) 
     * [Hoe maak ik een leeg bord?](#HowdoIcreateanemptyboard)
-    * [Hoe kan ik een bestaand bord in Cboard personaliseren?](#HowdoIpersonalizeanexistingboardinCboard)
-    * [Kan ik mijn eigen afbeeldingen gebruiken bij het bewerken van een bord?](#CanIusemyownpictureswheneditingaboard)
+    * [Hoe personaliseer ik een bestaand bord in het board?](#HowdoIpersonalizeanexistingboardinCboard)
+    * [Mag ik mijn eigen foto's gebruiken wanneer ik een bord bewerk?](#CanIusemyownpictureswheneditingaboard)
     * [Kan ik de volgorde van de elementen in een bord wijzigen?](#CanIchangetheorderingoftheelementsinaboard)
-    * [Hoe selecteer ik meerdere elementen om te bewerken?](#HowdoIselectmultipleelementstoedit)
-    * [Hoe kan ik nieuwe symbolen vinden wanneer ik een tegel bewerk?](#FindSymbols)
-    * [Kan ik bordtegels op vaste posities plaatsen?](#FixedBoards)
-    * [Hoe stel ik een specifiek aantal rijen en kolommen in op mijn bord?](#FixedRows)
-* [Export en import](#Exportandimport) 
-    * [Hoe exporteer ik mijn bord in Cboard?](#HowdoIexportmyboardinCboard)
-    * [Hoe importeer ik een bord in Cboard?](#HowdoIimportaboardintoCboard)
-    * [Welke bestandsindeling gebruikt Cboard voor import / export?](#WhatfileformatdoesCboarduseforimportexport)
-* [Weergavemogelijkheden](#Displaycapabilities) 
-    * [Wat kan ik veranderen op het display?](#WhatcanIchangeonthedisplay)
-    * [Kan ik het formaat van knoppen op Cboard wijzigen?](#CanIresizebuttonsonCboard)
-* [het scannen](#Scanning) 
-    * [Kan ik scantechnieken gebruiken om toegang te krijgen tot symbolen?](#CanIusescanningtechniquestoaccesssymbols)
+    * [Hoe kies ik meerdere elementen om te bewerken?](#HowdoIselectmultipleelementstoedit)
+    * [Hoe kan ik nieuwe symbolen vinden als ik een tegel bewerk?](#FindSymbols)
+    * [Kan ik de tegels op een vast bord plaatsen?](#FixedBoards)
+    * [Hoe stel ik een bepaald aantal rijen en kolommen in in mijn board?](#FixedRows)
+* [Exporteren en importeren](#Exportandimport) 
+    * [Hoe exporteer ik mijn bord in het board?](#HowdoIexportmyboardinCboard)
+    * [Hoe kan ik een bord in het bord importeren?](#HowdoIimportaboardintoCboard)
+    * [Welk bestandsformaat gebruikt Cboard voor import/export?](#WhatfileformatdoesCboarduseforimportexport)
+* [Weergave mogelijkheden](#Displaycapabilities) 
+    * [Wat kan ik veranderen op het scherm?](#WhatcanIchangeonthedisplay)
+    * [Kan ik knoppen aanpassen aan het board?](#CanIresizebuttonsonCboard)
+    * [Scherm scroll door grote knoppen](#BigScrollButtons)
+* [Scannen](#Scanning) 
+    * [Kan ik scantechnieken gebruiken om symbolen te kunnen gebruiken?](#CanIusescanningtechniquestoaccesssymbols)
 * [Communicator bouwer](#CommunicatorBuilder) 
     * [Wat is de communicatorbouwer?](#Whatiscommbuilder)
     * [Communicator boards](#CommunicatorBoards)
@@ -79,13 +81,13 @@ Zodra u deze informatie heeft ingevuld, ontvangt u kort daarna een e-mail met ee
 
 ![Email signup](/images/help/signupemail.png "Email signup")
 
-Deze informatie wordt alleen door het bedrijf bewaard om het gebruik van de raad van bestuur te ondersteunen en hulp aan te bieden indien nodig. Het wordt niet gedeeld met andere organisaties (zie [Privacygegevens](https://www.cboard.io/privacy/)).
+Deze informatie wordt alleen door het bedrijf bewaard om het gebruik van de raad van bestuur te ondersteunen en hulp aan te bieden indien nodig. Het wordt niet gedeeld met andere organisaties (Zie [privacygegevens](https://www.cboard.io/privacy/)).
 
 Zodra u uw account heeft geverifieerd, heeft u toegang tot de cboard, en ontvangt u nog een e-mail die bevestigt dat u met succes uw account hebt geverifieerd.
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>Kan ik mezelf registreren met mijn sociale media-accounts?
 
-Ja! Op de inlogpagina krijgt u de optie om u aan te melden bij uw Google of Facebook-account als u dit wilt doen. U kunt zich ook registreren met een e-mailadres.
+Ja! Op de inlogpagina U krijgt de mogelijkheid om u aan te melden met uw Google of Facebook-account als u dit wilt doen. U kunt zich ook registreren met een e-mailadres.
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>Hoe log ik in op Cboard als ik een geregistreerde gebruiker ben?
 
@@ -107,7 +109,7 @@ Je kunt uitloggen door het instellingen pictogram te selecteren en de optie word
 
 ### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>Wat is het verschil tussen een geregistreerde en een niet-geregistreerde gebruiker?
 
-Een geregistreerde gebruiker kan zijn boards personaliseren, en de aangebrachte wijzigingen zullen worden opgeslagen op hun account zodat wanneer ze opnieuw inloggen, ze hun gepersonaliseerde boards kunnen gebruiken. Een niet-geregistreerde gebruiker kan wijzigingen niet veilig opslaan. We raden je aan om je te registreren in het geval, dus je wijzigingen worden gegarandeerd om te worden opgeslagen.
+Een geregistreerde gebruiker kan zijn boards personaliseren, en de aangebrachte wijzigingen zullen worden opgeslagen op hun account zodat wanneer ze opnieuw inloggen, ze hun gepersonaliseerde boards kunnen gebruiken. Een niet-geregistreerde gebruiker zal de wijzigingen niet veilig kunnen opslaan. Wij raden u aan zich te registreren voor het geval dat uw wijzigingen gegarandeerd worden opgeslagen.
 
 ### <a name='HowdoIupdatemyuserinformation'></a>Hoe kan ik mijn gebruikersgegevens bijwerken?
 
@@ -131,7 +133,7 @@ Cboard is online beschikbaar met behulp van een breed scala aan apparaten, waaro
 
 ![Ondersteuning voor browser](/images/help/browsers.png "Browser support")
 
-Omdat Cboard een op web gebaseerde app is, reageert het op de instellingen van de individuele browsers. Dit kan betekenen dat u andere resultaten hebt dan de instellingen die door het board worden aangeboden. U kunt bijvoorbeeld verschillende spraakopties vinden.
+Omdat Cboard een op web gebaseerde app is, reageert het op de instellingen van de individuele browsers. Dit kan betekenen dat u verschillende resultaten hebt van de instellingen die door het board worden aangeboden. Bijvoorbeeld kunt u verschillende spraakopties vinden.
 
 Vergeet niet dat je ook browservergroting of zoomen tot een bepaalde graad kunt gebruiken, afhankelijk van de computer, tablet of telefoon schermgrootte.
 
@@ -139,7 +141,7 @@ Vraag het Cboard over het gebruik van hoge contraststand voor mensen met visuele
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Welke talen worden ondersteund door het Cboard?
 
-Cboard komt met ondersteuning voor 33 talen. Om een andere taal te selecteren, ga naar INSTELLINGEN – selecteer LANGUAGE en de beschikbare talen worden weergegeven. Maak een keuze en een ‘vink’ verschijnt naast de taal.
+Cboard komt met ondersteuning voor 33 talen. Om een andere taal te kiezen ga je naar INSTELLINGEN - selecteer TALEN. De beschikbare talen zullen verschijnen. Maak een keuze en een ‘vink’ verschijnt naast de taal.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
@@ -161,13 +163,13 @@ Beide opties om te exporteren zijn binnen INSTELLINGEN in de SYSTEM categorie, o
 
 ### <a name='Displaycapabilities'></a>Weergave mogelijkheden
 
-Scherminstellingen kunnen worden bewerkt in INSTELLINGEN, binnen de categorie SYSTEM. De weergaveoptie is rechts onder exporteren en importeren. Je selecteert DISPLAY, je kunt de grootte van de gebruikersinterface en de grootte van het lettertype van de app wijzigen door de gewenste grootte te selecteren. De rode stip moet onder het gewenste formaat liggen.
+Weergaveinstellingen kunnen worden bewerkt in INSTELLINGS, binnen de SYSTEM categorie. De weergaveoptie is rechts onder Exporteren en Importeren. Je selecteert DISPLAY, je kunt de grootte van de gebruikersinterface en de grootte van het lettertype van de app wijzigen door de gewenste grootte te selecteren. De rode stip moet onder het gewenste formaat liggen.
 
 ![Weergave mogelijkheden](/images/help/display.png "Display capabilities")
 
 ### <a name='CanIchangeanynavigationsettings'></a>Kan ik navigatie-instellingen wijzigen?
 
-Gebruik de NAVIGATIE sectie om de manier waarop u het Cboard beweegt te bewerken en te vergemakkelijken en te verwijderen van symbolen in de berichtenbox. Navigatie aan het einde van de SYSTEM categorie in INSTELLINGEN maakt het mogelijk om een grotere 'terug' knop te hebben die gemakkelijker te selecteren is. Het is ook mogelijk om een 'x'-knop boven elk symbool te laten verschijnen, omdat deze wordt weergegeven in het berichtenveld. Dit kan het makkelijker maken om symbolen binnen een zin te verwijderen. Maar wees bewust van de gebruiker, want het kan ook een aantal personen in verwarring brengen.
+Gebruik de NAVIGATIE sectie om de manier waarop u het Cboard beweegt te bewerken en te vergemakkelijken en te verwijderen van symbolen in de berichtenbox. Navigatie aan het einde van de SYSTEM categorie in INSTELLINGEN maakt het mogelijk om een grotere 'terug' knop te hebben die gemakkelijker te selecteren is. Het is ook mogelijk om een 'x'-knop boven elk symbool te laten verschijnen, omdat deze wordt weergegeven in het berichtenveld. Dit kan het makkelijker maken om symbolen binnen een zin te verwijderen. Wees bewust van de gebruiker omdat het sommige individuen ook kan verwarren.
 
 ### <a name='Navigationthroughtheinterface'></a>Navigatie door de interface
 
@@ -199,6 +201,16 @@ Om een bord te delen, ontgrendelt u het scherm door op het vergrendelingssymbool
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
+### <a name='HowdoIshareaphrase'></a>Hoe deel ik een zin?
+
+Om een zin te delen, alleen voor de eerste keer, ontgrendel het scherm Ga naar instellingen > Navigatie en knoppen > en schakel de optie 'Toon de knop delen' in.
+
+![Instellingen voor delen](https://user-images.githubusercontent.com/21298844/128038972-a2848d47-2675-4e2d-9a15-6f93186f29d6.png)
+
+Maak een zin samen. Druk vervolgens op het pictogram Delen dat aan de rechterkant van de uitvoerzin balk verschijnt. Selecteer het sociale netwerk waar u de zin wilt delen. Een venster zal geopend zijn met de zin in een tekstveld. Druk op de verzendknop om deze te delen. Als je de zin op je klembord wilt kopiëren, druk dan op de knop delen en vervolgens op de optie 'kopiëren naar klembord' Er zou één melding op je scherm worden weergegeven met een bericht voor het succes van je team.
+
+![Knop delen met zin](https://user-images.githubusercontent.com/21298844/128044322-d61491c6-7168-4615-8117-244dc872091e.png)
+
 ## <a name='Talking'></a>pratend
 
 ### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Hoe voeg ik een stem toe die persoonlijk is opgenomen aan symbolen op het board?
@@ -209,7 +221,7 @@ Om een bord te delen, ontgrendelt u het scherm door op het vergrendelingssymbool
 
 3. Selecteer de knop BEWERKEN aan de linkerkant.
 
-4. Kies de symboolcel of tegel waaraan u een spraakopname wilt toevoegen. Nadat u de tegel of een reeks tegels heeft geselecteerd, verschijnt er een blauw vinkje bij en worden deze gemarkeerd.
+4. Kies aan welk symbool cel of tegel je een spraakopname wilt toevoegen. Zodra u de tegel of serie tegels selecteert, verschijnt er een blauw vinkje in elke tegel en worden ze gemarkeerd.
 
 5. Selecteer het PENCIL-pictogram uiterst rechts op de lichtblauwe balk.
 
@@ -223,7 +235,7 @@ Om een bord te delen, ontgrendelt u het scherm door op het vergrendelingssymbool
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIswitchtoadifferentvoice'></a>Hoe schakel ik over naar een andere stem?
+### <a name='HowdoIswitchtoadifferentvoice'></a>Hoe schakel ik over op een andere stem?
 
 Om spraakvermogen/stem aan te passen, ga naar instellingen en onder de categorie LANGUAGE is de SPEECH categorie. Wanneer u SPEECH selecteert, kunt u de toonhoogte en tempo van spraak op het bord bewerken. Je kunt ook je eigen stem opnemen voor de symbolen na de stappen op het antwoord voor "Hoe voeg ik een persoonlijke stem toe aan symbolen aan boord?"
 
@@ -247,7 +259,7 @@ Zodra je de map hebt genoemd, kun je een afbeelding op dezelfde manier uploaden 
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Hoe kan ik een bestaand bord in Cboard personaliseren?
+### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Hoe personaliseer ik een bestaand bord in het board?
 
 Om een bestaand bord te personaliseren selecteer de LOCK in de rechterbovenhoek van de balk boven het bord, (onder de pijl met een kruis). Zodra je dit hebt gedaan, verschijnt een andere balk onder de zwarte HUIS balk, en je vindt een klein blok (EDIT) icoon aan de linkerkant om een tegel of cel toe te voegen. Zodra het blok is geselecteerd, moet de grijze balk blauw worden, en aan de rechterkant zie je een kleine prullenbak en een potlood.
 
@@ -257,117 +269,127 @@ Om het bord te personaliseren, selecteert u het potlood en kunt u het label wijz
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='CanIusemyownpictureswheneditingaboard'></a>Kan ik mijn eigen afbeeldingen gebruiken bij het bewerken van een bord?
+### <a name='CanIusemyownpictureswheneditingaboard'></a>Mag ik mijn eigen foto's gebruiken wanneer ik een bord bewerk?
 
-Ja, je kunt je eigen afbeelding gebruiken bij het bewerken van een bord. Om je eigen afbeelding te gebruiken, je kan de afbeelding uploaden wanneer je een nieuwe tegel maakt (door de PLUS SIGN (+) op de grijze balk te selecteren na het ontgrendelen van de pagina). U kunt ook een bestaande tegel met uw eigen afbeelding bewerken.
+Ja, je kunt je eigen afbeelding gebruiken bij het bewerken van een bord. Om je eigen afbeelding te gebruiken, je kan de afbeelding uploaden wanneer je een nieuwe tegel maakt (door de PLUS SIGN (+) op de grijze balk te selecteren na het ontgrendelen van de pagina). Je kunt ook een bestaande tegel bewerken met je eigen afbeelding.
 
 ### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Kan ik de volgorde van de elementen in een bord wijzigen?
 
-Ja! Wanneer u een bord aan het bewerken bent, ontgrendelt u het scherm met behulp van het LOCK symbool. Selecteer vervolgens het pictogram voor EDIT-blok aan de linkerkant (onder het pictogram BOUW). Je kunt dan pictogram/symbool of map naar waar je het wilt in hetzelfde bord slepen.
+Ja! Wanneer u een bord aan het bewerken bent, ontgrendelt u het scherm met het LOCK symbool. Selecteer vervolgens het pictogram voor EDIT-blok aan de linkerkant (onder het pictogram BOUW). Je kunt dan pictogram/symbool of map naar waar je het wilt in hetzelfde bord slepen.
 
-### <a name='HowdoIselectmultipleelementstoedit'></a>Hoe selecteer ik meerdere elementen om te bewerken?
+### <a name='HowdoIselectmultipleelementstoedit'></a>Hoe kies ik meerdere elementen om te bewerken?
 
-Op dezelfde manier verander je de volgorde van de elementen in een bord, in plaats van te selecteren en slechen kies je de cirkel binnen het pictogram/symbool vierkant. Om veel symbolen te bewerken kun je meer dan één kiezen. Selecteer daarna het PENCIL-pictogram aan de rechterkant en hiermee kun je de geselecteerde elementen bewerken.
+Hetzelfde geldt voor het aanpassen van de volgorde van de elementen in een bord. maar in plaats van te slepen, kies je de cirkel binnen het pictogram/symbool vierkant. Om veel symbolen te bewerken kun je meer dan één kiezen. Selecteer daarna het PENCIL-pictogram aan de rechterkant en hiermee kun je de geselecteerde elementen bewerken.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FindSymbols'></a>Hoe kan ik nieuwe symbolen vinden wanneer ik een tegel bewerk?
+### <a name='FindSymbols'></a>Hoe kan ik nieuwe symbolen vinden als ik een tegel bewerk?
 
 Selecteer het pictogram van het EDIT-blok aan de linkerkant van de menubalk en kies het pictogram/symbool dat u wilt wijzigen. Selecteer deze en zodra de blauwe ring een tik heeft, ga naar het PENCIL icoon aan de rechterkant. Na het selecteren van het potlood ziet u dat er een GLASS-pictogram is voor het zoeken van symbolen. Wanneer de zoekfunctie is geactiveerd zie je ZOEKER SYMBOL LIBRARY in een bewerkbalk. Typ het concept / label / woord dat je zoekt in en symbolen worden weergegeven. Zodra je één symbool hebt geselecteerd, keert het je automatisch terug naar de TILE pagina.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FixedBoards'></a>Kan ik bordtegels op vaste posities plaatsen?
+### <a name='FixedBoards'></a>Kan ik de tegels op een vast bord plaatsen?
 
-Wanneer een nieuw bord wordt gemaakt, voegt Cboard standaard een **vloeiend bord**. Hoe dan ook, het is mogelijk om het bord om te vormen tot een **vast bord**. Ze hebben de volgende kenmerken:
+Standaard zal wanneer een nieuw bord is aangemaakt, het bord een **vloeiend bord**toevoegen. Hoe dan ook, het is mogelijk om het bord om te zetten in een **vast bord**. Het heeft de volgende kenmerken:
 
 * Het raster verandert niet voor verschillende schermformaten of apparaatoriëntatie. 
 * Het aantal rijen en kolommen is configureerbaar. 
 * De tegels hebben een vaste positie in het raster. 
 
-Om een bord in een vast bord te veranderen, bewerkt u het bord en schakelt u de optie in de werkbalk om om het vast te maken. Je bord verandert van uiterlijk en de rijen en kolommen worden weergegeven.
+Om een bord te veranderen in een vast bord, bewerk je het bord en verander je de optie in de werkbalk om het te repareren. Uw bord zal zijn uiterlijk wijzigen en de indicatoren voor rijen en kolommen worden weergegeven.
 
 ![Vast bord](/images/help/fixedBoard.png "Fixed board")
 
-### <a name='FixedRows'></a>Hoe stel ik een specifiek aantal rijen en kolommen in op mijn bord?
+### <a name='FixedRows'></a>Hoe stel ik een bepaald aantal rijen en kolommen in in mijn board?
 
-Eerst moet je het bord transformeren in een **vast bord** (zie vorig onderwerp). In de bewerkingsmodus zal uw bord rijen en kolomindicatoren weergeven. U kunt met deze bedieningselementen werken om het aantal gewenste rijen en kolommen te vergroten of te verkleinen.
+Eerst moet je het bord veranderen in een **vast bord** (zie vorig onderwerp). In de bewerkingsmodus, worden de indicatoren voor rijen en kolommen getoond. U kunt interactie hebben met deze besturingselementen om het aantal door u gewenste rijen en kolommen te verhogen of te verminderen.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Export en import
 
-### <a name='HowdoIexportmyboardinCboard'></a>Hoe exporteer ik mijn bord in Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>Hoe exporteer ik mijn bord in het board?
 
-Om je bord in Cboard te exporteren, ga je naar INSTELLINGEN, en zodra je Instellingen opent, verschijnt de EXPORT-optie als een naar beneden wijzende pijl, onder Taal en spraak.
+Om je bord te exporteren in de Kbord, ga naar SETTINGS, en zodra je Instellingen opent, de EXPORT optie zal verschijnen als een pijl naar beneden, onder Taal en Spraak.
 
-Selecteer EXPORT en download je Cboard door OPENBOARD of EXPORT te selecteren.
+Selecteer EXPORT en download uw Cboard door OPENBOARD of EXPOR te selecteren.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Hoe importeer ik een bord in Cboard?
+### <a name='HowdoIimportaboardintoCboard'></a>Hoe kan ik een bord in het bord importeren?
 
-Om een bord te importeren, volgt u de stappen die zijn gebruikt om te exporteren. IMPORT staat onder Export, een naar boven wijzende pijl met een horizontale balk eronder.
+Om een bord te importeren, volg je de stappen die worden gebruikt om te exporteren. IMPORT is onder de export, een pijl omhoog gericht met een horizontale balk eronder.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Welk bestandsformaat gebruikt Cboard voor import / export?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Welk bestandsformaat gebruikt Cboard voor import/export?
 
-Om boards te importeren en exporteren heb je twee opties:
+U heeft twee opties om boards te importeren en exporteren:
 
 * Gebruik Cboard native file boards.
-* Gebruik OpenBoard-geformatteerde bestanden. [Meer informatie over Open Board-indeling](https://www.openboardformat.org/)
+* Gebruik OpenBoard geformatteerde bestanden. [Meer informatie over Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Weergavemogelijkheden
 
-### <a name='WhatcanIchangeonthedisplay'></a>Wat kan ik op het display veranderen?
+### <a name='WhatcanIchangeonthedisplay'></a>Wat kan ik veranderen op het scherm?
 
-Weergave-instellingen kunnen worden bewerkt in INSTELLINGEN, binnen de categorie SYSTEEM. De optie Weergave staat onder Exporteren en importeren. Nadat u DISPLAY hebt geselecteerd, kunt u de grootte van de gebruikersinterface (UI) en de lettergrootte van de app wijzigen door de gewenste grootte te selecteren. De rode stip moet kleiner zijn dan de maat die u wilt kiezen.
+Weergaveinstellingen kunnen worden bewerkt in INSTELLINGEN, binnen de SYSTEM categorie. De weergaveoptie is hieronder bij Exporteren en Importeren. Zodra u DISPLAY heeft geselecteerd, kunt u de grootte van de User Interface (UI) en de grootte van het app-lettertype wijzigen door de gewenste grootte te selecteren. De rode stip moet onder het gewenste formaat liggen.
 
-### <a name='CanIresizebuttonsonCboard'></a>Kan ik de grootte van knoppen op Cboard wijzigen?
+### <a name='CanIresizebuttonsonCboard'></a>Kan ik knoppen aanpassen aan het board?
 
-Ja! U kunt het formaat van tegels of knoppen wijzigen in INSTELLINGEN. Selecteer DISPLAY in de categorie SYSTEEM en u krijgt 3 opties voor de grootte: Standaard, Groot, Extra groot. Zie onderstaande figuur:
+Ja! Je kunt tegels of knoppen aanpassen in INSTELLINGEN. In de categorie SYSTEM, selecteer DISPLAY en je krijgt 3 opties voor grootte: Standaard, Extra Groot formaat. Zie onderstaande cijfer:
 
-![Weergavemogelijkheden](/images/help/display.png "Display capabilities")
+![Weergave mogelijkheden](/images/help/display.png "Display capabilities")
+
+### <a name='BigScrollButtons'></a>Scherm scroll door grote knoppen
+
+Het is ook mogelijk om een bord omhoog en omlaag te scrollen met een paar grote knoppen die toegevoegd kunnen worden uit de instellingen-sectie. Dit is vooral handig voor gebruikers van de eye-tracker apparaat, omdat de knoppen het bord laten scrollen zonder het scherm te hoeven schuiven. Om deze functie in te schakelen, ga naar de instellingen sectie en zoek naar de "Activeer grote scroll knoppen" schakelaar. Schakel de schakelaar in en sla de instellingen op. Zie hieronder cijfers:
+
+![Grote scroll knoppen inschakelen](/images/help/bigScrollSettings.png "Big scroll buttons settings")
+
+Dan zie je een paar grote knoppen bovenaan en onderaan het bord, als het groot genoeg is. zoals weergegeven in de onderstaande afbeelding:
+
+![Grote scroltoetsen](/images/help/bigScrollButtons.png "Big scroll buttons")
 
 ## <a name='Scanning'></a>het scannen
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Kan ik scantechnieken gebruiken om toegang te krijgen tot symbolen?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Kan ik scantechnieken gebruiken om symbolen te kunnen gebruiken?
 
-Bij het scannen worden de items in de selectieset in de loop van de tijd opeenvolgend gepresenteerd en maakt de gebruiker indirect een selectie, meestal via schakelaars. SCANNEN op Cboard werkt binnen INSTELLINGEN en de categorie SYSTEEM. Er zijn verschillende instellingen voor scannen. U moet eerst de scaninstelling inschakelen door INSCHAKELEN te selecteren. U kunt dan de vertraging kiezen, evenals de methode (automatisch of handmatig). Houd er rekening mee dat wanneer u een tablet of smartphone gebruikt, deze mogelijk ook een eigen ingebouwde scanoptie heeft.
+Scannen is waar de items in de selectieset automatisch worden weergegeven na verloop van tijd, en de gebruiker maakt een selectie indirect, meestal door te wisselen. SCANNING op Cboard werkt binnen INSTELLINGEN en de SYSTEM categorie. Er zijn verschillende instellingen om te scannen. Je moet eerst de scaninstelling inschakelen door ENABL te selecteren. U kunt dan de vertraging kiezen, evenals de methode (hetzij automatisch, hetzij handmatig). Houd er rekening mee dat als je een tablet of smartphone gebruikt, het mogelijk ook een eigen ingebouwde scanoptie heeft.
 
 ## <a name='CommunicatorBuilder'></a>Communicator bouwer
 
 ### <a name='Whatiscommbuilder'></a>Wat is de communicatorbouwer?
 
-De communicator-builder is een functie waarmee u borden kunt gebruiken om ze te kopiëren, verwijderen, publiceren, toevoegen en verwijderen. Om toegang te krijgen tot de functionaliteit moet u de instellingen ontgrendelen en op de knop 'Build' klikken. Je zult een nieuwe pagina zien die is gestructureerd op drie verschillende tabbladen: borden, openbare borden, al mijn borden. Zie onderstaande figuur:
+De communicator builder is een functie waarmee u boards kunt behandelen om te kopiëren, verwijderen, publiceren en verwijderen. Om toegang te krijgen tot de functionaliteit moet u de instellingen ontgrendelen en op de knop 'Build' klikken. U ziet een nieuwe pagina op drie verschillende tabbladen: borden, openbare borden, al mijn borden. Zie de getallen hieronder:
 
-![Communicator-bouwer](/images/help/communicator.png "Communicator builder")
+![Communicator bouwer](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Communicatorborden
+### <a name='CommunicatorBoards'></a>Communicator boards
 
-Het standaardtabblad dat u in de communicatorbouwer ziet, is het tabblad Communicatorborden, dat alle borden in uw communicator weergeeft. U kunt wijzigingen aanbrengen in uw communicator met de volgende actieknoppen:
+Het standaardtabblad dat u ziet in de communicator builder is het tabblad 'Communicator boards', dat alle borden in uw communicator laat zien. Via de volgende actieknoppen kunt u wijzigingen aanbrengen in uw communicatie:
 
 * Bord verwijderen uit communicator: deze knop zal het bord uit de communicator verlaten, maar zal het bord NIET uit de database verwijderen en het is nog steeds beschikbaar onder het tabblad 'Al mijn borden'.
 
 * Stel bord in als root: deze knop definieert het bord als het eerste bord dat elke keer dat je inlogt op Cboard wordt weergegeven.
 
-![Communicatorborden](/images/help/communicatorBoards.png "Communicator boards")
+![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
 
 ### <a name='PublicBoards'></a>Openbare borden
 
-* Kopieer bord: deze knop maakt een kopie van het bord en voegt het toe aan je communicator. Aangezien dit een kopie is van het openbare bord, kunt u dit bord naar wens bewerken zonder het originele openbare bord te beïnvloeden.
+* Kopieer bord: deze knop maakt een kopie van het bord en het voegt deze toe aan uw communicator. Aangezien dit een kopie is van de raad van bestuur, kunt u dit bestuur bewerken zoals u wilt, zonder de oorspronkelijke openbare raad van bestuur te beïnvloeden.
 
 ![Openbare borden](/images/help/PublicBoards.png "Public boards")
 
 ### <a name='Allmyboards'></a>Al mijn borden
 
-Houd er rekening mee dat ALLEEN geregistreerde gebruikers toegang hebben tot deze tabbladfunctionaliteit.
+Houd er rekening mee dat geregistreerde met JUST gebruikers toegang hebben tot deze tab functionaliteit.
 
 * Bord verwijderen uit communicator: deze knop zal het bord uit de communicator verlaten, maar ZAL het bord NIET uit de database verwijderen en het is nog steeds beschikbaar.
 
 * Bord toevoegen aan de communicator: deze knop zal het bord aan de communicator toevoegen.
 
-* Bord publiceren: Deze actie maakt het bord openbaar en wordt weergegeven onder het tabblad openbare borden. Iedereen kan je bord zien.
+* Publiceer bord: Deze actie maakt het bestuur openbaar en zal worden weergegeven onder het tabblad openbare bestuur. Iedereen kan je bord zien.
     
- * Publicatie van het bord ongedaan maken: deze actie maakt het bord privé en wordt niet weergegeven op het tabblad openbare borden. Niemand kan je bord zien.
+ * Ontpubliceer bord: Deze actie maakt het bord privé en zal niet worden weergegeven onder het tabblad openbare boards . Niemand kan je bord zien.
     
- * Bord verwijderen: Met deze actie wordt het bord verwijderd en kan het niet worden hersteld. Het bord wordt verwijderd uit de database.
+ * Het bord verwijderd: deze actie verwijdert het bord en kan niet worden hersteld. Het bord wordt verwijderd uit de database.
 
 ![Al mijn borden](/images/help/AllmyBoards.png "All my boards")

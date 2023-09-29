@@ -2,64 +2,66 @@
 
 ## Obsah
 
-* [Čo je Cboard?](#WhatisCboard)
-* [Registrácia a prihlásenie](#Registrationandlogin) 
-    * [Ako sa môžem zaregistrovať pre Cboard?](#HowdoIregisterforCboard)
-    * [Môžem sa zaregistrovať pomocou svojich účtov sociálnych médií?](#CanIregistermyselfusingmysocialmediaaccounts)
-    * [Ako sa môžem prihlásiť do Cboard, keď som registrovaným užívateľom?](#HowdoIlogintoCboardonceIamaregistereduser)
-    * [Ako sa odhlásim?](#HowdoIlogout)
-    * [Aký je rozdiel medzi registrovaným a neregistrovaným používateľom?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
-    * [Ako môžem aktualizovať svoje informácie o používateľovi?](#HowdoIupdatemyuserinformation)
-    * [Ako môžem resetovať svoje heslo?](#HowdoIresetmypassword)
-* [cena](#Price) 
-    * [Koľko stojí Cboard?](#HowmuchdoesCboardcost)
-* [Vlastnosti](#Features) 
-    * [Ktoré zariadenia a OS sú podporované?](#WhatdevicesandOSaresupported)
-    * [Ktoré jazyky sú podporované programom Cboard?](#WhichlanguagesaresupportedbyCboard)
-    * [Dokáže Cboard nahlas prečítať moju správu?](#CanCboardreadmymessageoutaloud)
-    * [Rečové schopnosti](#Speechcapabilities)
-    * [Export a import](#Exportandimport)
-    * [Možnosti zobrazenia](#Displaycapabilities)
-    * [Môžem zmeniť nejaké nastavenia navigácie?](#CanIchangeanynavigationsettings)
-    * [Navigácia cez rozhranie](#Navigationthroughtheinterface)
+* [What is Cboard?](#WhatisCboard)
+* [Registration and login](#Registrationandlogin) 
+    * [How do I register for Cboard?](#HowdoIregisterforCboard)
+    * [Can I register myself using my social media accounts?](#CanIregistermyselfusingmysocialmediaaccounts)
+    * [How do I log in to Cboard once I am a registered user?](#HowdoIlogintoCboardonceIamaregistereduser)
+    * [How do I logout?](#HowdoIlogout)
+    * [What is the difference between a registered and a non-registered user?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
+    * [How do I update my user information?](#HowdoIupdatemyuserinformation)
+    * [How do I reset my password?](#HowdoIresetmypassword)
+* [Price](#Price) 
+    * [How much does Cboard cost?](#HowmuchdoesCboardcost)
+* [Features](#Features) 
+    * [What devices and OS are supported?](#WhatdevicesandOSaresupported)
+    * [Which languages are supported by Cboard?](#WhichlanguagesaresupportedbyCboard)
+    * [Can Cboard read my message out aloud?](#CanCboardreadmymessageoutaloud)
+    * [Speech capabilities](#Speechcapabilities)
+    * [Export and import](#Exportandimport)
+    * [Display capabilities](#Displaycapabilities)
+    * [Can I change any navigation settings?](#CanIchangeanynavigationsettings)
+    * [Navigation through the interface](#Navigationthroughtheinterface)
 * [nastavenie](#Settings) 
-    * [Ako získam prístup k nastaveniam v aplikácii Cboard?](#HowdoIaccesssettingsinCboard)
-    * [Ako vytlačím svoju dosku v aplikácii Cboard?](#HowdoIprintmyboardsetinCboard)
-    * [Ako vidím Cboard na celej obrazovke?](#HowdoIseeCboardinfullscreen)
-    * [Ako môžem zdieľať tabuľu?](#HowdoIshareaboard)
-* [rozprávanie](#Talking) 
-    * [Ako k symbolom na karte pridám osobne zaznamenaný hlas?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [Ako prepnem na iný hlas?](#HowdoIswitchtoadifferentvoice)
-    * [Ako zmením zvuk?](#HowdoIchangehowavoicesounds)
-* [Úprava dosky](#BoardEditing) 
-    * [Ako vytvorím prázdnu tabuľu?](#HowdoIcreateanemptyboard)
-    * [Ako si prispôsobím existujúcu tabuľu v aplikácii Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
-    * [Môžem pri úprave dosky použiť svoje vlastné obrázky?](#CanIusemyownpictureswheneditingaboard)
-    * [Môžem zmeniť poradie prvkov v doske?](#CanIchangetheorderingoftheelementsinaboard)
-    * [Ako môžem vybrať viac prvkov na úpravu?](#HowdoIselectmultipleelementstoedit)
-    * [Ako nájdem nové symboly, keď upravujem dlaždicu?](#FindSymbols)
-    * [Môžem umiestniť doskové dlaždice do pevných pozícií?](#FixedBoards)
-    * [Ako nastavím konkrétny počet riadkov a stĺpcov na svojej doske?](#FixedRows)
-* [Export a import](#Exportandimport) 
-    * [Ako exportujem svoju dosku v aplikácii Cboard?](#HowdoIexportmyboardinCboard)
-    * [Ako naimportujem dosku na Cboard?](#HowdoIimportaboardintoCboard)
-    * [Aký formát súboru používa Cboard na import / export?](#WhatfileformatdoesCboarduseforimportexport)
-* [Možnosti zobrazenia](#Displaycapabilities) 
-    * [Čo môžem zmeniť na displeji?](#WhatcanIchangeonthedisplay)
-    * [Môžem zmeniť veľkosť tlačidiel na Cboard?](#CanIresizebuttonsonCboard)
-* [snímania](#Scanning) 
-    * [Môžem na prístup k symbolom použiť techniky skenovania?](#CanIusescanningtechniquestoaccesssymbols)
-* [Tvorca komunikátora](#CommunicatorBuilder) 
-    * [Čo je tvorca komunikátora?](#Whatiscommbuilder)
-    * [Komunikačné dosky](#CommunicatorBoards)
-    * [Verejné tabule](#PublicBoards)
-    * [Všetky moje dosky](#Allmyboards)
+    * [How do I access settings in Cboard?](#HowdoIaccesssettingsinCboard)
+    * [How do I print my board set in Cboard?](#HowdoIprintmyboardsetinCboard)
+    * [How do I see Cboard in fullscreen?](#HowdoIseeCboardinfullscreen)
+    * [How do I share a board?](#HowdoIshareaboard)
+    * [How do I share a phrase?](#HowdoIshareaphrase)
+* [Talking](#Talking) 
+    * [How do I add a personally recorded voice to symbols on Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
+    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
+    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
+* [Board Editing](#BoardEditing) 
+    * [How do I create an empty board?](#HowdoIcreateanemptyboard)
+    * [How do I personalize an existing board in Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
+    * [Can I use my own pictures when editing a board?](#CanIusemyownpictureswheneditingaboard)
+    * [Can I change the ordering of the elements in a board?](#CanIchangetheorderingoftheelementsinaboard)
+    * [How do I select multiple elements to edit?](#HowdoIselectmultipleelementstoedit)
+    * [How can I find new symbols when I am editing a tile?](#FindSymbols)
+    * [Can I place board tiles in fixed positions?](#FixedBoards)
+    * [How do I set a specific number of rows and columns in my board?](#FixedRows)
+* [Export and import](#Exportandimport) 
+    * [How do I export my board in Cboard?](#HowdoIexportmyboardinCboard)
+    * [How do I import a board into Cboard?](#HowdoIimportaboardintoCboard)
+    * [What file format does Cboard use for import/export?](#WhatfileformatdoesCboarduseforimportexport)
+* [Display capabilities](#Displaycapabilities) 
+    * [What can I change on the display?](#WhatcanIchangeonthedisplay)
+    * [Can I resize buttons on Cboard?](#CanIresizebuttonsonCboard)
+    * [Screen scroll through big buttons](#BigScrollButtons)
+* [Scanning](#Scanning) 
+    * [Can I use scanning techniques to access symbols?](#CanIusescanningtechniquestoaccesssymbols)
+* [Communicator builder](#CommunicatorBuilder) 
+    * [What is the communicator builder?](#Whatiscommbuilder)
+    * [Communicator boards](#CommunicatorBoards)
+    * [Public boards](#PublicBoards)
+    * [All my boards](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>Čo je Cboard?
 
 Cboard je bezplatná webová aplikácia pre deti a dospelých s poruchami reči a jazyka, ktorá uľahčuje komunikáciu s obrázkami a prevod textu na reč.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Registrácia a prihlásenie
 
@@ -79,39 +81,39 @@ Po vyplnení týchto informácií krátko nato dostanete e-mail s odkazom, ktor�
 
 ![Registrácia e-mailom](/images/help/signupemail.png "Email signup")
 
-Spoločnosť má tieto informácie k dispozícii iba na podporu používania Cboard a poskytnutie pomoci v prípade potreby. Nezdieľajú sa s ostatnými organizáciami (pozri [Podrobnosti o ochrane osobných údajov](https://www.cboard.io/privacy/)).
+This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
 
 Po overení účtu budete mať prístup k aplikácii Cboard a dostanete ďalší e-mail s potvrdením, že ste svoj účet úspešne overili.
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>Môžem sa zaregistrovať pomocou svojich účtov sociálnych médií?
 
-Áno! Na prihlasovacej stránke budete mať možnosť zaregistrovať sa pomocou svojho účtu Google alebo Facebook, ak si to budete želať. Môžete sa tiež zaregistrovať pomocou e-mailovej adresy.
+Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>Ako sa môžem prihlásiť do Cboard, keď som registrovaným užívateľom?
 
-Ak sa chcete prihlásiť na tabuľu Cboard, postupujte podľa prvého kroku, ktorý sa použil na prihlásenie, ale namiesto výberu SIGN UP na úvodnej obrazovke vyberte položku LOGIN. Potom budete požiadaní o poskytnutie e-mailu, s ktorým ste sa pôvodne zaregistrovali, a hesla, ktoré ste nastavili.
+To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
 
 ![Prihlasovacie meno pre palubnú dosku](/images/help/login.png "Cboard login")
 
 ### Aké sú rôzne možnosti konfigurácie Cboardu?
 
-Keď sa prihlásite na Cboard, získate prístup k rôznym možnostiam konfigurácie a vývoja komunikačnej rady, ak je Cboard v odomknutom režime. Pozrite si zoznam všetkých kľúčových možností uvedených nižšie:
+Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
 
 ![Nastavenia karty](/images/help/settings.png "Cboard settings")
 
 ### <a name='HowdoIlogout'></a>Ako sa odhlásim?
 
-Môžete sa odhlásiť výberom ikony nastavení a možnosť sa zobrazí červenou farbou. Môžete tiež vybrať symbol zámku v pravom rohu, trikrát kliknúť a po odomknutí obrazovky a objavení červeného pruhu vyberte ikonu naľavo od zámku (obrázok, ak ho máte naložený) a možnosť prihlásiť sa von sa zobrazí červenou farbou.
+You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
 
 ![Odhlásenie z karty](/images/help/logout.png "Cboard logout")
 
 ### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>Aký je rozdiel medzi registrovaným a neregistrovaným používateľom?
 
-Registrovaný užívateľ si môže prispôsobiť svoje tabule a vykonané zmeny sa uložia na jeho účet, aby po prihlásení mohli používať svoje prispôsobené karty. Neregistrovaný používateľ nebude môcť bezpečne uložiť zmeny. Odporúčame zaregistrovať sa pre prípad, že vaše zmeny budú zaručene uložené.
+A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
 
 ### <a name='HowdoIupdatemyuserinformation'></a>Ako môžem aktualizovať svoje informácie o používateľovi?
 
-Ak chcete aktualizovať svoje používateľské informácie, postupujte podľa rovnakých krokov, aké by ste použili, keby ste sa pokúšali odhlásiť. Vyberte symbol zámku v pravom hornom rohu dosky - tri kliknutia alebo ťuknutia a po odomknutí obrazovky vyberte ikonu naľavo od zámku (iniciály mena používateľa, fotografia) a potom môžete upraviť svoje informácie o používateľovi ,
+To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
 
 ### <a name='HowdoIresetmypassword'></a>Ako môžem resetovať svoje heslo?
 
@@ -127,11 +129,11 @@ Cboard je úplne zadarmo.
 
 ### <a name='WhatdevicesandOSaresupported'></a>Ktoré zariadenia a OS sú podporované?
 
-Cboard je k dispozícii online pomocou širokého spektra zariadení vrátane stolových počítačov, tabletov a mobilných telefónov používajúcich operačné systémy Mac, Windows a Android. Najlepšie sa prehliada v prehliadačoch, ako sú Chrome, Firefox, Edge a Safari. Aplikácia pre Android je k dispozícii na Google Play.
+Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
 
 ![Podpora prehliadača](/images/help/browsers.png "Browser support")
 
-Pretože Cboard je webová aplikácia, bude reagovať na nastavenia poskytované jednotlivými prehliadačmi. To môže znamenať, že máte iné výsledky ako nastavenia poskytované programom Cboard. Napríklad môžete nájsť rôzne ponúkané možnosti reči.
+Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
 
 Nezabudnite tiež použiť zväčšenie alebo zväčšenie prehľadávača do určitej miery v závislosti od veľkosti obrazovky počítača, tabletu alebo telefónu.
 
@@ -139,39 +141,39 @@ Požiadajte Cboard, aby používal režim s vysokým kontrastom pre osoby so zra
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Ktoré jazyky sú podporované programom Cboard?
 
-Cboard je dodávaný s podporou 33 jazykov. Ak chcete zvoliť iný jazyk, prejdite na NASTAVENIA - vyberte JAZYK a zobrazia sa dostupné jazyky. Vyberte si a vedľa jazyka sa objaví „začiarknutie“.
+Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Dokáže Cboard nahlas prečítať moju správu?
 
-Áno, program Cboard používa syntetický hovorový výstup, ktorý je k dispozícii na vašom zariadení, na čítanie jednotlivých štítkov, ktoré sa nachádzajú pod každým symbolom, keď sú pridané do výstupného poľa správ. Môžete vybrať úplnú správu, ktorá sa tiež načíta nahlas. Ak bol k symbolu pridaný personalizovaný záznam zvuku, slova alebo frázy (pokyny v časti Hovorenie - hlasové nahrávky), budete namiesto syntetizovaného hlasu počuť toto nahrávanie. Toto môže byť veľmi užitočné, ak preklad nie je k dispozícii v jazyku, je potrebný detský hlas alebo akcent je neprijateľný. Skontrolujte, či máte k mikrofónu prístup na web.
+Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
 
 ### <a name='Speechcapabilities'></a>Rečové schopnosti
 
-Ak chcete upraviť možnosti reči, prejdite do časti NASTAVENIA av kategórii LANGUAGE je kategória SPEECH. Ak vyberiete SPEECH, budete môcť upravovať výšku a rýchlosť reči na Cboard.
+In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
 
 ![Rečové schopnosti](/images/help/speech.png "Speech capabilities")
 
 ### <a name='Exportandimport'></a>Export a import
 
-Obe možnosti na export sú v rámci NASTAVENIA v kategórii SYSTÉM pod položkou Jazyk a reč. Kategória EXPORT vám dáva možnosť nahrať buď OpenBoard alebo PDF. Kategória IMPORT otvorí vaše uložené súbory, keď vyberiete možnosť OBNOVIŤ.
+Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
 
 ![Možnosti exportu](/images/help/export.png "Export capabilities")
 
 ### <a name='Displaycapabilities'></a>Možnosti zobrazenia
 
-Nastavenia displeja je možné upravovať v časti NASTAVENIA v kategórii SYSTÉM. Možnosť Zobraziť je hneď pod položkou Exportovať a importovať. Keď vyberiete DISPLAY, môžete zmeniť veľkosť používateľského rozhrania aj veľkosť písma aplikácie výberom požadovanej veľkosti. Červená bodka by mala byť pod veľkosťou, ktorú chcete zvoliť.
+Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
 
 ![Možnosti zobrazenia](/images/help/display.png "Display capabilities")
 
 ### <a name='CanIchangeanynavigationsettings'></a>Môžem zmeniť nejaké nastavenia navigácie?
 
-V časti NAVIGÁCIA môžete upraviť a uľahčiť spôsob, ktorým sa pohybujete po tabuli a odstraňovať symboly v okne správ. Navigácia na konci kategórie SYSTEM v časti NASTAVENIA vám umožňuje mať väčšie tlačidlo „späť“, ktoré je ľahšie zvoliť. Je tiež možné povoliť, aby sa nad každým symbolom zobrazovalo tlačidlo mazania („x“), keď sú zobrazené v rámčeku so správami. Môže to uľahčiť vymazanie symbolov v rámci vety. Uvedomte si však potreby používateľov, pretože to môže tiež zmiasť niektorých jednotlivcov.
+Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
 
 ### <a name='Navigationthroughtheinterface'></a>Navigácia cez rozhranie
 
-Aby ste mohli editovať a uľahčovať navigáciu cez Cboard, vyberte NAVIGÁCIA, posledná položka menu v SYSTÉME (všetko v Nastaveniach) vám umožňuje pridať určité podrobnosti, aby sa používanie dosky uľahčilo. Prvá možnosť v navigácii umožňuje väčšie tlačidlo „späť“, ktoré je ľahšie vybrať z dôvodu veľkosti. Druhé pridáva tlačidlo „x“, ktoré uľahčuje odstraňovanie symbolov, a tretie uľahčuje odomykanie vyžadovaním odomknutia nastavení iba jedným kliknutím.
+In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
 
 ![Navigačné schopnosti](/images/help/navigation.png "Navigation capabilities")
 
@@ -181,11 +183,11 @@ Aby ste mohli editovať a uľahčovať navigáciu cez Cboard, vyberte NAVIGÁCIA
 
 Po prihlásení na Cboard sa otvorí HOME stránka.
 
-Ak chcete získať prístup k NASTAVENIAMI, vyberte malý zámok na pravej strane trikrát pod šípkou. Keď to urobíte, pod čiernym pruhom HOME sa objaví sivý pruh a tlačidlo „nastavenia“ sa objaví priamo naľavo od zámku na lište HOME, druhý sprava.
+In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
 
 ### <a name='HowdoIprintmyboardsetinCboard'></a>Ako vytlačím svoju dosku v aplikácii Cboard?
 
-Dosku vytlačíte stlačením loga tlačiarne na ľavej strane čiernej lišty HOME po odomknutí stránky HOME. Do vašej technológie sa stiahne prenosný dokument Adobe (.pdf).
+To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
 
 ### <a name='HowdoIseeCboardinfullscreen'></a>Ako vidím Cboard na celej obrazovke?
 
@@ -197,11 +199,21 @@ Ak chcete vidieť Cboard na celej obrazovke, odomknite obrazovku stlačením sym
 
 Ak chcete zdieľať dosku, odomknite obrazovku stlačením symbolu zámku na pravej strane a potom v najvyššom riadku (čierny pruh). Tretí symbol z pravej strany vám dáva možnosť zdieľať svoje tabule na e-maile, Facebooku, Twitter alebo skopírujte odkaz a pošlite ho niekomu.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
+
+### <a name='HowdoIshareaphrase'></a>How do I share a phrase?
+
+To share a phrase, only for the first time, unlock the screen, go to settings > Navigation and Buttons > and turn on the 'Show the share phrase button' option.
+
+![Phrase share Settings](https://user-images.githubusercontent.com/21298844/128038972-a2848d47-2675-4e2d-9a15-6f93186f29d6.png)
+
+Assemble a phrase. Then press the share icon that appears on the right of the output phrase bar. Select the social network where you want to share the phrase. One dialog would be open with the phrase in a text field. Press the submit button to share it. If you want to copy the phrase on your clipboard, press the share button and then 'copy to clipboard' option. One Notification would be shown on your screen with a succes message.
+
+![Phrase share button](https://user-images.githubusercontent.com/21298844/128044322-d61491c6-7168-4615-8117-244dc872091e.png)
 
 ## <a name='Talking'></a>rozprávanie
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Ako k symbolom na karte pridám osobne zaznamenaný hlas?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>How do I add a personally recorded voice to symbols on Cboard?
 
 1. Prejdite na tabuľu, ktorú chcete použiť.
 
@@ -209,7 +221,7 @@ Ak chcete zdieľať dosku, odomknite obrazovku stlačením symbolu zámku na pra
 
 3. Vyberte tlačidlo EDIT na ľavej strane.
 
-4. Vyberte bunku alebo dlaždicu symbolu, do ktorej chcete pridať hlasový záznam. Akonáhle vyberiete dlaždicu alebo sériu dlaždíc, v každej z nich sa zobrazí modrá značka, ktorá bude zvýraznená.
+4. Choose which symbol cell or tile to which you want to add a voice recording. Once you select the tile or a series of tiles, a blue tick will appear in each one and they will be highlighted.
 
 5. Vyberte ikonu PENCIL na pravej strane na svetlo modrej lište.
 
@@ -221,153 +233,163 @@ Ak chcete zdieľať dosku, odomknite obrazovku stlačením symbolu zámku na pra
     
     Ak ste vybrali viac symbolov, pomocou tlačidla NEXT prejdite na ďalší symbol a zopakujte postup.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIswitchtoadifferentvoice'></a>Ako prepnem na iný hlas?
+### <a name='HowdoIswitchtoadifferentvoice'></a>How do I switch to a different voice?
 
-Ak chcete upraviť hlasové možnosti / hlas, prejdite na nastavenia a v kategórii LANGUAGE je kategória SPEECH. Ak vyberiete SPEECH, budete môcť upravovať výšku a rýchlosť reči na Cboard. Môžete tiež nahrať svoj vlastný hlas pre symboly podľa krokov v odpovedi na otázku „Ako k osobným záznamom pridám hlas na symboly na karte?“
+In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
 
-### <a name='HowdoIchangehowavoicesounds'></a>Ako zmením zvuk?
+### <a name='HowdoIchangehowavoicesounds'></a>How do I change how a voice sounds?
 
-Ak chcete upraviť možnosti reči / hlas / zvuk, prejdite do časti NASTAVENIA a v kategórii JAZYK vyberte kategóriu SPEECH. Potom budete môcť upravovať výšku a rýchlosť reči na Cboard.
+In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
 
 ## <a name='BoardEditing'></a>Úprava dosky
 
-### <a name='HowdoIcreateanemptyboard'></a>Ako vytvorím prázdnu tabuľu?
+### <a name='HowdoIcreateanemptyboard'></a>How do I create an empty board?
 
-V Cboard je prázdna tabuľa ekvivalentom zložky.
+In Cboard an empty board is equivalent to a folder.
 
-Ak chcete vytvoriť novú alebo prázdnu dosku, musíte si vytvoriť novú zložku, ktorá vytvorí novú dosku v úložnej oblasti Cboard (ktorú môžete vidieť, keď v strednom paneli prejdete do režimu BOARDS).
+If you want to create a new or empty board you have to create a new folder, and that will create a new board in the Cboard storage area (which you can see when you go to BOARDS on the middle bar in edit mode).
 
-Nová prázdna doska bude okamžite k dispozícii na úpravy a môže byť nastavená ako koreňová doska (pomocou tlačidla build), čo znamená, že to bude prvá doska, ktorú uvidíte pri najbližšom otvorení Cboard.
+The new empty board will be immediately available for editing and can be set as the root board (using the build button), which means that it will be the first board you see the next time you open Cboard.
 
-Ak chcete vytvoriť nový priečinok, začnite odomknutím obrazovky výberom tlačidla zámku na pravej strane. Po odomknutí obrazovky vyberte znamienko plus (+) na pravej strane, aby ste mohli PRIDAŤ OBCHOD. Potom budete mať možnosť pridať TLAČIDLO / TLAČIDLO, ktoré je prvou a automatickou možnosťou, alebo zvoliť PRIEBEŽNÚ TOVAR Táto akcia vytvorí NOVÚ RADU, do ktorej môžete pridať ďalšie dlaždice a priečinky.
+To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
 
-Po pomenovaní priečinka môžete nahrať obrázok podobným spôsobom, ako vytvoríte dlaždicu s nastavením farby a štítkom. Tento nový priečinok sa automaticky prepojí s doskou nad ňou (ak je súčasťou radu dlaždíc). Bude sa objaviť vo vašom zozname dosiek ako prázdna doska, kým nebude naplnená symbolmi a štítkami.
+Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Ako si prispôsobím existujúcu tabuľu v aplikácii Cboard?
+### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>How do I personalize an existing board in Cboard?
 
-Ak chcete prispôsobiť existujúcu dosku, vyberte ZAMKNUTIE v pravom hornom rohu lišty nad doskou (pod šípkou s krížikom). Keď to urobíte, pod čiernym pruhom HOME sa objaví ďalší pruh a na ľavej strane nájdete ikonu malého bloku (EDIT) na pridanie dlaždice alebo bunky. Po výbere bloku by sa sivý pruh mal zmeniť na modrý a na pravej strane uvidíte malú kôš a ceruzku.
+In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
 
-![prispôsobiť existujúcu dosku](/images/help/personalize.png "personalize an existing board")
+![personalize an existing board](/images/help/personalize.png "personalize an existing board")
 
-Ak chcete prispôsobiť tabuľu, vyberte ceruzku a budete môcť zmeniť menovku, nahrať obrázok a pridať spev.
+In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='CanIusemyownpictureswheneditingaboard'></a>Môžem pri úprave dosky použiť svoje vlastné obrázky?
+### <a name='CanIusemyownpictureswheneditingaboard'></a>Can I use my own pictures when editing a board?
 
-Áno, pri úprave dosky môžete použiť svoj vlastný obrázok. Ak chcete použiť vlastný obrázok, môžete ho nahrať, keď vytvoríte novú dlaždicu (výberom PLUS SIGN (+) na sivom pruhu po odomknutí stránky). Existujúcu dlaždicu môžete tiež upraviť vlastným obrázkom.
+Yes, you can use your own picture when editing a board. In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). You can also edit an existing tile with your own picture.
 
-### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Môžem zmeniť poradie prvkov v doske?
+### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Can I change the ordering of the elements in a board?
 
-Áno! Keď upravujete dosku, odomknite obrazovku pomocou symbolu LOCK. Potom na ľavej strane vyberte ikonu bloku EDIT (pod ikonou BUILD). Piktogram / symbol alebo priečinok potom môžete presunúť kamkoľvek ho chcete umiestniť na tú istú dosku.
+Yes! When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
 
-### <a name='HowdoIselectmultipleelementstoedit'></a>Ako môžem vybrať viac prvkov na úpravu?
+### <a name='HowdoIselectmultipleelementstoedit'></a>How do I select multiple elements to edit?
 
-Rovnakým spôsobom zmeníte poradie prvkov v doske, ale namiesto výberu a pretiahnutia si vyberiete kruh vnútri štvorca piktogramu / symbolu. Ak chcete upraviť mnoho symbolov, môžete si vybrať viac ako jeden. Potom vyberte ikonu PENCIL na pravej strane a umožní vám to editovať vybrané prvky.
+The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FindSymbols'></a>Ako nájdem nové symboly, keď upravujem dlaždicu?
+### <a name='FindSymbols'></a>How can I find new symbols when I am editing a tile?
 
-Vyberte ikonu bloku EDIT na ľavej strane lišty a vyberte piktogram / symbol, ktorý chcete zmeniť. Vyberte ju a keď má modrý krúžok začiarknutie, prejdite na ikonu PENCIL vpravo. Po výbere ceruzky si všimnete, že existuje ikona MAGNIFYING GLASS na vyhľadávanie symbolov. Keď je aktivovaná funkcia vyhľadávania, na editačnom paneli sa zobrazí KNIHA HĽADANIA SYMBOLOV. Zadajte hľadaný koncept / štítok / slovo a zobrazia sa symboly. Po výbere jedného symbolu sa automaticky vráti na stránku úprav TILE.
+Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FixedBoards'></a>Môžem umiestniť doskové dlaždice do pevných pozícií?
+### <a name='FixedBoards'></a>Can I place board tiles in fixed positions?
 
-Keď je vytvorená nová doska, Cboard štandardne pridá **plynulú dosku**. Kartu je možné transformovať na **pevnú dosku**. Majú nasledujúce vlastnosti:
+By default, when a new board is created, Cboard will add a **fluent board**. Anyway, it is possible to transform the board into a **fixed board**. They have the following features:
 
 * Mriežka sa pri rôznych veľkostiach obrazovky alebo orientácii zariadenia nezmení. 
 * Počet riadkov a stĺpcov je konfigurovateľných. 
 * Dlaždice budú mať v mriežke pevné pozície. 
 
-Ak chcete previesť dosku na pevnú dosku, jednoducho ju upravte a prepnutím možnosti na paneli nástrojov ju upravte. Vaša doska zmení svoj vzhľad a zobrazia sa indikátory riadkov a stĺpcov.
+To convert a board into a fixed board, simply edit the board and switch the option in the toolbar to make it fixed. Your board will change its appearance and the rows and columns indicators will be displayed.
 
-![Pevná doska](/images/help/fixedBoard.png "Fixed board")
+![Fixed board](/images/help/fixedBoard.png "Fixed board")
 
-### <a name='FixedRows'></a>Ako nastavím konkrétny počet riadkov a stĺpcov na svojej doske?
+### <a name='FixedRows'></a>How do I set a specific number of rows and columns in my board?
 
-Najskôr musíte dosku transformovať na **pevnú dosku** (pozri predchádzajúcu tému). V režime vydania bude vaša nástenka zobrazovať indikátory riadkov a stĺpcov. S týmito ovládacími prvkami môžete pracovať, aby ste zvýšili alebo znížili požadovaný počet riadkov a stĺpcov.
+First, you have to transform the board into a **fixed board** (see previous topic). In edition mode, your board will display rows and columns indicators. You can interact with these controls in order to increase or decrease the number of rows and columns you want.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Export a import
 
-### <a name='HowdoIexportmyboardinCboard'></a>Ako exportujem svoju dosku v Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>How do I export my board in Cboard?
 
-Ak chcete svoju dosku exportovať do Cboardu, choďte na NASTAVENIA a hneď ako otvoríte Nastavenia, zobrazí sa možnosť EXPORT ako šípka smerujúca nadol pod Jazyk a reč.
+In order to export your board in Cboard, go to SETTINGS, and as soon as you open Settings, the EXPORT option will appear as a downward facing arrow, below Language and Speech.
 
-Vyberte EXPORT a stiahnite si Cboard výberom OPENBOARDU alebo EXPORTU.
+Select EXPORT, and download your Cboard by selecting either OPENBOARD or EXPORT.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Ako importujem dosku do Cboardu?
+### <a name='HowdoIimportaboardintoCboard'></a>How do I import a board into Cboard?
 
-Ak chcete importovať dosku, postupujte podľa pokynov na export. IMPORT je pod položkou Export, šípka smerujúca nahor a pod ňou vodorovná čiara.
+In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Aký formát súborov používa Cboard na import / export?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>What file format does Cboard use for import/export?
 
-Na importovanie a exportovanie dosiek máte dve možnosti:
+In order to Import and Export boards you have two options:
 
 * Použite natívne kartotéky Cboard.
-* Používajte súbory vo formáte OpenBoard. [Viac informácií o formáte Open Board](https://www.openboardformat.org/)
+* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Možnosti zobrazenia
 
-### <a name='WhatcanIchangeonthedisplay'></a>Čo môžem zmeniť na displeji?
+### <a name='WhatcanIchangeonthedisplay'></a>What can I change on the display?
 
-Nastavenia displeja je možné upravovať v NASTAVENÍ v kategórii SYSTÉM. Možnosť Zobraziť je pod položkou Export a Import. Po výbere možnosti DISPLAY môžete zmeniť veľkosť používateľského rozhrania a veľkosť písma aplikácie výberom požadovanej veľkosti. Červená bodka by mala byť pod veľkosťou, ktorú chcete zvoliť.
+Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
 
-### <a name='CanIresizebuttonsonCboard'></a>Môžem zmeniť veľkosť tlačidiel na Cboard?
+### <a name='CanIresizebuttonsonCboard'></a>Can I resize buttons on Cboard?
 
-Áno! V časti NASTAVENIA môžete zmeniť veľkosť dlaždíc alebo tlačidiel. V kategórii SYSTÉM vyberte DISPLEJ a dostanete 3 možnosti veľkosti: Standard, Large, Extra Large. Pozri obrázok nižšie:
+Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
 
-![Možnosti zobrazenia](/images/help/display.png "Display capabilities")
+![Display capabilities](/images/help/display.png "Display capabilities")
+
+### <a name='BigScrollButtons'></a>Screen scroll through big buttons
+
+It is also possible to scroll up and down a board using a couple of big buttons that can be added from the settings section. This is especially useful for eye-tracker device users, as the buttons allow to scroll the board without needing to slide the screen. To enable this feature, go to the settings section and look for the "enable big scroll buttons " switch. Toggle the switch and save the settings. See figure below:
+
+![Enable big scroll buttons](/images/help/bigScrollSettings.png "Big scroll buttons settings")
+
+Then, you should see a couple of big buttons at the top and the bottom of a board if it is large enough, as displayed in the below image:
+
+![Big scroll buttons](/images/help/bigScrollButtons.png "Big scroll buttons")
 
 ## <a name='Scanning'></a>snímania
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Môžem na prístup k symbolom použiť techniky skenovania?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Can I use scanning techniques to access symbols?
 
-Skenovanie je miesto, kde sú položky vo výberovej sade prezentované postupne v priebehu času a používateľ vykoná výber nepriamo, zvyčajne prístupom s prepínačmi. SKENOVANIE na Cboarde funguje v rámci NASTAVENÍ a kategórie SYSTÉM. Existujú rôzne nastavenia skenovania. Najskôr by ste mali povoliť nastavenie skenovania výberom POVOLIŤ. Potom môžete zvoliť časové oneskorenie a spôsob (automatický alebo manuálny). Upozorňujeme, že pri používaní tabletu alebo smartphonu môže mať tiež vlastnú zabudovanú možnosť skenovania.
+Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
 
 ## <a name='CommunicatorBuilder'></a>Tvorca komunikátora
 
-### <a name='Whatiscommbuilder'></a>Čo je staviteľ komunikátora?
+### <a name='Whatiscommbuilder'></a>What is the communicator builder?
 
-Nástroj na tvorbu komunikátora je funkcia, ktorá vám umožňuje manipulovať s doskami a kopírovať ich, mazať, publikovať, pridávať a odstraňovať. Ak chcete získať prístup k týmto funkciám, musíte odomknúť nastavenia a kliknúť na tlačidlo „Vytvoriť“. Uvidíte novú stránku štruktúrovanú na troch rôznych kartách: nástenky, verejné nástenky, všetky moje nástenky. Pozri obrázok nižšie:
+The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
 
-![Builder komunikátora](/images/help/communicator.png "Communicator builder")
+![Communicator builder](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Dosky komunikátora
+### <a name='CommunicatorBoards'></a>Communicator boards
 
-Predvolená karta, ktorú uvidíte v nástroji na vytváranie komunikátorov, je karta dosiek komunikátorov, ktorá zobrazuje všetky dosky obsiahnuté vo vašom komunikátore. Zmeny v komunikátore môžete vykonať pomocou nasledujúcich tlačidiel akcií:
+The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
 
 * Odstrániť dosku z komunikátora: toto tlačidlo ukončí dosku z komunikátora, ale NEVYMAŽE dosku z databázy a je stále k dispozícii na karte „Všetky moje dosky“.
 
 * Nastaviť dosku ako root: toto tlačidlo definuje dosku ako prvú dosku, ktorá sa zobrazí pri každom prihlásení do Cboard.
 
-![Dosky komunikátora](/images/help/communicatorBoards.png "Communicator boards")
+![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Verejné tabule
+### <a name='PublicBoards'></a>Public boards
 
-* Kopírovať nástenku: toto tlačidlo vytvorí kópiu nástenky a pridá ju do vášho komunikátora. Pretože sa jedná o kópiu verejnej tabule, môžete túto tabuľu upravovať ľubovoľným spôsobom bez toho, aby to malo vplyv na pôvodnú verejnú tabuľu.
+* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
 
-![Verejné tabule](/images/help/PublicBoards.png "Public boards")
+![Public boards](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>Všetky moje dosky
+### <a name='Allmyboards'></a>All my boards
 
-Vezmite prosím na vedomie, že K tejto funkcii na karte majú prístup iba registrovaní používatelia.
+Please note that JUST registered users can access to this tab functionality.
 
 * Odstrániť dosku z komunikátora: toto tlačidlo ukončí dosku z komunikátora, ale NEVYMAŽE dosku z databázy a je stále k dispozícii.
 
 * Pridať dosku k komunikátoru: toto tlačidlo bude obsahovať dosku k komunikátoru.
 
-* Zverejniť nástenku: Táto akcia zverejní nástenku a zobrazí sa na karte verejné nástenky. Všetci môžu vidieť vašu nástenku.
+* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
     
- * Zrušiť zverejnenie nástenky: Táto akcia spôsobí, že nástenka bude súkromná a nebude sa zobrazovať na karte verejné nástenky. Nikto nemôže vidieť vašu tabuľu.
+ * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
     
- * Odstrániť nástenku: Táto akcia odstráni nástenku a nie je možné ju obnoviť. Doska bude odstránená z databázy.
+ * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
 
-![Všetky moje dosky](/images/help/AllmyBoards.png "All my boards")
+![All my boards](/images/help/AllmyBoards.png "All my boards")
