@@ -14,7 +14,12 @@ import {
   CBOARD_ZIP_OPTIONS,
   NOT_FOUND_IMAGE,
   EMPTY_IMAGE,
-  PDF_GRID_BORDER
+  PDF_GRID_BORDER,
+  PICSEEPAL_GRID_WIDTH,
+  PDF_GRID_WIDTH,
+  PDF_BORDER_WIDTH,
+  PICSEEPAL_IMAGES_WIDTH,
+  PDF_IMAGES_WIDTH
 } from './Export.constants';
 import {
   LABEL_POSITION_ABOVE,
@@ -360,10 +365,10 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
 pdfMake.tableLayouts = {
   pdfGridLayout: {
     hLineWidth: function(i, node) {
-      return 2;
+      return PDF_BORDER_WIDTH;
     },
     vLineWidth: function(i) {
-      return 2;
+      return PDF_BORDER_WIDTH;
     },
     hLineColor: function(i) {
       return '#ffffff';
@@ -380,21 +385,35 @@ pdfMake.tableLayouts = {
   }
 };
 
+function getCellWidths(columns, picsee = false) {
+  const GRID_WIDTH = picsee ? PICSEEPAL_GRID_WIDTH : PDF_GRID_WIDTH;
+  const cellWidht = (GRID_WIDTH - PDF_BORDER_WIDTH * columns) / columns;
+  const cellWidths = new Array(columns).fill(cellWidht);
+  return cellWidths;
+}
+
 async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
-  const header = board.name || '';
+  const header = {
+    absolutePosition: { x: 0, y: 5 },
+    text: board.name || '',
+    alignment: 'center',
+    fontSize: 8
+  };
   const columns =
     board.isFixed && board.grid ? board.grid.columns : CBOARD_COLUMNS;
   const rows = board.isFixed && board.grid ? board.grid.rows : CBOARD_ROWS;
+  const cellWidths = getCellWidths(columns, picsee);
+
   const table = {
     table: {
-      widths: '*',
+      widths: cellWidths,
       body: [{}]
     },
     layout: 'pdfGridLayout'
   };
 
   if (breakPage) {
-    table.pageBreak = 'before';
+    picsee ? (table.pageBreak = 'before') : (header.pageBreak = 'before');
   }
 
   if (!board.tiles || !board.tiles.length) {
@@ -507,6 +526,18 @@ async function generateNonFixedBoard(
     // Wait for previous tile
     await prev;
     currentRow = i >= (currentRow + 1) * columns ? currentRow + 1 : currentRow;
+
+    // Add a page break when we reach the maximum number of rows on the
+    // current page.
+    let pageBreak = false;
+    if (
+      (currentRow + 1) % rows === 1 &&
+      currentRow + 1 > rows &&
+      currentRow !== 0
+    ) {
+      pageBreak = true;
+    }
+
     return await addTileToGrid(
       tile,
       intl,
@@ -514,7 +545,7 @@ async function generateNonFixedBoard(
       rows,
       columns,
       currentRow,
-      false,
+      pageBreak,
       picsee
     );
   }, Promise.resolve());
@@ -591,59 +622,16 @@ const addTileToGrid = async (
     border: PDF_GRID_BORDER[labelPosition].labelData
   };
 
-  if (picsee) {
-    // This scales down images to fit inside PicseePal
-    // dimensions depending on number of columns
-    var colImgWidths = {
-      1: 130,
-      2: 130,
-      3: 80,
-      4: 84,
-      5: 75,
-      6: 60,
-      7: 55,
-      8: 55,
-      9: 45,
-      10: 45,
-      11: 40,
-      12: 37
-      // max num of columns is 12
-    };
-    var rowImgWidths = {
-      1: 130,
-      2: 130,
-      3: 86,
-      4: 59,
-      5: 45,
-      6: 33,
-      7: 32,
-      8: 26,
-      9: 21,
-      10: 17,
-      11: 14,
-      12: 11
-      // max num of rows is 12
-    };
+  const IMG_WIDTH = picsee ? PICSEEPAL_IMAGES_WIDTH : PDF_IMAGES_WIDTH;
 
-    imageData.width = Math.min(colImgWidths[columns], rowImgWidths[rows]);
+  imageData.width = Math.min(IMG_WIDTH.column[columns], IMG_WIDTH.row[rows]);
 
-    if (imageData.width <= 37) {
-      labelData.fontSize = 7;
-    } else if (imageData.width <= 40) {
-      labelData.fontSize = 8;
-    } else if (imageData.width <= 45) {
-      labelData.fontSize = 9;
-    }
-  } else {
-    // if not picseepal PDF, then retain old method for computing image widths
-    if (11 === columns || columns === 12 || rows >= 6) {
-      imageData.width = '59';
-      labelData.fontSize = 9;
-    } else if (9 === columns || columns === 10 || rows === 5) {
-      imageData.width = '70';
-    } else if (7 === columns || columns === 8) {
-      imageData.width = '90';
-    }
+  if (imageData.width <= 37) {
+    labelData.fontSize = 7;
+  } else if (imageData.width <= 40) {
+    labelData.fontSize = 8;
+  } else if (imageData.width <= 45) {
+    labelData.fontSize = 9;
   }
 
   let value1,
@@ -908,16 +896,17 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
       return {
         stack: [
           {
+            absolutePosition: { x: 0, y: 3 },
             text: [
               {
                 text: '\nPicseePal compatible PDF',
                 fontSize: 18,
-                alignment: 'center',
-                bold: true
+                alignment: 'center'
               }
             ]
           },
           {
+            absolutePosition: { x: 0, y: 48 },
             canvas: [
               {
                 // rectangle showing PicseePal viewable area
@@ -943,6 +932,10 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
             ]
           },
           {
+            absolutePosition: {
+              x: 0,
+              y: 500
+            },
             text: [
               {
                 text: `\nPlease print on A4 / US Letter paper at 100% scale.
@@ -956,13 +949,12 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
       };
     };
 
-    docDefinition.pageMargins = [144, 93, 144, 130];
+    docDefinition.pageMargins = [144, 100, 144, 120];
   }
 
-  const lastBoardIndex = boards.length - 1;
   const content = await boards.reduce(async (prev, board, i) => {
     const prevContent = await prev;
-    const breakPage = i !== lastBoardIndex;
+    const breakPage = i !== 0;
     const boardPDFData = await generatePDFBoard(board, intl, breakPage, picsee);
     return prevContent.concat(boardPDFData);
   }, Promise.resolve([]));
@@ -973,7 +965,7 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
   if (pdfObj) {
     let prefix = getDatetimePrefix();
     if (content.length === 2) {
-      prefix = prefix + content[0] + ' ';
+      prefix = prefix + content[0].text + ' ';
     } else {
       prefix = prefix + 'boardsset ';
     }
