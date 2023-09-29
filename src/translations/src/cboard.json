@@ -443,6 +443,8 @@
   "cboard.components.Settings.Export.boardDownloaded": "Your boards were downloaded",
   "cboard.components.Settings.Export.boardDownloadedCva": "Your boards were downloaded. Find your file under the downloads folder",
   "cboard.components.Settings.Export.boardDownloadedCvaIOS": "Your board was downloaded. Find your file under 'On My device' folder",
+  "cboard.components.Settings.Export.boardDownloadedError": "Ups..Something went wrong. Please try again",
+  "cboard.components.Settings.Export.downloadNoConnectionError": "Need internet connection to download the PDF.",
   "cboard.components.Settings.Export.boards": "Boards",
   "cboard.components.Settings.Import.import": "Import",
   "cboard.components.Settings.Import.importSecondary": "This option will import JUST the new boards detected. It WILL NOT import the default boards included on Cboard. Supported formats are {cboardLink} format or {link} format.",

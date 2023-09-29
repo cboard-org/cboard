@@ -70,6 +70,58 @@ export const PDF_GRID_BORDER = {
   }
 };
 
+export const FONTS = {
+  Roboto: {
+    normal: 'Roboto-Regular.ttf',
+    bold: 'Roboto-Regular.ttf'
+  },
+  Khmer: {
+    normal: 'Khmer-Regular.ttf',
+    bold: 'Khmer-Regular.ttf'
+  },
+  Tajawal: {
+    normal: 'Tajawal-Regular.ttf',
+    bold: 'Tajawal-Regular.ttf'
+  },
+  Sarabun: {
+    normal: 'Sarabun-Regular.ttf',
+    bold: 'Sarabun-Regular.ttf'
+  },
+  Hind: {
+    normal: 'Hind-Regular.ttf',
+    bold: 'Hind-Regular.ttf'
+  },
+  NotoSansHebrew: {
+    normal: 'NotoSansHebrew-Regular.ttf',
+    bold: 'NotoSansHebrew-Regular.ttf'
+  },
+  NotoSansJP: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansJP-Regular.ttf',
+    bold:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansJP-Regular.ttf'
+  },
+  NotoSansKR: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansKR.otf',
+    bold: 'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansKR.otf'
+  },
+  AnekDevanagari: {
+    normal: 'AnekDevanagari-Regular.ttf',
+    bold: 'AnekDevanagari-Regular.ttf'
+  },
+  NotoSansSC: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansSC-Regular.otf',
+    bold:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansSC-Regular.otf'
+  },
+  NotoSerifBengali: {
+    normal: 'NotoSerifBengali-Regular.ttf',
+    bold: 'NotoSerifBengali-Regular.ttf'
+  }
+};
+
 export const PICSEEPAL_IMAGES_WIDTH = {
   column: {
     1: 130,
