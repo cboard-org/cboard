@@ -95,7 +95,6 @@ const configAppPurchasePlugin = () => {
 const IOSconfigureInAppPurchasePlugin = () => {
   const store = window.CdvPurchase.store;
   const { ProductType, Platform } = window.CdvPurchase; // shortcuts
-  store.verbosity = 4;
   store.register([
     {
       id: 'one_year_subscription',
