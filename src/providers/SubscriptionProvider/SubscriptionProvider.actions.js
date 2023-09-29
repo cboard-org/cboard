@@ -275,12 +275,16 @@ export function updatePlans() {
         : state.app.unloggedUserLocation?.countryCode;
       // get just subscriptions with active plans
       const plans = getActivePlans(data);
+      const iosProducts = isIOS() ? window.CdvPurchase.store.products : null;
       const products = plans.map(plan => {
+        const price = iosProducts
+          ? getIOSPrice(iosProducts, plan.subscriptionId)
+          : getPrice(plan.countries, 'US');
         const result = {
           id: plan.planId,
           subscriptionId: plan.subscriptionId,
           billingPeriod: plan.period,
-          price: getPrice(plan.countries, 'US'),
+          price: price,
           title: plan.subscriptionName,
           tag: plan.tags[0],
           paypalId: plan.paypalId
@@ -305,6 +309,15 @@ export function updatePlans() {
         if (element.regionCode === country) price = element.price;
       });
     return price;
+  }
+
+  function getIOSPrice(iosProducts, productId) {
+    const product = iosProducts.find(product => product.id === productId);
+    const units = product.raw.priceMicros / 1000000;
+    return {
+      currencyCode: product?.raw?.currency,
+      units
+    };
   }
 
   function getActivePlans(subscriptions) {
