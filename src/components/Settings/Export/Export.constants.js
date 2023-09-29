@@ -32,6 +32,10 @@ export const NOT_FOUND_IMAGE =
 export const EMPTY_IMAGE =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
 
+export const PICSEEPAL_GRID_WIDTH = 553;
+export const PDF_GRID_WIDTH = 800;
+export const PDF_BORDER_WIDTH = 2;
+
 export const EXPORT_CONFIG_BY_TYPE = {
   cboard: {
     filename: 'board.json',
@@ -115,5 +119,67 @@ export const FONTS = {
   NotoSerifBengali: {
     normal: 'NotoSerifBengali-Regular.ttf',
     bold: 'NotoSerifBengali-Regular.ttf'
+  }
+};
+
+export const PICSEEPAL_IMAGES_WIDTH = {
+  column: {
+    1: 130,
+    2: 130,
+    3: 80,
+    4: 84,
+    5: 75,
+    6: 60,
+    7: 55,
+    8: 55,
+    9: 45,
+    10: 45,
+    11: 40,
+    12: 37
+  },
+  row: {
+    1: 130,
+    2: 130,
+    3: 86,
+    4: 59,
+    5: 45,
+    6: 33,
+    7: 29,
+    8: 23,
+    9: 17,
+    10: 14,
+    11: 11,
+    12: 9
+  }
+};
+
+export const PDF_IMAGES_WIDTH = {
+  column: {
+    1: 130,
+    2: 130,
+    3: 130,
+    4: 100,
+    5: 100,
+    6: 100,
+    7: 100,
+    8: 90,
+    9: 80,
+    10: 70,
+    11: 70,
+    12: 60
+  },
+  row: {
+    1: 130,
+    2: 130,
+    3: 130,
+    4: 100,
+    5: 80,
+    6: 60,
+    7: 50,
+    8: 40,
+    9: 35,
+    10: 30,
+    11: 30,
+    12: 25
   }
 };

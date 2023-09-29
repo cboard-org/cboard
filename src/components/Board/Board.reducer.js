@@ -17,6 +17,7 @@ import {
   EDIT_TILES,
   FOCUS_TILE,
   CHANGE_OUTPUT,
+  CHANGE_IMPROVED_PHRASE,
   REPLACE_BOARD,
   HISTORY_REMOVE_BOARD,
   UNMARK_BOARD,
@@ -48,7 +49,8 @@ const initialState = {
   isFetching: false,
   images: [],
   isFixed: false,
-  isLiveMode: false
+  isLiveMode: false,
+  improvedPhrase: ''
 };
 
 function reconcileBoards(localBoard, remoteBoard) {
@@ -410,6 +412,11 @@ function boardReducer(state = initialState, action) {
     case DOWNLOAD_IMAGE_FAILURE:
       return {
         ...state
+      };
+    case CHANGE_IMPROVED_PHRASE:
+      return {
+        ...state,
+        improvedPhrase: action.improvedPhrase
       };
     default:
       return state;

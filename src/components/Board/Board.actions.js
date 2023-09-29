@@ -17,6 +17,7 @@ import {
   CLICK_SYMBOL,
   CLICK_OUTPUT,
   CHANGE_OUTPUT,
+  CHANGE_IMPROVED_PHRASE,
   CHANGE_LIVE_MODE,
   REPLACE_BOARD,
   HISTORY_REMOVE_BOARD,
@@ -55,6 +56,7 @@ import {
 import { isAndroid, writeCvaFile } from '../../cordova-util';
 import { DEFAULT_BOARDS } from '../../helpers';
 import history from './../../history';
+import { improvePhraseAbortController } from '../../api/api';
 
 const BOARDS_PAGE_LIMIT = 100;
 
@@ -324,9 +326,42 @@ export function clickOutput(outputPhrase) {
 }
 
 export function changeOutput(output) {
-  return {
-    type: CHANGE_OUTPUT,
-    output
+  return async (dispatch, getState) => {
+    const {
+      app: {
+        navigationSettings: { improvePhraseActive }
+      }
+    } = getState();
+    if (improvePhraseActive) dispatch(improvePhrase(output));
+    dispatch({
+      type: CHANGE_OUTPUT,
+      output
+    });
+  };
+}
+
+export function improvePhrase(output) {
+  const fetchImprovePhrase = async language => {
+    const MIN_TILES_TO_IMPROVE = 1;
+    if (output.length <= MIN_TILES_TO_IMPROVE) return '';
+    const labels = output.map(symbol => symbol.label);
+    const phrase = labels.join(' '); //this.handlePhraseToShare();
+    const improvedPhrase = await API.improvePhrase({ phrase, language });
+    return improvedPhrase.phrase;
+  };
+  return async (dispatch, getState) => {
+    try {
+      const language = getState().language.lang;
+      if (improvePhraseAbortController?.abort)
+        improvePhraseAbortController.abort();
+      const improvedPhrase = await fetchImprovePhrase(language);
+      dispatch({
+        type: CHANGE_IMPROVED_PHRASE,
+        improvedPhrase
+      });
+    } catch (err) {
+      console.error('error', err);
+    }
   };
 }
 
