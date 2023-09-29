@@ -92,7 +92,7 @@ export default defineMessages({
   unverified: {
     id: 'cboard.components.Settings.Subscribe.unverified',
     defaultMessage:
-      'An error ocurs during validation of your purchase. Please refresh'
+      'An error occurred during validation of your purchase. Please refresh'
   },
   refresh: {
     id: 'cboard.components.Settings.Subscribe.refresh',

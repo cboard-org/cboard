@@ -484,7 +484,7 @@
   "cboard.components.Settings.Subscribe.paused": "Your subscription was paused on: {e}",
   "cboard.components.Settings.Subscribe.on_hold": "Your subscription expired on: {e}",
   "cboard.components.Settings.Subscribe.not_subscribed": "You are not subscribed. ",
-  "cboard.components.Settings.Subscribe.unverified": "An error ocurs during validation of your purchase. Please refresh",
+  "cboard.components.Settings.Subscribe.unverified": "An error occurred during validation of your purchase. Please refresh",
   "cboard.components.Settings.Subscribe.refresh": "Refresh",
   "cboard.components.Settings.Subscribe.error": "Oops something went wrong. Please try again later",
   "cboard.components.Settings.Subscribe.empty_product": "There are no subscription available at this moment. Please try again later.",
