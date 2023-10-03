@@ -16,6 +16,7 @@ import { isAndroid } from '../cordova-util';
 
 const BASE_URL = API_URL;
 const LOCAL_COMMUNICATOR_ID = 'cboard_default';
+export let improvePhraseAbortController;
 
 const getUserData = () => {
   const store = getStore();
@@ -24,6 +25,14 @@ const getUserData = () => {
   } = store.getState();
 
   return userData;
+};
+
+const getSubscriberId = () => {
+  const store = getStore();
+  const {
+    subscription: { subscriberId }
+  } = store.getState();
+  return subscriberId;
 };
 
 const getAuthToken = () => {
@@ -47,8 +56,8 @@ class API {
       response => response,
       error => {
         if (
-          error.response.status === 403 &&
-          error.config.baseURL === BASE_URL
+          error.response?.status === 403 &&
+          error.config?.baseURL === BASE_URL
         ) {
           if (isAndroid()) {
             window.plugins.googleplus.disconnect(function(msg) {
@@ -65,7 +74,6 @@ class API {
           }
           getStore().dispatch(logout());
           history.push('/login-signup/');
-          window.location.reload();
         }
         return Promise.reject(error);
       }
@@ -112,6 +120,15 @@ class API {
       return [];
     } catch (err) {
       return [];
+    }
+  }
+  async arasaacPictogramsGetImageUrl(pictogGetTextPath) {
+    try {
+      const { status, data } = await this.axiosInstance.get(pictogGetTextPath);
+      if (status === 200) return data.image;
+      return '';
+    } catch (err) {
+      return '';
     }
   }
 
@@ -163,9 +180,32 @@ class API {
   }
 
   async oAuthLogin(type, query) {
+    if (type === 'apple' || type === 'apple-web') {
+      const authCode = query?.substring(1);
+      const { data } = await this.axiosInstance.post(
+        `/login/${type}/callback`,
+        {
+          state: 'cordova',
+          code: authCode
+        }
+      );
+      return data;
+    }
     const { data } = await this.axiosInstance.get(
       `/login/${type}/callback${query}`
     );
+    return data;
+  }
+
+  async getUserData(userId) {
+    const authToken = getAuthToken();
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { data } = await this.axiosInstance.get(`/user/${userId}`, {
+      headers
+    });
     return data;
   }
 
@@ -466,6 +506,152 @@ class API {
       }
     );
     return data;
+  }
+
+  async getUserLocation() {
+    const { data } = await this.axiosInstance.get(`/location`);
+    return data;
+  }
+
+  async getSubscriber(userId = getUserData().id, requestOrigin = 'unknown') {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+      requestOrigin
+    };
+    const { data } = await this.axiosInstance.get(`/subscriber/${userId}`, {
+      headers
+    });
+    return data;
+  }
+
+  async createSubscriber(subscriber = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const { data } = await this.axiosInstance.post(`/subscriber`, subscriber, {
+      headers
+    });
+    return data;
+  }
+
+  async cancelPlan(subscriptionId = '') {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+    const data = { reason: 'User cancelled the subscription' };
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const res = await this.axiosInstance.post(
+      `/subscriber/cancel/${subscriptionId}`,
+      { data },
+      { headers }
+    );
+    return res;
+  }
+
+  async postTransaction(transaction = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const subscriberId = getSubscriberId();
+    if (!subscriberId) throw new Error('No subscriber id supplied');
+
+    const { data } = await this.axiosInstance.post(
+      `/subscriber/${subscriberId}/transaction`,
+      transaction,
+      {
+        headers
+      }
+    );
+    return data;
+  }
+
+  async updateSubscriber(subscriber = {}) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const subscriberId = getSubscriberId();
+    if (!subscriberId) throw new Error('No subscriber id supplied');
+
+    const { data } = await this.axiosInstance.patch(
+      `/subscriber/${subscriberId}`,
+      subscriber,
+      {
+        headers
+      }
+    );
+    return data;
+  }
+
+  async listSubscriptions() {
+    const { data } = await this.axiosInstance.get(`/subscription/list`);
+    return data;
+  }
+
+  async deleteAccount() {
+    const userId = getUserData().id;
+    if (userId) {
+      const authToken = getAuthToken();
+      if (!(authToken && authToken.length)) {
+        throw new Error('Need to be authenticated to perform this request');
+      }
+
+      const headers = {
+        Authorization: `Bearer ${authToken}`
+      };
+      const { data } = await this.axiosInstance.delete(`/account/${userId}`, {
+        headers
+      });
+      return data;
+    }
+  }
+
+  async improvePhrase({ phrase, language }) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    try {
+      const headers = {
+        Authorization: `Bearer ${authToken}`
+      };
+      improvePhraseAbortController = new AbortController();
+      const { data } = await this.axiosInstance.post(
+        `/gpt/edit`,
+        { phrase, language },
+        {
+          headers,
+          signal: improvePhraseAbortController.signal
+        }
+      );
+      return data;
+    } catch (error) {
+      if (error.message !== 'canceled') console.error(error);
+      return { phrase: '' };
+    }
   }
 }
 

@@ -1,3 +1,11 @@
+import boards from './api/boards.json';
+import picSeePal from './api/corePicSeePal.json';
+
+export const DEFAULT_BOARDS = {
+  advanced: boards.advanced,
+  picSeePal: picSeePal
+};
+
 export const dataURLtoFile = (dataurl, filename, checkExtension = false) => {
   // https://stackoverflow.com/a/38936042
   const arr = dataurl.split(',');
@@ -17,4 +25,24 @@ export const dataURLtoFile = (dataurl, filename, checkExtension = false) => {
   }
 
   return new File([u8arr], name, { type });
+};
+
+export const convertImageUrlToCatchable = imageUrl => {
+  const CBOARD_PRODUCTION_BLOB_CONTAINER_HOSTNAME =
+    'cboardgroupdiag483.blob.core.windows.net';
+  const PROTOCOL_LENGHT = 8;
+  const isCboardProductionBlobContainer = imageUrl.startsWith(
+    CBOARD_PRODUCTION_BLOB_CONTAINER_HOSTNAME,
+    PROTOCOL_LENGHT
+  );
+  const cboardBlobUsingCDN = imageUrl => {
+    const CDN_HOSTNAME = 'cdncboard.azureedge.net';
+    return imageUrl.replace(
+      CBOARD_PRODUCTION_BLOB_CONTAINER_HOSTNAME,
+      CDN_HOSTNAME
+    );
+  };
+
+  if (isCboardProductionBlobContainer) return cboardBlobUsingCDN(imageUrl);
+  return null;
 };

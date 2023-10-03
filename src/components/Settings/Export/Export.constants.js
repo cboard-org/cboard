@@ -1,3 +1,9 @@
+import {
+  LABEL_POSITION_ABOVE,
+  LABEL_POSITION_BELOW,
+  LABEL_POSITION_HIDDEN
+} from '../Display/Display.constants';
+
 export const CBOARD_OBF_CONSTANTS = {
   DATA_URL: 'http://app.cboard.io/api/v1/boards/',
   URL: 'http://app.cboard.io/boards/',
@@ -26,6 +32,10 @@ export const NOT_FOUND_IMAGE =
 export const EMPTY_IMAGE =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
 
+export const PICSEEPAL_GRID_WIDTH = 553;
+export const PDF_GRID_WIDTH = 800;
+export const PDF_BORDER_WIDTH = 2;
+
 export const EXPORT_CONFIG_BY_TYPE = {
   cboard: {
     filename: 'board.json',
@@ -38,5 +48,138 @@ export const EXPORT_CONFIG_BY_TYPE = {
   pdf: {
     filename: 'board.pdf',
     callback: 'pdfExportAdapter'
+  },
+  picsee_pdf: {
+    filename: 'picsee_board.pdf',
+    callback: 'pdfExportAdapter'
+  }
+};
+
+export const PDF_GRID_BORDER = {
+  [LABEL_POSITION_BELOW]: {
+    imageData: [true, true, true, false],
+    labelData: [true, false, true, true]
+  },
+  [LABEL_POSITION_ABOVE]: {
+    imageData: [true, false, true, true],
+    labelData: [true, true, true, false]
+  },
+  [LABEL_POSITION_HIDDEN]: {
+    imageData: [true, true, true, false],
+    labelData: [true, false, true, true]
+  }
+};
+
+export const FONTS = {
+  Roboto: {
+    normal: 'Roboto-Regular.ttf',
+    bold: 'Roboto-Regular.ttf'
+  },
+  Khmer: {
+    normal: 'Khmer-Regular.ttf',
+    bold: 'Khmer-Regular.ttf'
+  },
+  Tajawal: {
+    normal: 'Tajawal-Regular.ttf',
+    bold: 'Tajawal-Regular.ttf'
+  },
+  Sarabun: {
+    normal: 'Sarabun-Regular.ttf',
+    bold: 'Sarabun-Regular.ttf'
+  },
+  Hind: {
+    normal: 'Hind-Regular.ttf',
+    bold: 'Hind-Regular.ttf'
+  },
+  NotoSansHebrew: {
+    normal: 'NotoSansHebrew-Regular.ttf',
+    bold: 'NotoSansHebrew-Regular.ttf'
+  },
+  NotoSansJP: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansJP-Regular.ttf',
+    bold:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansJP-Regular.ttf'
+  },
+  NotoSansKR: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansKR.otf',
+    bold: 'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansKR.otf'
+  },
+  AnekDevanagari: {
+    normal: 'AnekDevanagari-Regular.ttf',
+    bold: 'AnekDevanagari-Regular.ttf'
+  },
+  NotoSansSC: {
+    normal:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansSC-Regular.otf',
+    bold:
+      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansSC-Regular.otf'
+  },
+  NotoSerifBengali: {
+    normal: 'NotoSerifBengali-Regular.ttf',
+    bold: 'NotoSerifBengali-Regular.ttf'
+  }
+};
+
+export const PICSEEPAL_IMAGES_WIDTH = {
+  column: {
+    1: 130,
+    2: 130,
+    3: 80,
+    4: 84,
+    5: 75,
+    6: 60,
+    7: 55,
+    8: 55,
+    9: 45,
+    10: 45,
+    11: 40,
+    12: 37
+  },
+  row: {
+    1: 130,
+    2: 130,
+    3: 86,
+    4: 59,
+    5: 45,
+    6: 33,
+    7: 29,
+    8: 23,
+    9: 17,
+    10: 14,
+    11: 11,
+    12: 9
+  }
+};
+
+export const PDF_IMAGES_WIDTH = {
+  column: {
+    1: 130,
+    2: 130,
+    3: 130,
+    4: 100,
+    5: 100,
+    6: 100,
+    7: 100,
+    8: 90,
+    9: 80,
+    10: 70,
+    11: 70,
+    12: 60
+  },
+  row: {
+    1: 130,
+    2: 130,
+    3: 130,
+    4: 100,
+    5: 80,
+    6: 60,
+    7: 50,
+    8: 40,
+    9: 35,
+    10: 30,
+    11: 30,
+    12: 25
   }
 };

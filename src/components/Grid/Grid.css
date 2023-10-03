@@ -10,3 +10,12 @@
 .dragging .react-grid-item.cssTransforms {
   transition-property: transform;
 }
+
+.FixedGridScrollButtonsOnTheSides::-webkit-scrollbar {
+  display: none;
+}
+
+.FixedGridScrollButtonsOnTheSides {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

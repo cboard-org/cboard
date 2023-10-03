@@ -17,9 +17,10 @@ import AnalyticsButton from '../../UI/AnalyticsButton';
 import HelpButton from '../../UI/HelpButton';
 import SettingsButton from '../../UI/SettingsButton';
 import messages from '../Board.messages';
-import { isCordova, isAndroid } from '../../../cordova-util';
+import { isCordova, isAndroid, isIOS } from '../../../cordova-util';
 import './Navbar.css';
 import { injectIntl } from 'react-intl';
+import PremiumFeature from '../../PremiumFeature';
 
 export class Navbar extends React.Component {
   constructor(props) {
@@ -153,8 +154,10 @@ export class Navbar extends React.Component {
             <React.Fragment>
               <PrintBoardButton />
               {!isMobile.any && <FullScreenButton />}
-              {isLogged && !isCordova() && (
-                <AnalyticsButton component={Link} to="/analytics" />
+              {isLogged && (isIOS() || !isCordova()) && (
+                <PremiumFeature>
+                  <AnalyticsButton component={Link} to="/analytics" />
+                </PremiumFeature>
               )}
               <SettingsButton component={Link} to="/settings" />
               <BoardShare

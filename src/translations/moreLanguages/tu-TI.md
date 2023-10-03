@@ -1,45 +1,45 @@
-### On Samsung Android devices (Cboard app)
+### Iha peranti Samsung Andreoid (aplikasaun Cboard)
 
-1. Close Cboard app.
-2. Go to **Settings > General management > Language & Input > Text-to-speech output**.
-3. Swap Samsung's TTS (or any other one) for the **Google Text-to-speech** option as your preferred engine.
-4. (Optional) Going further into the settings lets you download different language packs, and set the speed of the readouts, too.
-5. Open Cboard and change language now, you should see many more languages to choose.
+1. Taka aplikasaun Cboard
+2. Ba**Konfigurasaun> Jestaun Jerál>Lingua&input>Textu-ba-Ko'alia**
+3. Muda Samsung nia TTS (ka kualkér ida) ba  opsaun **Google Tekstu-ba-Ko'alia**nu'udar ita nia mákina preferensia
+4. (Opsionál) tama liután ba konfigurasaun sei fó dalan ba ita download pakote lian diferente, no konfigura velosidade ba lee nian, mós
+5. Loke Cboard no muda lingua agora, ita sei haree lingua barak liután hodi hili.
 
-#### Settings > General management
+#### Konfigurasaun> Jestaun Jerál
 
-![Settings](/images/moreLanguages/samsung_switch_tts_01.png "Settings")
+![Konfigurasaun](/images/moreLanguages/samsung_switch_tts_01.png "Konfigurasaun")
 
-#### General management
+#### Jestaun jerál
 
-![General management](/images/moreLanguages/samsung_switch_tts_02.png "General management")
+![Jestaun jerál](/images/moreLanguages/samsung_switch_tts_02.png "Jestaun jerál")
 
-#### Language & Input
+#### Lingua& input
 
-![Language](/images/moreLanguages/samsung_switch_tts_03.png "Language")
+![língua](/images/moreLanguages/samsung_switch_tts_03.png "língua")
 
-#### Text-to-speech output
+#### Rezultadu tekstu-ba-ko'alia
 
-![Language](/images/moreLanguages/samsung_switch_tts_04.png "Text-to-speech output")
+![língua](/images/moreLanguages/samsung_switch_tts_04.png "Rezultadu tekstu-ba-ko'alia")
 
 ---
 
-### On Windows (Cboard web for Firefox and Edge browsers)
+### Iha Windows (Cboard web ba Firefox no Edge browser)
 
-1. Close Cboard from browser.
-2. Go to **Settings > Time and language > Language**.
-3. Click on **Add Language**.
-4. Look for the language you would like to add and **check that text-to-speech is supported** (see image below).
-5. Open Cboard and change language now, you should see the languages you added.
+1. Ba Cboard husi browser
+2. Ba ** Konfigurasaun> Tempu no Lingua>Lingua**
+3. Klíke iha**aumenta lingua**
+4. Haree ba lingua ne'ebé mak ita hakarak aumenta no ** haree tekstu-ba-koalia ne'ebé suporta** (haree imajen iha kraik)
+5. Loke Cboard no muda lingua agora, ita tenke haree lingua hirak ne'ebé ita aumenta ona
 
-#### Settings > Time and language
+#### Konfigurasaun > Tempu no Lingua
 
-![SettingsTimeLanguage](/images/moreLanguages/windows_add_tts_01.png "Settings > Time and language")
+![KonfigurasaunTempuLingua](/images/moreLanguages/windows_add_tts_01.png "Konfigurasaun > Tempu no Lingua")
 
-#### Language
+#### língua
 
-![Language](/images/moreLanguages/windows_add_tts_02.png "Language")
+![língua](/images/moreLanguages/windows_add_tts_02.png "língua")
 
-#### Add Language
+#### aumenta lingua
 
-![AddLanguage](/images/moreLanguages/windows_add_tts_03.png "Add Language")
+![aumentalingua](/images/moreLanguages/windows_add_tts_03.png "aumenta lingua")

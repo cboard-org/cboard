@@ -1,17 +1,13 @@
-.Scroll {
-  position: relative;
-  flex: 1;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
 .Scroll__container {
-  position: absolute;
-  min-width: 100%;
+  position: relative;
+  width: auto;
   height: 100%;
   display: flex;
+  flex-grow: 1;
   align-items: center;
+  overflow-x: auto;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
 }
 
 .Scroll__container:not(:empty):focus {

@@ -6,23 +6,61 @@ import {
   changePitch,
   changeRate
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
-import { disableTour } from '../../App/App.actions';
+import {
+  disableTour,
+  setUnloggedUserLocation,
+  updateUnloggedUserLocation,
+  enableAllTours
+} from '../../App/App.actions';
 import { getVoiceURI } from '../../../i18n';
+import { isCordova, isElectron } from '../../../cordova-util';
 
 export function loginSuccess(payload) {
-  return {
-    type: LOGIN_SUCCESS,
-    payload
+  return dispatch => {
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload
+    });
+    if (payload.isFirstLogin) firstLoginActions(dispatch, payload);
+    if (isCordova() && !isElectron())
+      try {
+        window.FirebasePlugin.setUserId(payload.id);
+      } catch (err) {
+        console.error(err);
+      }
   };
 }
 
+async function firstLoginActions(dispatch, payload) {
+  try {
+    await API.updateUser({ ...payload, isFirstLogin: false });
+  } catch (err) {
+    console.error(err);
+  }
+  dispatch(enableAllTours());
+}
+
 export function logout() {
+  if (isCordova() && !isElectron())
+    try {
+      window.FirebasePlugin.setUserId(undefined);
+    } catch (err) {
+      console.error(err);
+    }
+  return async dispatch => {
+    dispatch(setUnloggedUserLocation(null));
+    dispatch(updateUnloggedUserLocation());
+    dispatch(logoutSuccess());
+  };
+}
+
+function logoutSuccess() {
   return {
     type: LOGOUT
   };
 }
 
-export function login({ email, password }, type = 'local') {
+export function login({ email, password, activatedData }, type = 'local') {
   const setAVoice = ({ loginData, dispatch, getState }) => {
     const {
       language: { lang: appLang },
@@ -96,7 +134,9 @@ export function login({ email, password }, type = 'local') {
   return async (dispatch, getState) => {
     try {
       const apiMethod = type === 'local' ? 'login' : 'oAuthLogin';
-      const loginData = await API[apiMethod](email, password);
+      const loginData = activatedData
+        ? activatedData
+        : await API[apiMethod](email, password);
       const { communicator, board } = getState();
 
       const activeCommunicatorId = communicator.activeCommunicatorId;

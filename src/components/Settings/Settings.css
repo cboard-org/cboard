@@ -207,3 +207,20 @@
 .mySwiper {
   height: 70%;
 }
+
+.MuiTypography-h3 {
+  padding-bottom: 0.5em;
+  font-weight: bold;
+}
+
+.MuiCardContent-root {
+  text-align: center;
+}
+
+.MuiTypography-gutterBottom {
+  padding-bottom: 1em;
+}
+
+.list_item_left {
+  max-width: 50%;
+}

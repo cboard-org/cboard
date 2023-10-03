@@ -8,7 +8,8 @@ import {
   getTtsEngines,
   getTtsDefaultEngine,
   updateLangSpeechStatus,
-  setTtsEngine
+  setTtsEngine,
+  setCurrentVoiceSource
 } from './SpeechProvider.actions';
 import { setDownloadingLang } from '../LanguageProvider/LanguageProvider.actions';
 
@@ -33,6 +34,7 @@ export class SpeechProvider extends Component {
       ttsEngine,
       ttsDefaultEngine,
       setTtsEngine,
+      setCurrentVoiceSource,
       downloadingLang,
       setDownloadingLang
     } = this.props;
@@ -91,6 +93,7 @@ export class SpeechProvider extends Component {
       }
       setDownloadingLang({ ...downloadingLang, isUpdated: true });
     }
+    setCurrentVoiceSource();
   }
 
   render() {
@@ -114,6 +117,7 @@ const mapDispatchToProps = {
   getTtsDefaultEngine,
   setTtsEngine,
   updateLangSpeechStatus,
+  setCurrentVoiceSource,
   //todo: setDownloadingVoices
   setDownloadingLang
 };

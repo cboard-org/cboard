@@ -32,8 +32,21 @@ export default defineMessages({
     defaultMessage:
       'Your board was downloaded. Find your file under the downloads folder'
   },
+  boardDownloadedCvaIOS: {
+    id: 'cboard.components.Settings.Export.boardDownloadedCvaIOS',
+    defaultMessage:
+      'Your board was downloaded. Find your file under "On My device" folder'
+  },
   boards: {
     id: 'cboard.components.Settings.Export.boards',
     defaultMessage: 'Boards'
+  },
+  boardDownloadError: {
+    id: 'cboard.components.Settings.Export.boardDownloadedError',
+    defaultMessage: 'Ups..Something went wrong. Please try again'
+  },
+  downloadNoConnectionError: {
+    id: 'cboard.components.Settings.Export.downloadNoConnectionError',
+    defaultMessage: 'Need internet connection to download the PDF.'
   }
 });

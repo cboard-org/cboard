@@ -64,8 +64,19 @@ export class PeopleContainer extends PureComponent {
     this.props.logout();
   };
 
+  handleDeleteAccount = async () => {
+    try {
+      const data = await API.deleteAccount();
+      this.handleLogout();
+      this.props.history.push('/login-signup/');
+      return data;
+    } catch (error) {
+      throw Error(error);
+    }
+  };
+
   render() {
-    const { history } = this.props;
+    const { history, location } = this.props;
 
     return (
       <People
@@ -75,17 +86,33 @@ export class PeopleContainer extends PureComponent {
         name={this.state.name}
         email={this.state.email}
         birthdate={this.state.birthdate}
+        location={location}
         onChangePeople={this.handleChange}
         onSubmitPeople={this.handleSubmit}
+        onDeleteAccount={this.handleDeleteAccount}
       />
     );
   }
 }
 
-const mapStateToProps = state => ({
-  isLogged: isLogged(state),
-  user: getUser(state)
-});
+const mapStateToProps = state => {
+  const userIsLogged = isLogged(state);
+  const user = getUser(state);
+  const location = userIsLogged
+    ? {
+        country: user?.location?.country,
+        countryCode: user?.location?.countryCode
+      }
+    : {
+        country: state.app.unloggedUserLocation?.country,
+        countryCode: state.app.unloggedUserLocation?.countryCode
+      };
+  return {
+    isLogged: userIsLogged,
+    user: user,
+    location: location
+  };
+};
 
 const mapDispatchToProps = {
   logout: logout,

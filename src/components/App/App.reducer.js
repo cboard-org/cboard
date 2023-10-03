@@ -3,9 +3,11 @@ import {
   UPDATE_CONNECTIVITY,
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS,
+  UPDATE_SYMBOLS_SETTINGS,
   UPDATE_USER_DATA,
   DISABLE_TOUR,
-  ENABLE_ALL_TOURS
+  ENABLE_ALL_TOURS,
+  SET_UNLOGGED_USER_LOCATION
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
@@ -14,6 +16,7 @@ import {
 } from '../Settings/Display/Display.constants';
 
 import { DEFAULT_FONT_FAMILY } from './../../providers/ThemeProvider/ThemeProvider.constants';
+import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../Settings/Navigation/Navigation.constants';
 
 const initialState = {
   isConnected: true,
@@ -41,11 +44,17 @@ const initialState = {
   navigationSettings: {
     active: false,
     shareShowActive: false,
+    bigScrollButtonsActive: false,
+    navigationButtonsStyle: NAVIGATION_BUTTONS_STYLE_SIDES,
     caBackButtonActive: false,
     quickUnlockActive: false,
     removeOutputActive: false,
     vocalizeFolders: false,
-    liveMode: false
+    liveMode: false,
+    improvePhraseActive: false
+  },
+  symbolsSettings: {
+    arasaacActive: false
   },
   userData: {}
 };
@@ -53,10 +62,14 @@ const initialState = {
 function appReducer(state = initialState, action) {
   let displaySettings = { ...state.displaySettings };
   let navigationSettings = { ...state.navigationSettings };
+  let symbolsSettings = { ...state.symbolsSettings };
 
   switch (action.type) {
     case UPDATE_DISPLAY_SETTINGS:
-      displaySettings = { ...state.displaySettings, ...action.payload };
+      displaySettings = {
+        ...state.displaySettings,
+        ...action.payload
+      };
       return {
         ...state,
         displaySettings
@@ -69,6 +82,15 @@ function appReducer(state = initialState, action) {
       return {
         ...state,
         navigationSettings
+      };
+    case UPDATE_SYMBOLS_SETTINGS:
+      symbolsSettings = {
+        ...state.symbolsSettings,
+        ...action.payload
+      };
+      return {
+        ...state,
+        symbolsSettings
       };
     case UPDATE_CONNECTIVITY:
       return {
@@ -135,6 +157,11 @@ function appReducer(state = initialState, action) {
       return {
         ...state,
         userData: action.userData
+      };
+    case SET_UNLOGGED_USER_LOCATION:
+      return {
+        ...state,
+        unloggedUserLocation: action.location
       };
     default:
       return state;

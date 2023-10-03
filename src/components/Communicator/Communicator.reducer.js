@@ -9,6 +9,8 @@ import {
   ADD_BOARD_COMMUNICATOR,
   DELETE_BOARD_COMMUNICATOR,
   REPLACE_BOARD_COMMUNICATOR,
+  ADD_DEFAULT_BOARD_INCLUDED,
+  UPDATE_DEFAULT_BOARDS_INCLUDED,
   CREATE_API_COMMUNICATOR_SUCCESS,
   CREATE_API_COMMUNICATOR_FAILURE,
   CREATE_API_COMMUNICATOR_STARTED,
@@ -138,6 +140,50 @@ function communicatorReducer(state = initialState, action) {
               communicators: updatedCommunicators
             };
           }
+        }
+      }
+      return { ...state };
+
+    case ADD_DEFAULT_BOARD_INCLUDED:
+      if (activeCommunicator) {
+        const index = state.communicators.indexOf(activeCommunicator);
+        if (index !== -1) {
+          const BOARD_ALREADY_INCLUDED_DATA = {
+            nameOnJSON: 'advanced',
+            homeBoard: 'root'
+          };
+          const defaultBoardsIncluded = activeCommunicator.defaultBoardsIncluded
+            ? [
+                ...activeCommunicator.defaultBoardsIncluded,
+                action.defaultBoardData
+              ]
+            : [BOARD_ALREADY_INCLUDED_DATA, action.defaultBoardData];
+
+          const updatedCommunicators = [...state.communicators];
+          updatedCommunicators[
+            index
+          ].defaultBoardsIncluded = defaultBoardsIncluded;
+
+          return {
+            ...state,
+            communicators: updatedCommunicators
+          };
+        }
+      }
+      return { ...state };
+
+    case UPDATE_DEFAULT_BOARDS_INCLUDED:
+      if (activeCommunicator) {
+        const index = state.communicators.indexOf(activeCommunicator);
+        if (index !== -1) {
+          const updatedCommunicators = [...state.communicators];
+          updatedCommunicators[index].defaultBoardsIncluded =
+            action.defaultBoardsIncluded;
+
+          return {
+            ...state,
+            communicators: updatedCommunicators
+          };
         }
       }
       return { ...state };

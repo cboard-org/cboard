@@ -6,6 +6,8 @@ import Joyride, { STATUS } from 'react-joyride';
 import messages from './../Board.messages';
 import './../Board.css';
 
+import DefaultBoardsGallery from '../../Communicator/CommunicatorToolbar/DefaultBoardSelector/DefaultBoardsGallery';
+
 const propTypes = {
   isRootBoardTourEnabled: PropTypes.bool,
   isUnlockedTourEnabled: PropTypes.bool,
@@ -28,7 +30,9 @@ function BoardTour({
   isRootBoardTourEnabled,
   isUnlockedTourEnabled,
   isLocked,
-  disableTour
+  disableTour,
+  intl,
+  onDefaultBoardOptionClick
 }) {
   const unlockedHelpSteps = [
     {
@@ -70,6 +74,13 @@ function BoardTour({
       hideCloseButton: true,
       target: '.edit__communicator',
       content: <FormattedMessage {...messages.walkthroughBuildCommunicator} />
+    },
+    {
+      hideCloseButton: true,
+      target: '.default__boards__selector',
+      content: (
+        <FormattedMessage {...messages.walkthroughDefaultBoardsSelector} />
+      )
     }
   ];
 
@@ -78,10 +89,27 @@ function BoardTour({
       target: 'body',
       placement: 'center',
       hideCloseButton: true,
+      styles: {
+        tooltip: {
+          width: '90vw',
+          maxWidth: 700,
+          maxHeight: '95vh',
+          overflowY: 'auto'
+        }
+      },
       content: (
-        <h2>
-          <FormattedMessage {...messages.walkthroughWelcome} />
-        </h2>
+        <>
+          <h2>
+            <FormattedMessage {...messages.walkthroughWelcome} />
+          </h2>
+          <p>
+            <FormattedMessage {...messages.walkthroughChooseABoard} />
+          </p>
+          <DefaultBoardsGallery
+            intl={intl}
+            onOptionClick={onDefaultBoardOptionClick}
+          />
+        </>
       )
     },
     {

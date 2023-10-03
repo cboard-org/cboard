@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import CommunicatorToolbar from './CommunicatorToolbar.component';
 import CommunicatorDialog from '../CommunicatorDialog';
-import { switchBoard, replaceBoard } from '../../Board/Board.actions';
+import {
+  switchBoard,
+  replaceBoard,
+  changeDefaultBoard
+} from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import {
   importCommunicator,
@@ -69,7 +73,7 @@ class CommunicatorContainer extends React.Component {
 }
 
 const mapStateToProps = (
-  { board, communicator, app: { userData } },
+  { board, communicator, app: { userData, displaySettings } },
   ownProps
 ) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
@@ -77,10 +81,12 @@ const mapStateToProps = (
     communicator => communicator.id === activeCommunicatorId
   );
   const activeBoardId = board.activeBoardId;
-  const boards = board.boards.filter(board =>
-    board !== null &&
-    board.id !== null &&
-    currentCommunicator.boards.includes(board.id));
+  const boards = board.boards.filter(
+    board =>
+      board !== null &&
+      board.id !== null &&
+      currentCommunicator.boards.includes(board.id)
+  );
   const currentBoard = boards.find(board => board.id === activeBoardId);
 
   return {
@@ -89,6 +95,7 @@ const mapStateToProps = (
     currentCommunicator,
     currentBoard,
     userData,
+    isDark: displaySettings.darkThemeActive,
     ...ownProps
   };
 };
@@ -101,7 +108,8 @@ const mapDispatchToProps = {
   upsertCommunicator,
   showNotification,
   switchBoard,
-  replaceBoard
+  replaceBoard,
+  changeDefaultBoard
 };
 
 export default connect(

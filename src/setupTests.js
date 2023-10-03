@@ -1,6 +1,7 @@
 import { configure } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { Stream } from 'stream';
+import 'fake-indexeddb/auto';
 
 configure({ adapter: new Adapter() });
 

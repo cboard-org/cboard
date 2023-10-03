@@ -2,64 +2,66 @@
 
 ## តារាង​មាតិកា
 
-* [តើអ្វីទៅជាក្តារចុច?](#WhatisCboard)
-* [ការចុះឈ្មោះនិងចូល។](#Registrationandlogin) 
-    * [តើខ្ញុំត្រូវចុះឈ្មោះសម្រាប់ Cboard យ៉ាងដូចម្តេច?](#HowdoIregisterforCboard)
-    * [តើខ្ញុំអាចចុះឈ្មោះដោយខ្លួនឯងដោយប្រើគណនីបណ្តាញសង្គមរបស់ខ្ញុំបានទេ?](#CanIregistermyselfusingmysocialmediaaccounts)
-    * [តើខ្ញុំអាចចូលទៅក្នុង Cboard យ៉ាងដូចម្តេចនៅពេលដែលខ្ញុំបានចុះឈ្មោះជាអ្នកប្រើប្រាស់?](#HowdoIlogintoCboardonceIamaregistereduser)
-    * [តើខ្ញុំចាកចេញយ៉ាងដូចម្តេច?](#HowdoIlogout)
-    * [តើអ្វីជាភាពខុសគ្នារវាងអ្នកប្រើប្រាស់ដែលបានចុះឈ្មោះនិងអ្នកប្រើប្រាស់ដែលមិនបានចុះឈ្មោះ?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
-    * [តើខ្ញុំត្រូវធ្វើបច្ចុប្បន្នភាពព័ត៌មានអ្នកប្រើប្រាស់របស់ខ្ញុំយ៉ាងដូចម្តេច?](#HowdoIupdatemyuserinformation)
-    * [តើខ្ញុំត្រូវកំណត់លេខសម្ងាត់របស់ខ្ញុំដូចម្តេច?](#HowdoIresetmypassword)
-* [តម្លៃ។](#Price) 
-    * [តើ Cboard មានតម្លៃប៉ុន្មាន?](#HowmuchdoesCboardcost)
-* [លក្ខណៈពិសេស។](#Features) 
-    * [តើឧបករណ៍និងប្រព័ន្ធប្រតិបត្តិការអ្វីខ្លះត្រូវបានគាំទ្រ?](#WhatdevicesandOSaresupported)
-    * [តើភាសាណាមួយត្រូវបានគាំទ្រដោយ Cboard?](#WhichlanguagesaresupportedbyCboard)
-    * [តើ Cboard អាចអានសាររបស់ខ្ញុំ al ៗ បានទេ?](#CanCboardreadmymessageoutaloud)
-    * [សមត្ថភាពនិយាយ។](#Speechcapabilities)
-    * [នាំចេញនិងនាំចូល។](#Exportandimport)
-    * [សមត្ថភាពបង្ហាញ។](#Displaycapabilities)
-    * [តើខ្ញុំអាចផ្លាស់ប្តូរការកំណត់រុករកបានទេ?](#CanIchangeanynavigationsettings)
-    * [ការរុករកតាមរយៈចំណុចប្រទាក់។](#Navigationthroughtheinterface)
+* [What is Cboard?](#WhatisCboard)
+* [Registration and login](#Registrationandlogin) 
+    * [How do I register for Cboard?](#HowdoIregisterforCboard)
+    * [Can I register myself using my social media accounts?](#CanIregistermyselfusingmysocialmediaaccounts)
+    * [How do I log in to Cboard once I am a registered user?](#HowdoIlogintoCboardonceIamaregistereduser)
+    * [How do I logout?](#HowdoIlogout)
+    * [What is the difference between a registered and a non-registered user?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
+    * [How do I update my user information?](#HowdoIupdatemyuserinformation)
+    * [How do I reset my password?](#HowdoIresetmypassword)
+* [Price](#Price) 
+    * [How much does Cboard cost?](#HowmuchdoesCboardcost)
+* [Features](#Features) 
+    * [What devices and OS are supported?](#WhatdevicesandOSaresupported)
+    * [Which languages are supported by Cboard?](#WhichlanguagesaresupportedbyCboard)
+    * [Can Cboard read my message out aloud?](#CanCboardreadmymessageoutaloud)
+    * [Speech capabilities](#Speechcapabilities)
+    * [Export and import](#Exportandimport)
+    * [Display capabilities](#Displaycapabilities)
+    * [Can I change any navigation settings?](#CanIchangeanynavigationsettings)
+    * [Navigation through the interface](#Navigationthroughtheinterface)
 * [ការកំណត់](#Settings) 
-    * [តើខ្ញុំអាចចូលទៅកាន់ការកំណត់នៅក្នុង Cboard យ៉ាងដូចម្តេច?](#HowdoIaccesssettingsinCboard)
-    * [តើខ្ញុំត្រូវធ្វើដូចម្តេចដើម្បីបោះពុម្ពក្តាររបស់ខ្ញុំនៅក្នុង Cboard?](#HowdoIprintmyboardsetinCboard)
-    * [តើខ្ញុំមើលឃើញ Cboard ពេញអេក្រង់យ៉ាងដូចម្តេច?](#HowdoIseeCboardinfullscreen)
-    * [តើខ្ញុំចែកចាយក្តារយ៉ាងដូចម្តេច?](#HowdoIshareaboard)
-* [និយាយ។](#Talking) 
-    * [តើខ្ញុំអាចបន្ថែមសំលេងដែលបានថតទុកដោយផ្ទាល់ទៅនឹងនិមិត្តសញ្ញានៅលើក្ដារខៀនយ៉ាងដូចម្តេច?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [តើខ្ញុំប្តូរទៅជាសម្លេងខុសគ្នាយ៉ាងដូចម្តេច?](#HowdoIswitchtoadifferentvoice)
-    * [តើខ្ញុំត្រូវផ្លាស់ប្តូររបៀបសំឡេងមួយយ៉ាងដូចម្តេច?](#HowdoIchangehowavoicesounds)
-* [ការកែសម្រួលក្តារ។](#BoardEditing) 
-    * [តើខ្ញុំបង្កើតក្តារទទេយ៉ាងដូចម្តេច?](#HowdoIcreateanemptyboard)
-    * [តើខ្ញុំធ្វើដូចម្តេចដើម្បីកំណត់ក្តារផ្ទាល់ខ្លួនដែលមានស្រាប់នៅក្នុង Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
-    * [តើខ្ញុំអាចប្រើរូបភាពផ្ទាល់ខ្លួនរបស់ខ្ញុំនៅពេលកែសម្រួលក្តារបានទេ?](#CanIusemyownpictureswheneditingaboard)
-    * [តើខ្ញុំអាចផ្លាស់ប្តូរលំដាប់នៃធាតុនៅក្នុងក្តារបានទេ?](#CanIchangetheorderingoftheelementsinaboard)
-    * [តើខ្ញុំជ្រើសរើសធាតុជាច្រើនដើម្បីកែសម្រួលយ៉ាងដូចម្តេច?](#HowdoIselectmultipleelementstoedit)
-    * [តើខ្ញុំអាចរកឃើញនិមិត្តសញ្ញាថ្មីយ៉ាងដូចម្តេចនៅពេលដែលខ្ញុំកំពុងកែសម្រួលក្បឿង?](#FindSymbols)
-    * [តើខ្ញុំអាចដាក់ក្តារបន្ទះនៅទីតាំងថេរបានទេ?](#FixedBoards)
-    * [តើខ្ញុំកំណត់ចំនួនជួរដេកនិងជួរជាក់លាក់នៅក្នុងក្តាររបស់ខ្ញុំយ៉ាងដូចម្តេច?](#FixedRows)
-* [នាំចេញនិងនាំចូល។](#Exportandimport) 
-    * [តើខ្ញុំត្រូវនាំចេញក្តាររបស់ខ្ញុំយ៉ាងដូចម្តេចទៅក្នុង Cboard?](#HowdoIexportmyboardinCboard)
-    * [តើខ្ញុំត្រូវនាំចូលក្តារចូលទៅក្នុង Cboard យ៉ាងដូចម្តេច?](#HowdoIimportaboardintoCboard)
-    * [តើ Cboard ប្រើទ្រង់ទ្រាយឯកសារអ្វីសម្រាប់នាំចូល / នាំចេញ?](#WhatfileformatdoesCboarduseforimportexport)
-* [សមត្ថភាពបង្ហាញ។](#Displaycapabilities) 
-    * [តើខ្ញុំអាចផ្លាស់ប្តូរអ្វីនៅលើការបង្ហាញ?](#WhatcanIchangeonthedisplay)
-    * [តើខ្ញុំអាចប្តូរទំហំប៊ូតុងនៅលើ Cboard បានទេ?](#CanIresizebuttonsonCboard)
-* [ការស្កេន។](#Scanning) 
-    * [តើខ្ញុំអាចប្រើបច្ចេកទេសស្កេនដើម្បីចូលនិមិត្តសញ្ញាបានទេ?](#CanIusescanningtechniquestoaccesssymbols)
-* [អ្នកសាងសង់ទំនាក់ទំនង](#CommunicatorBuilder) 
-    * [តើអ្នកសាងសង់ទំនាក់ទំនងគឺជាអ្វី?](#Whatiscommbuilder)
-    * [ក្រុមប្រឹក្សាទំនាក់ទំនង](#CommunicatorBoards)
-    * [ក្រុមប្រឹក្សាសាធារណៈ](#PublicBoards)
-    * [ក្តាររបស់ខ្ញុំទាំងអស់](#Allmyboards)
+    * [How do I access settings in Cboard?](#HowdoIaccesssettingsinCboard)
+    * [How do I print my board set in Cboard?](#HowdoIprintmyboardsetinCboard)
+    * [How do I see Cboard in fullscreen?](#HowdoIseeCboardinfullscreen)
+    * [How do I share a board?](#HowdoIshareaboard)
+    * [How do I share a phrase?](#HowdoIshareaphrase)
+* [Talking](#Talking) 
+    * [How do I add a personally recorded voice to symbols on Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
+    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
+    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
+* [Board Editing](#BoardEditing) 
+    * [How do I create an empty board?](#HowdoIcreateanemptyboard)
+    * [How do I personalize an existing board in Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
+    * [Can I use my own pictures when editing a board?](#CanIusemyownpictureswheneditingaboard)
+    * [Can I change the ordering of the elements in a board?](#CanIchangetheorderingoftheelementsinaboard)
+    * [How do I select multiple elements to edit?](#HowdoIselectmultipleelementstoedit)
+    * [How can I find new symbols when I am editing a tile?](#FindSymbols)
+    * [Can I place board tiles in fixed positions?](#FixedBoards)
+    * [How do I set a specific number of rows and columns in my board?](#FixedRows)
+* [Export and import](#Exportandimport) 
+    * [How do I export my board in Cboard?](#HowdoIexportmyboardinCboard)
+    * [How do I import a board into Cboard?](#HowdoIimportaboardintoCboard)
+    * [What file format does Cboard use for import/export?](#WhatfileformatdoesCboarduseforimportexport)
+* [Display capabilities](#Displaycapabilities) 
+    * [What can I change on the display?](#WhatcanIchangeonthedisplay)
+    * [Can I resize buttons on Cboard?](#CanIresizebuttonsonCboard)
+    * [Screen scroll through big buttons](#BigScrollButtons)
+* [Scanning](#Scanning) 
+    * [Can I use scanning techniques to access symbols?](#CanIusescanningtechniquestoaccesssymbols)
+* [Communicator builder](#CommunicatorBuilder) 
+    * [What is the communicator builder?](#Whatiscommbuilder)
+    * [Communicator boards](#CommunicatorBoards)
+    * [Public boards](#PublicBoards)
+    * [All my boards](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>តើអ្វីទៅជាក្តារចុច?
 
 ខាសគឺជាកម្មវិធីគេហទំព័រឥតគិតថ្លៃសម្រាប់កុមារនិងមនុស្សពេញវ័យដែលមានបញ្ហាអន់ថយផ្នែកភាសាការសម្របសម្រួលទំនាក់ទំនងជាមួយរូបភាពនិងអត្ថបទទៅការនិយាយ។
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>ការចុះឈ្មោះនិងចូល។
 
@@ -79,39 +81,39 @@
 
 ![ចុះឈ្មោះតាមអ៊ីមែល](/images/help/signupemail.png "Email signup")
 
-ព័ត៌មាននេះត្រូវបានកាន់កាប់ដោយក្រុមហ៊ុនតែប៉ុណ្ណោះដើម្បីគាំទ្រដល់ការប្រើប្រាស់សេហ្វនិងផ្តល់ជំនួយនៅពេលចាំបាច់។ វាមិនត្រូវបានចែករំលែកជាមួយអង្គការផ្សេងទៀត (សូមមើល [លម្អិតឯកជនភាព](https://www.cboard.io/privacy/)) ។
+This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
 
 នៅពេលដែលអ្នកបានផ្ទៀងផ្ទាត់គណនីរបស់អ្នកអ្នកនឹងមានសិទ្ធិចូលប្រើ Cboard ហើយនឹងទទួលបានអ៊ីមែលមួយទៀតដែលបញ្ជាក់ថាអ្នកបានផ្ទៀងផ្ទាត់គណនីរបស់អ្នកដោយជោគជ័យ។
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>តើខ្ញុំអាចចុះឈ្មោះដោយខ្លួនឯងដោយប្រើគណនីបណ្តាញសង្គមរបស់ខ្ញុំបានទេ?
 
-ត្រូវហើយ! នៅលើទំព័រចូលអ្នកនឹងត្រូវបានផ្តល់ជម្រើសក្នុងការចុះឈ្មោះជាមួយគណនីហ្គូហ្គោលឬហ្វេសប៊ុករបស់អ្នកប្រសិនបើអ្នកចង់ធ្វើដូច្នេះ។ អ្នកក៏អាចចុះឈ្មោះជាមួយអាសយដ្ឋានអ៊ីមែលបានដែរ។
+Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>តើខ្ញុំអាចចូលទៅក្នុង Cboard យ៉ាងដូចម្តេចនៅពេលដែលខ្ញុំបានចុះឈ្មោះជាអ្នកប្រើប្រាស់?
 
-ដើម្បីចូលទៅក្នុងក្តារខៀនអ្នកធ្វើតាមជំហានដំបូងដែលត្រូវបានប្រើដើម្បីចុះឈ្មោះប៉ុន្តែជំនួសឱ្យការជ្រើសរើស SIGN UP នៅលើអេក្រង់ស្វាគមន៍សូមជ្រើសរើស LOGIN បន្ទាប់មកអ្នកនឹងត្រូវបានស្នើសុំឱ្យផ្តល់អ៊ីមែលដែលអ្នកបានចុះឈ្មោះជាមួយនិងលេខសំងាត់ដែលអ្នកបានបង្កើត។
+To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
 
 ![ចូលក្តារចុច](/images/help/login.png "Cboard login")
 
 ### តើមានជម្រើសផ្សេងគ្នាអ្វីខ្លះដើម្បីកំណត់រចនាសម្ព័ន្ធក្តារខប?
 
-នៅពេលដែលអ្នកចូលទៅកាន់ Cboard អ្នកអាចចូលប្រើជំរើសផ្សេងៗគ្នាដើម្បីកំណត់រចនាសម្ព័ន្ធនិងអភិវឌ្ឍក្រុមប្រឹក្សាទំនាក់ទំនងដែលបានផ្តល់នៅពេលដែល Cboard ស្ថិតនៅក្នុងរបៀបដោះសោ។ សូមមើលបញ្ជីជម្រើសសំខាន់ៗទាំងអស់ខាងក្រោម៖
+Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
 
 ![ការកំណត់ក្តារ](/images/help/settings.png "Cboard settings")
 
 ### <a name='HowdoIlogout'></a>តើខ្ញុំចាកចេញយ៉ាងដូចម្តេច?
 
-អ្នកអាចចេញដោយជ្រើសរើសរូបតំណាងការកំណត់ហើយជម្រើសនឹងបង្ហាញជាពណ៌ក្រហម។ អ្នកក៏អាចជ្រើសរើសនិមិត្តសញ្ញាចាក់សោរនៅជ្រុងខាងស្តាំចុចបីដងហើយនៅពេលដែលអ្នកដោះសោអេក្រង់ហើយរបាក្រហមលេចឡើងជ្រើសរូបតំណាងនៅខាងឆ្វេងនៃសោ (រូបភាពរបស់អ្នកប្រសិនបើអ្នកបានផ្ទុក) និងជម្រើសចូល ចេញនឹងលេចចេញជាពណ៌ក្រហម។
+You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
 
 ![ចាកចេញពីក្តារ](/images/help/logout.png "Cboard logout")
 
 ### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>តើអ្វីជាភាពខុសគ្នារវាងអ្នកប្រើប្រាស់ដែលបានចុះឈ្មោះនិងអ្នកប្រើប្រាស់ដែលមិនបានចុះឈ្មោះ?
 
-អ្នកប្រើដែលបានចុះឈ្មោះអាចកំណត់ក្តារផ្ទាល់ខ្លួនរបស់ពួកគេបានហើយការផ្លាស់ប្តូរដែលបានធ្វើនឹងត្រូវបានរក្សាទុកនៅក្នុងគណនីរបស់ពួកគេដូច្នេះនៅពេលដែលពួកគេចូលម្តងទៀតពួកគេអាចប្រើក្តារប្តូរតាមបំណងរបស់ពួកគេ។ អ្នកប្រើប្រាស់ដែលមិនបានចុះឈ្មោះនឹងមិនអាចរក្សាទុកការផ្លាស់ប្តូរដោយសុវត្ថិភាពទេ។ យើងសូមផ្តល់អនុសាសន៍ចុះឈ្មោះក្នុងករណីដូច្នេះការផ្លាស់ប្តូររបស់អ្នកត្រូវបានធានាថាត្រូវបានរក្សាទុក។
+A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
 
 ### <a name='HowdoIupdatemyuserinformation'></a>តើខ្ញុំត្រូវធ្វើបច្ចុប្បន្នភាពព័ត៌មានអ្នកប្រើប្រាស់របស់ខ្ញុំយ៉ាងដូចម្តេច?
 
-ដើម្បីធ្វើបច្ចុប្បន្នភាពព័ត៌មានអ្នកប្រើរបស់អ្នកសូមអនុវត្តតាមជំហានដូចគ្នាដែលអ្នកនឹងប្រើប្រសិនបើអ្នកកំពុងព្យាយាមចាកចេញ។ ជ្រើសរើសនិមិត្តសញ្ញាចាក់សោរនៅជ្រុងខាងស្តាំខាងលើនៃក្តារ - ចុចបីដងរឺក៏ប៉ះហើយពេលអ្នកដោះសោអេក្រង់ជ្រើសរូបតំណាងនៅខាងឆ្វេងនៃសោ (ឈ្មោះអ្នកប្រើប្រាស់ឈ្មោះរូបថត) ហើយបន្ទាប់មកអ្នកអាចកែសម្រួលព័ត៌មានអ្នកប្រើប្រាស់របស់អ្នក ។
+To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
 
 ### <a name='HowdoIresetmypassword'></a>តើខ្ញុំត្រូវកំណត់លេខសម្ងាត់របស់ខ្ញុំដូចម្តេច?
 
@@ -127,11 +129,11 @@
 
 ### <a name='WhatdevicesandOSaresupported'></a>តើឧបករណ៍និងប្រព័ន្ធប្រតិបត្តិការអ្វីខ្លះត្រូវបានគាំទ្រ?
 
-Cboard មាននៅលើអ៊ិនធរណេតដោយប្រើឧបករណ៍ជាច្រើនប្រភេទរួមមានកុំព្យូទ័រលើតុថេប្លេតនិងទូរស័ព្ទចល័តដោយប្រើប្រព័ន្ធប្រតិបត្តិការម៉ាក់វីនដូនិងប្រព័ន្ធប្រតិបត្តិការ Android ។ វាត្រូវបានមើលល្អបំផុតនៅក្នុងកម្មវិធីរុករកដូចជា Chrome, Firefox, Edge និង Safari និងកម្មវិធី Android អាចរកបានពី Google Play ។
+Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
 
 ![គាំទ្រកម្មវិធីរុករក](/images/help/browsers.png "Browser support")
 
-ដោយសារតែ Cboard គឺជាកម្មវិធីផ្អែកលើគេហទំព័រវានឹងឆ្លើយតបទៅនឹងការកំណត់ដែលផ្តល់ដោយកម្មវិធីរុករកនីមួយៗ។ នេះអាចមានន័យថាអ្នកមានលទ្ធផលខុសគ្នាចំពោះការកំណត់ដែលបានផ្តល់ដោយ Cboard ។ ឧទាហរណ៍អ្នកអាចរកឃើញជម្រើសនិយាយផ្សេងៗគ្នាដែលត្រូវបានផ្តល់ជូន។
+Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
 
 កុំភ្លេចអ្នកក៏អាចប្រើពង្រីកកម្មវិធីរុករកឬពង្រីកដល់កម្រិតជាក់លាក់មួយអាស្រ័យលើទំហំកុំព្យូទ័រថេប្លេតឬទូរស័ព្ទ។
 
@@ -139,39 +141,39 @@ Cboard មាននៅលើអ៊ិនធរណេតដោយប្រើឧ�
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>តើភាសាណាមួយត្រូវបានគាំទ្រដោយ Cboard?
 
-Cboard ភ្ជាប់មកជាមួយការគាំទ្រសម្រាប់ 33 ភាសា។ ដើម្បីជ្រើសរើសភាសាផ្សេងសូមចូលទៅកាន់ការកំណត់ - ជ្រើសរើស LANGUAGE ហើយភាសាដែលអាចប្រើបាននឹងលេចចេញមក។ ធ្វើការជ្រើសរើសហើយសញ្ញាធីកនឹងលេចចេញក្បែរភាសា។
+Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>តើ Cboard អាចអានសាររបស់ខ្ញុំ al ៗ បានទេ?
 
-ត្រូវហើយ Cboard ប្រើលទ្ធផលសំយោគសំយោគដែលមាននៅក្នុងឧបករណ៍របស់អ្នកដើម្បីអានផ្លាកនីមួយៗដែលរកឃើញនៅខាងក្រោមនិមិត្តសញ្ញានីមួយៗនៅពេលវាត្រូវបានបន្ថែមទៅក្នុងប្រអប់លទ្ធផលសារ។ អ្នកអាចជ្រើសរើសសារពេញលេញហើយវាក៏នឹងត្រូវបានអានឱ្យខ្លាំងដែរ។ ប្រសិនបើការថតសំឡេងពាក្យឬឃ្លាផ្ទាល់ខ្លួនត្រូវបានបន្ថែមទៅក្នុងនិមិត្តសញ្ញា (សេចក្តីណែនាំក្រោមការជជែក - ការថតសំលេង) អ្នកនឹងលឺសំលេងនោះជំនួសសំលេងសំយោគ។ នេះអាចមានប្រយោជន៍ខ្លាំងណាស់នៅពេលដែលការបកប្រែមិនមានជាភាសាសំលេងកុមារត្រូវការឬការសង្កត់សំឡេងមិនអាចទទួលយកបាន។ សូមប្រាកដថាបានចូលប្រើអ៊ីនធឺណិតដល់មីក្រូរបស់អ្នក។
+Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
 
 ### <a name='Speechcapabilities'></a>សមត្ថភាពនិយាយ
 
-ដើម្បីកែសំរួលសមត្ថភាពនិយាយសូមចូលទៅក្នុងការកំណត់និងក្រោមប្រភេទភាសាគឺភាសា SPEECH ។ នៅពេលអ្នកជ្រើសរើស SPEECH អ្នកនឹងអាចកែសម្រួលសំលេងនិងល្បឿននៃការនិយាយនៅលើ Cboard ។
+In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
 
 ![សមត្ថភាពនិយាយ](/images/help/speech.png "Speech capabilities")
 
 ### <a name='Exportandimport'></a>នាំចេញនិងនាំចូល
 
-ជម្រើសទាំងពីរដើម្បីនាំចេញគឺស្ថិតនៅក្នុងការកំណត់ប្រព័ន្ធក្នុងប្រភេទប្រព័ន្ធក្រោមភាសានិងសុន្ទរកថា។ ប្រភេទ EXPORT នឹងផ្តល់ឱ្យអ្នកនូវជម្រើសក្នុងការអាប់ឡូដ OpenBoard ឬ PDF ។ ប្រភេទសំខាន់នឹងបើកឯកសារដែលបានរក្សាទុករបស់អ្នកនៅពេលអ្នកជ្រើសរើស RESTORE ។
+Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
 
 ![សមត្ថភាពនាំចេញ](/images/help/export.png "Export capabilities")
 
 ### <a name='Displaycapabilities'></a>សមត្ថភាពបង្ហាញ
 
-ការកំណត់ការបង្ហាញអាចត្រូវបានកែសម្រួលនៅក្នុងការកំណត់ប្រព័ន្ធក្នុងប្រភេទប្រព័ន្ធ។ ជម្រើសបង្ហាញនៅខាងស្តាំខាងក្រោមនាំចេញនិងនាំចូល។ អ្នកជ្រើសរើស DISPLAY អ្នកអាចប្តូរទំហំ UI ក៏ដូចជាទំហំអក្សរផងដែរដោយជ្រើសរើសទំហំដែលអ្នកចង់បាន។ ចំណុចក្រហមគួរតែស្ថិតនៅក្រោមទំហំដែលអ្នកចង់ជ្រើសរើស។
+Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
 
 ![សមត្ថភាពបង្ហាញ](/images/help/display.png "Display capabilities")
 
 ### <a name='CanIchangeanynavigationsettings'></a>តើខ្ញុំអាចផ្លាស់ប្តូរការកំណត់រុករកបានទេ?
 
-ប្រើផ្នែក NAVIGATION ដើម្បីកែសំរួលនិងសំរួលមធ្យោបាយដែលអ្នកប្រើដើម្បីផ្លាស់ទីជុំវិញក្តារនិងលុបនិមិត្តសញ្ញានៅក្នុងប្រអប់សារ។ ការរុករកនៅចុងបញ្ចប់នៃប្រភេទប្រព័ន្ធនៅក្នុងការកំណត់កំណត់អនុញ្ញាតឱ្យអ្នកមានប៊ូតុងថយក្រោយធំជាងដែលងាយស្រួលក្នុងការជ្រើសរើស។ វាក៏អាចអនុញ្ញាតឱ្យប៊ូតុងលុប ('x') បង្ហាញនៅខាងលើនិមិត្តសញ្ញានីមួយៗនៅពេលពួកវាត្រូវបានបង្ហាញនៅក្នុងប្រអប់សារ។ នេះអាចធ្វើឱ្យវាកាន់តែងាយស្រួលក្នុងការលុបនិមិត្តសញ្ញានៅក្នុងប្រយោគ។ ប៉ុន្តែត្រូវដឹងពីតម្រូវការរបស់អ្នកប្រើប្រាស់ព្រោះវាអាចធ្វើឱ្យមានការភ័ន្តច្រឡំដល់បុគ្គលមួយចំនួនផងដែរ។
+Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
 
 ### <a name='Navigationthroughtheinterface'></a>ការរុករកតាមរយៈចំណុចប្រទាក់
 
-ដើម្បីកែសម្រួលនិងសម្រួលដល់ការរុករកតាមរយៈ Cboard សូមជ្រើសរើស NAVIGATION ដែលជាធាតុម៉ឺនុយចុងក្រោយនៅក្នុងប្រព័ន្ធ (ទាំងអស់នៅក្នុងការកំណត់) អនុញ្ញាតឱ្យអ្នកបន្ថែមព័ត៌មានលម្អិតជាក់លាក់ដើម្បីធ្វើឱ្យការប្រើប្រាស់ក្តារមានភាពងាយស្រួល។ ជម្រើសទីមួយនៅក្នុងនាវាចរណ៍អនុញ្ញាតឱ្យមានប៊ូតុងថយក្រោយធំជាងមុនដែលងាយស្រួលក្នុងការជ្រើសរើសដោយសារតែទំហំ។ ទីពីរបន្ថែមប៊ូតុង 'x' ដើម្បីធ្វើឱ្យវាកាន់តែងាយស្រួលក្នុងការលុបនិមិត្តសញ្ញាហើយទីបីធ្វើឱ្យវាកាន់តែងាយស្រួលក្នុងការដោះសោដោយតម្រូវឱ្យចុចតែមួយដងដើម្បីដោះសោការកំណត់។
+In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
 
 ![សមត្ថភាពនាវាចរណ៍](/images/help/navigation.png "Navigation capabilities")
 
@@ -181,11 +183,11 @@ Cboard ភ្ជាប់មកជាមួយការគាំទ្រសម�
 
 នៅពេលដែលអ្នកចូលទៅក្នុង Cboard ទំព័រដើមនឹងបើក។
 
-ដើម្បីចូលប្រើការកំណត់បានជ្រើសរើសសោតូចនៅខាងស្តាំបីដងក្រោមព្រួញ។ នៅពេលដែលអ្នកបានធ្វើរួចរបារពណ៌ប្រផេះមួយនឹងលេចចេញមកក្រោមផ្ទាំង HOME ពណ៌ខ្មៅហើយប៊ូតុង 'settings' នឹងបង្ហាញដោយផ្ទាល់នៅខាងឆ្វេងនៃសោនៅលើ HOME ដែលជាប្រអប់ទីពីរពីខាងស្តាំ។
+In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
 
 ### <a name='HowdoIprintmyboardsetinCboard'></a>តើធ្វើដូចម្តេចដើម្បីបោះពុម្ពក្តាររបស់ខ្ញុំនៅក្នុងក្តារខប?
 
-ដើម្បីបោះពុម្ពក្តាររបស់អ្នកចុចរូបសញ្ញាព្រីនធ័រនៅខាងឆ្វេងដៃនៃបារហូមខ្មៅបន្ទាប់ពីបានដោះសោទំព័រដើម។ ឯកសារអុបទិកចល័ត (.pdf) នឹងត្រូវបានទាញយកទៅក្នុងបច្ចេកវិទ្យារបស់អ្នក។
+To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
 
 ### <a name='HowdoIseeCboardinfullscreen'></a>តើខ្ញុំមើលឃើញ Cboard នៅក្នុងអេក្រង់ពេញយ៉ាងដូចម្តេច?
 
@@ -197,11 +199,21 @@ Cboard ភ្ជាប់មកជាមួយការគាំទ្រសម�
 
 ដើម្បីចែករំលែកក្តារសូមដោះសោអេក្រង់ដោយចុចសញ្ញាចាក់សោរនៅខាងស្តាំដៃបន្ទាប់មកនៅជួរខ្ពស់បំផុត (របារខ្មៅ) និមិត្តសញ្ញាទី ៣ ពីខាងស្តាំផ្តល់ឱ្យអ្នកនូវជម្រើសក្នុងការចែករំលែកក្តាររបស់អ្នកទាំងអ៊ីមែលអ៊ីមែលហ្វេសប៊ុក។ Twitter ឬចម្លងតំណដើម្បីផ្ញើទៅនរណាម្នាក់។
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
+
+### <a name='HowdoIshareaphrase'></a>How do I share a phrase?
+
+To share a phrase, only for the first time, unlock the screen, go to settings > Navigation and Buttons > and turn on the 'Show the share phrase button' option.
+
+![Phrase share Settings](https://user-images.githubusercontent.com/21298844/128038972-a2848d47-2675-4e2d-9a15-6f93186f29d6.png)
+
+Assemble a phrase. Then press the share icon that appears on the right of the output phrase bar. Select the social network where you want to share the phrase. One dialog would be open with the phrase in a text field. Press the submit button to share it. If you want to copy the phrase on your clipboard, press the share button and then 'copy to clipboard' option. One Notification would be shown on your screen with a succes message.
+
+![Phrase share button](https://user-images.githubusercontent.com/21298844/128044322-d61491c6-7168-4615-8117-244dc872091e.png)
 
 ## <a name='Talking'></a>និយាយ។
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>តើខ្ញុំអាចបន្ថែមសំលេងដែលបានថតទុកដោយផ្ទាល់ទៅនឹងនិមិត្តសញ្ញានៅលើក្តារដោយរបៀបណា?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>How do I add a personally recorded voice to symbols on Cboard?
 
 1. ទៅក្តារដែលអ្នកចង់ប្រើ។
 
@@ -209,7 +221,7 @@ Cboard ភ្ជាប់មកជាមួយការគាំទ្រសម�
 
 3. ជ្រើសរើសប៊ូតុង EDIT នៅផ្នែកខាងឆ្វេង។
 
-4. ជ្រើសរើសនិមិត្តសញ្ញាក្រឡាឬក្រឡាណាមួយដែលអ្នកចង់បន្ថែមសំលេង។ នៅពេលដែលអ្នកជ្រើសរើសយកក្បឿងឬស៊េរីនៃក្បឿងនោះសញ្ញាធីកពណ៌ខៀវនឹងលេចឡើងនៅមួយៗហើយវានឹងត្រូវបានបន្លិច។
+4. Choose which symbol cell or tile to which you want to add a voice recording. Once you select the tile or a series of tiles, a blue tick will appear in each one and they will be highlighted.
 
 5. ជ្រើសរើសរូបតំណាង PENCIL នៅជ្រុងខាងស្តាំលើរបារពណ៌ខៀវខ្ចី។
 
@@ -221,153 +233,163 @@ Cboard ភ្ជាប់មកជាមួយការគាំទ្រសម�
     
     ប្រសិនបើអ្នកបានជ្រើសរើសនិមិត្តសញ្ញាច្រើនប្រើ NEXT ដើម្បីចូលទៅនិមិត្តសញ្ញាបន្ទាប់ហើយដំណើរការម្តងទៀត។
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIswitchtoadifferentvoice'></a>តើខ្ញុំប្តូរទៅសំឡេងខុសគ្នាយ៉ាងដូចម្តេច?
+### <a name='HowdoIswitchtoadifferentvoice'></a>How do I switch to a different voice?
 
-ដើម្បីកែសំរួលសមត្ថភាពសំលេង / សំលេងសូមចូលទៅក្នុងការកំណត់ហើយក្រោមប្រភេទភាសា LANGUAGE គឺជាប្រភេទ SPEECH ។ នៅពេលអ្នកជ្រើសរើស SPEECH អ្នកនឹងអាចកែសម្រួលសំលេងនិងល្បឿននៃការនិយាយនៅលើ Cboard ។ អ្នកក៏អាចថតសម្លេងផ្ទាល់របស់អ្នកសម្រាប់និមិត្តសញ្ញាដែលធ្វើតាមជំហាននៅលើចម្លើយសម្រាប់ "តើខ្ញុំអាចបន្ថែមសំលេងដែលបានថតទុកដោយផ្ទាល់ទៅនឹងនិមិត្តសញ្ញានៅលើក្ដារខៀនដោយរបៀបណា?"
+In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
 
-### <a name='HowdoIchangehowavoicesounds'></a>តើខ្ញុំត្រូវផ្លាស់ប្តូររបៀបសំឡេងមួយយ៉ាងដូចម្តេច?
+### <a name='HowdoIchangehowavoicesounds'></a>How do I change how a voice sounds?
 
-ដើម្បីកែសំរួលសមត្ថភាពសំលេង / សំលេង / សំលេងសូមចូលទៅក្នុងការកំណត់ហើយនៅក្រោមប្រភេទភាសា LANGUAGE ជ្រើសរើសប្រភេទ SPEECH ។ បន្ទាប់មកអ្នកនឹងអាចកែសម្រួលសំលេងនិងល្បឿននៃការនិយាយនៅលើខស។
+In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
 
 ## <a name='BoardEditing'></a>ការកែសម្រួលក្តារ។
 
-### <a name='HowdoIcreateanemptyboard'></a>តើខ្ញុំបង្កើតក្តារទទេយ៉ាងដូចម្តេច?
+### <a name='HowdoIcreateanemptyboard'></a>How do I create an empty board?
 
-នៅក្នុងក្តារបន្ទះក្តារក្តារទទេគឺស្មើនឹងថត។
+In Cboard an empty board is equivalent to a folder.
 
-ប្រសិនបើអ្នកចង់បង្កើតក្តារថ្មីឬទទេអ្នកត្រូវតែបង្កើតថតថ្មីហើយនោះនឹងបង្កើតក្តារថ្មីមួយនៅក្នុងកន្លែងផ្ទុក Cboard (ដែលអ្នកអាចមើលឃើញនៅពេលដែលអ្នកចូលទៅកាន់ BOARDS នៅលើរបារកណ្តាលក្នុងរបៀបកែប្រែ) ។
+If you want to create a new or empty board you have to create a new folder, and that will create a new board in the Cboard storage area (which you can see when you go to BOARDS on the middle bar in edit mode).
 
-ក្តារទទេថ្មីនឹងអាចរកបានភ្លាមៗសម្រាប់ការកែសម្រួលហើយអាចត្រូវបានកំណត់ជាក្តារគោល (ដោយប្រើប៊ូតុងបង្កើត) ដែលមានន័យថាវានឹងក្លាយជាក្តារដំបូងដែលអ្នកឃើញនៅពេលបន្ទាប់អ្នកបើក Cboard ។
+The new empty board will be immediately available for editing and can be set as the root board (using the build button), which means that it will be the first board you see the next time you open Cboard.
 
-ដើម្បីបង្កើតថតថ្មីសូមចាប់ផ្តើមដោយដោះសោអេក្រង់ដោយជ្រើសរើសប៊ូតុងចាក់សោនៅខាងស្តាំដៃ។ នៅពេលដែលអ្នកដោះសោអេក្រង់សូមជ្រើសរើសនិមិត្តសញ្ញាសញ្ញាបូក (+) នៅខាងស្តាំដៃដើម្បីបន្ថែមលើឯកសារ។ បន្ទាប់មកអ្នកនឹងទទួលបានជម្រើសបន្ថែមក្បឿង / ប៊ុតធីណាដែលជាជំរើសទី ១ និងស្វ័យប្រវត្តិរឺជ្រើសរើស FOLDER សកម្មភាពនេះបង្កើតជាប្រអប់ថ្មីដែលអ្នកអាចបន្ថែមក្បឿងនិងថតបានច្រើន។
+To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
 
-នៅពេលដែលអ្នកដាក់ឈ្មោះថាសឺមីអ្នកអាចបញ្ចូលរូបភាពតាមរបៀបស្រដៀងនឹងការបង្កើតក្បឿងជាមួយនឹងការកំណត់ពណ៌និងស្លាក។ ថតថ្មីនេះនឹងភ្ជាប់ដោយស្វ័យប្រវត្តិទៅនឹងក្តារដែលនៅពីលើវា (ប្រសិនបើរាប់បញ្ចូលជួរដេកនៃក្រឡា) ។ វានឹងបង្ហាញនៅក្នុងតារាងក្តាររបស់អ្នកជាក្តារទទេររហូតដល់វាមាននិមិត្តសញ្ញានិងស្លាក។
+Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>តើខ្ញុំធ្វើដូចម្តេចដើម្បីកំណត់ក្តារផ្ទាល់ខ្លួនដែលមានស្រាប់នៅក្នុង Cboard?
+### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>How do I personalize an existing board in Cboard?
 
-ដើម្បីធ្វើឱ្យក្តារដែលមានស្រាប់ធ្វើឱ្យមានលក្ខណៈផ្ទាល់ខ្លួនសូមជ្រើសរើស LOCK នៅជ្រុងខាងស្តាំដៃខាងលើនៃរបារខាងលើក្តារ (ក្រោមព្រួញដែលមានឈើឆ្កាង) ។ នៅពេលដែលអ្នកបានធ្វើរួចរបារមួយផ្សេងទៀតនឹងលេចចេញមកក្រោមផ្ទាំង HOME ពណ៌ខ្មៅហើយអ្នកនឹងឃើញរូបសញ្ញាតូចតាច (EDIT) នៅខាងឆ្វេងដៃដើម្បីបន្ថែមក្បឿងឬក្រឡា។ នៅពេលដែលប្លុកត្រូវបានជ្រើសរើសរបារពណ៌ប្រផេះគួរតែប្រែទៅជាពណ៌ខៀវហើយនៅខាងស្តាំអ្នកនឹងឃើញធុងសំរាមតូចមួយនិងខ្មៅដៃមួយ។
+In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
 
-![បដិរូបកម្មក្តារដែលមានស្រាប់](/images/help/personalize.png "personalize an existing board")
+![personalize an existing board](/images/help/personalize.png "personalize an existing board")
 
-ដើម្បីធ្វើឱ្យក្តារផ្ទាល់ខ្លួនមានលក្ខណៈផ្ទាល់ខ្លួនសូមជ្រើសរើសខ្មៅដៃហើយអ្នកនឹងអាចផ្លាស់ប្តូរស្លាកបញ្ចូលរូបភាពនិងបន្ថែមសំឡេង។
+In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='CanIusemyownpictureswheneditingaboard'></a>តើខ្ញុំអាចប្រើរូបភាពផ្ទាល់ខ្លួនរបស់ខ្ញុំនៅពេលកែសម្រួលក្តារបានទេ?
+### <a name='CanIusemyownpictureswheneditingaboard'></a>Can I use my own pictures when editing a board?
 
-បាទ / ចាសអ្នកអាចប្រើរូបភាពផ្ទាល់ខ្លួនរបស់អ្នកនៅពេលកែសម្រួលក្តារ។ ដើម្បីប្រើរូបភាពផ្ទាល់របស់អ្នកអ្នកអាចបញ្ចូលរូបភាពនៅពេលអ្នកបង្កើតក្រឡាក្បឿងថ្មី (ដោយជ្រើសរើស PLUS SIGN (+) នៅលើរបារពណ៌ប្រផេះបន្ទាប់ពីដោះសោទំព័រ) ។ អ្នកក៏អាចកែសម្រួលក្បឿងដែលមានស្រាប់ជាមួយនឹងរូបភាពផ្ទាល់ខ្លួនរបស់អ្នក។
+Yes, you can use your own picture when editing a board. In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). You can also edit an existing tile with your own picture.
 
-### <a name='CanIchangetheorderingoftheelementsinaboard'></a>តើខ្ញុំអាចផ្លាស់ប្តូរលំដាប់នៃធាតុនៅក្នុងក្តារបានទេ?
+### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Can I change the ordering of the elements in a board?
 
-ត្រូវហើយ! នៅពេលអ្នកកំពុងកែក្តារសូមដោះសោអេក្រង់ដោយប្រើនិមិត្តសញ្ញា LOCK ។ បន្ទាប់មកជ្រើសរើសរូបតំណាងប្លុក EDIT នៅខាងឆ្វេងដៃ (ខាងក្រោមរូបតំណាង BUILD) ។ បន្ទាប់មកអ្នកអាចអូសរូបតំណាង / និមិត្តសញ្ញាឬថតឯកសារទៅកន្លែងណាដែលអ្នកចង់ដាក់ក្នុងក្តារតែមួយ។
+Yes! When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
 
-### <a name='HowdoIselectmultipleelementstoedit'></a>តើខ្ញុំជ្រើសរើសធាតុជាច្រើនដើម្បីកែសម្រួលយ៉ាងដូចម្តេច?
+### <a name='HowdoIselectmultipleelementstoedit'></a>How do I select multiple elements to edit?
 
-វិធីដូចគ្នាអ្នកផ្លាស់ប្តូរលំដាប់នៃធាតុនៅក្នុងក្តារប៉ុន្តែជំនួសឱ្យការជ្រើសរើសនិងអូសអ្នកជ្រើសរើសរង្វង់នៅខាងក្នុងការ៉េរូបតំណាង / និមិត្តសញ្ញា។ ដើម្បីកែសម្រួលនិមិត្តសញ្ញាជាច្រើនអ្នកអាចជ្រើសរើសច្រើនជាងមួយ។ បន្ទាប់ពីធ្វើដូច្នេះសូមជ្រើសរើសរូបតំណាង PENCIL នៅខាងស្តាំដៃហើយនេះនឹងអនុញ្ញាតឱ្យអ្នកកែសម្រួលធាតុដែលបានជ្រើសរើស។
+The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FindSymbols'></a>តើខ្ញុំអាចរកឃើញនិមិត្តសញ្ញាថ្មីយ៉ាងដូចម្តេចនៅពេលដែលខ្ញុំកំពុងកែសម្រួលក្បឿង?
+### <a name='FindSymbols'></a>How can I find new symbols when I am editing a tile?
 
-ជ្រើសរូបតំណាងប្លុក EDIT នៅខាងឆ្វេងដៃនៃបន្ទះក្តារហើយជ្រើសរើសរូបតំណាង / និមិត្តសញ្ញាដែលអ្នកចង់ផ្លាស់ប្តូរ។ ជ្រើសរើសវាហើយនៅពេលដែលចិញ្ចៀនពណ៌ខៀវមានសញ្ញាធីកសូមចូលទៅកាន់រូបតំណាង PENCIL នៅខាងស្តាំ។ ដោយបានជ្រើសរើសខ្មៅដៃអ្នកនឹងសម្គាល់ឃើញថាមានរូបតំណាង MAGNIFYING GLASS សម្រាប់ស្វែងរកនិមិត្តសញ្ញា។ នៅពេលដែលមុខងារស្វែងរកត្រូវបានធ្វើឱ្យសកម្មអ្នកនឹងឃើញសៀវភៅស្រាវជ្រាវរកស៊ីប៊្លុកសៀរនៅក្នុងរបាកែសម្រួល។ វាយបញ្ចូលគំនិត / ស្លាក / ពាក្យដែលអ្នកកំពុងរកហើយនិមិត្តសញ្ញានឹងលេចចេញមក។ នៅពេលដែលអ្នកបានជ្រើសរើសនិមិត្តសញ្ញាមួយវានឹងបញ្ជូនអ្នកមកទំព័រកែ TILE ដោយស្វ័យប្រវត្តិ។
+Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FixedBoards'></a>តើខ្ញុំអាចដាក់ក្តារបន្ទះនៅទីតាំងថេរបានទេ?
+### <a name='FixedBoards'></a>Can I place board tiles in fixed positions?
 
-តាមលំនាំដើមនៅពេលបង្កើតក្តារថ្មី Cboard នឹងបន្ថែម **ក្តារដែលស្ទាត់ជំនាញ**។ ទោះយ៉ាងណាវាគឺអាចធ្វើបានដើម្បីផ្លាស់ប្តូរក្រុមប្រឹក្សាភិបាលទៅជា **ក្រុមប្រឹក្សាភិបាលថេរ**។ ពួកគេមានលក្ខណៈពិសេសដូចខាងក្រោមៈ
+By default, when a new board is created, Cboard will add a **fluent board**. Anyway, it is possible to transform the board into a **fixed board**. They have the following features:
 
 * ក្រឡាចត្រង្គនឹងមិនផ្លាស់ប្តូរសម្រាប់ទំហំអេក្រង់ខុសគ្នាឬការតំរង់ទិសឧបករណ៍ទេ។ 
 * ចំនួនជួរដេកនិងជួរឈរអាចកំណត់រចនាសម្ព័ន្ធបាន។ 
 * ក្រឡាក្បឿងនឹងមានទីតាំងថេរនៅក្នុងក្រឡាចត្រង្គ។ 
 
-ដើម្បីបំលែងក្តារទៅជាក្តារថេរគ្រាន់តែកែសម្រួលក្តារហើយប្តូរជំរើសនៅក្នុងរបាឧបករណ៍ដើម្បីធ្វើឱ្យវាថេរ។ ក្តាររបស់អ្នកនឹងផ្លាស់ប្តូររូបរាងរបស់វាហើយសូចនាករជួរដេកនិងជួរឈរនឹងត្រូវបានបង្ហាញ។
+To convert a board into a fixed board, simply edit the board and switch the option in the toolbar to make it fixed. Your board will change its appearance and the rows and columns indicators will be displayed.
 
-![ក្តារថេរ](/images/help/fixedBoard.png "Fixed board")
+![Fixed board](/images/help/fixedBoard.png "Fixed board")
 
-### <a name='FixedRows'></a>តើខ្ញុំកំណត់ចំនួនជួរដេកនិងជួរជាក់លាក់នៅក្នុងក្តាររបស់ខ្ញុំយ៉ាងដូចម្តេច?
+### <a name='FixedRows'></a>How do I set a specific number of rows and columns in my board?
 
-ជាដំបូងអ្នកត្រូវតែផ្លាស់ប្តូរក្រុមប្រឹក្សាភិបាលទៅជា **ក្រុមប្រឹក្សាភិបាលថេរ** (សូមមើលប្រធានបទមុន) ។ នៅក្នុងរបៀបបោះពុម្ពក្តាររបស់អ្នកនឹងបង្ហាញសូចនាករជួរដេកនិងជួរឈរ។ អ្នកអាចធ្វើអន្តរកម្មជាមួយវត្ថុបញ្ជាទាំងនេះដើម្បីបង្កើនឬបន្ថយចំនួនជួរដេកនិងជួរឈរដែលអ្នកចង់បាន។
+First, you have to transform the board into a **fixed board** (see previous topic). In edition mode, your board will display rows and columns indicators. You can interact with these controls in order to increase or decrease the number of rows and columns you want.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>នាំចេញនិងនាំចូល។
 
-### <a name='HowdoIexportmyboardinCboard'></a>តើខ្ញុំត្រូវនាំចេញក្តាររបស់ខ្ញុំយ៉ាងដូចម្តេចទៅក្នុង Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>How do I export my board in Cboard?
 
-ដើម្បីនាំចេញក្តាររបស់អ្នកនៅក្នុងក្តារសូមចូលទៅកាន់ការកំណត់ហើយនៅពេលអ្នកបើកការកំណត់ជម្រើសពង្រីកនឹងលេចចេញជាព្រួញបែរចុះក្រោមក្រោមភាសានិងសុន្ទរកថា។
+In order to export your board in Cboard, go to SETTINGS, and as soon as you open Settings, the EXPORT option will appear as a downward facing arrow, below Language and Speech.
 
-ជ្រើសយក EXPORT ហើយទាញយកក្តារចុចរបស់អ្នកដោយជ្រើសរើស OPENBOARD ឬ EXPORT ។
+Select EXPORT, and download your Cboard by selecting either OPENBOARD or EXPORT.
 
-### <a name='HowdoIimportaboardintoCboard'></a>តើខ្ញុំត្រូវនាំចូលក្តារចូលទៅក្នុង Cboard យ៉ាងដូចម្តេច?
+### <a name='HowdoIimportaboardintoCboard'></a>How do I import a board into Cboard?
 
-ដើម្បីនាំចូលក្តារសូមអនុវត្តតាមជំហានដែលត្រូវបានប្រើដើម្បីនាំចេញ។ សំខាន់គឺនៅខាងក្រោមនាំចេញដែលជាព្រួញបែរមុខឡើងលើដែលមានរបារផ្តេកនៅពីក្រោមវា។
+In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>តើ Cboard ប្រើទ្រង់ទ្រាយឯកសារអ្វីសម្រាប់នាំចូល / នាំចេញ?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>What file format does Cboard use for import/export?
 
-ដើម្បីនាំចូលនិងនាំចេញក្តារអ្នកមានជំរើសពីរគឺៈ
+In order to Import and Export boards you have two options:
 
 * ប្រើក្តារឯកសារដើមកំណើត Cboard ។
-* ប្រើឯកសារមានទ្រង់ទ្រាយ OpenBoard ។ [ស្វែងយល់បន្ថែមអំពីទម្រង់ក្តារបើកទូលាយ](https://www.openboardformat.org/)
+* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>សមត្ថភាពបង្ហាញ។
 
-### <a name='WhatcanIchangeonthedisplay'></a>តើខ្ញុំអាចផ្លាស់ប្តូរអ្វីនៅលើការបង្ហាញ?
+### <a name='WhatcanIchangeonthedisplay'></a>What can I change on the display?
 
-ការកំណត់បង្ហាញអាចត្រូវបានកែសម្រួលនៅក្នុងការកំណត់ប្រព័ន្ធក្នុងប្រភេទប្រព័ន្ធ។ ជម្រើសបង្ហាញនៅខាងក្រោមនាំចេញនិងនាំចូល។ នៅពេលអ្នកជ្រើសរើស DISPLAY អ្នកអាចប្តូរទំហំចំណុចប្រទាក់អ្នកប្រើ (UI) ក៏ដូចជាទំហំអក្សរផងដែរដោយជ្រើសរើសទំហំដែលអ្នកចង់បាន។ ចំណុចក្រហមគួរតែស្ថិតនៅក្រោមទំហំដែលអ្នកចង់ជ្រើសរើស។
+Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
 
-### <a name='CanIresizebuttonsonCboard'></a>តើខ្ញុំអាចប្តូរទំហំប៊ូតុងនៅលើ Cboard បានទេ?
+### <a name='CanIresizebuttonsonCboard'></a>Can I resize buttons on Cboard?
 
-ត្រូវហើយ! អ្នកអាចផ្លាស់ប្តូរទំហំក្រឡាឬប៊ូតុងនៅក្នុងកំណត់។ នៅក្នុងប្រភេទប្រព័ន្ធជ្រើសរើសអេឌីអឹមឌីហើយអ្នកនឹងត្រូវបានផ្តល់ជម្រើសចំនួនបីសម្រាប់ទំហំ: ស្តង់ដារធំទូលាយបន្ថែមធំ។ មើលរូបខាងក្រោម៖
+Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
 
-![សមត្ថភាពបង្ហាញ](/images/help/display.png "Display capabilities")
+![Display capabilities](/images/help/display.png "Display capabilities")
+
+### <a name='BigScrollButtons'></a>Screen scroll through big buttons
+
+It is also possible to scroll up and down a board using a couple of big buttons that can be added from the settings section. This is especially useful for eye-tracker device users, as the buttons allow to scroll the board without needing to slide the screen. To enable this feature, go to the settings section and look for the "enable big scroll buttons " switch. Toggle the switch and save the settings. See figure below:
+
+![Enable big scroll buttons](/images/help/bigScrollSettings.png "Big scroll buttons settings")
+
+Then, you should see a couple of big buttons at the top and the bottom of a board if it is large enough, as displayed in the below image:
+
+![Big scroll buttons](/images/help/bigScrollButtons.png "Big scroll buttons")
 
 ## <a name='Scanning'></a>ការស្កេន។
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>តើខ្ញុំអាចប្រើបច្ចេកទេសស្កេនដើម្បីចូលនិមិត្តសញ្ញាបានទេ?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Can I use scanning techniques to access symbols?
 
-ការស្កេនគឺជាកន្លែងដែលធាតុនៅក្នុងសំណុំជម្រើសត្រូវបានបង្ហាញជាបន្តបន្ទាប់តាមពេលវេលាហើយអ្នកប្រើប្រាស់ធ្វើការជ្រើសរើសដោយប្រយោលជាធម្មតាដោយការចូលប្រើកុងតាក់។ ការធ្វើជំនួញនៅលើក្ដារខ័រធ្វើការនៅក្នុងការកំណត់និងប្រភេទប្រព័ន្ធ។ មានការកំណត់ផ្សេងៗគ្នាសម្រាប់ស្កេន។ ដំបូងអ្នកគួរតែបើកការកំណត់ស្កេនដោយជ្រើសរើស ENABLE ។ បន្ទាប់មកអ្នកអាចជ្រើសរើសការពន្យាពេលពេលវេលាក៏ដូចជាវិធីសាស្ត្រ (ទាំងស្វ័យប្រវត្តិឬដោយដៃ) ។ សូមមេត្តាជ្រាបថានៅពេលប្រើថេប្លេតឬស្មាតហ្វូនវាក៏អាចមានជម្រើសស្កេនក្រយ៉ៅដៃដោយខ្លួនឯងផងដែរ។
+Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
 
 ## <a name='CommunicatorBuilder'></a>អ្នកសាងសង់ទំនាក់ទំនង
 
-### <a name='Whatiscommbuilder'></a>តើអ្នកសាងសង់ទំនាក់ទំនងគឺជាអ្វី?
+### <a name='Whatiscommbuilder'></a>What is the communicator builder?
 
-អ្នកសាងសង់ទំនាក់ទំនងគឺជាលក្ខណៈពិសេសមួយដែលអនុញ្ញាតឱ្យអ្នកគ្រប់គ្រងក្តារដើម្បីចម្លងលុបបោះពុម្ពផ្សាយបន្ថែមនិងយកវាចេញ។ ដើម្បីចូលដំណើរការមុខងារអ្នកត្រូវដោះសោការកំណត់ហើយចុចលើប៊ូតុង 'កសាង' ។ អ្នកនឹងឃើញទំព័រថ្មីមួយដែលមានរចនាសម្ព័ននៅលើផ្ទាំងចំនួនបីផ្សេងៗគ្នាគឺក្តារក្តារសាធារណៈក្រុមប្រឹក្សារបស់ខ្ញុំ។ មើលរូបខាងក្រោម៖
+The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
 
-![អ្នកសាងសង់ទំនាក់ទំនង](/images/help/communicator.png "Communicator builder")
+![Communicator builder](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>ក្រុមប្រឹក្សាទំនាក់ទំនង
+### <a name='CommunicatorBoards'></a>Communicator boards
 
-ផ្ទាំងលំនាំដើមដែលអ្នកនឹងឃើញនៅក្នុងអ្នកបង្កើតទំនាក់ទំនងគឺផ្ទាំងក្តារអ្នកទំនាក់ទំនងដែលនឹងបង្ហាញក្តារទាំងអស់ដែលបានបញ្ចូលទៅក្នុងអ្នកទំនាក់ទំនងរបស់អ្នក។ អ្នកអាចធ្វើការផ្លាស់ប្តូរអ្នកទំនាក់ទំនងរបស់អ្នកពីប៊ូតុងសកម្មភាពខាងក្រោម៖
+The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
 
 * ដកក្តារពីអ្នកប្រាស្រ័យទាក់ទង៖ ប៊ែតថុននេះនឹងលាឈប់ពីអ្នកទំនាក់ទំនងតែនឹងមិនលុបក្តារពីឃ្លាំងទិន្នន័យទេហើយវានៅតែមាននៅក្រោមផ្ទាំង 'ក្តាររបស់ខ្ញុំទាំងអស់' ។
 
 * កំណត់ក្តារជាគោល៖ គូទនេះនឹងកំនត់ក្តារជាក្តារដំបូងដែលត្រូវបង្ហាញរាល់ពេលដែលអ្នកចូលទៅស៊ី។
 
-![ក្រុមប្រឹក្សាទំនាក់ទំនង](/images/help/communicatorBoards.png "Communicator boards")
+![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>ក្រុមប្រឹក្សាសាធារណៈ
+### <a name='PublicBoards'></a>Public boards
 
-* ក្តារចំលង៖ គូទនេះនឹងបង្កើតច្បាប់ចម្លងនៃក្តារហើយវានឹងបន្ថែមវាទៅក្នុងអ្នកទំនាក់ទំនងរបស់អ្នក។ ដោយសារនេះជាច្បាប់ចម្លងនៃក្តារសាធារណៈអ្នកអាចកែសម្រួលក្តារនេះតាមដែលអ្នកចង់បានដោយមិនប៉ះពាល់ដល់ក្តារសាធារណៈដើមឡើយ។
+* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
 
-![ក្រុមប្រឹក្សាសាធារណៈ](/images/help/PublicBoards.png "Public boards")
+![Public boards](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>ក្តាររបស់ខ្ញុំទាំងអស់
+### <a name='Allmyboards'></a>All my boards
 
-សូមកត់សម្គាល់ថាអ្នកប្រើប្រាស់ដែលបានចុះឈ្មោះ JUST អាចចូលប្រើមុខងារថេបនេះបាន។
+Please note that JUST registered users can access to this tab functionality.
 
 * ដកក្តារពីអ្នកប្រាស្រ័យទាក់ទង៖ គូទនេះនឹងឈប់ក្តារពីអ្នកទំនាក់ទំនងតែនឹងមិនលុបក្តារចេញពីឃ្លាំងទិន្នន័យទេហើយវានៅតែអាចប្រើបាន។
 
 * បន្ថែមក្តារទៅអ្នកទំនាក់ទំនង៖ គូថនេះនឹងបញ្ចូលក្តារទៅអ្នកទំនាក់ទំនង។
 
-* បោះពុម្ភក្តារ៖ សកម្មភាពនេះនឹងធ្វើឱ្យក្តារសាធារណៈក្លាយជាសាធារណៈហើយវានឹងត្រូវបានបង្ហាញនៅក្រោមផ្ទាំងក្តារសាធារណៈ។ អ្នករាល់គ្នាអាចមើលឃើញក្តាររបស់អ្នក។
+* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
     
- * ក្តារដែលមិនបានផ្សព្វផ្សាយ៖ សកម្មភាពនេះនឹងធ្វើឱ្យក្តារមានលក្ខណៈឯកជនហើយវានឹងមិនត្រូវបានបង្ហាញនៅក្រោមផ្ទាំងក្តារសាធារណៈឡើយ។ គ្មាននរណាម្នាក់អាចមើលឃើញក្តាររបស់អ្នកបានទេ។
+ * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
     
- * លុបក្តារ៖ សកម្មភាពនេះនឹងលុបក្តារហើយវាមិនអាចយកមកវិញបានទេ។ ក្រុមប្រឹក្សាភិបាលនឹងត្រូវបានយកចេញពីមូលដ្ឋានទិន្នន័យ។
+ * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
 
-![ក្តាររបស់ខ្ញុំទាំងអស់](/images/help/AllmyBoards.png "All my boards")
+![All my boards](/images/help/AllmyBoards.png "All my boards")

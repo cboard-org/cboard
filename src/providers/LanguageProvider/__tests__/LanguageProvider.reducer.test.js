@@ -11,6 +11,7 @@ describe('reducer', () => {
       dir: 'ltr',
       langs: [],
       localLangs: [],
+      langsFetched: false,
       downloadingLang: {
         isdownloading: false
       }
@@ -41,6 +42,7 @@ describe('reducer', () => {
     };
     expect(languageProviderReducer(initialState, setLangs)).toEqual({
       ...initialState,
+      langsFetched: true,
       langs: ['de-DE', 'en-GB', 'en-US']
     });
   });

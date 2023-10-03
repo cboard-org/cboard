@@ -9,6 +9,7 @@ import ChangePassword from '../Account/ChangePassword';
 import OAuthLogin from '../Account/OAuthLogin';
 import AuthScreen, { RedirectIfLogged } from '../AuthScreen';
 import BoardContainer from '../Board';
+import PremiumRequiredModal from '../PremiumFeature/PremiumRequiredModal';
 import Notifications from '../Notifications';
 import NotFound from '../NotFound';
 import Settings from '../Settings';
@@ -88,6 +89,7 @@ export class App extends Component {
           />
           <Route component={NotFound} />
         </Switch>
+        <PremiumRequiredModal />
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import * as actions from '../Board.actions';
 import * as types from '../Board.constants';
 import boardReducer from '../Board.reducer';
-import defaultBoards from '../../../api/boards.json';
+import { DEFAULT_BOARDS } from '../../../helpers';
 import {
   IMPORT_BOARDS,
   ADD_BOARDS,
@@ -43,7 +43,7 @@ const mockBoard = {
   email: 'asd@qwe.com',
   markToUpdate: true
 };
-const [...boards] = defaultBoards.advanced;
+const [...boards] = [...DEFAULT_BOARDS.advanced, ...DEFAULT_BOARDS.picSeePal];
 const initialState = {
   boards,
   output: [],
@@ -52,7 +52,8 @@ const initialState = {
   isFetching: false,
   isFixed: false,
   images: [],
-  isLiveMode: false
+  isLiveMode: false,
+  improvedPhrase: ''
 };
 
 describe('reducer', () => {
@@ -80,7 +81,7 @@ describe('reducer', () => {
       )
     ).toEqual({
       ...initialState,
-      navHistory: [null]
+      navHistory: []
     });
   });
   it('should handle createApiBoardStarted', () => {

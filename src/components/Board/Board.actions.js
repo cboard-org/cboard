@@ -17,6 +17,7 @@ import {
   CLICK_SYMBOL,
   CLICK_OUTPUT,
   CHANGE_OUTPUT,
+  CHANGE_IMPROVED_PHRASE,
   CHANGE_LIVE_MODE,
   REPLACE_BOARD,
   HISTORY_REMOVE_BOARD,
@@ -47,9 +48,15 @@ import {
   createApiCommunicator,
   replaceBoardCommunicator,
   upsertCommunicator,
-  getApiMyCommunicators
+  getApiMyCommunicators,
+  editCommunicator,
+  updateDefaultBoardsIncluded,
+  addDefaultBoardIncluded
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
+import { DEFAULT_BOARDS } from '../../helpers';
+import history from './../../history';
+import { improvePhraseAbortController } from '../../api/api';
 
 const BOARDS_PAGE_LIMIT = 100;
 
@@ -64,6 +71,144 @@ export function addBoards(boards) {
   return {
     type: ADD_BOARDS,
     boards
+  };
+}
+
+function getActiveCommunicator(getState) {
+  const { communicator } = getState();
+
+  const { communicators, activeCommunicatorId } = communicator;
+  const activeCommunicator =
+    communicators[
+      communicators.findIndex(
+        communicator => communicator.id === activeCommunicatorId
+      )
+    ];
+  return activeCommunicator;
+}
+
+export function changeDefaultBoard(selectedBoardNameOnJson) {
+  return (dispatch, getState) => {
+    const board = DEFAULT_BOARDS[selectedBoardNameOnJson];
+    const BOARD_ALREADY_INCLUDED_NAME = 'advanced';
+
+    const activeCommunicator = getActiveCommunicator(getState);
+
+    const fallbackInitialDefaultBoardsIncluded = activeCommunicator => {
+      const oldUserHomeBoard = activeCommunicator.rootBoard;
+
+      const boardAlreadyIncludedData = {
+        nameOnJSON: BOARD_ALREADY_INCLUDED_NAME,
+        homeBoard: oldUserHomeBoard
+      };
+
+      const initialDefaultBoardsIncluded = [boardAlreadyIncludedData];
+
+      dispatch(updateDefaultBoardsIncluded(initialDefaultBoardsIncluded));
+      return initialDefaultBoardsIncluded;
+    };
+
+    const defaultBoardsIncluded =
+      activeCommunicator.defaultBoardsIncluded ||
+      fallbackInitialDefaultBoardsIncluded(activeCommunicator);
+
+    const defaultBoardsNamesIncluded = defaultBoardsIncluded?.map(
+      includedBoardObject => includedBoardObject.nameOnJSON
+    ) || [BOARD_ALREADY_INCLUDED_NAME];
+
+    const updatedHomeBoard = defaultBoardsIncluded?.filter(
+      ({ nameOnJSON }) => nameOnJSON === selectedBoardNameOnJson
+    )[0]?.homeBoard;
+
+    const homeBoardId = updatedHomeBoard || board[0]?.id;
+
+    const includeNewBoards = ({
+      defaultBoardsNamesIncluded,
+      selectedBoardNameOnJson,
+      board,
+      homeBoardId
+    }) => {
+      if (!defaultBoardsNamesIncluded.includes(selectedBoardNameOnJson)) {
+        dispatch(
+          addDefaultBoardIncluded({
+            nameOnJSON: selectedBoardNameOnJson,
+            homeBoard: homeBoardId
+          })
+        );
+      }
+    };
+
+    const switchActiveBoard = homeBoardId => {
+      if (homeBoardId) {
+        const goTo = `/board/${homeBoardId}`;
+
+        dispatch(switchBoard(homeBoardId));
+        history.replace(goTo);
+      }
+    };
+
+    const replaceHomeBoard = async homeBoardId => {
+      const {
+        communicator: {
+          communicators: updatedCommunicators,
+          activeCommunicatorId
+        },
+        app
+      } = getState();
+
+      const userData = app?.userData;
+
+      const activeCommunicator = updatedCommunicators.filter(
+        communicator => communicator.id === activeCommunicatorId
+      )[0];
+
+      const communicatorWithRootBoardReplaced = {
+        ...activeCommunicator,
+        boards: activeCommunicator.boards.includes(homeBoardId)
+          ? activeCommunicator.boards
+          : [...activeCommunicator.boards, homeBoardId],
+        rootBoard: homeBoardId
+      };
+
+      dispatch(editCommunicator(communicatorWithRootBoardReplaced));
+
+      try {
+        if (userData?.role)
+          await dispatch(
+            updateApiCommunicator(communicatorWithRootBoardReplaced)
+          );
+      } catch (error) {
+        console.error('error', error);
+      }
+    };
+
+    if (!board) return;
+
+    includeNewBoards({
+      defaultBoardsNamesIncluded,
+      selectedBoardNameOnJson,
+      board,
+      homeBoardId
+    });
+
+    switchActiveBoard(homeBoardId);
+
+    replaceHomeBoard(homeBoardId);
+  };
+}
+
+export function replaceDefaultHomeBoardIfIsNescesary(prev, current) {
+  return (dispatch, getState) => {
+    const activeCommunicator = getActiveCommunicator(getState);
+    const defaultBoardsIncluded = activeCommunicator.defaultBoardsIncluded;
+
+    const updatedValue = defaultBoardsIncluded?.map(defaultBoard => {
+      if (defaultBoard.homeBoard === prev) defaultBoard.homeBoard = current;
+      return defaultBoard;
+    });
+
+    if (!!defaultBoardsIncluded)
+      dispatch(updateDefaultBoardsIncluded(updatedValue));
   };
 }
 
@@ -181,9 +326,42 @@ export function clickOutput(outputPhrase) {
 }
 
 export function changeOutput(output) {
-  return {
-    type: CHANGE_OUTPUT,
-    output
+  return async (dispatch, getState) => {
+    const {
+      app: {
+        navigationSettings: { improvePhraseActive }
+      }
+    } = getState();
+    if (improvePhraseActive) dispatch(improvePhrase(output));
+    dispatch({
+      type: CHANGE_OUTPUT,
+      output
+    });
+  };
+}
+
+export function improvePhrase(output) {
+  const fetchImprovePhrase = async language => {
+    const MIN_TILES_TO_IMPROVE = 1;
+    if (output.length <= MIN_TILES_TO_IMPROVE) return '';
+    const labels = output.map(symbol => symbol.label);
+    const phrase = labels.join(' '); //this.handlePhraseToShare();
+    const improvedPhrase = await API.improvePhrase({ phrase, language });
+    return improvedPhrase.phrase;
+  };
+  return async (dispatch, getState) => {
+    try {
+      const language = getState().language.lang;
+      if (improvePhraseAbortController?.abort)
+        improvePhraseAbortController.abort();
+      const improvedPhrase = await fetchImprovePhrase(language);
+      dispatch({
+        type: CHANGE_IMPROVED_PHRASE,
+        improvedPhrase
+      });
+    } catch (err) {
+      console.error('error', err);
+    }
   };
 }
 
@@ -508,6 +686,14 @@ export function updateApiObjectsNoChild(
             replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
           );
         }
+
+        dispatch(
+          replaceDefaultHomeBoardIfIsNescesary(
+            parentBoard.id,
+            updatedParentBoardId
+          )
+        );
+
         //check if parent board is the root board of the communicator
         const comm = getState().communicator.communicators.find(
           communicator =>
@@ -585,6 +771,14 @@ export function updateApiObjects(
                 replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
               );
             }
+
+            dispatch(
+              replaceDefaultHomeBoardIfIsNescesary(
+                parentBoard.id,
+                updatedParentBoardId
+              )
+            );
+
             //check if parent board is the root board of the communicator
             const comm = getState().communicator.communicators.find(
               communicator =>

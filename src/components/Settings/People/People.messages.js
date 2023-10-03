@@ -37,8 +37,35 @@ export default defineMessages({
     id: 'cboard.components.Settings.People.birthdateSecondary',
     defaultMessage: 'Update your birth date'
   },
+  location: {
+    id: 'cboard.components.Settings.People.location',
+    defaultMessage: 'Location'
+  },
   logout: {
     id: 'cboard.components.Settings.People.logout',
     defaultMessage: 'Logout'
+  },
+  deleteAccountPrimary: {
+    id: 'cboard.components.Settings.People.deleteAccountPrimary',
+    defaultMessage: 'Delete this account'
+  },
+  deleteAccountSecondary: {
+    id: 'cboard.components.Settings.People.deleteAccountSecondary',
+    defaultMessage:
+      'Once you delete an account, there is no going back. Please be certain.'
+  },
+  errorDeletingAccount: {
+    id: 'cboard.components.Settings.People.errorDeletingAccount',
+    defaultMessage:
+      'An error ocurs during Account deletion. please try it again.'
+  },
+  deleteAccountConfirmation: {
+    id: 'cboard.components.Settings.People.deleteAccountConfirmation',
+    defaultMessage:
+      'Once you delete an account, there is no going back. Are you sure to delete your account?.'
+  },
+  cancelDeleteAccount: {
+    id: 'cboard.components.Settings.People.cancelDeleteAccount',
+    defaultMessage: 'Cancel'
   }
 });

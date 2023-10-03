@@ -2,58 +2,60 @@
 
 ## Sisällysluettelo
 
-* [Mikä on Cboard?](#WhatisCboard)
+* [Mitä Cboard on?](#WhatisCboard)
 * [Rekisteröinti ja kirjautuminen](#Registrationandlogin) 
-    * [Kuinka voin rekisteröityä Cboardiin?](#HowdoIregisterforCboard)
+    * [Miten voin rekisteröityä Cboardiin?](#HowdoIregisterforCboard)
     * [Voinko rekisteröidä itseni käyttäen sosiaalisen median tilejä?](#CanIregistermyselfusingmysocialmediaaccounts)
-    * [Kuinka kirjaudun sisään Cboardiin, kun olen rekisteröitynyt käyttäjä?](#HowdoIlogintoCboardonceIamaregistereduser)
-    * [Kuinka kirjaudun ulos?](#HowdoIlogout)
-    * [Mitä eroa rekisteröidyn ja rekisteröimättömän käyttäjän välillä on?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
-    * [Kuinka päivitän käyttäjätietojani?](#HowdoIupdatemyuserinformation)
-    * [Kuinka voin palauttaa salasanani?](#HowdoIresetmypassword)
+    * [Miten kirjaudun Cboardiin, kun olen rekisteröity käyttäjä?](#HowdoIlogintoCboardonceIamaregistereduser)
+    * [Miten kirjaudut ulos?](#HowdoIlogout)
+    * [Mikä ero on rekisteröidyn ja rekisteröimättömän käyttäjän välillä?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
+    * [Miten voin päivittää käyttäjätietojani?](#HowdoIupdatemyuserinformation)
+    * [Miten voin nollata salasanani?](#HowdoIresetmypassword)
 * [Hinta](#Price) 
     * [Kuinka paljon Cboard maksaa?](#HowmuchdoesCboardcost)
-* [ominaisuudet](#Features) 
-    * [Mitä laitteita ja käyttöjärjestelmiä tuetaan?](#WhatdevicesandOSaresupported)
-    * [Mitä kieliä Cboard tukee?](#WhichlanguagesaresupportedbyCboard)
+* [Ominaisuudet](#Features) 
+    * [Mitä laitteita ja käyttöjärjestelmää tuetaan?](#WhatdevicesandOSaresupported)
+    * [Mitkä kielet ovat Cboardin tukemia?](#WhichlanguagesaresupportedbyCboard)
     * [Voiko Cboard lukea viestini ääneen?](#CanCboardreadmymessageoutaloud)
-    * [Puheominaisuudet](#Speechcapabilities)
-    * [Vienti ja tuonti](#Exportandimport)
-    * [Näyttöominaisuudet](#Displaycapabilities)
+    * [Puheen ominaisuudet](#Speechcapabilities)
+    * [Vie ja tuo](#Exportandimport)
+    * [Näytä ominaisuudet](#Displaycapabilities)
     * [Voinko muuttaa mitään navigointiasetuksia?](#CanIchangeanynavigationsettings)
     * [Liikkuminen käyttöliittymän kautta](#Navigationthroughtheinterface)
 * [Asetukset](#Settings) 
-    * [Kuinka pääsen käsiksi Cboard-asetuksiin?](#HowdoIaccesssettingsinCboard)
+    * [Miten pääsen käsiksi Cboardin asetuksiin?](#HowdoIaccesssettingsinCboard)
     * [Kuinka tulostan taulun Cboardista?](#HowdoIprintmyboardsetinCboard)
-    * [Kuinka näen Cboardin koko näytössä?](#HowdoIseeCboardinfullscreen)
+    * [Miten näen Cboardin koko näytöllä?](#HowdoIseeCboardinfullscreen)
     * [Kuinka jaan taulun?](#HowdoIshareaboard)
+    * [Miten voin yhtyä lauseeseen?](#HowdoIshareaphrase)
 * [Puhuminen](#Talking) 
     * [Kuinka lisään henkilökohtaisesti nauhoitetun äänen Cboard-symboliin?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [Kuinka vaihdan toiseen ääneen?](#HowdoIswitchtoadifferentvoice)
+    * [Miten voin vaihtaa toiseen ääneen?](#HowdoIswitchtoadifferentvoice)
     * [Kuinka voin muuttaa miltä ääni kuulostaa?](#HowdoIchangehowavoicesounds)
-* [Taulun muokkaaminen](#BoardEditing) 
+* [Laudan Muokkaus](#BoardEditing) 
     * [Kuinka luon tyhjän taulun?](#HowdoIcreateanemptyboard)
     * [Kuinka mukautan olemassa oleva Cboard-taulua?](#HowdoIpersonalizeanexistingboardinCboard)
     * [Voinko käyttää omia kuvia muokatessani taulua?](#CanIusemyownpictureswheneditingaboard)
     * [Voinko muuttaa taulussa laattojen järjestystä?](#CanIchangetheorderingoftheelementsinaboard)
     * [Kuinka valitsen useita laattoja muokattavaksi?](#HowdoIselectmultipleelementstoedit)
     * [Kuinka voin löytää uusia symboleja kun muokkaan laattaa?](#FindSymbols)
-    * [Voinko lauta laatat sijoittaa kiinteisiin paikkoihin?](#FixedBoards)
-    * [Kuinka asetan tietyn määrän rivejä ja sarakkeita taululle?](#FixedRows)
+    * [Voinko laittaa lautalaatat kiinteisiin paikkoihin?](#FixedBoards)
+    * [Miten voin asettaa tietyn määrän rivejä ja sarakkeita laudalleni?](#FixedRows)
 * [Vie ja tuo](#Exportandimport) 
     * [Kuinka vien taulun Cboardissa?](#HowdoIexportmyboardinCboard)
     * [Kuinka tuon taulun Cboardiin?](#HowdoIimportaboardintoCboard)
-    * [Mitä tiedostomuotoa Cboard käyttää tuontiin / vientiin?](#WhatfileformatdoesCboarduseforimportexport)
-* [Näyttöominaisuudet](#Displaycapabilities) 
-    * [Mitä voin muuttaa näytöllä?](#WhatcanIchangeonthedisplay)
+    * [Mitä tiedostomuotoa Cboard käyttää tuontiin/vientiin?](#WhatfileformatdoesCboarduseforimportexport)
+* [Näytä ominaisuudet](#Displaycapabilities) 
+    * [Mitä voin muuttaa näytössä?](#WhatcanIchangeonthedisplay)
     * [Voinko muuttaa laattojen kokoa Cboardissa?](#CanIresizebuttonsonCboard)
+    * [Näytön vieritys isojen painikkeiden läpi](#BigScrollButtons)
 * [Askellus](#Scanning) 
     * [Voinko käyttää askellus -tekniikoita päästäkseni laattoihin?](#CanIusescanningtechniquestoaccesssymbols)
-* [Kommunikaattorin rakentaja](#CommunicatorBuilder) 
-    * [Mikä on kommunikaattorin rakentaja?](#Whatiscommbuilder)
-    * [Kommunikaattoritaulut](#CommunicatorBoards)
-    * [Julkiset hallitukset](#PublicBoards)
-    * [Kaikki tauluni](#Allmyboards)
+* [Kommunikoijan rakentaja](#CommunicatorBuilder) 
+    * [Mikä on kommunikoijan rakentaja?](#Whatiscommbuilder)
+    * [Kommunikoijien taulut](#CommunicatorBoards)
+    * [Julkiset taulut](#PublicBoards)
+    * [Kaikki laudat](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>Mikä on Cboard?
 
@@ -79,39 +81,39 @@ Kun olet täyttänyt nämä tiedot, saat pian sen jälkeen sähköpostiviestin l
 
 ![Rekisteröinti sähköpostitse](/images/help/signupemail.png "Email signup")
 
-Nämä tiedot ovat vain yrityksen hallussa tukemaan Cboardin käyttöä ja tarjoamaan apua tarvittaessa. Sitä ei jaeta muiden organisaatioiden kanssa (katso [tietosuojatietoa](https://www.cboard.io/privacy/)).
+Nämä tiedot ovat vain yrityksen hallussa tukemaan Cboardin käyttöä ja tarjoamaan apua tarvittaessa. Sitä ei jaeta muiden organisaatioiden kanssa (Ks. [Yksityisyyden tiedot](https://www.cboard.io/privacy/)).
 
 Kun olet vahvistanut tilisi, sinulla on pääsy Cboardiin, ja saat uuden sähköpostin, jossa vahvistetaan, että tilisi on vahvistettu onnistuneesti.
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>Voinko rekisteröidä itseni sosiaalisen median tileillä?
 
-Joo! Kirjautumissivulla sinulle annetaan mahdollisuus kirjautua Google- tai Facebook-tilillesi, jos haluat tehdä niin. Voit myös rekisteröityä sähköpostiosoitteella.
+Kyllä! Sisäänkirjautumisen sivulla sinulle annetaan mahdollisuus rekisteröityä Google-tilillesi tai Facebook-tilillesi, jos haluat rekisteröityä tilillesi. Voit myös rekisteröityä sähköpostiosoitteella.
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>Kuinka kirjaudun sisään Cboardiin, kun olen rekisteröitynyt käyttäjä?
 
-Kirjautuaksesi sisään Cboardiin, noudata ensimmäistä rekisteröitymisvaihetta, mutta sen sijaan, että valitsisit Tervetuloa-näytössä SIGN UP, valitse LOGIN. Sitten sinua pyydetään toimittamaan sähköposti, johon alun perin kirjauduit, ja määrittämäsi salasana.
+Kirjautuaksesi Cboardiin seuraat ensimmäistä vaihetta, jota käytetään rekisteröitymiseen, mutta sen sijaan, että valitset SIGN UP Tervetuliaisruudulla, valitse LOGIN. Tämän jälkeen sinua pyydetään toimittamaan sähköpostiviesti, jonka olet alun perin kirjautunut, ja salasana, jonka olet määrittänyt.
 
 ![Sisäänkirjautuminen kartongille](/images/help/login.png "Cboard login")
 
 ### Mitkä ovat vaihtoehdot määrittääksesi Cboardin?
 
-Kun olet kirjautunut Cboardiin, voit käyttää erilaisia vaihtoehtoja määrittääksesi ja kehittääksesi viestintäkorttia, joka tarjotaan, kun Cboard on auki-tilassa. Katso luettelo kaikista tärkeimmistä vaihtoehdoista alla:
+Kun kirjaudut Cboardiin, voit käyttää erilaisia vaihtoehtoja konfiguroida ja kehittää Viestintäpaneelin kun Cboard on avattu tilassa. Katso luettelo kaikista alla olevista keskeisistä vaihtoehdoista:
 
 ![Kartongin asetukset](/images/help/settings.png "Cboard settings")
 
 ### <a name='HowdoIlogout'></a>Kuinka kirjaudun ulos?
 
-Voit kirjautua ulos valitsemalla asetuskuvaketta. Asetus tulee punaiseksi. Voit myös valita lukkosymbolin oikeasta kulmasta, napsauttaa kolme kertaa ja kun olet avannut näytön ja punainen palkki tulee näkyviin, valitse lukon vasemmalla puolella oleva kuvake (kuvasi, jos sinulla on sellainen ladattu) ja mahdollisuus kirjautua out näkyy punaisena.
+Voit kirjautua ulos valitsemalla asetuskuvakkeen ja vaihtoehto näkyy punaisella (punaisella). Voit myös valita lukitussymbolin oikeassa kulmassa, klikkaa kolme kertaa ja kun avaat näytön ja punainen palkki näkyy, valitse kuvake lukon vasemmalle (kuva, jos sinulla on yksi ladattu) ja mahdollisuus kirjautua ulos näkyvät punaisella.
 
 ![Pahvista uloskirjautuminen](/images/help/logout.png "Cboard logout")
 
 ### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>Mitä eroa rekisteröidyn ja rekisteröimättömän käyttäjän välillä on?
 
-Rekisteröitynyt käyttäjä pystyy räätälöimään taulunsa, ja tehdyt muutokset tallennetaan heidän tililleen, jotta he voivat kirjautua sisään sisään käyttäessään mukautettuja taulujaan. Rekisteröimätön käyttäjä ei voi tallentaa muutoksia turvallisesti. Suosittelemme rekisteröintiä joka tapauksessa, jotta muutoksesi voidaan taata.
+Rekisteröity käyttäjä pystyy yksilöimään heidän levyt, ja tehdyt muutokset tallennetaan heidän tililleen niin, että kun he kirjautuvat sisään, he voivat käyttää räätälöityjä tauluja. Rekisteröimätön käyttäjä ei pysty tallentamaan muutoksia turvallisesti. Suosittelemme rekisteröitymistä vain siinä tapauksessa, että muutoksesi varmasti tallennetaan.
 
 ### <a name='HowdoIupdatemyuserinformation'></a>Kuinka päivitän käyttäjätietojani?
 
-Päivitä käyttäjätietosi noudattamalla samoja vaiheita, joita käyttäisit, kun yrittäisit kirjautua ulos. Valitse lukkosymboli taulun oikeassa yläkulmassa - kolme napsautusta tai napautusta ja kun avaat näytön, valitse lukon vasemmalla puolella oleva kuvake (käyttäjänimen alkukirjaimet, valokuva) ja voit sitten muokata käyttäjän tietojasi .
+Päivittääksesi käyttäjätietosi, seuraa samoja vaiheita joita käytät, jos yrität kirjautua ulos. Valitse lukon symboli hallituksen oikeassa yläkulmassa – kolme klikkausta tai napautusta ja kun avaat näytön, valitse kuvake lukon vasemmalle (käyttäjänimi nimikirjaimi, kuva), ja voit sitten muokata käyttäjän tietoja.
 
 ### <a name='HowdoIresetmypassword'></a>Kuinka voin palauttaa salasanani?
 
@@ -121,17 +123,17 @@ Palauttaaksesi salasanasi, lähetä sähköpostia osoitteeseen support@cboard.io
 
 ### <a name='HowmuchdoesCboardcost'></a>Kuinka paljon Cboard maksaa?
 
-Kartonki on täysin ilmainen.
+Cboard on täysin ilmainen.
 
 ## <a name='Features'></a>ominaisuudet
 
 ### <a name='WhatdevicesandOSaresupported'></a>Mitä laitteita ja käyttöjärjestelmiä tuetaan?
 
-Cboard on saatavana verkossa monien erilaisten laitteiden avulla, mukaan lukien pöytätietokoneet, tablet-laitteet ja matkapuhelimet, joissa käytetään Mac-, Windows- ja Android-käyttöjärjestelmiä. Se on parhaiten katseltavissa selaimissa, kuten Chrome, Firefox, Edge ja Safari, ja Android-sovellus on saatavana Google Playsta.
+Cboard on saatavilla verkossa käyttäen monenlaisia laitteita, kuten pöytäkoneita, tabletteja ja matkapuhelimia, jotka käyttävät Mac-, Windows- ja Android-käyttöjärjestelmiä. Se on parasta nähdä selaimissa kuten Chrome, Firefox, Edge ja Safari ja Android-sovellus on saatavilla Google Play.
 
 ![Selaimen tuki](/images/help/browsers.png "Browser support")
 
-Koska Cboard on verkkopohjainen sovellus, se vastaa yksittäisten selainten tarjoamiin asetuksiin. Tämä voi tarkoittaa, että tulokset ovat erilaisia kuin Cboardin tarjoamat asetukset. Voit esimerkiksi tarjota erilaisia puhevaihtoehtoja.
+Koska Cboard on web-pohjainen sovellus, se vastaa yksittäisten selainten antamia asetuksia. Tämä voi tarkoittaa, että sinulla on erilaisia tuloksia kuin Cboardin asetuksissa. Voit esimerkiksi löytää erilaisia puhevaihtoehtoja.
 
 Muista, että voit käyttää myös selaimen suurennusta tai zoomausta tietyssä määrin tietokoneen, tablet-laitteen tai puhelimen näytön koosta riippuen.
 
@@ -139,39 +141,39 @@ Kysy Cboardilta korkean kontrastitilan käyttämisestä näkövammaisille, koska
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Mitä kieliä Cboard tukee?
 
-Kartonki tukee 33 kieltä. Jos haluat valita toisen kielen, siirry kohtaan ASETUKSET - valitse KIELI, jolloin käytettävissä olevat kielet ilmestyvät. Tee valinta ja 'rasti' ilmestyy kielen viereen.
+Cboard mukana tukea 33 kielellä. Valitaksesi eri kieli mene ASETUKSET – valitse KIELI ja käytettävissä olevat näkyvät. Tee valinta, ja “rasti” näkyy vieressä kieli.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Voiko Cboard lukea viestini ääneen?
 
-Kyllä, Cboard käyttää laitteellasi olevaa synteettistä puhetta lukeaksesi kunkin symbolin alapuolella olevat yksittäiset tarrat, kun ne lisätään viestin lähtökenttään. Voit valita täydellisen viestin, ja se luetaan myös ääneen. Jos tunnukseen on lisätty äänen, sanan tai ilmauksen henkilökohtainen tallenne (ohjeet kohdassa Talking - Voice Recordings), kuulet kyseisen äänityksen syntetisoidun äänen sijasta. Tästä voi olla apua silloin, kun käännöstä ei ole saatavana kielelle, tarvitaan lapsen ääntä tai aksenttiä ei voida hyväksyä. Varmista, että mikrofonillesi on annettu pääsy verkkoon.
+Kyllä, Cboard käyttää synteettinen puheen ulostulo saatavilla laitteellasi lukea yksittäisiä tarroja alla kunkin symbolin, koska ne lisätään viestin ulostuloruutuun. Voit valita täydellisen viestin ja se luetaan myös ääneen. Jos ääntä tallennetaan henkilökohtaisesti, sana tai lause on lisätty symboliin (ohjeet Talking – Voice Recordings) kuulet tämän äänityksen syntetisoidun äänen sijaan. Tämä voi olla erittäin hyödyllistä, jos käännös ei ole saatavilla kielellä, lapsen ääni on tarpeen tai aksentti on mahdoton hyväksyä. Varmista, että mikrofonisi on annettu pääsy verkkoon.
 
 ### <a name='Speechcapabilities'></a>Puheominaisuudet
 
-Puheominaisuuksien säätämiseksi mene kohtaan ASETUKSET, ja KIELI-luokan alla on KIELTELU-luokka. Kun valitset SPEECH, voit muokata puheäänenkorkeutta ja -nopeutta Cboardilla.
+Puheominaisuuksien säätämiseksi siirrytään ASETUKSET, ja LANGUAGE-kategorian alla on SPEECH luokka. Kun valitset SPEECHin, voit muokata puheen kenttää ja vauhtia Cboard.
 
 ![Puheominaisuudet](/images/help/speech.png "Speech capabilities")
 
 ### <a name='Exportandimport'></a>Vienti ja tuonti
 
-Molemmat vietävät vaihtoehdot ovat JÄRJESTELMÄ-kategorian ASETUKSET -kohdassa, kielen ja puheen alapuolella. VIE-luokka antaa sinulle mahdollisuuden ladata joko OpenBoard tai PDF. IMPORT-luokka avaa tallennetut tiedostot, kun olet valinnut RESTORE.
+Molemmat vientivaihtoehdot ovat ASETUKSET SYSTEM-kategoriassa, kielen ja puheen alapuolella. Vienti kategoria antaa sinulle mahdollisuuden ladata joko OpenBoardin tai PDF. IMPORT kategoria avaa tallennetut tiedostot, kun valitset RESTORE.
 
 ![Vientiominaisuudet](/images/help/export.png "Export capabilities")
 
 ### <a name='Displaycapabilities'></a>Näyttöominaisuudet
 
-Näyttöasetuksia voidaan muokata ASETUKSET-luokassa JÄRJESTELMÄ-luokassa. Näyttövaihtoehto on aivan Vie ja Tuo -kohdan alapuolella. Kun valitset NÄYTÖ, voit muuttaa käyttöliittymän kokoa ja sovelluksen kirjasinkokoa valitsemalla haluamasi koon. Punaisen pisteen tulisi olla valitsemasi koon alapuolella.
+Näyttöasetuksia voi muokata ASETUKSESSA SYSTEM-kategoriassa. Näyttövalitsin on suoraan alle Vienti ja tuonti. Yksi valitset DISPLAY, voit muuttaa käyttöliittymän kokoa sekä sovelluksen Fontin kokoa valitsemalla haluamasi koko. Punaisen pisteen pitäisi olla alle sen koon, jonka haluat valita.
 
 ![Näyttöominaisuudet](/images/help/display.png "Display capabilities")
 
 ### <a name='CanIchangeanynavigationsettings'></a>Voinko muuttaa mitään navigointiasetuksia?
 
-NAVIGOINTI -osiossa voit muokata ja helpottaa tapaa, jolla liikut Cboardilla ja poistat symbolit viestiruudusta. Siirtyminen JÄRJESTELMÄ-luokan lopussa kohdassa ASETUKSET antaa sinulle suuremman takaisin-painikkeen, jota on helpompi valita. On myös mahdollista antaa poistaa ('x') painike näkyvän kunkin symbolin yläpuolella, kun ne esitetään viestiruudussa. Tämä voi helpottaa lauseiden poistamista lauseesta. Mutta ole tietoinen käyttäjien tarpeista, koska se voi myös hämmentää joitain ihmisiä.
+Käytä NAVIGATION osiota muokkaamaan ja helpottamaan tapaa, jolla käytät liikkua ympäri Cboardia ja poistaa symbolit viestilaatikossa. Navigointi lopussa JÄRJESTELMÄN kategoria ASETUKSISSA avulla voit saada suuremman ”takaisin” -painikkeen, joka on helpompi valita. On myös mahdollista sallia, että jokaisen symbolin yläpuolella näkyvät poistopainike (”x”), koska se esitetään viestilaatikossa. Tämä voi helpottaa symbolien poistamista lauseen sisällä. Mutta ole tietoinen käyttäjien tarpeista, koska se voi myös hämmentää joitakin henkilöitä.
 
 ### <a name='Navigationthroughtheinterface'></a>Selaus käyttöliittymän kautta
 
-Jotta muokata ja helpottaa navigointia Cboardin kautta, valitse NAVIGOINTI. Järjestelmän viimeinen valikkokohta (kaikki Asetuksissa) antaa sinun lisätä tiettyjä yksityiskohtia, jotta levyn käyttö olisi helpompaa. Ensimmäinen vaihtoehto Navigoinnissa sallii suuremman takaisin-painikkeen, jota on helpompi valita koon vuoksi. Toinen lisää x-painikkeen helpottamaan symbolien poistamista, ja kolmas helpottaa lukituksen avaamista vaatimalla asetusten lukituksen vain yhdellä napsautuksella.
+Voit muokata ja helpottaa navigointia kautta Cboard, valitse NAVIGATION, viimeinen valikkonimike SYSTEM (kaikki asetukset) voit lisätä tiettyjä yksityiskohtia tehdä käyttämällä hallituksen helpompaa. Ensimmäinen vaihtoehto navigoinnissa mahdollistaa suuremman ”takaisin” -painikkeen, joka on helpompi valita koon vuoksi. Toinen lisää 'x' -painikkeen, jotta symbolien poistaminen olisi helpompaa, ja kolmas tekee lukituksen avaamisen helpommaksi vaatimalla vain yhden napsautuksen avaamista asetuksista.
 
 ![Navigointiominaisuudet](/images/help/navigation.png "Navigation capabilities")
 
@@ -181,11 +183,11 @@ Jotta muokata ja helpottaa navigointia Cboardin kautta, valitse NAVIGOINTI. Jär
 
 Kun olet kirjautunut sisään Cboardiin, HOME-sivu avautuu.
 
-Jotta pääset käsiksi ASETUKSET, valitse pieni lukko oikealla puolella kolme kertaa nuolen alapuolella. Kun olet tehnyt tämän, mustan HOME-palkin alla näkyy harmaa palkki ja 'Asetukset' -painike näkyy suoraan HOME-palkin lukon vasemmalla puolella, toinen oikealta.
+Voit käyttää ASETUKSET, valitse pieni lukko oikealla puolella kolme kertaa, alle nuolen. Kun olet tehnyt tämän, harmaa baari tulee näkymään mustan HOME-baarin alapuolella, ja ”asetukset” -painike tulee näkymään suoraan ETUSIVU baarissa olevan lukon vasemmalla puolella, joka on toinen oikealla puolella.
 
 ### <a name='HowdoIprintmyboardsetinCboard'></a>Kuinka tulostan piirilevyni pahviksi?
 
-Tulostaaksesi alustasi, paina mustan HOME-palkin vasemmalla puolella olevaa tulostimen logoa, kun olet poistanut HOME-sivun lukituksen. Adobe Portable Document (.pdf) ladataan tekniikkaasi.
+Voit tulostaa laudan, paina tulostimen logo mustan HOME-palkin vasemmalla puolella sen jälkeen, kun olet avannut HOME-sivun. Adobe Portable Document (.pdf) ladataan sinun teknologiallesi.
 
 ### <a name='HowdoIseeCboardinfullscreen'></a>Kuinka näen Cboardin koko näytössä?
 
@@ -199,9 +201,19 @@ Jos haluat jakaa taulun, avaa näyttö napsauttamalla oikealla puolella olevaa l
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
+### <a name='HowdoIshareaphrase'></a>Miten voin yhtyä lauseeseen?
+
+Jakaaksesi lauseen vain ensimmäistä kertaa, avaa näytön lukitus, Siirry asetuksiin > Navigointi ja painikkeet > ja ota käyttöön 'Näytä jakolause-painike.
+
+![Lausekkeen jakamisen asetukset](https://user-images.githubusercontent.com/21298844/128038972-a2848d47-2675-4e2d-9a15-6f93186f29d6.png)
+
+Kokoa lause. Paina sitten jakokuvaketta, joka ilmestyy tulostuslausekkeen oikealla puolella. Valitse sosiaalinen verkosto, jossa haluat jakaa fraasin. Yksi dialogi olisi avoinna tekstikentän lause kanssa. Jakaaksesi sen painamalla Lähetä-painiketta. Jos haluat kopioida lause leikepöydälläsi, paina jaa-painiketta ja sitten 'kopioi leikepöydälle' -vaihtoehtoa. Yhtä ilmoitusta näytettäisiin ruudulla succes -viestin avulla.
+
+![Lausekkeen jakamispainike](https://user-images.githubusercontent.com/21298844/128044322-d61491c6-7168-4615-8117-244dc872091e.png)
+
 ## <a name='Talking'></a>Puhuminen
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Kuinka lisätä henkilökohtaisesti tallennetun äänen Cboard-symboliin?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Miten voin lisätä henkilökohtaisesti tallennettu ääni symboleihin Cboard?
 
 1. Mene taululle, jota haluat käyttää.
 
@@ -209,7 +221,7 @@ Jos haluat jakaa taulun, avaa näyttö napsauttamalla oikealla puolella olevaa l
 
 3. Valitse vasemmalla puolella oleva EDIT-painike.
 
-4. Valitse mikä symbolisolu tai laatta, johon haluat lisätä äänitallenteen. Kun olet valinnut ruudun tai laattasarjan, jokaisessa näkyy sininen rasti ja ne korostuvat.
+4. Valitse mikä symboli solu tai laatta johon haluat lisätä äänitallenteen. Kun olet valinnut laatta tai useita laatat, sininen rasti näkyy jokaisessa ja ne korostetaan.
 
 5. Valitse PENCIL-kuvake vaaleansinisen palkin oikeassa reunassa.
 
@@ -223,151 +235,161 @@ Jos haluat jakaa taulun, avaa näyttö napsauttamalla oikealla puolella olevaa l
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIswitchtoadifferentvoice'></a>Kuinka vaihdan toiseen ääneen?
+### <a name='HowdoIswitchtoadifferentvoice'></a>Miten voin vaihtaa toiseen ääneen?
 
-Puheominaisuuksien / äänen säätämiseksi siirry asetuksiin, ja KIELI-luokan alla on SPEECH-luokka. Kun valitset SPEECH, voit muokata puheäänenkorkeutta ja -nopeutta Cboardilla. Voit myös tallentaa oman äänesi symboleille noudattamalla vastauksia kohtiin "Kuinka voin lisätä henkilökohtaisesti äänitetyn äänen Cboard-symboliin?"
+Säätääksesi puheominaisuuksia/ääntä, mene asetuksiin, ja LANGUAGE luokan alla on SPEECH luokka. Kun valitset SPEECH voit muokata puheen kenttää ja vauhtia Cboard. Voit myös tallentaa oman äänesi symbolit seuraavat vaiheita vastauksen “Miten lisään henkilökohtaisesti tallennettu ääni symboleihin Cboard?”
 
-### <a name='HowdoIchangehowavoicesounds'></a>Kuinka voin muuttaa äänen kuulostamista?
+### <a name='HowdoIchangehowavoicesounds'></a>Miten voin muuttaa miten ääni ääntä?
 
-Säädäksesi puheominaisuuksia / ääntä / ääntä, mene kohtaan ASETUKSET ja valitse KIELI-luokasta SPEECH-luokka. Sitten voit muokata puheväliä ja -nopeutta Cboardilla.
+Jotta voit säätää puheominaisuuksia/ääni/ääntä, mene ASETUKSET, ja valitse LANGUAGE-kategorian alle SPEECH luokka. Sen jälkeen voit muokata Cboardissa esiintyvän puheen kenttää ja vauhtia.
 
 ## <a name='BoardEditing'></a>Taulun muokkaaminen
 
-### <a name='HowdoIcreateanemptyboard'></a>Kuinka luoda tyhjä taulu?
+### <a name='HowdoIcreateanemptyboard'></a>Miten voin luoda tyhjän laudan?
 
-Kartongissa tyhjä taulu vastaa kansiota.
+Cboardissa tyhjä lauta vastaa kansiota.
 
-Jos haluat luoda uuden tai tyhjän taulun, sinun on luotava uusi kansio, ja se luo uuden taulun Cboard-tallennusalueelle (jonka voit nähdä siirtyessäsi keskialueen BOARDSiin editointitilassa).
+Jos haluat luoda uuden tai tyhjän levyn, sinun täytyy luoda uusi kansio. ja joka luo uuden hallituksen Cboard-tallennustilaan (jonka näet kun menet keskelle palkkia muokkaustilassa). @ title: group
 
-Uusi tyhjä kortti on heti käytettävissä muokattavaksi ja se voidaan asettaa juurihallintapaneeliksi (rakennuspainikkeen avulla), mikä tarkoittaa, että se on ensimmäinen taulu, jonka näet seuraavan kerran, kun avaat Cboardin.
+Uusi tyhjä lauta on välittömästi käytettävissä muokkausta varten ja se voidaan asettaa juurilaudaksi (käyttäen rakentamispainiketta), mikä tarkoittaa, että se on ensimmäinen aluksella näet seuraavan kerran avaat Cboard.
 
-Voit luoda uuden kansion aloittamalla avaamalla näytön valitsemalla lukituspainikkeen oikealla puolella. Kun avaat näytön, valitse plus (+) -merkki oikealla puolella lisätäksesi raidan. Tämän jälkeen sinulle annetaan mahdollisuus lisätä laatta / PAINIKE, joka on ensimmäinen ja automaattinen vaihtoehto, tai valita KANSIO. Tämä toiminto luo UUDEN TAULUKON, johon voit lisätä lisää laattoja ja kansioita.
+Luodaksesi uuden kansion voit aloittaa avaamalla näytön lukituksen oikealla puolella olevasta lukituspainikkeesta. Kun olet avannut näytön, valitse plusmerkki (+) oikealla puolella, jotta LISÄÄ TILE. Tämän jälkeen sinulle annetaan mahdollisuus lisätä Tile / BUTTON joka on ensimmäinen ja automaattinen vaihtoehto tai valitse FOLDER Tämä toiminto tekee UUSI BOARD, johon voit lisätä enemmän laattoja ja kansioita.
 
-Kun olet nimennyt kansion, voit lähettää kuvan samalla tavalla kuin laatan laatimisessa, jossa on väriasetus ja etiketti. Tämä uusi kansio linkittää automaattisesti sen yläpuolella olevaan tauluun (jos mukana on rivin laattoja). Se näkyy taululuettelossasi tyhjänä tauluna, kunnes se on täytetty symboleilla ja tarroilla.
+Kun olet nimennyt kansion, voit ladata kuvan samalla tavalla kuin tehdä laatta väriasetukset ja etiketti. Tämä uusi kansio linkittää automaattisesti sen yläpuolella olevaan tauluun (jos mukana on rivi tiiliä). Se näkyy listassa levyt kuin tyhjä lauta, kunnes se on asuttu symbolit ja tunnisteet.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Kuinka räätälöin olemassa oleva Cboard-hallitus?
+### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Miten voin personoida olemassa olevan hallituksen Cboardissa?
 
-Jotta olemassa oleva taulu olisi henkilökohtainen, valitse taulun yläpuolella olevan palkin oikeassa yläkulmassa oleva LOCK (nuolen alapuolella ristillä) LOCK. Kun olet tehnyt tämän, mustan HOME-palkin alle ilmestyy uusi palkki, ja vasemmalla puolella on pieni lohkon (EDIT) kuvake lisätäksesi ruudun tai solun. Kun lohko on valittu, harmaan palkin tulee muuttua siniseksi, ja oikealla puolella näet pienen roskakorin ja lyijykynän.
+Jotta voidaan muokata olemassa olevaa hallitusta valitse LOCK oikeassa yläkulmassa olevan levyn yläpuolella olevan palkin yläkulmassa (nuolen alapuolella, jossa on risti). Kun olet tehnyt tämän, toinen baari tulee näkymään mustan ETUSIVALTAUSTA-palkin alapuolella ja löydät pienen lohkon (EDIT) kuvakkeen vasemmalla puolella lisätä laatta tai solu. Kun lohko on valittu, harmaa palkki kääntyy siniseksi, ja oikealla puolella näet pienen roskakorin ja lyijykynän.
 
-![räätälöi olemassa oleva hallitus](/images/help/personalize.png "personalize an existing board")
+![muokkaa olemassa olevaa taulua](/images/help/personalize.png "personalize an existing board")
 
-Jos haluat mukauttaa taulua, valitse lyijykynä ja voit vaihtaa tarran, lähettää kuvan ja lisätä äänityksen.
+Jotta voit muokata lautaa, valitse lyijykynä ja voit vaihtaa etiketin, ladata kuvan ja lisätä äänen.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='CanIusemyownpictureswheneditingaboard'></a>Voinko käyttää omia kuviani editoidessani taulua?
+### <a name='CanIusemyownpictureswheneditingaboard'></a>Voinko käyttää omia kuviani laudan muokkauksessa?
 
-Kyllä, voit käyttää omaa kuvaa editoidessasi taulua. Jotta voit käyttää omaa kuvaa, voit lähettää kuvan, kun luot uuden ruudun (valitsemalla PLUS SIGN (+) harmaalla palkilla sivun avaamisen jälkeen). Voit myös muokata olemassa olevaa ruutua omalla kuvalla.
+Kyllä, voit käyttää omaa kuvaasi editoidessasi taulua. Jotta voit käyttää omaa kuvaa, voit ladata kuvan kun luot uuden levyn (valitsemalla PLUS SIGN (+) harmaalla palkissa sen jälkeen, kun sivu on avattu). Voit myös muokata olemassa olevaa laattaa omalla kuvallasi.
 
-### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Voinko muuttaa taulun elementtien järjestystä?
+### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Voinko muuttaa elementtien järjestystä laudan sisällä?
 
-Joo! Kun muokkaat aluetta, avaa näyttö LOCK-symbolilla. Valitse sitten vasemmalla puolella oleva EDIT-lohkon kuvake (BUILD-kuvakkeen alapuolella). Voit sitten vetää piktogrammin / symbolin tai kansion mihin tahansa haluat sijoittaa sen samassa alustassa.
+Kyllä! Kun olet muokkaamassa lautaa, avaa näytön lukitus käyttäen LOCK symbolia. Valitse sitten vasemman puolen EDIT lohkon kuvake (alapuolella BUILD kuvake). Voit sitten raahata kuvamerkki/symboli tai kansio sinne, minne haluat laittaa sen samaan tauluun.
 
-### <a name='HowdoIselectmultipleelementstoedit'></a>Kuinka valitsen useita muokattavia elementtejä?
+### <a name='HowdoIselectmultipleelementstoedit'></a>Miten valitsen useita elementtejä muokattavaksi?
 
-Samoin kuin muutat elementtien järjestystä taululle, mutta valitset ja vedät sen sijaan, että valitset ympyrän piktogrammin / symbolin neliön sisällä. Voit muokata useita symboleja valitsemalla useita. Kun olet tehnyt niin, valitse oikealla puolella oleva PENCIL-kuvake, jolloin voit muokata valittuja elementtejä.
+Sama tapa voit muuttaa järjestys elementtien hallituksen , mutta sen sijaan, että valitsisit ja vetämisen, valitset ympyrän kuvamerkin / symbolin neliöön. Voit muokata monia symboleja voit valita enemmän kuin yksi. Kun olet tehnyt niin, valitse PENCIL kuvake oikealla puolella ja tämän avulla voit muokata valittuja elementtejä.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FindSymbols'></a>Kuinka voin löytää uusia symboleja muokatessani laattaa?
+### <a name='FindSymbols'></a>Miten voin löytää uusia symboleja, kun olen muokkaamassa tiiliä?
 
-Valitse EDIT-lohkon kuvake taulupalkin vasemmasta reunasta ja valitse muutettava kuvake / symboli. Valitse se ja kun sinisessä renkaassa on rasti, siirry PENCIL-kuvaan oikealla. Kun olet valinnut lyijykynän, huomaat, että siinä on MAGNIFYING GLASS -kuvake symbolien hakua varten. Kun hakuominaisuus on aktivoitu, näet SEARCH SYMBOL -KIRJASTON muokkauspalkissa. Kirjoita etsimäsi käsite / etiketti / sana ja symbolit ilmestyvät. Kun olet valinnut yhden symbolin, se palauttaa sinut automaattisesti muokattavaan TILE-sivulle.
+Valitse levypalkin vasemmalla puolella oleva EDIT lohkon kuvake ja valitse haluamasi kuvamerkki tai symboli. Valitse se ja kun sinisellä sormuksella on rasti, mene oikealla olevaan PENCIL kuvakkeeseen. Valittuasi lyijykynän huomaat, että on olemassa MAGNIFYING GLASS -kuvake symbolien hakua varten. Kun haun toiminto on aktivoitu, näet hakukoneen SYMBOL LIBRARY muokkauspalkissa. Kirjoita konsepti / etiketti / sana olet etsimässä ja symbolit näkyvät. Kun olet valinnut yhden symbolin, se palauttaa sinut automaattisesti muokkaa TILE sivulle.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FixedBoards'></a>Voinko lauta laatat sijoittaa kiinteisiin paikkoihin?
+### <a name='FixedBoards'></a>Voinko laittaa lautalaatat kiinteisiin paikkoihin?
 
-Oletuksena, kun uusi lauta luodaan, Cboard lisää **sujuvan levyn**. Joka tapauksessa on mahdollista muuttaa levy **kiinteäksi levyksi**. Niillä on seuraavat ominaisuudet:
+Oletuksena kun uusi levy on luotu, Cboard lisää **sujuvan levyn**. Joka tapauksessa, on mahdollista muuttaa hallituksen **kiinteä aluksella**. Heillä on seuraavat ominaisuudet:
 
 * Ruudukko ei muutu erikokoisissa näytöissä tai laitteen asennossa. 
 * Rivien ja sarakkeiden määrä on määritettävissä. 
 * Laatoilla on kiinteät paikat ristikossa. 
 
-Jos haluat muuntaa kortin kiinteäksi kortiksi, muokkaa korttia ja vaihda työkalurivin vaihtoehto korjataksesi sen. Taulusi muuttaa ulkonäköään ja rivit ja sarakkeet osoittavat.
+Voit muuntaa laudan kiinteäksi laudalle, muokkaa laudaa ja kytke työkalurivissä olevaa vaihtoehtoa niin, että se korjataan. Lautasi muuttaa sen ulkonäköä ja rivit ja sarakkeet osoittimet näkyvät.
 
 ![Kiinteä lauta](/images/help/fixedBoard.png "Fixed board")
 
-### <a name='FixedRows'></a>Kuinka asetan tietyn määrän rivejä ja sarakkeita taululle?
+### <a name='FixedRows'></a>Miten voin asettaa tietyn määrän rivejä ja sarakkeita laudalleni?
 
-Ensin sinun on muutettava kortti **kiinteäksi levyksi** (katso edellinen aihe). Painostustilassa taulusi näyttää rivit ja sarakkeet. Voit olla vuorovaikutuksessa näiden ohjausobjektien kanssa lisätäksesi tai vähentääksesi haluamiesi rivien ja sarakkeiden määrää.
+Ensinnäkin, sinun täytyy muuttaa hallituksen **kiinteä hallitus** (ks. edellinen aihe). Painostustilassa laudasi näyttää rivejä ja sarakkeita mittareita. Voit olla vuorovaikutuksessa näiden hallintalaitteiden kanssa, jotta voit lisätä tai vähentää haluamiasi rivejä ja sarakkeita.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Vienti ja tuonti
 
-### <a name='HowdoIexportmyboardinCboard'></a>Kuinka viedään korttini Cboardiin?
+### <a name='HowdoIexportmyboardinCboard'></a>Miten voin viedä hallitukseni Cboardissa?
 
-Vie taulusi Cboardiin siirtymällä kohtaan ASETUKSET, ja heti kun avaat Asetukset, VIENTI-vaihtoehto näkyy alaspäin osoittavana nuolena Kielen ja puheen alla.
+Jotta voit viedä hallituksesi Cboardiin, mene SETTINGS ja heti kun avaat asetukset, VIENTI -vaihtoehto näkyy alaspäin suuntautuvana nuolena, kielen ja puheen alapuolella.
 
-Valitse EXPORT ja lataa Cboard valitsemalla joko OPENBOARD tai EXPORT.
+Valitse VIENTI ja lataa levy valitsemalla joko OPENBOARD tai VIENTI.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Kuinka tuon levyn Cboardiin?
+### <a name='HowdoIimportaboardintoCboard'></a>Miten voin tuoda hallituksen Cboardiin?
 
-Voit tuoda piirilevyn noudattamalla vientiin käytettyjä vaiheita. IMPORT on Export-kohdan alapuolella, ylöspäin osoittava nuoli, jonka alapuolella on vaakapalkki.
+Jos haluat tuoda laudan, seuraa vaiheita, joita käytetään Vienti. TÄRKEÄ on viennin alapuolella, ylöspäin suuntautuva nuoli vaakasuoralla sen alapuolella.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Mitä tiedostomuotoa Cboard käyttää tuonnissa / viennissä?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Mitä tiedostomuotoa Cboard käyttää tuontiin/vientiin?
 
-Voit tuoda ja viedä levyjä kahdella tavalla:
+Voit tuoda ja viedä levyt sinulla on kaksi vaihtoehtoa:
 
 * Käytä Cboardin alkuperäisiä tiedostotauluja.
-* Käytä OpenBoard-alustettuja tiedostoja. [Lisätietoja Open Board Format](https://www.openboardformat.org/)
+* Käytä OpenBoard- muotoisia tiedostoja. [Lisätietoja Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Näyttöominaisuudet
 
-### <a name='WhatcanIchangeonthedisplay'></a>Mitä näytöllä voi muuttaa?
+### <a name='WhatcanIchangeonthedisplay'></a>Mitä voin muuttaa näytössä?
 
-Näyttöasetuksia voidaan muokata ASETUKSET-kategoriassa JÄRJESTELMÄ. Näyttö-vaihtoehto on Vie ja tuo -kohdan alla. Kun valitset NÄYTTÖ, voit muuttaa käyttöliittymän (UI) kokoa sekä sovelluksen kirjasinkokoa valitsemalla haluamasi koon. Punaisen pisteen tulee olla valitsemasi koon alapuolella.
+Näyttöasetuksia voi muokata ASETUKSESSA SYSTEM-kategoriassa. Näyttövalitsin on alle Vienti ja tuonti. Kun valitset DISPLAY, voit muuttaa käyttöliittymän kokoa (UI) sekä sovelluksen Fontin kokoa valitsemalla haluamasi koko. Punaisen pisteen pitäisi olla alle sen koon, jonka haluat valita.
 
-### <a name='CanIresizebuttonsonCboard'></a>Voinko muuttaa Cboardin painikkeiden kokoa?
+### <a name='CanIresizebuttonsonCboard'></a>Voinko muuttaa painikkeita Cboardissa?
 
-Joo! Voit muuttaa ruutujen tai painikkeiden kokoa kohdassa ASETUKSET. Valitse luokassa JÄRJESTELMÄ NÄYTTÖ ja sinulle annetaan 3 kokovaihtoehtoa: Vakio, Suuri, Erittäin suuri. Katso alla oleva kuva:
+Kyllä! Voit muuttaa laatat tai painikkeet ASETUKSESsa. Valitse luokassa SYSTEM, ja sinulle annetaan 3 vaihtoehtoja koolle: Standard, suuri, erittäin suuri. Katso kuva alla:
 
-![Näyttöominaisuudet](/images/help/display.png "Display capabilities")
+![Näytä ominaisuudet](/images/help/display.png "Display capabilities")
+
+### <a name='BigScrollButtons'></a>Näytön vieritys isojen painikkeiden läpi
+
+Se on myös mahdollista vierittää ylös ja alas laudan käyttäen pari isoa painikkeita, jotka voidaan lisätä asetusosiosta. Tämä on erityisen hyödyllistä silmien seurantalaitteen käyttäjille, koska painikkeiden avulla voit vierittää laudan ilman, että tarvitsee liukua näyttöä. Ottaaksesi tämän ominaisuuden käyttöön, mene asetusosioon ja etsi "ota käyttöön iso vierityspainikkeet " -kytkin. Vaihda kytkin päälle ja tallenna asetukset. Katso kuva alla:
+
+![Käytä isoja vierityspainikkeita](/images/help/bigScrollSettings.png "Big scroll buttons settings")
+
+Sitten sinun pitäisi nähdä pari isoja painikkeita yläreunassa ja alareunassa jos se on tarpeeksi suuri, kuten näytetään alla olevassa kuvassa:
+
+![Isot vierityspainikkeet](/images/help/bigScrollButtons.png "Big scroll buttons")
 
 ## <a name='Scanning'></a>skannaus
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Voinko käyttää skannaustekniikoita päästäksesi symboleihin?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Voinko käyttää skannaus tekniikoita käyttää symboleja?
 
-Skannaus on silloin, kun valintasarjan kohteet näytetään peräkkäin ajan myötä ja käyttäjä tekee valinnan epäsuorasti, yleensä kytkimellä. SCANNING on Cboard toimii ASETUKSET- ja JÄRJESTELMÄ-luokassa. Skannausta varten on erilaisia asetuksia. Ota ensin skannausasetus käyttöön valitsemalla ENABLE. Voit sitten valita viiveen sekä menetelmän (joko automaattisen tai manuaalisen). Huomaa, että kun käytät tablettia tai älypuhelinta, sillä voi olla myös oma sisäänrakennettu skannausvaihtoehto.
+Skannaus on missä valinnan kohteet esitetään peräkkäin ajan mittaan, ja käyttäjä tekee valinnan välillisesti, yleensä kytkin päällä. SCANNING on Cboard toimii ASETUKSET ja SYSTEM luokka. On olemassa erilaisia asetuksia skannaukseen. Sinun pitäisi ensin ottaa skannausasetus käyttöön valitsemalla ENABLE. Tämän jälkeen voit valita viiveen sekä menetelmän (joko automaattinen tai manuaalinen). Huomaa, että tablet-laitteen tai älypuhelimen käytössä sillä voi olla myös oma sisäänrakennettu skannaus vaihtoehto.
 
 ## <a name='CommunicatorBuilder'></a>Kommunikaattorin rakentaja
 
-### <a name='Whatiscommbuilder'></a>Mikä on kommunikaattorin rakentaja?
+### <a name='Whatiscommbuilder'></a>Mikä on kommunikoijan rakentaja?
 
-Kommunikaattorin rakennustyökalu on ominaisuus, jonka avulla voit käsitellä levyjä niiden kopioimiseksi, poistamiseksi, julkaisemiseksi, lisäämiseksi ja poistamiseksi. Pääset käyttämään toimintoja avaamalla asetukset ja napsauttamalla Build-painiketta. Näet uuden sivun, joka on jäsennelty kolmelle eri välilehdelle: levyt, julkiset taulut, kaikki omat levyt. Katso alla oleva kuva:
+Viestintälaitteen rakentaja on ominaisuus, jonka avulla voit käsitellä tauluja kopioidakseen, poistaaksesi, julkaistaaksesi, lisätäksesi ja poistaaksesi ne. Jotta voit käyttää toiminnallisuutta, sinun täytyy avata asetukset ja klikkaa 'Build' -painiketta. Näet uuden sivun, joka on rakennettu kolmessa eri välilehdessä: taulut, julkiset levyt, kaikki laudat. Katso kuva alla:
 
-![Communicator-rakentaja](/images/help/communicator.png "Communicator builder")
+![Kommunikoijan rakentaja](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Kommunikaattoritaulut
+### <a name='CommunicatorBoards'></a>Kommunikoijien taulut
 
-Oletusvälilehti, jonka näet kommunikaattorin rakennustyökalussa, on kommunikaattoritaulukoiden välilehti, joka näyttää kaikki kommunikaattoriin sisältyvät levyt. Voit tehdä muutoksia kommunikaattorissa seuraavilla toimintopainikkeilla:
+Oletus välilehti näet kommunikaattorin rakentaja on kommunikointi levyt välilehti, joka näyttää kaikki levyt mukana kommunikaattori. Voit tehdä muutoksia kommunikaattorissa seuraavista toimintopainikkeista:
 
 * Poista kortti kommunikaattorista: tämä painike sulkee kortin kommunikaattorista, mutta EI poista korttia tietokannasta ja se on edelleen käytettävissä Kaikki kortit -välilehdessä.
 
 * Aseta lauta juureksi: tämä painike määrittää levyn ensimmäiseksi näytettäväksi tauluksi joka kerta, kun kirjaudut Cboardiin.
 
-![Kommunikaattoritaulut](/images/help/communicatorBoards.png "Communicator boards")
+![Kommunikoijien taulut](/images/help/communicatorBoards.png "Communicator boards")
 
 ### <a name='PublicBoards'></a>Julkiset taulut
 
-* Kopioi levy: tämä painike luo kopion taulusta ja lisää sen kommunikaattoriin. Koska tämä on kopio julkisesta taulusta, voit muokata tätä taulua haluamallasi tavalla vaikuttamatta alkuperäiseen julkiseen taulukkoon.
+* Kopioi taulu: tämä painike luo kopion taulun ja se lisää sen kommunikaattoriin. Koska tämä on kopio julkisesta levystä, voit muokata tätä taulua haluamallasi tavalla vaikuttamatta alkuperäiseen julkiseen tauluun.
 
 ![Julkiset taulut](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>Kaikki levyt
+### <a name='Allmyboards'></a>Kaikki laudat
 
-Huomaa, että JUST rekisteröityneet käyttäjät voivat käyttää tätä välilehden toimintoa.
+Huomaa, että JUST rekisteröityneet käyttäjät voivat käyttää tätä välilehteä.
 
 * Poista kortti kommunikaattorista: tämä painike sulkee kortin kommunikaattorista, mutta EI poista korttia tietokannasta ja se on edelleen käytettävissä.
 
 * Lisää kortti kommunikaattoriin: tämä paketti sisältää kortin kommunikaattoriin.
 
-* Julkaise taulu: Tämä toiminto julkaisee taulun ja se näkyy julkisten taulujen välilehdessä. Kaikki voivat nähdä taulusi.
+* Julkaise taulu: Tämä toiminto julkistaa hallituksen ja se näytetään julkisten taulujen välilehdessä. Kaikki voivat nähdä hallituksen.
     
- * Peruuta taulun julkaisu: Tämä toiminto tekee taulusta yksityisen, eikä sitä näytetä julkisten lautojen välilehdessä. Kukaan ei näe taulua.
+ * Poista taulu: Tämä toiminto tekee hallituksesta yksityisen, eikä sitä näytetä julkisten taulujen välilehdessä. Kukaan ei voi nähdä hallitustasi.
     
- * Poista levy: Tämä toiminto poistaa taulun eikä sitä voi palauttaa. Taulu poistetaan tietokannasta.
+ * Poista taulu: Tämä toiminto poistaa taulun ja sitä ei voi palauttaa. Lauta poistetaan tietokannasta.
 
-![Kaikki levyt](/images/help/AllmyBoards.png "All my boards")
+![Kaikki laudat](/images/help/AllmyBoards.png "All my boards")

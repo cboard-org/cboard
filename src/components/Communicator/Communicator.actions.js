@@ -7,6 +7,8 @@ import {
   ADD_BOARD_COMMUNICATOR,
   DELETE_BOARD_COMMUNICATOR,
   REPLACE_BOARD_COMMUNICATOR,
+  ADD_DEFAULT_BOARD_INCLUDED,
+  UPDATE_DEFAULT_BOARDS_INCLUDED,
   CREATE_API_COMMUNICATOR_SUCCESS,
   CREATE_API_COMMUNICATOR_FAILURE,
   CREATE_API_COMMUNICATOR_STARTED,
@@ -200,5 +202,19 @@ export function updateApiCommunicator(communicatorData) {
         dispatch(updateApiCommunicatorFailure(err.message));
         throw new Error(err.message);
       });
+  };
+}
+
+export function addDefaultBoardIncluded(defaultBoardData) {
+  return {
+    type: ADD_DEFAULT_BOARD_INCLUDED,
+    defaultBoardData
+  };
+}
+
+export function updateDefaultBoardsIncluded(boardAlreadyIncludedData) {
+  return {
+    type: UPDATE_DEFAULT_BOARDS_INCLUDED,
+    defaultBoardsIncluded: boardAlreadyIncludedData
   };
 }

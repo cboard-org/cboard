@@ -1,14 +1,14 @@
-import * as actions from '../App.actions';
-import appReducer from '../App.reducer';
+import { DEFAULT_FONT_FAMILY } from '../../../providers/ThemeProvider/ThemeProvider.constants';
+import { LOGIN_SUCCESS, LOGOUT } from '../../Account/Login/Login.constants';
+import { DISPLAY_SIZE_STANDARD } from '../../Settings/Display/Display.constants';
+import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../../Settings/Navigation/Navigation.constants';
 import {
   FINISH_FIRST_VISIT,
   UPDATE_CONNECTIVITY,
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS
 } from '../App.constants';
-import { LOGIN_SUCCESS, LOGOUT } from '../../Account/Login/Login.constants';
-import { DISPLAY_SIZE_STANDARD } from '../../Settings/Display/Display.constants';
-import { DEFAULT_FONT_FAMILY } from '../../../providers/ThemeProvider/ThemeProvider.constants';
+import appReducer from '../App.reducer';
 
 let mockApp, uData, initialState;
 
@@ -39,12 +39,18 @@ describe('reducer', () => {
       },
       navigationSettings: {
         active: false,
+        bigScrollButtonsActive: false,
         caBackButtonActive: false,
+        navigationButtonsStyle: NAVIGATION_BUTTONS_STYLE_SIDES,
         liveMode: false,
         shareShowActive: false,
         quickUnlockActive: false,
         removeOutputActive: false,
-        vocalizeFolders: false
+        vocalizeFolders: false,
+        improvePhraseActive: false
+      },
+      symbolsSettings: {
+        arasaacActive: false
       },
       userData: {}
     };
@@ -63,12 +69,15 @@ describe('reducer', () => {
       isFirstVisit: false,
       navigationSettings: {
         active: false,
+        bigScrollButtonsActive: false,
         caBackButtonActive: false,
+        navigationButtonsStyle: NAVIGATION_BUTTONS_STYLE_SIDES,
         liveMode: false,
         shareShowActive: false,
         quickUnlockActive: false,
         removeOutputActive: false,
-        vocalizeFolders: false
+        vocalizeFolders: false,
+        improvePhraseActive: false
       },
       userData: uData
     };

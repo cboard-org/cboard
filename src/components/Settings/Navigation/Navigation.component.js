@@ -10,9 +10,14 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Divider from '@material-ui/core/Divider';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Navigation.messages';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { NAVIGATION_BUTTONS_STYLES } from './Navigation.constants';
 
 import './Navigation.css';
 import ResetToursItem from '../../UI/ResetToursItem';
+import PremiumFeature from '../../PremiumFeature';
 
 const propTypes = {
   /**
@@ -37,6 +42,12 @@ class Navigation extends React.Component {
   toggleCABackButton = () => {
     this.setState({
       caBackButtonActive: !this.state.caBackButtonActive
+    });
+  };
+
+  toggleCAScrollButton = () => {
+    this.setState({
+      bigScrollButtonsActive: !this.state.bigScrollButtonsActive
     });
   };
 
@@ -70,6 +81,12 @@ class Navigation extends React.Component {
     });
   };
 
+  toggleImprovePhraseActive = () => {
+    this.setState({
+      improvePhraseActive: !this.state.improvePhraseActive
+    });
+  };
+
   onSubmit = () => {
     const { isLiveMode, changeLiveMode } = this.props;
     if (!this.state.liveMode && isLiveMode) {
@@ -77,6 +94,45 @@ class Navigation extends React.Component {
     }
     this.props.updateNavigationSettings(this.state);
   };
+
+  onNavigationSettingsChange(navigationSetting, event) {
+    const {
+      target: { value }
+    } = event;
+    this.setState({ [navigationSetting]: value });
+  }
+
+  renderNavigationButtonsLocationSelect() {
+    const name = 'navigationButtonsStyle';
+    const actualButtonsStyle = NAVIGATION_BUTTONS_STYLES.filter(
+      style => style.value === this.state[name]
+    )[0];
+
+    return (
+      <FormControl>
+        <Select
+          aria-label={name}
+          id={name}
+          name={name}
+          value={
+            actualButtonsStyle?.value || NAVIGATION_BUTTONS_STYLES[0].value
+          }
+          onChange={e => this.onNavigationSettingsChange(name, e)}
+          disabled={
+            !(
+              this.state.bigScrollButtonsActive || this.state.caBackButtonActive
+            )
+          }
+        >
+          {NAVIGATION_BUTTONS_STYLES.map(style => (
+            <MenuItem key={style?.value} value={style?.value}>
+              {<FormattedMessage {...messages[(style?.name)]} />}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    );
+  }
 
   render() {
     const { onClose } = this.props;
@@ -103,6 +159,48 @@ class Navigation extends React.Component {
                     value="active"
                     color="secondary"
                   />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Navigation__ListItemText"
+                  primary={<FormattedMessage {...messages.bigScroll} />}
+                  secondary={
+                    <FormattedMessage {...messages.bigScrollSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.bigScrollButtonsActive}
+                    onChange={this.toggleCAScrollButton}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
+              <ListItem
+                disabled={
+                  !(
+                    this.state.bigScrollButtonsActive ||
+                    this.state.caBackButtonActive
+                  )
+                }
+              >
+                <ListItemText
+                  className="Display__ListItemText"
+                  primary={
+                    <FormattedMessage {...messages.navigationButtonsStyle} />
+                  }
+                  secondary={
+                    <FormattedMessage
+                      {...messages.navigationButtonsStyleSecondary}
+                    />
+                  }
+                />
+                <ListItemSecondaryAction className="Display__Options">
+                  {this.renderNavigationButtonsLocationSelect()}
                 </ListItemSecondaryAction>
               </ListItem>
               <Divider />
@@ -196,6 +294,30 @@ class Navigation extends React.Component {
                     value="active"
                     color="secondary"
                   />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Display__ListItemText"
+                  primary={
+                    <FormattedMessage {...messages.activeImprovePhrase} />
+                  }
+                  secondary={
+                    <FormattedMessage
+                      {...messages.activeImprovePhraseSecondary}
+                    />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <PremiumFeature>
+                    <Switch
+                      checked={this.state.improvePhraseActive || false}
+                      onChange={this.toggleImprovePhraseActive}
+                      value="active"
+                      color="secondary"
+                    />
+                  </PremiumFeature>
                 </ListItemSecondaryAction>
               </ListItem>
             </List>

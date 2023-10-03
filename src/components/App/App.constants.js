@@ -4,9 +4,12 @@ export const DISABLE_TOUR = 'cboard/App/DISABLE_TOUR';
 export const ENABLE_ALL_TOURS = 'cboard/App/ENABLE_ALL_TOURS';
 export const UPDATE_CONNECTIVITY = 'cboard/App/UPDATE_CONNECTIVITY';
 export const UPDATE_DISPLAY_SETTINGS = 'cboard/App/UPDATE_DISPLAY_SETTINGS';
+export const UPDATE_SYMBOLS_SETTINGS = 'cboard/App/UPDATE_SYMBOLS_SETTINGS';
 export const UPDATE_NAVIGATION_SETTINGS =
   'cboard/App/UPDATE_NAVIGATION_SETTINGS';
 export const UPDATE_USER_DATA = 'cboard/App/UPDATE_USER_DATA';
+export const SET_UNLOGGED_USER_LOCATION =
+  'cboard/App/SET_UNLOGGED_USER_LOCATION';
 // language constants
 export const DEFAULT_LANG = 'en-US';
 export const APP_LANGS = [

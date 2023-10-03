@@ -3,9 +3,10 @@
   "advanced": [
     {
       "id": "root",
-      "name": "home",
+      "name": "Cboard Classic Home",
       "nameKey": "cboard.board.home",
       "author": "Cboard",
+      "description": "rootBoardDescription",
       "email": "support@cboard.io",
       "isPublic": true,
       "hidden": false,
@@ -212,7 +213,7 @@
           "backgroundColor": "rgb(187, 222, 251)"
         }
       ],
-      "caption": "https://cboardgroupdiag483.blob.core.windows.net/cblob/1536763463_9b1b336c1684_food.png"
+      "caption": "/symbols/cboard/cboardRoot.png"
     },
     {
       "id": "BJgYav2vp-",

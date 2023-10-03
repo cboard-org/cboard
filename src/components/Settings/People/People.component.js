@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
@@ -13,7 +13,9 @@ import TextField from '@material-ui/core/TextField';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './People.messages';
 import UserIcon from '../../UI/UserIcon';
+import DeleteIcon from '@material-ui/icons/Delete';
 import '../Settings.css';
+import DeleteConfirmationDialog from './DeleteConfirmationDialog';
 
 const propTypes = {
   /**
@@ -39,13 +41,15 @@ const propTypes = {
   /**
    * User birthdate
    */
-  birthdate: PropTypes.string.isRequired
+  birthdate: PropTypes.string.isRequired,
+  onDeleteAccount: PropTypes.func
 };
 
 const defaultProps = {
   name: '',
   email: '',
-  birthdate: ''
+  birthdate: '',
+  location: { country: null, countryCode: null }
 };
 
 const People = ({
@@ -55,9 +59,32 @@ const People = ({
   name,
   email,
   birthdate,
+  location: { country, countryCode },
   onChangePeople,
-  onSubmitPeople
+  onSubmitPeople,
+  onDeleteAccount
 }) => {
+  const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState(false);
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
+  const [errorDeletingAccount, setErrorDeletingAccount] = useState(false);
+
+  const handleCloseDeleteDialog = () => {
+    setOpenDeleteConfirmation(false);
+  };
+
+  const handleDeleteConfirmed = async () => {
+    setIsDeletingAccount(true);
+    setErrorDeletingAccount(false);
+    try {
+      await onDeleteAccount();
+      setIsDeletingAccount(false);
+    } catch (error) {
+      console.error(error);
+      setIsDeletingAccount(false);
+      setErrorDeletingAccount(true);
+    }
+  };
+
   return (
     <div className="People">
       <FullScreenDialog
@@ -142,8 +169,59 @@ const People = ({
                 />
               </ListItemSecondaryAction>
             </ListItem>
+            {country && (
+              <ListItem>
+                <ListItemText
+                  primary={<FormattedMessage {...messages.location} />}
+                />
+                <ListItemSecondaryAction className="Settings--secondaryAction">
+                  <TextField
+                    className="Settings--secondaryAction--textField"
+                    disabled={true}
+                    id="user-location"
+                    label={<FormattedMessage {...messages.location} />}
+                    value={country}
+                    margin="normal"
+                    country-code={countryCode}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+            )}
+            {isLogged && (
+              <ListItem>
+                <ListItemText
+                  primary={
+                    <FormattedMessage {...messages.deleteAccountPrimary} />
+                  }
+                  secondary={
+                    <FormattedMessage {...messages.deleteAccountSecondary} />
+                  }
+                  className={'list_item_left'}
+                />
+                <ListItemSecondaryAction className="Settings--secondaryAction">
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    startIcon={<DeleteIcon />}
+                    className={'delete_button'}
+                    onClick={() => {
+                      setOpenDeleteConfirmation(true);
+                    }}
+                  >
+                    <FormattedMessage {...messages.deleteAccountPrimary} />
+                  </Button>
+                </ListItemSecondaryAction>
+              </ListItem>
+            )}
           </List>
         </Paper>
+        <DeleteConfirmationDialog
+          open={openDeleteConfirmation}
+          handleClose={handleCloseDeleteDialog}
+          handleDeleteConfirmed={handleDeleteConfirmed}
+          isDeletingAccount={isDeletingAccount}
+          errorDeletingAccount={errorDeletingAccount}
+        />
       </FullScreenDialog>
     </div>
   );

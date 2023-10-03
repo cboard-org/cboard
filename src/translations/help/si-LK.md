@@ -2,64 +2,66 @@
 
 ## පටුන
 
-* [Cboard යනු කුමක්ද?](#WhatisCboard)
-* [ලියාපදිංචිය සහ පුරනය වීම](#Registrationandlogin) 
-    * [Cboard සඳහා ලියාපදිංචි වන්නේ කෙසේද?](#HowdoIregisterforCboard)
-    * [මගේ සමාජ මාධ්‍ය ගිණුම් භාවිතා කර මට ලියාපදිංචි විය හැකිද?](#CanIregistermyselfusingmysocialmediaaccounts)
-    * [මම ලියාපදිංචි පරිශීලකයෙකු වූ පසු මම Cboard වෙත පිවිසෙන්නේ කෙසේද?](#HowdoIlogintoCboardonceIamaregistereduser)
-    * [මම ඉවත් වන්නේ කෙසේද?](#HowdoIlogout)
-    * [ලියාපදිංචි සහ ලියාපදිංචි නොවන පරිශීලකයෙකු අතර ඇති වෙනස කුමක්ද?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
-    * [මගේ පරිශීලක තොරතුරු යාවත්කාලීන කරන්නේ කෙසේද?](#HowdoIupdatemyuserinformation)
-    * [මගේ මුරපදය නැවත සකසන්නේ කෙසේද?](#HowdoIresetmypassword)
-* [මිල](#Price) 
-    * [Cboard සඳහා කොපමණ මුදලක් වැය වේද?](#HowmuchdoesCboardcost)
-* [විශේෂාංග](#Features) 
-    * [සහය දක්වන උපාංග සහ මෙහෙයුම් පද්ධතිය කුමක්ද?](#WhatdevicesandOSaresupported)
-    * [Cboard විසින් සහාය දක්වන භාෂා මොනවාද?](#WhichlanguagesaresupportedbyCboard)
-    * [කෝබඩ්ට මගේ පණිවිඩය ශබ්ද නඟා කියවිය හැකිද?](#CanCboardreadmymessageoutaloud)
-    * [කථන හැකියාවන්](#Speechcapabilities)
-    * [අපනයනය සහ ආනයනය](#Exportandimport)
-    * [හැකියාවන් පෙන්වන්න](#Displaycapabilities)
-    * [මට කිසියම් සංචාලන සැකසුම් වෙනස් කළ හැකිද?](#CanIchangeanynavigationsettings)
-    * [අතුරු මුහුණත හරහා සංචලනය](#Navigationthroughtheinterface)
+* [What is Cboard?](#WhatisCboard)
+* [Registration and login](#Registrationandlogin) 
+    * [How do I register for Cboard?](#HowdoIregisterforCboard)
+    * [Can I register myself using my social media accounts?](#CanIregistermyselfusingmysocialmediaaccounts)
+    * [How do I log in to Cboard once I am a registered user?](#HowdoIlogintoCboardonceIamaregistereduser)
+    * [How do I logout?](#HowdoIlogout)
+    * [What is the difference between a registered and a non-registered user?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
+    * [How do I update my user information?](#HowdoIupdatemyuserinformation)
+    * [How do I reset my password?](#HowdoIresetmypassword)
+* [Price](#Price) 
+    * [How much does Cboard cost?](#HowmuchdoesCboardcost)
+* [Features](#Features) 
+    * [What devices and OS are supported?](#WhatdevicesandOSaresupported)
+    * [Which languages are supported by Cboard?](#WhichlanguagesaresupportedbyCboard)
+    * [Can Cboard read my message out aloud?](#CanCboardreadmymessageoutaloud)
+    * [Speech capabilities](#Speechcapabilities)
+    * [Export and import](#Exportandimport)
+    * [Display capabilities](#Displaycapabilities)
+    * [Can I change any navigation settings?](#CanIchangeanynavigationsettings)
+    * [Navigation through the interface](#Navigationthroughtheinterface)
 * [සැකසුම්](#Settings) 
-    * [Cboard හි සැකසුම් වලට ප්‍රවේශ වන්නේ කෙසේද?](#HowdoIaccesssettingsinCboard)
-    * [මගේ පුවරු කට්ටලය Cboard හි මුද්‍රණය කරන්නේ කෙසේද?](#HowdoIprintmyboardsetinCboard)
-    * [සම්පූර්ණ තිරයේ Cboard දකින්නේ කෙසේද?](#HowdoIseeCboardinfullscreen)
-    * [මම පුවරුවක් බෙදා ගන්නේ කෙසේද?](#HowdoIshareaboard)
-* [කතා කිරීම](#Talking) 
-    * [Cboard හි සංකේත සඳහා පුද්ගලිකව පටිගත කරන ලද හ voice ක් එකතු කරන්නේ කෙසේද?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [මම වෙනත් කටහ to කට මාරු වන්නේ කෙසේද?](#HowdoIswitchtoadifferentvoice)
-    * [කටහ sound ක් ඇසෙන ආකාරය වෙනස් කරන්නේ කෙසේද?](#HowdoIchangehowavoicesounds)
-* [මණ්ඩල සංස්කරණය](#BoardEditing) 
-    * [හිස් පුවරුවක් සාදා ගන්නේ කෙසේද?](#HowdoIcreateanemptyboard)
-    * [Cboard හි දැනට පවතින පුවරුවක් පුද්ගලීකරණය කරන්නේ කෙසේද?](#HowdoIpersonalizeanexistingboardinCboard)
-    * [පුවරුවක් සංස්කරණය කිරීමේදී මට මගේම පින්තූර භාවිතා කළ හැකිද?](#CanIusemyownpictureswheneditingaboard)
-    * [පුවරුවක ඇති මූලද්‍රව්‍ය අනුපිළිවෙල වෙනස් කළ හැකිද?](#CanIchangetheorderingoftheelementsinaboard)
-    * [සංස්කරණය කිරීම සඳහා බහු අංග තෝරා ගන්නේ කෙසේද?](#HowdoIselectmultipleelementstoedit)
-    * [මම ටයිල් එකක් සංස්කරණය කරන විට නව සංකේත සොයා ගන්නේ කෙසේද?](#FindSymbols)
-    * [පුවරු උළු ස්ථාවර ස්ථානවල තැබිය හැකිද?](#FixedBoards)
-    * [මගේ පුවරුවේ නිශ්චිත පේළි සහ තීරු ගණනක් සකසන්නේ කෙසේද?](#FixedRows)
-* [අපනයනය සහ ආනයනය](#Exportandimport) 
-    * [මගේ පුවරුව Cboard තුළ අපනයනය කරන්නේ කෙසේද?](#HowdoIexportmyboardinCboard)
-    * [පුවරුව Cboard වෙත ආනයනය කරන්නේ කෙසේද?](#HowdoIimportaboardintoCboard)
-    * [ආනයනය / අපනයනය සඳහා Cboard භාවිතා කරන ගොනු ආකෘතිය කුමක්ද?](#WhatfileformatdoesCboarduseforimportexport)
-* [හැකියාවන් පෙන්වන්න](#Displaycapabilities) 
-    * [දර්ශනය මත මට වෙනස් කළ හැක්කේ කුමක්ද?](#WhatcanIchangeonthedisplay)
-    * [මට Cboard හි බොත්තම් ප්‍රමාණය වෙනස් කළ හැකිද?](#CanIresizebuttonsonCboard)
-* [පරිලෝකනය කිරීම](#Scanning) 
-    * [සංකේත වෙත ප්‍රවේශ වීමට මට ස්කෑනිං ක්‍රම භාවිතා කළ හැකිද?](#CanIusescanningtechniquestoaccesssymbols)
-* [සන්නිවේදන සාදන්නා](#CommunicatorBuilder) 
-    * [සන්නිවේදන සාදන්නා යනු කුමක්ද?](#Whatiscommbuilder)
-    * [සන්නිවේදන පුවරු](#CommunicatorBoards)
-    * [පොදු පුවරු](#PublicBoards)
-    * [මගේ සියලුම පුවරු](#Allmyboards)
+    * [How do I access settings in Cboard?](#HowdoIaccesssettingsinCboard)
+    * [How do I print my board set in Cboard?](#HowdoIprintmyboardsetinCboard)
+    * [How do I see Cboard in fullscreen?](#HowdoIseeCboardinfullscreen)
+    * [How do I share a board?](#HowdoIshareaboard)
+    * [How do I share a phrase?](#HowdoIshareaphrase)
+* [Talking](#Talking) 
+    * [How do I add a personally recorded voice to symbols on Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
+    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
+    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
+* [Board Editing](#BoardEditing) 
+    * [How do I create an empty board?](#HowdoIcreateanemptyboard)
+    * [How do I personalize an existing board in Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
+    * [Can I use my own pictures when editing a board?](#CanIusemyownpictureswheneditingaboard)
+    * [Can I change the ordering of the elements in a board?](#CanIchangetheorderingoftheelementsinaboard)
+    * [How do I select multiple elements to edit?](#HowdoIselectmultipleelementstoedit)
+    * [How can I find new symbols when I am editing a tile?](#FindSymbols)
+    * [Can I place board tiles in fixed positions?](#FixedBoards)
+    * [How do I set a specific number of rows and columns in my board?](#FixedRows)
+* [Export and import](#Exportandimport) 
+    * [How do I export my board in Cboard?](#HowdoIexportmyboardinCboard)
+    * [How do I import a board into Cboard?](#HowdoIimportaboardintoCboard)
+    * [What file format does Cboard use for import/export?](#WhatfileformatdoesCboarduseforimportexport)
+* [Display capabilities](#Displaycapabilities) 
+    * [What can I change on the display?](#WhatcanIchangeonthedisplay)
+    * [Can I resize buttons on Cboard?](#CanIresizebuttonsonCboard)
+    * [Screen scroll through big buttons](#BigScrollButtons)
+* [Scanning](#Scanning) 
+    * [Can I use scanning techniques to access symbols?](#CanIusescanningtechniquestoaccesssymbols)
+* [Communicator builder](#CommunicatorBuilder) 
+    * [What is the communicator builder?](#Whatiscommbuilder)
+    * [Communicator boards](#CommunicatorBoards)
+    * [Public boards](#PublicBoards)
+    * [All my boards](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>Cboard යනු කුමක්ද?
 
 Cboard යනු ළමයින්ට සහ වැඩිහිටියන්ට කථන හා භාෂා දුර්වලතා, පින්තූර හා පෙළ සිට කථනය සමඟ සන්නිවේදනය සඳහා පහසුකම් සපයන නොමිලේ වෙබ් යෙදුමකි.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>ලියාපදිංචිය සහ පුරනය වීම
 
@@ -79,39 +81,39 @@ Cboard සඳහා ලියාපදිංචි වීම සඳහා, ප�
 
 ![විද්‍යුත් තැපැල් ලියාපදිංචි වීම](/images/help/signupemail.png "Email signup")
 
-මෙම තොරතුරු සමාගම සතුව ඇත්තේ Cboard භාවිතය සඳහා සහාය වීමට සහ අවශ්‍ය විටක උපකාර ලබා දීමට පමණි. එය වෙනත් සංවිධාන සමඟ බෙදා නොගනී, (රහස්‍යතා තොරතුරු [බලන්න](https://www.cboard.io/privacy/)).
+This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
 
 ඔබ ඔබේ ගිණුම සත්‍යාපනය කළ පසු ඔබට Cboard වෙත ප්‍රවේශය ලැබෙනු ඇති අතර, ඔබේ ගිණුම සාර්ථකව සත්‍යාපනය කර ඇති බව සනාථ කරන තවත් විද්‍යුත් ලිපියක් ලැබෙනු ඇත.
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>මගේ සමාජ මාධ්‍ය ගිණුම් භාවිතා කර මට ලියාපදිංචි විය හැකිද?
 
-ඔව්! පිවිසුම් පිටුවේදී, ඔබට එසේ කිරීමට අවශ්‍ය නම් ඔබේ ගූගල් හෝ ෆේස්බුක් ගිණුම සමඟ ලියාපදිංචි වීමේ අවස්ථාව ඔබට ලබා දෙනු ඇත. ඔබට විද්‍යුත් තැපැල් ලිපිනයක් සමඟ ලියාපදිංචි විය හැකිය.
+Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>මම ලියාපදිංචි පරිශීලකයෙකු වූ පසු මම Cboard වෙත පිවිසෙන්නේ කෙසේද?
 
-Cboard වෙත ප්‍රවේශ වීම සඳහා, ඔබ ලියාපදිංචි වීමට භාවිතා කළ පළමු පියවර අනුගමනය කරයි, නමුත් පිළිගැනීමේ තිරයේ SIGN UP තේරීම වෙනුවට, LOGIN තෝරන්න. එවිට ඔබ මුලින් අත්සන් කළ විද්‍යුත් තැපෑල සහ මුරපදය ලබා දෙන ලෙස ඔබෙන් අසනු ඇත.
+To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
 
 ![Cboard පිවිසුම](/images/help/login.png "Cboard login")
 
 ### Cboard වින්‍යාස කිරීමට විවිධ විකල්ප මොනවාද?
 
-ඔබ Cboard වෙත පිවිසීමෙන් පසු, Cboard අගුළු හරින ලද මාදිලියේ ඇති විට ලබා දී ඇති සන්නිවේදන මණ්ඩලය වින්‍යාස කිරීමට සහ සංවර්ධනය කිරීමට ඔබට විවිධ විකල්ප වෙත පිවිසිය හැකිය. පහත දැක්වෙන සියලුම ප්‍රධාන විකල්ප ලැයිස්තුව බලන්න:
+Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
 
 ![පුවරු සැකසුම්](/images/help/settings.png "Cboard settings")
 
 ### <a name='HowdoIlogout'></a>මම ඉවත් වන්නේ කෙසේද?
 
-සැකසුම් නිරූපකය තේරීමෙන් ඔබට ඉවත් විය හැකි අතර විකල්පය රතු පැහැයෙන් දිස් වේ. ඔබට දකුණු කෙළවරේ ඇති අගුළු සංකේතය තෝරාගෙන, තුන් වතාවක් ක්ලික් කර තිරය අගුළු හැර රතු තීරුව දිස් වූ පසු, අගුලේ වම්පස ඇති අයිකනය තෝරන්න (ඔබේ පින්තූරය ඔබ පටවා ඇත්නම්) සහ ලොග් වීමේ විකල්පය පිටත රතු පැහැයෙන් දිස් වේ.
+You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
 
 ![යතුරු පුවරුවෙන් ඉවත් වීම](/images/help/logout.png "Cboard logout")
 
 ### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>ලියාපදිංචි සහ ලියාපදිංචි නොවන පරිශීලකයෙකු අතර ඇති වෙනස කුමක්ද?
 
-ලියාපදිංචි පරිශීලකයෙකුට ඔවුන්ගේ පුවරු පුද්ගලීකරණය කිරීමට හැකි වන අතර, සිදුකරන ලද වෙනස්කම් ඔවුන්ගේ ගිණුමට සුරකිනු ඇත, එවිට ඔවුන් නැවත ලොග් වූ විට, ඔවුන්ගේ අභිරුචි කළ පුවරු භාවිතා කළ හැකිය. ලියාපදිංචි නොවූ පරිශීලකයෙකුට වෙනස්කම් ආරක්ෂිතව සුරැකීමට නොහැකි වනු ඇත. ලියාපදිංචි වීමට අපි නිර්දේශ කරමු, එබැවින් ඔබගේ වෙනස්කම් සුරැකීමට සහතික වේ.
+A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
 
 ### <a name='HowdoIupdatemyuserinformation'></a>මගේ පරිශීලක තොරතුරු යාවත්කාලීන කරන්නේ කෙසේද?
 
-ඔබගේ පරිශීලක තොරතුරු යාවත්කාලීන කිරීම සඳහා, ඔබ ඉවත් වීමට උත්සාහ කරන්නේ නම් ඔබ භාවිතා කරන පියවර අනුගමනය කරන්න. පුවරුවේ ඉහළ දකුණු කෙළවරේ ඇති අගුළු සංකේතය තෝරන්න - ක්ලික් කිරීම් හෝ තට්ටු තුනක්, ඔබ තිරය අගුළු ඇරීමෙන් පසු, අගුලේ වම්පස ඇති අයිකනය තෝරන්න (පරිශීලක නාම මුලකුරු, ඡායාරූප), එවිට ඔබට ඔබේ පරිශීලක තොරතුරු සංස්කරණය කළ හැකිය .
+To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
 
 ### <a name='HowdoIresetmypassword'></a>මගේ මුරපදය නැවත සකසන්නේ කෙසේද?
 
@@ -127,11 +129,11 @@ Cboard වෙත ප්‍රවේශ වීම සඳහා, ඔබ ලිය�
 
 ### <a name='WhatdevicesandOSaresupported'></a>සහය දක්වන උපාංග සහ මෙහෙයුම් පද්ධති මොනවාද?
 
-මැක්, වින්ඩෝස් සහ ඇන්ඩ්‍රොයිඩ් මෙහෙයුම් පද්ධති භාවිතා කරමින් ඩෙස්ක්ටොප්, ටැබ්ලට් සහ ජංගම දුරකථන ඇතුළු විවිධාකාර උපාංග භාවිතා කරමින් කෝබෝඩ් මාර්ගගතව ලබා ගත හැකිය. ක්‍රෝම්, ෆයර්ෆොක්ස්, එජ් සහ සෆාරි වැනි බ්‍රව්සර් වල එය වඩාත් හොඳින් දැකගත හැකි අතර ඇන්ඩ්‍රොයිඩ් යෙදුමක් ගූගල් ප්ලේ වෙතින් ලබා ගත හැකිය.
+Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
 
 ![බ්‍රව්සර් සහාය](/images/help/browsers.png "Browser support")
 
-Cboard යනු වෙබ් පාදක යෙදුමක් වන බැවින් එය තනි බ්‍රව්සර් විසින් සපයන සැකසුම් වලට ප්‍රතිචාර දක්වනු ඇත. මෙයින් අදහස් කරන්නේ ඔබට Cboard විසින් සපයන ලද සැකසුම් වලට වෙනස් ප්‍රති results ල ඇති බවයි. උදාහරණයක් ලෙස ඔබට විවිධ කථන විකල්ප ඉදිරිපත් කළ හැකිය.
+Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
 
 පරිගණකය, ටැබ්ලටය හෝ දුරකථන තිරයේ ප්‍රමාණය අනුව ඔබට බ්‍රවුසර විශාලනය හෝ විශාලනය විශාල වශයෙන් භාවිතා කළ හැකි බව අමතක නොකරන්න.
 
@@ -139,39 +141,39 @@ Cboard යනු වෙබ් පාදක යෙදුමක් වන බැ�
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Cboard විසින් සහාය දක්වන භාෂා මොනවාද?
 
-Cboard භාෂා 33 ක් සඳහා සහය දක්වයි. වෙනත් භාෂාවක් තෝරා ගැනීමට SETTINGS වෙත යන්න - LANGUAGE තෝරන්න, පවතින ඒවා දිස්වනු ඇත. තේරීමක් කරන්න, භාෂාව අසල 'ටික්' එකක් දිස්වනු ඇත.
+Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>කෝබඩ්ට මගේ පණිවිඩය ශබ්ද නඟා කියවිය හැකිද?
 
-ඔව්, පණිවුඩ ප්‍රතිදාන කොටුවට එක් කරන විට එක් එක් සංකේතයට පහළින් ඇති තනි ලේබල කියවීමට ඔබේ උපාංගයේ ඇති කෘතිම කථන ප්‍රතිදානය Cboard භාවිතා කරයි. ඔබට සම්පූර්ණ පණිවිඩයක් තෝරා ගත හැකි අතර එය ශබ්ද නඟා කියවනු ඇත. ශබ්දයක්, වචනයක් හෝ වාක්‍ය ඛණ්ඩයක් පුද්ගලිකව පටිගත කිරීම සංකේතයකට එකතු කර ඇත්නම් (කතා කිරීම - හ oice පටිගත කිරීම් යටතේ උපදෙස්) සංස්ලේෂණය කරන ලද හ. වෙනුවට එම පටිගත කිරීම ඔබට ඇසෙනු ඇත. භාෂාවක පරිවර්තනයක් නොමැති විට, දරුවෙකුගේ කටහ need අවශ්‍ය වන විට හෝ උච්චාරණය පිළිගත නොහැකි තැනක මෙය ඉතා ප්‍රයෝජනවත් වේ. කරුණාකර ඔබේ මයික්‍රෝෆෝනයට වෙබ් ප්‍රවේශය ලබා දී ඇති බවට සහතික වන්න.
+Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
 
 ### <a name='Speechcapabilities'></a>කථන හැකියාවන්
 
-කථන හැකියාවන් වෙනස් කිරීම සඳහා, සැකසීම් වෙත යන්න, සහ LANGUAGE කාණ්ඩය යටතේ ස්පීච් කාණ්ඩය වේ. ඔබ ස්පීච් තෝරාගත් විට, ඔබට කෝඩ් එකේ තාරතාව සහ කථන වේගය සංස්කරණය කිරීමට හැකි වේ.
+In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
 
 ![කථන හැකියාවන්](/images/help/speech.png "Speech capabilities")
 
 ### <a name='Exportandimport'></a>අපනයනය සහ ආනයනය
 
-අපනයනය සඳහා ඇති විකල්ප දෙකම භාෂාව සහ කථනයට පහළින් ඇති SYSTEM කාණ්ඩයේ සැකසුම් තුළ වේ. EXPORT කාණ්ඩය මඟින් ඔබට OpenBoard හෝ PDF එකක් උඩුගත කිරීමේ අවස්ථාව ලබා දෙනු ඇත. ඔබ RESTORE තේරීමෙන් පසු IMPORT කාණ්ඩය මඟින් ඔබගේ සුරකින ලද ගොනු විවෘත වේ.
+Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
 
 ![අපනයන හැකියාවන්](/images/help/export.png "Export capabilities")
 
 ### <a name='Displaycapabilities'></a>හැකියාවන් පෙන්වන්න
 
-දර්ශන සැකසුම් SYSTEM කාණ්ඩය තුළ SETTINGS හි සංස්කරණය කළ හැකිය. දර්ශන විකල්පය අපනයනය සහ ආනයනය කිරීමට පහළින් ඇත. ඔබ DISPLAY තෝරාගත් එකක්, ඔබට අවශ්‍ය ප්‍රමාණය තේරීමෙන් UI ප්‍රමාණය මෙන්ම යෙදුම් අකුරු ප්‍රමාණයද වෙනස් කළ හැකිය. රතු තිත ඔබට තෝරා ගැනීමට අවශ්‍ය ප්‍රමාණයට අඩු විය යුතුය.
+Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
 
 ![හැකියාවන් පෙන්වන්න](/images/help/display.png "Display capabilities")
 
 ### <a name='CanIchangeanynavigationsettings'></a>මට කිසියම් සංචාලන සැකසුම් වෙනස් කළ හැකිද?
 
-Cboard වටා ගමන් කිරීමට සහ පණිවිඩ කොටුවේ සංකේත මකා දැමීමට ඔබ භාවිතා කරන ආකාරය සංස්කරණය කිරීමට සහ පහසුකම් සැලසීමට NAVIGATION කොටස භාවිතා කරන්න. SETTINGS හි SYSTEM කාණ්ඩයේ අවසානයේ සැරිසැරීම මඟින් ඔබට තෝරා ගැනීමට පහසු වන විශාල 'පසුපස' බොත්තමක් ලබා ගත හැකිය. පණිවුඩ පෙට්ටිය තුළ ඉදිරිපත් කර ඇති බැවින් එක් එක් සංකේතයට ඉහළින් මකාදැමීමේ ('x') බොත්තමක් දර්ශනය වීමට ඉඩ දිය හැකිය. මෙය වාක්‍යයක් තුළ සංකේත මකා දැමීම පහසු කරයි. නමුත් සමහර පුද්ගලයින් ව්‍යාකූල කළ හැකි බැවින් පරිශීලක අවශ්‍යතා ගැන සැලකිලිමත් වන්න.
+Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
 
 ### <a name='Navigationthroughtheinterface'></a>අතුරු මුහුණත හරහා සංචලනය
 
-Cboard හරහා සැරිසැරීමට සහ පහසුකම් සැලසීමට, NAVIGATION තෝරන්න, SYSTEM හි ඇති අවසාන මෙනු අයිතමය (සියල්ල සැකසීම් වල) පුවරුව භාවිතා කිරීම පහසු කිරීම සඳහා නිශ්චිත තොරතුරු එක් කිරීමට ඔබට ඉඩ සලසයි. සංචාලනය තුළ ඇති පළමු විකල්පය විශාලත්වය නිසා තෝරා ගැනීමට පහසු විශාල 'පසුපස' බොත්තමක් ලබා දේ. සංකේත මකා දැමීම පහසු කිරීම සඳහා දෙවැන්න 'x' බොත්තමක් එක් කරන අතර, තෙවනුව සැකසුම් අගුළු ඇරීමට එක් ක්ලික් කිරීමක් පමණක් අවශ්‍ය කිරීමෙන් අගුළු ඇරීම පහසු කරයි.
+In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
 
 ![සංචාලන හැකියාවන්](/images/help/navigation.png "Navigation capabilities")
 
@@ -181,11 +183,11 @@ Cboard හරහා සැරිසැරීමට සහ පහසුකම් 
 
 ඔබ Cboard වෙත ප්‍රවිෂ්ට වූ පසු, HOME පිටුව විවෘත වේ.
 
-SETTINGS වෙත ප්‍රවේශ වීම සඳහා, ඊතලයට පහළින් දකුණු පස ඇති කුඩා අගුල තුන් වරක් තෝරන්න. ඔබ මෙය කළ පසු, අළු පැහැති තීරුවක් කළු හෝම් තීරුවට පහළින් දිස්වනු ඇති අතර, 'සැකසුම්' බොත්තම කෙලින්ම හෝම් තීරුවේ අගුලේ වම්පස දිස්වනු ඇත, දෙවැන්න දකුණේ සිට.
+In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
 
 ### <a name='HowdoIprintmyboardsetinCboard'></a>මගේ පුවරු කට්ටලය Cboard හි මුද්‍රණය කරන්නේ කෙසේද?
 
-ඔබගේ පුවරුව මුද්‍රණය කිරීම සඳහා, මුල් පිටුව අගුළු ඇරීමෙන් පසු කළු හෝම් තීරුවේ වම් පැත්තේ මුද්‍රණ ලාංඡනය ඔබන්න. ඔබේ තාක්ෂණයට ඇඩෝබි අතේ ගෙන යා හැකි ලේඛනයක් (.pdf) බාගත කෙරේ.
+To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
 
 ### <a name='HowdoIseeCboardinfullscreen'></a>සම්පූර්ණ තිරයේ Cboard දකින්නේ කෙසේද?
 
@@ -197,11 +199,21 @@ Cboard සම්පූර්ණ තිරයේ දැකීම සඳහා, �
 
 පුවරුවක් බෙදා ගැනීමට, දකුණු පස ඇති අගුළු සංකේතය එබීමෙන් තිරය අගුළු ඇරීම, ඉන්පසු ඉහළම පේළියේ (කළු තීරුව), දකුණේ තුන්වන සංකේතය මඟින් ඔබේ පුවරුව විද්‍යුත් තැපෑලෙන්, ෆේස්බුක්, ට්විටර්, හෝ යමෙකුට යැවීමට සබැඳිය පිටපත් කරන්න.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
+
+### <a name='HowdoIshareaphrase'></a>How do I share a phrase?
+
+To share a phrase, only for the first time, unlock the screen, go to settings > Navigation and Buttons > and turn on the 'Show the share phrase button' option.
+
+![Phrase share Settings](https://user-images.githubusercontent.com/21298844/128038972-a2848d47-2675-4e2d-9a15-6f93186f29d6.png)
+
+Assemble a phrase. Then press the share icon that appears on the right of the output phrase bar. Select the social network where you want to share the phrase. One dialog would be open with the phrase in a text field. Press the submit button to share it. If you want to copy the phrase on your clipboard, press the share button and then 'copy to clipboard' option. One Notification would be shown on your screen with a succes message.
+
+![Phrase share button](https://user-images.githubusercontent.com/21298844/128044322-d61491c6-7168-4615-8117-244dc872091e.png)
 
 ## <a name='Talking'></a>කතා කිරීම
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Cboard හි සංකේත සඳහා පුද්ගලිකව පටිගත කරන ලද හ voice ක් එක් කරන්නේ කෙසේද?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>How do I add a personally recorded voice to symbols on Cboard?
 
 1. ඔබට භාවිතා කිරීමට අවශ්‍ය පුවරුව වෙත යන්න.
 
@@ -209,7 +221,7 @@ Cboard සම්පූර්ණ තිරයේ දැකීම සඳහා, �
 
 3. වම් පැත්තේ ඇති EDIT බොත්තම තෝරන්න.
 
-4. ඔබට හ voice පටිගත කිරීමක් එක් කිරීමට අවශ්‍ය සංකේත කොටුව හෝ ටයිල් තෝරන්න. ඔබ ටයිල් එකක් හෝ උළු මාලාවක් තෝරාගත් පසු, එක් එක් නිල් පැහැති ටික් එකක් දිස්වන අතර ඒවා ඉස්මතු වනු ඇත.
+4. Choose which symbol cell or tile to which you want to add a voice recording. Once you select the tile or a series of tiles, a blue tick will appear in each one and they will be highlighted.
 
 5. ලා නිල් තීරුවේ දකුණු පස දකුණු පැත්තේ පෙන්සිල් අයිකනය තෝරන්න.
 
@@ -221,153 +233,163 @@ Cboard සම්පූර්ණ තිරයේ දැකීම සඳහා, �
     
     ඔබ බහු සංකේත තෝරාගෙන ඇත්නම් ඊළඟ සංකේතයට ගොස් ක්‍රියාවලිය නැවත කිරීමට නෙක්ස්ට් භාවිතා කරන්න.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIswitchtoadifferentvoice'></a>මම වෙනත් කටහ to කට මාරු වන්නේ කෙසේද?
+### <a name='HowdoIswitchtoadifferentvoice'></a>How do I switch to a different voice?
 
-කථන හැකියාවන් / කටහ adjust සකස් කිරීම සඳහා, සැකසීම් වෙත යන්න, සහ LANGUAGE කාණ්ඩය යටතේ ස්පීච් කාණ්ඩය වේ. ඔබ ස්පීච් තේරූ විට ඔබට පුවරුවේ තණතීරුව සහ කථන වේගය සංස්කරණය කළ හැකිය. “යතුරු පුවරුවේ ඇති සංකේත සඳහා පුද්ගලිකව පටිගත කරන ලද හ voice ක් එක් කරන්නේ කෙසේද?” යන පිළිතුරෙහි පියවර අනුගමනය කරමින් ඔබට සංකේත සඳහා ඔබේම හ voice පටිගත කළ හැකිය.
+In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
 
-### <a name='HowdoIchangehowavoicesounds'></a>කටහ sound ක් ඇසෙන ආකාරය වෙනස් කරන්නේ කෙසේද?
+### <a name='HowdoIchangehowavoicesounds'></a>How do I change how a voice sounds?
 
-කථන හැකියාවන් / කටහ / / ශබ්දය වෙනස් කිරීම සඳහා, සැකසීම් වෙත යන්න, සහ LANGUAGE කාණ්ඩය යටතේ ස්පීච් කාණ්ඩය තෝරන්න. එවිට ඔබට Cboard හි තණතීරුව සහ කථන වේගය සංස්කරණය කිරීමට හැකි වේ.
+In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
 
 ## <a name='BoardEditing'></a>මණ්ඩල සංස්කරණය
 
-### <a name='HowdoIcreateanemptyboard'></a>හිස් පුවරුවක් සාදා ගන්නේ කෙසේද?
+### <a name='HowdoIcreateanemptyboard'></a>How do I create an empty board?
 
-Cboard හි හිස් පුවරුවක් ෆෝල්ඩරයකට සමාන වේ.
+In Cboard an empty board is equivalent to a folder.
 
-ඔබට නව හෝ හිස් පුවරුවක් සෑදීමට අවශ්‍ය නම් ඔබට නව ෆෝල්ඩරයක් සෑදිය යුතු අතර, එමඟින් කෝබෝඩ් ගබඩා ප්‍රදේශයේ නව පුවරුවක් නිර්මාණය වනු ඇත (ඔබ සංස්කරණ ප්‍රකාරයේදී මැද තීරුවේ ඇති BOARDS වෙත යන විට ඔබට දැකගත හැකිය).
+If you want to create a new or empty board you have to create a new folder, and that will create a new board in the Cboard storage area (which you can see when you go to BOARDS on the middle bar in edit mode).
 
-නව හිස් පුවරුව සංස්කරණය සඳහා වහාම ලබා ගත හැකි අතර එය මූල පුවරුව ලෙස සැකසිය හැකිය (ගොඩනංවන බොත්තම භාවිතා කරමින්), එයින් අදහස් වන්නේ ඔබ ඊළඟ වතාවේ Cboard විවෘත කරන විට ඔබ දකින පළමු පුවරුව එය වනු ඇති බවයි.
+The new empty board will be immediately available for editing and can be set as the root board (using the build button), which means that it will be the first board you see the next time you open Cboard.
 
-නව ෆෝල්ඩරයක් සෑදීමට, තිරය අගුළු ඇරීමෙන් දකුණු පැත්තේ අගුළු බොත්තම තෝරන්න. ඔබ තිරය අගුළු ඇරීමෙන් පසු, ටයිල් එකතු කිරීම සඳහා දකුණු පැත්තේ ප්ලස් (+) සංකේතය තෝරන්න. පළමු සහ ස්වයංක්‍රීය විකල්පය වන ටයිල් / බුටෝන් එක් කිරීමට හෝ ෆෝල්ඩරය තෝරන්න ඔබට මෙම අවස්ථාව ලබා දෙනු ඇත. මෙම ක්‍රියාව මඟින් නව පුවරුවක් සාදනු ලබන අතර ඔබට තවත් උළු හා ෆෝල්ඩර එකතු කළ හැකිය.
+To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
 
-ඔබ ෆෝල්ඩරය නම් කළ පසු ඔබට වර්ණ සැකසුම සහ ලේබලය සහිත ටයිල් එකක් සෑදීමට සමාන ආකාරයකින් රූපයක් උඩුගත කළ හැකිය. මෙම නව ෆෝල්ඩරය ස්වයංක්‍රීයව එයට ඉහළින් ඇති පුවරුවකට සම්බන්ධ වේ (උළු පේළියක් ඇතුළත් කර ඇත්නම්). සංකේත සහ ලේබල වලින් පිරී ඇති තුරු එය හිස් පුවරුවක් ලෙස ඔබේ පුවරු ලැයිස්තුවේ දිස්වනු ඇත.
+Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Cboard හි දැනට පවතින පුවරුවක් පුද්ගලීකරණය කරන්නේ කෙසේද?
+### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>How do I personalize an existing board in Cboard?
 
-පවතින පුවරුවක් පුද්ගලීකරණය කිරීම සඳහා, පුවරුවේ ඉහළ දකුණු කෙළවරේ ඇති ලොක් එක තෝරන්න, (කුරුසියක් සහිත ඊතලයට පහළින්). ඔබ මෙය කළ පසු, කළු හෝම් තීරුවට පහළින් තවත් තීරුවක් දිස්වනු ඇති අතර, ටයිල් එකක් හෝ කොටුවක් එක් කිරීම සඳහා වම් පස කුඩා බ්ලොක් (සංස්කරණය) අයිකනයක් ඔබට හමුවනු ඇත. බ්ලොක් එක තෝරාගත් පසු, අළු තීරුව නිල් පැහැයට හැරවිය යුතු අතර දකුණු පැත්තේ කුඩා කුණු කූඩයක් සහ පැන්සලක් ඔබට පෙනෙනු ඇත.
+In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
 
-![පවතින පුවරුවක් පුද්ගලීකරණය කරන්න](/images/help/personalize.png "personalize an existing board")
+![personalize an existing board](/images/help/personalize.png "personalize an existing board")
 
-පුවරුව පුද්ගලීකරණය කිරීම සඳහා, පැන්සල තෝරන්න, ඔබට ලේබලය වෙනස් කිරීමට, රූපයක් උඩුගත කිරීමට සහ කටහ ization එකතු කිරීමට හැකි වනු ඇත.
+In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='CanIusemyownpictureswheneditingaboard'></a>පුවරුවක් සංස්කරණය කිරීමේදී මට මගේම පින්තූර භාවිතා කළ හැකිද?
+### <a name='CanIusemyownpictureswheneditingaboard'></a>Can I use my own pictures when editing a board?
 
-ඔව්, පුවරුවක් සංස්කරණය කිරීමේදී ඔබට ඔබේම පින්තූරයක් භාවිතා කළ හැකිය. ඔබේම පින්තූරයක් භාවිතා කිරීම සඳහා, ඔබ නව ටයිල් එකක් සාදන විට රූපය උඩුගත කළ හැකිය (පිටුව අගුළු ඇරීමෙන් පසු අළු තීරුවේ ප්ලස් සිග්න් (+) තේරීමෙන්). ඔබේම පින්තූරය සමඟ දැනට පවතින ටයිල් එකක් සංස්කරණය කළ හැකිය.
+Yes, you can use your own picture when editing a board. In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). You can also edit an existing tile with your own picture.
 
-### <a name='CanIchangetheorderingoftheelementsinaboard'></a>පුවරුවක ඇති මූලද්‍රව්‍ය අනුපිළිවෙල වෙනස් කළ හැකිද?
+### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Can I change the ordering of the elements in a board?
 
-ඔව්! ඔබ පුවරුවක් සංස්කරණය කරන විට, LOCK සංකේතය භාවිතා කර තිරය අගුළු හරින්න. ඉන්පසු වම් පස ඇති EDIT වාරණ නිරූපකය තෝරන්න (BUILD නිරූපකයට පහළින්). ඔබට එකම පුවරුව තුළ තැබීමට අවශ්‍ය ඕනෑම තැනකට රූපමය / සංකේතය හෝ ෆෝල්ඩරය ඇදගෙන යා හැකිය.
+Yes! When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
 
-### <a name='HowdoIselectmultipleelementstoedit'></a>සංස්කරණය කිරීම සඳහා බහු අංග තෝරා ගන්නේ කෙසේද?
+### <a name='HowdoIselectmultipleelementstoedit'></a>How do I select multiple elements to edit?
 
-පුවරුවක මූලද්‍රව්‍ය අනුපිළිවෙල වෙනස් කරන ආකාරයටම, නමුත් තෝරාගෙන ඇදගෙන යාම වෙනුවට, ඔබ තෝරා ගන්නේ රූපමය / සංකේත චතුරස්රයේ රවුමයි. බොහෝ සංකේත සංස්කරණය කිරීමට ඔබට එකකට වඩා තෝරා ගත හැකිය. එසේ කිරීමෙන් පසු, දකුණු පැත්තේ පෙන්සිල් අයිකනය තෝරන්න, මෙය තෝරාගත් අංග සංස්කරණය කිරීමට ඔබට ඉඩ සලසයි.
+The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FindSymbols'></a>මම ටයිල් එකක් සංස්කරණය කරන විට නව සංකේත සොයා ගන්නේ කෙසේද?
+### <a name='FindSymbols'></a>How can I find new symbols when I am editing a tile?
 
-පුවරු තීරුවේ වම් පස ඇති EDIT වාරණ නිරූපකය තෝරන්න සහ ඔබ වෙනස් කිරීමට කැමති රූපමය / සංකේතය තෝරන්න. එය තෝරන්න, නිල් වළල්ලට ටික් එකක් ලැබුණු පසු, දකුණු පස ඇති පෙන්සිල් අයිකනය වෙත යන්න. පැන්සල තෝරාගැනීමෙන් සංකේත සෙවීම සඳහා මැග්නීෆයිං ග්ලාස් අයිකනයක් ඇති බව ඔබට පෙනෙනු ඇත. සෙවුම් අංගය සක්‍රිය වූ විට ඔබට සංස්කරණ තීරුවක SEARCH SYMBOL LIBRARY පෙනෙනු ඇත. ඔබ සොයන සංකල්පය / ලේබලය / වචනය ටයිප් කරන්න, එවිට සංකේත දිස්වනු ඇත. ඔබ එක් සංකේතයක් තෝරාගත් පසු එය ස්වයංක්‍රීයව සංස්කරණය ටයිල් පිටුවට ඔබව ගෙන එනු ඇත.
+Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FixedBoards'></a>පුවරු උළු ස්ථාවර ස්ථානවල තැබිය හැකිද?
+### <a name='FixedBoards'></a>Can I place board tiles in fixed positions?
 
-සුපුරුදු පරිදි, නව අධ්යක්ෂක මණ්ඩලයක් නිර්මාණය කරන අවස්ථාවේදී, Cboard එකක් ඇතුල් **චතුර ලෙස මණ්ඩලය**. කෙසේ වෙතත්, පුවරුව **ස්ථාවර පුවරු**බවට පරිවර්තනය කළ හැකිය. ඔවුන්ට පහත ලක්ෂණ ඇත:
+By default, when a new board is created, Cboard will add a **fluent board**. Anyway, it is possible to transform the board into a **fixed board**. They have the following features:
 
 * විවිධ තිර ප්‍රමාණයන් හෝ උපාංග දිශානතිය සඳහා ජාලකය වෙනස් නොවේ. 
 * පේළි සහ තීරු ගණන වින්‍යාසගත කළ හැකිය. 
 * උළු ජාලකයේ ස්ථාවර ස්ථාන ඇත. 
 
-පුවරුවක් ස්ථාවර පුවරුවක් බවට පරිවර්තනය කිරීම සඳහා, පුවරුව සංස්කරණය කර මෙවලම් තීරුවේ ඇති විකල්පය මාරු කර එය සවි කර ඇත. ඔබේ පුවරුව එහි පෙනුම වෙනස් කරන අතර පේළි සහ තීරු දර්ශක දර්ශණය වේ.
+To convert a board into a fixed board, simply edit the board and switch the option in the toolbar to make it fixed. Your board will change its appearance and the rows and columns indicators will be displayed.
 
-![ස්ථාවර පුවරුව](/images/help/fixedBoard.png "Fixed board")
+![Fixed board](/images/help/fixedBoard.png "Fixed board")
 
-### <a name='FixedRows'></a>මගේ පුවරුවේ නිශ්චිත පේළි සහ තීරු ගණනක් සකසන්නේ කෙසේද?
+### <a name='FixedRows'></a>How do I set a specific number of rows and columns in my board?
 
-පළමුව, ඔබ පුවරුව **ස්ථාවර පුවරු** බවට පරිවර්තනය කළ යුතුය (පෙර මාතෘකාව බලන්න). සංස්කරණ ප්‍රකාරයේදී, ඔබේ පුවරුව පේළි සහ තීරු දර්ශක පෙන්වනු ඇත. ඔබට අවශ්‍ය පේළි සහ තීරු ගණන වැඩි කිරීම හෝ අඩු කිරීම සඳහා ඔබට මෙම පාලනයන් සමඟ අන්තර් ක්‍රියා කළ හැකිය.
+First, you have to transform the board into a **fixed board** (see previous topic). In edition mode, your board will display rows and columns indicators. You can interact with these controls in order to increase or decrease the number of rows and columns you want.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>අපනයනය සහ ආනයනය
 
-### <a name='HowdoIexportmyboardinCboard'></a>මගේ පුවරුව Cboard තුළ අපනයනය කරන්නේ කෙසේද?
+### <a name='HowdoIexportmyboardinCboard'></a>How do I export my board in Cboard?
 
-ඔබගේ පුවරුව Cboard වලින් අපනයනය කිරීම සඳහා, SETTINGS වෙත යන්න, ඔබ සැකසීම් විවෘත කළ විගසම, EXPORT විකල්පය භාෂාවට සහ කථාවට පහළින් පහළට මුහුණලා ඇති ඊතලයක් ලෙස දිස්වනු ඇත.
+In order to export your board in Cboard, go to SETTINGS, and as soon as you open Settings, the EXPORT option will appear as a downward facing arrow, below Language and Speech.
 
-EXPORT තෝරන්න, සහ OPENBOARD හෝ EXPORT තේරීමෙන් ඔබේ කාඩ්පත බාගත කරන්න.
+Select EXPORT, and download your Cboard by selecting either OPENBOARD or EXPORT.
 
-### <a name='HowdoIimportaboardintoCboard'></a>මම පුවරුව Cboard වෙත ආනයනය කරන්නේ කෙසේද?
+### <a name='HowdoIimportaboardintoCboard'></a>How do I import a board into Cboard?
 
-පුවරුවක් ආයාත කිරීම සඳහා, අපනයනය සඳහා භාවිතා කරන පියවර අනුගමනය කරන්න. ආනයනය පහළින් අපනයනය, ඊට පහළින් තිරස් තීරුවක් සහිත ඉහළට මුහුණලා ඊතලයක්.
+In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>ආනයනය / අපනයනය සඳහා Cboard භාවිතා කරන ගොනු ආකෘතිය කුමක්ද?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>What file format does Cboard use for import/export?
 
-පුවරු ආනයනය හා අපනයනය කිරීම සඳහා ඔබට විකල්ප දෙකක් තිබේ:
+In order to Import and Export boards you have two options:
 
 * Cboard ස්වදේශීය ගොනු පුවරු භාවිතා කරන්න.
-* OpenBoard ආකෘතිගත ගොනු භාවිතා කරන්න. [විවෘත පුවරු ආකෘතිය](https://www.openboardformat.org/)ගැන වැඩිදුර ඉගෙන ගන්න
+* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>හැකියාවන් පෙන්වන්න
 
-### <a name='WhatcanIchangeonthedisplay'></a>දර්ශනය මත මට වෙනස් කළ හැක්කේ කුමක්ද?
+### <a name='WhatcanIchangeonthedisplay'></a>What can I change on the display?
 
-දර්ශන සැකසුම් SYSTEM කාණ්ඩය තුළ SETTINGS හි සංස්කරණය කළ හැකිය. දර්ශන විකල්පය අපනයන සහ ආනයන පහතින් ඇත. ඔබ DISPLAY තෝරාගත් පසු, ඔබට අවශ්‍ය ප්‍රමාණය තේරීමෙන් පරිශීලක අතුරුමුහුණත (UI) ප්‍රමාණය මෙන්ම යෙදුම් අකුරු ප්‍රමාණයද වෙනස් කළ හැකිය. රතු තිත ඔබට තෝරා ගැනීමට අවශ්‍ය ප්‍රමාණයට අඩු විය යුතුය.
+Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
 
-### <a name='CanIresizebuttonsonCboard'></a>මට Cboard හි බොත්තම් ප්‍රමාණය වෙනස් කළ හැකිද?
+### <a name='CanIresizebuttonsonCboard'></a>Can I resize buttons on Cboard?
 
-ඔව්! ඔබට සැකසුම් තුළ උළු හෝ බොත්තම් ප්‍රමාණය වෙනස් කළ හැකිය. SYSTEM කාණ්ඩයේ, DISPLAY තෝරන්න, ඔබට ප්‍රමාණය සඳහා විකල්ප 3 ක් ලබා දෙනු ඇත: සම්මත, විශාල, අති විශාල. පහත රූපය බලන්න:
+Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
 
-![හැකියාවන් පෙන්වන්න](/images/help/display.png "Display capabilities")
+![Display capabilities](/images/help/display.png "Display capabilities")
+
+### <a name='BigScrollButtons'></a>Screen scroll through big buttons
+
+It is also possible to scroll up and down a board using a couple of big buttons that can be added from the settings section. This is especially useful for eye-tracker device users, as the buttons allow to scroll the board without needing to slide the screen. To enable this feature, go to the settings section and look for the "enable big scroll buttons " switch. Toggle the switch and save the settings. See figure below:
+
+![Enable big scroll buttons](/images/help/bigScrollSettings.png "Big scroll buttons settings")
+
+Then, you should see a couple of big buttons at the top and the bottom of a board if it is large enough, as displayed in the below image:
+
+![Big scroll buttons](/images/help/bigScrollButtons.png "Big scroll buttons")
 
 ## <a name='Scanning'></a>පරිලෝකනය කිරීම
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>සංකේත වෙත ප්‍රවේශ වීමට මට ස්කෑනිං ක්‍රම භාවිතා කළ හැකිද?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Can I use scanning techniques to access symbols?
 
-පරිලෝකනය යනු තේරීම් කට්ටලයේ ඇති අයිතම කාලයාගේ ඇවෑමෙන් අනුපිළිවෙලින් ඉදිරිපත් කෙරෙන අතර පරිශීලකයා වක්‍රව තේරීමක් කරයි, සාමාන්‍යයෙන් ස්විච් ප්‍රවේශයෙනි. Cboard මත පරිලෝකනය කිරීම SETTINGS සහ SYSTEM කාණ්ඩය තුළ ක්‍රියාත්මක වේ. පරිලෝකනය සඳහා විවිධ සැකසුම් ඇත. සක්‍රීය කිරීම තේරීමෙන් ඔබ පළමුව ස්කෑන් සැකසුම සක්‍රීය කළ යුතුය. එවිට ඔබට කාල ප්‍රමාදය මෙන්ම ක්‍රමය (ස්වයංක්‍රීය හෝ අත්පොත) තෝරා ගත හැකිය. ටැබ්ලටයක් හෝ ස්මාර්ට් ජංගම දුරකතනයක් භාවිතා කරන විට එයට එයටම ආවේණික පරිලෝකන විකල්පයක් තිබිය හැකි බව කරුණාවෙන් සලකන්න.
+Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
 
 ## <a name='CommunicatorBuilder'></a>සන්නිවේදන සාදන්නා
 
-### <a name='Whatiscommbuilder'></a>සන්නිවේදන සාදන්නා යනු කුමක්ද?
+### <a name='Whatiscommbuilder'></a>What is the communicator builder?
 
-සන්නිවේදක සාදන්නා යනු පුවරු පිටපත් කිරීම, මකා දැමීම, ප්‍රකාශ කිරීම, එකතු කිරීම සහ ඉවත් කිරීම සඳහා ඒවා හැසිරවීමට ඔබට ඉඩ සලසන ලක්ෂණයකි. ක්‍රියාකාරීත්වයට ප්‍රවේශ වීම සඳහා ඔබට සැකසුම් අගුළු ඇරීමට සහ 'බිල්ඩ්' බොත්තම ක්ලික් කරන්න. විවිධ ටැබ් තුනකින් ව්‍යුහගත කර ඇති නව පිටුවක් ඔබට පෙනෙනු ඇත: පුවරු, පොදු පුවරු, මගේ සියලුම පුවරු. පහත රූපය බලන්න:
+The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
 
-![සන්නිවේදන සාදන්නා](/images/help/communicator.png "Communicator builder")
+![Communicator builder](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>සන්නිවේදන පුවරු
+### <a name='CommunicatorBoards'></a>Communicator boards
 
-සන්නිවේදක තනන්නා තුළ ඔබ දකින පෙරනිමි පටිත්ත වන්නේ සන්නිවේදන පුවරු පටිත්තයි, එමඟින් ඔබේ සන්නිවේදකයාට ඇතුළත් කර ඇති සියලුම පුවරු පෙන්වනු ඇත. පහත දැක්වෙන ක්‍රියා බොත්තම් වලින් ඔබේ සන්නිවේදකයාගේ වෙනස්කම් කළ හැකිය:
+The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
 
 * සන්නිවේදකයාගෙන් පුවරුව ඉවත් කරන්න: මෙම බොත්තම සන්නිවේදකයාගෙන් පුවරුවෙන් ඉවත් වන නමුත් දත්ත ගබඩාවෙන් පුවරුව මකා නොදමනු ඇති අතර එය තවමත් 'මගේ සියලුම පුවරු' ටැබය යටතේ පවතී.
 
 * පුවරුව root ලෙස සකසන්න: ඔබ බොත්තමට පිවිසෙන සෑම අවස්ථාවකම දර්ශනය වන පළමු පුවරුව ලෙස මෙම බොත්තම මඟින් පුවරුව අර්ථ දක්වනු ඇත.
 
-![සන්නිවේදන පුවරු](/images/help/communicatorBoards.png "Communicator boards")
+![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>පොදු පුවරු
+### <a name='PublicBoards'></a>Public boards
 
-* පිටපත් පුවරුව: මෙම බොත්තම මඟින් පුවරුවේ පිටපතක් නිර්මාණය වන අතර එය ඔබේ සන්නිවේදකයාට එකතු කරනු ඇත. මෙය මහජන මණ්ඩලයේ පිටපතක් බැවින් මුල් මහජන මණ්ඩලයට බලපෑමක් නොකර ඔබට අවශ්‍ය පරිදි මෙම පුවරුව සංස්කරණය කළ හැකිය.
+* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
 
-![පොදු පුවරු](/images/help/PublicBoards.png "Public boards")
+![Public boards](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>මගේ සියලුම පුවරු
+### <a name='Allmyboards'></a>All my boards
 
-JUST ලියාපදිංචි පරිශීලකයින්ට මෙම ටැබ් ක්‍රියාකාරිත්වයට ප්‍රවේශ විය හැකි බව කරුණාවෙන් සලකන්න.
+Please note that JUST registered users can access to this tab functionality.
 
 * සන්නිවේදකයාගෙන් පුවරුව ඉවත් කරන්න: මෙම බොත්තම සන්නිවේදකයාගෙන් පුවරුවෙන් ඉවත් වන නමුත් දත්ත ගබඩාවෙන් පුවරුව මකා නොදමන අතර එය තවමත් පවතී.
 
 * සන්නිවේදකයාට පුවරුව එක් කරන්න: මෙම බොත්තමට සන්නිවේදකයාට පුවරුව ඇතුළත් වේ.
 
-* ප්‍රකාශන මණ්ඩලය: මෙම ක්‍රියාව මඟින් මණ්ඩලය ප්‍රසිද්ධ කරනු ඇති අතර එය පොදු පුවරු පටිත්ත යටතේ ප්‍රදර්ශනය කෙරේ. සෑම කෙනෙකුටම ඔබේ පුවරුව දැකිය හැකිය.
+* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
     
- * පුවරුව ප්‍රකාශයට පත් නොකරන්න: මෙම ක්‍රියාව මඟින් පුවරුව පුද්ගලික වන අතර එය පොදු පුවරු පටිත්ත යටතේ දර්ශනය නොවේ. ඔබේ පුවරුව කිසිවෙකුට නොපෙනේ.
+ * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
     
- * පුවරුව මකන්න: මෙම ක්‍රියාව මඟින් පුවරුව මකා දැමිය හැකි අතර එය නැවත ලබා ගත නොහැක. පුවරුව දත්ත ගබඩාවෙන් ඉවත් කරනු ලැබේ.
+ * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
 
-![මගේ සියලුම පුවරු](/images/help/AllmyBoards.png "All my boards")
+![All my boards](/images/help/AllmyBoards.png "All my boards")

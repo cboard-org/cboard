@@ -179,7 +179,11 @@ class Export extends React.Component {
                               board =>
                                 !board.hidden && (
                                   <MenuItem key={board.id} value={board}>
-                                    {board.name}
+                                    {board.name ||
+                                      (board.nameKey &&
+                                        intl.formatMessage({
+                                          id: board.nameKey
+                                        }))}
                                   </MenuItem>
                                 )
                             )}
@@ -204,6 +208,9 @@ class Export extends React.Component {
                             <MenuItem value="cboard">Cboard</MenuItem>
                             <MenuItem value="openboard">OpenBoard</MenuItem>
                             <MenuItem value="pdf">PDF</MenuItem>
+                            <MenuItem value="picsee_pdf">
+                              PicseePal PDF
+                            </MenuItem>
                           </Select>
                         </FormControl>
                       </div>
@@ -268,6 +275,7 @@ class Export extends React.Component {
                           <MenuItem value="cboard">Cboard</MenuItem>
                           <MenuItem value="openboard">OpenBoard</MenuItem>
                           <MenuItem value="pdf">PDF</MenuItem>
+                          <MenuItem value="picsee_pdf">PicseePal PDF</MenuItem>
                         </Select>
                       </FormControl>
                     )}
