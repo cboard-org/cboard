@@ -1,8 +1,4 @@
-import {
-  persistCombineReducers,
-  persistReducer,
-  createMigrate
-} from 'redux-persist';
+import { persistCombineReducers, createMigrate } from 'redux-persist';
 
 import appReducer from './components/App/App.reducer';
 import languageProviderReducer from './providers/LanguageProvider/LanguageProvider.reducer';
@@ -29,6 +25,7 @@ const boardMigrations = {
 
 const config = {
   key: 'root',
+  storage,
   version: 0,
   migrate: createMigrate(boardMigrations, { debug: false })
 };
