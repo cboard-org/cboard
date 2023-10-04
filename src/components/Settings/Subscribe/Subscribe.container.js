@@ -34,14 +34,17 @@ export class SubscribeContainer extends PureComponent {
   };
 
   state = {
-    cancelSubscriptionStatus: ''
+    cancelSubscriptionStatus: '',
+    updatingStatus: true
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const { updateIsSubscribed, updatePlans } = this.props;
     const requestOrigin =
       'Function: componentDidMount - Component: Subscribe Container';
-    updateIsSubscribed(requestOrigin);
+    this.setState({ updatingStatus: true });
+    await updateIsSubscribed(requestOrigin);
+    this.setState({ updatingStatus: false });
     updatePlans();
   }
 
@@ -351,6 +354,7 @@ export class SubscribeContainer extends PureComponent {
         onPaypalApprove={this.handlePaypalApprove}
         onCancelSubscription={this.handleCancelSubscription}
         cancelSubscriptionStatus={this.state.cancelSubscriptionStatus}
+        updatingStatus={this.state.updatingStatus}
       />
     );
   }
