@@ -169,7 +169,7 @@ export class SubscriptionProvider extends Component {
           window.CdvPurchase.store.finish(receipt);
           return;
         }
-        if ([EXPIRED, NOT_SUBSCRIBED]) {
+        if ([EXPIRED, NOT_SUBSCRIBED].includes(state)) {
           const { isInFreeCountry, isOnTrialPeriod } = this.props;
           updateSubscription({
             status: state,
