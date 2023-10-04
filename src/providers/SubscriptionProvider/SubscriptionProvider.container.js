@@ -121,6 +121,11 @@ export class SubscriptionProvider extends Component {
       })
       .unverified(response => {
         if (isIOS()) {
+          const networError =
+            response.payload.message ===
+              'Unable to proceed with validation, Network Error' ||
+            'Unable to proceed with validation, timeout exceeded';
+          if (networError) return;
           const isAccountAlreadyBought =
             response.payload.message === 'Transaction ID already exists';
           if (isAccountAlreadyBought) {
