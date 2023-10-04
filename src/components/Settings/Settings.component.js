@@ -25,7 +25,7 @@ import FullScreenDialog from '../UI/FullScreenDialog';
 import Paper from '@material-ui/core/Paper';
 import UserIcon from '../UI/UserIcon';
 import SettingsTour from './SettingsTour.component';
-import { isCordova, isAndroid, isIOS } from '../../cordova-util';
+import { isCordova, isAndroid } from '../../cordova-util';
 
 import './Settings.css';
 import { CircularProgress } from '@material-ui/core';
