@@ -92,10 +92,10 @@ export class LanguageContainer extends Component {
     downloadingLangError: { ttsError: false, langError: false }
   };
 
-  handleSubmit = async (optionalLang = null) => {
+  handleSubmit = async (optionalLang = null, isNewVoiceAvailable = false) => {
     const { onLangChange } = this.props;
     const selectedLang = optionalLang ? optionalLang : this.state.selectedLang;
-    onLangChange(selectedLang);
+    onLangChange(selectedLang, isNewVoiceAvailable);
     this.initArasaacDB(selectedLang);
     try {
       await API.updateSettings({
@@ -462,7 +462,8 @@ export class LanguageContainer extends Component {
     });
     this.refreshLanguageList();
     if (isDiferentTts) return;
-    await this.handleSubmit(selectedLang);
+    const isNewVoiceAvailable = true;
+    await this.handleSubmit(selectedLang, isNewVoiceAvailable);
     showNotification(
       <FormattedMessage {...messages.instaledLangSuccesNotification} />
     );

@@ -124,7 +124,8 @@ function speechProviderReducer(state = initialState, action) {
           options: {
             ...state.options,
             voiceURI:
-              state.options.lang.substring(0, 2) !== action.lang.substring(0, 2)
+              state.options.lang.substring(0, 2) !==
+                action.lang.substring(0, 2) || action.isNewVoiceAvailable
                 ? getVoiceURI(action.lang, state.voices)
                 : state.options.voiceURI,
             lang:
