@@ -196,17 +196,19 @@ export class LanguageContainer extends Component {
   onDialogAcepted = downloadingLangData => {
     const { marketId, lang, ttsName, continueOnline } = downloadingLangData;
     this.setState({ openDialog: { open: false, downloadingLangData: {} } });
-    onAndroidPause(() => this.pauseCallback());
     const downloadingLangState = {
       isdownloading: true,
       isDiferentTts: false,
       engineName: ttsName,
       marketId: marketId,
-      selectedLang: lang
+      selectedLang: lang,
+      firstClick: false,
+      continueOnline: false
     };
     this.props.setDownloadingLang(downloadingLangState);
     if (continueOnline) this.handleSubmit(lang);
     window.cordova.plugins.market.open(marketId);
+    navigator.app.exitApp();
   };
 
   onCloseDialog = () => {
