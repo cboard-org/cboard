@@ -1014,8 +1014,10 @@ function definePDFfont(intl) {
   return font;
 }
 
-export default {
+const exportHelpers = {
   openboardExportAdapter,
   cboardExportAdapter,
   pdfExportAdapter
 };
+
+export default exportHelpers;
