@@ -5,7 +5,7 @@ exports[`UserIcon tests default renderer 1`] = `
   label="label"
 >
   <React.Fragment>
-    <UNDEFINED />
+    <Memo />
   </React.Fragment>
 </IconButton>
 `;
@@ -15,11 +15,11 @@ exports[`UserIcon tests with user 1`] = `
   label="Some Name"
 >
   <React.Fragment>
-    <ForwardRef(WithStyles(ForwardRef(Avatar)))
+    <WithStyles(ForwardRef(Avatar))
       className="UserIcon__Avatar some-green-class"
     >
       SN
-    </ForwardRef(WithStyles(ForwardRef(Avatar)))>
+    </WithStyles(ForwardRef(Avatar))>
   </React.Fragment>
 </IconButton>
 `;
@@ -29,14 +29,14 @@ exports[`UserIcon tests with user with facebook photos 1`] = `
   label="Some Name"
 >
   <React.Fragment>
-    <ForwardRef(WithStyles(ForwardRef(Avatar)))
+    <WithStyles(ForwardRef(Avatar))
       className="UserIcon__Avatar some-green-class"
     >
       <img
         alt="Some Name"
         src="some-picture-link.png"
       />
-    </ForwardRef(WithStyles(ForwardRef(Avatar)))>
+    </WithStyles(ForwardRef(Avatar))>
   </React.Fragment>
 </IconButton>
 `;
