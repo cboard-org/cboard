@@ -2,13 +2,13 @@
 
 exports[`ClearButton tests default renderer 1`] = `
 <Unknown>
-  <WithStyles(ForwardRef(IconButton))
+  <ForwardRef(WithStyles(ForwardRef(IconButton)))
     aria-label="Clear"
     className="Output__button__sm"
   >
-    <Memo
+    <UNDEFINED
       className="Output__icon__sm"
     />
-  </WithStyles(ForwardRef(IconButton))>
+  </ForwardRef(WithStyles(ForwardRef(IconButton)))>
 </Unknown>
 `;

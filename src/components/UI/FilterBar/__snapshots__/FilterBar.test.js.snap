@@ -4,7 +4,7 @@ exports[`FilterBar tests default renderer 1`] = `
 <div
   className="FilterBar"
 >
-  <WithStyles(ForwardRef(FormGroup))
+  <ForwardRef(WithStyles(ForwardRef(FormGroup)))
     className="FilterBar__FormGroup"
     row={true}
   />

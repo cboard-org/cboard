@@ -4,57 +4,57 @@ exports[`Communicator tests default renderer 1`] = `
 <div
   className="CommunicatorToolbar"
 >
-  <WithStyles(ForwardRef(Button))
+  <ForwardRef(WithStyles(ForwardRef(Button)))
     className="Communicator__title"
     disabled={false}
     id="boards-button"
     onClick={[Function]}
   >
-    <Memo />
+    <UNDEFINED />
     <FormattedMessage
       defaultMessage="Boards"
       id="cboard.components.CommunicatorToolbar.boards"
       values={Object {}}
     />
-  </WithStyles(ForwardRef(Button))>
-  <WithStyles(ForwardRef(Menu))
+  </ForwardRef(WithStyles(ForwardRef(Button)))>
+  <ForwardRef(WithStyles(ForwardRef(Menu)))
     anchorEl={null}
     className="CommunicatorToolbar__menu"
     id="boards-menu"
     onClose={[Function]}
     open={false}
   >
-    <WithStyles(ForwardRef(ListItem))
+    <ForwardRef(WithStyles(ForwardRef(ListItem)))
       className="CommunicatorToolbar__menuitem"
       onClick={[Function]}
     >
-      <WithStyles(ForwardRef(ListItemAvatar))>
-        <WithStyles(ForwardRef(Avatar))>
-          <Memo />
-        </WithStyles(ForwardRef(Avatar))>
-      </WithStyles(ForwardRef(ListItemAvatar))>
-      <WithStyles(ForwardRef(ListItemText))
+      <ForwardRef(WithStyles(ForwardRef(ListItemAvatar)))>
+        <ForwardRef(WithStyles(ForwardRef(Avatar)))>
+          <UNDEFINED />
+        </ForwardRef(WithStyles(ForwardRef(Avatar)))>
+      </ForwardRef(WithStyles(ForwardRef(ListItemAvatar)))>
+      <ForwardRef(WithStyles(ForwardRef(ListItemText)))
         inset={true}
         primary="board-1-name-key"
         secondary="cboard.components.CommunicatorToolbar.tiles"
       />
-    </WithStyles(ForwardRef(ListItem))>
-    <WithStyles(ForwardRef(ListItem))
+    </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+    <ForwardRef(WithStyles(ForwardRef(ListItem)))
       className="CommunicatorToolbar__menuitem"
       onClick={[Function]}
     >
-      <WithStyles(ForwardRef(ListItemAvatar))>
-        <WithStyles(ForwardRef(Avatar))>
-          <Memo />
-        </WithStyles(ForwardRef(Avatar))>
-      </WithStyles(ForwardRef(ListItemAvatar))>
-      <WithStyles(ForwardRef(ListItemText))
+      <ForwardRef(WithStyles(ForwardRef(ListItemAvatar)))>
+        <ForwardRef(WithStyles(ForwardRef(Avatar)))>
+          <UNDEFINED />
+        </ForwardRef(WithStyles(ForwardRef(Avatar)))>
+      </ForwardRef(WithStyles(ForwardRef(ListItemAvatar)))>
+      <ForwardRef(WithStyles(ForwardRef(ListItemText)))
         inset={true}
         primary="board-2-name"
         secondary="cboard.components.CommunicatorToolbar.tiles"
       />
-    </WithStyles(ForwardRef(ListItem))>
-  </WithStyles(ForwardRef(Menu))>
+    </ForwardRef(WithStyles(ForwardRef(ListItem)))>
+  </ForwardRef(WithStyles(ForwardRef(Menu)))>
   <WithWidth(WithMobileDialog)
     onClose={[Function]}
     onSubmit={[Function]}
@@ -67,7 +67,7 @@ exports[`Communicator tests default renderer 1`] = `
       />
     }
   >
-    <WithStyles(ForwardRef(TextField))
+    <ForwardRef(WithStyles(ForwardRef(TextField)))
       autoFocus={true}
       fullWidth={true}
       label={
@@ -87,16 +87,16 @@ exports[`Communicator tests default renderer 1`] = `
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--start"
   >
-    <WithStyles(ForwardRef(Button))
+    <ForwardRef(WithStyles(ForwardRef(Button)))
       className="edit__communicator"
       disabled={false}
       onClick={[Function]}
     >
-      <Memo
+      <UNDEFINED
         className="CommunicatorToolbar__group CommunicatorToolbar__group--start--button"
       />
       cboard.components.CommunicatorToolbar.editCommunicator
-    </WithStyles(ForwardRef(Button))>
+    </ForwardRef(WithStyles(ForwardRef(Button)))>
   </div>
   <div
     className="CommunicatorToolbar__group CommunicatorToolbar__group--end"

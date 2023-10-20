@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CommunicatorDialog tests default renderer 1`] = `
-<WithStyles(FullScreenDialog)
+<ForwardRef(WithStyles(FullScreenDialog))
   buttons={
     <CommunicatorDialogButtons
       intl={
@@ -17,13 +17,13 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
   open={false}
   title="cboard.components.CommunicatorDialog.title"
 >
-  <WithStyles(ForwardRef(Paper))
+  <ForwardRef(WithStyles(ForwardRef(Paper)))
     className=""
   >
     <FullScreenDialogContent
       className="CommunicatorDialog__container"
     >
-      <WithStyles(ForwardRef(Tabs))
+      <ForwardRef(WithStyles(ForwardRef(Tabs)))
         className="CommunicatorDialog__tabs"
         fixed="top"
         onChange={[Function]}
@@ -31,23 +31,23 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
         value={0}
         variant="scrollable"
       >
-        <WithStyles(ForwardRef(Tab))
+        <ForwardRef(WithStyles(ForwardRef(Tab)))
           className="active"
           id="CommunicatorDialog__BoardBtn"
           label="cboard.components.CommunicatorDialog.communicatorBoards"
         />
-        <WithStyles(ForwardRef(Tab))
+        <ForwardRef(WithStyles(ForwardRef(Tab)))
           className=""
           id="CommunicatorDialog__PublicBoardsBtn"
           label="cboard.components.CommunicatorDialog.allBoards"
         />
-        <WithStyles(ForwardRef(Tab))
+        <ForwardRef(WithStyles(ForwardRef(Tab)))
           className=""
           disabled={false}
           id="CommunicatorDialog__AllMyBoardsBtn"
           label="cboard.components.CommunicatorDialog.myBoards"
         />
-      </WithStyles(ForwardRef(Tabs))>
+      </ForwardRef(WithStyles(ForwardRef(Tabs)))>
       <div
         className="CommunicatorDialog__content"
       >
@@ -92,8 +92,8 @@ exports[`CommunicatorDialog tests default renderer 1`] = `
         </React.Fragment>
       </div>
     </FullScreenDialogContent>
-  </WithStyles(ForwardRef(Paper))>
-</WithStyles(FullScreenDialog)>
+  </ForwardRef(WithStyles(ForwardRef(Paper)))>
+</ForwardRef(WithStyles(FullScreenDialog))>
 `;
 
 exports[`CommunicatorDialog tests loading behavior 1`] = `
