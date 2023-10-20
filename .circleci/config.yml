@@ -26,7 +26,7 @@ jobs:
       # run tests
       - run:
           name: Run Unit Tests
-          command: yarn test --silent --updateSnapshot  --no-watchman --maxWorkers=50% --testPathPattern='/Board|Communicator/'
+          command: yarn test --updateSnapshot  --no-watchman --runInBand --detectOpenHandles --testPathPattern='/Board|Communicator|App|Settings|Account|UI/'
   image:
     docker:
       # specify the version you desire here
