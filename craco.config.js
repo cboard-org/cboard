@@ -3,7 +3,7 @@ const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 module.exports = {
   webpack: {
     entry: './src/index.js',
-    plugins: [new NodePolyfillPlugin()],
+    plugins: [new NodePolyfillPlugin({ excludeAliases: ['console'] })],
     module: {
       loaders: [
         {
