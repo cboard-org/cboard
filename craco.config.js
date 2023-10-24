@@ -2,6 +2,7 @@ const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 module.exports = {
   webpack: {
+    entry: './src/index.js',
     plugins: [new NodePolyfillPlugin()],
     module: {
       loaders: [
