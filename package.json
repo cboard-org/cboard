@@ -56,7 +56,6 @@
     "moment": "2.29.4",
     "mongoose": "^6.12.0",
     "ogv": "^1.8.9",
-    "opencollective": "^1.0.3",
     "pdfmake": "^0.2.7",
     "prop-types": "^15.8.1",
     "query-string": "^6.14.1",
@@ -156,10 +155,9 @@
     "encrypt:prod": "./scripts/encrypt-private.sh prod",
     "translations:pull": "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
     "translations:push": "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
-    "eject": "react-scripts eject",
-    "postinstall": "opencollective postinstall"
+    "eject": "react-scripts eject"
   },
-  "collective": {
+  "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/cboard"
   },
