@@ -17,7 +17,6 @@
   "private": false,
   "license": "GPL-3.0-only",
   "dependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@cospired/i18n-iso-languages": "^2.2.0",
     "@crowdin/crowdin-api-client": "^1.24.0",
     "@ctrl/react-adsense": "^1.7.0",
@@ -92,6 +91,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@craco/craco": "^7.1.0",
     "@types/mime-types": "^2.1.1",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
