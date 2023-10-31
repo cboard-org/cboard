@@ -79,7 +79,7 @@ export class WelcomeScreen extends Component {
     if (isAndroid() || isIOS()) {
       const FirebasePlugin = window.FirebasePlugin;
       FirebasePlugin.authenticateUserWithGoogle(
-        '',
+        process.env.REACT_APP_GOOGLE_FIREBASE_WEB_CLIENT_SIGN_IN,
         function(credential) {
           window.location.hash = `#/login/googleidtoken/callback?id_token=${
             credential.idToken
