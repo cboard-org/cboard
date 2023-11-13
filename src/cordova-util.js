@@ -275,72 +275,49 @@ export const requestCvaWritePermissions = () => {
   }
 };
 
-export const requestCvaPermissions = () => {
-  if (isCordova()) {
+export const requestCvaPermissions = async () => {
+  if (isAndroid()) {
     var permissions = window.cordova.plugins.permissions;
-    permissions.checkPermission(
-      permissions.READ_EXTERNAL_STORAGE,
-      function(status) {
-        console.log('Has READ_EXTERNAL_STORAGE:', status.hasPermission);
-        if (!status.hasPermission) {
-          permissions.requestPermission(
-            permissions.READ_EXTERNAL_STORAGE,
+    const androidPermissions = {
+      READ_EXTERNAL_STORAGE: 'READ_EXTERNAL_STORAGE',
+      RECORD_AUDIO: 'RECORD_AUDIO'
+    };
+
+    for (let permission in androidPermissions) {
+      try {
+        const { hasPermission } = await new Promise((resolve, reject) => {
+          permissions.checkPermission(
+            permissions[permission],
             function(status) {
-              console.log(
-                'success requesting READ_EXTERNAL_STORAGE permission'
-              );
+              console.log(`Has ${permission}:`, status.hasPermission);
+              resolve(status);
             },
             function(err) {
-              console.warn('No permissions granted for READ_EXTERNAL_STORAGE');
+              console.log(err);
+              resolve({ hasPermission: false });
             }
           );
+        });
+        if (!hasPermission) {
+          await new Promise((resolve, reject) => {
+            permissions.requestPermission(
+              permissions[permission],
+              function(status) {
+                console.log(`Success requesting ${permission} permission`);
+                if (!status.hasPermission)
+                  console.log(`No permissions granted for ${permission}`);
+                resolve(status);
+              },
+              function(err) {
+                console.log(`No permissions granted for ${permission}`);
+                reject(err);
+              }
+            );
+          });
         }
-      },
-      function(err) {
-        console.log(err);
+      } catch (err) {
+        console.error(err);
       }
-    );
-
-    permissions.checkPermission(
-      permissions.RECORD_AUDIO,
-      function(status) {
-        console.log('Has RECORD_AUDIO:', status.hasPermission);
-        if (!status.hasPermission) {
-          permissions.requestPermission(
-            permissions.RECORD_AUDIO,
-            function(status) {
-              console.log('success requesting RECORD_AUDIO permission');
-            },
-            function(err) {
-              console.warn('No permissions granted for RECORD_AUDIO');
-            }
-          );
-        }
-      },
-      function(err) {
-        console.log(err);
-      }
-    );
-
-    // permissions.checkPermission(
-    //   permissions.CAMERA,
-    //   function(status) {
-    //     console.log('Has CAMERA:', status.hasPermission);
-    //     if (!status.hasPermission) {
-    //       permissions.requestPermission(
-    //         permissions.CAMERA,
-    //         function(status) {
-    //           console.log('success requesting CAMERA permission');
-    //         },
-    //         function(err) {
-    //           console.warn('No permissions granted for CAMERA');
-    //         }
-    //       );
-    //     }
-    //   },
-    //   function(err) {
-    //     console.log(err);
-    //   }
-    // );
+    }
   }
 };
