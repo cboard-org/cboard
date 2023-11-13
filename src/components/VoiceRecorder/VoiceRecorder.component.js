@@ -32,11 +32,6 @@ class VoiceRecorder extends Component {
     isRecording: false,
     isPlaying: false
   };
-  componentDidMount() {
-    if (isCordova()) {
-      requestCvaPermissions();
-    }
-  }
 
   startRecording = () => {
     navigator.mediaDevices

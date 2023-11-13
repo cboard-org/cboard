@@ -52,9 +52,6 @@ class InputImage extends Component {
   };
   render() {
     const { intl } = this.props;
-    if (isCordova()) {
-      requestCvaPermissions();
-    }
     return (
       <div className="InputImage">
         <PhotoCameraIcon />

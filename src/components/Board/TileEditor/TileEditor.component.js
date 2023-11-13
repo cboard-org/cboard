@@ -34,7 +34,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import ImageEditor from '../ImageEditor';
 
 import API from '../../../api';
-import { isAndroid, writeCvaFile } from '../../../cordova-util';
+import {
+  isAndroid,
+  requestCvaPermissions,
+  writeCvaFile
+} from '../../../cordova-util';
 import { convertImageUrlToCatchable } from '../../../helpers';
 import PremiumFeature from '../../PremiumFeature';
 
@@ -119,12 +123,9 @@ export class TileEditor extends Component {
     this.setState({ editingTiles: props.editingTiles });
   }
   componentDidUpdate(prevProps) {
-    if (
-      this.props.open !== prevProps.open &&
-      this.props.open &&
-      this.editingTile()
-    ) {
-      this.setLinkedBoard();
+    if (this.props.open !== prevProps.open && this.props.open) {
+      if (this.editingTile()) this.setLinkedBoard();
+      if (isAndroid()) requestCvaPermissions();
     }
   }
 
