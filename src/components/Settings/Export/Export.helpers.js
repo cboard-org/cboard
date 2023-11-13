@@ -372,16 +372,24 @@ function getCellWidths(columns, picsee = false) {
   return cellWidths;
 }
 
-async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
+async function generatePDFBoard(
+  board,
+  intl,
+  breakPage = true,
+  picsee = false,
+  exportAllBoardSize
+) {
   const header = {
     absolutePosition: { x: 0, y: 5 },
     text: board.name || '',
     alignment: 'center',
     fontSize: 8
   };
+
   const columns =
     board.isFixed && board.grid ? board.grid.columns : CBOARD_COLUMNS;
   const rows = board.isFixed && board.grid ? board.grid.rows : CBOARD_ROWS;
+
   const cellWidths = getCellWidths(columns, picsee);
 
   const table = {
@@ -401,8 +409,22 @@ async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
   }
 
   const grid = board.isFixed
-    ? await generateFixedBoard(board, rows, columns, intl, picsee)
-    : await generateNonFixedBoard(board, rows, columns, intl, picsee);
+    ? await generateFixedBoard(
+        board,
+        rows,
+        columns,
+        intl,
+        picsee,
+        exportAllBoardSize
+      )
+    : await generateNonFixedBoard(
+        board,
+        rows,
+        columns,
+        intl,
+        picsee,
+        exportAllBoardSize
+      );
 
   const lastGridRowDiff = columns - grid[grid.length - 2].length; // labels row
   if (lastGridRowDiff > 0) {
@@ -427,7 +449,14 @@ function chunks(array, size) {
   return results;
 }
 
-async function generateFixedBoard(board, rows, columns, intl, picsee = false) {
+async function generateFixedBoard(
+  board,
+  rows,
+  columns,
+  intl,
+  picsee = false,
+  exportAllBoardSize
+) {
   let currentRow = 0;
   let cont = 0;
 
@@ -482,7 +511,8 @@ async function generateFixedBoard(board, rows, columns, intl, picsee = false) {
           columns,
           currentRow,
           pageBreak,
-          picsee
+          picsee,
+          exportAllBoardSize
         );
         cont++;
       }
@@ -496,7 +526,8 @@ async function generateNonFixedBoard(
   rows,
   columns,
   intl,
-  picsee = false
+  picsee = false,
+  exportAllBoardSize
 ) {
   // Do a grid with 2n rows
   const grid = new Array(Math.ceil(board.tiles.length / columns) * 2);
@@ -526,7 +557,8 @@ async function generateNonFixedBoard(
       columns,
       currentRow,
       pageBreak,
-      picsee
+      picsee,
+      exportAllBoardSize
     );
   }, Promise.resolve());
   return grid;
@@ -540,7 +572,8 @@ const addTileToGrid = async (
   columns,
   currentRow,
   pageBreak = false,
-  picsee = false
+  picsee = false,
+  exportAllBoardSize
 ) => {
   const { label, image } = getPDFTileData(tile, intl);
   const fixedRow = currentRow * 2;
@@ -598,6 +631,7 @@ const addTileToGrid = async (
   const labelData = {
     text: label,
     alignment: 'center',
+    fontSize: exportAllBoardSize,
     fillColor: hexBackgroundColor,
     border: PDF_GRID_BORDER[labelPosition].labelData
   };
@@ -845,9 +879,13 @@ export async function cboardExportAdapter(allBoards = [], board) {
   }
 }
 
-export async function pdfExportAdapter(boards = [], intl, picsee = false) {
+export async function pdfExportAdapter(
+  boards = [],
+  exportAllBoardSize,
+  intl,
+  picsee = false
+) {
   const font = definePDFfont(intl);
-
   const docDefinition = {
     pageSize: 'A4',
     pageOrientation: 'landscape',
@@ -858,6 +896,9 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
     }
   };
   if (picsee) {
+    //exportAllBoardSize = exportAllBoardSize - 4;
+    exportAllBoardSize =
+      exportAllBoardSize > 20 ? exportAllBoardSize - 3 : exportAllBoardSize;
     docDefinition.background = function() {
       return {
         stack: [
@@ -921,7 +962,13 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
   const content = await boards.reduce(async (prev, board, i) => {
     const prevContent = await prev;
     const breakPage = i !== 0;
-    const boardPDFData = await generatePDFBoard(board, intl, breakPage, picsee);
+    const boardPDFData = await generatePDFBoard(
+      board,
+      intl,
+      breakPage,
+      picsee,
+      exportAllBoardSize
+    );
     return prevContent.concat(boardPDFData);
   }, Promise.resolve([]));
 

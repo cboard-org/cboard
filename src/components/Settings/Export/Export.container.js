@@ -19,6 +19,7 @@ export class ExportContainer extends PureComponent {
   handleExportClick = async (
     type = 'cboard',
     singleBoard = '',
+    exportAllBoardSize = '',
     doneCallback
   ) => {
     const exportConfig = EXPORT_CONFIG_BY_TYPE[type];
@@ -42,6 +43,7 @@ export class ExportContainer extends PureComponent {
         if (singleBoard) {
           await EXPORT_HELPERS[exportConfig.callback](
             [singleBoard],
+            exportAllBoardSize,
             intl,
             true
           );
@@ -49,18 +51,35 @@ export class ExportContainer extends PureComponent {
           const currentBoard = boards.filter(
             board => board.id === activeBoardId
           );
-          await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl, true);
+          await EXPORT_HELPERS[exportConfig.callback](
+            currentBoard,
+            exportAllBoardSize,
+            intl,
+            true
+          );
         }
       } else if (type !== 'pdf' && !singleBoard) {
-        await EXPORT_HELPERS[exportConfig.callback](boards, intl);
+        await EXPORT_HELPERS[exportConfig.callback](
+          boards,
+          exportAllBoardSize,
+          intl
+        );
       } else {
         if (singleBoard) {
-          await EXPORT_HELPERS[exportConfig.callback]([singleBoard], intl);
+          await EXPORT_HELPERS[exportConfig.callback](
+            [singleBoard],
+            exportAllBoardSize,
+            intl
+          );
         } else {
           const currentBoard = boards.filter(
             board => board.id === activeBoardId
           );
-          await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl);
+          await EXPORT_HELPERS[exportConfig.callback](
+            currentBoard,
+            exportAllBoardSize,
+            intl
+          );
         }
       }
       const showBoardDowloadedNotification = () => {

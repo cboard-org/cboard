@@ -18,6 +18,18 @@ export default defineMessages({
     id: 'cboard.components.Settings.Export.exportAll',
     defaultMessage: 'Export All Boards'
   },
+  properties: {
+    id: 'cboard.components.Settings.Export.properties',
+    defaultMessage: 'Settings'
+  },
+  propertiesSize: {
+    id: 'cboard.components.Settings.Export.propertiesSize',
+    defaultMessage: 'General PDF settings'
+  },
+  size: {
+    id: 'cboard.components.Settings.Export.size',
+    defaultMessage: 'Font size'
+  },
   exportAllSecondary: {
     id: 'cboard.components.Settings.Export.exportAllSecondary',
     defaultMessage:

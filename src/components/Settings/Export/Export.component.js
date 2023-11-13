@@ -39,6 +39,7 @@ class Export extends React.Component {
     this.state = {
       exportSingleBoard: '',
       exportAllBoard: '',
+      exportAllBoardSize: '16',
       singleBoard: '',
       loadingSingle: false,
       loadingAll: false,
@@ -61,6 +62,13 @@ class Export extends React.Component {
     });
   };
 
+  handleSizeChange = event => {
+    this.setState({
+      boardError: false,
+      exportAllBoardSize: event.target.value
+    });
+  };
+
   handleAllBoardChange = event => {
     const doneCallback = () => {
       this.setState({
@@ -74,7 +82,12 @@ class Export extends React.Component {
         exportAllBoard: event.target.value
       },
       () => {
-        this.props.onExportClick(this.state.exportAllBoard, '', doneCallback);
+        this.props.onExportClick(
+          this.state.exportAllBoard,
+          '',
+          this.state.exportAllBoardSize,
+          doneCallback
+        );
       }
     );
   };
@@ -101,6 +114,7 @@ class Export extends React.Component {
         this.props.onExportClick(
           this.state.exportSingleBoard,
           this.state.singleBoard,
+          this.state.exportAllBoardSize,
           doneCallback
         );
       }
@@ -279,6 +293,44 @@ class Export extends React.Component {
                         </Select>
                       </FormControl>
                     )}
+                  </div>
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Export__ListItemText"
+                  primary={<FormattedMessage {...messages.properties} />}
+                  secondary={<FormattedMessage {...messages.propertiesSize} />}
+                />
+                <ListItemSecondaryAction>
+                  <div className="Export__SelectContainer">
+                    {this.state.loadingAll && (
+                      <CircularProgress
+                        size={25}
+                        className="Export__SelectContainer--spinner"
+                        thickness={7}
+                      />
+                    )}
+                    <FormControl
+                      className="Export__SelectContainer__Select"
+                      variant="standard"
+                    >
+                      <InputLabel id="export-all-select-label-size">
+                        {intl.formatMessage(messages.size)}
+                      </InputLabel>
+                      <Select
+                        labelId="export-all-select-label-size"
+                        id="export-all-select-size"
+                        autoWidth={false}
+                        value={this.state.exportAllBoardSize}
+                        onChange={this.handleSizeChange}
+                      >
+                        <MenuItem value="12">Small</MenuItem>
+                        <MenuItem value="16">Medium</MenuItem>
+                        <MenuItem value="22">Large</MenuItem>
+                      </Select>
+                    </FormControl>
                   </div>
                 </ListItemSecondaryAction>
               </ListItem>
