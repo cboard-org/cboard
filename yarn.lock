@@ -3974,10 +3974,10 @@ brotli@^1.2.0:
   dependencies:
     base64-js "^1.1.2"
 
-browser-image-resizer@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/browser-image-resizer/-/browser-image-resizer-1.2.0.tgz#7cbe7e3aa4c01f83f5441585208d90df40fa1696"
-  integrity sha512-xMiB6BnRsD6RWmkD6Av90qXY7uaAOXJPaS5D8cSazyao/bx6ENCm67XGl6BIhn1ETjK52yEs8A/atmMPp74M4A==
+browser-image-resizer@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/browser-image-resizer/-/browser-image-resizer-2.4.1.tgz#b3332bbd6745efb72c9c63b4578b2a29f199ace3"
+  integrity sha512-gqrmr7+NTI9FgZVVyw/GIqwJE3MhNWaBn1R5ptu75r+/M5ncyntSMQYuYhOPonm44qQNnkGN9cnghlpd9h1Hug==
 
 browser-process-hrtime@^1.0.0:
   version "1.0.0"
