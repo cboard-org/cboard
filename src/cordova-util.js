@@ -280,7 +280,9 @@ export const requestCvaPermissions = async () => {
     var permissions = window.cordova.plugins.permissions;
     const androidPermissions = {
       READ_EXTERNAL_STORAGE: 'READ_EXTERNAL_STORAGE',
-      RECORD_AUDIO: 'RECORD_AUDIO'
+      RECORD_AUDIO: 'RECORD_AUDIO',
+      READ_MEDIA_IMAGES: 'READ_MEDIA_IMAGES',
+      READ_MEDIA_AUDIO: 'READ_MEDIA_AUDIO'
     };
 
     for (let permission in androidPermissions) {
