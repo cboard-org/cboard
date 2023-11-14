@@ -50,33 +50,37 @@ class InputImage extends Component {
   }
 
   onClick = async () => {
-    const imageURL = await window.cordova.plugins.safMediastore.selectFile();
-    const imageName = await window.cordova.plugins.safMediastore.getFileName(
-      imageURL
-    );
-    const file = await new Promise((resolve, reject) => {
-      window.resolveLocalFileSystemURL(
-        imageURL,
-        fileEntry => {
-          fileEntry.file(
-            file => {
-              resolve(file);
-            },
-            err => {
-              console.error(err);
-              resolve(null);
-            }
-          );
-        },
-        err => {
-          console.error(err);
-          resolve(null);
-        }
+    try {
+      const imageURL = await window.cordova.plugins.safMediastore.selectFile();
+      const imageName = await window.cordova.plugins.safMediastore.getFileName(
+        imageURL
       );
-    });
+      const file = await new Promise((resolve, reject) => {
+        window.resolveLocalFileSystemURL(
+          imageURL,
+          fileEntry => {
+            fileEntry.file(
+              file => {
+                resolve(file);
+              },
+              err => {
+                console.error(err);
+                resolve(null);
+              }
+            );
+          },
+          err => {
+            console.error(err);
+            resolve(null);
+          }
+        );
+      });
 
-    if (file) {
-      await this.resizeImage(file, imageName);
+      if (file) {
+        await this.resizeImage(file, imageName);
+      }
+    } catch (err) {
+      console.error(err);
     }
   };
 
