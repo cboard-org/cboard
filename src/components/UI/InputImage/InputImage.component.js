@@ -13,7 +13,7 @@ const configLQ = {
   maxWidth: 200,
   maxHeight: 200,
   autoRotate: true,
-  debug: true,
+  debug: false,
   mimeType: 'image/png'
 };
 const configHQ = {
@@ -21,7 +21,7 @@ const configHQ = {
   maxWidth: 800,
   maxHeight: 800,
   autoRotate: true,
-  debug: true,
+  debug: false,
   mimeType: 'image/png'
 };
 class InputImage extends Component {
