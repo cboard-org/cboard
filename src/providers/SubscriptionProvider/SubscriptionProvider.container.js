@@ -111,7 +111,9 @@ export class SubscriptionProvider extends Component {
 
     window.CdvPurchase.store.validator = async function(receipt, callback) {
       try {
-        const transaction = transformReceipt(receipt);
+        const transaction = isAndroid()
+          ? transformReceipt(receipt)
+          : receipt.transactions[0];
 
         const res = await API.postTransaction(transaction);
         if (!res.ok) throw res;
