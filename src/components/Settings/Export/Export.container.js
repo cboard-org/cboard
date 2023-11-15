@@ -19,7 +19,7 @@ export class ExportContainer extends PureComponent {
   handleExportClick = async (
     type = 'cboard',
     singleBoard = '',
-    exportAllBoardSize = '',
+    labelFontSize = '',
     doneCallback
   ) => {
     const exportConfig = EXPORT_CONFIG_BY_TYPE[type];
@@ -43,7 +43,7 @@ export class ExportContainer extends PureComponent {
         if (singleBoard) {
           await EXPORT_HELPERS[exportConfig.callback](
             [singleBoard],
-            exportAllBoardSize,
+            labelFontSize,
             intl,
             true
           );
@@ -53,7 +53,7 @@ export class ExportContainer extends PureComponent {
           );
           await EXPORT_HELPERS[exportConfig.callback](
             currentBoard,
-            exportAllBoardSize,
+            labelFontSize,
             intl,
             true
           );
@@ -61,14 +61,14 @@ export class ExportContainer extends PureComponent {
       } else if (type !== 'pdf' && !singleBoard) {
         await EXPORT_HELPERS[exportConfig.callback](
           boards,
-          exportAllBoardSize,
+          labelFontSize,
           intl
         );
       } else {
         if (singleBoard) {
           await EXPORT_HELPERS[exportConfig.callback](
             [singleBoard],
-            exportAllBoardSize,
+            labelFontSize,
             intl
           );
         } else {
@@ -77,7 +77,7 @@ export class ExportContainer extends PureComponent {
           );
           await EXPORT_HELPERS[exportConfig.callback](
             currentBoard,
-            exportAllBoardSize,
+            labelFontSize,
             intl
           );
         }

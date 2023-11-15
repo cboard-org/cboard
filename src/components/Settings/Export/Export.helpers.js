@@ -377,7 +377,7 @@ async function generatePDFBoard(
   intl,
   breakPage = true,
   picsee = false,
-  exportAllBoardSize
+  labelFontSize
 ) {
   const header = {
     absolutePosition: { x: 0, y: 5 },
@@ -415,7 +415,7 @@ async function generatePDFBoard(
         columns,
         intl,
         picsee,
-        exportAllBoardSize
+        labelFontSize
       )
     : await generateNonFixedBoard(
         board,
@@ -423,7 +423,7 @@ async function generatePDFBoard(
         columns,
         intl,
         picsee,
-        exportAllBoardSize
+        labelFontSize
       );
 
   const lastGridRowDiff = columns - grid[grid.length - 2].length; // labels row
@@ -455,7 +455,7 @@ async function generateFixedBoard(
   columns,
   intl,
   picsee = false,
-  exportAllBoardSize
+  labelFontSize
 ) {
   let currentRow = 0;
   let cont = 0;
@@ -512,7 +512,7 @@ async function generateFixedBoard(
           currentRow,
           pageBreak,
           picsee,
-          exportAllBoardSize
+          labelFontSize
         );
         cont++;
       }
@@ -527,7 +527,7 @@ async function generateNonFixedBoard(
   columns,
   intl,
   picsee = false,
-  exportAllBoardSize
+  labelFontSize
 ) {
   // Do a grid with 2n rows
   const grid = new Array(Math.ceil(board.tiles.length / columns) * 2);
@@ -558,7 +558,7 @@ async function generateNonFixedBoard(
       currentRow,
       pageBreak,
       picsee,
-      exportAllBoardSize
+      labelFontSize
     );
   }, Promise.resolve());
   return grid;
@@ -573,7 +573,7 @@ const addTileToGrid = async (
   currentRow,
   pageBreak = false,
   picsee = false,
-  exportAllBoardSize
+  labelFontSize
 ) => {
   const { label, image } = getPDFTileData(tile, intl);
   const fixedRow = currentRow * 2;
@@ -631,7 +631,7 @@ const addTileToGrid = async (
   const labelData = {
     text: label,
     alignment: 'center',
-    fontSize: exportAllBoardSize,
+    fontSize: labelFontSize,
     fillColor: hexBackgroundColor,
     border: PDF_GRID_BORDER[labelPosition].labelData
   };
@@ -640,12 +640,12 @@ const addTileToGrid = async (
 
   imageData.width = Math.min(IMG_WIDTH.column[columns], IMG_WIDTH.row[rows]);
 
-  if (imageData.width <= 37) {
-    labelData.fontSize = 7;
-  } else if (imageData.width <= 40) {
-    labelData.fontSize = 8;
-  } else if (imageData.width <= 45) {
-    labelData.fontSize = 9;
+  if (labelFontSize <= 9) {
+    imageData.width = 45;
+  } else if (labelFontSize <= 12) {
+    imageData.width = 40;
+  } else if (labelFontSize <= 16) {
+    imageData.width = 37;
   }
 
   let value1,
@@ -881,7 +881,7 @@ export async function cboardExportAdapter(allBoards = [], board) {
 
 export async function pdfExportAdapter(
   boards = [],
-  exportAllBoardSize,
+  labelFontSize,
   intl,
   picsee = false
 ) {
@@ -896,9 +896,6 @@ export async function pdfExportAdapter(
     }
   };
   if (picsee) {
-    //exportAllBoardSize = exportAllBoardSize - 4;
-    exportAllBoardSize =
-      exportAllBoardSize > 20 ? exportAllBoardSize - 3 : exportAllBoardSize;
     docDefinition.background = function() {
       return {
         stack: [
@@ -967,7 +964,7 @@ export async function pdfExportAdapter(
       intl,
       breakPage,
       picsee,
-      exportAllBoardSize
+      labelFontSize
     );
     return prevContent.concat(boardPDFData);
   }, Promise.resolve([]));

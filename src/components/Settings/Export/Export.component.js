@@ -18,6 +18,7 @@ import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Export.messages';
 
 import './Export.css';
+import ListSubheader from '@material-ui/core/ListSubheader';
 
 const propTypes = {
   /**
@@ -39,7 +40,7 @@ class Export extends React.Component {
     this.state = {
       exportSingleBoard: '',
       exportAllBoard: '',
-      exportAllBoardSize: '16',
+      labelFontSize: '12',
       singleBoard: '',
       loadingSingle: false,
       loadingAll: false,
@@ -65,7 +66,7 @@ class Export extends React.Component {
   handleSizeChange = event => {
     this.setState({
       boardError: false,
-      exportAllBoardSize: event.target.value
+      labelFontSize: event.target.value
     });
   };
 
@@ -85,7 +86,7 @@ class Export extends React.Component {
         this.props.onExportClick(
           this.state.exportAllBoard,
           '',
-          this.state.exportAllBoardSize,
+          this.state.labelFontSize,
           doneCallback
         );
       }
@@ -114,7 +115,7 @@ class Export extends React.Component {
         this.props.onExportClick(
           this.state.exportSingleBoard,
           this.state.singleBoard,
-          this.state.exportAllBoardSize,
+          this.state.labelFontSize,
           doneCallback
         );
       }
@@ -130,7 +131,7 @@ class Export extends React.Component {
           title={<FormattedMessage {...messages.export} />}
           onClose={onClose}
         >
-          <Paper>
+          <Paper className="Export__section">
             <List>
               <ListItem className="Export__ListItem">
                 <ListItemText
@@ -296,11 +297,21 @@ class Export extends React.Component {
                   </div>
                 </ListItemSecondaryAction>
               </ListItem>
-              <Divider />
+            </List>
+          </Paper>
+          <Paper className="Export__section">
+            <List
+              className="Export__List"
+              subheader={
+                <ListSubheader>
+                  <FormattedMessage {...messages.properties} />
+                </ListSubheader>
+              }
+            >
               <ListItem>
                 <ListItemText
                   className="Export__ListItemText"
-                  primary={<FormattedMessage {...messages.properties} />}
+                  primary={<FormattedMessage {...messages.size} />}
                   secondary={<FormattedMessage {...messages.propertiesSize} />}
                 />
                 <ListItemSecondaryAction>
@@ -323,12 +334,12 @@ class Export extends React.Component {
                         labelId="export-all-select-label-size"
                         id="export-all-select-size"
                         autoWidth={false}
-                        value={this.state.exportAllBoardSize}
+                        value={this.state.labelFontSize}
                         onChange={this.handleSizeChange}
                       >
-                        <MenuItem value="12">Small</MenuItem>
-                        <MenuItem value="16">Medium</MenuItem>
-                        <MenuItem value="22">Large</MenuItem>
+                        <MenuItem value="9">Small</MenuItem>
+                        <MenuItem value="12">Medium</MenuItem>
+                        <MenuItem value="16">Large</MenuItem>
                       </Select>
                     </FormControl>
                   </div>

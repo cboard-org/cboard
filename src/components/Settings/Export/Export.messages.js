@@ -20,11 +20,12 @@ export default defineMessages({
   },
   properties: {
     id: 'cboard.components.Settings.Export.properties',
-    defaultMessage: 'Settings'
+    defaultMessage: 'PDF Settings'
   },
   propertiesSize: {
     id: 'cboard.components.Settings.Export.propertiesSize',
-    defaultMessage: 'General PDF settings'
+    defaultMessage:
+      'Select the desired font size. This option is useful if you have problems with the dimensions of the exported board.'
   },
   size: {
     id: 'cboard.components.Settings.Export.size',
