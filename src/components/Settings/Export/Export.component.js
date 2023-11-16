@@ -19,6 +19,11 @@ import messages from './Export.messages';
 
 import './Export.css';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import {
+  LARGE_FONT_SIZE,
+  MEDIUM_FONT_SIZE,
+  SMALL_FONT_SIZE
+} from './Export.constants';
 
 const propTypes = {
   /**
@@ -40,7 +45,7 @@ class Export extends React.Component {
     this.state = {
       exportSingleBoard: '',
       exportAllBoard: '',
-      labelFontSize: '12',
+      labelFontSize: MEDIUM_FONT_SIZE,
       singleBoard: '',
       loadingSingle: false,
       loadingAll: false,
@@ -304,15 +309,17 @@ class Export extends React.Component {
               className="Export__List"
               subheader={
                 <ListSubheader>
-                  <FormattedMessage {...messages.properties} />
+                  <FormattedMessage {...messages.pdfSettings} />
                 </ListSubheader>
               }
             >
               <ListItem>
                 <ListItemText
                   className="Export__ListItemText"
-                  primary={<FormattedMessage {...messages.size} />}
-                  secondary={<FormattedMessage {...messages.propertiesSize} />}
+                  primary={<FormattedMessage {...messages.fontSize} />}
+                  secondary={
+                    <FormattedMessage {...messages.fontSizeSecondary} />
+                  }
                 />
                 <ListItemSecondaryAction>
                   <div className="Export__SelectContainer">
@@ -328,7 +335,7 @@ class Export extends React.Component {
                       variant="standard"
                     >
                       <InputLabel id="export-all-select-label-size">
-                        {intl.formatMessage(messages.size)}
+                        {intl.formatMessage(messages.fontSize)}
                       </InputLabel>
                       <Select
                         labelId="export-all-select-label-size"
@@ -337,9 +344,15 @@ class Export extends React.Component {
                         value={this.state.labelFontSize}
                         onChange={this.handleSizeChange}
                       >
-                        <MenuItem value="9">Small</MenuItem>
-                        <MenuItem value="12">Medium</MenuItem>
-                        <MenuItem value="16">Large</MenuItem>
+                        <MenuItem value={SMALL_FONT_SIZE}>
+                          <FormattedMessage {...messages.small} />
+                        </MenuItem>
+                        <MenuItem value={MEDIUM_FONT_SIZE}>
+                          <FormattedMessage {...messages.medium} />
+                        </MenuItem>
+                        <MenuItem value={LARGE_FONT_SIZE}>
+                          <FormattedMessage {...messages.large} />
+                        </MenuItem>
                       </Select>
                     </FormControl>
                   </div>
