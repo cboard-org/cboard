@@ -20,7 +20,9 @@ import {
   PDF_GRID_WIDTH,
   PDF_BORDER_WIDTH,
   PICSEEPAL_IMAGES_WIDTH,
-  PDF_IMAGES_WIDTH
+  PDF_IMAGES_WIDTH,
+  SMALL_FONT_SIZE,
+  LARGE_FONT_SIZE
 } from './Export.constants';
 import {
   LABEL_POSITION_ABOVE,
@@ -372,16 +374,24 @@ function getCellWidths(columns, picsee = false) {
   return cellWidths;
 }
 
-async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
+async function generatePDFBoard(
+  board,
+  intl,
+  breakPage = true,
+  picsee = false,
+  labelFontSize
+) {
   const header = {
     absolutePosition: { x: 0, y: 5 },
     text: board.name || '',
     alignment: 'center',
     fontSize: 8
   };
+
   const columns =
     board.isFixed && board.grid ? board.grid.columns : CBOARD_COLUMNS;
   const rows = board.isFixed && board.grid ? board.grid.rows : CBOARD_ROWS;
+
   const cellWidths = getCellWidths(columns, picsee);
 
   const table = {
@@ -401,8 +411,22 @@ async function generatePDFBoard(board, intl, breakPage = true, picsee = false) {
   }
 
   const grid = board.isFixed
-    ? await generateFixedBoard(board, rows, columns, intl, picsee)
-    : await generateNonFixedBoard(board, rows, columns, intl, picsee);
+    ? await generateFixedBoard(
+        board,
+        rows,
+        columns,
+        intl,
+        picsee,
+        labelFontSize
+      )
+    : await generateNonFixedBoard(
+        board,
+        rows,
+        columns,
+        intl,
+        picsee,
+        labelFontSize
+      );
 
   const lastGridRowDiff = columns - grid[grid.length - 2].length; // labels row
   if (lastGridRowDiff > 0) {
@@ -427,7 +451,14 @@ function chunks(array, size) {
   return results;
 }
 
-async function generateFixedBoard(board, rows, columns, intl, picsee = false) {
+async function generateFixedBoard(
+  board,
+  rows,
+  columns,
+  intl,
+  picsee = false,
+  labelFontSize
+) {
   let currentRow = 0;
   let cont = 0;
 
@@ -482,7 +513,8 @@ async function generateFixedBoard(board, rows, columns, intl, picsee = false) {
           columns,
           currentRow,
           pageBreak,
-          picsee
+          picsee,
+          labelFontSize
         );
         cont++;
       }
@@ -496,7 +528,8 @@ async function generateNonFixedBoard(
   rows,
   columns,
   intl,
-  picsee = false
+  picsee = false,
+  labelFontSize
 ) {
   // Do a grid with 2n rows
   const grid = new Array(Math.ceil(board.tiles.length / columns) * 2);
@@ -526,7 +559,8 @@ async function generateNonFixedBoard(
       columns,
       currentRow,
       pageBreak,
-      picsee
+      picsee,
+      labelFontSize
     );
   }, Promise.resolve());
   return grid;
@@ -540,7 +574,8 @@ const addTileToGrid = async (
   columns,
   currentRow,
   pageBreak = false,
-  picsee = false
+  picsee = false,
+  labelFontSize
 ) => {
   const { label, image } = getPDFTileData(tile, intl);
   const fixedRow = currentRow * 2;
@@ -598,6 +633,7 @@ const addTileToGrid = async (
   const labelData = {
     text: label,
     alignment: 'center',
+    fontSize: labelFontSize,
     fillColor: hexBackgroundColor,
     border: PDF_GRID_BORDER[labelPosition].labelData
   };
@@ -606,12 +642,19 @@ const addTileToGrid = async (
 
   imageData.width = Math.min(IMG_WIDTH.column[columns], IMG_WIDTH.row[rows]);
 
-  if (imageData.width <= 37) {
-    labelData.fontSize = 7;
-  } else if (imageData.width <= 40) {
-    labelData.fontSize = 8;
-  } else if (imageData.width <= 45) {
-    labelData.fontSize = 9;
+  if (imageData.width <= 45) {
+    if (imageData.width <= 37) {
+      labelData.fontSize = 7;
+    } else if (imageData.width <= 40) {
+      labelData.fontSize = 8;
+    } else if (imageData.width <= 45) {
+      labelData.fontSize = 9;
+    }
+
+    if (labelFontSize === SMALL_FONT_SIZE)
+      labelData.fontSize = labelData.fontSize - 2;
+    if (labelFontSize === LARGE_FONT_SIZE)
+      labelData.fontSize = labelData.fontSize + 2;
   }
 
   let value1,
@@ -845,9 +888,13 @@ export async function cboardExportAdapter(allBoards = [], board) {
   }
 }
 
-export async function pdfExportAdapter(boards = [], intl, picsee = false) {
+export async function pdfExportAdapter(
+  boards = [],
+  labelFontSize,
+  intl,
+  picsee = false
+) {
   const font = definePDFfont(intl);
-
   const docDefinition = {
     pageSize: 'A4',
     pageOrientation: 'landscape',
@@ -921,7 +968,13 @@ export async function pdfExportAdapter(boards = [], intl, picsee = false) {
   const content = await boards.reduce(async (prev, board, i) => {
     const prevContent = await prev;
     const breakPage = i !== 0;
-    const boardPDFData = await generatePDFBoard(board, intl, breakPage, picsee);
+    const boardPDFData = await generatePDFBoard(
+      board,
+      intl,
+      breakPage,
+      picsee,
+      labelFontSize
+    );
     return prevContent.concat(boardPDFData);
   }, Promise.resolve([]));
 

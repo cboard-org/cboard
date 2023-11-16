@@ -35,6 +35,9 @@ export const EMPTY_IMAGE =
 export const PICSEEPAL_GRID_WIDTH = 553;
 export const PDF_GRID_WIDTH = 800;
 export const PDF_BORDER_WIDTH = 2;
+export const SMALL_FONT_SIZE = 9;
+export const MEDIUM_FONT_SIZE = 12;
+export const LARGE_FONT_SIZE = 16;
 
 export const EXPORT_CONFIG_BY_TYPE = {
   cboard: {
