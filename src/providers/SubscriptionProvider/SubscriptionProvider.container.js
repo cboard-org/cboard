@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import API from '../../api';
-import { isAndroid } from '../../cordova-util';
+import { isAndroid, isIOS } from '../../cordova-util';
 
 import {
   updateIsInFreeCountry,
@@ -41,7 +41,7 @@ export class SubscriptionProvider extends Component {
     const isInFreeCountry = updateIsInFreeCountry();
     const isOnTrialPeriod = updateIsOnTrialPeriod();
     await updatePlans();
-    if (isAndroid()) this.configInAppPurchasePlugin();
+    if (isAndroid() || isIOS()) this.configInAppPurchasePlugin();
     if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
       showPremiumRequired({ showTryPeriodFinishedMessages: true });
     }
@@ -111,9 +111,9 @@ export class SubscriptionProvider extends Component {
 
     window.CdvPurchase.store.validator = async function(receipt, callback) {
       try {
-        const transaction = isAndroid()
-          ? transformReceipt(receipt)
-          : receipt.transactions[0];
+        const transaction = isIOS()
+          ? receipt.transaction
+          : transformReceipt(receipt);
 
         const res = await API.postTransaction(transaction);
         if (!res.ok) throw res;
