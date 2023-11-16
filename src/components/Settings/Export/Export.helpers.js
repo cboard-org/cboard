@@ -22,7 +22,7 @@ import {
   PICSEEPAL_IMAGES_WIDTH,
   PDF_IMAGES_WIDTH,
   SMALL_FONT_SIZE,
-  MEDIUM_FONT_SIZE
+  LARGE_FONT_SIZE
 } from './Export.constants';
 import {
   LABEL_POSITION_ABOVE,
@@ -653,7 +653,7 @@ const addTileToGrid = async (
 
     if (labelFontSize === SMALL_FONT_SIZE)
       labelData.fontSize = labelData.fontSize - 2;
-    if (labelFontSize === MEDIUM_FONT_SIZE)
+    if (labelFontSize === LARGE_FONT_SIZE)
       labelData.fontSize = labelData.fontSize + 2;
   }
 
