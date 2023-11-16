@@ -20,7 +20,9 @@ import {
   PDF_GRID_WIDTH,
   PDF_BORDER_WIDTH,
   PICSEEPAL_IMAGES_WIDTH,
-  PDF_IMAGES_WIDTH
+  PDF_IMAGES_WIDTH,
+  SMALL_FONT_SIZE,
+  MEDIUM_FONT_SIZE
 } from './Export.constants';
 import {
   LABEL_POSITION_ABOVE,
@@ -640,12 +642,19 @@ const addTileToGrid = async (
 
   imageData.width = Math.min(IMG_WIDTH.column[columns], IMG_WIDTH.row[rows]);
 
-  if (labelFontSize <= 9) {
-    imageData.width = 45;
-  } else if (labelFontSize <= 12) {
-    imageData.width = 40;
-  } else if (labelFontSize <= 16) {
-    imageData.width = 37;
+  if (imageData.width <= 45) {
+    if (imageData.width <= 37) {
+      labelData.fontSize = 7;
+    } else if (imageData.width <= 40) {
+      labelData.fontSize = 8;
+    } else if (imageData.width <= 45) {
+      labelData.fontSize = 9;
+    }
+
+    if (labelFontSize === SMALL_FONT_SIZE)
+      labelData.fontSize = labelData.fontSize - 2;
+    if (labelFontSize === MEDIUM_FONT_SIZE)
+      labelData.fontSize = labelData.fontSize + 2;
   }
 
   let value1,
