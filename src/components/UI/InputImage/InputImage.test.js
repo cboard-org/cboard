@@ -3,7 +3,6 @@ import { shallowMatchSnapshot } from '../../../common/test_utils';
 import { mount, shallow } from 'enzyme';
 import InputImage from './InputImage.component';
 
-jest.mock('browser-image-resizer');
 jest.mock('../../../api/api');
 
 jest.mock('./InputImage.messages', () => {
