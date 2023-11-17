@@ -7,7 +7,6 @@ import ClearIcon from '@material-ui/icons/Clear';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 import IconButton from '../UI/IconButton';
-import { isCordova, requestCvaPermissions } from '../../cordova-util';
 import messages from './VoiceRecorder.messages';
 import './VoiceRecorder.css';
 let mediaStream = undefined;
@@ -32,11 +31,6 @@ class VoiceRecorder extends Component {
     isRecording: false,
     isPlaying: false
   };
-  componentDidMount() {
-    if (isCordova()) {
-      requestCvaPermissions();
-    }
-  }
 
   startRecording = () => {
     navigator.mediaDevices
