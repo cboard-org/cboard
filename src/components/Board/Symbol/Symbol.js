@@ -22,7 +22,8 @@ const propTypes = {
   labelpos: PropTypes.string,
   type: PropTypes.string,
   onWrite: PropTypes.func,
-  intl: PropTypes.object
+  intl: PropTypes.object,
+  onRepeatSentence: PropTypes.func
 };
 
 function Symbol(props) {
@@ -35,6 +36,7 @@ function Symbol(props) {
     onWrite,
     intl,
     image,
+    onRepeatSentence,
     ...other
   } = props;
   const [src, setSrc] = useState('');

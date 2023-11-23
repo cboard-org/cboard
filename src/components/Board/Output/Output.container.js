@@ -219,6 +219,14 @@ export class OutputContainer extends Component {
     this.spliceOutput(index);
   };
 
+  handleRepeatSentence = index => event => {
+    const { cancelSpeech } = this.props;
+    cancelSpeech();
+    const { output } = this.props;
+    const text = output[index].label;
+    this.speakOutput(text);
+  };
+
   handleOutputClick = event => {
     const targetEl = event.target;
     const targetElLow = targetEl.tagName.toLowerCase();
@@ -306,6 +314,7 @@ export class OutputContainer extends Component {
         increaseOutputButtons={increaseOutputButtons}
         phrase={this.handlePhraseToShare()}
         onWriteSymbol={this.handleWriteSymbol}
+        onRepeatSentence={this.handleRepeatSentence}
       />
     );
   }

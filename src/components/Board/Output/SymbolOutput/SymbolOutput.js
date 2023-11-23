@@ -92,6 +92,7 @@ class SymbolOutput extends PureComponent {
       phrase,
       isLiveMode,
       increaseOutputButtons,
+      onRepeatSentence,
       ...other
     } = this.props;
 
@@ -132,6 +133,7 @@ class SymbolOutput extends PureComponent {
                 labelpos="Below"
                 onWrite={onWriteSymbol(index)}
                 intl={intl}
+                onRepeatSentence={() => onRepeatSentence(index)}
               />
               <div className="SymbolOutput__value__IconButton">
                 <IconButton
