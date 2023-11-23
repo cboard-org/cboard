@@ -11,6 +11,16 @@
   left: 0;
 }
 
+.liveInput .MuiInputBase-input::-webkit-scrollbar {
+  display: none;
+}
+
+.MuiInputAdornment-positionEnd .Symbol__repeat-button {
+  margin: 0px 3px 0px -5px;
+  padding: 1em 0em;
+  border-radius: 0%;
+}
+
 .Tile .Symbol {
   padding-top: var(--folder-flap-height);
   padding-bottom: 0.2em;

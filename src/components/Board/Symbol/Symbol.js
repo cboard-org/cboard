@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isCordova } from '../../../cordova-util';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import RepeatIcon from '@material-ui/icons/Repeat';
+
 import messages from '../Board.messages';
 
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
@@ -95,10 +99,22 @@ function Symbol(props) {
           fullWidth={true}
           onKeyPress={handleKeyPress}
           style={{
-            padding: '0.5em 0.8em 0.5em 0.8em',
+            padding: '0.5em 0em 0.5em 0.8em',
             height: '100%'
           }}
           className={'liveInput'}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="repeat sentence"
+                onClick={onRepeatSentence()}
+                edge="end"
+                className="Symbol__repeat-button"
+              >
+                <RepeatIcon />
+              </IconButton>
+            </InputAdornment>
+          }
         />
       )}
       {props.type !== 'live' &&
