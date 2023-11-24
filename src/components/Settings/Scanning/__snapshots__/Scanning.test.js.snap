@@ -37,7 +37,7 @@ exports[`Scanning tests default renderer 1`] = `
             }
           />
           <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
-            <ForwardRef(WithStyles(ForwardRef(Switch)))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               onChange={[Function]}
@@ -249,7 +249,7 @@ exports[`Scanning tests options behavior 1`] = `
             }
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
-            <WithStyles(ForwardRef(Switch))
+            <SwitchWithEnter
               checked={false}
               color="secondary"
               onChange={[Function]}
@@ -466,7 +466,7 @@ exports[`Scanning tests options behavior 2`] = `
             }
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
-            <WithStyles(ForwardRef(Switch))
+            <SwitchWithEnter
               checked={true}
               color="secondary"
               onChange={[Function]}

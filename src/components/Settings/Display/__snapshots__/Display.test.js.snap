@@ -242,7 +242,7 @@ exports[`Display tests default renderer 1`] = `
           }
         />
         <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))>
-          <ForwardRef(WithStyles(ForwardRef(Switch)))
+          <SwitchWithEnter
             color="secondary"
             onChange={[Function]}
             value="active"
@@ -328,7 +328,7 @@ exports[`Display tests default renderer 1`] = `
         <ForwardRef(WithStyles(ForwardRef(ListItemSecondaryAction)))
           className="Display__Options"
         >
-          <ForwardRef(WithStyles(ForwardRef(Switch)))
+          <SwitchWithEnter
             color="secondary"
             onChange={[Function]}
             value="active"

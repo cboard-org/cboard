@@ -56,12 +56,11 @@ describe('Navigation tests', () => {
     expect(tree).toMatchSnapshot();
 
     const state = wrapper.state();
-
-    const switch0 = wrapper.find('WithStyles(ForwardRef(Switch))').at(0);
+    const switch0 = wrapper.find('SwitchWithEnter').at(0);
     switch0.simulate('change');
-    const switch1 = wrapper.find('WithStyles(ForwardRef(Switch))').at(1);
+    const switch1 = wrapper.find('SwitchWithEnter').at(1);
     switch1.simulate('change');
-    const switch2 = wrapper.find('WithStyles(ForwardRef(Switch))').at(2);
+    const switch2 = wrapper.find('SwitchWithEnter').at(2);
     switch2.simulate('change');
     const switch3 = wrapper.find('WithStyles(ForwardRef(Switch))').at(3);
     switch3.simulate('change');
