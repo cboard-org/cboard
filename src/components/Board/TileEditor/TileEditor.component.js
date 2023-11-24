@@ -17,6 +17,7 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import messages from './TileEditor.messages';
 import SymbolSearch from '../SymbolSearch';
@@ -107,7 +108,8 @@ export class TileEditor extends Component {
       tile: this.defaultTile,
       linkedBoard: '',
       imageUploadedData: [],
-      isEditImageBtnActive: false
+      isEditImageBtnActive: false,
+      loading: false
     };
 
     this.defaultimageUploadedData = {
@@ -289,6 +291,9 @@ export class TileEditor extends Component {
   };
 
   setimageUploadedData = (isUploaded, fileName, blobHQ = null, blob = null) => {
+    this.setState({
+      loading: true
+    });
     const { activeStep } = this.state;
     let imageUploadedData = this.state.imageUploadedData.map((item, indx) => {
       if (indx === activeStep) {
@@ -304,6 +309,9 @@ export class TileEditor extends Component {
       }
     });
     this.setState({ imageUploadedData: imageUploadedData });
+    this.setState({
+      loading: false
+    });
   };
 
   handleSymbolSearchChange = ({ image, labelKey, label, keyPath }) => {
@@ -523,11 +531,15 @@ export class TileEditor extends Component {
                           Boolean(tileInView.loadBoard) ? 'folder' : 'button'
                         }
                       >
-                        <Symbol
+                      {
+                        this.state.loading 
+                        ? <CircularProgress/> 
+                        : <Symbol
                           image={tileInView.image}
                           label={currentLabel}
                           keyPath={tileInView.keyPath}
                         />
+                      }
                       </Tile>
                     </div>
                     {this.state.isEditImageBtnActive && (
