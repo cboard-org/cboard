@@ -1423,6 +1423,7 @@ export class BoardContainer extends Component {
         };
         if (tile.loadBoard) {
           createTile(newTile, board.id);
+          if (tile.loadBoard === board.id) throw Error('disalowed');
           await this.pasteBoardsRecursively(newTile, board.id);
         } else {
           await this.handleAddTileEditorSubmit(newTile);
