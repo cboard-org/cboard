@@ -60,6 +60,47 @@ import { improvePhraseAbortController } from '../../api/api';
 
 const BOARDS_PAGE_LIMIT = 100;
 
+export function organizeTreeOfBoards() {
+  return (dispatch, getState) => {
+    const { board } = getState();
+    const boards = board.boards;
+
+    const getChildBoards = board => {
+      return board.tiles.reduce((subfolders, tile) => {
+        if (tile.loadBoard)
+          subfolders.push({ id: tile.id, loadBoard: tile.loadBoard });
+        return subfolders;
+      }, []);
+    };
+
+    const boardsWithSubfolder = boards.map(board => {
+      const subfolders = getChildBoards(board);
+      return { boardId: board.id, subfolders: subfolders };
+    });
+
+    const createTree = board => {
+      const { boardId, subfolders } = board;
+
+      const updateSubfolders = subfolder => {
+        return {
+          ...subfolder,
+          subfolders: boardsWithSubfolder.filter(sub => {
+            return sub.boardId === subfolder.loadBoard;
+          })[0]
+          //.subfolders.map(updateSubfolders)
+        };
+      };
+
+      const updatedSubfolders = subfolders.map(updateSubfolders);
+
+      return { boardId, subfolders: updatedSubfolders };
+    };
+
+    const treeArray = boardsWithSubfolder.map(createTree);
+    console.log('subfolders of', treeArray);
+  };
+}
+
 export function importBoards(boards) {
   return {
     type: IMPORT_BOARDS,

@@ -47,7 +47,8 @@ import {
   downloadImages,
   createApiBoard,
   upsertApiBoard,
-  changeDefaultBoard
+  changeDefaultBoard,
+  organizeTreeOfBoards
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -290,6 +291,8 @@ export class BoardContainer extends Component {
 
     //set board type
     this.setState({ isFixedBoard: !!boardExists.isFixed });
+
+    this.props.organizeTreeOfBoards();
 
     // if (isAndroid()) downloadImages();
   }
@@ -1767,7 +1770,8 @@ const mapDispatchToProps = {
   disableTour,
   createApiBoard,
   upsertApiBoard,
-  changeDefaultBoard
+  changeDefaultBoard,
+  organizeTreeOfBoards
 };
 
 export default connect(
