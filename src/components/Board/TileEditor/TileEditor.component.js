@@ -109,7 +109,7 @@ export class TileEditor extends Component {
       linkedBoard: '',
       imageUploadedData: [],
       isEditImageBtnActive: false,
-      loading: false
+      isLoading: false
     };
 
     this.defaultimageUploadedData = {
@@ -290,10 +290,11 @@ export class TileEditor extends Component {
     this.updateTileProperty('image', image);
   };
 
+  handleLoadingStateChange = (isLoading) => {
+    this.setState({ isLoading: isLoading })
+  };
+
   setimageUploadedData = (isUploaded, fileName, blobHQ = null, blob = null) => {
-    this.setState({
-      loading: true
-    });
     const { activeStep } = this.state;
     let imageUploadedData = this.state.imageUploadedData.map((item, indx) => {
       if (indx === activeStep) {
@@ -309,9 +310,6 @@ export class TileEditor extends Component {
       }
     });
     this.setState({ imageUploadedData: imageUploadedData });
-    this.setState({
-      loading: false
-    });
   };
 
   handleSymbolSearchChange = ({ image, labelKey, label, keyPath }) => {
@@ -531,15 +529,15 @@ export class TileEditor extends Component {
                           Boolean(tileInView.loadBoard) ? 'folder' : 'button'
                         }
                       >
-                      {
-                        this.state.loading 
-                        ? <CircularProgress/> 
-                        : <Symbol
-                          image={tileInView.image}
-                          label={currentLabel}
-                          keyPath={tileInView.keyPath}
-                        />
-                      }
+                        {
+                          this.state.isLoading
+                            ? <CircularProgress />
+                            : <Symbol
+                              image={tileInView.image}
+                              label={currentLabel}
+                              keyPath={tileInView.keyPath}
+                            />
+                        }
                       </Tile>
                     </div>
                     {this.state.isEditImageBtnActive && (
@@ -574,7 +572,7 @@ export class TileEditor extends Component {
                       {intl.formatMessage(messages.symbols)}
                     </Button>
                     <div className="TileEditor__input-image">
-                      <InputImage onChange={this.handleInputImageChange} />
+                      <InputImage onChange={this.handleInputImageChange} onLoad={this.handleLoadingStateChange} />
                     </div>
                   </div>
                   <div className="TileEditor__form-fields">

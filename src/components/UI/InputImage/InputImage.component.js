@@ -33,7 +33,11 @@ class InputImage extends Component {
     /**
      * Callback fired when input changes
      */
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    /**
+     * Callback fired when loading state changes
+     */
+    onLoad: PropTypes.func.isRequired,
   };
 
   async resizeImage(file, imageName = null) {
@@ -85,11 +89,14 @@ class InputImage extends Component {
   };
 
   handleChange = async event => {
+    const { onLoad } = this.props;
+    onLoad(true)
     const file = event.target.files[0];
     if (file) {
       //if you cancel the image uploaded, the event is dispached and the file is null
       await this.resizeImage(file);
     }
+    onLoad(false)
   };
   render() {
     const { intl } = this.props;
