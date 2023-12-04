@@ -1671,11 +1671,13 @@
     lodash "^4.17.21"
     semver "^7.3.7"
     webpack-merge "^5.8.0"
+    dependencies:
+    axios "^1"
 
-"@crowdin/crowdin-api-client@^1.25.0":
-  version "1.28.1"
-  resolved "https://registry.yarnpkg.com/@crowdin/crowdin-api-client/-/crowdin-api-client-1.28.1.tgz#6a9bf592bc98054d08e3befdba7187737e800594"
-  integrity sha512-ZBbdkREmqkbFoxeiQi48A/qfQXtGrEDZV7//hWkPTfywda8QN5FDj8ZEmGJSUflCYoOLcZD4r0YtLxKWec4MJA==
+"@crowdin/crowdin-api-client@^1.26.0":
+  version "1.28.0"
+  resolved "https://registry.yarnpkg.com/@crowdin/crowdin-api-client/-/crowdin-api-client-1.28.0.tgz#6447aab1e1e859ec6231966ee686f7b9f6ae0571"
+  integrity sha512-6TCZ8oQBTQAWGCPIfa5Z+4149CeObqSOaGoo4hBTzayq6tZ25BdNElKbYn35VXyrmxaSrHCEJURfIlKLvzWr2g==
   dependencies:
     axios "^1"
 
@@ -10437,7 +10439,7 @@ mongodb@4.17.1:
     "@aws-sdk/credential-providers" "^3.186.0"
     "@mongodb-js/saslprep" "^1.1.0"
 
-mongoose@^6.12.1:
+mongoose@^6.12.3:
   version "6.12.3"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.12.3.tgz#bc921ca2fd6d4c1a48dbf7bc88cf3eef1d3c4926"
   integrity sha512-MNJymaaXali7w7rHBxVUoQ3HzHHMk/7I/+yeeoSa4rUzdjZwIWQznBNvVgc0A8ghuJwsuIkb5LyLV6gSjGjWyQ==
@@ -11131,7 +11133,7 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-pdfmake@^0.2.7:
+pdfmake@^0.2.8:
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/pdfmake/-/pdfmake-0.2.8.tgz#42263262e464d5d52e748317478dae9926387a61"
   integrity sha512-lI+amfIaUL8CrPhndxFdhIgMj9JB49Sj4DARltKC1gLm/5NsPohZqfB+D+II8HymtPB6eugUFD5oBxmzO57qHA==
@@ -13399,9 +13401,6 @@ socks@^2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/socks/-/socks-2.7.1.tgz#d8e651247178fde79c0663043e07240196857d55"
   integrity sha512-7maUZy1N7uo6+WVEX6psASxtNlKaNVMlGQKkG/63nEDdLOWNbiUMoLK7X4uYoLhQstau72mLgfEWcXcwsaHbYQ==
-  dependencies:
-    ip "^2.0.0"
-    smart-buffer "^4.2.0"
 
 source-list-map@^2.0.0, source-list-map@^2.0.1:
   version "2.0.1"
