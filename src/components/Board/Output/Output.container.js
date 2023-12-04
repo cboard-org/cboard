@@ -237,7 +237,11 @@ export class OutputContainer extends Component {
   };
 
   handleOutputKeyDown = event => {
-    if (event.ctrlKey && event.nativeEvent.shiftKey && keycode('Z')) {
+    console.log(event);
+    if (
+      (event.ctrlKey && event.nativeEvent.shiftKey && keycode('Z')) ||
+      (event.ctrlKey && keycode('Y'))
+    ) {
       this.handleRepeatLastSpokenSentence();
       return;
     }
