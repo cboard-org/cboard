@@ -219,6 +219,15 @@ export class OutputContainer extends Component {
     this.spliceOutput(index);
   };
 
+  handleRepeatLastSpokenSentence() {
+    const { output } = this.props;
+    const lastSpokenSymbol = output.findLast(
+      (element, index) => element.label && index !== output.length - 1
+    );
+    const text = lastSpokenSymbol ? lastSpokenSymbol.label : '';
+    this.speakOutput(text);
+  }
+
   handleOutputClick = event => {
     const targetEl = event.target;
     const targetElLow = targetEl.tagName.toLowerCase();
@@ -228,6 +237,11 @@ export class OutputContainer extends Component {
   };
 
   handleOutputKeyDown = event => {
+    if (event.ctrlKey && event.nativeEvent.shiftKey && keycode('Z')) {
+      this.handleRepeatLastSpokenSentence();
+      return;
+    }
+
     if (event.keyCode === keycode('enter')) {
       const targetEl = event.target;
       if (targetEl.tagName.toLowerCase() === 'div') {
