@@ -64,6 +64,16 @@ export class OutputContainer extends Component {
     translatedOutput: []
   };
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleRepeatLastSpokenSentence);
+  }
+  componentWillUnmount() {
+    document.removeEventListener(
+      'keydown',
+      this.handleRepeatLastSpokenSentence
+    );
+  }
+
   outputReducer(accumulator, currentValue) {
     const actionValue =
       currentValue.action &&
@@ -219,14 +229,19 @@ export class OutputContainer extends Component {
     this.spliceOutput(index);
   };
 
-  handleRepeatLastSpokenSentence() {
-    const { output } = this.props;
-    const lastSpokenSymbol = output.findLast(
-      (element, index) => element.label && index !== output.length - 1
-    );
-    const text = lastSpokenSymbol ? lastSpokenSymbol.label : '';
-    this.speakOutput(text);
-  }
+  handleRepeatLastSpokenSentence = event => {
+    if (
+      (event.ctrlKey && event.shiftKey && event.keyCode === 90) ||
+      (event.ctrlKey && event.keyCode === 89)
+    ) {
+      const { output } = this.props;
+      const lastSpokenSymbol = output.findLast(
+        (element, index) => element.label && index !== output.length - 1
+      );
+      const text = lastSpokenSymbol ? lastSpokenSymbol.label : '';
+      this.speakOutput(text);
+    }
+  };
 
   handleOutputClick = event => {
     const targetEl = event.target;
@@ -237,15 +252,6 @@ export class OutputContainer extends Component {
   };
 
   handleOutputKeyDown = event => {
-    console.log(event);
-    if (
-      (event.ctrlKey && event.nativeEvent.shiftKey && keycode('Z')) ||
-      (event.ctrlKey && keycode('Y'))
-    ) {
-      this.handleRepeatLastSpokenSentence();
-      return;
-    }
-
     if (event.keyCode === keycode('enter')) {
       const targetEl = event.target;
       if (targetEl.tagName.toLowerCase() === 'div') {
