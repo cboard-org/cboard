@@ -17,6 +17,7 @@
   "private": false,
   "license": "GPL-3.0-only",
   "dependencies": {
+    "@babel/runtime": "^7.23.2",
     "@cospired/i18n-iso-languages": "^2.2.0",
     "@crowdin/crowdin-api-client": "^1.25.0",
     "@ctrl/react-adsense": "^1.7.0",
@@ -29,6 +30,8 @@
     "@redux-beacon/logger": "^1.0.0",
     "@redux-beacon/offline-web": "^1.0.0",
     "axios": "^0.26.1",
+    "babel-jest": "^29.7.0",
+    "babel-preset-env": "^1.7.0",
     "browser-image-resizer": "^2.4.1",
     "dom-to-image": "^2.6.0",
     "dotenv": "^16.1.4",
