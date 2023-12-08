@@ -24,9 +24,11 @@ export const CBOARD_EXT_PREFIX = EXPORT_CBOARD_EXT_PREFIX;
 
 export const CBOARD_EXT_PROPERTIES = EXPORT_CBOARD_EXT_PROPERTIES;
 
-export default {
+const importConstants = {
   IMPORT_CONFIG_BY_EXTENSION,
   IMPORT_PATHS,
   CBOARD_EXT_PREFIX,
   CBOARD_EXT_PROPERTIES
 };
+
+export default importConstants;
