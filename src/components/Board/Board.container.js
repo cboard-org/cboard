@@ -1167,7 +1167,6 @@ export class BoardContainer extends Component {
           )
             .then(parentBoardId => {
               if (createParentBoard) {
-                console.log('parent board created', parentBoardData);
                 /* Here the parentBoardData is not updated with the values 
                 that updatedApiObjects store on the API. Inside the boards are already updated 
                 an the value is not replaced because the oldboard Id was replaced on the updateApiObjects inside createApiBoardSuccess */
