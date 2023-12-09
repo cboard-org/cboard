@@ -34,14 +34,14 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            # when lock file changes, use increasingly general patterns to restore cache
-            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-v1-{{ .Branch }}-
-            - yarn-packages-v1-
+      # - restore_cache:
+      #     keys:
+      #       # when lock file changes, use increasingly general patterns to restore cache
+      #       - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #       - yarn-packages-v1-{{ .Branch }}-
+      #       - yarn-packages-v1-
       # Install and save node_modules to cache
-      - run: yarn install --cache-folder ~/.cache/yarn
+      - run: yarn install #--cache-folder ~/.cache/yarn
       - save_cache:
           paths:
             - ~/.cache/yarn
