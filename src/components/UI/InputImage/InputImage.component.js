@@ -35,13 +35,13 @@ class InputImage extends Component {
      */
     onChange: PropTypes.func.isRequired,
     /**
-     * Callback fired when loading state changes
+     * Set image loading state
      */
-    onLoad: PropTypes.func.isRequired
+    setIsImageLoading: PropTypes.func.isRequired
   };
 
   async resizeImage(file, imageName = null) {
-    const { onLoad } = this.props;
+    const { setIsImageLoading } = this.props;
     //if you cancel the image uploaded, the event is dispached and the file is null
     try {
       const { onChange } = this.props;
@@ -52,12 +52,12 @@ class InputImage extends Component {
     } catch (err) {
       console.error(err);
     }
-    onLoad(false);
+    setIsImageLoading(false);
   }
 
   onClick = async () => {
-    const { onLoad } = this.props;
-    onLoad(true);
+    const { setIsImageLoading } = this.props;
+    setIsImageLoading(true);
     try {
       const imageURL = await window.cordova.plugins.safMediastore.selectFile();
       const imageName = await window.cordova.plugins.safMediastore.getFileName(
@@ -93,8 +93,8 @@ class InputImage extends Component {
   };
 
   handleChange = async event => {
-    const { onLoad } = this.props;
-    onLoad(true);
+    const { setIsImageLoading } = this.props;
+    setIsImageLoading(true);
     const file = event.target.files[0];
     if (file) {
       //if you cancel the image uploaded, the event is dispached and the file is null

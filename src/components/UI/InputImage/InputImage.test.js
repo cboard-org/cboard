@@ -17,13 +17,19 @@ jest.mock('./InputImage.messages', () => {
 describe('InputImage tests', () => {
   test('default render ', () => {
     const onChange = jest.fn();
-    const onLoad = jest.fn();
-    const wrapper = mount(<InputImage disabled={false} onChange={onChange} onLoad={onLoad}/>);
+    const setIsImageLoading = jest.fn();
+    const wrapper = mount(
+      <InputImage
+        disabled={false}
+        onChange={onChange}
+        setIsImageLoading={setIsImageLoading}
+      />
+    );
     expect(wrapper).toMatchSnapshot();
   });
   test('on buttton click', () => {
     const onChange = jest.fn();
-    const onLoad = jest.fn();
+    const setIsImageLoading = jest.fn();
     const event = {
       target: {
         files: [new File(['foo'], 'foo.txt')]
@@ -34,7 +40,7 @@ describe('InputImage tests', () => {
         user={{ email: 'test' }}
         disabled={false}
         onChange={onChange}
-        onLoad={onLoad}
+        setIsImageLoading={setIsImageLoading}
       />
     );
     wrapper.find('input').prop('onChange')(event);
