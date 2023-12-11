@@ -1,5 +1,5 @@
 import { DBSchema, IDBPDatabase } from 'idb';
-import { openDB } from 'idb/with-async-ittr.js';
+import { openDB } from 'idb/with-async-ittr';
 
 export interface Image {
   id: string;

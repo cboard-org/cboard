@@ -64,6 +64,16 @@ export class OutputContainer extends Component {
     translatedOutput: []
   };
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleRepeatLastSpokenSentence);
+  }
+  componentWillUnmount() {
+    document.removeEventListener(
+      'keydown',
+      this.handleRepeatLastSpokenSentence
+    );
+  }
+
   outputReducer(accumulator, currentValue) {
     const actionValue =
       currentValue.action &&
@@ -217,6 +227,22 @@ export class OutputContainer extends Component {
     const { cancelSpeech } = this.props;
     cancelSpeech();
     this.spliceOutput(index);
+  };
+
+  handleRepeatLastSpokenSentence = event => {
+    const Z_KEY_CODE = 90;
+    const Y_KEY_CODE = 89;
+    if (
+      (event.ctrlKey && event.shiftKey && event.keyCode === Z_KEY_CODE) ||
+      (event.ctrlKey && event.keyCode === Y_KEY_CODE)
+    ) {
+      const { output } = this.props;
+      const lastSpokenSymbol = output.findLast(
+        (element, index) => element.label && index !== output.length - 1
+      );
+      const text = lastSpokenSymbol ? lastSpokenSymbol.label : '';
+      this.speakOutput(text);
+    }
   };
 
   handleOutputClick = event => {
