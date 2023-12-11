@@ -11,7 +11,9 @@ import {
   CANCELLED,
   IN_GRACE_PERIOD,
   EXPIRED,
-  PROCCESING
+  PROCCESING,
+  SHOW_LOGIN_REQUIRED,
+  HIDE_LOGIN_REQUIRED
 } from './SubscriptionProvider.constants';
 import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
@@ -300,5 +302,19 @@ export function showPremiumRequired(
 export function hidePremiumRequired() {
   return {
     type: HIDE_PREMIUM_REQUIRED
+  };
+}
+
+export function showLoginRequired() {
+  // { showTryPeriodFinishedMessages } = { showTryPeriodFinishedMessages: false }
+  return {
+    type: SHOW_LOGIN_REQUIRED
+    // showTryPeriodFinishedMessages
+  };
+}
+
+export function hideLoginRequired() {
+  return {
+    type: HIDE_LOGIN_REQUIRED
   };
 }

@@ -4,7 +4,9 @@ import {
   UPDATE_SUBSCRIPTION_ERROR,
   SHOW_PREMIUM_REQUIRED,
   HIDE_PREMIUM_REQUIRED,
-  NOT_SUBSCRIBED
+  NOT_SUBSCRIBED,
+  SHOW_LOGIN_REQUIRED,
+  HIDE_LOGIN_REQUIRED
 } from './SubscriptionProvider.constants';
 import {
   LOGOUT,
@@ -26,6 +28,10 @@ const initialState = {
   premiumRequiredModalState: {
     open: false,
     showTryPeriodFinishedMessages: false
+  },
+  loginRequiredModalState: {
+    open: false
+    // showTryPeriodFinishedMessages: false
   },
   ownedProduct: '',
   products: [
@@ -94,6 +100,24 @@ function subscriptionProviderReducer(state = initialState, action) {
           open: false,
           showTryPeriodFinishedMessages:
             state.premiumRequiredModalState.showTryPeriodFinishedMessages
+        }
+      };
+
+    case SHOW_LOGIN_REQUIRED:
+      return {
+        ...state,
+        loginRequiredModalState: {
+          open: true
+          // showTryPeriodFinishedMessages: action.showTryPeriodFinishedMessages
+        }
+      };
+    case HIDE_LOGIN_REQUIRED:
+      return {
+        ...state,
+        loginRequiredModalState: {
+          open: false
+          // showTryPeriodFinishedMessages:
+          //   state.premiumRequiredModalState.showTryPeriodFinishedMessages
         }
       };
     default:

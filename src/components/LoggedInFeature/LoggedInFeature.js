@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { isLogged } from '../App/App.selectors';
+import { showLoginRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 
 function LoggedInFeature({
   children,
   isLogged,
-  isInFreeCountry
+  isInFreeCountry,
+  showLoginRequired
   // isOnTrialPeriod,
   // isSubscribed,
   // showPremiumRequired,
@@ -19,6 +21,7 @@ function LoggedInFeature({
     // event.preventDefault();
 
     console.log('show modal');
+    showLoginRequired();
     // if (isUpdateSubscriberStatusNeeded(lastUpdated)) {
     //   const requestOrigin = 'Function: captured - Component: PremiumFeature';
     //   updateIsSubscribed(requestOrigin);
@@ -47,6 +50,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  showLoginRequired
   // showPremiumRequired,
   // updateIsSubscribed,
   // updateSubscription,
