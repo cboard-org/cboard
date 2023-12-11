@@ -306,10 +306,8 @@ export function hidePremiumRequired() {
 }
 
 export function showLoginRequired() {
-  // { showTryPeriodFinishedMessages } = { showTryPeriodFinishedMessages: false }
   return {
     type: SHOW_LOGIN_REQUIRED
-    // showTryPeriodFinishedMessages
   };
 }
 

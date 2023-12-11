@@ -108,7 +108,6 @@ function subscriptionProviderReducer(state = initialState, action) {
         ...state,
         loginRequiredModalState: {
           open: true
-          // showTryPeriodFinishedMessages: action.showTryPeriodFinishedMessages
         }
       };
     case HIDE_LOGIN_REQUIRED:
@@ -116,8 +115,6 @@ function subscriptionProviderReducer(state = initialState, action) {
         ...state,
         loginRequiredModalState: {
           open: false
-          // showTryPeriodFinishedMessages:
-          //   state.premiumRequiredModalState.showTryPeriodFinishedMessages
         }
       };
     default:

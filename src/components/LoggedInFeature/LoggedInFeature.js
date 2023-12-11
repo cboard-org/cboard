@@ -13,14 +13,13 @@ function LoggedInFeature({
     if (isLogged && isInFreeCountry) {
       return;
     }
-    console.log('show modal');
     event.stopPropagation();
     event.preventDefault();
     showLoginRequired();
   };
   return (
     <>
-      <div onClickCapture={captured}>logged in feature{children}</div>
+      <div onClickCapture={captured}>{children}</div>
     </>
   );
 }
