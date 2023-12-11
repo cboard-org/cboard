@@ -574,7 +574,7 @@ export class TileEditor extends Component {
                     <div className="TileEditor__input-image">
                       <InputImage
                         onChange={this.handleInputImageChange}
-                        setIsImageLoading={this.handleLoadingStateChange}
+                        setIsLoadingImage={this.handleLoadingStateChange}
                       />
                     </div>
                   </div>
