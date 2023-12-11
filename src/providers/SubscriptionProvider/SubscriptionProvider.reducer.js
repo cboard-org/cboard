@@ -31,7 +31,6 @@ const initialState = {
   },
   loginRequiredModalState: {
     open: false
-    // showTryPeriodFinishedMessages: false
   },
   ownedProduct: '',
   products: [

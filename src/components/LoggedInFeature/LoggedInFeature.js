@@ -26,10 +26,7 @@ function LoggedInFeature({
 
 const mapStateToProps = state => ({
   isLogged: isLogged(state),
-  isOnTrialPeriod: state.subscription.isOnTrialPeriod,
-  isSubscribed: state.subscription.isSubscribed,
-  isInFreeCountry: state.subscription.isInFreeCountry,
-  lastUpdated: state.subscription.lastUpdated
+  isInFreeCountry: state.subscription.isInFreeCountry
 });
 
 const mapDispatchToProps = {
