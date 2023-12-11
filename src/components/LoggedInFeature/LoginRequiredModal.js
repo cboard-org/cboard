@@ -10,6 +10,11 @@ import WarningIcon from '@material-ui/icons/Warning';
 import DialogContent from '@material-ui/core/DialogContent';
 import { Typography } from '@material-ui/core';
 
+import messages from './LoginRequiredModal.messages';
+import { FormattedMessage } from 'react-intl';
+
+import style from './LoginRequiredModal.module.css';
+
 function LoginRequiredModal({ hideLoginRequired, loginRequiredModalState }) {
   const { open } = loginRequiredModalState;
 
@@ -20,11 +25,13 @@ function LoginRequiredModal({ hideLoginRequired, loginRequiredModalState }) {
       maxWidth="md"
       aria-labelledby="dialog"
     >
-      <DialogContent className={'style.content'}>
+      <DialogContent className={style.content}>
         <WarningIcon fontSize="large" color="action" />
-        <Typography variant="h3">{'dialogText.tittle'}</Typography>
-        <Typography className={'style.dialogText'} variant="h6">
-          Login required
+        <Typography variant="h3">
+          <FormattedMessage {...messages.featureBlockedTitle} />
+        </Typography>
+        <Typography className={style.dialogText} variant="h6">
+          <FormattedMessage {...messages.featureBlockedText} />
         </Typography>
         <Button
           onClick={hideLoginRequired}
@@ -34,8 +41,7 @@ function LoginRequiredModal({ hideLoginRequired, loginRequiredModalState }) {
           component={Link}
           to="/login-signup"
         >
-          buttttton
-          {/* <FormattedMessage {...messages.upgradeNow} /> */}
+          <FormattedMessage {...messages.loginSignupNow} />
         </Button>
       </DialogContent>
     </Dialog>

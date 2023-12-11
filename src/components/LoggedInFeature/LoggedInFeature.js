@@ -8,31 +8,15 @@ function LoggedInFeature({
   isLogged,
   isInFreeCountry,
   showLoginRequired
-  // isOnTrialPeriod,
-  // isSubscribed,
-  // showPremiumRequired,
-  // lastUpdated
 }) {
   const captured = event => {
     if (isLogged && isInFreeCountry) {
       return;
     }
-    // event.stopPropagation();
-    // event.preventDefault();
-
     console.log('show modal');
+    event.stopPropagation();
+    event.preventDefault();
     showLoginRequired();
-    // if (isUpdateSubscriberStatusNeeded(lastUpdated)) {
-    //   const requestOrigin = 'Function: captured - Component: PremiumFeature';
-    //   updateIsSubscribed(requestOrigin);
-    //   updateIsInFreeCountry();
-    //   updateIsOnTrialPeriod();
-    // }
-
-    // if (isInFreeCountry || isSubscribed || isOnTrialPeriod) return;
-    // event.stopPropagation();
-    // event.preventDefault();
-    // showPremiumRequired();
   };
   return (
     <>
@@ -51,10 +35,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   showLoginRequired
-  // showPremiumRequired,
-  // updateIsSubscribed,
-  // updateSubscription,
-  // updateIsInFreeCountry
 };
 
 export default connect(
