@@ -10,12 +10,11 @@ function LoggedInFeature({
   showLoginRequired
 }) {
   const captured = event => {
-    if (isLogged && isInFreeCountry) {
-      return;
+    if (!isLogged && isInFreeCountry) {
+      event.stopPropagation();
+      event.preventDefault();
+      showLoginRequired();
     }
-    event.stopPropagation();
-    event.preventDefault();
-    showLoginRequired();
   };
   return (
     <>

@@ -312,14 +312,14 @@ class Navigation extends React.Component {
                 />
                 <ListItemSecondaryAction>
                   <LoggedInFeature>
-                    <PremiumFeature>
-                      <Switch
-                        checked={this.state.improvePhraseActive || false}
-                        onChange={this.toggleImprovePhraseActive}
-                        value="active"
-                        color="secondary"
-                      />
-                    </PremiumFeature>
+                    {/* <PremiumFeature> */}
+                    <Switch
+                      checked={this.state.improvePhraseActive || false}
+                      onChange={this.toggleImprovePhraseActive}
+                      value="active"
+                      color="secondary"
+                    />
+                    {/* </PremiumFeature> */}
                   </LoggedInFeature>
                 </ListItemSecondaryAction>
               </ListItem>
