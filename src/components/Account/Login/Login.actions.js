@@ -10,7 +10,8 @@ import {
   disableTour,
   setUnloggedUserLocation,
   updateUnloggedUserLocation,
-  enableAllTours
+  enableAllTours,
+  updateNavigationSettings
 } from '../../App/App.actions';
 import { getVoiceURI } from '../../../i18n';
 import { isCordova, isElectron } from '../../../cordova-util';
@@ -50,6 +51,7 @@ export function logout() {
   return async dispatch => {
     dispatch(setUnloggedUserLocation(null));
     dispatch(updateUnloggedUserLocation());
+    dispatch(updateNavigationSettings({ improvePhraseActive: false }));
     dispatch(logoutSuccess());
   };
 }
