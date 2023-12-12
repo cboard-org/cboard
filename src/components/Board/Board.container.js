@@ -48,7 +48,7 @@ import {
   createApiBoard,
   upsertApiBoard,
   changeDefaultBoard,
-  organizeTreeOfBoards
+  updateChildFoldersOfBoards
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -221,7 +221,8 @@ export class BoardContainer extends Component {
       changeBoard,
       userData,
       history,
-      getApiObjects
+      getApiObjects,
+      updateChildFoldersOfBoards
       //downloadImages
     } = this.props;
 
@@ -292,7 +293,7 @@ export class BoardContainer extends Component {
     //set board type
     this.setState({ isFixedBoard: !!boardExists.isFixed });
 
-    this.props.organizeTreeOfBoards();
+    updateChildFoldersOfBoards();
 
     // if (isAndroid()) downloadImages();
   }
@@ -1771,7 +1772,7 @@ const mapDispatchToProps = {
   createApiBoard,
   upsertApiBoard,
   changeDefaultBoard,
-  organizeTreeOfBoards
+  updateChildFoldersOfBoards
 };
 
 export default connect(
