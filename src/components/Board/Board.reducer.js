@@ -21,6 +21,7 @@ import {
   REPLACE_BOARD,
   HISTORY_REMOVE_BOARD,
   UNMARK_BOARD,
+  UPDATE_CHILD_FOLDERS_OF_BOARDS,
   CHANGE_LIVE_MODE,
   CREATE_API_BOARD_SUCCESS,
   CREATE_API_BOARD_FAILURE,
@@ -285,6 +286,12 @@ function boardReducer(state = initialState, action) {
             : { ...board, markToUpdate: false }
         )
       };
+    case UPDATE_CHILD_FOLDERS_OF_BOARDS:
+      return {
+        ...state,
+        boardsWithChilds: action.boardsWithChilds
+      };
+
     case CHANGE_OUTPUT:
       return {
         ...state,
