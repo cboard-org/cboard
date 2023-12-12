@@ -2,7 +2,7 @@
   {
     "label": "RHVoice",
     "name": "com.github.olga_yakovleva.rhvoice.android",
-    "langs": ["ru-RU", "mk-MK", "uk-UA", "sq-MK"],
+    "langs": ["ru-RU", "uk-UA", "sq-MK"],
     "url": "https://play.google.com/store/apps/details?id=com.github.olga_yakovleva.rhvoice.android",
     "marketId": "com.github.olga_yakovleva.rhvoice.android",
     "vendor": "RHVoice",
@@ -33,6 +33,15 @@
     "url": "https://play.google.com/store/apps/details?id=com.unicef.cboardCRO",
     "marketId": "com.unicef.cboardCRO",
     "vendor": "CboardCRO",
+    "website": ""
+  },
+  {
+    "label": "Cboard Macedonian",
+    "name": "com.unicef.cboard.MKD.android",
+    "langs": ["mk-MK"],
+    "url": "https://play.google.com/store/apps/details?id=com.unicef.cboard.MKD.android",
+    "marketId": "com.unicef.cboard.MKD.android",
+    "vendor": "CboardMKD",
     "website": ""
   }
 ]

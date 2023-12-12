@@ -40,5 +40,38 @@ export default defineMessages({
   boards: {
     id: 'cboard.components.Settings.Export.boards',
     defaultMessage: 'Boards'
+  },
+  boardDownloadError: {
+    id: 'cboard.components.Settings.Export.boardDownloadedError',
+    defaultMessage: 'Ups..Something went wrong. Please try again'
+  },
+  downloadNoConnectionError: {
+    id: 'cboard.components.Settings.Export.downloadNoConnectionError',
+    defaultMessage: 'Need internet connection to download the PDF.'
+  },
+  pdfSettings: {
+    id: 'cboard.components.Settings.Export.pdfSettings',
+    defaultMessage: 'PDF Settings'
+  },
+  fontSize: {
+    id: 'cboard.components.Settings.Export.fontSize',
+    defaultMessage: 'Font size'
+  },
+  fontSizeSecondary: {
+    id: 'cboard.components.Settings.Export.fontSizeSecondary',
+    defaultMessage:
+      'Select the desired font size. This option is useful if you have problems with the dimensions of the exported board.'
+  },
+  small: {
+    id: 'cboard.components.Settings.Export.small',
+    defaultMessage: 'Small'
+  },
+  medium: {
+    id: 'cboard.components.Settings.Export.medium',
+    defaultMessage: 'Medium'
+  },
+  large: {
+    id: 'cboard.components.Settings.Export.large',
+    defaultMessage: 'Large'
   }
 });

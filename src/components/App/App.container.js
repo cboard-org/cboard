@@ -13,7 +13,8 @@ import { DISPLAY_SIZE_STANDARD } from '../Settings/Display/Display.constants';
 import {
   updateUserDataFromAPI,
   updateLoggedUserLocation,
-  updateUnloggedUserLocation
+  updateUnloggedUserLocation,
+  updateConnectivity
 } from '../App/App.actions';
 import { isCordova, isElectron } from '../../cordova-util';
 import ga4track from '../../ga4mp';
@@ -89,6 +90,36 @@ export class AppContainer extends Component {
     localizeUser();
 
     if (isCordova()) initCVAGa4();
+
+    const configureConnectionStatus = () => {
+      const { updateConnectivity } = this.props;
+      const setAsOnline = () => {
+        updateConnectivity({ isConnected: true });
+      };
+
+      const setAsOffline = () => {
+        updateConnectivity({ isConnected: false });
+      };
+
+      const addConnectionEventListeners = () => {
+        window.addEventListener('offline', setAsOffline);
+        window.addEventListener('online', setAsOnline);
+      };
+
+      const setCurrentConnectionStatus = () => {
+        if (!navigator.onLine) {
+          setAsOffline();
+          return;
+        }
+        setAsOnline();
+        return;
+      };
+
+      setCurrentConnectionStatus();
+      addConnectionEventListeners();
+    };
+
+    configureConnectionStatus();
   }
 
   handleNewContentAvailable = () => {
@@ -152,7 +183,8 @@ const mapDispatchToProps = {
   showNotification,
   updateUserDataFromAPI,
   updateLoggedUserLocation,
-  updateUnloggedUserLocation
+  updateUnloggedUserLocation,
+  updateConnectivity
 };
 
 export default connect(

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import API from '../../api';
-import { isAndroid } from '../../cordova-util';
+import { isAndroid, isIOS } from '../../cordova-util';
 
 import {
   updateIsInFreeCountry,
@@ -41,7 +41,7 @@ export class SubscriptionProvider extends Component {
     const isInFreeCountry = updateIsInFreeCountry();
     const isOnTrialPeriod = updateIsOnTrialPeriod();
     await updatePlans();
-    if (isAndroid()) this.configInAppPurchasePlugin();
+    if (isAndroid() || isIOS()) this.configInAppPurchasePlugin();
     if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
       showPremiumRequired({ showTryPeriodFinishedMessages: true });
     }
@@ -67,9 +67,54 @@ export class SubscriptionProvider extends Component {
   };
 
   configPurchaseValidator = () => {
+    const transformReceipt = receipt => {
+      const receiptTransaction = receipt.transaction;
+      const receiptData = JSON.parse(receipt.transaction.receipt);
+      const {
+        packageName,
+        productId,
+        purchaseTime,
+        purchaseState,
+        purchaseToken,
+        quantity,
+        autoRenewing,
+        acknowledged
+      } = receiptData;
+      const transaction = {
+        className: 'Transaction',
+        transactionId: receiptTransaction.id,
+        state: 'approved',
+        products: receipt.products,
+        platform: receiptTransaction.type,
+        nativePurchase: {
+          orderId: receiptTransaction.id,
+          packageName: packageName,
+          productId: productId,
+          purchaseTime: purchaseTime,
+          purchaseState: purchaseState,
+          purchaseToken: purchaseToken,
+          quantity: quantity,
+          autoRenewing: autoRenewing,
+          acknowledged: acknowledged,
+          productIds: receipt.products.map(product => product.id),
+          signature: receiptTransaction.signature,
+          receipt: receiptTransaction.receipt
+        },
+        purchaseId: purchaseToken,
+        purchaseDate: new Date(purchaseTime),
+        isPending: false,
+        isAcknowledged: acknowledged,
+        renewalIntent: 'Renew'
+      };
+      return transaction;
+    };
+
     window.CdvPurchase.store.validator = async function(receipt, callback) {
       try {
-        const transaction = receipt.transactions[0];
+        const transaction = isIOS()
+          ? receipt.transaction
+          : transformReceipt(receipt);
+
         const res = await API.postTransaction(transaction);
         if (!res.ok) throw res;
         callback({

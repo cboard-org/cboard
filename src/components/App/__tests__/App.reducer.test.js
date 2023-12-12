@@ -46,7 +46,8 @@ describe('reducer', () => {
         shareShowActive: false,
         quickUnlockActive: false,
         removeOutputActive: false,
-        vocalizeFolders: false
+        vocalizeFolders: false,
+        improvePhraseActive: false
       },
       symbolsSettings: {
         arasaacActive: false
@@ -75,7 +76,8 @@ describe('reducer', () => {
         shareShowActive: false,
         quickUnlockActive: false,
         removeOutputActive: false,
-        vocalizeFolders: false
+        vocalizeFolders: false,
+        improvePhraseActive: false
       },
       userData: uData
     };

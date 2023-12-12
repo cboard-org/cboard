@@ -1,191 +1,193 @@
-# Cboard Help
+# Tulun kona-ba CBoard 
 
-## Table of contents
+## Tabela konteúdu
 
-* [What is Cboard?](#WhatisCboard)
-* [Registration and login](#Registrationandlogin) 
-    * [How do I register for Cboard?](#HowdoIregisterforCboard)
-    * [Can I register myself using my social media accounts?](#CanIregistermyselfusingmysocialmediaaccounts)
-    * [How do I log in to Cboard once I am a registered user?](#HowdoIlogintoCboardonceIamaregistereduser)
-    * [How do I logout?](#HowdoIlogout)
-    * [What is the difference between a registered and a non-registered user?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
-    * [How do I update my user information?](#HowdoIupdatemyuserinformation)
-    * [How do I reset my password?](#HowdoIresetmypassword)
-* [Price](#Price) 
-    * [How much does Cboard cost?](#HowmuchdoesCboardcost)
-* [Features](#Features) 
-    * [What devices and OS are supported?](#WhatdevicesandOSaresupported)
-    * [Which languages are supported by Cboard?](#WhichlanguagesaresupportedbyCboard)
-    * [Can Cboard read my message out aloud?](#CanCboardreadmymessageoutaloud)
-    * [Speech capabilities](#Speechcapabilities)
-    * [Export and import](#Exportandimport)
-    * [Display capabilities](#Displaycapabilities)
-    * [Can I change any navigation settings?](#CanIchangeanynavigationsettings)
-    * [Navigation through the interface](#Navigationthroughtheinterface)
-* [Settings](#Settings) 
-    * [How do I access settings in Cboard?](#HowdoIaccesssettingsinCboard)
-    * [How do I print my board set in Cboard?](#HowdoIprintmyboardsetinCboard)
-    * [How do I see Cboard in fullscreen?](#HowdoIseeCboardinfullscreen)
-    * [How do I share a board?](#HowdoIshareaboard)
-* [Talking](#Talking) 
-    * [How do I add a personally recorded voice to symbols on Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
-    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
-* [Board Editing](#BoardEditing) 
-    * [How do I create an empty board?](#HowdoIcreateanemptyboard)
-    * [How do I personalize an existing board in Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
-    * [Can I use my own pictures when editing a board?](#CanIusemyownpictureswheneditingaboard)
-    * [Can I change the ordering of the elements in a board?](#CanIchangetheorderingoftheelementsinaboard)
-    * [How do I select multiple elements to edit?](#HowdoIselectmultipleelementstoedit)
-    * [How can I find new symbols when I am editing a tile?](#FindSymbols)
-    * [Can I place board tiles in fixed positions?](#FixedBoards)
-    * [How do I set a specific number of rows and columns in my board?](#FixedRows)
-* [Export and import](#Exportandimport) 
-    * [How do I export my board in Cboard?](#HowdoIexportmyboardinCboard)
-    * [How do I import a board into Cboard?](#HowdoIimportaboardintoCboard)
-    * [What file format does Cboard use for import/export?](#WhatfileformatdoesCboarduseforimportexport)
-* [Display capabilities](#Displaycapabilities) 
-    * [What can I change on the display?](#WhatcanIchangeonthedisplay)
-    * [Can I resize buttons on Cboard?](#CanIresizebuttonsonCboard)
-* [Scanning](#Scanning) 
-    * [Can I use scanning techniques to access symbols?](#CanIusescanningtechniquestoaccesssymbols)
-* [Communicator builder](#CommunicatorBuilder) 
-    * [What is the communicator builder?](#Whatiscommbuilder)
-    * [Communicator boards](#CommunicatorBoards)
-    * [Public boards](#PublicBoards)
-    * [All my boards](#Allmyboards)
+* [Saida mak Cboard?](#WhatisCboard)
+* [Rejistrasaun no login](#Registrationandlogin) 
+    * [Oinsá ha'u rejista ba Cboard?](#HowdoIregisterforCboard)
+    * [Bele ka lae ha'u rejista ha'u nia aan uza ha'u nia konta mídia sosiál?](#CanIregistermyselfusingmysocialmediaaccounts)
+    * [Oinsá ha'u log in ba iha Cboard bainhira ha'u rejistradu ona nu'udar uzuáriu ida?](#HowdoIlogintoCboardonceIamaregistereduser)
+    * [Oinsá ha'u xave no sai husi konta?](#HowdoIlogout)
+    * [Saida de'it mak diferensa entre uzuáriu rejistradu ida no la'ós rejistradu ida?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
+    * [Oinsá ha'u atualiza ha'u nia informasaun uzuáriu?](#HowdoIupdatemyuserinformation)
+    * [Oinsá ha'u konfigura fila-fali ha'u nia seña ka password?](#HowdoIresetmypassword)
+* [Presu](#Price) 
+    * [Cboard nia folin ka kustu hira?](#HowmuchdoesCboardcost)
+* [Fitura sira](#Features) 
+    * [Ekipamentu no sistema operasaun saida mak bele uza Cboard?](#WhatdevicesandOSaresupported)
+    * [Lingua hirak ne'ebé mak bele apoia husi Cboard?](#WhichlanguagesaresupportedbyCboard)
+    * [Cboard bele lee ha'u nia mensajen ho moos no lian maka'as ka lae?](#CanCboardreadmymessageoutaloud)
+    * [Abilidade ba ko'alia](#Speechcapabilities)
+    * [Esporta no importa](#Exportandimport)
+    * [Hatudu kapabilidade](#Displaycapabilities)
+    * [Hah'u bele muda konfigurasaun ba kualkér navegasaun ka lae?](#CanIchangeanynavigationsettings)
+    * [Navegasaun liuhosi interface](#Navigationthroughtheinterface)
+* [configuração](#Settings) 
+    * [Oinsá ha'u asesu ba konfigurasaun iha Cboard?](#HowdoIaccesssettingsinCboard)
+    * [Oinsá ha'u imprime ha'u nia kuadru ne'ebé konfigura ona iha Cboard?](#HowdoIprintmyboardsetinCboard)
+    * [Oinsá ha'u haree Cboard iha ekran ho medida nakonu ka tomak?](#HowdoIseeCboardinfullscreen)
+    * [Oinsá ha'u fahe kuadru ida?](#HowdoIshareaboard)
+    * [Oinsá ha'u fahe liafuan ida?](#HowdoIshareaphrase)
+* [Ko'alia](#Talking) 
+    * [Oinsá ha'u aumenta lian ne'ebé ha'u grava ona ba símbolu iha Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
+    * [Oinsá ha'u muda ba lian diferente ida?](#HowdoIswitchtoadifferentvoice)
+    * [Oinsá ha'u muda lian ida nia lian?](#HowdoIchangehowavoicesounds)
+* [Halo edisaun ba kuadru](#BoardEditing) 
+    * [Oinsá ha'u kria kuadru mamuk ida?](#HowdoIcreateanemptyboard)
+    * [Oinsá ha'u personaliza kuadru ida ne'ebé eziste hela iha Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
+    * [Bele ka lae ha'u uza ha'u nia imajen rasik bainhira halo edisaun ba kuadru ida?](#CanIusemyownpictureswheneditingaboard)
+    * [Bele ka lae ha'u muda orden ba elementu sira iha kuadru ida?](#CanIchangetheorderingoftheelementsinaboard)
+    * [Oinsá ha'u hili elementu oioin hodi halo edisaun ka edit?](#HowdoIselectmultipleelementstoedit)
+    * [Oinsá mak ha'u bele hetan símbolu foun bainhira ha'u halo hela edisaun ka edit tella ida?](#FindSymbols)
+    * [Bele ka lae ha'u tau kuadru tela ida iha pozisaun ne'ebé fiksu ona?](#FixedBoards)
+    * [Oinsá ha'u bele konfigura númeru espesífiku ida iha liña no koluna sira iha ha'u nia kuadru?](#FixedRows)
+* [Esportu no importa](#Exportandimport) 
+    * [Oinsá ha'u halo esportu ha'u nia kuadru iha Cboard?](#HowdoIexportmyboardinCboard)
+    * [Oinsá ha'u importa kuadru ida ba iha Cboard laran?](#HowdoIimportaboardintoCboard)
+    * [File formatu saida mak Cboard uza hodi imprta/ esporta?](#WhatfileformatdoesCboarduseforimportexport)
+* [Hatudu kapabilidade](#Displaycapabilities) 
+    * [Saida de'it mak ha'u bele muda iha ekran ne'e?](#WhatcanIchangeonthedisplay)
+    * [Ha'u bele muda butaun sira nia medida iha Cboard ka lae?](#CanIresizebuttonsonCboard)
+    * [Muda ekran liuhosi butaun boot sira](#BigScrollButtons)
+* [Esplorasaun](#Scanning) 
+    * [Bele ka lae ha'u uza tékniku scan nian hodi asesu ba símbolu sira?](#CanIusescanningtechniquestoaccesssymbols)
+* [Hodi estabelese komunikadór](#CommunicatorBuilder) 
+    * [Saida mak hodi estabelese komunikadór ne'e?](#Whatiscommbuilder)
+    * [Kuadru komunikadór sira](#CommunicatorBoards)
+    * [Kuadru públiku sira](#PublicBoards)
+    * [Ha'u nia kuadru hothotu](#Allmyboards)
 
-## <a name='WhatisCboard'></a>What is Cboard?
+## <a name='WhatisCboard'></a>Saida mak Cboard?
 
-Cboard is a free web application for children and adults with speech and language impairments, facilitating communication with pictures and text-to-speech.
+Aplikasaun web ba labarik no ema adultu ho defisiénsia ba ko'alia no lingua, tulun komunikasaun ho símbolu no tekstu-ba-ko'alia
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
-## <a name='Registrationandlogin'></a>Registration and login
+## <a name='Registrationandlogin'></a>Rejistrasaun no login
 
-### <a name='HowdoIregisterforCboard'></a>How do I register for Cboard?
+### <a name='HowdoIregisterforCboard'></a>Oinsá ha'u rejista ba Cboard?
 
-To register for Cboard, begin by following the steps on the Welcome page where you will find a choice of logins.
+Atu rejistu ba Cboard, hahú ho halo tuir etapa sira iha pájina Bemvindu ne'ebé ita sei hetan opsaun ba login nian
 
 ![Cboard website](/images/help/website.png "Cboard website")
 
-![Welcome page](/images/help/welcome-page.png "Welcome page")
+![Bemvindu mai pájina](/images/help/welcome-page.png "Welcome page")
 
-If you are a new user, press SIGN UP, and a short form will pop up asking for basic information in order to create your account.
+Se ita nu'udar uzuáriu foun ida, hanehan REJISTU, no formuláriu badak ida sei mosu mai hodi husu ita nia informasaun báziku atu bele kria ita nia konta.
 
-![Cboard signup](/images/help/signup.png "Cboard signup")
+![Rejistu ba Cboard](/images/help/signup.png "Cboard signup")
 
-Once you have filled out this information, you will receive an e-mail shortly after with a link to follow in order to confirm your account.
+Bainhira ita prienxe ona informasaun ne'e, ita sei simu email ida iha tempu badak ho link ida hodi konfirma ita nia konta.
 
-![Email signup](/images/help/signupemail.png "Email signup")
+![Rejistu email](/images/help/signupemail.png "Email signup")
 
-This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
+Informasaun ida ne'e úniku ba de'it kompañia hodi apoia uzu ba Cboard no fornese apoia bainhira nesesáriu. Sei la fahe ho organizasaun seluk, (haree [detallu privasidade](https://www.cboard.io/privacy/))
 
-Once you have verified your account you will have access to Cboard, and will receive another e-mail confirming you were successfully verified your account.
+Bainhira ita verifika ona ita nia konta ita sei iha asesu ba Cboard, no ita sei simu email ida seluk tan hodi konfirma katak ita ho susesu verifika ona ita nia konta.
 
-### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>Can I register myself using my social media accounts?
+### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>Bele ka lae ha'u rejista ha'u nia aan uza ha'u nia konta mídia sosiál?
 
-Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
+Sim! Ita iha pájina login nian, ita sei hetan opsaun hodi rejista ho ita nia konta Google ka Facebook se ita hakarak nune'e. Ita mós bele rejista ho ita nia diresaun email ida. 
 
-### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>How do I log in to Cboard once I am a registered user?
+### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>Oinsá ha'u log in ba iha Cboard bainhira ha'u rejistradu ona nu'udar uzuáriu ida?
 
-To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
+Atu login ba Cboard, ita halo tuir faze primeiru ne'ebé uza ba rejistu, maibé la hili SIGN UP ba iha ekran bemvinda, hili LOGIN. Hafoin sei husu ita fornese ita nia email ne'ebé ita uza hodi rejista, no password ka seña ne'ebé ita hili tau ona.
 
-![Cboard login](/images/help/login.png "Cboard login")
+![Login ba Cboard](/images/help/login.png "Cboard login")
 
-### What are the different options to configure Cboard?
+### Opsaun diferente saida de'ti mak iha hodi konfigura Cboard?
 
-Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
+Bainhira ita login ba Cboard, ita bele asesu ba opsaun diferente hodi konfigura no dezenvolve Kuadru Komunikasaun ne'ebé fornese ona bainhira Cboard tama iha moda la xave. Haree lista opsaun xave iha kraik:
 
-![Cboard settings](/images/help/settings.png "Cboard settings")
+![Konfigurasaun ba Cboard](/images/help/settings.png "Cboard settings")
 
-### <a name='HowdoIlogout'></a>How do I logout?
+### <a name='HowdoIlogout'></a>Oinsá hau atu taka Cboard?
 
-You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
+Ita bele sai liuhosi hili ikonu konfigurasaun nian, no sei mosu opsaun iha kór mean. Ita mós bele hili símbolu xave iha parte kantu liman loos, klíke dala tolu no bainhira ita loke ona ekran no bar kór mean mosu, hili ikonu iha liman karuk hodi xave (ita nia imajen se ita tau ona imajen) no opsaun sai sei mosu iha kór mean. 
 
-![Cboard logout](/images/help/logout.png "Cboard logout")
+![Taka Cboard](/images/help/logout.png "Cboard logout")
 
-### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>What is the difference between a registered and a non-registered user?
+### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>Saida de'it mak diferensa entre uzuáriu rejistradu ida no la'ós rejistradu ida?
 
-A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
+Uzuáriu ne'ebé rejistradu ona sei bele personaliza sira nia kuadru sira, no mudansa ne'ebé halo sei guarda ba sira nia konta atu nune'e bainhira sira tama fali, sira bele haree kuadru ne'ebé modifika ona. Uzuáriu ne'ebé la'ós rejistradu sei labele guarda mudansa ne'ebé halo ona. Ami rekomenda atu rejista tiha hodi nune'e bele garante, bainhira ita halo mudansa sei salva guarda.
 
-### <a name='HowdoIupdatemyuserinformation'></a>How do I update my user information?
+### <a name='HowdoIupdatemyuserinformation'></a>Oinsá ha'u atualiza ha'u nia informasaun uzuáriu?
 
-To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
+Atu atualiza ita nia informasaun uzuáriu, halo tuir faze etapa ne'ebé hanesan ne'ebé ita halo bainhira ita sai. Hili símbolu xave iha kantu liman loos parte leten ba kuadru - klíke dala tolu, no bainhira ita loke ona ekran, hili ikonu iha parte xave liman karuk nian (naran uzuáriu nia insiál, fotografia) no ita sei bele halo edisaun ba ita nia informasaun.
 
-### <a name='HowdoIresetmypassword'></a>How do I reset my password?
+### <a name='HowdoIresetmypassword'></a>Oinsá ha'u konfigura fila-fali ha'u nia seña ka password?
 
-In order to reset your password, please e-mail support@cboard.io and we will get back to you.
+Atu hafoun ita nia password ka seña, favór haruka email ba support@cboard.io no ami sei kontaktu fali ita.
 
-## <a name='Price'></a>Price
+## <a name='Price'></a>Presu
 
-### <a name='HowmuchdoesCboardcost'></a>How much does Cboard cost?
+### <a name='HowmuchdoesCboardcost'></a>Cboard nia folin ka kustu hira?
 
-Cboard is completely free of any charge.
+Cboard ne'e kompletamente gratuita husi kualkér kustu.
 
-## <a name='Features'></a>Features
+## <a name='Features'></a>Fitura sira
 
-### <a name='WhatdevicesandOSaresupported'></a>What devices and OS are supported?
+### <a name='WhatdevicesandOSaresupported'></a>Ekipamentu no sistema operasaun saida mak bele uza Cboard?
 
-Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
+Cboard disponivel iha online uza perante oioin de'it, inklui desktop, tabuleta no telemove uza sistema operasaun Mac, Windows no Android. Bele haree di'ak liu ho browser sira hanesan Chrome, Firefox, Edge no Safari no aplikasaun Android ida disponivel husi Google Play. 
 
-![Browser support](/images/help/browsers.png "Browser support")
+![Browser ne'ebé bele suporta Cboard](/images/help/browsers.png "Browser support")
 
-Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
+Tanba Cboard ne'e hanesan aplikasaun ho baze internet nune'e sei responde ba konfigurasaun husi individuál liuhosi browser. Ida ne'e bele signifika katak ita iha rezultadu ne'ebé diferente husi Cboard. Ezemplu mak ita bele hetan opsaun ko'alia ne'ebé diferente.
 
-Don’t forget you can also use browser magnification or zoom to a certain degree depending on the computer, tablet or phone screen size.
+Keta haluha ita bele uza browser nia aplikasaun halo boot ka zoom tuir nia graun balu depende ba komputadór, tabuleta ka telemove nia medida ekran.
 
-Please ask Cboard about using high contrast mode for those with visual impairment as browser based options are not helpful when using this type of web app.
+Favór husu Cboard kona-ba uza moda kontras aas ba sira ne'ebé mak iha defisiénsia ho haree nian tanba opsaun bazeia ba browser sei la tulun bainhira uza típu aplikasaun web hanesan ne'e
 
-### <a name='WhichlanguagesaresupportedbyCboard'></a>Which languages are supported by Cboard?
+### <a name='WhichlanguagesaresupportedbyCboard'></a>Lingua hirak ne'ebé mak bele apoia husi Cboard?
 
-Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language.
+Cboard suporta lingua 33. Atu hili lingua diferente ba iha KONFIGURASAUN - hili LINGUA no sei mosu lingua hirak ne'ebé disponivel. Hili ida no sinál 'tíkue' sei mosu iha lingua ne'e nia sorin.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='CanCboardreadmymessageoutaloud'></a>Can Cboard read my message out aloud?
+### <a name='CanCboardreadmymessageoutaloud'></a>Cboard bele lee ha'u nia mensajen ho moos no lian maka'as ka lae?
 
-Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
+Sim, Cboard uza rezultadu ko'alia sintetika ne'ebé disponivel iha ita nia peranti teklojia atu lee sai label individuál ne'ebé iha tuir kadak símbolu ne'ebé ita aumenta ba kaixa rezultadu. Ita bele hili mensajen kompletu ida no sei lee sai ho klaru. Bainhira iha gravasaun tuir preferensia, sei aumenta lifuan ka símbolu ne'ebé aumenta tiha ona (instrusaun iha Ko'alia - Grava Lian) ita sei rona lian ne'ebé gravadu ona la'ós lian sintesis. Ida ne'e sei tulun tebes bainhira laiha tradusaun iha ita nia lian, presiza labarik ida n ia lian ka aksen ida sei la aseitavel. Favór asegura asesu ba internet web ne'ebé iha permisaun ba ita nia mikrofone.
 
-### <a name='Speechcapabilities'></a>Speech capabilities
+### <a name='Speechcapabilities'></a>Abilidade ba ko'alia
 
-In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
+Atu ajusta kapabilidade ko'alia/ lian/ volume, ba iha KONFIGURASAUN/ SETTINGS, no iha kategoria LIAN/ LANGUAGE nia okos hili kategoria KO'ALIA/ SPEECH. Hafoin ne'e ita sei bele halo edisaun ba lian aas ka baixu no nia lais iha Cboard. 
 
-![Speech capabilities](/images/help/speech.png "Speech capabilities")
+![Abilidade ba ko'alia](/images/help/speech.png "Speech capabilities")
 
-### <a name='Exportandimport'></a>Export and import
+### <a name='Exportandimport'></a>Esporta no importa
 
-Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
+Opsaun rua ba esporta iha KONFIGURASAUN nia laran iha Kategoria SISTEMA, haree iha Lingua no Ko'alia nia okos. Kategoria Esporta sei fó opsaun ba ita hodi upload tantu bele KuadruNakloke ka PDF. Kategoria Importa sei loke ita nia dokumentu ne'ebé guarda ona bainhira ita hili RESTAURA.
 
-![Export capabilities](/images/help/export.png "Export capabilities")
+![Kapabilidade ba esporta](/images/help/export.png "Export capabilities")
 
-### <a name='Displaycapabilities'></a>Display capabilities
+### <a name='Displaycapabilities'></a>Kapasidade ba hatudu
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+Bele halo edisaun ba konfigurasaun ekran nian iha SETTINGS, iha kategoria SISTEMA nia laran. Opsaun Ekran iha parte Esporta no Importa nia okos kedan. Bainhira ita hili EKRAN ka DISPLAY ita bele muda nia medida UI ho mós nia medida letra ba app liuhosi hili medida ne'ebé ita hakarak. Pontu mean ne'e tenke iha medida ne'ebé ita atu hili ne'e nia okos. 
 
 ![Display capabilities](/images/help/display.png "Display capabilities")
 
 ### <a name='CanIchangeanynavigationsettings'></a>Can I change any navigation settings?
 
-Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
+Uza seksaun NAVEGASAUN hodi halo edisaun no fasilita oinsá ita atu uza hodi muda-ba-mai iha Cboard no apaga símbolu hothotu iha kaixa mensajen nia laran. Navegasaun iha kategoria SISTEMA nia rohan iha parte SETTINGS sei fó espasu ba ita butaun apaga ('x') hodi mosu iha kada símbolu bainhira sira mosu iha kaixa mensajen laran. Ida ne'e bele halo fasil liu ba apaga símbolu iha liafuan tomak ida nia laran. Maibé tenke konsente katak uzuáriu nia nesesidade mós bele halo konfunde ba ema seluk sira.
 
 ### <a name='Navigationthroughtheinterface'></a>Navigation through the interface
 
-In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
+Atu halo edisaun no fasilita navegasaun liuhosi Cboard, hili NAVEGASAUN, iha iten menu ikus liu iha SISTEMA laran (buat hotu iha Settings) hodi fó espasu ba ita ba aumenta detalla balu atu bele hafasil ita uza kuadru refere. Opsaun primeiru iha Navegasaun laran sei fó espasu ba butaun 'fila-fali' boot ida ne'ebé fasil liu hodi hili tanba nia medida. Aumenta segundu ba butaun 'x' ida hodi halo fasil liu ba apaga símbolu sira, no ida datoluk ne'e hodi halo fasil liu ba loke nian ne'ebé presiza de'it klíke ida hodi loke nia setting. 
 
 ![Navigation  capabilities](/images/help/navigation.png "Navigation capabilities")
 
-## <a name='Settings'></a>Settings
+## <a name='Settings'></a>configuração
 
 ### <a name='HowdoIaccesssettingsinCboard'></a>How do I access settings in Cboard?
 
 Once you log in to Cboard, the HOME page will open.
 
-In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
+Atu asesu ba SETTINGS ka KONFIGURASAUN, hili xave kiik iha parte liman-loos dala-tolu, iha rama oan nia kraik. Bainhira ita halo ona ida ne'e, sei mosu bar kór malahuk ida iha bar HOME/ UMA kór metan nia kraik, no sei mosu butaun 'settngs' ka 'konfigurasaun' direta ba xave parte liman karuk iha bar HOME ka UMA, daruak husi parte liman loos.
 
 ### <a name='HowdoIprintmyboardsetinCboard'></a>How do I print my board set in Cboard?
 
-To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
+Atu imprime ita nia kuadru, hanehan logo imprime iha parte liman karuk sorin bar HOME/ UMA, hafoin ita loke tiha pájina HOME/ UMA. Sei download dokumentu portable Adobe ka PDF ba ita nia peranti teknolojia. 
 
 ### <a name='HowdoIseeCboardinfullscreen'></a>How do I see Cboard in fullscreen?
 
@@ -197,177 +199,197 @@ In order to see Cboard in fullscreen, unlock the screen by pressing the lock sym
 
 To share a board, unlock the screen by pressing the lock symbol on the right hand side, then on the highest row (the black bar), the third symbol from the right gives you the option to share your board on either email, Facebook, Twitter, or copy the link to send to someone.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
-## <a name='Talking'></a>Talking
+### <a name='HowdoIshareaphrase'></a>Oinsá ha'u fahe liafuan ida?
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>How do I add a personally recorded voice to symbols on Cboard?
+To share a phrase, only for the first time, unlock the screen, go to settings > Navigation and Buttons > and turn on the 'Show the share phrase button' option.
 
-1. Go to the board you want to use.
+![Butaun fahe liafuan ](https://user-images.githubusercontent.com/21298844/128038972-a2848d47-2675-4e2d-9a15-6f93186f29d6.png)
 
-2. Unlock the board using the lock on the right hand side.
+Tau hamutuk halo liafuan kompleta ida. Hafoin hanehan ikonu fahe ne'ebé mosu iha parte bar liafuan nian output. Hili rede sosiál ne'ebé ita hakarak fahe liafuan refere. Kaixa dialogu ida sei loka ho liafuan ho espasu koluna ba tekstu. Hanehan butaun hatama hodi fahe. Se ita hakarak atu kopia liafuan refere ba ita nia klipe kuadru, hanehan butaun fahe no hafoin opsaun 'kopia ba klipe kuadru. Sei hatudu notifikasaun ida ba ita nia ekran ho mensajen susesu. 
 
-3. Select the EDIT button on the left hand side.
+![Butaun fahe liafuan ](https://user-images.githubusercontent.com/21298844/128044322-d61491c6-7168-4615-8117-244dc872091e.png)
 
-4. Choose which symbol cell or tile to which you want to add a voice recording. Once you select the tile or a series of tiles, a blue tick will appear in each one and they will be highlighted.
+## <a name='Talking'></a>Ko'alia
 
-5. Select the PENCIL icon on the far right side on the light blue bar.
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Oinsá ha'u aumenta lian ne'ebé ha'u grava ona ba símbolu iha Cboard?
 
-6. Once the tile opens, you are given the option to use a voice recorder to add a sound, word or phrase etc.
+1. Ba iha kuadru ne'ebé ita hakarak uza
 
-7. Add the label for the vocalisation
+2. Loke kuadru uza xave fatin iha parte liman loos nian
 
-8. Finally select the microphone symbol and record, you can record multiple times and can play it back before saving it to the board.
+3. Hili butaun EDISAUN iha parte liman karuk nian.
+
+4. Hili símbolu selula ka tella ne'ebé mak ita hakarak aument gravasaun lian. Bainhira ita hili tella ka serie husi tella refere, sei mosu sinal tike kór azul iha kada tella ida no sei fó marka ba sira.
+
+5. Hili ikonu LAPÍZ iha parte liman loos liu iha bar kór azul naroman
+
+6. Bainhira tella loke ona, ita iha opsaun atu uza grava lian hodi aumenta lian, liafuan ida ka liafuan barak, nsst.
+
+7. Aumenta label ba vokalizasaun
+
+8. Ikus liu hili símbolu mikrofonu no gravasaun, ita bele grava dalabarak no play fali hantes guarda ba kuadru refere.
     
-    If you have selected multiple symbols use NEXT to go to the next symbol and repeat the process.
+    Se ita hili ona símbolu barak uza TUIR MAI ba iha símbolu tuir mai no repete nia prosesu
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIswitchtoadifferentvoice'></a>How do I switch to a different voice?
+### <a name='HowdoIswitchtoadifferentvoice'></a>Oinsá ha'u muda ba lian diferente ida?
 
-In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
+Atu ajusta kapabilidade ko'alia/ lian nian, ba iha konfigurasaun ka settings, no iha kategoria LIAN/ LANGUAG iha kategoria SPEECH/ KO'ALIA. Bainhira ita hili SPEECH/ KO'ALIA ita sei bele halo edisaun ba lian notas no lian nia lais iha Cboard. Ita bele mós grava ita nia lian rasik ba símbolu sira hafoin etapa sira iha resposta "Oinsá ha'u aumenta ha'u nia lian ne'ebé gravadu ona ba iha símbolu iha Cboard?"
 
-### <a name='HowdoIchangehowavoicesounds'></a>How do I change how a voice sounds?
+### <a name='HowdoIchangehowavoicesounds'></a>Oinsá ha'u muda lian ida nia lian?
 
-In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
+Atu ajusta kapabilidade ko'alia/ lian/ volume, ba iha KONFIGURASAUN/ SETTINGS, no iha kategoria LIAN/ LANGUAGE nia okos hili kategoria KO'ALIA/ SPEECH. Hafoin ne'e ita sei bele halo edisaun ba lian aas ka baixu no nia lais iha Cboard. 
 
-## <a name='BoardEditing'></a>Board Editing
+## <a name='BoardEditing'></a>Halo edisaun ba kuadru
 
-### <a name='HowdoIcreateanemptyboard'></a>How do I create an empty board?
+### <a name='HowdoIcreateanemptyboard'></a>Oinsá ha'u kria kuadru mamuk ida?
 
-In Cboard an empty board is equivalent to a folder.
+Iha Cboard, kuadru mamuk ida konsidera hanesan pasta folder ida.
 
-If you want to create a new or empty board you have to create a new folder, and that will create a new board in the Cboard storage area (which you can see when you go to BOARDS on the middle bar in edit mode).
+Se ita hakarak kria kuadru mamuk foun ida ita tenke kria folder foun ida ne'ebé sei kria kuadru foun ida iha Cboard nia área armazen (ne'ebé ita bele haree bainhira ita ba iha KUADRU iha barra klaran iha moda edisaun nian)
 
-The new empty board will be immediately available for editing and can be set as the root board (using the build button), which means that it will be the first board you see the next time you open Cboard.
+Kuadru mamuk foun sei imidiatamente disponivel iha edisaun no bele set iha kuadru hun (uza butaun dezenvolve), ne'ebé signifika katak sei sai hanesan kuadru primeiru mak ita haree iha tempu tuir mai bainhira ita loke Cboard.
 
-To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
+Atu kria pasta folder ida, hahú ho loke lai ekran hili butaun xave iha parte liman loos nian. Bainhira ita loke ona xave ba ekran, hili símbolu aumenta (+) iha parte liman loos nian, atu AUMENTA TELLA. Hafoin ne'e ita sei hetan opsaun ba aumenta Tella/ BUTAUN ne'ebé sei sai hanesan butaun dahuluk no automátiku ka hili PASTA FOLDER, asaun ne'e sei halo KUADRU FOUN ne'ebé ita bele aumenta tan tella no pasta folder sira. 
 
-Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels.
+Bainhira ita tau ona folder nia naran ita bele upload imajen ida ho dalan ne'ebé hanesan halo tella ida ho konfigurasaun ba kór no label. Folder foun ne'e sei automatikamente konekta ba kuadru iha nia leten (se inklui ba liña tella sira). Nune'e sei mosu iha ita nia lista kuadru sira nu'udar kuadru mamuk antes enxe ho símbolu no label sira. 
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>How do I personalize an existing board in Cboard?
+### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Oinsá ha'u personaliza kuadru ida ne'ebé eziste hela iha Cboard?
 
-In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
+Atu personaliza kuadru ne'ebé eziste tiha ona, hili XAVE/ LOCK iha kantu liman loos parte leten iha bar, kuadru nia leten, (rama oan krus ida nia okos). Bainhira ita halo ona ida ne'e, bar ida sei mosu iha bar HOME/ UMA nia kraik kór metan, no ita sei hetan ikonu bloku kiik oan ida (EDISAUN) iha parte liman karuk hodi aumenta tella ka selula ida. Bainhira hili bloku refere, bar ne'ebé kór malahuk sei muda nia kór sai azul, no iha parte liman loos nian ita sei haree lixeiru kiik ida no lapíz ida. 
 
-![personalize an existing board](/images/help/personalize.png "personalize an existing board")
+![Modifika ita nia kuadru ne'ebé eziste ona.](/images/help/personalize.png "personalize an existing board")
 
-In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization.
+Atu modifika ita nia kuadru, hili lapíz no ita sei bele halo mudansa ba label, upload imajen ida, no aumenta vokalizasaun.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='CanIusemyownpictureswheneditingaboard'></a>Can I use my own pictures when editing a board?
+### <a name='CanIusemyownpictureswheneditingaboard'></a>Bele ka lae ha'u uza ha'u nia imajen rasik bainhira halo edisaun ba kuadru ida?
 
-Yes, you can use your own picture when editing a board. In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). You can also edit an existing tile with your own picture.
+Sim, ita bele uza ita nia imajen rasik bainhira halo edisaun ba kuadru ida. Atu uza ita nia imajen rasik, ita bele upload imajen ida bainhira ita kria tella foun ida (liuhosi hili SINAL AUMENTA (+) iha bar kór malahuk hafoin ita loke pájina nia xave). Ita mós bele halo edisaun ba tella ida ne'ebé eziste hela ho ita nia imajen rasik. 
 
-### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Can I change the ordering of the elements in a board?
+### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Bele ka lae ha'u muda orden ba elementu sira iha kuadru ida?
 
-Yes! When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
+Sim! Bainhira ita halo edisaun ba ita nia kuadru ida, loke tiha xave ekran uza símbolu XAVE/ LOCK. Hafoin hili ikonu bloku EDISAUN iha parte liman karuk nian (iha ikonu HARII nia okos). Hafoin ne'e ita bele dada piktograma/ símbolu ka pasta folder ba iha fatin hirak ne'ebé ita hakarak tau iha kuadru ne'ebé hanesan. 
 
-### <a name='HowdoIselectmultipleelementstoedit'></a>How do I select multiple elements to edit?
+### <a name='HowdoIselectmultipleelementstoedit'></a>Oinsá ha'u hili elementu oioin hodi halo edisaun ka edit?
 
-The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected.
+Ita uza maneira hanesan hodi halo mudansa ba tau hamutuk elementu sira iha kuadru ida nia laran, maibé la'ós ho dalan selesiona no dada tama ba, ita hili sírkuluk refere iha símbolu/ piktograma nia laran. Atu halo edisaun ba símbolu barak ita bele hili liuhosi ida. Hafoin halo ida ne'e, selesiona ikonu LAPÍZ iha parte liman loos no ida ne'e sei loke dalan ba ita hodi halo edisaun ba elementu hirak ne'ebé ita hili ona. 
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FindSymbols'></a>How can I find new symbols when I am editing a tile?
+### <a name='FindSymbols'></a>Oinsá mak ha'u bele hetan símbolu foun bainhira ha'u halo hela edisaun ka edit tella ida?
 
-Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page.
+Hili ikonu bloku EDISAUN iha parte liman karuk iha bar kuadru refere no hili símbolu/ piktograma ne'ebé ita hakarak atu muda. Hili nia no bainhira kadeli azul ne'e iha ona sinál tíke, ba iha ikonu LAPÍZ iha parte liman loos. Se ita hili ona lapíz refere, ita sei nota katak iha ikonu LENTI ba funsaun buka símbolu sira. Bainhira fitura ne'e ativadu ona ita sei haree LIBRARIA BUKA SÍMBOLU iha bar edisaun ida. Hakerek ba konseitu/ label/ liafuan ne'ebé ita buka no símbolu sira sei mosu. Bainhira ita hili ona símbolu ida, automatikamente nia sei lori ita fila ba pájina edisaun ba TELLA. 
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FixedBoards'></a>Can I place board tiles in fixed positions?
+### <a name='FixedBoards'></a>Bele ka lae ha'u tau kuadru tela ida iha pozisaun ne'ebé fiksu ona?
 
-By default, when a new board is created, Cboard will add a **fluent board**. Anyway, it is possible to transform the board into a **fixed board**. They have the following features:
+Tuir nia normál, bainhira kria kuadru foun ida, Cboard sei aumenta kuadru ida. Maibé, iha posibilidade mós atu transforma kuadru refere sai kuadru fiksu ida. Sira iha fitura hanesan tuir mai ne'e: 
 
-* The grid will not change for different screen sizes or device orientation. 
-* The number of rows and columns are configurable. 
-* The tiles will have fixed positions in the grid. 
+* Ida ne'e sei la muda ba medida ekran ne'ebé diferente ka peranti nia orientasaun 
+* Bele konfigura númeru liña ho koluna 
+* Tella sira sei iha pozisaun ne'ebé fixu iha grid nia laran 
 
-To convert a board into a fixed board, simply edit the board and switch the option in the toolbar to make it fixed. Your board will change its appearance and the rows and columns indicators will be displayed.
+Atu konverta ka muda kuadru ida hodi sai kuadru fiksu ida, simplemente halo edisaun de'it ba kuadru refere no muda opsaun iha toolbar hodi halo nia sai fiksu. Ita nia kuadru sei muda nia aparénsia no sei hatudu indikadór liña no koluna sira. 
 
-![Fixed board](/images/help/fixedBoard.png "Fixed board")
+![Kuadru fiksu](/images/help/fixedBoard.png "Fixed board")
 
-### <a name='FixedRows'></a>How do I set a specific number of rows and columns in my board?
+### <a name='FixedRows'></a>Oinsá ha'u bele konfigura númeru espesífiku ida iha liña no koluna sira iha ha'u nia kuadru?
 
-First, you have to transform the board into a **fixed board** (see previous topic). In edition mode, your board will display rows and columns indicators. You can interact with these controls in order to increase or decrease the number of rows and columns you want.
+Fofoun, ita tenke transforma ita nia kuadru refere ba iha kuadru fiksu ida (haree tópiku antes ne'e). Iha moda edisaun nia laran, ita nia kuadru seit hatudu indikadór liña no koluna sira. Ita bele halo interasaun ho kontrolu hirak ne'e hodi hasa'e ka hamenus númeru liña no koluna sira ne'ebé ita hakarak. 
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
-## <a name='Exportandimport-1'></a>Export and import
+## <a name='Exportandimport-1'></a>Esporta no importa
 
-### <a name='HowdoIexportmyboardinCboard'></a>How do I export my board in Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>Oinsá ha'u halo esportu ha'u nia kuadru iha Cboard?
 
-In order to export your board in Cboard, go to SETTINGS, and as soon as you open Settings, the EXPORT option will appear as a downward facing arrow, below Language and Speech.
+Atu halo esporta ba ita nia kuadru iha Cboard, ba KONFIGURASAUN, tuir mai loke ita nia KONFIGURASAUN, sei mosu opsaun ESPORTA iha rama-oan nia kraik, Lingua no Ko'alia nia okos.
 
-Select EXPORT, and download your Cboard by selecting either OPENBOARD or EXPORT.
+Hili ESPORTA, no download ita nia Cboard liuhosi hili tantu KUADRU NAKLOKE ka ESPORTA
 
-### <a name='HowdoIimportaboardintoCboard'></a>How do I import a board into Cboard?
+### <a name='HowdoIimportaboardintoCboard'></a>Oinsá ha'u importa kuadru ida ba iha Cboard laran?
 
-In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
+Atu importa ka muda kuadru ida, halo tuir faze hirak ne'ebé mak uza ona iha Esporta. IMPORTA iha Esporta nia kraik, rama-oan ba leten ho bar orizontal iha nia kraik. 
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>What file format does Cboard use for import/export?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>File formatu saida mak Cboard uza hodi imprta/ esporta?
 
-In order to Import and Export boards you have two options:
+Atu Importa ka Esporta kuadru sira, ita iha opsaun rua:
 
-* Use Cboard native file boards.
-* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
+* Uza Cboard iha kuadru file nativu
+* Uza LokeKuadru ho file ne'ebé formatu ona. Aprende liután kona-ba Kuadru Nakloke nia Formatu. 
 
 ## <a name='Displaycapabilities-1'></a>Display capabilities
 
-### <a name='WhatcanIchangeonthedisplay'></a>What can I change on the display?
+### <a name='WhatcanIchangeonthedisplay'></a>Saida de'it mak ha'u bele muda iha ekran ne'e?
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+Konfigurasaun ba ekran bele halo iha KONFIGURASAUN/ SETTINGS, iha kategoria SISTEMA nia laran. Opsaun Ekran iha Esporta no Importa nia okos. Bainhira ita hili HATUTU EKRAN, ita bele muda interface ba uzuáriu (UI) nia medida hanesan mós medida ba letra liuhosi hili medida ne'ebé ita hakarak. Iha pontu mean ida iha medida ne'ebé ita hakarak nia okos hodi ita hili. 
 
-### <a name='CanIresizebuttonsonCboard'></a>Can I resize buttons on Cboard?
+### <a name='CanIresizebuttonsonCboard'></a>Ha'u bele muda butaun sira nia medida iha Cboard ka lae?
 
-Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
+Sim! Ita bele muda medida ba Tella no Butaun sira iha KONFIGURASAUN/ SETTINGS. Iha kategoria SISTEMA/ SYSTEM, hili EKRAN no ita sei hetna opsaun 3 ba medida: Estandarte, Boot, Boot liu. Haree iha figura kraik ne'e:
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![Hatudu kapabilidade](/images/help/display.png "Display capabilities")
 
-## <a name='Scanning'></a>Scanning
+### <a name='BigScrollButtons'></a>Muda ekran liuhosi butaun boot sira
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Can I use scanning techniques to access symbols?
+Iha posibilidade mós atu dudu kuadru ne'e tuun no sae uza butaun boot balu ne'ebé bele aumenta ba iha seksaun konfigurasaun. Ida ne'e liuliu útil ba uzuáriu sira ne'ebé mak uza peranti traker-ba-matan, tanba butaun hirak ne'e fó dalan hodi muda kuadru sem presiza muda nia ekran. Atu ativa fitura ida ne'e, ba iha seksaun konfigurasaun no buka konektór "ativa butaun muda boot". Muda tiha konektor ne'e no guarda ita nia konfigurasaun. Haree iha figura kraik ne'e:
 
-Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
+![Ativa butaun eskrol boot](/images/help/bigScrollSettings.png "Big scroll buttons settings")
 
-## <a name='CommunicatorBuilder'></a>Communicator builder
+Hafoin ne'e, ita sei haree butaun boot balu iha kuadru nia parte leten no kraik bainhira boot natoon, no sei hatudu imajen iha kraik ne'e:
 
-### <a name='Whatiscommbuilder'></a>What is the communicator builder?
+![Butaun eskrol bot](/images/help/bigScrollButtons.png "Big scroll buttons")
 
-The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
+## <a name='Scanning'></a>Esplorasaun
 
-![Communicator builder](/images/help/communicator.png "Communicator builder")
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Bele ka lae ha'u uza tékniku scan nian hodi asesu ba símbolu sira?
 
-### <a name='CommunicatorBoards'></a>Communicator boards
+Eskaneamentu mak iten hirak ne'ebé iha selesaun laran konfigura ona hodi aprezenta tuir nia tempu no uzuáriu sira halo selesaun ida indiretamente, babain liuhosi muda asesu. ESKANEAMENTU ba iha Cboard hala'o prosesu iha kategoria KONFIGURASAUN/ SETTINGS ho SISTEMA/ SYSTEM nia laran. Iha diferensa konfigurasaun ba eskaneamentu. Fofoun ita tenke ativa laiha konfigurasaun eskaning liuhosi hili ATIVA. Hafoin ne'e ita hili tuir tempu ne'ebé tarde, nune'e mós ba nia métodu (bele automátiku ka manuál). Favór tenke hatene katak bainhira uza tabuleta ka telemovel, perante sira ne'e mós dalaruma iha sira ninia opsaun rasik ba eskaneamentu nian. 
 
-The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
+## <a name='CommunicatorBuilder'></a>Estabelese komunikadór
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available under 'All my boards' tab.
+### <a name='Whatiscommbuilder'></a>Saida mak hodi estabelese komunikadór ne'e?
 
-* Set board as root: this buttton will define the board as the first board to be displayed every time you login to Cboard.
+Harii komunikadór mak fitura ida ne'ebé mak tulun ita hodi bok kuadru sira hodi kopia, apaga, públika, aumenta ka halakon sira. Atu asesu ba ninia funsionalidade ita presiza loke tiha lai konfigurasaun no klíke ba butaun 'Harii'. Ita sei haree pájina foun estruturadu ida iha tab diferente tolu: kuadru sira, kuadru públiku, ha'u nia kuadru sira hotu. Haree figura iha kraik: 
 
-![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
+![Estabelese komunikadór](/images/help/communicator.png "Communicator builder")
 
-### <a name='PublicBoards'></a>Public boards
+### <a name='CommunicatorBoards'></a>Kuadru komunikadór sira
 
-* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
+Ita sei haree iha tab normal harii komunikadór iha tab kuadru komunikadór, ne'ebé sei hatudu kuadru hothotu inklui ba iha ita nia komunidadór nia laran. Ita bele halo mudansa ba ita nia komunikadór husi butaun asaun sira tuir mai ne'e:
 
-![Public boards](/images/help/PublicBoards.png "Public boards")
+* Hasai kuadru husi komunikadór: butaun ne'e sei hapara kuadru husi komunikadór maibé SEI LA apaga kuadru husi baze dadus no sei disponivel nafatin iha tab 'Ha'u nia Kuadru Hothotu' nia okos.
 
-### <a name='Allmyboards'></a>All my boards
+* Konfigura kuadru nu'udar abut: butaun ne'e sei defini kuadru refre nu'udar kuadru primeiru ne'ebé sei hatudu hela de'it bainhira ita tama ba Cboard.
 
-Please note that JUST registered users can access to this tab functionality.
+![Kuadru komunikadór sira](/images/help/communicatorBoards.png "Communicator boards")
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available.
+### <a name='PublicBoards'></a>Kuadru públiku sira
 
-* Add board to the communicator: this buttton will include the board to the communicator.
+* Kopia kuadru: butaun ida ne'e sei kria kopia ba kuadru refere no sei aumenta ba ita nia komunikadór. Tanba ida ne'e kopia ida husi kuadru públiku, ita bele halo edisaun ba kuadru ida nee' tuir ita nia hakarak sen afeta ba kuadru públiku orijinál refere. 
 
-* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
+![Kuadru públiku sira](/images/help/PublicBoards.png "Public boards")
+
+### <a name='Allmyboards'></a>Ha'u nia kuadru hothotu
+
+Favór nota katak uzuáriu ne'ebé foin REJISTU bele asesu ba tabuleta funsionalidade
+
+* Hasai kuadru husi komunikadór: butaun ne'e sei hapara kuadru husi komunikadór maibé SEI LA apaga kuadru husi baze dadus no sei disponivel nafatin iha tab 'Ha'u nia Kuadru Hothotu' nia okos.
+
+* Aumenta kuadru ba komunikadór: butaun ne'e sei inklui iha kuadru ba komunikadór
+
+* Públika kuadru ida: Asaun ida ne'e sei halo no hatudu kuadru públiku refere iha tab kuadru públiku nia okos. Ema hotu bele haree ita nia kuadru. 
     
- * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
+ * Kuadru ne'ebé seidauk públika: Asaun ida ne'e sei halo kuadru privadu no sei la hatudu iha tab kuadru públiku sira. Laiha ema ida mak sei haree ita nia kuadru. 
     
- * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
+ * Apaga kuadru: Asaun ida ne'e sei hamoos ka apaga tiha ita nia kuadru no labele hetan tan fali ona. Sei hasai kuadru refere husi baze-dadus. 
 
-![All my boards](/images/help/AllmyBoards.png "All my boards")
+![Ha'u nia kuadru hothotu](/images/help/AllmyBoards.png "All my boards")

@@ -4,7 +4,7 @@
   position: relative;
   color: #eceff1;
   overflow: auto;
-  background: url('/images/bg/bg-pattern.png'),
+  background: /* webpackIgnore: true */ url('/images/bg/bg-pattern.png'),
     linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
 }
 

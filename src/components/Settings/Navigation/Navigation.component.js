@@ -17,6 +17,7 @@ import { NAVIGATION_BUTTONS_STYLES } from './Navigation.constants';
 
 import './Navigation.css';
 import ResetToursItem from '../../UI/ResetToursItem';
+import PremiumFeature from '../../PremiumFeature';
 
 const propTypes = {
   /**
@@ -77,6 +78,12 @@ class Navigation extends React.Component {
   toggleLiveMode = () => {
     this.setState({
       liveMode: !this.state.liveMode
+    });
+  };
+
+  toggleImprovePhraseActive = () => {
+    this.setState({
+      improvePhraseActive: !this.state.improvePhraseActive
     });
   };
 
@@ -287,6 +294,30 @@ class Navigation extends React.Component {
                     value="active"
                     color="secondary"
                   />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Display__ListItemText"
+                  primary={
+                    <FormattedMessage {...messages.activeImprovePhrase} />
+                  }
+                  secondary={
+                    <FormattedMessage
+                      {...messages.activeImprovePhraseSecondary}
+                    />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <PremiumFeature>
+                    <Switch
+                      checked={this.state.improvePhraseActive || false}
+                      onChange={this.toggleImprovePhraseActive}
+                      value="active"
+                      color="secondary"
+                    />
+                  </PremiumFeature>
                 </ListItemSecondaryAction>
               </ListItem>
             </List>
