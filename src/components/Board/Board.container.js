@@ -1423,6 +1423,30 @@ export class BoardContainer extends Component {
     const { board, intl, createTile, showNotification } = this.props;
     try {
       this.setState({ isSaving: true });
+
+      const shouldPreventInfiniteLoop = tile => {
+        const boardToPasteChilds = this.props.boardsWithChilds.find(
+          board => board.boardId === tile.loadBoard
+        )?.childs;
+        if (
+          tile.loadBoard === board.id ||
+          boardToPasteChilds?.includes(board.id)
+        )
+          throw Error(
+            'Prevent paste folders inside of it self or in one of it children and cause an infinite Loop',
+            {
+              cause: { code: 'infiniteLoop' }
+            }
+          );
+      };
+
+      const copiedFolders = this.state.copiedTiles.reduce((folders, tile) => {
+        if (tile?.loadBoard) folders.push(tile);
+        return folders;
+      }, []);
+
+      copiedFolders.forEach(shouldPreventInfiniteLoop);
+
       for await (const tile of this.state.copiedTiles) {
         const newTile = {
           ...tile,
@@ -1430,7 +1454,6 @@ export class BoardContainer extends Component {
         };
         if (tile.loadBoard) {
           createTile(newTile, board.id);
-          if (tile.loadBoard === board.id) throw Error('disalowed');
           await this.pasteBoardsRecursively(newTile, board.id);
         } else {
           await this.handleAddTileEditorSubmit(newTile);
@@ -1438,7 +1461,13 @@ export class BoardContainer extends Component {
       }
       showNotification(intl.formatMessage(messages.tilesPastedSuccessfully));
     } catch (err) {
-      showNotification(intl.formatMessage(messages.tilesPastedError));
+      if (err.cause.code === 'infiniteLoop') {
+        showNotification(
+          intl.formatMessage(messages.tilesPastedErrorInfiniteLoop)
+        );
+      } else {
+        showNotification(intl.formatMessage(messages.tilesPastedError));
+      }
       console.error(err.message);
     } finally {
       this.setState({ isSaving: false });
@@ -1726,6 +1755,7 @@ const mapStateToProps = ({
     communicator: currentCommunicator,
     board: board.boards.find(board => board.id === activeBoardId),
     boards: board.boards,
+    boardsWithChilds: board.boardsWithChilds,
     output: board.output,
     isLiveMode: board.isLiveMode,
     scannerSettings: scanner,
