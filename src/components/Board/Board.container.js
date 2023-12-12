@@ -1408,11 +1408,14 @@ export class BoardContainer extends Component {
   };
 
   handleCopyTiles = () => {
-    const { intl, showNotification } = this.props;
+    const { intl, showNotification, updateChildFoldersOfBoards } = this.props;
     const copiedTiles = this.selectedTiles();
     this.setState({
       copiedTiles: copiedTiles
     });
+    if (copiedTiles.filter(tile => tile.type === 'folder').length > 0)
+      updateChildFoldersOfBoards();
+
     showNotification(intl.formatMessage(messages.tilesCopiedSuccessfully));
   };
 
