@@ -211,6 +211,11 @@ export default defineMessages({
     id: 'cboard.components.Board.tilesPastedError',
     defaultMessage: 'WARNING: There was an error on tiles paste.'
   },
+  tilesPastedErrorInfiniteLoop: {
+    id: 'cboard.components.Board.tilesPastedErrorInfiniteLoop',
+    defaultMessage:
+      'ERROR: You cannot paste a folder into itself or into any of its child folders.'
+  },
   live: {
     id: 'cboard.components.Board.live',
     defaultMessage: 'LIVE'
