@@ -38,7 +38,8 @@ import {
   DOWNLOAD_IMAGES_FAILURE,
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
-  DOWNLOAD_IMAGE_FAILURE
+  DOWNLOAD_IMAGE_FAILURE,
+  UPDATE_CHILD_FOLDERS_OF_BOARDS
 } from './Board.constants';
 
 import API from '../../api';
@@ -60,44 +61,86 @@ import { improvePhraseAbortController } from '../../api/api';
 
 const BOARDS_PAGE_LIMIT = 100;
 
-export function organizeTreeOfBoards() {
+export function updateChildFoldersOfBoards() {
   return (dispatch, getState) => {
-    const { board } = getState();
-    const boards = board.boards;
+    try {
+      const { board } = getState();
+      const boards = board.boards;
 
-    const getChildBoards = board => {
-      return board.tiles.reduce((subfolders, tile) => {
-        if (tile.loadBoard)
-          subfolders.push({ id: tile.id, loadBoard: tile.loadBoard });
-        return subfolders;
-      }, []);
-    };
-
-    const boardsWithSubfolder = boards.map(board => {
-      const subfolders = getChildBoards(board);
-      return { boardId: board.id, subfolders: subfolders };
-    });
-
-    const createTree = board => {
-      const { boardId, subfolders } = board;
-
-      const updateSubfolders = subfolder => {
-        return {
-          ...subfolder,
-          subfolders: boardsWithSubfolder.filter(sub => {
-            return sub.boardId === subfolder.loadBoard;
-          })[0]
-          //.subfolders.map(updateSubfolders)
+      const boardsWithSubfolder = boards.map(board => {
+        const getChildBoards = board => {
+          return board.tiles?.reduce((subfolders, tile) => {
+            if (tile?.loadBoard)
+              subfolders.push({ id: tile.id, loadBoard: tile.loadBoard });
+            return subfolders;
+          }, []);
         };
-      };
 
-      const updatedSubfolders = subfolders.map(updateSubfolders);
+        const subfolders = getChildBoards(board);
 
-      return { boardId, subfolders: updatedSubfolders };
-    };
+        const subArray = subfolders.map(sub => sub?.loadBoard);
 
-    const treeArray = boardsWithSubfolder.map(createTree);
-    console.log('subfolders of', treeArray);
+        return {
+          boardId: board.id,
+          subfolders: subfolders.length > 0 ? subfolders : null,
+          childs: [...new Set(subArray)]
+        };
+      });
+
+      const boardsWithChilds = boardsWithSubfolder?.map(board => {
+        const { boardId, childs } = board;
+
+        if (!childs)
+          return {
+            boardId,
+            childs: null
+          };
+
+        const startTimeOfRecursiveFunction = Date.now();
+
+        const getChildsUntilNoNewChilds = childs => {
+          const timeOut = 1000;
+          if (Date.now() - startTimeOfRecursiveFunction > timeOut) {
+            throw new Error('Function timed out');
+          }
+          const addChildsOfChilds = childs =>
+            new Set([
+              ...childs?.reduce((acc, child) => {
+                const childTree = boardsWithSubfolder.filter(
+                  board => board.boardId === child
+                )[0];
+
+                return childTree?.childs ? [...acc, ...childTree.childs] : acc;
+              }, []),
+              ...childs
+            ]);
+
+          const childsOfChilds = [...addChildsOfChilds(childs)];
+
+          const allChilds = [...addChildsOfChilds(childsOfChilds)];
+
+          if (allChilds.length === childsOfChilds.length) {
+            return allChilds;
+          }
+          return getChildsUntilNoNewChilds([...childs, ...allChilds]);
+        };
+
+        const allChilds = getChildsUntilNoNewChilds(childs);
+
+        return {
+          boardId,
+          childs: allChilds.length > 0 ? allChilds : null
+        };
+      });
+
+      //Also could store boardsWithSubfolder to organize a visual tre on the menu of boards.
+      dispatch({
+        type: UPDATE_CHILD_FOLDERS_OF_BOARDS,
+        boardsWithChilds
+      });
+    } catch (error) {
+      console.error('error updating childs folders of Boards:', error.message);
+    }
   };
 }
 
