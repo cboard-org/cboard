@@ -1413,7 +1413,6 @@ export class BoardContainer extends Component {
     this.setState({
       copiedTiles: copiedTiles
     });
-
     showNotification(intl.formatMessage(messages.tilesCopiedSuccessfully));
   };
 
