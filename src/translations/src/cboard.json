@@ -125,7 +125,6 @@
   "cboard.components.Board.tilesCopiedSuccessfully": "Tiles copied successfully.",
   "cboard.components.Board.tilesPastedSuccessfully": "Tiles pasted successfully.",
   "cboard.components.Board.tilesPastedError": "WARNING: There was an error on tiles paste.",
-  "cboard.components.Board.tilesPastedErrorInfiniteLoop": "ERROR: You cannot paste a folder into itself or into any of its child folders.",
   "cboard.components.LockToggle.lock": "Lock",
   "cboard.components.LockToggle.unlock": "Unlock",
   "cboard.components.BackButton.back": "Go back",
