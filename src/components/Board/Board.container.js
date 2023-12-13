@@ -1408,44 +1408,29 @@ export class BoardContainer extends Component {
   };
 
   handleCopyTiles = () => {
-    const { intl, showNotification, updateChildFoldersOfBoards } = this.props;
+    const { intl, showNotification } = this.props;
     const copiedTiles = this.selectedTiles();
     this.setState({
       copiedTiles: copiedTiles
     });
-    if (copiedTiles.filter(tile => tile.type === 'folder').length > 0)
-      updateChildFoldersOfBoards();
 
     showNotification(intl.formatMessage(messages.tilesCopiedSuccessfully));
   };
 
   handlePasteTiles = async () => {
-    const { board, intl, createTile, showNotification } = this.props;
+    const {
+      board,
+      intl,
+      createTile,
+      showNotification,
+      updateChildFoldersOfBoards
+    } = this.props;
     try {
       this.setState({ isSaving: true });
-
-      const shouldPreventInfiniteLoop = tile => {
-        const boardToPasteChilds = this.props.boardsWithChilds.find(
-          board => board.boardId === tile.loadBoard
-        )?.childs;
-        if (
-          tile.loadBoard === board.id ||
-          boardToPasteChilds?.includes(board.id)
-        )
-          throw Error(
-            'Prevent paste folders inside of it self or in one of it children and cause an infinite Loop',
-            {
-              cause: { code: 'infiniteLoop' }
-            }
-          );
-      };
-
-      const copiedFolders = this.state.copiedTiles.reduce((folders, tile) => {
-        if (tile?.loadBoard) folders.push(tile);
-        return folders;
-      }, []);
-
-      copiedFolders.forEach(shouldPreventInfiniteLoop);
+      if (
+        this.state.copiedTiles.filter(tile => tile.type === 'folder').length > 0
+      )
+        updateChildFoldersOfBoards();
 
       for await (const tile of this.state.copiedTiles) {
         const newTile = {
@@ -1461,13 +1446,7 @@ export class BoardContainer extends Component {
       }
       showNotification(intl.formatMessage(messages.tilesPastedSuccessfully));
     } catch (err) {
-      if (err.cause.code === 'infiniteLoop') {
-        showNotification(
-          intl.formatMessage(messages.tilesPastedErrorInfiniteLoop)
-        );
-      } else {
-        showNotification(intl.formatMessage(messages.tilesPastedError));
-      }
+      showNotification(intl.formatMessage(messages.tilesPastedError));
       console.error(err.message);
     } finally {
       this.setState({ isSaving: false });
@@ -1489,6 +1468,16 @@ export class BoardContainer extends Component {
       return;
     }
 
+    const folderTileChilds = this.props.boardsWithChilds.find(
+      board => board.boardId === folderTile.loadBoard
+    )?.childs;
+
+    if (
+      folderTile.loadBoard === parentBoardId ||
+      folderTileChilds?.includes(parentBoardId)
+    ) {
+      return;
+    }
     let newBoard = {
       ...boards.find(b => b.id === folderTile.loadBoard),
       isPublic: false,
