@@ -19,3 +19,12 @@
 .Export__SelectContainer--spinner {
   vertical-align: middle;
 }
+
+.Export__section {
+  margin-bottom: 8px;
+}
+
+.Export__List .MuiListSubheader-root {
+  line-height: 16px;
+  padding-top: 16px;
+}

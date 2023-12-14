@@ -758,8 +758,20 @@ export function updateApiObjects(
       .then(res => {
         const updatedChildBoardId = res.id;
         //create - update parent board
+        const updateTilesParentBoard = () =>
+          parentBoard.tiles.map(tile => {
+            if (tile.loadBoard === childBoard.id)
+              return { ...tile, loadBoard: updatedChildBoardId };
+            return tile;
+          });
+        const updatedParentBoard = {
+          ...parentBoard,
+          tiles: createParentBoard
+            ? updateTilesParentBoard()
+            : parentBoard.tiles
+        };
         const action = createParentBoard ? createApiBoard : updateApiBoard;
-        return dispatch(action(parentBoard, parentBoard.id))
+        return dispatch(action(updatedParentBoard, parentBoard.id))
           .then(res => {
             const updatedParentBoardId = res.id;
             //add new boards to the active communicator

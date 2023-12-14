@@ -20,7 +20,7 @@ import SignUp from '../Account/SignUp';
 import ResetPassword from '../Account/ResetPassword';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
-import { API_URL } from '../../constants';
+import { API_URL, GOOGLE_FIREBASE_WEB_CLIENT_ID } from '../../constants';
 import {
   isAndroid,
   isElectron,
@@ -77,19 +77,17 @@ export class WelcomeScreen extends Component {
   handleGoogleLoginClick = () => {
     const { intl } = this.props;
     if (isAndroid() || isIOS()) {
-      window.plugins.googleplus.login(
-        {
-          // 'scopes': '... ', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
-          offline: true // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
-        },
-        function(obj) {
-          window.location.hash = `#/login/googletoken/callback?access_token=${
-            obj.accessToken
+      const FirebasePlugin = window.FirebasePlugin;
+      FirebasePlugin.authenticateUserWithGoogle(
+        GOOGLE_FIREBASE_WEB_CLIENT_ID,
+        function(credential) {
+          window.location.hash = `#/login/googleidtoken/callback?id_token=${
+            credential.idToken
           }`;
         },
-        function(msg) {
+        function(error) {
           alert(intl.formatMessage(messages.loginErrorAndroid));
-          console.log('error: ' + msg);
+          console.error('Failed to authenticate with Google: ' + error);
         }
       );
     } else {

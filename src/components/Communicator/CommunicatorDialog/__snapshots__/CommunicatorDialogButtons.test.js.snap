@@ -11,7 +11,7 @@ exports[`CommunicatorDialogButtons tests default renderer 1`] = `
       id="communicator-dialog-buttons-search-button"
       label="cboard.components.CommunicatorDialog.search"
     >
-      <UNDEFINED />
+      <Memo />
     </IconButton>
   </div>
   <div
@@ -22,24 +22,24 @@ exports[`CommunicatorDialogButtons tests default renderer 1`] = `
       label="cboard.components.CommunicatorDialog.menu"
       onClick={[Function]}
     >
-      <UNDEFINED />
+      <Memo />
     </IconButton>
-    <ForwardRef(WithStyles(ForwardRef(Menu)))
+    <WithStyles(ForwardRef(Menu))
       anchorEl={null}
       id="communicator-dialog-buttons-menu"
       onClose={[Function]}
       open={false}
     >
-      <ForwardRef(WithStyles(ForwardRef(MenuItem)))>
-        <ForwardRef(Link)
+      <WithStyles(ForwardRef(MenuItem))>
+        <Link
           to="/settings/help"
         >
           <FormattedMessage
             values={Object {}}
           />
-        </ForwardRef(Link)>
-      </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
-      <ForwardRef(WithStyles(ForwardRef(MenuItem)))>
+        </Link>
+      </WithStyles(ForwardRef(MenuItem))>
+      <WithStyles(ForwardRef(MenuItem))>
         <a
           href="https://www.cboard.io/terms-of-use/"
           rel="noopener noreferrer"
@@ -49,8 +49,8 @@ exports[`CommunicatorDialogButtons tests default renderer 1`] = `
             values={Object {}}
           />
         </a>
-      </ForwardRef(WithStyles(ForwardRef(MenuItem)))>
-    </ForwardRef(WithStyles(ForwardRef(Menu)))>
+      </WithStyles(ForwardRef(MenuItem))>
+    </WithStyles(ForwardRef(Menu))>
   </div>
 </div>
 `;
