@@ -52,9 +52,7 @@ export class Settings extends PureComponent {
 
     function handleLogOutClick() {
       if (isAndroid()) {
-        window.plugins.googleplus.disconnect(function(msg) {
-          console.log('disconnect google msg' + msg);
-        });
+        window.FirebasePlugin.unregister();
         window.facebookConnectPlugin.logout(
           function(msg) {
             console.log('disconnect facebook msg' + msg);

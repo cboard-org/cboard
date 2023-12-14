@@ -196,10 +196,8 @@ export const writeCvaFile = async (name, blob) => {
           fs.root.getFile(
             fileName,
             { create: true, exclusive: false },
-            async function(fileEntry) {
-              //console.log('file entry: ' + fileEntry.nativeURL);
-              await writeFile(fileEntry, blob);
-              resolve(fileEntry);
+            function(fileEntry) {
+              writeFile(fileEntry, blob, resolve, reject);
             },
             function(err) {
               console.log(err);
@@ -216,23 +214,21 @@ export const writeCvaFile = async (name, blob) => {
   }
 };
 
-const writeFile = (fileEntry, dataObj) => {
-  return new Promise(function(resolve, reject) {
-    fileEntry.createWriter(function(fileWriter) {
-      fileWriter.onwriteend = function() {
-        console.log('File write success');
-        resolve();
-      };
-      fileWriter.onerror = function(e) {
-        console.log('Failed file write: ' + e.toString());
-        reject(e);
-      };
-      // If data object is not passed in, create a new Blob instead.
-      if (!dataObj) {
-        dataObj = new Blob(['some file data'], { type: 'text/plain' });
-      }
-      fileWriter.write(dataObj);
-    });
+const writeFile = (fileEntry, dataObj, resolve, reject) => {
+  fileEntry.createWriter(function(fileWriter) {
+    fileWriter.onwriteend = function() {
+      console.log('File write success');
+      resolve(fileEntry);
+    };
+    fileWriter.onerror = function(e) {
+      console.log('Failed file write: ' + e.toString());
+      reject(e);
+    };
+    // If data object is not passed in, create a new Blob instead.
+    if (!dataObj) {
+      dataObj = new Blob(['some file data'], { type: 'text/plain' });
+    }
+    fileWriter.write(dataObj);
   });
 };
 
