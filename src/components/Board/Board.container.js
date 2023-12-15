@@ -1427,7 +1427,7 @@ export class BoardContainer extends Component {
         };
         if (tile.loadBoard) {
           createTile(newTile, board.id);
-          await this.pasteBoardsRecursively(newTile, board.id);
+          await this.pasteBoardsRecursively(newTile, board.id, tile.loadBoard);
         } else {
           await this.handleAddTileEditorSubmit(newTile);
         }
@@ -1441,7 +1441,7 @@ export class BoardContainer extends Component {
     }
   };
 
-  async pasteBoardsRecursively(folderTile, parentBoardId) {
+  async pasteBoardsRecursively(folderTile, parentBoardId, firstPastedFolderId) {
     const {
       createBoard,
       userData,
@@ -1464,6 +1464,14 @@ export class BoardContainer extends Component {
       author: '',
       email: ''
     };
+
+    const tilesWithFatherRemoved = newBoard.tiles?.reduce((newTiles, tile) => {
+      if (firstPastedFolderId !== tile.loadBoard) newTiles.push(tile);
+      return newTiles;
+    }, []);
+
+    newBoard.tiles = tilesWithFatherRemoved;
+
     if (!newBoard.name) {
       newBoard.name = newBoard.nameKey
         ? intl.formatMessage({ id: newBoard.nameKey })
