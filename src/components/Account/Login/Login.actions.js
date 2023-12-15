@@ -49,9 +49,12 @@ export function logout() {
       console.error(err);
     }
   return async dispatch => {
+    dispatch(updateNavigationSettings({ improvePhraseActive: false }));
+    try {
+      await API.updateSettings({ navigation: { improvePhraseActive: false } });
+    } catch (e) {}
     dispatch(setUnloggedUserLocation(null));
     dispatch(updateUnloggedUserLocation());
-    dispatch(updateNavigationSettings({ improvePhraseActive: false }));
     dispatch(logoutSuccess());
   };
 }
