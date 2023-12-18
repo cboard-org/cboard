@@ -16,6 +16,7 @@ export const IN_GRACE_PERIOD = 'in_grace_period';
 export const PAUSED = 'paused';
 export const EXPIRED = 'expired';
 export const ON_HOLD = 'on_hold';
+export const UNVERIFIED = 'unverified';
 
 export const REQUIRING_PREMIUM_COUNTRIES = [
   'AT',
