@@ -310,7 +310,7 @@ class Navigation extends React.Component {
                   }
                 />
                 <ListItemSecondaryAction>
-                  <PremiumFeature isLogginRequired={true}>
+                  <PremiumFeature isLoginRequired={true}>
                     <Switch
                       checked={this.state.improvePhraseActive || false}
                       onChange={this.toggleImprovePhraseActive}

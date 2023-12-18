@@ -28,7 +28,7 @@ function PremiumFeature({
   showPremiumRequired,
   showLoginRequired,
   lastUpdated,
-  isLogginRequired = false
+  isLoginRequired = false
 }) {
   const captured = event => {
     if (isUpdateSubscriberStatusNeeded(lastUpdated)) {
@@ -38,7 +38,7 @@ function PremiumFeature({
       updateIsOnTrialPeriod();
     }
 
-    if (isLogginRequired && !isLogged && isInFreeCountry) {
+    if (isLoginRequired && !isLogged && isInFreeCountry) {
       event.stopPropagation();
       event.preventDefault();
       showLoginRequired();
