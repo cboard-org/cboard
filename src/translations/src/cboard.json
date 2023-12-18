@@ -22,11 +22,9 @@
   "cboard.components.Login.password": "Password",
   "cboard.components.Login.cancel": "Cancel",
   "cboard.components.Login.forgotPassword": "Forgot password?",
-
   "cboard.components.LoginRequiredModal.featureBlockedTitle": "Login or Sign Up to use this feature",
   "cboard.components.LoginRequiredModal.featureBlockedText": "This feature is disabled for anonymous users. To continue using it please sign up or login",
   "cboard.components.LoginRequiredModal.loginSignupNow": "Login or Sign Up now",
-
   "cboard.components.SignUp.signUp": "Sign Up",
   "cboard.components.SignUp.name": "Name",
   "cboard.components.SignUp.email": "Email",
