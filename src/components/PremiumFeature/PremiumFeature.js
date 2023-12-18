@@ -5,8 +5,10 @@ import {
   updateIsSubscribed,
   updateSubscription,
   updateIsOnTrialPeriod,
-  showPremiumRequired
+  showPremiumRequired,
+  showLoginRequired
 } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
+import { isLogged } from '../App/App.selectors';
 
 function isUpdateSubscriberStatusNeeded(lastUpdated) {
   if (!lastUpdated) return true;
@@ -22,8 +24,11 @@ function PremiumFeature({
   isOnTrialPeriod,
   isSubscribed,
   isInFreeCountry,
+  isLogged,
   showPremiumRequired,
-  lastUpdated
+  showLoginRequired,
+  lastUpdated,
+  isLogginRequired = false
 }) {
   const captured = event => {
     if (isUpdateSubscriberStatusNeeded(lastUpdated)) {
@@ -31,6 +36,13 @@ function PremiumFeature({
       updateIsSubscribed(requestOrigin);
       updateIsInFreeCountry();
       updateIsOnTrialPeriod();
+    }
+
+    if (isLogginRequired && !isLogged && isInFreeCountry) {
+      event.stopPropagation();
+      event.preventDefault();
+      showLoginRequired();
+      return;
     }
 
     if (isInFreeCountry || isSubscribed || isOnTrialPeriod) return;
@@ -47,6 +59,7 @@ function PremiumFeature({
 }
 
 const mapStateToProps = state => ({
+  isLogged: isLogged(state),
   isOnTrialPeriod: state.subscription.isOnTrialPeriod,
   isSubscribed: state.subscription.isSubscribed,
   isInFreeCountry: state.subscription.isInFreeCountry,
@@ -57,7 +70,8 @@ const mapDispatchToProps = {
   showPremiumRequired,
   updateIsSubscribed,
   updateSubscription,
-  updateIsInFreeCountry
+  updateIsInFreeCountry,
+  showLoginRequired
 };
 
 export default connect(
