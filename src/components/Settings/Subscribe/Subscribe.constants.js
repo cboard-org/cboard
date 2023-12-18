@@ -16,3 +16,4 @@ export const EMPTY_PRODUCT = 'empty_product';
 export const ON_TRIAL_PERIOD = 'on_trial_period';
 export const GOOGLE_PLAY_STORE_URL =
   'https://play.google.com/store/account/subscriptions';
+export const APP_STORE_URL = 'https://www.apple.com/app-store/';
