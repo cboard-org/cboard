@@ -13,7 +13,7 @@ export default defineMessages({
       'This feature is disabled for anonymous users. To continue using it please sign up or login'
   },
   loginSignupNow: {
-    id: 'cboard.components.PremiumFeature.loginSignupNow',
+    id: 'cboard.components.LoginRequiredModal.loginSignupNow',
     defaultMessage: 'Login or Sign Up now'
   }
 });
