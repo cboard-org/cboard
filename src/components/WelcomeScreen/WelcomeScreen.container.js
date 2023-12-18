@@ -20,7 +20,7 @@ import SignUp from '../Account/SignUp';
 import ResetPassword from '../Account/ResetPassword';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
-import { API_URL } from '../../constants';
+import { API_URL, GOOGLE_FIREBASE_WEB_CLIENT_ID } from '../../constants';
 import {
   isAndroid,
   isElectron,
@@ -79,7 +79,7 @@ export class WelcomeScreen extends Component {
     if (isAndroid() || isIOS()) {
       const FirebasePlugin = window.FirebasePlugin;
       FirebasePlugin.authenticateUserWithGoogle(
-        process.env.REACT_APP_GOOGLE_FIREBASE_WEB_CLIENT_SIGN_IN,
+        GOOGLE_FIREBASE_WEB_CLIENT_ID,
         function(credential) {
           window.location.hash = `#/login/googleidtoken/callback?id_token=${
             credential.idToken

@@ -17,6 +17,7 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import messages from './TileEditor.messages';
 import SymbolSearch from '../SymbolSearch';
@@ -107,7 +108,8 @@ export class TileEditor extends Component {
       tile: this.defaultTile,
       linkedBoard: '',
       imageUploadedData: [],
-      isEditImageBtnActive: false
+      isEditImageBtnActive: false,
+      isLoading: false
     };
 
     this.defaultimageUploadedData = {
@@ -286,6 +288,10 @@ export class TileEditor extends Component {
     this.setState({ isEditImageBtnActive: true });
     const image = URL.createObjectURL(blob);
     this.updateTileProperty('image', image);
+  };
+
+  handleLoadingStateChange = isLoading => {
+    this.setState({ isLoading: isLoading });
   };
 
   setimageUploadedData = (isUploaded, fileName, blobHQ = null, blob = null) => {
@@ -523,11 +529,15 @@ export class TileEditor extends Component {
                           Boolean(tileInView.loadBoard) ? 'folder' : 'button'
                         }
                       >
-                        <Symbol
-                          image={tileInView.image}
-                          label={currentLabel}
-                          keyPath={tileInView.keyPath}
-                        />
+                        {this.state.isLoading ? (
+                          <CircularProgress />
+                        ) : (
+                          <Symbol
+                            image={tileInView.image}
+                            label={currentLabel}
+                            keyPath={tileInView.keyPath}
+                          />
+                        )}
                       </Tile>
                     </div>
                     {this.state.isEditImageBtnActive && (
@@ -562,7 +572,10 @@ export class TileEditor extends Component {
                       {intl.formatMessage(messages.symbols)}
                     </Button>
                     <div className="TileEditor__input-image">
-                      <InputImage onChange={this.handleInputImageChange} />
+                      <InputImage
+                        onChange={this.handleInputImageChange}
+                        setIsLoadingImage={this.handleLoadingStateChange}
+                      />
                     </div>
                   </div>
                   <div className="TileEditor__form-fields">
