@@ -1529,7 +1529,7 @@ export class BoardContainer extends Component {
         //look for this board in available boards
         const newBoardToCopy = boards.find(b => b.id === tile.loadBoard);
         if (newBoardToCopy) {
-          this.pasteBoardsRecursively(tile, newBoard.id);
+          this.pasteBoardsRecursively(tile, newBoard.id, firstPastedFolderId);
         }
       }
     });
