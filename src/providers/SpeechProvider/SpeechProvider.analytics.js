@@ -8,6 +8,7 @@ import {
   EMPTY_VOICES
 } from './SpeechProvider.constants';
 import { isCordova, cvaTrackEvent } from '../../cordova-util';
+import ga4track from '../../ga4mp';
 
 const changeVoice = trackEvent((action, prevState, nextState) => {
   const gaEvent = {
@@ -16,7 +17,7 @@ const changeVoice = trackEvent((action, prevState, nextState) => {
     label: action ? action.voiceURI : EMPTY_VOICES
   };
   if (isCordova()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });
@@ -28,7 +29,7 @@ const changePitch = trackEvent((action, prevState, nextState) => {
     label: action.pitch
   };
   if (isCordova()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });
@@ -40,7 +41,7 @@ const changeRate = trackEvent((action, prevState, nextState) => {
     label: action.rate
   };
   if (isCordova()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });
@@ -52,7 +53,7 @@ const startSpeech = trackEvent((action, prevState, nextState) => {
     label: action.text
   };
   if (isCordova()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label);
+    cvaTrackEvent(gaEvent.category, gaEvent.action, gaEvent.label, ga4track);
   }
   return gaEvent;
 });
