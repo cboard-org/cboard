@@ -8,7 +8,7 @@ import { getUser, isLogged } from '../../App/App.selectors';
 import API from '../../../api';
 import messages from './Subscribe.messages';
 
-import { isAndroid } from '../../../cordova-util';
+import { isAndroid, isIOS } from '../../../cordova-util';
 import {
   updateSubscriberId,
   updateSubscription,
@@ -34,14 +34,17 @@ export class SubscribeContainer extends PureComponent {
   };
 
   state = {
-    cancelSubscriptionStatus: ''
+    cancelSubscriptionStatus: '',
+    updatingStatus: true
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const { updateIsSubscribed, updatePlans } = this.props;
     const requestOrigin =
       'Function: componentDidMount - Component: Subscribe Container';
-    updateIsSubscribed(requestOrigin);
+    this.setState({ updatingStatus: true });
+    await updateIsSubscribed(requestOrigin);
+    this.setState({ updatingStatus: false });
     updatePlans();
   }
 
@@ -195,7 +198,7 @@ export class SubscribeContainer extends PureComponent {
 
       let localReceipts = '';
       let offers, offer;
-      if (isAndroid()) {
+      if (isAndroid() || isIOS()) {
         const storeProducts = await window.CdvPurchase.store.products;
         const prod = storeProducts.find(p => {
           return p.id === product.subscriptionId;
@@ -207,13 +210,21 @@ export class SubscribeContainer extends PureComponent {
         try {
           await window.CdvPurchase.store.update();
           offers = prod.offers;
-          offer = offers.find(offer => offer.tags[0] === product.tag);
+          const findCallback = isAndroid()
+            ? offer => offer.tags[0] === product.tag
+            : offer => offer.productId === product.subscriptionId;
+          offer = offers.find(findCallback);
         } catch (err) {
           console.error('Cannot subscribe product. Error: ', err.message);
           this.handleError(err);
           return;
         }
       }
+
+      const filterInAppPurchaseIOSTransactions = uniqueReceipt =>
+        uniqueReceipt.transactions.filter(
+          transaction => transaction.transactionId !== 'appstore.application'
+        );
 
       try {
         // update the api
@@ -225,40 +236,77 @@ export class SubscribeContainer extends PureComponent {
         // check if current subscriber already bought in this device
         if (localReceipts.length) {
           const lastReceipt = localReceipts.slice(-1)[0];
-          if (
-            lastReceipt &&
-            lastReceipt?.transactions[0]?.nativePurchase?.orderId !==
-              subscriber.transaction?.transactionId
-          ) {
-            this.handleError({
-              code: '0001',
-              message: intl.formatMessage(messages.googleAccountAlreadyOwns)
-            });
-            return;
+          if (isAndroid()) {
+            if (
+              lastReceipt &&
+              lastReceipt?.transactions[0]?.nativePurchase?.orderId !==
+                subscriber.transaction?.transactionId
+            ) {
+              this.handleError({
+                code: '0001',
+                message: intl.formatMessage(messages.googleAccountAlreadyOwns)
+              });
+              return;
+            }
+          }
+          if (isIOS()) {
+            //IOS have a unique receipt here => 'lastReceipt'
+            const inAppPurchaseTransactions = filterInAppPurchaseIOSTransactions(
+              localReceipts[0]
+            );
+
+            const lastTransaction = inAppPurchaseTransactions.slice(-1)[0];
+            if (
+              inAppPurchaseTransactions.length > 0 &&
+              lastTransaction?.transactionId !==
+                subscriber.transaction?.transactionId
+            ) {
+              this.handleError({
+                code: '0001',
+                message: intl.formatMessage(messages.appleAccountAlreadyOwns)
+              });
+              return;
+            }
           }
         }
+
         await API.updateSubscriber(apiProduct);
 
         // proceed with the purchase
-        if (isAndroid()) {
+        if (isAndroid() || isIOS()) {
           const order = await window.CdvPurchase.store.order(offer);
           if (order && order.isError) throw order;
           updateSubscription({
             ownedProduct: {
               ...product,
-              platform: 'android-playstore'
+              platform: isAndroid() ? 'android-playstore' : 'app-store'
             }
           });
         }
       } catch (err) {
         if (err.response?.data.error === 'subscriber not found') {
           // check if current subscriber already bought in this device
-          if (localReceipts.length) {
-            this.handleError({
-              code: '0001',
-              message: intl.formatMessage(messages.googleAccountAlreadyOwns)
-            });
-            return;
+          if (isAndroid()) {
+            if (localReceipts.length) {
+              this.handleError({
+                code: '0001',
+                message: intl.formatMessage(messages.googleAccountAlreadyOwns)
+              });
+              return;
+            }
+          }
+          if (isIOS()) {
+            const localInAppPurchaseTransactions = filterInAppPurchaseIOSTransactions(
+              localReceipts[0]
+            );
+
+            if (localInAppPurchaseTransactions.length) {
+              this.handleError({
+                code: '0001',
+                message: intl.formatMessage(messages.appleAccountAlreadyOwns)
+              });
+              return;
+            }
           }
           try {
             const newSubscriber = {
@@ -269,13 +317,13 @@ export class SubscribeContainer extends PureComponent {
             };
             const res = await API.createSubscriber(newSubscriber);
             updateSubscriberId(res._id);
-            if (isAndroid()) {
+            if (isAndroid() || isIOS()) {
               const order = await window.CdvPurchase.store.order(offer);
               if (order && order.isError) throw order;
               updateSubscription({
                 ownedProduct: {
                   ...product,
-                  platform: 'android-playstore'
+                  platform: isAndroid() ? 'android-playstore' : 'app-store'
                 }
               });
             }
@@ -306,6 +354,7 @@ export class SubscribeContainer extends PureComponent {
         onPaypalApprove={this.handlePaypalApprove}
         onCancelSubscription={this.handleCancelSubscription}
         cancelSubscriptionStatus={this.state.cancelSubscriptionStatus}
+        updatingStatus={this.state.updatingStatus}
       />
     );
   }
