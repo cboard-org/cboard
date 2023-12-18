@@ -518,11 +518,17 @@ class API {
     }
     const headers = {
       Authorization: `Bearer ${authToken}`,
-      requestOrigin
+      requestOrigin,
+      newVersion: 'true'
     };
     const { data } = await this.axiosInstance.get(`/subscriber/${userId}`, {
       headers
     });
+
+    if (data && !data.success) {
+      throw data;
+    }
+
     return data;
   }
 

@@ -215,11 +215,15 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
         );
       }
     } catch (err) {
-      console.error(err.message);
+      console.error(getErrorMessage(err));
+
       isSubscribed = false;
       status = NOT_SUBSCRIBED;
       let ownedProduct = '';
-      if (err.response?.data.error === 'subscriber not found') {
+      const isSubscriberNotFound =
+        (err.response?.data?.error || err.error) === 'subscriber not found';
+
+      if (isSubscriberNotFound) {
         dispatch(
           updateSubscription({
             ownedProduct,
@@ -274,6 +278,14 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
     }
     return isSubscribed;
   };
+
+  function getErrorMessage(err) {
+    return (
+      err.message +
+      '. ' +
+      (err.response ? err.response?.data?.message : err.error)
+    );
+  }
 }
 
 export function updatePlans() {

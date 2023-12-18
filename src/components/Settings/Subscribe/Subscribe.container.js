@@ -284,7 +284,10 @@ export class SubscribeContainer extends PureComponent {
           });
         }
       } catch (err) {
-        if (err.response?.data.error === 'subscriber not found') {
+        const isSubscriberNotFound =
+          (err.response?.data?.error || err.error) === 'subscriber not found';
+
+        if (isSubscriberNotFound) {
           // check if current subscriber already bought in this device
           if (isAndroid()) {
             if (localReceipts.length) {
