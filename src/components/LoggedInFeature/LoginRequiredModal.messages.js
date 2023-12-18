@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   featureBlockedTitle: {
     id: 'cboard.components.LoginRequiredModal.featureBlockedTitle',
-    defaultMessage: 'This feature is blocked'
+    defaultMessage: 'Login or Sign Up to use this feature'
   },
   featureBlockedText: {
     id: 'cboard.components.LoginRequiredModal.featureBlockedText',
