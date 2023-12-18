@@ -13,11 +13,13 @@ import {
   EXPIRED,
   PROCCESING,
   SHOW_LOGIN_REQUIRED,
-  HIDE_LOGIN_REQUIRED
+  HIDE_LOGIN_REQUIRED,
+  UNVERIFIED
 } from './SubscriptionProvider.constants';
 import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
-import { isAndroid } from '../../cordova-util';
+import { isAndroid, isIOS } from '../../cordova-util';
+import { formatTitle } from '../../components/Settings/Subscribe/Subscribe.helpers';
 import { updateNavigationSettings } from '../../components/App/App.actions';
 
 export function updateIsInFreeCountry() {
@@ -96,8 +98,22 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
           })
         );
       } else {
-        if (isAndroid() && state.subscription.status === PROCCESING) {
-          const localReceipts = window.CdvPurchase.store.localReceipts;
+        if (
+          (isAndroid() || isIOS()) &&
+          state.subscription.status === PROCCESING
+        ) {
+          const filterInAppPurchaseIOSTransactions = uniqueReceipt =>
+            uniqueReceipt.transactions.filter(
+              transaction =>
+                transaction.transactionId !== 'appstore.application'
+            );
+
+          const localReceipts = isIOS()
+            ? filterInAppPurchaseIOSTransactions(
+                window.CdvPurchase.store.localReceipts[0]
+              )
+            : window.CdvPurchase.store.localReceipts;
+
           if (localReceipts.length) {
             //Restore purchases to pass to approved
             window.CdvPurchase.store.restorePurchases();
@@ -113,12 +129,62 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
           return;
         }
 
+        if (isIOS()) {
+          const iosLocalReceipt = window.CdvPurchase.store.localReceipts[0];
+          if (state.subscription.status === UNVERIFIED && iosLocalReceipt) {
+            dispatch(
+              updateSubscription({
+                ownedProduct: state.subscription.ownedProduct,
+                status: PROCCESING,
+                isSubscribed,
+                expiryDate
+              })
+            );
+            return window.CdvPurchase.store.verify(iosLocalReceipt);
+          }
+        }
+
         const userId = state.app.userData.id;
         const { status, product, transaction } = await API.getSubscriber(
           userId,
           requestOrigin
         );
+        const getActualProduct = async (product, transaction) => {
+          if (
+            isIOS() &&
+            transaction &&
+            product &&
+            transaction.productId !== product.subscriptionId
+          ) {
+            try {
+              const product = state.subscription.products.find(
+                product => product.subscriptionId === transaction.productId
+              );
 
+              const newProduct = {
+                title: formatTitle(product.title),
+                billingPeriod: product.billingPeriod,
+                price: product.price,
+                tag: product.tag,
+                subscriptionId: product.subscriptionId
+              };
+              const apiProduct = {
+                product: {
+                  ...newProduct
+                }
+              };
+
+              await API.updateSubscriber(apiProduct);
+              return newProduct;
+            } catch (err) {
+              console.error(err);
+              return product;
+            }
+          }
+          return product;
+        };
+
+        const actualProduct = await getActualProduct(product, transaction);
         isSubscribed =
           status.toLowerCase() === ACTIVE ||
           status.toLowerCase() === CANCELED ||
@@ -126,14 +192,14 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
           status.toLowerCase() === IN_GRACE_PERIOD
             ? true
             : false;
-        if (product && isSubscribed) {
+        if (actualProduct && isSubscribed) {
           ownedProduct = {
-            billingPeriod: product.billingPeriod,
-            id: product._id,
-            price: product.price,
-            subscriptionId: product.subscriptionId,
-            tag: product.tag,
-            title: product.title,
+            billingPeriod: actualProduct.billingPeriod,
+            id: actualProduct._id,
+            price: actualProduct.price,
+            subscriptionId: actualProduct.subscriptionId,
+            tag: actualProduct.tag,
+            title: actualProduct.title,
             paypalSubscriptionId: transaction ? transaction.subscriptionId : '',
             platform: transaction ? transaction.platform : ''
           };
@@ -151,11 +217,15 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
         );
       }
     } catch (err) {
-      console.error(err.message);
+      console.error(getErrorMessage(err));
+
       isSubscribed = false;
       status = NOT_SUBSCRIBED;
       let ownedProduct = '';
-      if (err.response?.data.error === 'subscriber not found') {
+      const isSubscriberNotFound =
+        (err.response?.data?.error || err.error) === 'subscriber not found';
+
+      if (isSubscriberNotFound) {
         dispatch(
           updateSubscription({
             ownedProduct,
@@ -210,6 +280,14 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
     }
     return isSubscribed;
   };
+
+  function getErrorMessage(err) {
+    return (
+      err.message +
+      '. ' +
+      (err.response ? err.response?.data?.message : err.error)
+    );
+  }
 }
 
 export function updatePlans() {
@@ -222,12 +300,16 @@ export function updatePlans() {
         : state.app.unloggedUserLocation?.countryCode;
       // get just subscriptions with active plans
       const plans = getActivePlans(data);
+      const iosProducts = isIOS() ? window.CdvPurchase.store.products : null;
       const products = plans.map(plan => {
+        const price = iosProducts
+          ? getIOSPrice(iosProducts, plan.subscriptionId)
+          : getPrice(plan.countries, locationCode);
         const result = {
           id: plan.planId,
           subscriptionId: plan.subscriptionId,
           billingPeriod: plan.period,
-          price: getPrice(plan.countries, locationCode),
+          price: price,
           title: plan.subscriptionName,
           tag: plan.tags[0],
           paypalId: plan.paypalId
@@ -252,6 +334,15 @@ export function updatePlans() {
         if (element.regionCode === country) price = element.price;
       });
     return price;
+  }
+
+  function getIOSPrice(iosProducts, productId) {
+    const product = iosProducts.find(product => product.id === productId);
+    const units = product.raw.priceMicros / 1000000;
+    return {
+      currencyCode: product?.raw?.currency,
+      units
+    };
   }
 
   function getActivePlans(subscriptions) {
