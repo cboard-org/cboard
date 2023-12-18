@@ -18,7 +18,6 @@ import { NAVIGATION_BUTTONS_STYLES } from './Navigation.constants';
 import './Navigation.css';
 import ResetToursItem from '../../UI/ResetToursItem';
 import PremiumFeature from '../../PremiumFeature';
-import LoggedInFeature from '../../LoggedInFeature';
 
 const propTypes = {
   /**
@@ -311,16 +310,14 @@ class Navigation extends React.Component {
                   }
                 />
                 <ListItemSecondaryAction>
-                  <LoggedInFeature>
-                    {/* <PremiumFeature> */}
+                  <PremiumFeature isLogginRequired={true}>
                     <Switch
                       checked={this.state.improvePhraseActive || false}
                       onChange={this.toggleImprovePhraseActive}
                       value="active"
                       color="secondary"
                     />
-                    {/* </PremiumFeature> */}
-                  </LoggedInFeature>
+                  </PremiumFeature>
                 </ListItemSecondaryAction>
               </ListItem>
             </List>
