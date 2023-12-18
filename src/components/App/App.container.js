@@ -17,6 +17,8 @@ import {
   updateConnectivity
 } from '../App/App.actions';
 import { isCordova, isElectron } from '../../cordova-util';
+import ga4track from '../../ga4mp';
+
 export class AppContainer extends Component {
   static propTypes = {
     /**
@@ -66,15 +68,17 @@ export class AppContainer extends Component {
 
     const initCVAGa4 = () => {
       const { isLogged, userId } = this.props;
-      if (!isElectron()) {
-        try {
-          if (isLogged) {
-            window.FirebasePlugin.setUserId(userId);
-          }
-          window.FirebasePlugin.logEvent('page_view');
-        } catch (err) {
-          console.error(err);
-        }
+      try {
+        if (isLogged)
+          isElectron()
+            ? ga4track.setUserId(userId)
+            : window.FirebasePlugin.setUserId(userId);
+
+        isElectron()
+          ? ga4track.trackEvent('page_view')
+          : window.FirebasePlugin.logEvent('page_view');
+      } catch (err) {
+        console.error(err);
       }
     };
 

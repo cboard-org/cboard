@@ -17,6 +17,7 @@
   "private": false,
   "license": "GPL-3.0-only",
   "dependencies": {
+    "@analytics-debugger/ga4mp": "git+https://github.com/RodriSanchez1/ga4mp.git#fix/fullVersionList",
     "@cospired/i18n-iso-languages": "^2.2.0",
     "@crowdin/crowdin-api-client": "^1.26.0",
     "@ctrl/react-adsense": "^1.7.0",
@@ -91,10 +92,11 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "babel-plugin-transform-import-meta": "^2.2.1",
     "@craco/craco": "^7.1.0",
     "@types/mime-types": "^2.1.1",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
+    "babel-jest": "^29.7.0",
+    "babel-plugin-transform-import-meta": "^2.2.1",
     "decompress-zip": "^0.3.1",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "3.3.5",
@@ -125,7 +127,7 @@
   },
   "jest": {
     "transformIgnorePatterns": [
-      "node_modules/(?!idb|microsoft-cognitiveservices-speech-sdk)"
+      "node_modules/(?!idb|microsoft-cognitiveservices-speech-sdk|@analytics-debugger/ga4mp)"
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js"
