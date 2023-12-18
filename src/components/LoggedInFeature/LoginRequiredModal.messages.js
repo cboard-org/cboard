@@ -8,7 +8,7 @@ export default defineMessages({
   featureBlockedText: {
     id: 'cboard.components.LoginRequiredModal.featureBlockedText',
     defaultMessage:
-      'Cboard disabled this feature. To continue using it please sign up or login'
+      'This feature is disabled for unlogged users. To continue using it please sign up or login'
   },
   loginSignupNow: {
     id: 'cboard.components.PremiumFeature.loginSignupNow',
