@@ -17,7 +17,7 @@
   "private": false,
   "license": "GPL-3.0-only",
   "dependencies": {
-    "@analytics-debugger/ga4mp": "git+https://github.com/RodriSanchez1/ga4mp.git#fix/fullVersionList",
+    "@analytics-debugger/ga4mp": "0.0.8",
     "@cospired/i18n-iso-languages": "^2.2.0",
     "@crowdin/crowdin-api-client": "^1.26.0",
     "@ctrl/react-adsense": "^1.7.0",

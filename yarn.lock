@@ -20,9 +20,10 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@analytics-debugger/ga4mp@git+https://github.com/RodriSanchez1/ga4mp.git#fix/fullVersionList":
-  version "0.0.5"
-  resolved "git+https://github.com/RodriSanchez1/ga4mp.git#07c260239041a3ce6192ecf2b1391bdb04f59c2b"
+"@analytics-debugger/ga4mp@0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@analytics-debugger/ga4mp/-/ga4mp-0.0.8.tgz#f00e1f3e992b162d55daa6a919a4c9e9a1b8dd53"
+  integrity sha512-KAAUhakcw6TGFtU5YrmrJESR3OYHWkDs4sZnxGQUxee9bamfDQQtRogK+TFxW4KzbNkR2K1DvIB5kvbXvoEANA==
   dependencies:
     "@babel/core" "^7.20.5"
     "@babel/plugin-transform-object-assign" "^7.18.6"
