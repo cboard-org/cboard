@@ -19,7 +19,7 @@
   "dependencies": {
     "@analytics-debugger/ga4mp": "git+https://github.com/RodriSanchez1/ga4mp.git#fix/fullVersionList",
     "@cospired/i18n-iso-languages": "^2.2.0",
-    "@crowdin/crowdin-api-client": "^1.26.0",
+    "@crowdin/crowdin-api-client": "^1.28.1",
     "@ctrl/react-adsense": "^1.7.0",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
