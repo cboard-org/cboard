@@ -890,9 +890,9 @@ export async function cboardExportAdapter(allBoards = [], board) {
 
 export async function pdfExportAdapter(
   boards = [],
+  labelFontSize,
   intl,
-  picsee = false,
-  labelFontSize
+  picsee = false
 ) {
   const font = definePDFfont(intl);
   const docDefinition = {

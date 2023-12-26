@@ -6,6 +6,7 @@ import PrintBoardButton from './PrintBoardButton.component';
 import PrintBoardDialog from './PrintBoardDialog.component';
 import messages from './PrintBoardButton.messages';
 import { showNotification } from '../../Notifications/Notifications.actions';
+import { MEDIUM_FONT_SIZE } from '../../Settings/Export/Export.constants';
 
 class PrintBoardButtonContainer extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class PrintBoardButtonContainer extends React.Component {
     );
 
     const { pdfExportAdapter } = await this.exportHelpers;
-    pdfExportAdapter([currentBoard], intl).then(() => {
+    pdfExportAdapter([currentBoard], MEDIUM_FONT_SIZE, intl).then(() => {
       this.setState({ loading: false });
       showNotification(intl.formatMessage(messages.boardDownloaded));
     });
