@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 import queryString from 'query-string';
 import debounce from 'lodash/debounce';
-import { IconButton, Tooltip } from '@material-ui/core';
+import { IconButton, Tooltip, Typography } from '@material-ui/core';
 import BackspaceIcon from '@material-ui/icons/Backspace';
 
 import API from '../../../api';
@@ -429,6 +429,9 @@ export class SymbolSearch extends PureComponent {
             options={this.state.symbolSets}
             onChange={this.handleChangeOption}
           />
+          {this.state.suggestions.length === 0 && (
+            <Typography>No items</Typography>
+          )}
         </FullScreenDialog>
       </div>
     );
