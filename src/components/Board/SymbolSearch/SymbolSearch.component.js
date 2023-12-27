@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 import queryString from 'query-string';
 import debounce from 'lodash/debounce';
-import { IconButton, Tooltip, Typography } from '@material-ui/core';
+import { Box, IconButton, Tooltip, Typography } from '@material-ui/core';
 import BackspaceIcon from '@material-ui/icons/Backspace';
 
 import API from '../../../api';
@@ -18,6 +18,7 @@ import Symbol from '../Symbol';
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
+import { Alert } from '@material-ui/lab';
 
 const SymbolSets = {
   mulberry: '0',
@@ -430,7 +431,10 @@ export class SymbolSearch extends PureComponent {
             onChange={this.handleChangeOption}
           />
           {this.state.suggestions.length === 0 && (
-            <Typography>No items</Typography>
+            <Alert severity="info">
+              Pictogram not found, use our <strong>Pictonizer</strong> (coming
+              soon)
+            </Alert>
           )}
         </FullScreenDialog>
       </div>
