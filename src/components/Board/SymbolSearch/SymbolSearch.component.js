@@ -65,6 +65,7 @@ export class SymbolSearch extends PureComponent {
     this.state = {
       openMirror: false,
       noSuggestions: false,
+      isFetching: false,
       value: '',
       suggestions: [],
       skin: 'white',
@@ -149,6 +150,9 @@ export class SymbolSearch extends PureComponent {
       return [];
     }
     try {
+      this.setState({
+        isFetching: true
+      });
       const arasaacDB = await getArasaacDB();
       const imagesFromDB = await arasaacDB.getImagesByKeyword(
         searchText.trim()
@@ -170,7 +174,10 @@ export class SymbolSearch extends PureComponent {
             fromArasaac: true
           };
         });
-        this.setState({ suggestions: [...suggestions, ...arasaacSuggestions] });
+        this.setState({
+          suggestions: [...suggestions, ...arasaacSuggestions],
+          isFetching: false
+        });
       } else {
         const data = await API.arasaacPictogramsSearch(locale, searchText);
         if (data.length) {
@@ -192,7 +199,8 @@ export class SymbolSearch extends PureComponent {
             }
           );
           this.setState({
-            suggestions: [...suggestions, ...arasaacSuggestions]
+            suggestions: [...suggestions, ...arasaacSuggestions],
+            isFetching: false
           });
         }
       }
@@ -200,6 +208,10 @@ export class SymbolSearch extends PureComponent {
       return [];
     } catch (err) {
       return [];
+    } finally {
+      this.setState({
+        isFetching: false
+      });
     }
   };
 
@@ -209,6 +221,9 @@ export class SymbolSearch extends PureComponent {
     } = this.props;
     try {
       let language = locale !== 'me' ? locale : 'cnr';
+      this.setState({
+        isFetching: true
+      });
       const data = await API.globalsymbolsPictogramsSearch(
         language,
         searchText
@@ -258,12 +273,17 @@ export class SymbolSearch extends PureComponent {
           });
         });
         this.setState({
-          suggestions: [...suggestions, ...globalsymbolsSuggestions]
+          suggestions: [...suggestions, ...globalsymbolsSuggestions],
+          isFetching: false
         });
       }
       return [];
     } catch (err) {
       return [];
+    } finally {
+      this.setState({
+        isFetching: false
+      });
     }
   };
 
@@ -434,7 +454,7 @@ export class SymbolSearch extends PureComponent {
             options={this.state.symbolSets}
             onChange={this.handleChangeOption}
           />
-          {this.state.noSuggestions && (
+          {!this.state.isFetching && this.state.noSuggestions && (
             <Alert severity="info">
               Pictogram not found, use our <strong>Pictonizer</strong> (coming
               soon)
