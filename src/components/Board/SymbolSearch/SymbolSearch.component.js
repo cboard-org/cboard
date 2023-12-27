@@ -64,6 +64,7 @@ export class SymbolSearch extends PureComponent {
     super(props);
     this.state = {
       openMirror: false,
+      noSuggestions: false,
       value: '',
       suggestions: [],
       skin: 'white',
@@ -281,6 +282,9 @@ export class SymbolSearch extends PureComponent {
         suggestions: this.getMulberrySuggestions(value)
       });
     }
+    this.setState({
+      noSuggestions: value.trim() != '' && this.state.suggestions.length === 0
+    });
   }
 
   debouncedGetSuggestions = debounce(this.getSuggestions, 300);
@@ -430,7 +434,7 @@ export class SymbolSearch extends PureComponent {
             options={this.state.symbolSets}
             onChange={this.handleChangeOption}
           />
-          {this.state.suggestions.length === 0 && (
+          {this.state.noSuggestions && (
             <Alert severity="info">
               Pictogram not found, use our <strong>Pictonizer</strong> (coming
               soon)
