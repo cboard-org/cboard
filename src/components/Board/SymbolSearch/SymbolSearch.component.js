@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import isMobile from 'ismobilejs';
 import queryString from 'query-string';
 import debounce from 'lodash/debounce';
-import { Box, IconButton, Tooltip, Typography } from '@material-ui/core';
+import { IconButton, Tooltip } from '@material-ui/core';
 import BackspaceIcon from '@material-ui/icons/Backspace';
 
 import API from '../../../api';
