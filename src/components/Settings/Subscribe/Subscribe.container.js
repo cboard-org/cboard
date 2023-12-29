@@ -141,7 +141,7 @@ export class SubscribeContainer extends PureComponent {
       if (!res.ok) throw res;
       const requestOrigin =
         'Function: handlePaypalApprove - Component: Subscribe Container';
-      const subscriber = await API.getSubscriber(false, requestOrigin);
+      const subscriber = await API.getSubscriber(undefined, requestOrigin);
       updateSubscription({
         ownedProduct: {
           ...product,
