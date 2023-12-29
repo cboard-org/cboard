@@ -3,7 +3,8 @@
   flex-direction: column;
   width: 100%;
   align-items: center;
-  margin-top: 2px;
+  height: 70%;
+  justify-content: center;
 }
 .SymbolNotFound__box .MuiSvgIcon-root {
   font-size: 100px;
