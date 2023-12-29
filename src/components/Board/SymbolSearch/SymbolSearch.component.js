@@ -18,7 +18,7 @@ import Symbol from '../Symbol';
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
-import { Alert } from '@material-ui/lab';
+import SymbolNotFound from './SymbolNotFound';
 
 const SymbolSets = {
   mulberry: '0',
@@ -452,12 +452,7 @@ export class SymbolSearch extends PureComponent {
           />
           {!this.state.isFetching &&
             this.state.value.trim() !== '' &&
-            this.state.suggestions.length === 0 && (
-              <Alert severity="info">
-                Pictogram not found, use our <strong>Pictonizer</strong> (coming
-                soon)
-              </Alert>
-            )}
+            this.state.suggestions.length === 0 && <SymbolNotFound />}
         </FullScreenDialog>
       </div>
     );
