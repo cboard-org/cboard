@@ -64,7 +64,8 @@ export class SymbolSearch extends PureComponent {
     super(props);
     this.state = {
       openMirror: false,
-      isFetching: false,
+      isFetchingArasaac: false,
+      isFetchingGlobalsymbols: false,
       value: '',
       suggestions: [],
       skin: 'white',
@@ -150,7 +151,7 @@ export class SymbolSearch extends PureComponent {
     }
     try {
       this.setState({
-        isFetching: true
+        isFetchingArasaac: true
       });
       const arasaacDB = await getArasaacDB();
       const imagesFromDB = await arasaacDB.getImagesByKeyword(
@@ -175,7 +176,7 @@ export class SymbolSearch extends PureComponent {
         });
         this.setState({
           suggestions: [...suggestions, ...arasaacSuggestions],
-          isFetching: false
+          isFetchingArasaac: false
         });
       } else {
         const data = await API.arasaacPictogramsSearch(locale, searchText);
@@ -199,7 +200,7 @@ export class SymbolSearch extends PureComponent {
           );
           this.setState({
             suggestions: [...suggestions, ...arasaacSuggestions],
-            isFetching: false
+            isFetchingArasaac: false
           });
         }
       }
@@ -209,7 +210,7 @@ export class SymbolSearch extends PureComponent {
       return [];
     } finally {
       this.setState({
-        isFetching: false
+        isFetchingArasaac: false
       });
     }
   };
@@ -221,7 +222,7 @@ export class SymbolSearch extends PureComponent {
     try {
       let language = locale !== 'me' ? locale : 'cnr';
       this.setState({
-        isFetching: true
+        isFetchingGlobalsymbols: true
       });
       const data = await API.globalsymbolsPictogramsSearch(
         language,
@@ -273,7 +274,7 @@ export class SymbolSearch extends PureComponent {
         });
         this.setState({
           suggestions: [...suggestions, ...globalsymbolsSuggestions],
-          isFetching: false
+          isFetchingGlobalsymbols: false
         });
       }
       return [];
@@ -281,7 +282,7 @@ export class SymbolSearch extends PureComponent {
       return [];
     } finally {
       this.setState({
-        isFetching: false
+        isFetchingGlobalsymbols: false
       });
     }
   };
@@ -450,7 +451,8 @@ export class SymbolSearch extends PureComponent {
             options={this.state.symbolSets}
             onChange={this.handleChangeOption}
           />
-          {!this.state.isFetching &&
+          {!this.state.isFetchingArasaac &&
+            !this.state.isFetchingGlobalsymbols &&
             this.state.value.trim() !== '' &&
             this.state.suggestions.length === 0 && <SymbolNotFound />}
         </FullScreenDialog>
