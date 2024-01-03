@@ -438,6 +438,13 @@ export class SymbolSearch extends PureComponent {
         {clearButton}
       </div>
     );
+    const symbolNotFound =
+      !this.state.isFetchingArasaac &&
+      !this.state.isFetchingGlobalsymbols &&
+      this.state.value.trim() !== '' &&
+      this.state.suggestions.length === 0 ? (
+        <SymbolNotFound />
+      ) : null;
 
     return (
       <div>
@@ -451,10 +458,7 @@ export class SymbolSearch extends PureComponent {
             options={this.state.symbolSets}
             onChange={this.handleChangeOption}
           />
-          {!this.state.isFetchingArasaac &&
-            !this.state.isFetchingGlobalsymbols &&
-            this.state.value.trim() !== '' &&
-            this.state.suggestions.length === 0 && <SymbolNotFound />}
+          {symbolNotFound}
         </FullScreenDialog>
       </div>
     );
