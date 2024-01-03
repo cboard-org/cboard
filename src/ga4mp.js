@@ -1,4 +1,4 @@
-import ga4mp from '@analytics-debugger/ga4mp';
+import ga4mp from '@rodrisanchez12/ga4mp';
 import { GA4_MEASUREMENT_ID } from './constants';
 
 const ga4track = ga4mp([GA4_MEASUREMENT_ID], {

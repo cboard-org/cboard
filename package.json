@@ -17,7 +17,6 @@
   "private": false,
   "license": "GPL-3.0-only",
   "dependencies": {
-    "@analytics-debugger/ga4mp": "git+https://github.com/RodriSanchez1/ga4mp.git#fix/fullVersionList",
     "@cospired/i18n-iso-languages": "^2.2.0",
     "@crowdin/crowdin-api-client": "^1.26.0",
     "@ctrl/react-adsense": "^1.7.0",
@@ -29,6 +28,7 @@
     "@redux-beacon/google-analytics-gtag": "^1.1.0",
     "@redux-beacon/logger": "^1.0.0",
     "@redux-beacon/offline-web": "^1.0.0",
+    "@rodrisanchez12/ga4mp": "^0.0.10",
     "axios": "^0.26.1",
     "browser-image-resizer": "^2.4.1",
     "dom-to-image": "^2.6.0",
@@ -127,7 +127,7 @@
   },
   "jest": {
     "transformIgnorePatterns": [
-      "node_modules/(?!idb|microsoft-cognitiveservices-speech-sdk|@analytics-debugger/ga4mp)"
+      "node_modules/(?!idb|microsoft-cognitiveservices-speech-sdk|@rodrisanchez12/ga4mp)"
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js"
