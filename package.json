@@ -151,7 +151,7 @@
   "scripts": {
     "analyze": "source-map-explorer build/static/js/**/*.js",
     "start": "craco start",
-    "build": "craco build && sw-precache --config=sw-precache-config.js",
+    "build": "craco build  --verbose && sw-precache --config=sw-precache-config.js",
     "build-cordova-debug": "react-app-rewired build",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
