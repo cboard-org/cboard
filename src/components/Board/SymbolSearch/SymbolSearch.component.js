@@ -18,6 +18,7 @@ import Symbol from '../Symbol';
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
+import SymbolNotFound from './SymbolNotFound';
 
 const SymbolSets = {
   mulberry: '0',
@@ -63,6 +64,8 @@ export class SymbolSearch extends PureComponent {
     super(props);
     this.state = {
       openMirror: false,
+      isFetchingArasaac: false,
+      isFetchingGlobalsymbols: false,
       value: '',
       suggestions: [],
       skin: 'white',
@@ -147,6 +150,9 @@ export class SymbolSearch extends PureComponent {
       return [];
     }
     try {
+      this.setState({
+        isFetchingArasaac: true
+      });
       const arasaacDB = await getArasaacDB();
       const imagesFromDB = await arasaacDB.getImagesByKeyword(
         searchText.trim()
@@ -168,7 +174,10 @@ export class SymbolSearch extends PureComponent {
             fromArasaac: true
           };
         });
-        this.setState({ suggestions: [...suggestions, ...arasaacSuggestions] });
+        this.setState({
+          suggestions: [...suggestions, ...arasaacSuggestions],
+          isFetchingArasaac: false
+        });
       } else {
         const data = await API.arasaacPictogramsSearch(locale, searchText);
         if (data.length) {
@@ -190,7 +199,8 @@ export class SymbolSearch extends PureComponent {
             }
           );
           this.setState({
-            suggestions: [...suggestions, ...arasaacSuggestions]
+            suggestions: [...suggestions, ...arasaacSuggestions],
+            isFetchingArasaac: false
           });
         }
       }
@@ -198,6 +208,10 @@ export class SymbolSearch extends PureComponent {
       return [];
     } catch (err) {
       return [];
+    } finally {
+      this.setState({
+        isFetchingArasaac: false
+      });
     }
   };
 
@@ -207,6 +221,9 @@ export class SymbolSearch extends PureComponent {
     } = this.props;
     try {
       let language = locale !== 'me' ? locale : 'cnr';
+      this.setState({
+        isFetchingGlobalsymbols: true
+      });
       const data = await API.globalsymbolsPictogramsSearch(
         language,
         searchText
@@ -256,12 +273,17 @@ export class SymbolSearch extends PureComponent {
           });
         });
         this.setState({
-          suggestions: [...suggestions, ...globalsymbolsSuggestions]
+          suggestions: [...suggestions, ...globalsymbolsSuggestions],
+          isFetchingGlobalsymbols: false
         });
       }
       return [];
     } catch (err) {
       return [];
+    } finally {
+      this.setState({
+        isFetchingGlobalsymbols: false
+      });
     }
   };
 
@@ -416,6 +438,13 @@ export class SymbolSearch extends PureComponent {
         {clearButton}
       </div>
     );
+    const symbolNotFound =
+      !this.state.isFetchingArasaac &&
+      !this.state.isFetchingGlobalsymbols &&
+      this.state.value.trim() !== '' &&
+      this.state.suggestions.length === 0 ? (
+        <SymbolNotFound />
+      ) : null;
 
     return (
       <div>
@@ -429,6 +458,7 @@ export class SymbolSearch extends PureComponent {
             options={this.state.symbolSets}
             onChange={this.handleChangeOption}
           />
+          {symbolNotFound}
         </FullScreenDialog>
       </div>
     );

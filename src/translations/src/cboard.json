@@ -139,6 +139,8 @@
   "cboard.components.ColorSelect.colorScheme": "Color Scheme",
   "cboard.components.FullScreenButton.fullscreen": "Full screen",
   "cboard.components.FullScreenButton.exitFullscreen": "Exit full screen",
+  "cboard.components.SymbolNotFound.symbolNotFoundText": "Oh no!",
+  "cboard.components.SymbolNotFound.symbolNotFoundTitle": "Pictogram not found",
   "cboard.components.SymbolSearch.searchSymbolLibrary": "Search symbol library",
   "cboard.components.SymbolSearch.clearText": "Clear text",
   "cboard.components.InputImage.uploadImage": "Upload image",
