@@ -56,6 +56,3 @@ export const PAYPAL_CLIENT_ID =
 // Google related constants
 export const GOOGLE_FIREBASE_WEB_CLIENT_ID =
   process.env.REACT_APP_GOOGLE_FIREBASE_WEB_CLIENT_ID || '';
-
-// Google Analytics related constants
-export const GA4_MEASUREMENT_ID = 'G-60S79265FY';

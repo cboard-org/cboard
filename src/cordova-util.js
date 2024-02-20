@@ -137,7 +137,7 @@ const configFacebookPlugin = () => {
   );
 };
 
-export const cvaTrackEvent = (category, action, label, ga4mp) => {
+export const cvaTrackEvent = (category, action, label) => {
   try {
     const convertEventToNewNomenclature = name => {
       const inLowerCase = name.toLowerCase();
@@ -154,13 +154,9 @@ export const cvaTrackEvent = (category, action, label, ga4mp) => {
       : {
           event_category: category
         };
-
-    if (isAndroid() || isIOS())
-      window.FirebasePlugin.logEvent(event_name, eventOptions);
-
-    if (isElectron()) ga4mp.trackEvent(event_name, eventOptions);
+    if (!isElectron()) window.FirebasePlugin.logEvent(event_name, eventOptions);
   } catch (err) {
-    console.error(err.message);
+    console.log(err.message);
   }
 };
 
