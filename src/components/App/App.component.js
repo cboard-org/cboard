@@ -16,6 +16,7 @@ import Settings from '../Settings';
 import WelcomeScreen from '../WelcomeScreen';
 import Analytics from '../Analytics';
 import './App.css';
+import LoginRequiredModal from '../LoggedInFeature/LoginRequiredModal';
 
 export class App extends Component {
   static propTypes = {
@@ -90,6 +91,7 @@ export class App extends Component {
           <Route component={NotFound} />
         </Switch>
         <PremiumRequiredModal />
+        <LoginRequiredModal />
       </div>
     );
   }

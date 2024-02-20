@@ -12,6 +12,8 @@ import {
   IN_GRACE_PERIOD,
   EXPIRED,
   PROCCESING,
+  SHOW_LOGIN_REQUIRED,
+  HIDE_LOGIN_REQUIRED,
   UNVERIFIED
 } from './SubscriptionProvider.constants';
 import API from '../../api';
@@ -391,5 +393,17 @@ export function showPremiumRequired(
 export function hidePremiumRequired() {
   return {
     type: HIDE_PREMIUM_REQUIRED
+  };
+}
+
+export function showLoginRequired() {
+  return {
+    type: SHOW_LOGIN_REQUIRED
+  };
+}
+
+export function hideLoginRequired() {
+  return {
+    type: HIDE_LOGIN_REQUIRED
   };
 }
