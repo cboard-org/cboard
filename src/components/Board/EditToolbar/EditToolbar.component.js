@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
@@ -14,6 +14,10 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import { MdContentCopy } from 'react-icons/md';
 import { MdContentPaste } from 'react-icons/md';
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import SelectedCounter from '../../UI/SelectedCounter';
 import IconButton from '../../UI/IconButton';
 import messages from './EditToolbar.messages';
@@ -71,7 +75,10 @@ EditToolbar.propTypes = {
    */
   onAddClick: PropTypes.func,
   onBoardTypeChange: PropTypes.func,
-  copiedTiles: PropTypes.arrayOf(PropTypes.object)
+  copiedTiles: PropTypes.arrayOf(PropTypes.object),
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onDialogAccecpted: PropTypes.func.isRequired
 };
 
 function EditToolbar({
@@ -98,6 +105,13 @@ function EditToolbar({
 }) {
   const isItemsSelected = !!selectedItemsCount;
   const isFixed = !!isFixedBoard;
+  const [openDeleteTiles, setOpenDeleteTiles] = useState(false);
+  const handleClickOpen = () => {
+    setOpenDeleteTiles(true);
+  };
+  const handleClose = () => {
+    setOpenDeleteTiles(false);
+  };
 
   return (
     <div
@@ -171,14 +185,37 @@ function EditToolbar({
               count={selectedItemsCount}
               className="EditToolbar__SelectedCounter"
             />
-
             <IconButton
               label={intl.formatMessage(messages.deleteTiles)}
               disabled={!isItemsSelected}
-              onClick={onDeleteClick}
+              onClick={() => {
+                handleClickOpen();
+              }}
             >
               <DeleteIcon />
             </IconButton>
+            <Dialog open={openDeleteTiles} onClose={handleClose}>
+              <DialogTitle id="alert-dialog-title">
+                {intl.formatMessage(messages.deleteTileTitle)}
+              </DialogTitle>
+              <DialogContent>
+                {intl.formatMessage(messages.deleteTileDescription)}
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary">
+                  {intl.formatMessage(messages.deleteTileCancel)}
+                </Button>
+                <Button
+                  onClick={onDeleteClick}
+                  variant="contained"
+                  color="primary"
+                  autoFocus
+                >
+                  {intl.formatMessage(messages.deleteTileOk)}
+                </Button>
+              </DialogActions>
+            </Dialog>
+
             <PremiumFeature>
               <IconButton
                 label={intl.formatMessage(messages.copyTiles)}
