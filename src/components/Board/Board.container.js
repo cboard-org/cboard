@@ -894,7 +894,9 @@ export class BoardContainer extends Component {
       }
     } else {
       clickSymbol(tile.label);
-      say();
+      if (!navigationSettings.quietBuilderMode) {
+        say();
+      }
       if (isLiveMode) {
         const liveTile = {
           backgroundColor: 'rgb(255, 241, 118)',
