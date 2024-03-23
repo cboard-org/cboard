@@ -50,6 +50,7 @@ const initialState = {
     quickUnlockActive: false,
     removeOutputActive: false,
     vocalizeFolders: false,
+    quietBuilderMode: false,
     liveMode: false,
     improvePhraseActive: false
   },
