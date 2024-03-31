@@ -10,6 +10,7 @@ import Symbol from '../../Symbol';
 import BackspaceButton from './BackspaceButton';
 import ClearButton from './ClearButton';
 import messages from '../../Board.messages';
+import { LABEL_CASE_DEFAULT } from '../../../Settings/Display/Display.constants';
 import PhraseShare from '../PhraseShare';
 import Scroll from './Scroll';
 import './SymbolOutput.css';
@@ -130,6 +131,7 @@ class SymbolOutput extends PureComponent {
                 label={label}
                 type={type}
                 labelpos="Below"
+                labelCase={LABEL_CASE_DEFAULT}
                 onWrite={onWriteSymbol(index)}
                 intl={intl}
               />

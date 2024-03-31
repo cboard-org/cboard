@@ -5,7 +5,12 @@ import { isCordova } from '../../../cordova-util';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import messages from '../Board.messages';
 
-import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
+import {
+  LABEL_POSITION_BELOW,
+  LABEL_CASE_LOWER,
+  LABEL_CASE_DEFAULT,
+  LABEL_CASE_UPPER
+} from '../../Settings/Display/Display.constants';
 import './Symbol.css';
 import { Typography } from '@material-ui/core';
 import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
@@ -20,6 +25,7 @@ const propTypes = {
    */
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   labelpos: PropTypes.string,
+  labelCase: PropTypes.string,
   type: PropTypes.string,
   onWrite: PropTypes.func,
   intl: PropTypes.object
@@ -30,6 +36,7 @@ function Symbol(props) {
     className,
     label,
     labelpos,
+    labelCase,
     keyPath,
     type,
     onWrite,
@@ -76,6 +83,16 @@ function Symbol(props) {
     }
   };
 
+  let labelRender = label;
+
+  if (labelCase === LABEL_CASE_LOWER) {
+    labelRender = label.toLowerCase();
+  } else if (labelCase === LABEL_CASE_UPPER) {
+    labelRender = label.toUpperCase();
+  } else {
+    labelRender = label;
+  }
+
   return (
     <div className={symbolClassName} image={src} {...other}>
       {props.type === 'live' && (
@@ -102,7 +119,7 @@ function Symbol(props) {
       {props.type !== 'live' &&
         props.labelpos === 'Above' &&
         props.labelpos !== 'Hidden' && (
-          <Typography className="Symbol__label">{label}</Typography>
+          <Typography className="Symbol__label">{labelRender}</Typography>
         )}
       {src && (
         <div className="Symbol__image-container">
@@ -112,14 +129,15 @@ function Symbol(props) {
       {props.type !== 'live' &&
         props.labelpos === 'Below' &&
         props.labelpos !== 'Hidden' && (
-          <Typography className="Symbol__label">{label}</Typography>
+          <Typography className="Symbol__label">{labelRender}</Typography>
         )}
     </div>
   );
 }
 Symbol.propTypes = propTypes;
 Symbol.defaultProps = {
-  labelpos: LABEL_POSITION_BELOW
+  labelpos: LABEL_POSITION_BELOW,
+  labelCase: LABEL_CASE_DEFAULT
 };
 
 export default Symbol;
