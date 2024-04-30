@@ -193,8 +193,17 @@ export function createApiCommunicator(communicatorData, communicatorId) {
 export function updateApiCommunicator(communicatorData) {
   return dispatch => {
     dispatch(updateApiCommunicatorStarted());
+
+    const LOCAL_COMMUNICATOR_ID = 'cboard_default';
+
+    const isLocalCommunicator =
+      communicatorData.id && communicatorData.id === LOCAL_COMMUNICATOR_ID;
     return API.updateCommunicator(communicatorData)
       .then(res => {
+        if (isLocalCommunicator) {
+          dispatch(createCommunicator({ ...communicatorData, ...res }));
+          dispatch(changeCommunicator(res.id));
+        }
         dispatch(updateApiCommunicatorSuccess(res));
         return res;
       })
