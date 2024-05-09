@@ -17,6 +17,7 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import messages from './TileEditor.messages';
 import SymbolSearch from '../SymbolSearch';
@@ -34,7 +35,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import ImageEditor from '../ImageEditor';
 
 import API from '../../../api';
-import { isAndroid, writeCvaFile } from '../../../cordova-util';
+import {
+  isAndroid,
+  requestCvaPermissions,
+  writeCvaFile
+} from '../../../cordova-util';
 import { convertImageUrlToCatchable } from '../../../helpers';
 import PremiumFeature from '../../PremiumFeature';
 
@@ -103,7 +108,8 @@ export class TileEditor extends Component {
       tile: this.defaultTile,
       linkedBoard: '',
       imageUploadedData: [],
-      isEditImageBtnActive: false
+      isEditImageBtnActive: false,
+      isLoading: false
     };
 
     this.defaultimageUploadedData = {
@@ -119,12 +125,9 @@ export class TileEditor extends Component {
     this.setState({ editingTiles: props.editingTiles });
   }
   componentDidUpdate(prevProps) {
-    if (
-      this.props.open !== prevProps.open &&
-      this.props.open &&
-      this.editingTile()
-    ) {
-      this.setLinkedBoard();
+    if (this.props.open !== prevProps.open && this.props.open) {
+      if (this.editingTile()) this.setLinkedBoard();
+      if (isAndroid()) requestCvaPermissions();
     }
   }
 
@@ -287,6 +290,10 @@ export class TileEditor extends Component {
     this.updateTileProperty('image', image);
   };
 
+  handleLoadingStateChange = isLoading => {
+    this.setState({ isLoading: isLoading });
+  };
+
   setimageUploadedData = (isUploaded, fileName, blobHQ = null, blob = null) => {
     const { activeStep } = this.state;
     let imageUploadedData = this.state.imageUploadedData.map((item, indx) => {
@@ -305,11 +312,12 @@ export class TileEditor extends Component {
     this.setState({ imageUploadedData: imageUploadedData });
   };
 
-  handleSymbolSearchChange = ({ image, labelKey, label }) => {
+  handleSymbolSearchChange = ({ image, labelKey, label, keyPath }) => {
     return new Promise(resolve => {
       this.updateTileProperty('labelKey', labelKey);
       this.updateTileProperty('label', label);
       this.updateTileProperty('image', image);
+      if (keyPath) this.updateTileProperty('keyPath', keyPath);
       if (this.state.imageUploadedData.length) {
         this.setimageUploadedData(false, '');
       }
@@ -521,7 +529,15 @@ export class TileEditor extends Component {
                           Boolean(tileInView.loadBoard) ? 'folder' : 'button'
                         }
                       >
-                        <Symbol image={tileInView.image} label={currentLabel} />
+                        {this.state.isLoading ? (
+                          <CircularProgress />
+                        ) : (
+                          <Symbol
+                            image={tileInView.image}
+                            label={currentLabel}
+                            keyPath={tileInView.keyPath}
+                          />
+                        )}
                       </Tile>
                     </div>
                     {this.state.isEditImageBtnActive && (
@@ -556,7 +572,10 @@ export class TileEditor extends Component {
                       {intl.formatMessage(messages.symbols)}
                     </Button>
                     <div className="TileEditor__input-image">
-                      <InputImage onChange={this.handleInputImageChange} />
+                      <InputImage
+                        onChange={this.handleInputImageChange}
+                        setIsLoadingImage={this.handleLoadingStateChange}
+                      />
                     </div>
                   </div>
                   <div className="TileEditor__form-fields">

@@ -24,6 +24,10 @@
   padding: 0.2em 0.9em 0.2em 0.9em;
 }
 
+.liveInput .MuiInputBase-input::-webkit-scrollbar {
+  display: none;
+}
+
 .Symbol textarea {
   align-self: flex-start;
   font-weight: 700;
@@ -78,6 +82,7 @@
   letter-spacing: 0.04em;
   line-height: 1.2;
   overflow: hidden;
+  color: rgb(0, 0, 0);
 }
 
 @media (min-width: 600px) {

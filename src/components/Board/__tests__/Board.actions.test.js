@@ -42,6 +42,9 @@ const initialState = {
   app: {
     userData: {
       email: 'asd@qwe.com'
+    },
+    navigationSettings: {
+      improvePhraseActive: false
     }
   }
 };
@@ -200,11 +203,17 @@ describe('actions', () => {
 
   it('should create an action to REPLACE_ME', () => {
     const output = [{}, {}];
-    const expectedAction = {
-      type: types.CHANGE_OUTPUT,
-      output
-    };
-    expect(actions.changeOutput(output)).toEqual(expectedAction);
+    const expectedActions = [
+      {
+        type: types.CHANGE_OUTPUT,
+        output
+      }
+    ];
+
+    const store = mockStore(initialState);
+    store.dispatch(actions.changeOutput(output));
+    const dispatchedActions = store.getActions();
+    expect(dispatchedActions).toEqual(expectedActions);
   });
 
   it('should create an action to REPLACE_ME', () => {

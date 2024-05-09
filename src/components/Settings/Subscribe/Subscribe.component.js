@@ -9,6 +9,7 @@ import './Subscribe.css';
 
 import SubscriptionInfo from './SubscriptionInfo';
 import SubscriptionPlans from './SubscriptionPlans';
+import { CircularProgress } from '@material-ui/core';
 
 const propTypes = {
   /**
@@ -24,22 +25,16 @@ const propTypes = {
    */
   isLogged: PropTypes.bool.isRequired,
   /**
-   * Name of user
-   */
-  name: PropTypes.string.isRequired,
-  /**
-   * User email
-   */
-  email: PropTypes.string.isRequired,
-  /**
    * Handle refresh subscription
    */
-  onRefreshSubscription: PropTypes.func
+  onRefreshSubscription: PropTypes.func,
+  onSubscribeCancel: PropTypes.func.isRequired,
+  onCancelSubscription: PropTypes.func.isRequired,
+  cancelSubscriptionStatus: PropTypes.string.isRequired,
+  updatingStatus: PropTypes.bool.isRequired
 };
 
 const defaultProps = {
-  name: '',
-  email: '',
   location: { country: null, countryCode: null }
 };
 
@@ -47,13 +42,14 @@ const Subscribe = ({
   onClose,
   isLogged,
   onSubscribe,
-  name,
-  email,
   location: { country, countryCode },
-  onSubmitPeople,
-  products,
   subscription,
-  onRefreshSubscription
+  onRefreshSubscription,
+  onSubscribeCancel,
+  onPaypalApprove,
+  onCancelSubscription,
+  cancelSubscriptionStatus,
+  updatingStatus
 }) => {
   return (
     <div className="Subscribe">
@@ -63,16 +59,25 @@ const Subscribe = ({
         onClose={onClose}
         // fullWidth
       >
-        {!subscription.isSubscribed ? (
+        {updatingStatus ? (
+          <div className="Subscribe__Loading__Container">
+            <CircularProgress />
+          </div>
+        ) : !subscription.isSubscribed ? (
           <SubscriptionPlans
             subscription={subscription}
-            products={products}
             onRefreshSubscription={onRefreshSubscription}
             isLogged={isLogged}
             onSubscribe={onSubscribe}
+            onSubscribeCancel={onSubscribeCancel}
+            onPaypalApprove={onPaypalApprove}
           />
         ) : (
-          <SubscriptionInfo onRefreshSubscription={onRefreshSubscription} />
+          <SubscriptionInfo
+            onRefreshSubscription={onRefreshSubscription}
+            onCancelSubscription={onCancelSubscription}
+            cancelSubscriptionStatus={cancelSubscriptionStatus}
+          />
         )}
       </FullScreenDialog>
     </div>

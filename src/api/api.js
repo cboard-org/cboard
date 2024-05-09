@@ -16,6 +16,7 @@ import { isAndroid } from '../cordova-util';
 
 const BASE_URL = API_URL;
 const LOCAL_COMMUNICATOR_ID = 'cboard_default';
+export let improvePhraseAbortController;
 
 const getUserData = () => {
   const store = getStore();
@@ -59,9 +60,7 @@ class API {
           error.config?.baseURL === BASE_URL
         ) {
           if (isAndroid()) {
-            window.plugins.googleplus.disconnect(function(msg) {
-              console.log('disconnect google msg' + msg);
-            });
+            window.FirebasePlugin.unregister();
             window.facebookConnectPlugin.logout(
               function(msg) {
                 console.log('disconnect facebook msg' + msg);
@@ -73,7 +72,6 @@ class API {
           }
           getStore().dispatch(logout());
           history.push('/login-signup/');
-          window.location.reload();
         }
         return Promise.reject(error);
       }
@@ -180,6 +178,17 @@ class API {
   }
 
   async oAuthLogin(type, query) {
+    if (type === 'apple' || type === 'apple-web') {
+      const authCode = query?.substring(1);
+      const { data } = await this.axiosInstance.post(
+        `/login/${type}/callback`,
+        {
+          state: 'cordova',
+          code: authCode
+        }
+      );
+      return data;
+    }
     const { data } = await this.axiosInstance.get(
       `/login/${type}/callback${query}`
     );
@@ -502,17 +511,24 @@ class API {
     return data;
   }
 
-  async getSubscriber(userId = {}) {
+  async getSubscriber(userId = getUserData().id, requestOrigin = 'unknown') {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
       throw new Error('Need to be authenticated to perform this request');
     }
     const headers = {
-      Authorization: `Bearer ${authToken}`
+      Authorization: `Bearer ${authToken}`,
+      requestOrigin,
+      purchaseVersion: '1.0.0'
     };
     const { data } = await this.axiosInstance.get(`/subscriber/${userId}`, {
       headers
     });
+
+    if (data && !data.success) {
+      throw data;
+    }
+
     return data;
   }
 
@@ -531,6 +547,24 @@ class API {
     return data;
   }
 
+  async cancelPlan(subscriptionId = '') {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+    const data = { reason: 'User cancelled the subscription' };
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const res = await this.axiosInstance.post(
+      `/subscriber/cancel/${subscriptionId}`,
+      { data },
+      { headers }
+    );
+    return res;
+  }
+
   async postTransaction(transaction = {}) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
@@ -541,6 +575,8 @@ class API {
       Authorization: `Bearer ${authToken}`
     };
     const subscriberId = getSubscriberId();
+    if (!subscriberId) throw new Error('No subscriber id supplied');
+
     const { data } = await this.axiosInstance.post(
       `/subscriber/${subscriberId}/transaction`,
       transaction,
@@ -561,6 +597,8 @@ class API {
       Authorization: `Bearer ${authToken}`
     };
     const subscriberId = getSubscriberId();
+    if (!subscriberId) throw new Error('No subscriber id supplied');
+
     const { data } = await this.axiosInstance.patch(
       `/subscriber/${subscriberId}`,
       subscriber,
@@ -569,6 +607,55 @@ class API {
       }
     );
     return data;
+  }
+
+  async listSubscriptions() {
+    const { data } = await this.axiosInstance.get(`/subscription/list`);
+    return data;
+  }
+
+  async deleteAccount() {
+    const userId = getUserData().id;
+    if (userId) {
+      const authToken = getAuthToken();
+      if (!(authToken && authToken.length)) {
+        throw new Error('Need to be authenticated to perform this request');
+      }
+
+      const headers = {
+        Authorization: `Bearer ${authToken}`
+      };
+      const { data } = await this.axiosInstance.delete(`/account/${userId}`, {
+        headers
+      });
+      return data;
+    }
+  }
+
+  async improvePhrase({ phrase, language }) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    try {
+      const headers = {
+        Authorization: `Bearer ${authToken}`
+      };
+      improvePhraseAbortController = new AbortController();
+      const { data } = await this.axiosInstance.post(
+        `/gpt/edit`,
+        { phrase, language },
+        {
+          headers,
+          signal: improvePhraseAbortController.signal
+        }
+      );
+      return data;
+    } catch (error) {
+      if (error.message !== 'canceled') console.error(error);
+      return { phrase: '' };
+    }
   }
 }
 

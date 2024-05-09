@@ -7,10 +7,9 @@ import ClearIcon from '@material-ui/icons/Clear';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 import IconButton from '../UI/IconButton';
-import { isCordova, requestCvaPermissions } from '../../cordova-util';
 import messages from './VoiceRecorder.messages';
 import './VoiceRecorder.css';
-
+let mediaStream = undefined;
 class VoiceRecorder extends Component {
   static propTypes = {
     /**
@@ -32,11 +31,6 @@ class VoiceRecorder extends Component {
     isRecording: false,
     isPlaying: false
   };
-  componentDidMount() {
-    if (isCordova()) {
-      requestCvaPermissions();
-    }
-  }
 
   startRecording = () => {
     navigator.mediaDevices
@@ -45,6 +39,7 @@ class VoiceRecorder extends Component {
         this.mediaRecorder = new window.MediaRecorder(stream);
         this.mediaRecorder.start();
         this.setState({ isRecording: true });
+        mediaStream = stream;
       })
       .catch(function(err) {
         console.log(err.message);
@@ -53,6 +48,11 @@ class VoiceRecorder extends Component {
 
   stopRecording = () => {
     this.mediaRecorder.stop();
+    try {
+      if (mediaStream) mediaStream.getTracks().forEach(track => track.stop());
+    } catch (error) {
+      console.error('Error during stop recording', error);
+    }
 
     this.mediaRecorder.ondataavailable = event => {
       this.chunks = event.data;

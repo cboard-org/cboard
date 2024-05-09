@@ -7,6 +7,7 @@ import Link from '@material-ui/core/Link';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '../UI/IconButton';
 import {
+  AppleLoginButton,
   FacebookLoginButton,
   GoogleLoginButton
 } from 'react-social-login-buttons';
@@ -19,12 +20,22 @@ import SignUp from '../Account/SignUp';
 import ResetPassword from '../Account/ResetPassword';
 import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
-import { API_URL } from '../../constants';
-import { isAndroid, isElectron } from '../../cordova-util';
+import { API_URL, GOOGLE_FIREBASE_WEB_CLIENT_ID } from '../../constants';
+import {
+  isAndroid,
+  isElectron,
+  isIOS,
+  manageKeyboardEvents
+} from '../../cordova-util';
 
 export class WelcomeScreen extends Component {
   state = {
-    activeView: ''
+    activeView: '',
+    keyboard: { isKeyboardOpen: false, keyboardHeight: undefined },
+    dialogWithKeyboardStyle: {
+      dialogStyle: {},
+      dialogContentStyle: {}
+    }
   };
 
   static propTypes = {
@@ -32,6 +43,18 @@ export class WelcomeScreen extends Component {
     heading: PropTypes.string,
     text: PropTypes.string,
     onClose: PropTypes.func
+  };
+
+  handleKeyboardDidShow = event => {
+    this.setState({
+      keyboard: { isKeyboardOpen: true, keyboardHeight: event.keyboardHeight }
+    });
+  };
+
+  handleKeyboardDidHide = () => {
+    this.setState({
+      keyboard: { isKeyboardOpen: false, keyboardHeight: null }
+    });
   };
 
   handleActiveView = activeView => {
@@ -53,30 +76,28 @@ export class WelcomeScreen extends Component {
 
   handleGoogleLoginClick = () => {
     const { intl } = this.props;
-    if (isAndroid()) {
-      window.plugins.googleplus.login(
-        {
-          // 'scopes': '... ', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
-          offline: true // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
-        },
-        function(obj) {
-          window.location.hash = `#/login/googletoken/callback?access_token=${
-            obj.accessToken
+    if (isAndroid() || isIOS()) {
+      const FirebasePlugin = window.FirebasePlugin;
+      FirebasePlugin.authenticateUserWithGoogle(
+        GOOGLE_FIREBASE_WEB_CLIENT_ID,
+        function(credential) {
+          window.location.hash = `#/login/googleidtoken/callback?id_token=${
+            credential.idToken
           }`;
         },
-        function(msg) {
+        function(error) {
           alert(intl.formatMessage(messages.loginErrorAndroid));
-          console.log('error: ' + msg);
+          console.error('Failed to authenticate with Google: ' + error);
         }
       );
     } else {
-      window.location = `${API_URL}/login/google`;
+      window.location = `${API_URL}login/google`;
     }
   };
 
   handleFacebookLoginClick = () => {
     const { intl } = this.props;
-    if (isAndroid()) {
+    if (isAndroid() || isIOS()) {
       window.facebookConnectPlugin.login(
         ['email'],
         function(userData) {
@@ -90,13 +111,82 @@ export class WelcomeScreen extends Component {
         }
       );
     } else {
-      window.location = `${API_URL}/login/facebook`;
+      window.location = `${API_URL}login/facebook`;
     }
   };
 
+  handleAppleLoginClick = () => {
+    const intl = this.props.intl;
+    if (isIOS()) {
+      window.cordova.plugins.SignInWithApple.signin(
+        { requestedScopes: [0, 1] },
+        function(succ) {
+          window.location.hash = `#/login/apple/callback?${
+            succ.authorizationCode
+          }`;
+        },
+        function(err) {
+          alert(intl.formatMessage(messages.loginErrorAndroid));
+          console.error(err);
+        }
+      );
+      return;
+    }
+    window.location = `${API_URL}login/apple-web`;
+  };
+
+  updateDialogStyle() {
+    if (!(isAndroid() || isIOS())) return;
+    const { isKeyboardOpen, keyboardHeight } = this.state.keyboard;
+    if (isKeyboardOpen) {
+      const KEYBOARD_MARGIN_TOP = 30;
+      const DEFAULT_KEYBOARD_SPACE = 310;
+      const keyboardSpace = keyboardHeight
+        ? keyboardHeight + KEYBOARD_MARGIN_TOP
+        : DEFAULT_KEYBOARD_SPACE;
+      return {
+        dialogStyle: {
+          marginBottom: `${keyboardSpace}px`
+        },
+        dialogContentStyle: {
+          maxHeight: `calc(92vh - ${keyboardSpace}px)`,
+          overflow: 'scroll'
+        }
+      };
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!(isAndroid() || isIOS())) return;
+    const { isKeyboardOpen: wasKeyboardOpen } = prevState.keyboard;
+    const { isKeyboardOpen } = this.state.keyboard;
+    if (wasKeyboardOpen !== isKeyboardOpen) {
+      this.setState({
+        dialogWithKeyboardStyle: this.updateDialogStyle()
+      });
+    }
+  }
+
+  componentDidMount() {
+    if (!(isAndroid() || isIOS())) return;
+    manageKeyboardEvents({
+      onShow: this.handleKeyboardDidShow,
+      onHide: this.handleKeyboardDidHide
+    });
+  }
+  componentWillUnmount() {
+    if (!(isAndroid() || isIOS())) return;
+    manageKeyboardEvents({
+      onShow: this.handleKeyboardDidShow,
+      onHide: this.handleKeyboardDidHide,
+      removeEvent: true
+    });
+  }
+
   render() {
     const { finishFirstVisit, heading, text, onClose } = this.props;
-    const { activeView } = this.state;
+    const { activeView, dialogWithKeyboardStyle } = this.state;
 
     return (
       <div className="WelcomeScreen">
@@ -147,6 +237,15 @@ export class WelcomeScreen extends Component {
                   <FormattedMessage {...messages.facebook} />
                 </FacebookLoginButton>
               )}
+
+              {!isAndroid() && !isElectron() && (
+                <AppleLoginButton
+                  className="WelcomeScreen__button WelcomeScreen__button--google"
+                  onClick={this.handleAppleLoginClick}
+                >
+                  <FormattedMessage {...messages.apple} />
+                </AppleLoginButton>
+              )}
             </div>
 
             {!onClose && (
@@ -182,6 +281,7 @@ export class WelcomeScreen extends Component {
           isDialogOpen={activeView === 'login'}
           onResetPasswordClick={this.onResetPasswordClick}
           onClose={this.resetActiveView}
+          dialogWithKeyboardStyle={dialogWithKeyboardStyle}
         />
         <ResetPassword
           isDialogOpen={activeView === 'forgot'}
@@ -190,6 +290,7 @@ export class WelcomeScreen extends Component {
         <SignUp
           isDialogOpen={activeView === 'signup'}
           onClose={this.resetActiveView}
+          dialogWithKeyboardStyle={dialogWithKeyboardStyle}
         />
       </div>
     );

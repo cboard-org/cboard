@@ -67,7 +67,14 @@ import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 import PremiumFeature from '../PremiumFeature';
+import {
+  IS_BROWSING_FROM_APPLE_TOUCH,
+  IS_BROWSING_FROM_SAFARI
+} from '../../constants';
 //import { isAndroid } from '../../cordova-util';
+
+const ogv = require('ogv');
+ogv.OGVLoader.base = process.env.PUBLIC_URL + '/ogv';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -455,10 +462,13 @@ export class BoardContainer extends Component {
     return url;
   }
 
-  playAudio(src) {
-    let audio = new Audio();
+  async playAudio(src) {
+    const safariNeedHelp =
+      (IS_BROWSING_FROM_SAFARI || IS_BROWSING_FROM_APPLE_TOUCH) &&
+      src.endsWith('.ogg');
+    const audio = safariNeedHelp ? new ogv.OGVPlayer() : new Audio();
     audio.src = src;
-    audio.play();
+    await audio.play();
   }
 
   handleEditBoardTitle = name => {
@@ -633,7 +643,7 @@ export class BoardContainer extends Component {
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
-      await this.handleApiUpdates(tile);
+      await this.handleApiUpdates(tile); // this function could mutate tthe tile
       return;
     }
 
@@ -970,9 +980,9 @@ export class BoardContainer extends Component {
       const { userData } = this.props;
       try {
         var blob = new Blob([this.convertDataURIToBinary(tile.sound)], {
-          type: 'audio/ogg; codecs=opus'
+          type: 'audio/mp3; codecs=opus'
         });
-        const audioUrl = await API.uploadFile(blob, userData.email + '.ogg');
+        const audioUrl = await API.uploadFile(blob, userData.email + '.mp3');
         tile.sound = audioUrl;
       } catch (err) {
         console.log(err.message);
@@ -1114,6 +1124,7 @@ export class BoardContainer extends Component {
         //update the parent
         updateBoard(parentBoardData);
       }
+      // Untill here all is with shorts ids
       //api updates
       if (tile && tile.type === 'board') {
         //child becomes parent
@@ -1155,6 +1166,9 @@ export class BoardContainer extends Component {
           )
             .then(parentBoardId => {
               if (createParentBoard) {
+                /* Here the parentBoardData is not updated with the values 
+                that updatedApiObjects store on the API. Inside the boards are already updated 
+                an the value is not replaced because the oldboard Id was replaced on the updateApiObjects inside createApiBoardSuccess */
                 replaceBoard(
                   { ...parentBoardData },
                   { ...parentBoardData, id: parentBoardId }
@@ -1312,7 +1326,7 @@ export class BoardContainer extends Component {
 
     //return condition
     board.tiles.forEach(async tile => {
-      if (tile.loadBoard) {
+      if (tile.loadBoard && !tile.linkedBoard) {
         try {
           const nextBoard = await API.getBoard(tile.loadBoard);
           this.createBoardsRecursively(nextBoard, records);
@@ -1501,7 +1515,7 @@ export class BoardContainer extends Component {
 
     //return condition
     newBoard.tiles.forEach(async tile => {
-      if (tile && tile.loadBoard) {
+      if (tile && tile.loadBoard && !tile.linkedBoard) {
         //look for this board in available boards
         const newBoardToCopy = boards.find(b => b.id === tile.loadBoard);
         if (newBoardToCopy) {
@@ -1529,7 +1543,9 @@ export class BoardContainer extends Component {
       navHistory,
       board,
       focusTile,
-      isPremiumRequiredModalOpen
+      isPremiumRequiredModalOpen,
+      improvedPhrase,
+      speak
     } = this.props;
 
     if (!this.state.translatedBoard) {
@@ -1603,6 +1619,8 @@ export class BoardContainer extends Component {
           totalRows={this.state.totalRows}
           ref={this.boardRef}
           changeDefaultBoard={this.props.changeDefaultBoard}
+          improvedPhrase={improvedPhrase}
+          speak={speak}
         />
         <Dialog
           open={!!this.state.copyPublicBoard && !isPremiumRequiredModalOpen}
@@ -1661,7 +1679,6 @@ export class BoardContainer extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-
         <TileEditor
           editingTiles={editingTiles}
           open={this.state.tileEditorOpen}
@@ -1716,7 +1733,8 @@ const mapStateToProps = ({
     offlineVoiceAlert,
     isRootBoardTourEnabled: liveHelp.isRootBoardTourEnabled,
     isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
-    isPremiumRequiredModalOpen: premiumRequiredModalState?.open
+    isPremiumRequiredModalOpen: premiumRequiredModalState?.open,
+    improvedPhrase: board.improvedPhrase
   };
 };
 

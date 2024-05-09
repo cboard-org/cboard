@@ -13,8 +13,10 @@ import { DISPLAY_SIZE_STANDARD } from '../Settings/Display/Display.constants';
 import {
   updateUserDataFromAPI,
   updateLoggedUserLocation,
-  updateUnloggedUserLocation
+  updateUnloggedUserLocation,
+  updateConnectivity
 } from '../App/App.actions';
+import { isCordova, isElectron } from '../../cordova-util';
 export class AppContainer extends Component {
   static propTypes = {
     /**
@@ -37,7 +39,11 @@ export class AppContainer extends Component {
      * App language
      */
     lang: PropTypes.string.isRequired,
-    displaySettings: PropTypes.object.isRequired
+    displaySettings: PropTypes.object.isRequired,
+    /**
+     * User Id
+     */
+    userId: PropTypes.string
   };
 
   componentDidMount() {
@@ -58,12 +64,58 @@ export class AppContainer extends Component {
       }
     };
 
+    const initCVAGa4 = () => {
+      const { isLogged, userId } = this.props;
+      if (!isElectron()) {
+        try {
+          if (isLogged) {
+            window.FirebasePlugin.setUserId(userId);
+          }
+          window.FirebasePlugin.logEvent('page_view');
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    };
+
     registerServiceWorker(
       this.handleNewContentAvailable,
       this.handleContentCached
     );
 
     localizeUser();
+
+    if (isCordova()) initCVAGa4();
+
+    const configureConnectionStatus = () => {
+      const { updateConnectivity } = this.props;
+      const setAsOnline = () => {
+        updateConnectivity({ isConnected: true });
+      };
+
+      const setAsOffline = () => {
+        updateConnectivity({ isConnected: false });
+      };
+
+      const addConnectionEventListeners = () => {
+        window.addEventListener('offline', setAsOffline);
+        window.addEventListener('online', setAsOnline);
+      };
+
+      const setCurrentConnectionStatus = () => {
+        if (!navigator.onLine) {
+          setAsOffline();
+          return;
+        }
+        setAsOnline();
+        return;
+      };
+
+      setCurrentConnectionStatus();
+      addConnectionEventListeners();
+    };
+
+    configureConnectionStatus();
   }
 
   handleNewContentAvailable = () => {
@@ -119,14 +171,16 @@ const mapStateToProps = state => ({
   isLogged: isLogged(state),
   lang: state.language.lang,
   displaySettings: state.app.displaySettings,
-  isDownloadingLang: state.language.downloadingLang.isdownloading
+  isDownloadingLang: state.language.downloadingLang.isdownloading,
+  userId: state.app.userData.id
 });
 
 const mapDispatchToProps = {
   showNotification,
   updateUserDataFromAPI,
   updateLoggedUserLocation,
-  updateUnloggedUserLocation
+  updateUnloggedUserLocation,
+  updateConnectivity
 };
 
 export default connect(

@@ -56,6 +56,15 @@ export default defineMessages({
     defaultMessage:
       'Live mode allows you to write text directly into the output bar and quickly play the sound. It is intended for users that can write.'
   },
+  activeImprovePhrase: {
+    id: 'cboard.components.Settings.Navigation.activeImprovePhrase',
+    defaultMessage: 'Use the Improve Phrase'
+  },
+  activeImprovePhraseSecondary: {
+    id: 'cboard.components.Settings.Navigation.activeImprovePhraseSecondary',
+    defaultMessage:
+      'Improve Phrase allows you to gramatically improve the output phrase using Artificial intelligence. It is intended for users of core boards'
+  },
   bigScroll: {
     id: 'cboard.components.Settings.Navigation.bigScroll',
     defaultMessage: 'Enable big scroll buttons'

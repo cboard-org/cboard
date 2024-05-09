@@ -233,7 +233,10 @@ class CommunicatorDialogBoardItem extends React.Component {
   };
 
   handleSymbolSearchChange = ({ image }) => {
-    this.setState({ imageBoard: image });
+    return new Promise(resolve => {
+      this.setState({ imageBoard: image });
+      resolve();
+    });
   };
 
   handleSymbolSearchClose = event => {

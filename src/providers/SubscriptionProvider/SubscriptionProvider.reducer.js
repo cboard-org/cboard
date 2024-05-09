@@ -1,15 +1,12 @@
 import {
-  UPDATE_IS_IN_FREE_COUNTRY,
-  UPDATE_IS_ON_TRIAL_PERIOD,
-  UPDATE_ANDROID_SUBSCRIPTION_STATE,
   UPDATE_SUBSCRIBER_ID,
-  UPDATE_IS_SUBSCRIBED,
   UPDATE_SUBSCRIPTION,
   UPDATE_SUBSCRIPTION_ERROR,
   SHOW_PREMIUM_REQUIRED,
   HIDE_PREMIUM_REQUIRED,
   NOT_SUBSCRIBED,
-  UPDATE_PRODUCT
+  SHOW_LOGIN_REQUIRED,
+  HIDE_LOGIN_REQUIRED
 } from './SubscriptionProvider.constants';
 import {
   LOGOUT,
@@ -18,7 +15,7 @@ import {
 
 const initialState = {
   subscriberId: '',
-  androidSubscriptionState: NOT_SUBSCRIBED,
+  status: NOT_SUBSCRIBED,
   isSubscribed: false,
   expiryDate: null,
   error: {
@@ -26,62 +23,40 @@ const initialState = {
     code: '',
     message: ''
   },
-  isInFreeCountry: false,
+  isInFreeCountry: true,
   isOnTrialPeriod: true,
   premiumRequiredModalState: {
     open: false,
     showTryPeriodFinishedMessages: false
   },
-  product: {
-    title: '',
-    billingPeriod: '',
-    price: ''
-  }
+  loginRequiredModalState: {
+    open: false
+  },
+  ownedProduct: '',
+  products: [
+    {
+      id: '',
+      subscriptionId: '',
+      title: '',
+      billingPeriod: '',
+      price: '',
+      tag: ''
+    }
+  ],
+  lastUpdated: undefined
 };
 
 function subscriptionProviderReducer(state = initialState, action) {
   switch (action.type) {
-    case UPDATE_IS_IN_FREE_COUNTRY:
-      return {
-        ...state,
-        isInFreeCountry: action.isInFreeCountry
-      };
-    case UPDATE_IS_ON_TRIAL_PERIOD:
-      return {
-        ...state,
-        isOnTrialPeriod: action.isOnTrialPeriod
-      };
-    case UPDATE_ANDROID_SUBSCRIPTION_STATE:
-      return {
-        ...state,
-        androidSubscriptionState: action.payload
-      };
     case UPDATE_SUBSCRIBER_ID:
       return {
         ...state,
         subscriberId: action.payload
       };
-    case UPDATE_IS_SUBSCRIBED:
-      return {
-        ...state,
-        isSubscribed: action.payload
-      };
     case UPDATE_SUBSCRIPTION:
-      const {
-        expiryDate,
-        isSubscribed,
-        androidSubscriptionState
-      } = action.payload;
       return {
         ...state,
-        expiryDate,
-        isSubscribed,
-        androidSubscriptionState
-      };
-    case UPDATE_PRODUCT:
-      return {
-        ...state,
-        product: action.product
+        ...action.payload
       };
     case UPDATE_SUBSCRIPTION_ERROR:
       const { showError, code, message } = action.payload;
@@ -98,16 +73,14 @@ function subscriptionProviderReducer(state = initialState, action) {
       const {
         id = '',
         status = NOT_SUBSCRIBED,
-        expiryDate: expiry = null,
-        product = initialState.product
+        expiryDate: expiry = null
       } = subscriber;
 
       return {
         ...state,
         subscriberId: id,
-        androidSubscriptionState: status,
-        expiryDate: expiry,
-        product
+        status: status,
+        expiryDate: expiry
       };
     case LOGOUT:
       return initialState;
@@ -126,6 +99,21 @@ function subscriptionProviderReducer(state = initialState, action) {
           open: false,
           showTryPeriodFinishedMessages:
             state.premiumRequiredModalState.showTryPeriodFinishedMessages
+        }
+      };
+
+    case SHOW_LOGIN_REQUIRED:
+      return {
+        ...state,
+        loginRequiredModalState: {
+          open: true
+        }
+      };
+    case HIDE_LOGIN_REQUIRED:
+      return {
+        ...state,
+        loginRequiredModalState: {
+          open: false
         }
       };
     default:

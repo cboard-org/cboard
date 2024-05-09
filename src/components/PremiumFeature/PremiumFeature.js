@@ -1,15 +1,50 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { showPremiumRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
+import {
+  updateIsInFreeCountry,
+  updateIsSubscribed,
+  updateSubscription,
+  updateIsOnTrialPeriod,
+  showPremiumRequired,
+  showLoginRequired
+} from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
+import { isLogged } from '../App/App.selectors';
+
+function isUpdateSubscriberStatusNeeded(lastUpdated) {
+  if (!lastUpdated) return true;
+  const MAX_HOURS_DIFFERENCE = 12;
+  const actualTime = new Date().getTime();
+  const difference = actualTime - lastUpdated;
+  const hoursDifference = difference / (1000 * 60 * 60);
+  return hoursDifference > MAX_HOURS_DIFFERENCE;
+}
 
 function PremiumFeature({
   children,
   isOnTrialPeriod,
   isSubscribed,
   isInFreeCountry,
-  showPremiumRequired
+  isLogged,
+  showPremiumRequired,
+  showLoginRequired,
+  lastUpdated,
+  isLoginRequired = false
 }) {
   const captured = event => {
+    if (isUpdateSubscriberStatusNeeded(lastUpdated)) {
+      const requestOrigin = 'Function: captured - Component: PremiumFeature';
+      updateIsSubscribed(requestOrigin);
+      updateIsInFreeCountry();
+      updateIsOnTrialPeriod();
+    }
+
+    if (isLoginRequired && !isLogged && isInFreeCountry) {
+      event.stopPropagation();
+      event.preventDefault();
+      showLoginRequired();
+      return;
+    }
+
     if (isInFreeCountry || isSubscribed || isOnTrialPeriod) return;
     event.stopPropagation();
     event.preventDefault();
@@ -24,12 +59,20 @@ function PremiumFeature({
 }
 
 const mapStateToProps = state => ({
+  isLogged: isLogged(state),
   isOnTrialPeriod: state.subscription.isOnTrialPeriod,
   isSubscribed: state.subscription.isSubscribed,
-  isInFreeCountry: state.subscription.isInFreeCountry
+  isInFreeCountry: state.subscription.isInFreeCountry,
+  lastUpdated: state.subscription.lastUpdated
 });
 
-const mapDispatchToProps = { showPremiumRequired };
+const mapDispatchToProps = {
+  showPremiumRequired,
+  updateIsSubscribed,
+  updateSubscription,
+  updateIsInFreeCountry,
+  showLoginRequired
+};
 
 export default connect(
   mapStateToProps,

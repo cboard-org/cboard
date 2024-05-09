@@ -17,6 +17,7 @@ import {
   EDIT_TILES,
   FOCUS_TILE,
   CHANGE_OUTPUT,
+  CHANGE_IMPROVED_PHRASE,
   REPLACE_BOARD,
   HISTORY_REMOVE_BOARD,
   UNMARK_BOARD,
@@ -48,7 +49,8 @@ const initialState = {
   isFetching: false,
   images: [],
   isFixed: false,
-  isLiveMode: false
+  isLiveMode: false,
+  improvedPhrase: ''
 };
 
 function reconcileBoards(localBoard, remoteBoard) {
@@ -69,6 +71,8 @@ function tileReducer(board, action) {
       return {
         ...board,
         tiles: [...board.tiles, { ...action.tile }]
+        /* some times when a tile folder is created here the last tile change loadBoard to a long Id with no reason
+      action tile before this copy has a short ID*/
       };
     case DELETE_TILES:
       return {
@@ -106,7 +110,7 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         activeBoardId,
-        navHistory: [activeBoardId]
+        navHistory: activeBoardId ? [activeBoardId] : []
       };
 
     case LOGOUT:
@@ -163,6 +167,8 @@ function boardReducer(state = initialState, action) {
 
       if (prev.id !== current.id) {
         const boardIndex = boards.findIndex(b => b.id === prev.id);
+        /* On create a parent board the prev board doesn't exist with a short Id
+        because is already replaced by a long one */
         if (boardIndex >= 0) {
           boards[boardIndex] = current;
         }
@@ -410,6 +416,11 @@ function boardReducer(state = initialState, action) {
     case DOWNLOAD_IMAGE_FAILURE:
       return {
         ...state
+      };
+    case CHANGE_IMPROVED_PHRASE:
+      return {
+        ...state,
+        improvedPhrase: action.improvedPhrase
       };
     default:
       return state;

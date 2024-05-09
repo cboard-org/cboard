@@ -105,6 +105,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.macedonian',
     defaultMessage: 'Macedonian'
   },
+  ml: {
+    id: 'cboard.components.Settings.Language.malayalam',
+    defaultMessage: 'Malayalam'
+  },
   ne: {
     id: 'cboard.components.Settings.Language.nepali',
     defaultMessage: 'Nepali'

@@ -27,3 +27,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.InputImage__button {
+  width: 100%;
+}
+.InputImage__buttonContainer {
+  margin-top: 6px;
+}

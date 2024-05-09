@@ -1,10 +1,13 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import Box from '@material-ui/core/Box';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 
 import {
   INCLUDED_FEATURES,
@@ -13,7 +16,7 @@ import {
   ON_TRIAL_PERIOD
 } from './Subscribe.constants';
 import { formatDuration, formatTitle } from './Subscribe.helpers';
-import { isAndroid } from '../../../cordova-util';
+import { isAndroid, isCordova, isElectron, isIOS } from '../../../cordova-util';
 import { CircularProgress } from '@material-ui/core';
 
 import { Link } from 'react-router-dom';
@@ -23,7 +26,8 @@ import {
   EXPIRED,
   NOT_SUBSCRIBED,
   PROCCESING,
-  ON_HOLD
+  ON_HOLD,
+  UNVERIFIED
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -37,46 +41,67 @@ import messages from './Subscribe.messages';
 import './Subscribe.css';
 
 const propTypes = {
-  products: PropTypes.object.isRequired,
   subscription: PropTypes.object.isRequired,
   onRefreshSubscription: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
-  onSubscribe: PropTypes.func.isRequired
+  onSubscribe: PropTypes.func.isRequired,
+  onSubscribeCancel: PropTypes.func.isRequired,
+  onPaypalApprove: PropTypes.func.isRequired
 };
+
+const useStyles = makeStyles({
+  root: {
+    width: '100%',
+    maxWidth: 360
+  },
+  titles: {
+    fontWeight: 'bold',
+    fontSize: '1.2rem'
+  },
+  icon: {
+    color: 'green'
+  }
+});
 
 const SubscriptionPlans = ({
   subscription,
-  products,
   onRefreshSubscription,
   isLogged,
-  onSubscribe
+  onSubscribe,
+  onSubscribeCancel,
+  onPaypalApprove
 }) => {
   const {
-    androidSubscriptionState,
+    status,
     expiryDate,
     error,
     isOnTrialPeriod,
-    isSubscribed
+    isSubscribed,
+    products
   } = subscription;
 
+  let plans = [];
+  if (!(isAndroid() || isIOS()) && products) {
+    products.forEach(product => {
+      if (product.paypalId) plans.push(product);
+    });
+  } else {
+    plans = products;
+  }
+
+  const classes = useStyles();
   const canPurchase = [NOT_SUBSCRIBED, EXPIRED, ON_HOLD].includes(
-    subscription.androidSubscriptionState
+    subscription.status
   );
 
   const subscriptionStatus = (function() {
-    if (isAndroid()) {
-      if (error.showError) return ERROR;
-      if (
-        isOnTrialPeriod &&
-        !isSubscribed &&
-        androidSubscriptionState !== PROCCESING
-      )
-        return ON_TRIAL_PERIOD;
-      if (products.length || androidSubscriptionState !== NOT_SUBSCRIBED)
-        return androidSubscriptionState;
-      return EMPTY_PRODUCT;
-    }
-    return NOT_SUBSCRIBED;
+    if (error.showError) return ERROR;
+    if (status === UNVERIFIED) return UNVERIFIED;
+    if (isOnTrialPeriod && !isSubscribed && status !== PROCCESING)
+      return ON_TRIAL_PERIOD;
+    if (products.length || status !== NOT_SUBSCRIBED)
+      return status || NOT_SUBSCRIBED;
+    return EMPTY_PRODUCT;
   })();
 
   const alertProps = {
@@ -88,15 +113,49 @@ const SubscriptionPlans = ({
     error: 'error',
     empty_product: 'warning',
     on_trial_period: 'info',
+    unverified: 'warning',
 
     on_hold: 'warning', //TODO
     paused: 'info', //TODO
     expired: 'warning' //TODO
   };
 
+  const paypalButtonsStyle = {
+    layout: 'horizontal',
+    color: 'blue',
+    shape: 'rect',
+    label: 'subscribe',
+    tagline: false
+  };
+
+  const onPaypalAction = (action, product, data = '') => {
+    if (action === 'onClick') {
+      onSubscribe(product, data);
+    }
+    if (action === 'onCancel' || action === 'onError') {
+      onSubscribeCancel(product, data);
+    }
+    if (action === 'onApprove') {
+      onPaypalApprove(product, data);
+    }
+  };
+
   const expiryDateFormated = expiryDate
     ? new Date(expiryDate).toLocaleString()
     : '';
+
+  const getMessage = () => {
+    function errorMessage() {
+      if (error && error.code === '0001') {
+        if (isAndroid()) return messages.googleAccountAlreadyOwns;
+        if (isIOS()) return messages.appleAccountAlreadyOwns;
+      }
+      return messages.error;
+    }
+    return subscriptionStatus === ERROR
+      ? errorMessage()
+      : messages[subscriptionStatus] || messages.fallback;
+  };
 
   return (
     <>
@@ -126,7 +185,7 @@ const SubscriptionPlans = ({
         }
       >
         <FormattedMessage
-          {...messages[subscriptionStatus]}
+          {...getMessage()}
           values={{ e: `${expiryDateFormated}` }}
         />
       </Alert>
@@ -136,67 +195,152 @@ const SubscriptionPlans = ({
         alignItems="center"
         justifyContent="space-around"
       >
-        {products.map(product => {
-          return product.offers.map(offer => {
-            return [
-              <Grid
-                key={offer.id}
-                item
-                xs={12}
-                sm={6}
-                style={{ padding: '5px', maxWidth: 328 }}
-              >
-                <Card style={{ minWidth: 275 }} variant="outlined">
-                  <CardContent>
-                    <Typography color="secondary" gutterBottom>
-                      {formatTitle(product.title)}
+        {plans.map(product => {
+          return [
+            <Grid
+              key={product.id}
+              item
+              xs={12}
+              sm={6}
+              style={{ padding: '5px', maxWidth: 328 }}
+            >
+              <Card style={{ minWidth: 275 }} variant="outlined">
+                <CardContent>
+                  <Typography
+                    color="secondary"
+                    gutterBottom
+                    className={classes.titles}
+                  >
+                    {formatTitle(product.title)}
+                  </Typography>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'baseline',
+                      mb: 2
+                    }}
+                  >
+                    <Typography
+                      component="h2"
+                      variant="h3"
+                      color="text.primary"
+                    >
+                      {product.price.currencyCode} {product.price.units}
                     </Typography>
-                    <Typography variant="h3" component="div">
-                      {offer.pricingPhases[0].price} /
-                      {formatDuration(offer.pricingPhases[0].billingPeriod)}
+                    <Typography variant="h6" color="text.secondary">
+                      /{formatDuration(product.billingPeriod)}
                     </Typography>
+                  </Box>
+                  {(isAndroid() || isIOS()) && (
                     <Button
                       variant="contained"
                       fullWidth={true}
                       color="primary"
                       {...(!isLogged
                         ? { component: Link, to: '/login-signup' }
-                        : { onClick: onSubscribe(product, offer) })}
+                        : {
+                            onClick: function() {
+                              onSubscribe(product);
+                            }
+                          })}
                       disabled={!canPurchase}
                     >
                       <FormattedMessage {...messages.subscribe} />
                     </Button>
-                    <Typography color="secondary">
-                      <br />
-                      <br />
-                      <FormattedMessage {...messages.includedFeatures} />
-                    </Typography>
-                    <List disablePadding style={{ padding: '5px' }}>
-                      {INCLUDED_FEATURES.map(feature => {
-                        return [
-                          <ListItem key={feature}>
-                            <ListItemIcon>
-                              <CheckCircleIcon />
-                            </ListItemIcon>
-                            <ListItemText
-                              primary={
-                                <FormattedMessage {...messages[feature]} />
-                              }
-                              secondary={null}
-                            />
-                          </ListItem>
-                        ];
-                      })}
-                    </List>
-                  </CardContent>
-                  {/*  //TODO
+                  )}
+                  {isElectron() && (
+                    <Button
+                      variant="contained"
+                      fullWidth={true}
+                      color="primary"
+                      onClick={function() {
+                        window.cordova.plugins.DefaultBrowser.open(
+                          'https://app.cboard.io/settings/subscribe'
+                        );
+                      }}
+                      disabled={!canPurchase}
+                    >
+                      <FormattedMessage {...messages.subscribe} />
+                    </Button>
+                  )}
+                  {!isCordova() && !isLogged && (
+                    <Button
+                      variant="contained"
+                      fullWidth={true}
+                      color="primary"
+                      component={Link}
+                      to="/login-signup"
+                      disabled={!canPurchase}
+                    >
+                      <FormattedMessage {...messages.subscribe} />
+                    </Button>
+                  )}
+                  {!isCordova() && isLogged && (
+                    <PayPalButtons
+                      style={paypalButtonsStyle}
+                      disabled={!canPurchase}
+                      fundingSource={undefined}
+                      createSubscription={(data, actions) => {
+                        return actions.subscription.create({
+                          plan_id: product.paypalId
+                        });
+                      }}
+                      onClick={function(data, actions) {
+                        onPaypalAction('onClick', product, data);
+                      }}
+                      onApprove={function(data, actions) {
+                        // In theory we could get transaction details doing:
+                        // actions.subscription.get().then(details=>{
+                        //   console.log(details);
+                        // });
+                        // but doesn't work because of an issue with the
+                        // paypal react library.
+                        // See https://stackoverflow.com/questions/59609198/how-to-get-user-information-after-subscription
+                        onPaypalAction('onApprove', product, data);
+                      }}
+                      onCancel={function(data, actions) {
+                        onPaypalAction('onCancel', product, data);
+                      }}
+                      onError={function(data, actions) {
+                        onPaypalAction('onError', product, data);
+                      }}
+                    />
+                  )}
+                  <Typography color="secondary">
+                    <br />
+                    <br />
+                    <FormattedMessage {...messages.includedFeatures} />
+                  </Typography>
+                  <List disablePadding style={{ padding: '5px' }}>
+                    {INCLUDED_FEATURES.map(feature => {
+                      return [
+                        <ListItem key={feature}>
+                          <ListItemIcon className={classes.icon}>
+                            <CheckCircleIcon />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <FormattedMessage
+                                {...messages[feature] || {
+                                  ...messages.fallback
+                                }}
+                              />
+                            }
+                            secondary={null}
+                          />
+                        </ListItem>
+                      ];
+                    })}
+                  </List>
+                </CardContent>
+                {/*  //TODO
                   <CardActions>
                     <Button size="small">Learn More</Button>
                   </CardActions> */}
-                </Card>
-              </Grid>
-            ];
-          });
+              </Card>
+            </Grid>
+          ];
         })}
       </Grid>
     </>

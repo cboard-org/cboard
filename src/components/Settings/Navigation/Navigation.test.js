@@ -40,6 +40,7 @@ const COMPONENT_PROPS = {
   updateNavigationSettings: payload => {
     navigationSettings = { ...navigationSettings, ...payload };
   },
+  changeLiveMode: () => {},
   onClose: () => {},
   onSubmit: () => {}
 };

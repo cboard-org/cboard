@@ -18,7 +18,12 @@ import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Export.messages';
 
 import './Export.css';
-import PremiumFeature from '../../PremiumFeature';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import {
+  LARGE_FONT_SIZE,
+  MEDIUM_FONT_SIZE,
+  SMALL_FONT_SIZE
+} from './Export.constants';
 
 const propTypes = {
   /**
@@ -40,6 +45,7 @@ class Export extends React.Component {
     this.state = {
       exportSingleBoard: '',
       exportAllBoard: '',
+      labelFontSize: MEDIUM_FONT_SIZE,
       singleBoard: '',
       loadingSingle: false,
       loadingAll: false,
@@ -62,6 +68,13 @@ class Export extends React.Component {
     });
   };
 
+  handleSizeChange = event => {
+    this.setState({
+      boardError: false,
+      labelFontSize: event.target.value
+    });
+  };
+
   handleAllBoardChange = event => {
     const doneCallback = () => {
       this.setState({
@@ -75,7 +88,12 @@ class Export extends React.Component {
         exportAllBoard: event.target.value
       },
       () => {
-        this.props.onExportClick(this.state.exportAllBoard, '', doneCallback);
+        this.props.onExportClick(
+          this.state.exportAllBoard,
+          '',
+          this.state.labelFontSize,
+          doneCallback
+        );
       }
     );
   };
@@ -102,6 +120,7 @@ class Export extends React.Component {
         this.props.onExportClick(
           this.state.exportSingleBoard,
           this.state.singleBoard,
+          this.state.labelFontSize,
           doneCallback
         );
       }
@@ -117,7 +136,7 @@ class Export extends React.Component {
           title={<FormattedMessage {...messages.export} />}
           onClose={onClose}
         >
-          <Paper>
+          <Paper className="Export__section">
             <List>
               <ListItem className="Export__ListItem">
                 <ListItemText
@@ -180,7 +199,11 @@ class Export extends React.Component {
                               board =>
                                 !board.hidden && (
                                   <MenuItem key={board.id} value={board}>
-                                    {board.name}
+                                    {board.name ||
+                                      (board.nameKey &&
+                                        intl.formatMessage({
+                                          id: board.nameKey
+                                        }))}
                                   </MenuItem>
                                 )
                             )}
@@ -203,9 +226,7 @@ class Export extends React.Component {
                             onChange={this.handleSingleBoardChange}
                           >
                             <MenuItem value="cboard">Cboard</MenuItem>
-                            <PremiumFeature>
-                              <MenuItem value="openboard">OpenBoard</MenuItem>
-                            </PremiumFeature>
+                            <MenuItem value="openboard">OpenBoard</MenuItem>
                             <MenuItem value="pdf">PDF</MenuItem>
                             <MenuItem value="picsee_pdf">
                               PicseePal PDF
@@ -272,14 +293,68 @@ class Export extends React.Component {
                           onChange={this.handleAllBoardChange}
                         >
                           <MenuItem value="cboard">Cboard</MenuItem>
-                          <PremiumFeature>
-                            <MenuItem value="openboard">OpenBoard</MenuItem>
-                          </PremiumFeature>
+                          <MenuItem value="openboard">OpenBoard</MenuItem>
                           <MenuItem value="pdf">PDF</MenuItem>
                           <MenuItem value="picsee_pdf">PicseePal PDF</MenuItem>
                         </Select>
                       </FormControl>
                     )}
+                  </div>
+                </ListItemSecondaryAction>
+              </ListItem>
+            </List>
+          </Paper>
+          <Paper className="Export__section">
+            <List
+              className="Export__List"
+              subheader={
+                <ListSubheader>
+                  <FormattedMessage {...messages.pdfSettings} />
+                </ListSubheader>
+              }
+            >
+              <ListItem>
+                <ListItemText
+                  className="Export__ListItemText"
+                  primary={<FormattedMessage {...messages.fontSize} />}
+                  secondary={
+                    <FormattedMessage {...messages.fontSizeSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <div className="Export__SelectContainer">
+                    {this.state.loadingAll && (
+                      <CircularProgress
+                        size={25}
+                        className="Export__SelectContainer--spinner"
+                        thickness={7}
+                      />
+                    )}
+                    <FormControl
+                      className="Export__SelectContainer__Select"
+                      variant="standard"
+                    >
+                      <InputLabel id="export-all-select-label-size">
+                        {intl.formatMessage(messages.fontSize)}
+                      </InputLabel>
+                      <Select
+                        labelId="export-all-select-label-size"
+                        id="export-all-select-size"
+                        autoWidth={false}
+                        value={this.state.labelFontSize}
+                        onChange={this.handleSizeChange}
+                      >
+                        <MenuItem value={SMALL_FONT_SIZE}>
+                          <FormattedMessage {...messages.small} />
+                        </MenuItem>
+                        <MenuItem value={MEDIUM_FONT_SIZE}>
+                          <FormattedMessage {...messages.medium} />
+                        </MenuItem>
+                        <MenuItem value={LARGE_FONT_SIZE}>
+                          <FormattedMessage {...messages.large} />
+                        </MenuItem>
+                      </Select>
+                    </FormControl>
                   </div>
                 </ListItemSecondaryAction>
               </ListItem>

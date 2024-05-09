@@ -40,5 +40,9 @@ export default defineMessages({
   privacy: {
     id: 'cboard.components.SignUp.privacy',
     defaultMessage: 'Privacy Policy'
+  },
+  noConnection: {
+    id: 'cboard.components.SignUp.noConnection',
+    defaultMessage: 'Unable to connect to the server. Please try again later.'
   }
 });

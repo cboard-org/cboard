@@ -17,6 +17,7 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import HelpIcon from '@material-ui/icons/Help';
 import IconButton from '../UI/IconButton';
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
+import SymbolsIcon from '@material-ui/icons/EmojiSymbols';
 
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
@@ -24,7 +25,6 @@ import FullScreenDialog from '../UI/FullScreenDialog';
 import Paper from '@material-ui/core/Paper';
 import UserIcon from '../UI/UserIcon';
 import SettingsTour from './SettingsTour.component';
-
 import { isCordova, isAndroid } from '../../cordova-util';
 
 import './Settings.css';
@@ -52,9 +52,7 @@ export class Settings extends PureComponent {
 
     function handleLogOutClick() {
       if (isAndroid()) {
-        window.plugins.googleplus.disconnect(function(msg) {
-          console.log('disconnect google msg' + msg);
-        });
+        window.FirebasePlugin.unregister();
         window.facebookConnectPlugin.logout(
           function(msg) {
             console.log('disconnect facebook msg' + msg);
@@ -98,7 +96,7 @@ export class Settings extends PureComponent {
       }
     ];
 
-    if (isAndroid() && !isInFreeCountry) {
+    if (!isInFreeCountry) {
       const subscribeSection = {
         icon: <MonetizationOnIcon />,
         text: messages.subscribe,
@@ -106,6 +104,39 @@ export class Settings extends PureComponent {
       };
       peopleSettings.push(subscribeSection);
     }
+
+    const systemSettings = [
+      {
+        icon: <CloudUploadIcon />,
+        text: messages.export,
+        url: '/settings/export'
+      },
+      {
+        icon: <CloudDownloadIcon />,
+        text: messages.import,
+        url: '/settings/import'
+      },
+      {
+        icon: <SymbolsIcon />,
+        text: messages.symbols,
+        url: '/settings/symbols'
+      },
+      {
+        icon: <VisibilityIcon />,
+        text: messages.display,
+        url: '/settings/display'
+      },
+      {
+        icon: <ScanningIcon />,
+        text: messages.scanning,
+        url: '/settings/scanning'
+      },
+      {
+        icon: <NavigationIcon />,
+        text: messages.navigation,
+        url: '/settings/navigation'
+      }
+    ];
 
     return [
       {
@@ -129,33 +160,7 @@ export class Settings extends PureComponent {
       },
       {
         subheader: messages.system,
-        settings: [
-          {
-            icon: <CloudUploadIcon />,
-            text: messages.export,
-            url: '/settings/export'
-          },
-          {
-            icon: <CloudDownloadIcon />,
-            text: messages.import,
-            url: '/settings/import'
-          },
-          {
-            icon: <VisibilityIcon />,
-            text: messages.display,
-            url: '/settings/display'
-          },
-          {
-            icon: <ScanningIcon />,
-            text: messages.scanning,
-            url: '/settings/scanning'
-          },
-          {
-            icon: <NavigationIcon />,
-            text: messages.navigation,
-            url: '/settings/navigation'
-          }
-        ]
+        settings: systemSettings
       },
       {
         subheader: messages.help,
