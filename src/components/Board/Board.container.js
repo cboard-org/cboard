@@ -1088,6 +1088,7 @@ export class BoardContainer extends Component {
         //need to create a new communicator
         communicatorData = {
           ...communicator,
+          boards: [...communicator.boards],
           author: userData.name,
           email: userData.email,
           id: shortid.generate()
@@ -1167,8 +1168,8 @@ export class BoardContainer extends Component {
           )
             .then(parentBoardId => {
               if (createParentBoard) {
-                /* Here the parentBoardData is not updated with the values 
-                that updatedApiObjects store on the API. Inside the boards are already updated 
+                /* Here the parentBoardData is not updated with the values
+                that updatedApiObjects store on the API. Inside the boards are already updated
                 an the value is not replaced because the oldboard Id was replaced on the updateApiObjects inside createApiBoardSuccess */
                 replaceBoard(
                   { ...parentBoardData },
@@ -1283,6 +1284,7 @@ export class BoardContainer extends Component {
         //need to create a new communicator
         const communicatorData = {
           ...communicator,
+          boards: [...communicator.boards],
           author: userData.name,
           email: userData.email,
           id: shortid.generate()

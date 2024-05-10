@@ -292,6 +292,7 @@ class CommunicatorDialogContainer extends React.Component {
         //need to create a new communicator
         const communicatorData = {
           ...currentCommunicator,
+          boards: [...currentCommunicator.boards],
           author: userData.name,
           email: userData.email,
           id: shortid.generate()
