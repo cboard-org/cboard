@@ -51,12 +51,15 @@ import {
   getApiMyCommunicators,
   editCommunicator,
   updateDefaultBoardsIncluded,
-  addDefaultBoardIncluded
+  addDefaultBoardIncluded,
+  createCommunicator,
+  changeCommunicator
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
 import { DEFAULT_BOARDS } from '../../helpers';
 import history from './../../history';
 import { improvePhraseAbortController } from '../../api/api';
+import shortid from 'shortid';
 
 const BOARDS_PAGE_LIMIT = 100;
 
@@ -92,7 +95,27 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
     const board = DEFAULT_BOARDS[selectedBoardNameOnJson];
     const BOARD_ALREADY_INCLUDED_NAME = 'advanced';
 
-    const activeCommunicator = getActiveCommunicator(getState);
+    const checkUserCommunicator = () => {
+      const userData = getState().app?.userData;
+      const activeCommunicator = getActiveCommunicator(getState);
+
+      if (userData.email && activeCommunicator.email !== userData?.email) {
+        // Create a new communicator for the user if it doesn't exist
+        const newCommunicator = {
+          ...activeCommunicator,
+          boards: [...activeCommunicator.boards],
+          author: userData.name,
+          email: userData.email,
+          id: shortid.generate()
+        };
+        dispatch(createCommunicator(newCommunicator));
+        dispatch(changeCommunicator(newCommunicator.id));
+        return newCommunicator;
+      }
+      return activeCommunicator;
+    };
+
+    const activeCommunicator = checkUserCommunicator();
 
     const fallbackInitialDefaultBoardsIncluded = activeCommunicator => {
       const oldUserHomeBoard = activeCommunicator.rootBoard;
@@ -173,10 +196,18 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       dispatch(editCommunicator(communicatorWithRootBoardReplaced));
 
       try {
-        if (userData?.role)
+        if (userData?.role) {
+          const action =
+            communicatorWithRootBoardReplaced.id.length < 14
+              ? createApiCommunicator
+              : updateApiCommunicator;
           await dispatch(
-            updateApiCommunicator(communicatorWithRootBoardReplaced)
+            action(
+              communicatorWithRootBoardReplaced,
+              communicatorWithRootBoardReplaced.id
+            )
           );
+        }
       } catch (error) {
         console.error('error', error);
       }
