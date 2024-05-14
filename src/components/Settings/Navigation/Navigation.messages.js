@@ -58,7 +58,7 @@ export default defineMessages({
   },
   activeImprovePhrase: {
     id: 'cboard.components.Settings.Navigation.activeImprovePhrase',
-    defaultMessage: 'Use Improve Phrase'
+    defaultMessage: 'Use the Improve Phrase'
   },
   activeImprovePhraseSecondary: {
     id: 'cboard.components.Settings.Navigation.activeImprovePhraseSecondary',

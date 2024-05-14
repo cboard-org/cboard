@@ -232,13 +232,22 @@ export class OutputContainer extends Component {
   handleRepeatLastSpokenSentence = event => {
     const Z_KEY_CODE = 90;
     const Y_KEY_CODE = 89;
+    const { output } = this.props;
     if (
-      (event.ctrlKey && event.shiftKey && event.keyCode === Z_KEY_CODE) ||
-      (event.ctrlKey && event.keyCode === Y_KEY_CODE)
+      ((event.ctrlKey && event.shiftKey && event.keyCode === Z_KEY_CODE) ||
+        (event.ctrlKey && event.keyCode === Y_KEY_CODE)) &&
+      !!output.length
     ) {
-      const { output } = this.props;
-      const lastSpokenSymbol = output.findLast(
-        (element, index) => element.label && index !== output.length - 1
+      const isLastSpokenSymbol = (element, index) => {
+        if (output.length === 1) return true;
+        if (element.label) {
+          return element.type === 'live' ? index < output.length - 1 : true;
+        }
+        return false;
+      };
+
+      const lastSpokenSymbol = output.findLast((element, index) =>
+        isLastSpokenSymbol(element, index)
       );
       const text = lastSpokenSymbol ? lastSpokenSymbol.label : '';
       this.speakOutput(text);

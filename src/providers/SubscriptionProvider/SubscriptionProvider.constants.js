@@ -6,6 +6,8 @@ export const SHOW_PREMIUM_REQUIRED =
   'cboard/subscription/SHOW_PREMIUM_REQUIRED';
 export const HIDE_PREMIUM_REQUIRED =
   'cboard/subscription/HIDE_PREMIUM_REQUIRED';
+export const SHOW_LOGIN_REQUIRED = 'cboard/subscription/SHOW_LOGIN_REQUIRED';
+export const HIDE_LOGIN_REQUIRED = 'cboard/subscription/HIDE_LOGIN_REQUIRED';
 
 export const NOT_SUBSCRIBED = 'not_subscribed';
 export const PROCCESING = 'proccesing';
@@ -16,6 +18,7 @@ export const IN_GRACE_PERIOD = 'in_grace_period';
 export const PAUSED = 'paused';
 export const EXPIRED = 'expired';
 export const ON_HOLD = 'on_hold';
+export const UNVERIFIED = 'unverified';
 
 export const REQUIRING_PREMIUM_COUNTRIES = [
   'AT',

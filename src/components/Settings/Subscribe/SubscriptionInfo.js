@@ -29,8 +29,8 @@ import {
 
 import RefreshIcon from '@material-ui/icons/Refresh';
 import IconButton from '../../UI/IconButton';
-import { isAndroid, isElectron } from '../../../cordova-util';
-import { GOOGLE_PLAY_STORE_URL } from './Subscribe.constants';
+import { isAndroid, isElectron, isIOS } from '../../../cordova-util';
+import { APP_STORE_URL, GOOGLE_PLAY_STORE_URL } from './Subscribe.constants';
 
 const propTypes = {
   ownedProduct: PropTypes.object.isRequired,
@@ -131,12 +131,14 @@ const SubscriptionInfo = ({
       </div>
       <div className="Subscribe__Info__Button__Container">
         <Button
-          variant={isAndroid() ? 'contained' : 'text'}
+          variant={isAndroid() || isIOS() ? 'contained' : 'text'}
           fullWidth={false}
           color="primary"
           disabled={ownedProduct.platform === 'paypal' && status !== ACTIVE}
           onClick={() => {
             if (isAndroid() && ownedProduct.platform === 'android-playstore')
+              window.CdvPurchase.store.manageSubscriptions();
+            if (isIOS() && ownedProduct.platform === 'ios-appstore')
               window.CdvPurchase.store.manageSubscriptions();
             if (ownedProduct.platform === 'paypal') setCancelDialog(true);
             if (!isAndroid() && ownedProduct.platform === 'android-playstore') {
@@ -146,6 +148,13 @@ const SubscriptionInfo = ({
                 );
               } else {
                 window.open(GOOGLE_PLAY_STORE_URL, '_blank');
+              }
+            }
+            if (!isIOS() && ownedProduct.platform === 'ios-appstore') {
+              if (isElectron()) {
+                window.cordova.plugins.DefaultBrowser.open(APP_STORE_URL);
+              } else {
+                window.open(APP_STORE_URL, '_blank');
               }
             }
           }}
