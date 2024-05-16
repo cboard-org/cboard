@@ -50,6 +50,27 @@ export function upsertCommunicator(communicator) {
   };
 }
 
+export function upsertApiCommunicator(communicator) {
+  return (dispatch, getState) => {
+    const {
+      communicator: { communicators }
+    } = getState();
+
+    // If the communicator is not on the local state return
+    if (!communicators.find(c => c.id === communicator.id)) return;
+
+    communicator.id.length < 14 || communicator.id === 'cboard_default'
+      ? dispatch(createApiCommunicator(communicator, communicator.id)).catch(
+          error => {
+            console.error(error);
+          }
+        )
+      : dispatch(updateApiCommunicator(communicator)).catch(error => {
+          console.error(error);
+        });
+  };
+}
+
 export function editCommunicator(communicator) {
   return {
     type: EDIT_COMMUNICATOR,
