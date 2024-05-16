@@ -50,6 +50,7 @@ import {
   upsertCommunicator,
   getApiMyCommunicators,
   editCommunicator,
+  upsertApiCommunicator,
   updateDefaultBoardsIncluded,
   addDefaultBoardIncluded,
   createCommunicator,
@@ -194,22 +195,8 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       };
 
       dispatch(editCommunicator(communicatorWithRootBoardReplaced));
-
-      try {
-        if (userData?.role) {
-          const action =
-            communicatorWithRootBoardReplaced.id.length < 14
-              ? createApiCommunicator
-              : updateApiCommunicator;
-          await dispatch(
-            action(
-              communicatorWithRootBoardReplaced,
-              communicatorWithRootBoardReplaced.id
-            )
-          );
-        }
-      } catch (error) {
-        console.error('error', error);
+      if (userData?.role) {
+        dispatch(upsertApiCommunicator(communicatorWithRootBoardReplaced));
       }
     };
 
