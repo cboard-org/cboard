@@ -1167,8 +1167,8 @@ export class BoardContainer extends Component {
           )
             .then(parentBoardId => {
               if (createParentBoard) {
-                /* Here the parentBoardData is not updated with the values 
-                that updatedApiObjects store on the API. Inside the boards are already updated 
+                /* Here the parentBoardData is not updated with the values
+                that updatedApiObjects store on the API. Inside the boards are already updated
                 an the value is not replaced because the oldboard Id was replaced on the updateApiObjects inside createApiBoardSuccess */
                 replaceBoard(
                   { ...parentBoardData },
@@ -1515,15 +1515,15 @@ export class BoardContainer extends Component {
     }
 
     //return condition
-    newBoard.tiles.forEach(async tile => {
+    for await (const tile of newBoard.tiles) {
       if (tile && tile.loadBoard && !tile.linkedBoard) {
         //look for this board in available boards
         const newBoardToCopy = boards.find(b => b.id === tile.loadBoard);
         if (newBoardToCopy) {
-          this.pasteBoardsRecursively(tile, newBoard.id);
+          await this.pasteBoardsRecursively(tile, newBoard.id);
         }
       }
-    });
+    }
     return;
   }
 
