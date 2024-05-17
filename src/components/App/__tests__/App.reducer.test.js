@@ -47,6 +47,7 @@ describe('reducer', () => {
         quickUnlockActive: false,
         removeOutputActive: false,
         vocalizeFolders: false,
+        quietBuilderMode: false,
         improvePhraseActive: false
       },
       symbolsSettings: {
@@ -77,6 +78,7 @@ describe('reducer', () => {
         quickUnlockActive: false,
         removeOutputActive: false,
         vocalizeFolders: false,
+        quietBuilderMode: false,
         improvePhraseActive: false
       },
       userData: uData
