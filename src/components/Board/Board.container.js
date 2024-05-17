@@ -1525,7 +1525,6 @@ export class BoardContainer extends Component {
     //return condition
     newBoard.tiles.forEach(async tile => {
       if (tile && tile.loadBoard && !tile.linkedBoard) {
-        if (folderTile.loadBoard === firstPastedFolderId) return;
         //look for this board in available boards
         const newBoardToCopy = boards.find(b => b.id === tile.loadBoard);
         if (newBoardToCopy) {
