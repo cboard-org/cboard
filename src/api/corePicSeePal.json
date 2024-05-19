@@ -621,7 +621,7 @@
         "sound": "",
         "type": "folder",
         "backgroundColor": "#2196F3",
-        "linkedBoard": false,
+        "linkedBoard": true,
         "id": "TusH1MeZt"
       },
       {
@@ -773,7 +773,7 @@
         "sound": "",
         "type": "folder",
         "backgroundColor": "#2196F3",
-        "linkedBoard": false,
+        "linkedBoard": true,
         "id": "MmdEkFso0H"
       },
       {
