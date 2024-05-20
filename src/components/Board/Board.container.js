@@ -216,6 +216,7 @@ export class BoardContainer extends Component {
 
     const {
       board,
+      boards,
       communicator,
       changeBoard,
       userData,
@@ -230,11 +231,9 @@ export class BoardContainer extends Component {
       window.gtag('set', { user_id: userData.id });
       //synchronize communicator and boards with API
       this.setState({ isGettingApiObjects: true });
-      await getApiObjects();
-      this.setState({ isGettingApiObjects: false });
+      getApiObjects().then(() => this.setState({ isGettingApiObjects: false }));
     }
 
-    const boards = this.props.boards; //see board from redux state after get ApiObjets
     let boardExists = null;
 
     if (id && board && id === board.id) {
@@ -894,7 +893,9 @@ export class BoardContainer extends Component {
       }
     } else {
       clickSymbol(tile.label);
-      say();
+      if (!navigationSettings.quietBuilderMode) {
+        say();
+      }
       if (isLiveMode) {
         const liveTile = {
           backgroundColor: 'rgb(255, 241, 118)',
@@ -1427,7 +1428,7 @@ export class BoardContainer extends Component {
         };
         if (tile.loadBoard) {
           createTile(newTile, board.id);
-          await this.pasteBoardsRecursively(newTile, board.id);
+          await this.pasteBoardsRecursively(newTile, board.id, tile.loadBoard);
         } else {
           await this.handleAddTileEditorSubmit(newTile);
         }
@@ -1441,7 +1442,7 @@ export class BoardContainer extends Component {
     }
   };
 
-  async pasteBoardsRecursively(folderTile, parentBoardId) {
+  async pasteBoardsRecursively(folderTile, parentBoardId, firstPastedFolderId) {
     const {
       createBoard,
       userData,
@@ -1464,6 +1465,14 @@ export class BoardContainer extends Component {
       author: '',
       email: ''
     };
+
+    const tilesWithFatherRemoved = newBoard.tiles?.reduce((newTiles, tile) => {
+      if (firstPastedFolderId !== tile.loadBoard) newTiles.push(tile);
+      return newTiles;
+    }, []);
+
+    newBoard.tiles = tilesWithFatherRemoved;
+
     if (!newBoard.name) {
       newBoard.name = newBoard.nameKey
         ? intl.formatMessage({ id: newBoard.nameKey })
@@ -1520,7 +1529,11 @@ export class BoardContainer extends Component {
         //look for this board in available boards
         const newBoardToCopy = boards.find(b => b.id === tile.loadBoard);
         if (newBoardToCopy) {
-          await this.pasteBoardsRecursively(tile, newBoard.id);
+          await this.pasteBoardsRecursively(
+            tile,
+            newBoard.id,
+            firstPastedFolderId
+          );
         }
       }
     }
