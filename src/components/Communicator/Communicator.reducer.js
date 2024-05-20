@@ -23,7 +23,7 @@ import {
 } from './Communicator.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 
-const defaultCommunicatorID = 'cboard_default';
+export const defaultCommunicatorID = 'cboard_default';
 const initialState = {
   communicators: defaultCommunicators,
   activeCommunicatorId: defaultCommunicatorID

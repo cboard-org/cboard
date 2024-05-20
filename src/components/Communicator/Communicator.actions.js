@@ -19,7 +19,7 @@ import {
   GET_API_MY_COMMUNICATORS_FAILURE,
   GET_API_MY_COMMUNICATORS_STARTED
 } from './Communicator.constants';
-
+import { defaultCommunicatorID } from './Communicator.reducer';
 import API from '../../api';
 
 export function importCommunicator(communicator) {
@@ -55,11 +55,13 @@ export function upsertApiCommunicator(communicator) {
     const {
       communicator: { communicators }
     } = getState();
+    const SHORT_ID_MAX_LENGTH = 14;
 
     // If the communicator is not on the local state return
     if (!communicators.find(c => c.id === communicator.id)) return;
 
-    communicator.id.length < 14 || communicator.id === 'cboard_default'
+    communicator.id.length < SHORT_ID_MAX_LENGTH ||
+    communicator.id === defaultCommunicatorID
       ? dispatch(createApiCommunicator(communicator, communicator.id)).catch(
           error => {
             console.error(error);
