@@ -25,7 +25,7 @@ import FullScreenDialog from '../UI/FullScreenDialog';
 import Paper from '@material-ui/core/Paper';
 import UserIcon from '../UI/UserIcon';
 import SettingsTour from './SettingsTour.component';
-import { isCordova, isAndroid, isIOS } from '../../cordova-util';
+import { isCordova, isAndroid } from '../../cordova-util';
 
 import './Settings.css';
 import { CircularProgress } from '@material-ui/core';
@@ -52,9 +52,7 @@ export class Settings extends PureComponent {
 
     function handleLogOutClick() {
       if (isAndroid()) {
-        window.plugins.googleplus.disconnect(function(msg) {
-          console.log('disconnect google msg' + msg);
-        });
+        window.FirebasePlugin.unregister();
         window.facebookConnectPlugin.logout(
           function(msg) {
             console.log('disconnect facebook msg' + msg);
@@ -98,7 +96,7 @@ export class Settings extends PureComponent {
       }
     ];
 
-    if (!isIOS() && !isInFreeCountry) {
+    if (!isInFreeCountry) {
       const subscribeSection = {
         icon: <MonetizationOnIcon />,
         text: messages.subscribe,

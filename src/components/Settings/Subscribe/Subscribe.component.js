@@ -9,6 +9,7 @@ import './Subscribe.css';
 
 import SubscriptionInfo from './SubscriptionInfo';
 import SubscriptionPlans from './SubscriptionPlans';
+import { CircularProgress } from '@material-ui/core';
 
 const propTypes = {
   /**
@@ -29,7 +30,8 @@ const propTypes = {
   onRefreshSubscription: PropTypes.func,
   onSubscribeCancel: PropTypes.func.isRequired,
   onCancelSubscription: PropTypes.func.isRequired,
-  cancelSubscriptionStatus: PropTypes.string.isRequired
+  cancelSubscriptionStatus: PropTypes.string.isRequired,
+  updatingStatus: PropTypes.bool.isRequired
 };
 
 const defaultProps = {
@@ -46,7 +48,8 @@ const Subscribe = ({
   onSubscribeCancel,
   onPaypalApprove,
   onCancelSubscription,
-  cancelSubscriptionStatus
+  cancelSubscriptionStatus,
+  updatingStatus
 }) => {
   return (
     <div className="Subscribe">
@@ -56,7 +59,11 @@ const Subscribe = ({
         onClose={onClose}
         // fullWidth
       >
-        {!subscription.isSubscribed ? (
+        {updatingStatus ? (
+          <div className="Subscribe__Loading__Container">
+            <CircularProgress />
+          </div>
+        ) : !subscription.isSubscribed ? (
           <SubscriptionPlans
             subscription={subscription}
             onRefreshSubscription={onRefreshSubscription}

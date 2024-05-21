@@ -75,6 +75,12 @@ class Navigation extends React.Component {
     });
   };
 
+  toggleQuietBuilderMode = () => {
+    this.setState({
+      quietBuilderMode: !this.state.quietBuilderMode
+    });
+  };
+
   toggleLiveMode = () => {
     this.setState({
       liveMode: !this.state.liveMode
@@ -277,6 +283,24 @@ class Navigation extends React.Component {
                 </ListItemSecondaryAction>
               </ListItem>
               <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Navigation__ListItemText"
+                  primary={<FormattedMessage {...messages.quietBuilderMode} />}
+                  secondary={
+                    <FormattedMessage {...messages.quietBuilderModeSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.enableQuietBuilderMode}
+                    onChange={this.toggleQuietBuilderMode}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
               <ResetToursItem />
               <Divider />
               <ListItem>
@@ -310,7 +334,7 @@ class Navigation extends React.Component {
                   }
                 />
                 <ListItemSecondaryAction>
-                  <PremiumFeature>
+                  <PremiumFeature isLoginRequired={true}>
                     <Switch
                       checked={this.state.improvePhraseActive || false}
                       onChange={this.toggleImprovePhraseActive}

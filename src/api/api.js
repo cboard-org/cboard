@@ -60,9 +60,7 @@ class API {
           error.config?.baseURL === BASE_URL
         ) {
           if (isAndroid()) {
-            window.plugins.googleplus.disconnect(function(msg) {
-              console.log('disconnect google msg' + msg);
-            });
+            window.FirebasePlugin.unregister();
             window.facebookConnectPlugin.logout(
               function(msg) {
                 console.log('disconnect facebook msg' + msg);
@@ -520,11 +518,17 @@ class API {
     }
     const headers = {
       Authorization: `Bearer ${authToken}`,
-      requestOrigin
+      requestOrigin,
+      purchaseVersion: '1.0.0'
     };
     const { data } = await this.axiosInstance.get(`/subscriber/${userId}`, {
       headers
     });
+
+    if (data && !data.success) {
+      throw data;
+    }
+
     return data;
   }
 

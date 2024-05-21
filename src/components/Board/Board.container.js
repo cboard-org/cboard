@@ -216,6 +216,7 @@ export class BoardContainer extends Component {
 
     const {
       board,
+      boards,
       communicator,
       changeBoard,
       userData,
@@ -230,11 +231,9 @@ export class BoardContainer extends Component {
       window.gtag('set', { user_id: userData.id });
       //synchronize communicator and boards with API
       this.setState({ isGettingApiObjects: true });
-      await getApiObjects();
-      this.setState({ isGettingApiObjects: false });
+      getApiObjects().then(() => this.setState({ isGettingApiObjects: false }));
     }
 
-    const boards = this.props.boards; //see board from redux state after get ApiObjets
     let boardExists = null;
 
     if (id && board && id === board.id) {
@@ -644,7 +643,7 @@ export class BoardContainer extends Component {
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
-      await this.handleApiUpdates(tile);
+      await this.handleApiUpdates(tile); // this function could mutate tthe tile
       return;
     }
 
@@ -894,7 +893,9 @@ export class BoardContainer extends Component {
       }
     } else {
       clickSymbol(tile.label);
-      say();
+      if (!navigationSettings.quietBuilderMode) {
+        say();
+      }
       if (isLiveMode) {
         const liveTile = {
           backgroundColor: 'rgb(255, 241, 118)',
@@ -1125,6 +1126,7 @@ export class BoardContainer extends Component {
         //update the parent
         updateBoard(parentBoardData);
       }
+      // Untill here all is with shorts ids
       //api updates
       if (tile && tile.type === 'board') {
         //child becomes parent
@@ -1166,6 +1168,9 @@ export class BoardContainer extends Component {
           )
             .then(parentBoardId => {
               if (createParentBoard) {
+                /* Here the parentBoardData is not updated with the values
+                that updatedApiObjects store on the API. Inside the boards are already updated
+                an the value is not replaced because the oldboard Id was replaced on the updateApiObjects inside createApiBoardSuccess */
                 replaceBoard(
                   { ...parentBoardData },
                   { ...parentBoardData, id: parentBoardId }
@@ -1423,7 +1428,7 @@ export class BoardContainer extends Component {
         };
         if (tile.loadBoard) {
           createTile(newTile, board.id);
-          await this.pasteBoardsRecursively(newTile, board.id);
+          await this.pasteBoardsRecursively(newTile, board.id, tile.loadBoard);
         } else {
           await this.handleAddTileEditorSubmit(newTile);
         }
@@ -1437,7 +1442,7 @@ export class BoardContainer extends Component {
     }
   };
 
-  async pasteBoardsRecursively(folderTile, parentBoardId) {
+  async pasteBoardsRecursively(folderTile, parentBoardId, firstPastedFolderId) {
     const {
       createBoard,
       userData,
@@ -1460,6 +1465,14 @@ export class BoardContainer extends Component {
       author: '',
       email: ''
     };
+
+    const tilesWithFatherRemoved = newBoard.tiles?.reduce((newTiles, tile) => {
+      if (firstPastedFolderId !== tile.loadBoard) newTiles.push(tile);
+      return newTiles;
+    }, []);
+
+    newBoard.tiles = tilesWithFatherRemoved;
+
     if (!newBoard.name) {
       newBoard.name = newBoard.nameKey
         ? intl.formatMessage({ id: newBoard.nameKey })
@@ -1511,15 +1524,19 @@ export class BoardContainer extends Component {
     }
 
     //return condition
-    newBoard.tiles.forEach(async tile => {
+    for await (const tile of newBoard.tiles) {
       if (tile && tile.loadBoard && !tile.linkedBoard) {
         //look for this board in available boards
         const newBoardToCopy = boards.find(b => b.id === tile.loadBoard);
         if (newBoardToCopy) {
-          this.pasteBoardsRecursively(tile, newBoard.id);
+          await this.pasteBoardsRecursively(
+            tile,
+            newBoard.id,
+            firstPastedFolderId
+          );
         }
       }
-    });
+    }
     return;
   }
 

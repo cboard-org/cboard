@@ -1,3 +1,10 @@
+.Subscribe__Loading__Container {
+  padding: 1em;
+  height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .Subscribe__Alert {
   margin: 8px 0;
 }
