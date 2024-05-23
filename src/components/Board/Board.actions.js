@@ -758,7 +758,18 @@ export function updateApiMarkedBoards() {
         };
         delete boardData.shouldCreateBoard;
 
-        dispatch(updateApiObjectsNoChild(boardData, false, true));
+        dispatch(updateApiObjectsNoChild(boardData, false, true))
+          .then(boardId => {
+            if (createBoard) {
+              dispatch(
+                replaceBoard({ ...boardData }, { ...boardData, id: boardId })
+              );
+            }
+          })
+          .catch(err => {
+            console.log(err.message);
+          });
+
         dispatch(unmarkShouldCreateBoard(allBoards[i].id));
       }
     }
