@@ -38,7 +38,9 @@ import {
   DOWNLOAD_IMAGES_FAILURE,
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
-  DOWNLOAD_IMAGE_FAILURE
+  DOWNLOAD_IMAGE_FAILURE,
+  UNMARK_SHOULD_CREATE_API_BOARD,
+  REMOTE_BOARD_ID_LENGTH
 } from './Board.constants';
 
 import API from '../../api';
@@ -741,8 +743,33 @@ export function updateApiMarkedBoards() {
             throw new Error(e.message);
           });
       }
+      if (
+        allBoards[i].id.length < REMOTE_BOARD_ID_LENGTH &&
+        allBoards[i].shouldCreateBoard
+      ) {
+        const state = getState();
+
+        let boardData = {
+          ...allBoards[i],
+          author: state.app.userData.name,
+          email: state.app.userData.email,
+          hidden: false,
+          locale: state.lang
+        };
+        delete boardData.shouldCreateBoard;
+
+        dispatch(updateApiObjectsNoChild(boardData, false, true));
+        dispatch(unmarkShouldCreateBoard(allBoards[i].id));
+      }
     }
     return;
+  };
+}
+
+function unmarkShouldCreateBoard(boardId) {
+  return {
+    type: UNMARK_SHOULD_CREATE_API_BOARD,
+    boardId
   };
 }
 

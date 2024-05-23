@@ -19,6 +19,8 @@ export const CHANGE_IMPROVED_PHRASE = 'cboard/Board/CHANGE_IMPROVED_PHRASE';
 export const CHANGE_LIVE_MODE = 'cboard/Board/CHANGE_LIVE_MODE';
 export const HISTORY_REMOVE_BOARD = 'cboard/Board/HISTORY_REMOVE_BOARD';
 export const UNMARK_BOARD = 'cboard/Board/UNMARK_BOARD';
+export const UNMARK_SHOULD_CREATE_API_BOARD =
+  'cboard/Board/UNMARK_SHOULD_CREATE_API_BOARD';
 export const CREATE_API_BOARD_SUCCESS = 'cboard/Board/CREATE_API_BOARD_SUCCESS';
 export const CREATE_API_BOARD_FAILURE = 'cboard/Board/CREATE_API_BOARD_FAILURE';
 export const CREATE_API_BOARD_STARTED = 'cboard/Board/CREATE_API_BOARD_STARTED';
@@ -41,3 +43,4 @@ export const DOWNLOAD_IMAGE_SUCCESS = 'cboard/Board/DOWNLOAD_IMAGE_SUCCESS';
 export const DOWNLOAD_IMAGE_FAILURE = 'cboard/Board/DOWNLOAD_IMAGE_FAILURE';
 export const DEFAULT_ROWS_NUMBER = 5;
 export const DEFAULT_COLUMNS_NUMBER = 5;
+export const REMOTE_BOARD_ID_LENGTH = 14;
