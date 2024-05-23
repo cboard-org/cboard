@@ -749,12 +749,21 @@ export function updateApiMarkedBoards() {
       ) {
         const state = getState();
 
+        // TODO - translate name using intl in a redux action
+        //name: intl.formatMessage({ id: allBoards[i].nameKey })
+        const extractName = () => {
+          const splitedNameKey = allBoards[i].nameKey.split('.');
+          const NAMEKEY_LAST_INDEX = splitedNameKey.length - 1;
+          return splitedNameKey[NAMEKEY_LAST_INDEX];
+        };
+        const name = allBoards[i].name ?? extractName();
         let boardData = {
           ...allBoards[i],
           author: state.app.userData.name,
           email: state.app.userData.email,
           hidden: false,
-          locale: state.lang
+          locale: state.lang,
+          name
         };
         delete boardData.shouldCreateBoard;
 
