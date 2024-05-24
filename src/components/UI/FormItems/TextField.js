@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import MUITextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import InputAdornment from '@material-ui/core/InputAdornment';
 
 const propTypes = {
   className: PropTypes.string,
@@ -12,27 +11,18 @@ const propTypes = {
     PropTypes.string,
     PropTypes.number
   ]),
-  endAdornment: PropTypes.node
+  InputProps: PropTypes.node
 };
 
 const defaultProps = {
   className: '',
   error: false,
-  endAdornment: null
+  InputProps: null
 };
 
-const TextField = ({ className, error, endAdornment, ...props }) => (
+const TextField = ({ className, error, InputProps, ...props }) => (
   <FormControl className={className} error={!!error}>
-    <MUITextField
-      error={!!error}
-      {...props}
-      InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">{endAdornment}</InputAdornment>
-        ),
-        ...props.InputProps
-      }}
-    />
+    <MUITextField error={!!error} {...props} InputProps={InputProps} />
     {error && <FormHelperText>{error}</FormHelperText>}
   </FormControl>
 );
