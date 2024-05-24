@@ -55,9 +55,7 @@ const styles = {
   },
   content: {
     maxWidth: '680px',
-    margin: '0 auto',
-    height: '100%',
-    overflowY: 'hidden'
+    margin: '0 auto'
   },
   contentFullWidth: {
     margin: '0 auto'
