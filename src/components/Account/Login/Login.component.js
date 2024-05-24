@@ -36,7 +36,7 @@ export class Login extends Component {
   state = {
     isLogging: false,
     loginStatus: {},
-    showPassword: false
+    isPasswordVisible: false
   };
 
   handleSubmit = values => {
@@ -53,12 +53,12 @@ export class Login extends Component {
   };
   togglePasswordVisibility = () => {
     this.setState(prevState => ({
-      showPassword: !prevState.showPassword
+      isPasswordVisible: !prevState.isPasswordVisible
     }));
   };
 
   render() {
-    const { isLogging, loginStatus, showPassword } = this.state;
+    const { isLogging, loginStatus, isPasswordVisible } = this.state;
     const {
       intl,
       isDialogOpen,
@@ -104,13 +104,17 @@ export class Login extends Component {
                 <TextField
                   error={errors.password}
                   label={intl.formatMessage(messages.password)}
-                  type={showPassword ? 'text' : 'password'}
+                  type={isPasswordVisible ? 'text' : 'password'}
                   name="password"
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
                         <IconButton onClick={this.togglePasswordVisibility}>
-                          {showPassword ? <Visibility /> : <VisibilityOff />}
+                          {isPasswordVisible ? (
+                            <Visibility />
+                          ) : (
+                            <VisibilityOff />
+                          )}
                         </IconButton>
                       </InputAdornment>
                     )
