@@ -11,7 +11,7 @@ const propTypes = {
     PropTypes.string,
     PropTypes.number
   ]),
-  InputProps: PropTypes.node
+  InputProps: PropTypes.object
 };
 
 const defaultProps = {
