@@ -10,17 +10,19 @@ const propTypes = {
     PropTypes.bool,
     PropTypes.string,
     PropTypes.number
-  ])
+  ]),
+  InputProps: PropTypes.object
 };
 
 const defaultProps = {
   className: '',
-  error: false
+  error: false,
+  InputProps: null
 };
 
-const TextField = ({ className, error, ...props }) => (
+const TextField = ({ className, error, InputProps, ...props }) => (
   <FormControl className={className} error={!!error}>
-    <MUITextField error={!!error} {...props} />
+    <MUITextField error={!!error} {...props} InputProps={InputProps} />
     {error && <FormHelperText>{error}</FormHelperText>}
   </FormControl>
 );
