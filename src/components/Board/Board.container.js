@@ -535,7 +535,11 @@ export class BoardContainer extends Component {
           updateBoard(boardData);
         }
         //api updates
-        updateApiObjectsNoChild(boardData, createCommunicator, createBoard)
+        await updateApiObjectsNoChild(
+          boardData,
+          createCommunicator,
+          createBoard
+        )
           .then(boardId => {
             if (createBoard) {
               replaceBoard({ ...boardData }, { ...boardData, id: boardId });

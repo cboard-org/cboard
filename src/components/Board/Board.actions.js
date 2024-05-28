@@ -503,7 +503,7 @@ export function getApiMyBoards() {
 }
 
 export function createApiBoard(boardData, boardId) {
-  return dispatch => {
+  return async dispatch => {
     dispatch(createApiBoardStarted());
     boardData = {
       ...boardData,
@@ -522,7 +522,7 @@ export function createApiBoard(boardData, boardId) {
 }
 
 export function updateApiBoard(boardData) {
-  return dispatch => {
+  return async dispatch => {
     dispatch(updateApiBoardStarted());
     return API.updateBoard(boardData)
       .then(res => {
@@ -676,10 +676,10 @@ export function updateApiObjectsNoChild(
   createCommunicator = false,
   createParentBoard = false
 ) {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     //create - update parent board
     const action = createParentBoard ? createApiBoard : updateApiBoard;
-    return dispatch(action(parentBoard, parentBoard.id))
+    return await dispatch(action(parentBoard, parentBoard.id))
       .then(res => {
         const updatedParentBoardId = res.id;
         //add new boards to the active communicator
@@ -710,8 +710,8 @@ export function updateApiObjectsNoChild(
           ? createApiCommunicator
           : updateApiCommunicator;
         return dispatch(caction(comm, comm.id))
-          .then(() => {
-            dispatch(updateApiMarkedBoards());
+          .then(async () => {
+            await dispatch(updateApiMarkedBoards());
             return updatedParentBoardId;
           })
           .catch(e => {
@@ -724,7 +724,7 @@ export function updateApiObjectsNoChild(
   };
 }
 export function updateApiMarkedBoards() {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     const allBoards = [...getState().board.boards];
     for (let i = 0; i < allBoards.length; i++) {
       if (
@@ -734,7 +734,7 @@ export function updateApiMarkedBoards() {
         allBoards[i].hasOwnProperty('markToUpdate') &&
         allBoards[i].markToUpdate
       ) {
-        dispatch(updateApiBoard(allBoards[i]))
+        await dispatch(updateApiBoard(allBoards[i]))
           .then(() => {
             dispatch(unmarkBoard(allBoards[i].id));
             return;
@@ -766,23 +766,23 @@ export function updateApiMarkedBoards() {
           name
         };
         delete boardData.shouldCreateBoard;
+        dispatch(unmarkShouldCreateBoard(boardData.id));
 
-        dispatch(updateApiObjectsNoChild(boardData, false, true))
+        dispatch(updateBoard(boardData));
+        await dispatch(updateApiObjectsNoChild(boardData, false, true))
           .then(boardId => {
-            if (createBoard) {
-              dispatch(
-                replaceBoard({ ...boardData }, { ...boardData, id: boardId })
-              );
-            }
+            dispatch(
+              replaceBoard({ ...boardData }, { ...boardData, id: boardId })
+            );
+
+            return;
           })
           .catch(err => {
             console.log(err.message);
+            return;
           });
-
-        dispatch(unmarkShouldCreateBoard(allBoards[i].id));
       }
     }
-    return;
   };
 }
 
