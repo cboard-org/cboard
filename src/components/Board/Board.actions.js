@@ -726,39 +726,37 @@ export function updateApiObjectsNoChild(
 export function updateApiMarkedBoards() {
   return async (dispatch, getState) => {
     const allBoards = [...getState().board.boards];
-    for (let i = 0; i < allBoards.length; i++) {
+    for (const board of allBoards) {
+      const boardsIds = getState().board.boards?.map(board => board.id);
+      if (!boardsIds.includes(board.id)) return;
+
       if (
-        allBoards[i].id.length > 14 &&
-        allBoards[i].hasOwnProperty('email') &&
-        allBoards[i].email === getState().app.userData.email &&
-        allBoards[i].hasOwnProperty('markToUpdate') &&
-        allBoards[i].markToUpdate
+        board.id.length > 14 &&
+        board.hasOwnProperty('email') &&
+        board.email === getState().app.userData.email &&
+        board.hasOwnProperty('markToUpdate') &&
+        board.markToUpdate
       ) {
-        await dispatch(updateApiBoard(allBoards[i]))
-          .then(() => {
-            dispatch(unmarkBoard(allBoards[i].id));
-            return;
-          })
-          .catch(e => {
-            throw new Error(e.message);
-          });
+        try {
+          await dispatch(updateApiBoard(board));
+          dispatch(unmarkBoard(board.id));
+        } catch (e) {
+          throw new Error(e.message);
+        }
       }
-      if (
-        allBoards[i].id.length < REMOTE_BOARD_ID_LENGTH &&
-        allBoards[i].shouldCreateBoard
-      ) {
+      if (board.id.length < REMOTE_BOARD_ID_LENGTH && board.shouldCreateBoard) {
         const state = getState();
 
         // TODO - translate name using intl in a redux action
         //name: intl.formatMessage({ id: allBoards[i].nameKey })
         const extractName = () => {
-          const splitedNameKey = allBoards[i].nameKey.split('.');
+          const splitedNameKey = board.nameKey.split('.');
           const NAMEKEY_LAST_INDEX = splitedNameKey.length - 1;
           return splitedNameKey[NAMEKEY_LAST_INDEX];
         };
-        const name = allBoards[i].name ?? extractName();
+        const name = board.name ?? extractName();
         let boardData = {
-          ...allBoards[i],
+          ...board,
           author: state.app.userData.name,
           email: state.app.userData.email,
           hidden: false,
@@ -769,18 +767,16 @@ export function updateApiMarkedBoards() {
         dispatch(unmarkShouldCreateBoard(boardData.id));
 
         dispatch(updateBoard(boardData));
-        await dispatch(updateApiObjectsNoChild(boardData, false, true))
-          .then(boardId => {
-            dispatch(
-              replaceBoard({ ...boardData }, { ...boardData, id: boardId })
-            );
-
-            return;
-          })
-          .catch(err => {
-            console.log(err.message);
-            return;
-          });
+        try {
+          const boardId = await dispatch(
+            updateApiObjectsNoChild(boardData, false, true)
+          );
+          dispatch(
+            replaceBoard({ ...boardData }, { ...boardData, id: boardId })
+          );
+        } catch (err) {
+          console.log(err.message);
+        }
       }
     }
   };
