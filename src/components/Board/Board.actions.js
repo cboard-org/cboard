@@ -196,7 +196,9 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
       dispatch(editCommunicator(communicatorWithRootBoardReplaced));
       if (userData?.role) {
-        dispatch(upsertApiCommunicator(communicatorWithRootBoardReplaced));
+        dispatch(
+          upsertApiCommunicator(communicatorWithRootBoardReplaced)
+        ).catch(console.error);
       }
     };
 
