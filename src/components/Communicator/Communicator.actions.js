@@ -58,17 +58,20 @@ export function upsertApiCommunicator(communicator) {
     const SHORT_ID_MAX_LENGTH = 14;
 
     // If the communicator is not on the local state return
-    if (!communicators.find(c => c.id === communicator.id)) return;
+    if (!communicators.find(c => c.id === communicator.id))
+      return Promise.reject({
+        message: 'Communicator not found on local state'
+      });
 
-    communicator.id.length < SHORT_ID_MAX_LENGTH ||
-    communicator.id === defaultCommunicatorID
+    return communicator.id.length < SHORT_ID_MAX_LENGTH ||
+      communicator.id === defaultCommunicatorID
       ? dispatch(createApiCommunicator(communicator, communicator.id)).catch(
           error => {
-            console.error(error);
+            throw new Error(error);
           }
         )
       : dispatch(updateApiCommunicator(communicator)).catch(error => {
-          console.error(error);
+          throw new Error(error);
         });
   };
 }
