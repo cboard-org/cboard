@@ -54,6 +54,10 @@ export default defineMessages({
     defaultMessage:
       'Once you delete an account, there is no going back. Please be certain.'
   },
+  deleteAccountFinal: {
+    id: 'cboard.components.Settings.People.deleteAccountFinal',
+    defaultMessage: 'To confirm, type "delete-account" in the box below.'
+  },
   errorDeletingAccount: {
     id: 'cboard.components.Settings.People.errorDeletingAccount',
     defaultMessage:
@@ -67,5 +71,9 @@ export default defineMessages({
   cancelDeleteAccount: {
     id: 'cboard.components.Settings.People.cancelDeleteAccount',
     defaultMessage: 'Cancel'
+  },
+  confirmationText: {
+    id: 'cboard.components.Settings.People.confirmationText',
+    defaultMessage: 'delete-account'
   }
 });
