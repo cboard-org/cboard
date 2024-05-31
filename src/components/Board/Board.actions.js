@@ -724,10 +724,7 @@ export function updateApiObjectsNoChild(
           comm.activeBoardId = updatedParentBoardId;
           dispatch(upsertCommunicator(comm));
         }
-        const caction = createCommunicator
-          ? createApiCommunicator
-          : updateApiCommunicator;
-        return dispatch(caction(comm, comm.id))
+        return dispatch(upsertApiCommunicator(comm))
           .then(() => {
             dispatch(updateApiMarkedBoards());
             return updatedParentBoardId;
@@ -821,10 +818,7 @@ export function updateApiObjects(
               comm.activeBoardId = updatedParentBoardId;
               dispatch(upsertCommunicator(comm));
             }
-            const caction = createCommunicator
-              ? createApiCommunicator
-              : updateApiCommunicator;
-            return dispatch(caction(comm, comm.id))
+            return dispatch(upsertApiCommunicator(comm))
               .then(() => {
                 dispatch(updateApiMarkedBoards());
                 return updatedParentBoardId;
