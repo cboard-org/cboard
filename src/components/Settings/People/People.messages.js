@@ -56,7 +56,7 @@ export default defineMessages({
   },
   deleteAccountFinal: {
     id: 'cboard.components.Settings.People.deleteAccountFinal',
-    defaultMessage: 'To confirm, type "delete-account" in the box below.'
+    defaultMessage: 'To confirm, type "{deleteAccount}".'
   },
   errorDeletingAccount: {
     id: 'cboard.components.Settings.People.errorDeletingAccount',
@@ -71,9 +71,5 @@ export default defineMessages({
   cancelDeleteAccount: {
     id: 'cboard.components.Settings.People.cancelDeleteAccount',
     defaultMessage: 'Cancel'
-  },
-  confirmationText: {
-    id: 'cboard.components.Settings.People.confirmationText',
-    defaultMessage: 'delete-account'
   }
 });

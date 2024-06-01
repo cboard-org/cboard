@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { TextField } from '../../UI/FormItems';
+import TextField from '@material-ui/core/TextField';
 import { FormattedMessage } from 'react-intl';
 import messages from './People.messages';
 
@@ -31,32 +31,16 @@ const DeleteConfirmationDialog = ({
   isDeletingAccount,
   errorDeletingAccount
 }) => {
-  const [requiredConfirmationText, setRequiredConfirmationText] = useState({});
+  const DELETE_ACCOUNT = 'delete-account';
   const [confirmationText, setConfirmationText] = useState('');
-  const [showConfirmationInput, setShowConfirmationInput] = useState(false);
-
-  useEffect(() => {
-    setRequiredConfirmationText(
-      <FormattedMessage {...messages.confirmationText} />
-    );
-  }, []);
-
-  useEffect(
-    () => {
-      if (!open) {
-        setConfirmationText('');
-        setShowConfirmationInput(false);
-      }
-    },
-    [open]
-  );
 
   const handleConfirmationChange = e => {
     setConfirmationText(e.target.value);
   };
 
-  const handleShowConfirmationInput = () => {
-    setShowConfirmationInput(true);
+  const handleDialogClose = () => {
+    setConfirmationText('');
+    handleClose();
   };
 
   return (
@@ -80,48 +64,32 @@ const DeleteConfirmationDialog = ({
           </DialogContentText>
         )}
       </DialogContent>
-      {!isDeletingAccount && !showConfirmationInput && (
+      <TextField
+        autoFocus={true}
+        label={
+          <FormattedMessage
+            {...messages.deleteAccountFinal}
+            values={{ deleteAccount: DELETE_ACCOUNT }}
+          />
+        }
+        onChange={handleConfirmationChange}
+        style={{ margin: '16px' }}
+      />
+      {!isDeletingAccount && (
         <DialogActions>
           <Button
             variant="outlined"
             color="secondary"
             className={'delete_button'}
-            onClick={handleShowConfirmationInput}
+            disabled={confirmationText !== DELETE_ACCOUNT}
+            onClick={handleDeleteConfirmed}
           >
             {<FormattedMessage {...messages.deleteAccountPrimary} />}
           </Button>
-          <Button variant="outlined" onClick={handleClose} autoFocus>
+          <Button variant="outlined" onClick={handleDialogClose} autoFocus>
             {<FormattedMessage {...messages.cancelDeleteAccount} />}
           </Button>
         </DialogActions>
-      )}
-      {!isDeletingAccount && showConfirmationInput && (
-        <>
-          <TextField
-            label={<FormattedMessage {...messages.deleteAccountFinal} />}
-            value={confirmationText}
-            onChange={handleConfirmationChange}
-            variant="outlined"
-            fullWidth
-          />
-          <DialogActions>
-            <Button
-              variant="outlined"
-              color="secondary"
-              className={'delete_button'}
-              disabled={
-                confirmationText !==
-                requiredConfirmationText.props.defaultMessage
-              }
-              onClick={handleDeleteConfirmed}
-            >
-              {<FormattedMessage {...messages.deleteAccountPrimary} />}
-            </Button>
-            <Button variant="outlined" onClick={handleClose} autoFocus>
-              {<FormattedMessage {...messages.cancelDeleteAccount} />}
-            </Button>
-          </DialogActions>
-        </>
       )}
       {isDeletingAccount && <LinearProgress color="secondary" />}
     </Dialog>
