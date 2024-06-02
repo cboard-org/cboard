@@ -63,18 +63,18 @@ const DeleteConfirmationDialog = ({
             <FormattedMessage {...messages.deleteAccountConfirmation} />
           </DialogContentText>
         )}
+        <TextField
+          autoFocus={true}
+          fullWidth={true}
+          label={
+            <FormattedMessage
+              {...messages.deleteAccountFinal}
+              values={{ deleteAccount: DELETE_ACCOUNT }}
+            />
+          }
+          onChange={handleConfirmationChange}
+        />
       </DialogContent>
-      <TextField
-        autoFocus={true}
-        label={
-          <FormattedMessage
-            {...messages.deleteAccountFinal}
-            values={{ deleteAccount: DELETE_ACCOUNT }}
-          />
-        }
-        onChange={handleConfirmationChange}
-        style={{ margin: '16px' }}
-      />
       {!isDeletingAccount && (
         <DialogActions>
           <Button
