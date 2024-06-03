@@ -744,7 +744,7 @@ export function updateApiObjectsNoChild(
 export function updateApiMarkedBoards() {
   return async (dispatch, getState) => {
     const allBoards = [...getState().board.boards];
-    for (const board of allBoards) {
+    for await (const board of allBoards) {
       const boardsIds = getState().board.boards?.map(board => board.id);
       if (!boardsIds.includes(board.id)) return;
 
