@@ -52,7 +52,7 @@ export function upsertCommunicator(communicator) {
 }
 
 export function upsertApiCommunicator(communicator) {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     const {
       communicator: { communicators }
     } = getState();
@@ -261,7 +261,7 @@ export function createApiCommunicator(communicatorData, communicatorId) {
 }
 
 export function updateApiCommunicator(communicatorData) {
-  return dispatch => {
+  return async dispatch => {
     dispatch(updateApiCommunicatorStarted());
     return API.updateCommunicator(communicatorData)
       .then(res => {
