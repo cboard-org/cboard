@@ -6,12 +6,12 @@ import { injectIntl } from 'react-intl';
 import shortid from 'shortid';
 import API from '../../../api';
 import {
-  createCommunicator,
   editCommunicator,
   changeCommunicator,
   deleteBoardCommunicator,
   addBoardCommunicator,
-  upsertCommunicator
+  upsertCommunicator,
+  verifyAndUpsertCommunicator
 } from '../Communicator.actions';
 import { deleteBoard, deleteApiBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
@@ -425,29 +425,16 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async updateCommunicatorBoards(boards) {
-    const {
-      userData,
-      communicators,
-      currentCommunicator,
-      changeCommunicator,
-      editCommunicator
-    } = this.props;
+    const { currentCommunicator, verifyAndUpsertCommunicator } = this.props;
 
     const updatedCommunicatorData = {
       ...currentCommunicator,
       boards: boards.map(cb => cb.id)
     };
-
-    if (communicators.findIndex(c => c.id === currentCommunicator.id) >= 0) {
-      editCommunicator(updatedCommunicatorData);
-      changeCommunicator(updatedCommunicatorData.id);
-
-      // Loggedin user?
-      if ('name' in userData && 'email' in userData) {
-        try {
-          await API.updateCommunicator(updatedCommunicatorData);
-        } catch (err) {}
-      }
+    try {
+      await verifyAndUpsertCommunicator(updatedCommunicatorData);
+    } catch (err) {
+      console.log(err.message);
     }
   }
 
@@ -487,29 +474,16 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async setRootBoard(board) {
-    const {
-      userData,
-      communicators,
-      currentCommunicator,
-      changeCommunicator,
-      editCommunicator
-    } = this.props;
+    const { currentCommunicator, verifyAndUpsertCommunicator } = this.props;
 
     const updatedCommunicatorData = {
       ...currentCommunicator,
       rootBoard: board.id
     };
-
-    if (communicators.findIndex(c => c.id === currentCommunicator.id) >= 0) {
-      editCommunicator(updatedCommunicatorData);
-      changeCommunicator(updatedCommunicatorData.id);
-
-      // Loggedin user?
-      if ('name' in userData && 'email' in userData) {
-        try {
-          await API.updateCommunicator(updatedCommunicatorData);
-        } catch (err) {}
-      }
+    try {
+      await verifyAndUpsertCommunicator(updatedCommunicatorData);
+    } catch (err) {
+      console.log(err.message);
     }
   }
 
@@ -522,7 +496,7 @@ class CommunicatorDialogContainer extends React.Component {
       showNotification,
       deleteBoard,
       communicators,
-      editCommunicator,
+      verifyAndUpsertCommunicator,
       deleteApiBoard,
       userData,
       intl
@@ -535,21 +509,24 @@ class CommunicatorDialogContainer extends React.Component {
         await deleteApiBoard(board.id);
       } catch (err) {}
     }
-    communicators.forEach(async comm => {
+    for await (const comm of communicators) {
       if (comm.boards.includes(board.id)) {
-        editCommunicator({
+        const filteredCommunicator = {
           ...comm,
           boards: comm.boards.filter(b => b !== board.id)
-        });
-
-        // Loggedin user?
-        if ('name' in userData && 'email' in userData) {
-          try {
-            await API.updateCommunicator(comm);
-          } catch (err) {}
+        };
+        try {
+          const changeCommunicator = false;
+          await verifyAndUpsertCommunicator(
+            filteredCommunicator,
+            changeCommunicator
+          );
+        } catch (err) {
+          console.log(err.message);
         }
       }
-    });
+    }
+
     const sBoards = this.state.boards;
     const index = sBoards.findIndex(b => board.id === b.id);
     sBoards.splice(index, 1);
@@ -640,7 +617,6 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
 };
 
 const mapDispatchToProps = {
-  createCommunicator,
   editCommunicator,
   changeCommunicator,
   addBoards,
@@ -655,7 +631,8 @@ const mapDispatchToProps = {
   upsertCommunicator,
   updateApiObjectsNoChild,
   updateApiBoard,
-  disableTour
+  disableTour,
+  verifyAndUpsertCommunicator
 };
 
 export default connect(
