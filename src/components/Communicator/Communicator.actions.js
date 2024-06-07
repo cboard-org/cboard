@@ -21,6 +21,7 @@ import {
 } from './Communicator.constants';
 import { defaultCommunicatorID } from './Communicator.reducer';
 import API from '../../api';
+import shortid from 'shortid';
 
 export function importCommunicator(communicator) {
   return {
@@ -175,6 +176,49 @@ export function updateApiCommunicatorFailure(message) {
   return {
     type: UPDATE_API_COMMUNICATOR_FAILURE,
     message
+  };
+}
+
+export function verifyAndUpsertCommunicator(
+  communicator,
+  changeCommunicator = false
+) {
+  return async (dispatch, getState) => {
+    const {
+      app: { userData }
+    } = getState();
+
+    if (!communicator) return Promise.reject('No communicator provided');
+    const updatedCommunicatorData = {
+      ...communicator,
+      boards: [...communicator.boards]
+    };
+
+    if (
+      'name' in userData &&
+      'email' in userData &&
+      communicator.email !== userData.email
+    ) {
+      //need to create a new communicator
+      updatedCommunicatorData.author = userData.name;
+      updatedCommunicatorData.email = userData.email;
+      updatedCommunicatorData.id = shortid.generate();
+    }
+
+    dispatch(upsertCommunicator(updatedCommunicatorData));
+
+    if (changeCommunicator)
+      dispatch(changeCommunicator(updatedCommunicatorData.id));
+
+    // Loggedin user?
+    if ('name' in userData && 'email' in userData) {
+      try {
+        await dispatch(upsertApiCommunicator(updatedCommunicatorData));
+      } catch (err) {
+        Promise.reject(err);
+      }
+    }
+    return Promise.resolve(updatedCommunicatorData);
   };
 }
 
