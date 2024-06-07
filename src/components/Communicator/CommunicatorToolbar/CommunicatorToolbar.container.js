@@ -12,12 +12,11 @@ import {
 import { showNotification } from '../../Notifications/Notifications.actions';
 import {
   importCommunicator,
-  createCommunicator,
   deleteCommunicator,
   changeCommunicator,
-  upsertCommunicator
+  upsertCommunicator,
+  verifyAndUpsertCommunicator
 } from '../Communicator.actions';
-import API from '../../../api';
 
 class CommunicatorContainer extends React.Component {
   constructor(props) {
@@ -37,17 +36,17 @@ class CommunicatorContainer extends React.Component {
   }
 
   editCommunicatorTitle = async name => {
+    const { currentCommunicator, verifyAndUpsertCommunicator } = this.props;
+
     const updatedCommunicatorData = {
-      ...this.props.currentCommunicator,
+      ...currentCommunicator,
       name
     };
-
-    const communicatorData = await API.updateCommunicator(
-      updatedCommunicatorData
-    );
-
-    this.props.upsertCommunicator(communicatorData);
-    this.props.changeCommunicator(communicatorData.id);
+    try {
+      verifyAndUpsertCommunicator(updatedCommunicatorData);
+    } catch (e) {
+      console.error('Error updating communicator title', e);
+    }
   };
 
   render() {
@@ -102,7 +101,7 @@ const mapStateToProps = (
 
 const mapDispatchToProps = {
   importCommunicator,
-  createCommunicator,
+  verifyAndUpsertCommunicator,
   deleteCommunicator,
   changeCommunicator,
   upsertCommunicator,
