@@ -44,8 +44,6 @@ import {
 import API from '../../api';
 
 import {
-  updateApiCommunicator,
-  createApiCommunicator,
   replaceBoardCommunicator,
   upsertCommunicator,
   getApiMyCommunicators,
@@ -691,7 +689,6 @@ function getFileNameFromUrl(url) {
 
 export function updateApiObjectsNoChild(
   parentBoard,
-  createCommunicator = false,
   createParentBoard = false
 ) {
   return (dispatch, getState) => {
@@ -766,7 +763,6 @@ export function updateApiMarkedBoards() {
 export function updateApiObjects(
   childBoard,
   parentBoard,
-  createCommunicator = false,
   createParentBoard = false
 ) {
   return (dispatch, getState) => {

@@ -493,7 +493,6 @@ export class BoardContainer extends Component {
       lang
     } = this.props;
 
-    var createCommunicator = false;
     var createBoard = false;
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
@@ -521,7 +520,6 @@ export class BoardContainer extends Component {
           };
           upsertCommunicator(communicatorData);
           changeCommunicator(communicatorData.id);
-          createCommunicator = true;
         }
         //check if we have to create a copy of the board
         if (boardData.id.length < 14) {
@@ -535,7 +533,7 @@ export class BoardContainer extends Component {
           updateBoard(boardData);
         }
         //api updates
-        updateApiObjectsNoChild(boardData, createCommunicator, createBoard)
+        updateApiObjectsNoChild(boardData, createBoard)
           .then(boardId => {
             if (createBoard) {
               replaceBoard({ ...boardData }, { ...boardData, id: boardId });
@@ -1044,7 +1042,6 @@ export class BoardContainer extends Component {
         editedTiles = _editedTiles;
       }
 
-      var createCommunicator = false;
       var createParentBoard = false;
       var createChildBoard = false;
       var childBoardData = null;
@@ -1095,7 +1092,6 @@ export class BoardContainer extends Component {
         };
         upsertCommunicator(communicatorData);
         changeCommunicator(communicatorData.id);
-        createCommunicator = true;
       }
       //check for a new  own board
       if (tile && tile.loadBoard && !tile.linkedBoard) {
@@ -1130,7 +1126,7 @@ export class BoardContainer extends Component {
       //api updates
       if (tile && tile.type === 'board') {
         //child becomes parent
-        updateApiObjectsNoChild(childBoardData, createCommunicator, true)
+        updateApiObjectsNoChild(childBoardData, true)
           .then(parentBoardId => {
             switchBoard(parentBoardId);
             this.props.history.replace(`/board/${parentBoardId}`, []);
@@ -1141,11 +1137,7 @@ export class BoardContainer extends Component {
           });
       } else {
         if (!createChildBoard) {
-          updateApiObjectsNoChild(
-            parentBoardData,
-            createCommunicator,
-            createParentBoard
-          )
+          updateApiObjectsNoChild(parentBoardData, createParentBoard)
             .then(parentBoardId => {
               if (createParentBoard) {
                 replaceBoard(
@@ -1160,12 +1152,7 @@ export class BoardContainer extends Component {
               this.setState({ isSaving: false });
             });
         } else {
-          updateApiObjects(
-            childBoardData,
-            parentBoardData,
-            createCommunicator,
-            createParentBoard
-          )
+          updateApiObjects(childBoardData, parentBoardData, createParentBoard)
             .then(parentBoardId => {
               if (createParentBoard) {
                 /* Here the parentBoardData is not updated with the values
@@ -1279,7 +1266,6 @@ export class BoardContainer extends Component {
       this.setState({
         isSaving: true
       });
-      let createCommunicator = false;
       if (communicator.email !== userData.email) {
         //need to create a new communicator
         const communicatorData = {
@@ -1290,14 +1276,9 @@ export class BoardContainer extends Component {
         };
         upsertCommunicator(communicatorData);
         changeCommunicator(communicatorData.id);
-        createCommunicator = true;
       }
       try {
-        const boardId = await updateApiObjectsNoChild(
-          newBoard,
-          createCommunicator,
-          true
-        );
+        const boardId = await updateApiObjectsNoChild(newBoard, true);
         newBoard = {
           ...newBoard,
           id: boardId

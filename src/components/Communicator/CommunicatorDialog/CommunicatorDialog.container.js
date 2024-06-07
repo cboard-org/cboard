@@ -287,7 +287,6 @@ class CommunicatorDialogContainer extends React.Component {
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
-      let createCommunicator = false;
       if (currentCommunicator.email !== userData.email) {
         //need to create a new communicator
         const communicatorData = {
@@ -298,17 +297,12 @@ class CommunicatorDialogContainer extends React.Component {
         };
         upsertCommunicator(communicatorData);
         changeCommunicator(communicatorData.id);
-        createCommunicator = true;
       }
       try {
         this.setState({
           loading: true
         });
-        const boardId = await updateApiObjectsNoChild(
-          newBoard,
-          createCommunicator,
-          true
-        );
+        const boardId = await updateApiObjectsNoChild(newBoard, true);
         newBoard = {
           ...newBoard,
           id: boardId
