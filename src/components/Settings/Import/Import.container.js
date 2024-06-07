@@ -7,7 +7,8 @@ import shortid from 'shortid';
 import { addBoards, changeBoard } from '../../Board/Board.actions';
 import {
   upsertCommunicator,
-  changeCommunicator
+  changeCommunicator,
+  verifyAndUpsertCommunicator
 } from '../../Communicator/Communicator.actions';
 import { switchBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
@@ -97,7 +98,7 @@ export class ImportContainer extends PureComponent {
             return response;
           } catch (err) {
             console.log(err.message);
-            return board
+            return board;
           }
         })
       );
@@ -121,7 +122,7 @@ export class ImportContainer extends PureComponent {
   }
 
   async addBoardsToCommunicator(boards) {
-    const { userData, currentCommunicator } = this.props;
+    const { currentCommunicator, verifyAndUpsertCommunicator } = this.props;
 
     const communicatorBoards = new Set(
       currentCommunicator.boards.concat(boards.map(b => b.id))
@@ -131,16 +132,11 @@ export class ImportContainer extends PureComponent {
       boards: Array.from(communicatorBoards)
     };
 
-    if (userData && userData.authToken && userData.authToken.length) {
-      try {
-        communicatorModified = await API.updateCommunicator(communicatorModified);
-      } catch (err) {
-        console.log(err.message);
-      }
+    try {
+      await verifyAndUpsertCommunicator(communicatorModified);
+    } catch (e) {
+      console.error('Error upserting communicator', e);
     }
-
-    this.props.upsertCommunicator(communicatorModified);
-    this.props.changeCommunicator(communicatorModified.id);
   }
 
   async handleImportClick(e, doneCallback) {
@@ -231,7 +227,8 @@ const mapDispatchToProps = {
   switchBoard,
   upsertCommunicator,
   changeCommunicator,
-  showNotification
+  showNotification,
+  verifyAndUpsertCommunicator
 };
 
 export default connect(
