@@ -43,7 +43,7 @@ class CommunicatorContainer extends React.Component {
       name
     };
     try {
-      verifyAndUpsertCommunicator(updatedCommunicatorData);
+      await verifyAndUpsertCommunicator(updatedCommunicatorData);
     } catch (e) {
       console.error('Error updating communicator title', e);
     }
