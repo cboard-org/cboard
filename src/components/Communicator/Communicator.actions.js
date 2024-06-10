@@ -56,7 +56,7 @@ export function upsertApiCommunicator(communicator) {
     const {
       communicator: { communicators }
     } = getState();
-    const SHORT_ID_MAX_LENGTH = 14;
+    const SHORT_ID_MAX_LENGTH = 15;
 
     // If the communicator is not on the local state return
     if (!communicators.find(c => c.id === communicator.id))
@@ -181,7 +181,7 @@ export function updateApiCommunicatorFailure(message) {
 
 export function verifyAndUpsertCommunicator(
   communicator,
-  changeCommunicator = true
+  needToChangeCommunicator = true
 ) {
   return async (dispatch, getState) => {
     const {
@@ -189,10 +189,7 @@ export function verifyAndUpsertCommunicator(
     } = getState();
 
     if (!communicator) return Promise.reject('No communicator provided');
-    const updatedCommunicatorData = {
-      ...communicator,
-      boards: [...communicator.boards]
-    };
+    const updatedCommunicatorData = { ...communicator };
 
     if (
       'name' in userData &&
@@ -203,11 +200,18 @@ export function verifyAndUpsertCommunicator(
       updatedCommunicatorData.author = userData.name;
       updatedCommunicatorData.email = userData.email;
       updatedCommunicatorData.id = shortid.generate();
+      updatedCommunicatorData.boards = [...communicator.boards];
+
+      if (communicator.defaultBoardsIncluded) {
+        updatedCommunicatorData.defaultBoardsIncluded = communicator.defaultBoardsIncluded.map(
+          item => ({ ...item })
+        );
+      }
     }
 
     dispatch(upsertCommunicator(updatedCommunicatorData));
 
-    if (changeCommunicator)
+    if (needToChangeCommunicator)
       dispatch(changeCommunicator(updatedCommunicatorData.id));
 
     // Loggedin user?
