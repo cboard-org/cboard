@@ -181,7 +181,7 @@ export function updateApiCommunicatorFailure(message) {
 
 export function verifyAndUpsertCommunicator(
   communicator,
-  changeCommunicator = false
+  changeCommunicator = true
 ) {
   return async (dispatch, getState) => {
     const {
