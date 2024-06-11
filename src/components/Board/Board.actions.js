@@ -38,7 +38,8 @@ import {
   DOWNLOAD_IMAGES_FAILURE,
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
-  DOWNLOAD_IMAGE_FAILURE
+  DOWNLOAD_IMAGE_FAILURE,
+  CLEAN_ALL_BOARDS
 } from './Board.constants';
 
 import API from '../../api';
@@ -57,7 +58,7 @@ import {
   changeCommunicator
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
-import { DEFAULT_BOARDS } from '../../helpers';
+import { ALL_DEFAULT_BOARDS, DEFAULT_BOARDS } from '../../helpers';
 import history from './../../history';
 import { improvePhraseAbortController } from '../../api/api';
 import shortid from 'shortid';
@@ -838,5 +839,61 @@ export function updateApiObjects(
       .catch(e => {
         throw new Error(e.message);
       });
+  };
+}
+
+export function cleanAllBoards() {
+  return {
+    type: CLEAN_ALL_BOARDS
+  };
+}
+export function addRootBoard() {
+  return (dispatch, getState) => {
+    try {
+      const activeCommunicator = getActiveCommunicator(getState);
+      const rootBoard = activeCommunicator.rootBoard;
+      const board = getState().board.boards.find(
+        board => board.id === rootBoard
+      );
+      if (!board) {
+        ALL_DEFAULT_BOARDS.advanced.some(defaultBoard => {
+          if (defaultBoard.id === rootBoard) {
+            dispatch(addBoards([defaultBoard]));
+            return true;
+          }
+          return false;
+        });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+}
+
+export function addDefaultBoards() {
+  return (dispatch, getState) => {
+    const boardsIdsToAdd = [];
+    // These are all boards including the boards that are getted from the API if this is called in the finally of getApiMyBoards thunk
+    const allStoreBoards = getState().board.boards;
+    allStoreBoards.forEach(includedBoard => {
+      includedBoard.tiles.forEach(tile => {
+        if (tile.loadBoard && !boardsIdsToAdd.includes(tile.loadBoard))
+          boardsIdsToAdd.push(tile.loadBoard);
+      });
+    });
+
+    boardsIdsToAdd.forEach(boardId => {
+      const allStoreBoards = getState().board.boards;
+      const board = allStoreBoards.find(board => board.id === boardId);
+      if (!board) {
+        ALL_DEFAULT_BOARDS.some(defaultBoard => {
+          if (defaultBoard.id === boardId) {
+            dispatch(addBoards([defaultBoard]));
+            return true;
+          }
+          return false;
+        });
+      }
+    });
   };
 }

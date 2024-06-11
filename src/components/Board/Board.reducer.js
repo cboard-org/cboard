@@ -36,7 +36,8 @@ import {
   GET_API_MY_BOARDS_STARTED,
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
-  DOWNLOAD_IMAGE_FAILURE
+  DOWNLOAD_IMAGE_FAILURE,
+  CLEAN_ALL_BOARDS
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -249,7 +250,11 @@ function boardReducer(state = initialState, action) {
           board => action.boardId.indexOf(board.id) === -1
         )
       };
-
+    case CLEAN_ALL_BOARDS:
+      return {
+        ...state,
+        boards: []
+      };
     case CREATE_TILE:
       return {
         ...state,

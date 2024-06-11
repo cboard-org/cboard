@@ -19,6 +19,7 @@ export const CHANGE_IMPROVED_PHRASE = 'cboard/Board/CHANGE_IMPROVED_PHRASE';
 export const CHANGE_LIVE_MODE = 'cboard/Board/CHANGE_LIVE_MODE';
 export const HISTORY_REMOVE_BOARD = 'cboard/Board/HISTORY_REMOVE_BOARD';
 export const UNMARK_BOARD = 'cboard/Board/UNMARK_BOARD';
+export const CLEAN_ALL_BOARDS = 'cboard/Board/CLEAN_ALL_BOARDS';
 export const CREATE_API_BOARD_SUCCESS = 'cboard/Board/CREATE_API_BOARD_SUCCESS';
 export const CREATE_API_BOARD_FAILURE = 'cboard/Board/CREATE_API_BOARD_FAILURE';
 export const CREATE_API_BOARD_STARTED = 'cboard/Board/CREATE_API_BOARD_STARTED';
