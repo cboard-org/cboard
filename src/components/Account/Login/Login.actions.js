@@ -1,8 +1,11 @@
 import API from '../../../api';
 import { LOGIN_SUCCESS, LOGOUT } from './Login.constants';
-import { addBoards, cleanAllBoards } from '../../Board/Board.actions';
 import {
-  addRootBoard,
+  addBoards,
+  cleanAllBoards,
+  addRootBoard
+} from '../../Board/Board.actions';
+import {
   changeVoice,
   changePitch,
   changeRate
