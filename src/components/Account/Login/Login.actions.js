@@ -2,6 +2,7 @@ import API from '../../../api';
 import { LOGIN_SUCCESS, LOGOUT } from './Login.constants';
 import { addBoards, cleanAllBoards } from '../../Board/Board.actions';
 import {
+  addRootBoard,
   changeVoice,
   changePitch,
   changeRate
@@ -174,6 +175,7 @@ export function login({ email, password, activatedData }, type = 'local') {
       );
       dispatch(cleanAllBoards());
       dispatch(addBoards(apiBoards));
+      dispatch(addRootBoard());
       if (type === 'local') {
         dispatch(
           disableTour({
