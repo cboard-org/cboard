@@ -1,6 +1,6 @@
 import API from '../../../api';
 import { LOGIN_SUCCESS, LOGOUT } from './Login.constants';
-import { addBoards } from '../../Board/Board.actions';
+import { addBoards, cleanAllBoards } from '../../Board/Board.actions';
 import {
   changeVoice,
   changePitch,
@@ -172,7 +172,7 @@ export function login({ email, password, activatedData }, type = 'local') {
           })
           .filter(b => b !== null)
       );
-
+      dispatch(cleanAllBoards());
       dispatch(addBoards(apiBoards));
       if (type === 'local') {
         dispatch(
