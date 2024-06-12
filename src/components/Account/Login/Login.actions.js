@@ -3,7 +3,7 @@ import { LOGIN_SUCCESS, LOGOUT } from './Login.constants';
 import {
   addBoards,
   cleanAllBoards,
-  addRootBoardFromDefaultBoards
+  findAndAddRootBoardOnDefaultBoards
 } from '../../Board/Board.actions';
 import {
   changeVoice,
@@ -178,7 +178,7 @@ export function login({ email, password, activatedData }, type = 'local') {
       );
       dispatch(cleanAllBoards());
       dispatch(addBoards(apiBoards));
-      dispatch(addRootBoardFromDefaultBoards());
+      dispatch(findAndAddRootBoardOnDefaultBoards());
       if (type === 'local') {
         dispatch(
           disableTour({

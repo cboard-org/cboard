@@ -847,7 +847,7 @@ export function cleanAllBoards() {
     type: CLEAN_ALL_BOARDS
   };
 }
-export function addRootBoard() {
+export function findAndAddRootBoardOnDefaultBoards() {
   return (dispatch, getState) => {
     try {
       const activeCommunicator = getActiveCommunicator(getState);
@@ -856,13 +856,29 @@ export function addRootBoard() {
         board => board.id === rootBoard
       );
       if (!board) {
-        ALL_DEFAULT_BOARDS.advanced.some(defaultBoard => {
-          if (defaultBoard.id === rootBoard) {
-            dispatch(addBoards([defaultBoard]));
-            return true;
+        const addNecessaryBoards = necessaryBoardId => {
+          const isRootBoardAdded = ALL_DEFAULT_BOARDS.some(defaultBoard => {
+            if (defaultBoard.id === necessaryBoardId) {
+              dispatch(addBoards([defaultBoard]));
+              defaultBoard.tiles.forEach(tile => {
+                if (
+                  tile.loadBoard &&
+                  !getState().board.boards.some(
+                    board => board.id === tile.loadBoard
+                  )
+                ) {
+                  addNecessaryBoards(tile.loadBoard);
+                }
+              });
+              return true;
+            }
+            return false;
+          });
+          if (!isRootBoardAdded) {
+            throw new Error('Root board not found searching on default boards');
           }
-          return false;
-        });
+        };
+        addNecessaryBoards(rootBoard);
       }
     } catch (e) {
       console.error(e);
