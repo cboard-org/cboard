@@ -3,7 +3,7 @@ import { LOGIN_SUCCESS, LOGOUT } from './Login.constants';
 import {
   addBoards,
   cleanAllBoards,
-  findAndAddRootBoardOnDefaultBoards
+  addNecessaryDefaultBoardsFor
 } from '../../Board/Board.actions';
 import {
   changeVoice,
@@ -178,7 +178,15 @@ export function login({ email, password, activatedData }, type = 'local') {
       );
       dispatch(cleanAllBoards());
       dispatch(addBoards(apiBoards));
-      dispatch(findAndAddRootBoardOnDefaultBoards());
+      const userDefaultBoardsIncluded =
+        currentCommunicator.defaultBoardsIncluded;
+      if (userDefaultBoardsIncluded) {
+        userDefaultBoardsIncluded.forEach(({ homeBoard }) => {
+          dispatch(addNecessaryDefaultBoardsFor(homeBoard));
+        });
+      } else {
+        dispatch(addNecessaryDefaultBoardsFor(currentCommunicator.rootBoard));
+      }
       if (type === 'local') {
         dispatch(
           disableTour({

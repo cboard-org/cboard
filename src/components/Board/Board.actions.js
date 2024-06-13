@@ -847,69 +847,53 @@ export function cleanAllBoards() {
     type: CLEAN_ALL_BOARDS
   };
 }
-export function findAndAddRootBoardOnDefaultBoards() {
+
+export function addNecessaryDefaultBoardsFor(boardIdToAdd) {
   return (dispatch, getState) => {
-    try {
-      const activeCommunicator = getActiveCommunicator(getState);
-      const rootBoard = activeCommunicator.rootBoard;
+    const checkedBoardsIds = [];
+    const addNecessaryBoards = ({ dispatch, getState, necessaryBoardId }) => {
       const board = getState().board.boards.find(
-        board => board.id === rootBoard
+        board => board?.id === necessaryBoardId
       );
-      if (!board) {
-        const addNecessaryBoards = necessaryBoardId => {
-          const isRootBoardAdded = ALL_DEFAULT_BOARDS.some(defaultBoard => {
-            if (defaultBoard.id === necessaryBoardId) {
-              dispatch(addBoards([defaultBoard]));
-              defaultBoard.tiles.forEach(tile => {
-                if (
-                  tile.loadBoard &&
-                  !getState().board.boards.some(
-                    board => board.id === tile.loadBoard
-                  )
-                ) {
-                  addNecessaryBoards(tile.loadBoard);
-                }
+      const checkLoadBoards = board => {
+        checkedBoardsIds.push(board.id);
+        board.tiles.forEach(tile => {
+          if (
+            tile.loadBoard
+            // !getState().board.boards.some(board => board.id === tile.loadBoard)
+          ) {
+            if (!checkedBoardsIds.includes(tile.loadBoard)) {
+              addNecessaryBoards({
+                dispatch,
+                getState,
+                necessaryBoardId: tile.loadBoard
               });
-              return true;
             }
-            return false;
-          });
-          if (!isRootBoardAdded) {
-            throw new Error('Root board not found searching on default boards');
           }
-        };
-        addNecessaryBoards(rootBoard);
+        });
+      };
+      if (board) {
+        checkLoadBoards(board);
+        return;
       }
+
+      ALL_DEFAULT_BOARDS.some(defaultBoard => {
+        if (defaultBoard.id === necessaryBoardId) {
+          dispatch(addBoards([defaultBoard]));
+          checkLoadBoards(defaultBoard);
+          return true;
+        }
+        return false;
+      });
+    };
+    try {
+      addNecessaryBoards({
+        dispatch,
+        getState,
+        necessaryBoardId: boardIdToAdd
+      });
     } catch (e) {
       console.error(e);
     }
-  };
-}
-
-export function addDefaultBoards() {
-  return (dispatch, getState) => {
-    const boardsIdsToAdd = [];
-    // These are all boards including the boards that are getted from the API if this is called in the finally of getApiMyBoards thunk
-    const allStoreBoards = getState().board.boards;
-    allStoreBoards.forEach(includedBoard => {
-      includedBoard.tiles.forEach(tile => {
-        if (tile.loadBoard && !boardsIdsToAdd.includes(tile.loadBoard))
-          boardsIdsToAdd.push(tile.loadBoard);
-      });
-    });
-
-    boardsIdsToAdd.forEach(boardId => {
-      const allStoreBoards = getState().board.boards;
-      const board = allStoreBoards.find(board => board.id === boardId);
-      if (!board) {
-        ALL_DEFAULT_BOARDS.some(defaultBoard => {
-          if (defaultBoard.id === boardId) {
-            dispatch(addBoards([defaultBoard]));
-            return true;
-          }
-          return false;
-        });
-      }
-    });
   };
 }
