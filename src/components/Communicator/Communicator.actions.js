@@ -183,12 +183,12 @@ export function verifyAndUpsertCommunicator(
   communicator,
   needToChangeCommunicator = true
 ) {
-  return async (dispatch, getState) => {
+  return (dispatch, getState) => {
     const {
       app: { userData }
     } = getState();
 
-    if (!communicator) return Promise.reject('No communicator provided');
+    if (!communicator) return;
     const updatedCommunicatorData = { ...communicator };
 
     if (
@@ -202,7 +202,7 @@ export function verifyAndUpsertCommunicator(
       updatedCommunicatorData.id = shortid.generate();
       updatedCommunicatorData.boards = [...communicator.boards];
 
-      if (communicator.defaultBoardsIncluded) {
+      if (!!communicator.defaultBoardsIncluded) {
         updatedCommunicatorData.defaultBoardsIncluded = communicator.defaultBoardsIncluded.map(
           item => ({ ...item })
         );
@@ -214,15 +214,7 @@ export function verifyAndUpsertCommunicator(
     if (needToChangeCommunicator)
       dispatch(changeCommunicator(updatedCommunicatorData.id));
 
-    // Loggedin user?
-    if ('name' in userData && 'email' in userData) {
-      try {
-        await dispatch(upsertApiCommunicator(updatedCommunicatorData));
-      } catch (err) {
-        Promise.reject(err);
-      }
-    }
-    return Promise.resolve(updatedCommunicatorData);
+    return;
   };
 }
 
