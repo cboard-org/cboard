@@ -510,6 +510,10 @@ export function getApiMyBoards() {
     })
       .then(res => {
         dispatch(getApiMyBoardsSuccess(res));
+        const newBoards = res.data;
+        newBoards?.forEach(({ id }) => {
+          dispatch(addNecessaryDefaultBoardsFor(id));
+        });
         return res;
       })
       .catch(err => {
