@@ -135,6 +135,7 @@ export function login({ email, password, activatedData }, type = 'local') {
 
   return async (dispatch, getState) => {
     try {
+      email = email.toLowerCase();
       const apiMethod = type === 'local' ? 'login' : 'oAuthLogin';
       const loginData = activatedData
         ? activatedData
