@@ -165,12 +165,15 @@ export function login({ email, password, activatedData }, type = 'local') {
         id => localBoardsIds.indexOf(id) < 0
       );
 
+      const SHORT_ID_MAX_LENGTH = 14;
+
       const apiBoards = await Promise.all(
         apiBoardsIds
           .map(async id => {
             let board = null;
             try {
-              board = await API.getBoard(id);
+              if (!(id.length < SHORT_ID_MAX_LENGTH))
+                board = await API.getBoard(id);
             } catch (e) {}
             return board;
           })
