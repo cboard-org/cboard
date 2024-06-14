@@ -19,6 +19,7 @@ import {
 } from '../../App/App.actions';
 import { getVoiceURI } from '../../../i18n';
 import { isCordova, isElectron } from '../../../cordova-util';
+import { isRemoteIdChecker } from '../../../helpers';
 
 export function loginSuccess(payload) {
   return dispatch => {
@@ -165,15 +166,12 @@ export function login({ email, password, activatedData }, type = 'local') {
         id => localBoardsIds.indexOf(id) < 0
       );
 
-      const SHORT_ID_MAX_LENGTH = 14;
-
       const apiBoards = await Promise.all(
         apiBoardsIds
           .map(async id => {
             let board = null;
             try {
-              if (!(id.length < SHORT_ID_MAX_LENGTH))
-                board = await API.getBoard(id);
+              if (isRemoteIdChecker(id)) board = await API.getBoard(id);
             } catch (e) {}
             return board;
           })

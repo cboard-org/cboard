@@ -282,7 +282,8 @@ export class BoardContainer extends Component {
         addNecessaryDefaultBoardsFor(homeBoard);
       boardExists = boards.find(b => b.id === homeBoard);
       if (!boardExists) {
-        boardExists = this.tryRemoteBoard(homeBoard);
+        if (isRemoteIdChecker(homeBoard))
+          boardExists = this.tryRemoteBoard(homeBoard);
         if (!boardExists) boardExists = boards.find(b => b.id !== '');
       }
     }
