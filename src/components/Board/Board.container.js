@@ -278,7 +278,7 @@ export class BoardContainer extends Component {
     if (!boardExists) {
       // try the root board
       const homeBoard = communicator.rootBoard;
-      if (ALL_DEFAULT_BOARDS.map({ id }.includes(homeBoard)))
+      if (ALL_DEFAULT_BOARDS.map(({ id }) => id).includes(homeBoard))
         addNecessaryDefaultBoardsFor(homeBoard);
       boardExists = boards.find(b => b.id === homeBoard);
       if (!boardExists) {
