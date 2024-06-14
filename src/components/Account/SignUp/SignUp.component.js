@@ -17,6 +17,7 @@ import validationSchema from './validationSchema';
 import { signUp } from './SignUp.actions';
 import messages from './SignUp.messages';
 import './SignUp.css';
+import PasswordTextField from '../../UI/FormItems/PasswordTextField';
 
 export class SignUp extends Component {
   static propTypes = {
@@ -114,18 +115,16 @@ export class SignUp extends Component {
                     error={errors.email}
                     onChange={handleChange}
                   />
-                  <TextField
-                    type="password"
-                    name="password"
-                    label={intl.formatMessage(messages.createYourPassword)}
+                  <PasswordTextField
                     error={errors.password}
+                    label={intl.formatMessage(messages.password)}
+                    name="password"
                     onChange={handleChange}
                   />
-                  <TextField
-                    type="password"
-                    name="passwordConfirm"
-                    label={intl.formatMessage(messages.confirmYourPassword)}
-                    error={errors.passwordConfirm}
+                  <PasswordTextField
+                    error={errors.confirmPassword}
+                    label={intl.formatMessage(messages.confirmPassword)}
+                    name="confirmPassword"
                     onChange={handleChange}
                   />
                   <FormControlLabel
