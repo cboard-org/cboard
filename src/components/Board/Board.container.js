@@ -47,7 +47,8 @@ import {
   downloadImages,
   createApiBoard,
   upsertApiBoard,
-  changeDefaultBoard
+  changeDefaultBoard,
+  addNecessaryDefaultBoardsFor
 } from './Board.actions';
 import {
   upsertCommunicator,
@@ -71,6 +72,7 @@ import {
   IS_BROWSING_FROM_APPLE_TOUCH,
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
+import { ALL_DEFAULT_BOARDS } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
 
 const ogv = require('ogv');
@@ -221,7 +223,8 @@ export class BoardContainer extends Component {
       changeBoard,
       userData,
       history,
-      getApiObjects
+      getApiObjects,
+      addNecessaryDefaultBoardsFor
       //downloadImages
     } = this.props;
 
@@ -274,9 +277,13 @@ export class BoardContainer extends Component {
 
     if (!boardExists) {
       // try the root board
-      boardExists = boards.find(b => b.id === communicator.rootBoard);
+      const homeBoard = communicator.rootBoard;
+      if (ALL_DEFAULT_BOARDS.map({ id }.includes(homeBoard)))
+        addNecessaryDefaultBoardsFor(homeBoard);
+      boardExists = boards.find(b => b.id === homeBoard);
       if (!boardExists) {
-        boardExists = boards.find(b => b.id !== '');
+        boardExists = this.tryRemoteBoard(homeBoard);
+        if (!boardExists) boardExists = boards.find(b => b.id !== '');
       }
     }
     const boardId = boardExists.id;
@@ -1783,7 +1790,8 @@ const mapDispatchToProps = {
   disableTour,
   createApiBoard,
   upsertApiBoard,
-  changeDefaultBoard
+  changeDefaultBoard,
+  addNecessaryDefaultBoardsFor
 };
 
 export default connect(
