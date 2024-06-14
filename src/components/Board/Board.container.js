@@ -72,7 +72,7 @@ import {
   IS_BROWSING_FROM_APPLE_TOUCH,
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
-import { ALL_DEFAULT_BOARDS } from '../../helpers';
+import { ALL_DEFAULT_BOARDS, isRemoteIdChecker } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
 
 const ogv = require('ogv');
@@ -884,8 +884,22 @@ export class BoardContainer extends Component {
     };
 
     if (tile.loadBoard) {
+      const loadBoardFinder = loadBoardSearched => {
+        const findBoardOnStore = boardId =>
+          this.props.boards.find(b => b.id === boardId);
+
+        const nextBoard = findBoardOnStore(loadBoardSearched);
+        if (nextBoard) return nextBoard;
+        if (
+          ALL_DEFAULT_BOARDS.map(({ id }) => id).includes(loadBoardSearched)
+        ) {
+          addNecessaryDefaultBoardsFor(loadBoardSearched);
+          const nextBoard = findBoardOnStore(loadBoardFinder);
+          if (nextBoard) return nextBoard;
+        }
+      };
       const nextBoard =
-        boards.find(b => b.id === tile.loadBoard) ||
+        loadBoardFinder(tile.loadBoard) ||
         // If the board id is invalid, try falling back to a board
         // with the right name.
         boards.find(b => b.name === tile.label);
