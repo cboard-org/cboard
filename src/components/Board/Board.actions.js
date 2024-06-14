@@ -165,6 +165,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
     const switchActiveBoard = homeBoardId => {
       if (homeBoardId) {
+        dispatch(addNecessaryDefaultBoardsFor(homeBoardId));
         const goTo = `/board/${homeBoardId}`;
 
         dispatch(switchBoard(homeBoardId));
