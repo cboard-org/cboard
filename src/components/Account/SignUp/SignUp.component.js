@@ -117,14 +117,14 @@ export class SignUp extends Component {
                   />
                   <PasswordTextField
                     error={errors.password}
-                    label={intl.formatMessage(messages.password)}
+                    label={intl.formatMessage(messages.createYourPassword)}
                     name="password"
                     onChange={handleChange}
                   />
                   <PasswordTextField
-                    error={errors.confirmPassword}
-                    label={intl.formatMessage(messages.confirmPassword)}
-                    name="confirmPassword"
+                    error={errors.passwordConfirm}
+                    label={intl.formatMessage(messages.confirmYourPassword)}
+                    name="passwordConfirm"
                     onChange={handleChange}
                   />
                   <FormControlLabel
