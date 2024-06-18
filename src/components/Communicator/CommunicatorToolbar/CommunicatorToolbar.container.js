@@ -13,8 +13,6 @@ import { showNotification } from '../../Notifications/Notifications.actions';
 import {
   importCommunicator,
   deleteCommunicator,
-  changeCommunicator,
-  upsertCommunicator,
   verifyAndUpsertCommunicator
 } from '../Communicator.actions';
 
@@ -36,16 +34,25 @@ class CommunicatorContainer extends React.Component {
   }
 
   editCommunicatorTitle = async name => {
-    const { currentCommunicator, verifyAndUpsertCommunicator } = this.props;
+    const {
+      currentCommunicator,
+      verifyAndUpsertCommunicator,
+      upsertApiCommunicator,
+      userData
+    } = this.props;
 
     const updatedCommunicatorData = {
       ...currentCommunicator,
       name
     };
-    try {
-      await verifyAndUpsertCommunicator(updatedCommunicatorData);
-    } catch (e) {
-      console.error('Error updating communicator title', e);
+
+    verifyAndUpsertCommunicator(updatedCommunicatorData);
+    if ('name' in userData && 'email' in userData) {
+      try {
+        await upsertApiCommunicator(updatedCommunicatorData);
+      } catch (err) {
+        console.error('Error upserting communicator', err);
+      }
     }
   };
 
@@ -103,8 +110,6 @@ const mapDispatchToProps = {
   importCommunicator,
   verifyAndUpsertCommunicator,
   deleteCommunicator,
-  changeCommunicator,
-  upsertCommunicator,
   showNotification,
   switchBoard,
   replaceBoard,
