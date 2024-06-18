@@ -6,8 +6,7 @@ import shortid from 'shortid';
 
 import { addBoards, changeBoard } from '../../Board/Board.actions';
 import {
-  upsertCommunicator,
-  changeCommunicator,
+  upsertApiCommunicator,
   verifyAndUpsertCommunicator
 } from '../../Communicator/Communicator.actions';
 import { switchBoard } from '../../Board/Board.actions';
@@ -122,7 +121,12 @@ export class ImportContainer extends PureComponent {
   }
 
   async addBoardsToCommunicator(boards) {
-    const { currentCommunicator, verifyAndUpsertCommunicator } = this.props;
+    const {
+      currentCommunicator,
+      verifyAndUpsertCommunicator,
+      userData,
+      upsertApiCommunicator
+    } = this.props;
 
     const communicatorBoards = new Set(
       currentCommunicator.boards.concat(boards.map(b => b.id))
@@ -132,10 +136,14 @@ export class ImportContainer extends PureComponent {
       boards: Array.from(communicatorBoards)
     };
 
-    try {
-      await verifyAndUpsertCommunicator(communicatorModified);
-    } catch (e) {
-      console.error('Error upserting communicator', e);
+    verifyAndUpsertCommunicator(communicatorModified);
+
+    if ('name' in userData && 'email' in userData) {
+      try {
+        await upsertApiCommunicator(communicatorModified);
+      } catch (err) {
+        console.error('Error upserting communicator', err);
+      }
     }
   }
 
@@ -225,10 +233,9 @@ const mapDispatchToProps = {
   addBoards,
   changeBoard,
   switchBoard,
-  upsertCommunicator,
-  changeCommunicator,
   showNotification,
-  verifyAndUpsertCommunicator
+  verifyAndUpsertCommunicator,
+  upsertApiCommunicator
 };
 
 export default connect(
