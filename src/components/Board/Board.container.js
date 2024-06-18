@@ -1681,11 +1681,6 @@ const mapStateToProps = ({
   const currentCommunicator = communicator.communicators.find(
     communicator => communicator.id === activeCommunicatorId
   );
-  console.log(
-    'vuelve a definir mapsateToProps',
-    activeCommunicatorId,
-    currentCommunicator
-  );
   const activeBoardId = board.activeBoardId;
   const emptyVoiceAlert =
     speech.voices.length > 0 && speech.options.voiceURI !== EMPTY_VOICES
