@@ -109,6 +109,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.malayalam',
     defaultMessage: 'Malayalam'
   },
+  nb: {
+    id: 'cboard.components.Settings.Language.norwegian',
+    defaultMessage: 'Norwegian'
+  },
   ne: {
     id: 'cboard.components.Settings.Language.nepali',
     defaultMessage: 'Nepali'
