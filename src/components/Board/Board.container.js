@@ -508,9 +508,7 @@ export class BoardContainer extends Component {
         if (communicator.email !== userData.email) {
           const communicatorData = {
             ...communicator,
-            boards: [
-              boardData.id === 'root' ? ['root'] : ['root', boardData.id]
-            ],
+            boards: boardData.id === 'root' ? ['root'] : ['root', boardData.id],
             rootBoard: 'root'
           };
           verifyAndUpsertCommunicator(communicatorData);
