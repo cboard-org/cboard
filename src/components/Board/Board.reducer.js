@@ -51,7 +51,8 @@ const initialState = {
   images: [],
   isFixed: false,
   isLiveMode: false,
-  improvedPhrase: ''
+  improvedPhrase: '',
+  unnecesaryDefaultBoardsRemoved: false
 };
 
 function reconcileBoards(localBoard, remoteBoard) {
@@ -253,7 +254,8 @@ function boardReducer(state = initialState, action) {
     case CLEAN_ALL_BOARDS:
       return {
         ...state,
-        boards: []
+        boards: [],
+        unnecesaryDefaultBoardsRemoved: true
       };
     case CREATE_TILE:
       return {
