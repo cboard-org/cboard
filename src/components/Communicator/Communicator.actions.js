@@ -188,8 +188,15 @@ export function verifyAndUpsertCommunicator(
       app: { userData }
     } = getState();
 
-    if (!communicator) return;
-    const updatedCommunicatorData = { ...communicator };
+    const getActiveCommunicator = getState => {
+      getState().communicator.communicators.find(
+        c => c.id === getState().communicator.activeCommunicatorId
+      );
+    };
+
+    const updatedCommunicatorData = communicator.hasOwnProperty('id')
+      ? { ...communicator }
+      : { ...getActiveCommunicator(getState) };
 
     if (
       'name' in userData &&
@@ -214,7 +221,7 @@ export function verifyAndUpsertCommunicator(
     if (needToChangeCommunicator)
       dispatch(changeCommunicator(updatedCommunicatorData.id));
 
-    return;
+    return updatedCommunicatorData;
   };
 }
 
