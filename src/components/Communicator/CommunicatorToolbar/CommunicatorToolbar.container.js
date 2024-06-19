@@ -46,10 +46,13 @@ class CommunicatorContainer extends React.Component {
       name
     };
 
-    verifyAndUpsertCommunicator(updatedCommunicatorData);
+    const upsertedCommunicator = verifyAndUpsertCommunicator(
+      updatedCommunicatorData
+    );
+
     if ('name' in userData && 'email' in userData) {
       try {
-        await upsertApiCommunicator(updatedCommunicatorData);
+        await upsertApiCommunicator(upsertedCommunicator);
       } catch (err) {
         console.error('Error upserting communicator', err);
       }

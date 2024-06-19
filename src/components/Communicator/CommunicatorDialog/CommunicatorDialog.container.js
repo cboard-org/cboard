@@ -423,10 +423,14 @@ class CommunicatorDialogContainer extends React.Component {
       ...currentCommunicator,
       boards: boards.map(cb => cb.id)
     };
-    verifyAndUpsertCommunicator(updatedCommunicatorData);
+
+    const upsertedCommunicator = verifyAndUpsertCommunicator(
+      updatedCommunicatorData
+    );
+
     if ('name' in userData && 'email' in userData) {
       try {
-        await upsertApiCommunicator(updatedCommunicatorData);
+        await upsertApiCommunicator(upsertedCommunicator);
       } catch (err) {
         console.error('Error upserting communicator', err);
       }
@@ -480,10 +484,12 @@ class CommunicatorDialogContainer extends React.Component {
       ...currentCommunicator,
       rootBoard: board.id
     };
-    verifyAndUpsertCommunicator(updatedCommunicatorData);
+    const upsertedCommunicator = verifyAndUpsertCommunicator(
+      updatedCommunicatorData
+    );
     try {
       if ('name' in userData && 'email' in userData) {
-        await upsertApiCommunicator(updatedCommunicatorData);
+        await upsertApiCommunicator(upsertedCommunicator);
       }
     } catch (err) {
       console.error('Error upserting communicator', err);
@@ -520,12 +526,13 @@ class CommunicatorDialogContainer extends React.Component {
           boards: comm.boards.filter(b => b !== board.id)
         };
 
-        const changeCommunicator = false;
-        verifyAndUpsertCommunicator(filteredCommunicator, changeCommunicator);
+        const upsertedCommunicator = verifyAndUpsertCommunicator(
+          filteredCommunicator
+        );
 
         if ('name' in userData && 'email' in userData) {
           try {
-            await upsertApiCommunicator(filteredCommunicator);
+            await upsertApiCommunicator(upsertedCommunicator);
           } catch (err) {
             console.error('Error upserting communicator', err);
           }

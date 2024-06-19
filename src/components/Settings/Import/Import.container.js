@@ -136,11 +136,13 @@ export class ImportContainer extends PureComponent {
       boards: Array.from(communicatorBoards)
     };
 
-    verifyAndUpsertCommunicator(communicatorModified);
+    const upsertedCommunicator = verifyAndUpsertCommunicator(
+      communicatorModified
+    );
 
     if ('name' in userData && 'email' in userData) {
       try {
-        await upsertApiCommunicator(communicatorModified);
+        await upsertApiCommunicator(upsertedCommunicator);
       } catch (err) {
         console.error('Error upserting communicator', err);
       }
