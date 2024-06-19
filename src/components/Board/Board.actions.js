@@ -40,7 +40,7 @@ import {
   DOWNLOAD_IMAGE_SUCCESS,
   DOWNLOAD_IMAGE_FAILURE,
   UNMARK_SHOULD_CREATE_API_BOARD,
-  REMOTE_BOARD_ID_LENGTH
+  SHORT_ID_MAX_LENGTH
 } from './Board.constants';
 
 import API from '../../api';
@@ -762,7 +762,7 @@ export function updateApiMarkedBoards() {
           throw new Error(e.message);
         }
       }
-      if (board.id.length < REMOTE_BOARD_ID_LENGTH && board.shouldCreateBoard) {
+      if (board.id.length < SHORT_ID_MAX_LENGTH && board.shouldCreateBoard) {
         const state = getState();
 
         // TODO - translate name using intl in a redux action

@@ -38,7 +38,7 @@ import {
   DOWNLOAD_IMAGE_SUCCESS,
   DOWNLOAD_IMAGE_FAILURE,
   UNMARK_SHOULD_CREATE_API_BOARD,
-  REMOTE_BOARD_ID_LENGTH
+  SHORT_ID_MAX_LENGTH
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -326,7 +326,7 @@ function boardReducer(state = initialState, action) {
               }
 
               const shouldCreateBoard =
-                creadBoards[i].id.length < REMOTE_BOARD_ID_LENGTH &&
+                creadBoards[i].id.length < SHORT_ID_MAX_LENGTH &&
                 state.boards.unnecessaryDefaultBoardsRemoved;
               if (shouldCreateBoard) {
                 creadBoards[i].shouldCreateBoard = true;
