@@ -62,7 +62,7 @@ import history from './../../history';
 import { improvePhraseAbortController } from '../../api/api';
 import shortid from 'shortid';
 
-const BOARDS_PAGE_LIMIT = 100;
+const BOARDS_PAGE_LIMIT = 1000;
 
 export function importBoards(boards) {
   return {
