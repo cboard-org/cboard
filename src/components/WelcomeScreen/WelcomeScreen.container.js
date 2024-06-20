@@ -28,6 +28,10 @@ import {
   manageKeyboardEvents
 } from '../../cordova-util';
 
+const socialBtnStyle = {
+  'border-radius': '15px'
+};
+
 export class WelcomeScreen extends Component {
   state = {
     activeView: '',
@@ -196,9 +200,6 @@ export class WelcomeScreen extends Component {
               <CloseIcon />
             </IconButton>
           )}
-          <div className="WelcomeScreen__content">
-            <Information heading={heading} text={text} />
-          </div>
           <div className="WelcomeScreen__logo">
             <CboardLogo />
           </div>
@@ -222,6 +223,7 @@ export class WelcomeScreen extends Component {
             <div className="WelcomeScreen__button WelcomeScreen__button">
               {!isElectron() && (
                 <GoogleLoginButton
+                  style={socialBtnStyle}
                   className="WelcomeScreen__button WelcomeScreen__button--google"
                   onClick={this.handleGoogleLoginClick}
                 >
@@ -231,6 +233,7 @@ export class WelcomeScreen extends Component {
 
               {!isElectron() && (
                 <FacebookLoginButton
+                  style={socialBtnStyle}
                   className="WelcomeScreen__button WelcomeScreen__button--facebook"
                   onClick={this.handleFacebookLoginClick}
                 >
@@ -240,6 +243,7 @@ export class WelcomeScreen extends Component {
 
               {!isAndroid() && !isElectron() && (
                 <AppleLoginButton
+                  style={socialBtnStyle}
                   className="WelcomeScreen__button WelcomeScreen__button--google"
                   onClick={this.handleAppleLoginClick}
                 >
@@ -252,7 +256,11 @@ export class WelcomeScreen extends Component {
               <Button
                 className="WelcomeScreen__button WelcomeScreen__button--skip"
                 onClick={finishFirstVisit}
-                style={{ color: '#fff', margin: '1em auto 0 auto' }}
+                style={{
+                  color: '#fff',
+                  margin: '1em auto 0 auto',
+                  'text-shadow': '0px 0px 6px black'
+                }}
               >
                 <FormattedMessage {...messages.skipForNow} />
               </Button>

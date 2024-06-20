@@ -7,11 +7,10 @@ import './CboardLogo.css';
 
 // Cordova path cannot be absolute
 const image = isCordova()
-  ? './images/logo_no_words.svg'
-  : '/images/logo_no_words.svg';
+  ? './images/logo-white.svg'
+  : '/images/logo-white.svg';
 
 const CboardLogo = () => {
-
   const [showLogo, setShowLogo] = useState(false);
 
   useEffect(() => {
@@ -28,6 +27,6 @@ const CboardLogo = () => {
       <img className="CboardLogo" src={image} alt="Cboard Logo" />
     </CSSTransition>
   );
-}
+};
 
 export default CboardLogo;
