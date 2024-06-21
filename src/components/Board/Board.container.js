@@ -1217,7 +1217,7 @@ export class BoardContainer extends Component {
       const copiedBoard = await this.createBoardsRecursively(
         this.state.copyPublicBoard
       );
-      if (!!copiedBoard) {
+      if (!copiedBoard?.id) {
         throw new Error('Board not copied correctly');
       }
       switchBoard(copiedBoard.id);
