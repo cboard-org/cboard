@@ -71,7 +71,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const BoardPagiation = ({ pagesCount, currentPage, handleChange }) => {
+const BoardPagination = ({ pagesCount, currentPage, handleChange }) => {
   return (
     <div className={styles.pagination}>
       <Pagination
@@ -171,7 +171,7 @@ const LoadBoardEditor = () => {
           </Toolbar>
         </AppBar>
         <div className={styles.boardsListContainer}>
-          <BoardPagiation
+          <BoardPagination
             handleChange={handleChangeOnPage}
             pagesCount={totalPages}
             currentPage={currentPage}
@@ -190,7 +190,7 @@ const LoadBoardEditor = () => {
             </Alert>
           )}
           {!loading && !error && <BoardsList />}
-          <BoardPagiation
+          <BoardPagination
             handleChange={handleChangeOnPage}
             pagesCount={totalPages}
             currentPage={currentPage}
