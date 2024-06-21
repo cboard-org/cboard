@@ -333,11 +333,11 @@ class CommunicatorDialogContainer extends React.Component {
     }
 
     //return condition
-    board.tiles.forEach(async tile => {
+    for (const tile of board.tiles) {
       if (tile.loadBoard && !tile.linkedBoard) {
         try {
           const nextBoard = await API.getBoard(tile.loadBoard);
-          this.createBoardsRecursively(nextBoard, records);
+          await this.createBoardsRecursively(nextBoard, records);
         } catch (err) {
           if (err.response.status === 404) {
             //look for this board in available boards
@@ -345,12 +345,12 @@ class CommunicatorDialogContainer extends React.Component {
               b => b.id === tile.loadBoard
             );
             if (localBoard) {
-              this.createBoardsRecursively(localBoard, records);
+              await this.createBoardsRecursively(localBoard, records);
             }
           }
         }
       }
-    });
+    }
   }
 
   updateBoardReferences(board, newBoard, records) {
