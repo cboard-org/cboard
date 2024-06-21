@@ -1212,9 +1212,23 @@ export class BoardContainer extends Component {
   }
 
   handleCopyRemoteBoard = async () => {
-    const { intl, showNotification } = this.props;
+    const { intl, showNotification, history, switchBoard } = this.props;
     try {
-      await this.createBoardsRecursively(this.state.copyPublicBoard);
+      const copiedBoard = await this.createBoardsRecursively(
+        this.state.copyPublicBoard
+      );
+      if (!!copiedBoard) {
+        throw new Error('Board not copied correctly');
+      }
+      switchBoard(copiedBoard.id);
+      history.replace(`/board/${copiedBoard.id}`, []);
+      const translatedBoard = this.translateBoard(copiedBoard);
+      this.setState({
+        translatedBoard,
+        isSaving: false,
+        copyPublicBoard: false,
+        blockedPrivateBoard: false
+      });
       showNotification(intl.formatMessage(messages.boardCopiedSuccessfully));
     } catch (err) {
       console.log(err.message);
@@ -1225,11 +1239,9 @@ export class BoardContainer extends Component {
   async createBoardsRecursively(board, records) {
     const {
       createBoard,
-      switchBoard,
       addBoardCommunicator,
       upsertCommunicator,
       changeCommunicator,
-      history,
       communicator,
       userData,
       updateApiObjectsNoChild,
@@ -1239,13 +1251,13 @@ export class BoardContainer extends Component {
 
     //prevent shit
     if (!board) {
-      return;
+      return null;
     }
     if (records) {
       //get the list of next boards in records
       let nextBoardsRecords = records.map(entry => entry.next);
       if (nextBoardsRecords.includes(board.id)) {
-        return;
+        return null;
       }
     }
 
@@ -1273,6 +1285,13 @@ export class BoardContainer extends Component {
     if (!records) {
       addBoardCommunicator(newBoard.id);
     }
+
+    if (!records) {
+      records = [{ prev: board.id, next: newBoard.id }];
+    } else {
+      records.push({ prev: board.id, next: newBoard.id });
+    }
+    this.updateBoardReferences(board, newBoard, records);
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
@@ -1306,24 +1325,9 @@ export class BoardContainer extends Component {
         console.log(err.message);
       }
     }
-    if (!records) {
-      records = [{ prev: board.id, next: newBoard.id }];
-      switchBoard(newBoard.id);
-      history.replace(`/board/${newBoard.id}`, []);
-      const translatedBoard = this.translateBoard(newBoard);
-      this.setState({
-        translatedBoard,
-        isSaving: false,
-        copyPublicBoard: false,
-        blockedPrivateBoard: false
-      });
-    } else {
-      records.push({ prev: board.id, next: newBoard.id });
-    }
-    this.updateBoardReferences(board, newBoard, records);
 
     if (board.tiles.length < 1) {
-      return;
+      return newBoard;
     }
 
     //return condition
@@ -1343,6 +1347,7 @@ export class BoardContainer extends Component {
         }
       }
     }
+    return newBoard;
   }
 
   updateBoardReferences(board, newBoard, records) {
