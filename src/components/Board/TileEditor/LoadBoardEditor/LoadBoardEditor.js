@@ -12,8 +12,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import { InputBase } from '@material-ui/core';
+import { CircularProgress, InputBase } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
+import useAllBoardsFetcher from './useAllBoardsFetcher';
+import styles from './LoadBoardEditor.module.css';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -71,8 +74,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const LoadBoardEditor = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const { allBoards, loading, error, fetchBoards } = useAllBoardsFetcher();
 
   const handleClickOpen = () => {
+    fetchBoards();
     setOpen(true);
   };
 
@@ -126,6 +131,19 @@ const LoadBoardEditor = () => {
             </Button>
           </Toolbar>
         </AppBar>
+        {loading && (
+          <div className={styles.loaderContainer}>
+            <CircularProgress />
+          </div>
+        )}
+        {error && (
+          <Alert severity="error">
+            <AlertTitle>Error getting all your folders</AlertTitle>
+            <Button color="primary" onClick={fetchBoards}>
+              Try Again
+            </Button>
+          </Alert>
+        )}
         <List>
           <ListItem button>
             <ListItemText primary="Phone ringtone" secondary="Titania" />
