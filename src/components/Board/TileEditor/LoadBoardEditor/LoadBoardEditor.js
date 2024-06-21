@@ -101,9 +101,12 @@ const LoadBoardEditor = () => {
     return (
       <List className={styles.boardsList}>
         {allBoards?.map(board => (
-          <ListItem button key={board.id}>
-            <ListItemText primary={board.name} secondary="Titania" />
-          </ListItem>
+          <Fragment key={board.id}>
+            <ListItem button>
+              <ListItemText primary={board.name} secondary="Titania" />
+            </ListItem>
+            <Divider />
+          </Fragment>
         ))}
       </List>
     );
