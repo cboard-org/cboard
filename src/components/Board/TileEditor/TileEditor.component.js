@@ -42,6 +42,7 @@ import {
 } from '../../../cordova-util';
 import { convertImageUrlToCatchable } from '../../../helpers';
 import PremiumFeature from '../../PremiumFeature';
+import LoadBoardEditor from './LoadBoardEditor/LoadBoardEditor';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -465,7 +466,7 @@ export class TileEditor extends Component {
     );
 
     const selectBoardElement = (
-      <div>
+      <div style={{ marginTop: '16px' }}>
         <FormControl fullWidth>
           <InputLabel id="boards-input-label">
             {intl.formatMessage(messages.existingBoards)}
@@ -634,6 +635,9 @@ export class TileEditor extends Component {
                           </RadioGroup>
                         </FormControl>
                       </div>
+                    )}
+                    {this.currentTileProp('loadBoard')?.length > 0 && (
+                      <LoadBoardEditor />
                     )}
                     {this.currentTileProp('type') === 'folder' &&
                       selectBoardElement}
