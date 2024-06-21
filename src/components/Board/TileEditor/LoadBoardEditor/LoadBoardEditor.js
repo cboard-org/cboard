@@ -76,6 +76,15 @@ const LoadBoardEditor = () => {
   const [open, setOpen] = React.useState(false);
   const { allBoards, loading, error, fetchBoards } = useAllBoardsFetcher();
 
+  const BoardsList = () => (
+    <List>
+      {allBoards?.map(board => (
+        <ListItem button key={board.id}>
+          <ListItemText primary={board.name} secondary="Titania" />
+        </ListItem>
+      ))}
+    </List>
+  );
   const handleClickOpen = () => {
     fetchBoards();
     setOpen(true);
@@ -84,6 +93,7 @@ const LoadBoardEditor = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <>
       <Button
@@ -144,18 +154,7 @@ const LoadBoardEditor = () => {
             </Button>
           </Alert>
         )}
-        <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
-            />
-          </ListItem>
-        </List>
+        {!loading && !error && <BoardsList />}
       </Dialog>
     </>
   );
