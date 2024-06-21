@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -16,11 +16,11 @@ import { CircularProgress, InputBase } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
 import useAllBoardsFetcher from './useAllBoardsFetcher';
 import styles from './LoadBoardEditor.module.css';
-import { Alert, AlertTitle } from '@material-ui/lab';
+import { Alert, AlertTitle, Pagination } from '@material-ui/lab';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
-    position: 'relative'
+    position: 'sticky'
   },
   title: {
     marginLeft: theme.spacing(2),
@@ -76,15 +76,31 @@ const LoadBoardEditor = () => {
   const [open, setOpen] = React.useState(false);
   const { allBoards, loading, error, fetchBoards } = useAllBoardsFetcher();
 
-  const BoardsList = () => (
-    <List>
-      {allBoards?.map(board => (
-        <ListItem button key={board.id}>
-          <ListItemText primary={board.name} secondary="Titania" />
-        </ListItem>
-      ))}
-    </List>
-  );
+  const BoardsList = () => {
+    const BoardPagiation = () => (
+      <Pagination
+        className={styles.pagination}
+        count={10}
+        color="primary"
+        size="large"
+      />
+    );
+
+    return (
+      <div className={styles.boardsListContainer}>
+        <BoardPagiation />
+        <List className={styles.boardsList}>
+          {allBoards?.map(board => (
+            <ListItem button key={board.id}>
+              <ListItemText primary={board.name} secondary="Titania" />
+            </ListItem>
+          ))}
+        </List>
+        <BoardPagiation />
+      </div>
+    );
+  };
+
   const handleClickOpen = () => {
     fetchBoards();
     setOpen(true);
