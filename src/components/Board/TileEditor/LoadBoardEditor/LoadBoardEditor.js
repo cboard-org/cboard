@@ -71,43 +71,56 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+const BoardPagiation = ({ pagesCount, currentPage, handleChange }) => {
+  return (
+    <div className={styles.pagination}>
+      <Pagination
+        count={pagesCount}
+        color="primary"
+        size="large"
+        page={currentPage}
+        onChange={handleChange}
+      />
+    </div>
+  );
+};
+
 const LoadBoardEditor = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const { allBoards, loading, error, fetchBoards } = useAllBoardsFetcher();
+  const {
+    allBoards,
+    totalPages,
+    loading,
+    error,
+    fetchBoards
+  } = useAllBoardsFetcher();
+  const [currentPage, setCurrentPage] = React.useState(1);
 
   const BoardsList = () => {
-    const BoardPagiation = () => (
-      <Pagination
-        className={styles.pagination}
-        count={10}
-        color="primary"
-        size="large"
-      />
-    );
-
     return (
-      <div className={styles.boardsListContainer}>
-        <BoardPagiation />
-        <List className={styles.boardsList}>
-          {allBoards?.map(board => (
-            <ListItem button key={board.id}>
-              <ListItemText primary={board.name} secondary="Titania" />
-            </ListItem>
-          ))}
-        </List>
-        <BoardPagiation />
-      </div>
+      <List className={styles.boardsList}>
+        {allBoards?.map(board => (
+          <ListItem button key={board.id}>
+            <ListItemText primary={board.name} secondary="Titania" />
+          </ListItem>
+        ))}
+      </List>
     );
   };
 
   const handleClickOpen = () => {
-    fetchBoards();
+    fetchBoards({});
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleChangeOnPage = (event, page) => {
+    setCurrentPage(page);
+    fetchBoards({ page });
   };
 
   return (
@@ -157,20 +170,32 @@ const LoadBoardEditor = () => {
             </Button>
           </Toolbar>
         </AppBar>
-        {loading && (
-          <div className={styles.loaderContainer}>
-            <CircularProgress />
-          </div>
-        )}
-        {error && (
-          <Alert severity="error">
-            <AlertTitle>Error getting all your folders</AlertTitle>
-            <Button color="primary" onClick={fetchBoards}>
-              Try Again
-            </Button>
-          </Alert>
-        )}
-        {!loading && !error && <BoardsList />}
+        <div className={styles.boardsListContainer}>
+          <BoardPagiation
+            handleChange={handleChangeOnPage}
+            pagesCount={totalPages}
+            currentPage={currentPage}
+          />
+          {loading && (
+            <div className={styles.loaderContainer}>
+              <CircularProgress />
+            </div>
+          )}
+          {error && (
+            <Alert severity="error">
+              <AlertTitle>Error getting all your folders</AlertTitle>
+              <Button color="primary" onClick={fetchBoards}>
+                Try Again
+              </Button>
+            </Alert>
+          )}
+          {!loading && !error && <BoardsList />}
+          <BoardPagiation
+            handleChange={handleChangeOnPage}
+            pagesCount={totalPages}
+            currentPage={currentPage}
+          />
+        </div>
       </Dialog>
     </>
   );
