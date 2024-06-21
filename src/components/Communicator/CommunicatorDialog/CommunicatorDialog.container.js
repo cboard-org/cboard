@@ -285,6 +285,13 @@ class CommunicatorDialogContainer extends React.Component {
       addBoardCommunicator(newBoard.id);
     }
 
+    if (!records) {
+      records = [{ prev: board.id, next: newBoard.id }];
+    } else {
+      records.push({ prev: board.id, next: newBoard.id });
+    }
+    this.updateBoardReferences(board, newBoard, records);
+
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       let createCommunicator = false;
@@ -321,12 +328,6 @@ class CommunicatorDialogContainer extends React.Component {
         });
       }
     }
-    if (!records) {
-      records = [{ prev: board.id, next: newBoard.id }];
-    } else {
-      records.push({ prev: board.id, next: newBoard.id });
-    }
-    this.updateBoardReferences(board, newBoard, records);
 
     if (board.tiles.length < 1) {
       return;
