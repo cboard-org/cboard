@@ -8,6 +8,10 @@ const FONTS_FAMILIES_LIST = [
     fontFamily: ['Roboto', 'Helvetica', 'Arial', 'sans-serif'].join(',')
   },
   {
+    fontName: 'Montserrat',
+    fontFamily: ['Montserrat', 'Helvetica', 'Arial', 'sans-serif'].join(',')
+  },
+  {
     fontName: 'Chilanka',
     fontFamily: ['Chilanka', 'cursive'].join(',')
   },
