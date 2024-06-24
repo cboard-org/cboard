@@ -252,11 +252,9 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
                   input: classes.inputInput
                 }}
                 inputProps={{ 'aria-label': 'search' }}
+                onChange={onSearchChange}
               />
             </div>
-            <Button autoFocus color="inherit" onClick={handleClose}>
-              save
-            </Button>
           </Toolbar>
         </AppBar>
         <div className={styles.boardsListContainer}>
