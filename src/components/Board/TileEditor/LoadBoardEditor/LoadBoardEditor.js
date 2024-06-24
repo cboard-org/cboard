@@ -239,6 +239,7 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
           color="primary"
           onClick={handleClickOpen}
           className={styles.searchButton}
+          style={{ marginTop: '8px' }}
         >
           {intl.formatMessage(messages.searchFolder)}
         </Button>
