@@ -14,7 +14,7 @@ const useBoardsFetcher = () => {
       setError(null);
       const response = await API.getMyBoards({
         limit: LIMIT,
-        sort: '-createdAt',
+        sort: 'name',
         page: page
       });
       setPageBoards(response.data);
