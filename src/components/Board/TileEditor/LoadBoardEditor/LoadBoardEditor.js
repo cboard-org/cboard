@@ -97,8 +97,8 @@ const BoardPagination = ({ pagesCount, currentPage, handleChange }) => {
   );
 };
 
-const BoardInfoContent = ({ intl, allBoards, selectedBoardId }) => {
-  const board = allBoards.find(({ id }) => id === selectedBoardId);
+const BoardInfoContent = ({ intl, pageBoards, selectedBoardId }) => {
+  const board = pageBoards.find(({ id }) => id === selectedBoardId);
   const boardUrl =
     window.location.origin +
     '/' +
@@ -144,11 +144,11 @@ const BoardInfoContent = ({ intl, allBoards, selectedBoardId }) => {
   );
 };
 
-const LoadBoardEditor = ({ intl }) => {
+const LoadBoardEditor = ({ intl, loadBoard, onLoadBoardChange }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const {
-    allBoards,
+    pageBoards,
     totalPages,
     loading,
     error,
@@ -159,7 +159,7 @@ const LoadBoardEditor = ({ intl }) => {
   const BoardsList = ({ onItemClick }) => {
     return (
       <List className={styles.boardsList}>
-        {allBoards?.map(({ id, name }) => (
+        {pageBoards?.map(({ id, name }) => (
           <Fragment key={id}>
             <ListItem button onClick={() => onItemClick(id)}>
               <ListItemText primary={name} secondary="Titania" />
@@ -280,7 +280,7 @@ const LoadBoardEditor = ({ intl }) => {
         </DialogTitle>
         <BoardInfoContent
           intl={intl}
-          allBoards={allBoards}
+          pageBoards={pageBoards}
           selectedBoardId={selectedBoardId}
         />
         <DialogActions>

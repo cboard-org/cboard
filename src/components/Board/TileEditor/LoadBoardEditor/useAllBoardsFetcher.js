@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import API from '../../../../api';
 
-const useAllBoardsFetcher = () => {
-  const [allBoards, setBoards] = useState(null);
+const useBoardsFetcher = () => {
+  const [pageBoards, setPageBoards] = useState(null);
   const [totalPages, setTotalBoards] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,7 +17,7 @@ const useAllBoardsFetcher = () => {
         sort: '-createdAt',
         page: page
       });
-      setBoards(response.data);
+      setPageBoards(response.data);
       const totalPages = response.total / LIMIT;
       setTotalBoards(totalPages);
       setLoading(false);
@@ -27,7 +27,7 @@ const useAllBoardsFetcher = () => {
     }
   };
 
-  return { fetchBoards, allBoards, totalPages, loading, error };
+  return { fetchBoards, pageBoards, totalPages, loading, error };
 };
 
-export default useAllBoardsFetcher;
+export default useBoardsFetcher;
