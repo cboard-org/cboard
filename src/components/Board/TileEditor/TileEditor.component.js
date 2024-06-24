@@ -637,7 +637,7 @@ export class TileEditor extends Component {
                       </div>
                     )}
                     {this.currentTileProp('loadBoard')?.length > 0 && (
-                      <LoadBoardEditor />
+                      <LoadBoardEditor intl={intl} />
                     )}
                     {this.currentTileProp('type') === 'folder' &&
                       selectBoardElement}

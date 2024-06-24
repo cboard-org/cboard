@@ -12,11 +12,23 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import { CircularProgress, InputBase } from '@material-ui/core';
-import { Search as SearchIcon } from '@material-ui/icons';
+import {
+  CircularProgress,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  InputBase
+} from '@material-ui/core';
+import { Search as SearchIcon, Visibility } from '@material-ui/icons';
 import useAllBoardsFetcher from './useAllBoardsFetcher';
 import styles from './LoadBoardEditor.module.css';
 import { Alert, AlertTitle, Pagination } from '@material-ui/lab';
+import { intlShape } from 'react-intl';
+import communicatorMessages from '../../../Communicator/CommunicatorDialog/CommunicatorDialog.messages';
+import messages from './LoadBoardEditor.messages';
+import moment from 'moment';
+import { isCordova } from '../../../../cordova-util';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -85,7 +97,54 @@ const BoardPagination = ({ pagesCount, currentPage, handleChange }) => {
   );
 };
 
-const LoadBoardEditor = () => {
+const BoardInfoContent = ({ intl, allBoards, selectedBoardId }) => {
+  const board = allBoards.find(({ id }) => id === selectedBoardId);
+  const boardUrl =
+    window.location.origin +
+    '/' +
+    window.location.pathname.split('/')[1] +
+    '/' +
+    board.id;
+
+  return (
+    <DialogContent>
+      <DialogContentText>
+        <Typography variant="body1" gutterBottom>
+          <b>{intl.formatMessage(communicatorMessages.boardInfoName)}:</b>{' '}
+          {board.name}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          <b>{intl.formatMessage(communicatorMessages.boardDescription)}:</b>{' '}
+          {board.description}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          <b>{intl.formatMessage(communicatorMessages.boardInfoDate)}:</b>{' '}
+          {moment(board.lastEdited).format('DD/MM/YYYY')}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          <b>{intl.formatMessage(communicatorMessages.boardInfoTiles)}:</b>{' '}
+          {board.tiles.length}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          <b>{intl.formatMessage(communicatorMessages.boardInfoId)}:</b>{' '}
+          {board.id}
+        </Typography>
+        {!isCordova() && (
+          <Button
+            variant="outlined"
+            target="_blank"
+            href={boardUrl}
+            startIcon={<Visibility />}
+          >
+            {intl.formatMessage(messages.openBoardInNewTab)}
+          </Button>
+        )}
+      </DialogContentText>
+    </DialogContent>
+  );
+};
+
+const LoadBoardEditor = ({ intl }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const {
@@ -97,13 +156,13 @@ const LoadBoardEditor = () => {
   } = useAllBoardsFetcher();
   const [currentPage, setCurrentPage] = React.useState(1);
 
-  const BoardsList = () => {
+  const BoardsList = ({ onItemClick }) => {
     return (
       <List className={styles.boardsList}>
-        {allBoards?.map(board => (
-          <Fragment key={board.id}>
-            <ListItem button>
-              <ListItemText primary={board.name} secondary="Titania" />
+        {allBoards?.map(({ id, name }) => (
+          <Fragment key={id}>
+            <ListItem button onClick={() => onItemClick(id)}>
+              <ListItemText primary={name} secondary="Titania" />
             </ListItem>
             <Divider />
           </Fragment>
@@ -124,6 +183,16 @@ const LoadBoardEditor = () => {
   const handleChangeOnPage = (event, page) => {
     setCurrentPage(page);
     fetchBoards({ page });
+  };
+
+  const [openConfirmationDialog, setOpenConfirmationDialog] = React.useState(
+    false
+  );
+  const [selectedBoardId, setSelectedBoardId] = React.useState(null);
+
+  const handleOnItemClick = boardId => {
+    setSelectedBoardId(boardId);
+    setOpenConfirmationDialog(true);
   };
 
   return (
@@ -192,7 +261,7 @@ const LoadBoardEditor = () => {
               </Button>
             </Alert>
           )}
-          {!loading && !error && <BoardsList />}
+          {!loading && !error && <BoardsList onItemClick={handleOnItemClick} />}
           <BoardPagination
             handleChange={handleChangeOnPage}
             pagesCount={totalPages}
@@ -200,8 +269,41 @@ const LoadBoardEditor = () => {
           />
         </div>
       </Dialog>
+      <Dialog
+        open={openConfirmationDialog}
+        onClose={() => setOpenConfirmationDialog(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle>
+          {intl.formatMessage(messages.confirmationTitle)}
+        </DialogTitle>
+        <BoardInfoContent
+          intl={intl}
+          allBoards={allBoards}
+          selectedBoardId={selectedBoardId}
+        />
+        <DialogActions>
+          <Button
+            color="primary"
+            onClick={() => setOpenConfirmationDialog(false)}
+          >
+            {intl.formatMessage(messages.cancel)}
+          </Button>
+          <Button
+            color="primary"
+            onClick={() => setOpenConfirmationDialog(false)}
+          >
+            {intl.formatMessage(messages.accept)}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
+};
+
+LoadBoardEditor.propTypes = {
+  intl: intlShape
 };
 
 export default LoadBoardEditor;
