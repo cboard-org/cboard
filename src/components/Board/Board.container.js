@@ -1706,6 +1706,7 @@ export class BoardContainer extends Component {
               this.props.communicator.boards.includes(board.id)
           )}
           userData={this.props.userData}
+          folders={this.props.boards}
         />
       </Fragment>
     );

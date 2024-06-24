@@ -17,5 +17,9 @@ export default defineMessages({
   cancel: {
     id: 'cboard.components.LoadBoardEditor.cancel',
     defaultMessage: 'Cancel'
+  },
+  searchFolder: {
+    id: 'cboard.components.LoadBoardEditor.searchFolder',
+    defaultMessage: 'Search folder'
   }
 });

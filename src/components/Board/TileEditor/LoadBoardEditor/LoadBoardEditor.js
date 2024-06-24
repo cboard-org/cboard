@@ -20,10 +20,11 @@ import {
   DialogTitle,
   InputBase
 } from '@material-ui/core';
-import { Search as SearchIcon, Visibility } from '@material-ui/icons';
+import { Edit, Search as SearchIcon, Visibility } from '@material-ui/icons';
 import useAllBoardsFetcher from './useAllBoardsFetcher';
 import styles from './LoadBoardEditor.module.css';
 import { Alert, AlertTitle, Pagination } from '@material-ui/lab';
+import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import communicatorMessages from '../../../Communicator/CommunicatorDialog/CommunicatorDialog.messages';
 import messages from './LoadBoardEditor.messages';
@@ -144,7 +145,7 @@ const BoardInfoContent = ({ intl, pageBoards, selectedBoardId }) => {
   );
 };
 
-const LoadBoardEditor = ({ intl, loadBoard, onLoadBoardChange }) => {
+const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const {
@@ -197,14 +198,25 @@ const LoadBoardEditor = ({ intl, loadBoard, onLoadBoardChange }) => {
 
   return (
     <>
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={handleClickOpen}
-        style={{ marginTop: '16px' }}
-      >
-        Open full-screen dialog
-      </Button>
+      {!isLostedFolder ? (
+        <IconButton
+          variant="outlined"
+          color="primary"
+          onClick={handleClickOpen}
+        >
+          <Edit />
+        </IconButton>
+      ) : (
+        <Button
+          startIcon={<SearchIcon />}
+          variant="outlined"
+          color="primary"
+          onClick={handleClickOpen}
+          className={styles.searchButton}
+        >
+          {intl.formatMessage(messages.searchFolder)}
+        </Button>
+      )}
       <Dialog
         fullScreen
         open={open}
@@ -292,7 +304,11 @@ const LoadBoardEditor = ({ intl, loadBoard, onLoadBoardChange }) => {
           </Button>
           <Button
             color="primary"
-            onClick={() => setOpenConfirmationDialog(false)}
+            onClick={() => {
+              onLoadBoardChange({ boardId: selectedBoardId });
+              setOpenConfirmationDialog(false);
+              setOpen(false);
+            }}
           >
             {intl.formatMessage(messages.accept)}
           </Button>
@@ -303,7 +319,9 @@ const LoadBoardEditor = ({ intl, loadBoard, onLoadBoardChange }) => {
 };
 
 LoadBoardEditor.propTypes = {
-  intl: intlShape
+  intl: intlShape,
+  onLoadBoardChange: PropTypes.func,
+  isLostedFolder: PropTypes.bool
 };
 
 export default LoadBoardEditor;
