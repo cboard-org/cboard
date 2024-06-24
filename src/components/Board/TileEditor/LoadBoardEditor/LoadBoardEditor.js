@@ -30,7 +30,7 @@ import communicatorMessages from '../../../Communicator/CommunicatorDialog/Commu
 import messages from './LoadBoardEditor.messages';
 import moment from 'moment';
 import { isCordova } from '../../../../cordova-util';
-import { debounce, set } from 'lodash';
+import { debounce } from 'lodash';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
