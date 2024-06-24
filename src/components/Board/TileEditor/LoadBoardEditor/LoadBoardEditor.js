@@ -279,11 +279,13 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
           </Toolbar>
         </AppBar>
         <div className={styles.boardsListContainer}>
-          <BoardPagination
-            handleChange={handleChangeOnPage}
-            pagesCount={totalPages}
-            currentPage={currentPage}
-          />
+          {!loading && !error && (
+            <BoardPagination
+              handleChange={handleChangeOnPage}
+              pagesCount={totalPages}
+              currentPage={currentPage}
+            />
+          )}
           {loading && (
             <div className={styles.loaderContainer}>
               <CircularProgress />
@@ -307,11 +309,13 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
               {intl.formatMessage(messages.noBoardsFound)}'{searchValue}'
             </Alert>
           )}
-          <BoardPagination
-            handleChange={handleChangeOnPage}
-            pagesCount={totalPages}
-            currentPage={currentPage}
-          />
+          {!loading && !error && (
+            <BoardPagination
+              handleChange={handleChangeOnPage}
+              pagesCount={totalPages}
+              currentPage={currentPage}
+            />
+          )}
         </div>
       </Dialog>
       <Dialog
