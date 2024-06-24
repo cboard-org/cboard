@@ -32,7 +32,8 @@ export default defineMessages({
   },
   errorGettingFolders: {
     id: 'cboard.components.LoadBoardEditor.errorGettingFolders',
-    defaultMessage: 'Error getting all your folders'
+    defaultMessage:
+      'Error getting all your folders. Please be sure that you have internet connection to use this feature.'
   },
   tryAgain: {
     id: 'cboard.components.LoadBoardEditor.tryAgain',
