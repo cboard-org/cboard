@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -30,6 +30,7 @@ import communicatorMessages from '../../../Communicator/CommunicatorDialog/Commu
 import messages from './LoadBoardEditor.messages';
 import moment from 'moment';
 import { isCordova } from '../../../../cordova-util';
+import { debounce, set } from 'lodash';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -87,13 +88,15 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const BoardPagination = ({ pagesCount, currentPage, handleChange }) => {
   return (
     <div className={styles.pagination}>
-      <Pagination
-        count={pagesCount}
-        color="primary"
-        size="large"
-        page={currentPage}
-        onChange={handleChange}
-      />
+      {pagesCount >= 1 && (
+        <Pagination
+          count={pagesCount}
+          color="primary"
+          size="large"
+          page={currentPage}
+          onChange={handleChange}
+        />
+      )}
     </div>
   );
 };
@@ -179,6 +182,8 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
 
   const handleClickOpen = () => {
     fetchBoards({});
+    setSearchValue('');
+    setCurrentPage(1);
     setOpen(true);
   };
 
@@ -188,7 +193,7 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
 
   const handleChangeOnPage = (event, page) => {
     setCurrentPage(page);
-    fetchBoards({ page });
+    fetchBoards({ page, search: searchValue ?? null });
   };
 
   const [openConfirmationDialog, setOpenConfirmationDialog] = React.useState(
@@ -199,6 +204,22 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
   const handleOnItemClick = boardId => {
     setSelectedBoardId(boardId);
     setOpenConfirmationDialog(true);
+  };
+
+  const [searchValue, setSearchValue] = React.useState('');
+  const debounceSearch = useMemo(
+    () =>
+      debounce(value => {
+        setSearchValue(value);
+        setCurrentPage(1);
+        fetchBoards({ page: 1, search: value });
+      }, 500),
+    [fetchBoards]
+  );
+
+  const onSearchChange = e => {
+    const searchValue = e.target.value;
+    debounceSearch(searchValue);
   };
 
   return (
@@ -276,7 +297,12 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
               </Button>
             </Alert>
           )}
-          {!loading && !error && <BoardsList onItemClick={handleOnItemClick} />}
+          {!loading && !error && totalPages >= 1 && (
+            <BoardsList onItemClick={handleOnItemClick} />
+          )}
+          {!loading && !error && totalPages === 0 && (
+            <Alert severity="info">No boards found for '{searchValue}'</Alert>
+          )}
           <BoardPagination
             handleChange={handleChangeOnPage}
             pagesCount={totalPages}

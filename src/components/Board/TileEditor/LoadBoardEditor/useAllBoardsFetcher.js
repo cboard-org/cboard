@@ -7,7 +7,7 @@ const useBoardsFetcher = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchBoards = async ({ page = 1 }) => {
+  const fetchBoards = async ({ page = 1, search = '' }) => {
     try {
       const LIMIT = 10;
       setLoading(true);
@@ -15,10 +15,11 @@ const useBoardsFetcher = () => {
       const response = await API.getMyBoards({
         limit: LIMIT,
         sort: 'name',
-        page: page
+        page: page,
+        search
       });
       setPageBoards(response.data);
-      const totalPages = response.total / LIMIT;
+      const totalPages = Math.ceil(response.total / LIMIT);
       setTotalBoards(totalPages);
       setLoading(false);
     } catch (error) {
