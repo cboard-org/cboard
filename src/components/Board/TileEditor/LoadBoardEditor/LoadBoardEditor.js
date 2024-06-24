@@ -160,10 +160,15 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
   const BoardsList = ({ onItemClick }) => {
     return (
       <List className={styles.boardsList}>
-        {pageBoards?.map(({ id, name }) => (
+        {pageBoards?.map(({ id, name, lastEdited }) => (
           <Fragment key={id}>
             <ListItem button onClick={() => onItemClick(id)}>
-              <ListItemText primary={name} secondary="Titania" />
+              <ListItemText
+                primary={name}
+                secondary={`${intl.formatMessage(
+                  communicatorMessages.boardInfoDate
+                )}: ${moment(lastEdited).format('DD/MM/YYYY')}`}
+              />
             </ListItem>
             <Divider />
           </Fragment>
