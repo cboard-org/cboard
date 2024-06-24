@@ -21,5 +21,25 @@ export default defineMessages({
   searchFolder: {
     id: 'cboard.components.LoadBoardEditor.searchFolder',
     defaultMessage: 'Search folder'
+  },
+  searchForAFolder: {
+    id: 'cboard.components.LoadBoardEditor.searchForAFolder',
+    defaultMessage: 'Search for a folder'
+  },
+  searchPlaceholder: {
+    id: 'cboard.components.LoadBoardEditor.searchPlaceholder',
+    defaultMessage: 'Search…'
+  },
+  errorGettingFolders: {
+    id: 'cboard.components.LoadBoardEditor.errorGettingFolders',
+    defaultMessage: 'Error getting all your folders'
+  },
+  tryAgain: {
+    id: 'cboard.components.LoadBoardEditor.tryAgain',
+    defaultMessage: 'Try Again'
+  },
+  noBoardsFound: {
+    id: 'cboard.components.LoadBoardEditor.noBoardsFound',
+    defaultMessage: 'No boards found for: '
   }
 });

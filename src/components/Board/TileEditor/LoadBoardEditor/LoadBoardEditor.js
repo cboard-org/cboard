@@ -260,14 +260,14 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Sound
+              {intl.formatMessage(messages.searchForAFolder)}
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Search…"
+                placeholder={intl.formatMessage(messages.searchPlaceholder)}
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput
@@ -291,9 +291,11 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
           )}
           {error && (
             <Alert severity="error">
-              <AlertTitle>Error getting all your folders</AlertTitle>
+              <AlertTitle>
+                {intl.formatMessage(messages.errorGettingFolders)}
+              </AlertTitle>
               <Button color="primary" onClick={fetchBoards}>
-                Try Again
+                {intl.formatMessage(messages.tryAgain)}
               </Button>
             </Alert>
           )}
@@ -301,7 +303,9 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
             <BoardsList onItemClick={handleOnItemClick} />
           )}
           {!loading && !error && totalPages === 0 && (
-            <Alert severity="info">No boards found for '{searchValue}'</Alert>
+            <Alert severity="info">
+              {intl.formatMessage(messages.noBoardsFound)}'{searchValue}'
+            </Alert>
           )}
           <BoardPagination
             handleChange={handleChangeOnPage}
