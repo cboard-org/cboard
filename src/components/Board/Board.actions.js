@@ -522,8 +522,8 @@ export function createApiBoard(boardData, boardId) {
       isPublic: false
     };
     return API.createBoard(boardData)
-      .then(res => {
-        dispatch(concatDefaultBoardIdToBlacklist(boardId));
+      .then(async res => {
+        await dispatch(concatDefaultBoardIdToBlacklist(boardId));
         dispatch(createApiBoardSuccess(res, boardId));
         return res;
       })
