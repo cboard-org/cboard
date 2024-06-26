@@ -56,11 +56,7 @@ import {
   concatDefaultBoardIdToBlacklist
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
-import {
-  ALL_DEFAULT_BOARDS,
-  DEFAULT_BOARDS,
-  isRemoteIdChecker
-} from '../../helpers';
+import { ALL_DEFAULT_BOARDS, DEFAULT_BOARDS } from '../../helpers';
 import history from './../../history';
 import { improvePhraseAbortController } from '../../api/api';
 
