@@ -39,7 +39,8 @@ import {
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
   DOWNLOAD_IMAGE_FAILURE,
-  CLEAN_ALL_BOARDS
+  CLEAN_ALL_BOARDS,
+  REMOVE_BOARDS_FROM_LIST
 } from './Board.constants';
 
 import API from '../../api';
@@ -883,5 +884,12 @@ export function addNecessaryDefaultBoardsFor(boardIdToAdd) {
     } catch (e) {
       console.error(e);
     }
+  };
+}
+
+export function removeBoardsFromList(blacklist = []) {
+  return {
+    type: REMOVE_BOARDS_FROM_LIST,
+    blacklist
   };
 }
