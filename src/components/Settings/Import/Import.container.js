@@ -6,8 +6,8 @@ import shortid from 'shortid';
 
 import { addBoards, changeBoard } from '../../Board/Board.actions';
 import {
-  upsertCommunicator,
-  changeCommunicator
+  upsertApiCommunicator,
+  verifyAndUpsertCommunicator
 } from '../../Communicator/Communicator.actions';
 import { switchBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
@@ -97,7 +97,7 @@ export class ImportContainer extends PureComponent {
             return response;
           } catch (err) {
             console.log(err.message);
-            return board
+            return board;
           }
         })
       );
@@ -121,7 +121,12 @@ export class ImportContainer extends PureComponent {
   }
 
   async addBoardsToCommunicator(boards) {
-    const { userData, currentCommunicator } = this.props;
+    const {
+      currentCommunicator,
+      verifyAndUpsertCommunicator,
+      userData,
+      upsertApiCommunicator
+    } = this.props;
 
     const communicatorBoards = new Set(
       currentCommunicator.boards.concat(boards.map(b => b.id))
@@ -131,16 +136,17 @@ export class ImportContainer extends PureComponent {
       boards: Array.from(communicatorBoards)
     };
 
-    if (userData && userData.authToken && userData.authToken.length) {
+    const upsertedCommunicator = verifyAndUpsertCommunicator(
+      communicatorModified
+    );
+
+    if ('name' in userData && 'email' in userData) {
       try {
-        communicatorModified = await API.updateCommunicator(communicatorModified);
+        await upsertApiCommunicator(upsertedCommunicator);
       } catch (err) {
-        console.log(err.message);
+        console.error('Error upserting communicator', err);
       }
     }
-
-    this.props.upsertCommunicator(communicatorModified);
-    this.props.changeCommunicator(communicatorModified.id);
   }
 
   async handleImportClick(e, doneCallback) {
@@ -229,9 +235,9 @@ const mapDispatchToProps = {
   addBoards,
   changeBoard,
   switchBoard,
-  upsertCommunicator,
-  changeCommunicator,
-  showNotification
+  showNotification,
+  verifyAndUpsertCommunicator,
+  upsertApiCommunicator
 };
 
 export default connect(
