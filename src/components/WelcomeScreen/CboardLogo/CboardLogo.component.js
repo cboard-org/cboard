@@ -6,15 +6,21 @@ import { isCordova } from '../../../cordova-util';
 import './CboardLogo.css';
 
 // Cordova path cannot be absolute
-const image = isCordova()
+const imageWhite = isCordova()
   ? './images/logo-white.svg'
   : '/images/logo-white.svg';
 
-const CboardLogo = () => {
+const imageViolet = isCordova()
+  ? './images/logo-violet.svg'
+  : '/images/logo-violet.svg';
+
+const CboardLogo = props => {
   const [showLogo, setShowLogo] = useState(false);
+  const [violetLogo, setVioletLogo] = useState(false);
 
   useEffect(() => {
     setShowLogo(true);
+    if (!!props.isViolet) setVioletLogo(true);
   }, []);
 
   return (
@@ -24,7 +30,11 @@ const CboardLogo = () => {
       classNames="transition"
       appear={true}
     >
-      <img className="CboardLogo" src={image} alt="Cboard Logo" />
+      <img
+        className="CboardLogo"
+        src={violetLogo ? imageViolet : imageWhite}
+        alt="Cboard Logo"
+      />
     </CSSTransition>
   );
 };

@@ -9,7 +9,7 @@ import messages from './About.messages';
 import FullScreenDialog, {
   FullScreenDialogContent
 } from '../../UI/FullScreenDialog';
-
+import CboardLogo from '../../WelcomeScreen/CboardLogo';
 import './About.css';
 
 About.propTypes = {
@@ -26,80 +26,30 @@ function About({ history, onClose }) {
     >
       <Paper>
         <FullScreenDialogContent>
+          <div className="logo">
+            <CboardLogo isViolet={true} />
+          </div>
+          <Typography variant="h6" gutterBottom={true}>
+            <FormattedMessage {...messages.copyright} />
+          </Typography>
           <Typography variant="body1">
             <FormattedMessage {...messages.intro} />
           </Typography>
-
-          <Typography variant="h5">
-            <FormattedMessage {...messages.contributors} />
-          </Typography>
-          <Typography variant="body1" component="div">
-            <ul>
-              <li>
-                <Link
-                  href="https://twitter.com/amberleyjohanna"
-                  target="_blank"
-                >
-                  Amberley Romo
-                </Link>
-              </li>
-              <li>
-                <Link href="https://twitter.com/_arthurdenner" target="_blank">
-                  Arthur Denner
-                </Link>
-              </li>
-              <li>
-                <Link href="https://twitter.com/hwk73" target="_blank">
-                  Arijit Bhattacharya
-                </Link>
-              </li>
-              <li>
-                <Link href="https://github.com/BrendanFDMoore" target="_blank">
-                  Brendan Moore
-                </Link>
-              </li>
-              <li>
-                <Link href="https://twitter.com/jvuillermet" target="_blank">
-                  Jeremy Vuillermet
-                </Link>
-              </li>
-              <li>
-                <Link href="https://twitter.com/jquintozamora" target="_blank">
-                  Jose Quinto
-                </Link>
-              </li>
-              <li>
-                <Link href="https://github.com/martinbedouret" target="_blank">
-                  Martin Bedouret
-                </Link>
-              </li>
-              <li>
-                <Link href="https://github.com/shayc" target="_blank">
-                  Shay Cojocaru
-                </Link>
-              </li>
-            </ul>
-          </Typography>
-          <Typography variant="h5">
-            <FormattedMessage {...messages.resources} />
-          </Typography>
-          <Typography variant="body1" component="div">
-            <ul>
-              <li>
-                <Link
-                  href="https://openassistive.org/awesome-assistivetech/"
-                  target="_blank"
-                >
-                  Awesome Assistivetech
-                </Link>{' '}
-                - A curated list of{' '}
-                <span role="img" aria-label="cool">
-                  😎
-                </span>{' '}
-                awesome Assistive Technology frameworks and tools to help you
-                develop your AT tool/system.
-              </li>
-            </ul>
+          <div className="title">
+            <Typography variant="h5">
+              <FormattedMessage {...messages.contribute} />
+            </Typography>
+          </div>
+          <Typography variant="body1" gutterBottom={true} component="div">
+            <React.Fragment>
+              <FormattedMessage {...messages.contributeText} />
+              <Link
+                href="https://github.com/cboard-org/cboard/"
+                target="_blank"
+              >
+                {' Cboard Github'}
+              </Link>
+            </React.Fragment>
           </Typography>
           <Typography variant="h5">
             <FormattedMessage {...messages.license} />
