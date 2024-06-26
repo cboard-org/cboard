@@ -189,7 +189,7 @@ export function verifyAndUpsertCommunicator(
     } = getState();
 
     const getActiveCommunicator = getState => {
-      getState().communicator.communicators.find(
+      return getState().communicator.communicators.find(
         c => c.id === getState().communicator.activeCommunicatorId
       );
     };
