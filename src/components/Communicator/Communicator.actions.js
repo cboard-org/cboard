@@ -21,6 +21,7 @@ import {
 } from './Communicator.constants';
 import { defaultCommunicatorID } from './Communicator.reducer';
 import API from '../../api';
+import shortid from 'shortid';
 
 export function importCommunicator(communicator) {
   return {
@@ -51,24 +52,27 @@ export function upsertCommunicator(communicator) {
 }
 
 export function upsertApiCommunicator(communicator) {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     const {
       communicator: { communicators }
     } = getState();
-    const SHORT_ID_MAX_LENGTH = 14;
+    const SHORT_ID_MAX_LENGTH = 15;
 
     // If the communicator is not on the local state return
-    if (!communicators.find(c => c.id === communicator.id)) return;
+    if (!communicators.find(c => c.id === communicator.id))
+      return Promise.reject({
+        message: 'Communicator not found on local state'
+      });
 
-    communicator.id.length < SHORT_ID_MAX_LENGTH ||
-    communicator.id === defaultCommunicatorID
+    return communicator.id.length < SHORT_ID_MAX_LENGTH ||
+      communicator.id === defaultCommunicatorID
       ? dispatch(createApiCommunicator(communicator, communicator.id)).catch(
           error => {
-            console.error(error);
+            throw new Error(error);
           }
         )
       : dispatch(updateApiCommunicator(communicator)).catch(error => {
-          console.error(error);
+          throw new Error(error);
         });
   };
 }
@@ -175,6 +179,52 @@ export function updateApiCommunicatorFailure(message) {
   };
 }
 
+export function verifyAndUpsertCommunicator(
+  communicator,
+  needToChangeCommunicator = true
+) {
+  return (dispatch, getState) => {
+    const {
+      app: { userData }
+    } = getState();
+
+    const getActiveCommunicator = getState => {
+      getState().communicator.communicators.find(
+        c => c.id === getState().communicator.activeCommunicatorId
+      );
+    };
+
+    const updatedCommunicatorData = communicator.hasOwnProperty('id')
+      ? { ...communicator }
+      : { ...getActiveCommunicator(getState) };
+
+    if (
+      'name' in userData &&
+      'email' in userData &&
+      communicator.email !== userData.email
+    ) {
+      //need to create a new communicator
+      updatedCommunicatorData.author = userData.name;
+      updatedCommunicatorData.email = userData.email;
+      updatedCommunicatorData.id = shortid.generate();
+      updatedCommunicatorData.boards = [...communicator.boards];
+
+      if (!!communicator.defaultBoardsIncluded) {
+        updatedCommunicatorData.defaultBoardsIncluded = communicator.defaultBoardsIncluded.map(
+          item => ({ ...item })
+        );
+      }
+    }
+
+    dispatch(upsertCommunicator(updatedCommunicatorData));
+
+    if (needToChangeCommunicator)
+      dispatch(changeCommunicator(updatedCommunicatorData.id));
+
+    return updatedCommunicatorData;
+  };
+}
+
 /*
  * Thunk functions
  */
@@ -214,7 +264,7 @@ export function createApiCommunicator(communicatorData, communicatorId) {
 }
 
 export function updateApiCommunicator(communicatorData) {
-  return dispatch => {
+  return async dispatch => {
     dispatch(updateApiCommunicatorStarted());
     return API.updateCommunicator(communicatorData)
       .then(res => {

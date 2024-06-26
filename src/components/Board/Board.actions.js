@@ -45,8 +45,6 @@ import {
 import API from '../../api';
 
 import {
-  updateApiCommunicator,
-  createApiCommunicator,
   replaceBoardCommunicator,
   upsertCommunicator,
   getApiMyCommunicators,
@@ -54,14 +52,12 @@ import {
   upsertApiCommunicator,
   updateDefaultBoardsIncluded,
   addDefaultBoardIncluded,
-  createCommunicator,
-  changeCommunicator
+  verifyAndUpsertCommunicator
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
 import { ALL_DEFAULT_BOARDS, DEFAULT_BOARDS } from '../../helpers';
 import history from './../../history';
 import { improvePhraseAbortController } from '../../api/api';
-import shortid from 'shortid';
 
 const BOARDS_PAGE_LIMIT = 100;
 
@@ -103,18 +99,9 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
       if (userData.email && activeCommunicator.email !== userData?.email) {
         // Create a new communicator for the user if it doesn't exist
-        const newCommunicator = {
-          ...activeCommunicator,
-          boards: [...activeCommunicator.boards],
-          author: userData.name,
-          email: userData.email,
-          id: shortid.generate()
-        };
-        dispatch(createCommunicator(newCommunicator));
-        dispatch(changeCommunicator(newCommunicator.id));
-        return newCommunicator;
+        dispatch(verifyAndUpsertCommunicator(activeCommunicator));
       }
-      return activeCommunicator;
+      return getActiveCommunicator(getState);
     };
 
     const activeCommunicator = checkUserCommunicator();
@@ -198,7 +185,9 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
       dispatch(editCommunicator(communicatorWithRootBoardReplaced));
       if (userData?.role) {
-        dispatch(upsertApiCommunicator(communicatorWithRootBoardReplaced));
+        dispatch(
+          upsertApiCommunicator(communicatorWithRootBoardReplaced)
+        ).catch(console.error);
       }
     };
 
@@ -695,7 +684,6 @@ function getFileNameFromUrl(url) {
 
 export function updateApiObjectsNoChild(
   parentBoard,
-  createCommunicator = false,
   createParentBoard = false
 ) {
   return (dispatch, getState) => {
@@ -728,10 +716,7 @@ export function updateApiObjectsNoChild(
           comm.activeBoardId = updatedParentBoardId;
           dispatch(upsertCommunicator(comm));
         }
-        const caction = createCommunicator
-          ? createApiCommunicator
-          : updateApiCommunicator;
-        return dispatch(caction(comm, comm.id))
+        return dispatch(upsertApiCommunicator(comm))
           .then(() => {
             dispatch(updateApiMarkedBoards());
             return updatedParentBoardId;
@@ -773,7 +758,6 @@ export function updateApiMarkedBoards() {
 export function updateApiObjects(
   childBoard,
   parentBoard,
-  createCommunicator = false,
   createParentBoard = false
 ) {
   return (dispatch, getState) => {
@@ -825,10 +809,7 @@ export function updateApiObjects(
               comm.activeBoardId = updatedParentBoardId;
               dispatch(upsertCommunicator(comm));
             }
-            const caction = createCommunicator
-              ? createApiCommunicator
-              : updateApiCommunicator;
-            return dispatch(caction(comm, comm.id))
+            return dispatch(upsertApiCommunicator(comm))
               .then(() => {
                 dispatch(updateApiMarkedBoards());
                 return updatedParentBoardId;
