@@ -52,10 +52,15 @@ import {
   upsertApiCommunicator,
   updateDefaultBoardsIncluded,
   addDefaultBoardIncluded,
-  verifyAndUpsertCommunicator
+  verifyAndUpsertCommunicator,
+  concatDefaultBoardIdToBlacklist
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
-import { ALL_DEFAULT_BOARDS, DEFAULT_BOARDS } from '../../helpers';
+import {
+  ALL_DEFAULT_BOARDS,
+  DEFAULT_BOARDS,
+  isRemoteIdChecker
+} from '../../helpers';
 import history from './../../history';
 import { improvePhraseAbortController } from '../../api/api';
 
@@ -522,6 +527,7 @@ export function createApiBoard(boardData, boardId) {
     };
     return API.createBoard(boardData)
       .then(res => {
+        dispatch(concatDefaultBoardIdToBlacklist(boardId));
         dispatch(createApiBoardSuccess(res, boardId));
         return res;
       })

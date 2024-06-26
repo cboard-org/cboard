@@ -291,3 +291,34 @@ export function updateDefaultBoardsIncluded(boardAlreadyIncludedData) {
     defaultBoardsIncluded: boardAlreadyIncludedData
   };
 }
+
+export function concatDefaultBoardIdToBlacklist(boardId) {
+  const getActiveCommunicator = getState => {
+    return getState().communicator.communicators.find(
+      c => c.id === getState().communicator.activeCommunicatorId
+    );
+  };
+  return (dispatch, getState) => {
+    const updatedCommunicatorData = { ...getActiveCommunicator(getState) };
+    console.log(updatedCommunicatorData);
+
+    const concatBoardIdIfNecessary = () => {
+      if (!updatedCommunicatorData?.defaultBoardBlackList.includes(boardId))
+        return updatedCommunicatorData?.defaultBoardBlackList.concat(boardId);
+      return updatedCommunicatorData?.defaultBoardBlackList;
+    };
+
+    updatedCommunicatorData.defaultBoardBlackList = updatedCommunicatorData?.defaultBoardBlackList
+      ? concatBoardIdIfNecessary()
+      : [boardId];
+
+    dispatch(verifyAndUpsertCommunicator(updatedCommunicatorData));
+    return dispatch(upsertApiCommunicator(updatedCommunicatorData))
+      .then(() => {
+        return updatedCommunicatorData?.defaultBoardBlackList;
+      })
+      .catch(e => {
+        console.error(e.message);
+      });
+  };
+}
