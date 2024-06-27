@@ -10,7 +10,22 @@ import FullScreenDialog, {
   FullScreenDialogContent
 } from '../../UI/FullScreenDialog';
 import CboardLogo from '../../WelcomeScreen/CboardLogo';
+import unicefLogo from './unicef.png';
+import microsoftLogo from './microsoft.png';
 import './About.css';
+
+const itemData = [
+  {
+    img: unicefLogo,
+    title: 'UNICEF',
+    author: 'UNICEF'
+  },
+  {
+    img: microsoftLogo,
+    title: 'Microsoft',
+    author: 'Microsoft'
+  }
+];
 
 About.propTypes = {
   history: PropTypes.object.isRequired,
@@ -74,8 +89,25 @@ function About({ history, onClose }) {
                   CC BY-SA
                 </Link>
               </li>
+              <li>
+                ARASAAC Symbols -{' '}
+                <Link href="https://arasaac.org/terms-of-use/" target="_blank">
+                  Creative Commons License BY-NC-SA
+                </Link>
+              </li>
             </ul>
           </Typography>
+          <Typography variant="h5">
+            <FormattedMessage {...messages.thanks} />
+          </Typography>
+          <Typography variant="body1" component="div">
+            <FormattedMessage {...messages.thanksBody} />
+          </Typography>
+          <div className="imageContainer">
+            {itemData.map(item => (
+              <img src={item.img} alt={item.title} className="imageItem" />
+            ))}
+          </div>
         </FullScreenDialogContent>
       </Paper>
     </FullScreenDialog>
