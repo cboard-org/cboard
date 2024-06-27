@@ -318,7 +318,7 @@ describe('actions', () => {
           boardId: '12345678901234567',
           type: 'cboard/Board/CREATE_API_BOARD_SUCCESS'
         };
-        expect(actions[1]).toEqual(dataResp);
+        expect(actions[5]).toEqual(dataResp);
         expect(data).toEqual(mockBoard);
       })
       .catch(e => {
