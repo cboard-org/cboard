@@ -502,10 +502,6 @@ export function getApiMyBoards() {
     })
       .then(res => {
         dispatch(getApiMyBoardsSuccess(res));
-        const newBoards = res.data;
-        newBoards?.forEach(({ id }) => {
-          dispatch(addNecessaryDefaultBoardsFor(id));
-        });
         return res;
       })
       .catch(err => {
@@ -828,12 +824,6 @@ export function updateApiObjects(
       .catch(e => {
         throw new Error(e.message);
       });
-  };
-}
-
-export function cleanAllBoards() {
-  return {
-    type: CLEAN_ALL_BOARDS
   };
 }
 

@@ -53,8 +53,7 @@ const initialState = {
   isFixed: false,
   images: [],
   isLiveMode: false,
-  improvedPhrase: '',
-  unnecesaryDefaultBoardsRemoved: false
+  improvedPhrase: ''
 };
 
 describe('reducer', () => {
