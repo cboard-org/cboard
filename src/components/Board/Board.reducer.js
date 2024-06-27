@@ -37,7 +37,8 @@ import {
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
   DOWNLOAD_IMAGE_FAILURE,
-  CLEAN_ALL_BOARDS
+  CLEAN_ALL_BOARDS,
+  REMOVE_BOARDS_FROM_LIST
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -249,6 +250,13 @@ function boardReducer(state = initialState, action) {
         ...state,
         boards: state.boards.filter(
           board => action.boardId.indexOf(board.id) === -1
+        )
+      };
+    case REMOVE_BOARDS_FROM_LIST:
+      return {
+        ...state,
+        boards: state.boards.filter(
+          board => !action.blacklist?.includes(board.id)
         )
       };
     case CLEAN_ALL_BOARDS:

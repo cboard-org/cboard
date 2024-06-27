@@ -39,7 +39,8 @@ import {
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
   DOWNLOAD_IMAGE_FAILURE,
-  CLEAN_ALL_BOARDS
+  CLEAN_ALL_BOARDS,
+  REMOVE_BOARDS_FROM_LIST
 } from './Board.constants';
 
 import API from '../../api';
@@ -52,7 +53,8 @@ import {
   upsertApiCommunicator,
   updateDefaultBoardsIncluded,
   addDefaultBoardIncluded,
-  verifyAndUpsertCommunicator
+  verifyAndUpsertCommunicator,
+  concatDefaultBoardIdToBlacklist
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
 import { ALL_DEFAULT_BOARDS, DEFAULT_BOARDS } from '../../helpers';
@@ -521,7 +523,8 @@ export function createApiBoard(boardData, boardId) {
       isPublic: false
     };
     return API.createBoard(boardData)
-      .then(res => {
+      .then(async res => {
+        await dispatch(concatDefaultBoardIdToBlacklist(boardId));
         dispatch(createApiBoardSuccess(res, boardId));
         return res;
       })
@@ -881,5 +884,12 @@ export function addNecessaryDefaultBoardsFor(boardIdToAdd) {
     } catch (e) {
       console.error(e);
     }
+  };
+}
+
+export function removeBoardsFromList(blacklist = []) {
+  return {
+    type: REMOVE_BOARDS_FROM_LIST,
+    blacklist
   };
 }

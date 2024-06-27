@@ -22,6 +22,7 @@ import {
 import { defaultCommunicatorID } from './Communicator.reducer';
 import API from '../../api';
 import shortid from 'shortid';
+import { removeBoardsFromList } from '../Board/Board.actions';
 
 export function importCommunicator(communicator) {
   return {
@@ -230,10 +231,17 @@ export function verifyAndUpsertCommunicator(
  */
 
 export function getApiMyCommunicators() {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(getApiMyCommunicatorsStarted());
     return API.getCommunicators()
       .then(res => {
+        const activeCommunicator =
+          res.data.find(
+            communicator =>
+              communicator.id === getState().communicator.activeCommunicator
+          ) ?? res.data[0];
+        const defaultBoardBlackList = activeCommunicator?.defaultBoardBlackList;
+        dispatch(removeBoardsFromList(defaultBoardBlackList));
         dispatch(getApiMyCommunicatorsSuccess(res));
         return res;
       })
@@ -289,5 +297,36 @@ export function updateDefaultBoardsIncluded(boardAlreadyIncludedData) {
   return {
     type: UPDATE_DEFAULT_BOARDS_INCLUDED,
     defaultBoardsIncluded: boardAlreadyIncludedData
+  };
+}
+
+export function concatDefaultBoardIdToBlacklist(boardId) {
+  const getActiveCommunicator = getState => {
+    return getState().communicator.communicators.find(
+      c => c.id === getState().communicator.activeCommunicatorId
+    );
+  };
+  return (dispatch, getState) => {
+    const updatedCommunicatorData = { ...getActiveCommunicator(getState) };
+    console.log(updatedCommunicatorData);
+
+    const concatBoardIdIfNecessary = () => {
+      if (!updatedCommunicatorData?.defaultBoardBlackList.includes(boardId))
+        return updatedCommunicatorData?.defaultBoardBlackList.concat(boardId);
+      return updatedCommunicatorData?.defaultBoardBlackList;
+    };
+
+    updatedCommunicatorData.defaultBoardBlackList = updatedCommunicatorData?.defaultBoardBlackList
+      ? concatBoardIdIfNecessary()
+      : [boardId];
+
+    dispatch(verifyAndUpsertCommunicator(updatedCommunicatorData));
+    return dispatch(upsertApiCommunicator(updatedCommunicatorData))
+      .then(() => {
+        return updatedCommunicatorData?.defaultBoardBlackList;
+      })
+      .catch(e => {
+        console.error(e.message);
+      });
   };
 }

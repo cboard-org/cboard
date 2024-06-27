@@ -3,6 +3,7 @@ export const ADD_BOARDS = 'cboard/Board/ADD_BOARDS';
 export const CREATE_BOARD = 'cboard/Board/CREATE_BOARD';
 export const UPDATE_BOARD = 'cboard/Board/UPDATE_BOARD';
 export const DELETE_BOARD = 'cboard/Board/DELETE_BOARD';
+export const REMOVE_BOARDS_FROM_LIST = 'cboard/Board/REMOVE_BOARDS_FROM_LIST';
 export const CHANGE_BOARD = 'cboard/Board/CHANGE_BOARD';
 export const REPLACE_BOARD = 'cboard/Board/REPLACE_BOARD';
 export const SWITCH_BOARD = 'cboard/Board/SWITCH_BOARD';
