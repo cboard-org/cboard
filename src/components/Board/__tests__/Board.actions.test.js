@@ -318,7 +318,10 @@ describe('actions', () => {
           boardId: '12345678901234567',
           type: 'cboard/Board/CREATE_API_BOARD_SUCCESS'
         };
-        expect(actions[5]).toEqual(dataResp);
+        const successAction = actions.find(
+          action => action.type === types.CREATE_API_BOARD_SUCCESS
+        );
+        expect(successAction).toEqual(dataResp);
         expect(data).toEqual(mockBoard);
       })
       .catch(e => {
