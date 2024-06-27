@@ -23,6 +23,7 @@ import { defaultCommunicatorID } from './Communicator.reducer';
 import API from '../../api';
 import shortid from 'shortid';
 import { removeBoardsFromList } from '../Board/Board.actions';
+import { ALL_DEFAULT_BOARDS } from '../../helpers';
 
 export function importCommunicator(communicator) {
   return {
@@ -307,8 +308,8 @@ export function concatDefaultBoardIdToBlacklist(boardId) {
     );
   };
   return (dispatch, getState) => {
+    if (!ALL_DEFAULT_BOARDS.includes(boardId)) return;
     const updatedCommunicatorData = { ...getActiveCommunicator(getState) };
-    console.log(updatedCommunicatorData);
 
     const concatBoardIdIfNecessary = () => {
       if (!updatedCommunicatorData?.defaultBoardBlackList.includes(boardId))
