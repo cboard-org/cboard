@@ -39,7 +39,6 @@ import {
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
   DOWNLOAD_IMAGE_FAILURE,
-  CLEAN_ALL_BOARDS,
   REMOVE_BOARDS_FROM_LIST
 } from './Board.constants';
 
@@ -57,7 +56,7 @@ import {
   concatDefaultBoardIdToBlacklist
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
-import { ALL_DEFAULT_BOARDS, DEFAULT_BOARDS } from '../../helpers';
+import { DEFAULT_BOARDS } from '../../helpers';
 import history from './../../history';
 import { improvePhraseAbortController } from '../../api/api';
 
@@ -154,7 +153,9 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
     const switchActiveBoard = homeBoardId => {
       if (homeBoardId) {
-        dispatch(addNecessaryDefaultBoardsFor(homeBoardId));
+        const storeBoards = getState().board.boards;
+        const board = storeBoards.find(board => board.id === homeBoardId);
+        if (!board) addBoards([board]);
         const goTo = `/board/${homeBoardId}`;
 
         dispatch(switchBoard(homeBoardId));
@@ -824,56 +825,6 @@ export function updateApiObjects(
       .catch(e => {
         throw new Error(e.message);
       });
-  };
-}
-
-export function addNecessaryDefaultBoardsFor(boardIdToAdd) {
-  return (dispatch, getState) => {
-    const checkedBoardsIds = [];
-    const addNecessaryBoards = ({ dispatch, getState, necessaryBoardId }) => {
-      const board = getState().board.boards.find(
-        board => board?.id === necessaryBoardId
-      );
-      const checkLoadBoards = board => {
-        checkedBoardsIds.push(board.id);
-        board.tiles.forEach(tile => {
-          if (
-            tile.loadBoard
-            // !getState().board.boards.some(board => board.id === tile.loadBoard)
-          ) {
-            if (!checkedBoardsIds.includes(tile.loadBoard)) {
-              addNecessaryBoards({
-                dispatch,
-                getState,
-                necessaryBoardId: tile.loadBoard
-              });
-            }
-          }
-        });
-      };
-      if (board) {
-        checkLoadBoards(board);
-        return;
-      }
-
-      ALL_DEFAULT_BOARDS.some(defaultBoard => {
-        if (defaultBoard.id === necessaryBoardId) {
-          dispatch(addBoards([defaultBoard]));
-          checkLoadBoards(defaultBoard);
-          return true;
-        }
-        return false;
-      });
-    };
-    try {
-      addNecessaryBoards({
-        dispatch,
-        getState,
-        necessaryBoardId: boardIdToAdd
-      });
-    } catch (e) {
-      console.error(e);
-    }
   };
 }
 

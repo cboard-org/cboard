@@ -47,8 +47,7 @@ import {
   downloadImages,
   createApiBoard,
   upsertApiBoard,
-  changeDefaultBoard,
-  addNecessaryDefaultBoardsFor
+  changeDefaultBoard
 } from './Board.actions';
 import {
   addBoardCommunicator,
@@ -222,8 +221,7 @@ export class BoardContainer extends Component {
       changeBoard,
       userData,
       history,
-      getApiObjects,
-      addNecessaryDefaultBoardsFor
+      getApiObjects
       //downloadImages
     } = this.props;
 
@@ -277,12 +275,12 @@ export class BoardContainer extends Component {
     if (!boardExists) {
       // try the root board
       const homeBoard = communicator.rootBoard;
-      if (ALL_DEFAULT_BOARDS.map(({ id }) => id).includes(homeBoard))
-        addNecessaryDefaultBoardsFor(homeBoard);
       boardExists = boards.find(b => b.id === homeBoard);
       if (!boardExists) {
         if (isRemoteIdChecker(homeBoard))
           boardExists = this.tryRemoteBoard(homeBoard);
+        if (!boardExists)
+          boardExists = this.addDefaultBoardIfnecessary(homeBoard);
         if (!boardExists) boardExists = boards.find(b => b.id !== '');
       }
     }
@@ -885,8 +883,8 @@ export class BoardContainer extends Component {
         if (
           ALL_DEFAULT_BOARDS.map(({ id }) => id).includes(loadBoardSearched)
         ) {
-          addNecessaryDefaultBoardsFor(loadBoardSearched);
-          const nextBoard = findBoardOnStore(loadBoardFinder);
+          this.addDefaultBoardIfnecessary(loadBoardSearched);
+          const nextBoard = findBoardOnStore(loadBoardSearched);
           if (nextBoard) return nextBoard;
         }
       };
@@ -1528,6 +1526,18 @@ export class BoardContainer extends Component {
       : [];
   };
 
+  addDefaultBoardIfnecessary = boardId => {
+    const { boards, addBoards } = this.props;
+    if (!boards.find(b => b.id === boardId)) {
+      const board = ALL_DEFAULT_BOARDS.find(({ id }) => id === boardId);
+      if (board) {
+        addBoards([board]);
+        return board;
+      }
+      return;
+    }
+  };
+
   render() {
     const {
       navHistory,
@@ -1758,8 +1768,7 @@ const mapDispatchToProps = {
   createApiBoard,
   upsertApiBoard,
   changeDefaultBoard,
-  verifyAndUpsertCommunicator,
-  addNecessaryDefaultBoardsFor
+  verifyAndUpsertCommunicator
 };
 
 export default connect(
