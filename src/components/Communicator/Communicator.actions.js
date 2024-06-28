@@ -240,7 +240,7 @@ export function getApiMyCommunicators() {
           res.data.find(
             communicator =>
               communicator.id === getState().communicator.activeCommunicator
-          ) ?? res.data[0];
+          ) ?? res.data[res.data.length - 1];
         const defaultBoardBlackList = activeCommunicator?.defaultBoardBlackList;
         dispatch(removeBoardsFromList(defaultBoardBlackList));
         dispatch(getApiMyCommunicatorsSuccess(res));
