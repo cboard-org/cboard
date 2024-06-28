@@ -772,7 +772,7 @@ export function updateApiMarkedBoards() {
         dispatch(updateBoard(boardData));
         try {
           const boardId = await dispatch(
-            updateApiObjectsNoChild(boardData, false, true)
+            updateApiObjectsNoChild(boardData, true)
           );
           dispatch(
             replaceBoard({ ...boardData }, { ...boardData, id: boardId })
