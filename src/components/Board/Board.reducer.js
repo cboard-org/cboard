@@ -326,8 +326,7 @@ function boardReducer(state = initialState, action) {
               }
 
               const shouldCreateBoard =
-                creadBoards[i].id.length < SHORT_ID_MAX_LENGTH &&
-                state.boards.unnecessaryDefaultBoardsRemoved;
+                creadBoards[i].id.length < SHORT_ID_MAX_LENGTH;
               if (shouldCreateBoard) {
                 creadBoards[i].shouldCreateBoard = true;
               }
