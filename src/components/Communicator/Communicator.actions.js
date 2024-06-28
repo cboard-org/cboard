@@ -308,7 +308,7 @@ export function concatDefaultBoardIdToBlacklist(boardId) {
     );
   };
   return (dispatch, getState) => {
-    if (!ALL_DEFAULT_BOARDS.includes(boardId)) return;
+    if (!ALL_DEFAULT_BOARDS.map(({ id }) => id).includes(boardId)) return;
     const updatedCommunicatorData = { ...getActiveCommunicator(getState) };
 
     const concatBoardIdIfNecessary = () => {
