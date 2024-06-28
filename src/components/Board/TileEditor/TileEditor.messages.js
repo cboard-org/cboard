@@ -68,5 +68,28 @@ export default defineMessages({
   editImage: {
     id: 'cboard.components.Board.TileEditor.editImage',
     defaultMessage: 'Edit image'
+  },
+  loadBoard: {
+    id: 'cboard.components.Board.TileEditor.loadBoard',
+    defaultMessage: 'Load folder'
+  },
+  loadBoardAlertTitle: {
+    id: 'cboard.components.Board.TileEditor.loadBoardAlertTitle',
+    defaultMessage: "We can't find this folder"
+  },
+  loadBoardAlertDescription: {
+    id: 'cboard.components.Board.TileEditor.loadBoardAlertDescription',
+    defaultMessage:
+      'Try to find it manualy on your remote folders by clicking on the search button.'
+  },
+  loadBoardAlertDescriptionLocalId: {
+    id: 'cboard.components.Board.TileEditor.loadBoardAlertDescriptionLocalId',
+    defaultMessage: `It's looks like this folder is localy stored on the device that you
+          create it. If you want to use it, please make a change in it connected
+          to the internet. Or edit this value to use another folder.`
+  },
+  loadBoardAlertSearch: {
+    id: 'cboard.components.Board.TileEditor.loadBoardAlertSearch',
+    defaultMessage: 'Search folder'
   }
 });
