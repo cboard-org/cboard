@@ -31,7 +31,7 @@
     "axios": "^0.26.1",
     "browser-image-resizer": "^2.4.1",
     "dom-to-image": "^2.6.0",
-    "dotenv": "^16.1.4",
+    "dotenv": "^16.4.5",
     "echarts": "5.4.3",
     "echarts-for-react": "^3.0.2",
     "file-saver": "^2.0.5",
