@@ -246,25 +246,9 @@ function communicatorReducer(state = initialState, action) {
         isFetching: true
       };
     case GET_API_MY_COMMUNICATORS_SUCCESS:
-      let flag = false;
-      const myCommunicators = [...state.communicators];
-      for (let i = 0; i < action.communicators.data.length; i++) {
-        for (let j = 0; j < myCommunicators.length; j++) {
-          if (myCommunicators[j].id === action.communicators.data[i].id) {
-            myCommunicators[j].boards = action.communicators.data[i].boards;
-            flag = true;
-            break;
-          }
-        }
-        if (!flag) {
-          myCommunicators.push(action.communicators.data[i]);
-          flag = false;
-        }
-      }
       return {
         ...state,
-        isFetching: false,
-        communicators: myCommunicators
+        isFetching: false
       };
     case GET_API_MY_COMMUNICATORS_FAILURE:
       return {
