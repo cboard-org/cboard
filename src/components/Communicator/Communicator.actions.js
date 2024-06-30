@@ -17,11 +17,13 @@ import {
   UPDATE_API_COMMUNICATOR_STARTED,
   GET_API_MY_COMMUNICATORS_SUCCESS,
   GET_API_MY_COMMUNICATORS_FAILURE,
-  GET_API_MY_COMMUNICATORS_STARTED
+  GET_API_MY_COMMUNICATORS_STARTED,
+  SYNC_COMMUNICATORS
 } from './Communicator.constants';
 import { defaultCommunicatorID } from './Communicator.reducer';
 import API from '../../api';
 import shortid from 'shortid';
+import moment from 'moment';
 
 export function importCommunicator(communicator) {
   return {
@@ -230,12 +232,15 @@ export function verifyAndUpsertCommunicator(
  */
 
 export function getApiMyCommunicators() {
-  return dispatch => {
+  return async dispatch => {
     dispatch(getApiMyCommunicatorsStarted());
     return API.getCommunicators()
       .then(res => {
         dispatch(getApiMyCommunicatorsSuccess(res));
-        return res;
+
+        return dispatch(syncCommunicators(res.data)).catch(e => {
+          console.error(e);
+        });
       })
       .catch(err => {
         dispatch(getApiMyCommunicatorsFailure(err.message));
@@ -289,5 +294,64 @@ export function updateDefaultBoardsIncluded(boardAlreadyIncludedData) {
   return {
     type: UPDATE_DEFAULT_BOARDS_INCLUDED,
     defaultBoardsIncluded: boardAlreadyIncludedData
+  };
+}
+
+export function syncCommunicators(remoteCommunicators) {
+  const reconcileCommunicators = (local, remote) => {
+    if (local.lastEdited && remote.lastEdited) {
+      if (moment(local.lastEdited).isAfter(remote.lastEdited)) {
+        console.log('comm local is after remote', local);
+        return local;
+      }
+      if (moment(local.lastEdited).isBefore(remote.lastEdited)) {
+        console.log('Comm local is before remote', remote);
+        return remote;
+      }
+      if (moment(local.lastEdited).isSame(remote.lastEdited)) {
+        console.log('Comm sync isSame', local);
+        return remote;
+      }
+    }
+    console.log('no entro');
+    return remote;
+  };
+
+  return async (dispatch, getState) => {
+    const localCommunicators = getState().communicator.communicators;
+
+    for (const remote of remoteCommunicators) {
+      const localIndex = localCommunicators.findIndex(
+        local => local.id === remote.id
+      );
+
+      if (localIndex !== -1) {
+        // If the communicator exists locally, reconcile the two
+        const reconciled = reconcileCommunicators(
+          localCommunicators[localIndex],
+          remote
+        );
+        if (reconciled === localCommunicators[localIndex]) {
+          // Local is more recent, update the server
+          try {
+            const res = await dispatch(
+              updateApiCommunicator(localCommunicators[localIndex])
+            );
+            localCommunicators[localIndex] = res;
+          } catch (e) {
+            console.error(e);
+          }
+        } else {
+          localCommunicators[localIndex] = reconciled;
+        }
+      } else {
+        // If the communicator does not exist locally, add it
+        localCommunicators.push(remote);
+      }
+    }
+    dispatch({
+      type: SYNC_COMMUNICATORS,
+      communicators: localCommunicators
+    });
   };
 }

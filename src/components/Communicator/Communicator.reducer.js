@@ -20,7 +20,7 @@ import {
   GET_API_MY_COMMUNICATORS_SUCCESS,
   GET_API_MY_COMMUNICATORS_FAILURE,
   GET_API_MY_COMMUNICATORS_STARTED,
-  GET_API_MY_COMMUNICATORS_STARTED
+  SYNC_COMMUNICATORS
 } from './Communicator.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import moment from 'moment';
@@ -259,6 +259,13 @@ function communicatorReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: true
+      };
+    case SYNC_COMMUNICATORS:
+      return {
+        ...state,
+        communicators: action.communicators,
+        activeCommunicatorId:
+          action.communicators[action.communicators.length - 1].id
       };
     default:
       return state;
