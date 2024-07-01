@@ -273,11 +273,14 @@ export function previousBoard() {
 
 export function toRootBoard() {
   return (dispatch, getState) => {
-    const rootBoard = getState().communicator.communicators.find(
-      communicator =>
-        communicator.id === getState().communicator.activeCommunicatorId
-    ).rootBoard;
-    history.replace(rootBoard);
+    const navHistory = getState().board.navHistory;
+    const firstBoardOnHistory = navHistory[0];
+    const allBoardsIds = getState().board.boards.map(board => board.id);
+
+    if (!firstBoardOnHistory || !allBoardsIds.includes(firstBoardOnHistory)) {
+      return null;
+    }
+    history.replace(firstBoardOnHistory);
     return dispatch({
       type: TO_ROOT_BOARD
     });
@@ -835,11 +838,13 @@ export function updateApiObjects(
   };
 }
 
-export function removeBoardsFromList(blacklist = []) {
+export function removeBoardsFromList(blacklist = [], rootBoard) {
   return (dispatch, getState) => {
     const actualBoardId = getState().board.activeBoardId;
     if (blacklist.includes(actualBoardId)) {
-      dispatch(toRootBoard());
+      history.replace(rootBoard);
+      dispatch(switchBoard(rootBoard));
+      return dispatch(toRootBoard());
     }
     dispatch({
       type: REMOVE_BOARDS_FROM_LIST,

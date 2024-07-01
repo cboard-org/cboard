@@ -242,7 +242,12 @@ export function getApiMyCommunicators() {
               communicator.id === getState().communicator.activeCommunicator
           ) ?? res.data[res.data.length - 1];
         const defaultBoardBlackList = activeCommunicator?.defaultBoardBlackList;
-        dispatch(removeBoardsFromList(defaultBoardBlackList));
+        dispatch(
+          removeBoardsFromList(
+            defaultBoardBlackList,
+            activeCommunicator.rootBoard
+          )
+        );
         dispatch(getApiMyCommunicatorsSuccess(res));
         return res;
       })
