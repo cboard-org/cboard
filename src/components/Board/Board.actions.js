@@ -272,8 +272,15 @@ export function previousBoard() {
 }
 
 export function toRootBoard() {
-  return {
-    type: TO_ROOT_BOARD
+  return (dispatch, getState) => {
+    const rootBoard = getState().communicator.communicators.find(
+      communicator =>
+        communicator.id === getState().communicator.activeCommunicatorId
+    ).rootBoard;
+    history.replace(rootBoard);
+    return dispatch({
+      type: TO_ROOT_BOARD
+    });
   };
 }
 
@@ -829,8 +836,14 @@ export function updateApiObjects(
 }
 
 export function removeBoardsFromList(blacklist = []) {
-  return {
-    type: REMOVE_BOARDS_FROM_LIST,
-    blacklist
+  return (dispatch, getState) => {
+    const actualBoardId = getState().board.activeBoardId;
+    if (blacklist.includes(actualBoardId)) {
+      dispatch(toRootBoard());
+    }
+    dispatch({
+      type: REMOVE_BOARDS_FROM_LIST,
+      blacklist
+    });
   };
 }
