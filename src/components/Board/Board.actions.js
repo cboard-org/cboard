@@ -38,7 +38,8 @@ import {
   DOWNLOAD_IMAGES_FAILURE,
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
-  DOWNLOAD_IMAGE_FAILURE
+  DOWNLOAD_IMAGE_FAILURE,
+  REMOVE_BOARDS_FROM_LIST
 } from './Board.constants';
 
 import API from '../../api';
@@ -51,7 +52,8 @@ import {
   upsertApiCommunicator,
   updateDefaultBoardsIncluded,
   addDefaultBoardIncluded,
-  verifyAndUpsertCommunicator
+  verifyAndUpsertCommunicator,
+  concatDefaultBoardIdToBlacklist
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
 import { DEFAULT_BOARDS } from '../../helpers';
@@ -151,6 +153,9 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
     const switchActiveBoard = homeBoardId => {
       if (homeBoardId) {
+        const storeBoards = getState().board.boards;
+        const board = storeBoards.find(board => board.id === homeBoardId);
+        if (!board) addBoards([board]);
         const goTo = `/board/${homeBoardId}`;
 
         dispatch(switchBoard(homeBoardId));
@@ -267,8 +272,18 @@ export function previousBoard() {
 }
 
 export function toRootBoard() {
-  return {
-    type: TO_ROOT_BOARD
+  return (dispatch, getState) => {
+    const navHistory = getState().board.navHistory;
+    const firstBoardOnHistory = navHistory[0];
+    const allBoardsIds = getState().board.boards.map(board => board.id);
+
+    if (!firstBoardOnHistory || !allBoardsIds.includes(firstBoardOnHistory)) {
+      return null;
+    }
+    history.replace(firstBoardOnHistory);
+    return dispatch({
+      type: TO_ROOT_BOARD
+    });
   };
 }
 
@@ -515,7 +530,8 @@ export function createApiBoard(boardData, boardId) {
       isPublic: false
     };
     return API.createBoard(boardData)
-      .then(res => {
+      .then(async res => {
+        await dispatch(concatDefaultBoardIdToBlacklist(boardId));
         dispatch(createApiBoardSuccess(res, boardId));
         return res;
       })
@@ -819,5 +835,20 @@ export function updateApiObjects(
       .catch(e => {
         throw new Error(e.message);
       });
+  };
+}
+
+export function removeBoardsFromList(blacklist = [], rootBoard) {
+  return (dispatch, getState) => {
+    const actualBoardId = getState().board.activeBoardId;
+    if (blacklist.includes(actualBoardId)) {
+      history.replace(rootBoard);
+      dispatch(switchBoard(rootBoard));
+      return dispatch(toRootBoard());
+    }
+    dispatch({
+      type: REMOVE_BOARDS_FROM_LIST,
+      blacklist
+    });
   };
 }
