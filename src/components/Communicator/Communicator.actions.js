@@ -321,13 +321,6 @@ export function concatDefaultBoardIdToBlacklist(boardId) {
       ? concatBoardIdIfNecessary()
       : [boardId];
 
-    dispatch(verifyAndUpsertCommunicator(updatedCommunicatorData));
-    return dispatch(upsertApiCommunicator(updatedCommunicatorData))
-      .then(() => {
-        return updatedCommunicatorData?.defaultBoardBlackList;
-      })
-      .catch(e => {
-        console.error(e.message);
-      });
+    return dispatch(verifyAndUpsertCommunicator(updatedCommunicatorData));
   };
 }
