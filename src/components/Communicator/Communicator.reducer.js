@@ -106,7 +106,7 @@ function communicatorReducer(state = initialState, action) {
         if (index !== -1) {
           const updatedCommunicators = [...state.communicators];
           updatedCommunicators[index].boards.push(action.boardId);
-          updatedCommunicators.lastEdited = moment().format();
+          updatedCommunicators[index].lastEdited = moment().format();
           return {
             ...state,
             communicators: updatedCommunicators
@@ -214,10 +214,13 @@ function communicatorReducer(state = initialState, action) {
             : state.activeCommunicatorId,
         communicators: state.communicators.map(communicator =>
           communicator.id === action.communicatorId
-            ? { ...communicator, id: action.communicator.id }
+            ? {
+                ...communicator,
+                id: action.communicator.id,
+                lastEdited: action.communicator.lastEdited
+              }
             : communicator
-        ),
-        lastEdited: action.communicator.lastEdited
+        )
       };
     case CREATE_API_COMMUNICATOR_FAILURE:
       return {
@@ -233,7 +236,14 @@ function communicatorReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        lastEdited: action.communicator.lastEdited
+        communicators: state.communicators.map(communicator =>
+          communicator.id === action.communicator.id
+            ? {
+                ...communicator,
+                lastEdited: action.communicator.lastEdited
+              }
+            : communicator
+        )
       };
     case UPDATE_API_COMMUNICATOR_FAILURE:
       return {
