@@ -24,6 +24,8 @@ import { defaultCommunicatorID } from './Communicator.reducer';
 import API from '../../api';
 import shortid from 'shortid';
 import moment from 'moment';
+import { switchBoard } from '../Board/Board.actions';
+import history from './../../history';
 
 export function importCommunicator(communicator) {
   return {
@@ -301,24 +303,26 @@ export function syncCommunicators(remoteCommunicators) {
   const reconcileCommunicators = (local, remote) => {
     if (local.lastEdited && remote.lastEdited) {
       if (moment(local.lastEdited).isAfter(remote.lastEdited)) {
-        console.log('comm local is after remote', local);
         return local;
       }
       if (moment(local.lastEdited).isBefore(remote.lastEdited)) {
-        console.log('Comm local is before remote', remote);
         return remote;
       }
       if (moment(local.lastEdited).isSame(remote.lastEdited)) {
-        console.log('Comm sync isSame', local);
         return remote;
       }
     }
-    console.log('no entro');
     return remote;
+  };
+  const getActiveCommunicator = getState => {
+    return getState().communicator.communicators.find(
+      c => c.id === getState().communicator.activeCommunicatorId
+    );
   };
 
   return async (dispatch, getState) => {
     const localCommunicators = getState().communicator.communicators;
+    const updatedCommunicators = [...localCommunicators];
 
     for (const remote of remoteCommunicators) {
       const localIndex = localCommunicators.findIndex(
@@ -337,21 +341,41 @@ export function syncCommunicators(remoteCommunicators) {
             const res = await dispatch(
               updateApiCommunicator(localCommunicators[localIndex])
             );
-            localCommunicators[localIndex] = res;
+            updatedCommunicators[localIndex] = res;
           } catch (e) {
             console.error(e);
           }
         } else {
-          localCommunicators[localIndex] = reconciled;
+          updatedCommunicators[localIndex] = reconciled;
         }
       } else {
         // If the communicator does not exist locally, add it
-        localCommunicators.push(remote);
+        updatedCommunicators.push(remote);
       }
     }
+
+    const activeCommunicatorId = getActiveCommunicator(getState).id ?? null;
+    const lastRemoteSavedCommunicatorId = remoteCommunicators[0].id ?? null; //The last communicator saved on the server
+    const needToChangeActiveCommunicator =
+      activeCommunicatorId !== lastRemoteSavedCommunicatorId &&
+      updatedCommunicators.length &&
+      updatedCommunicators.findIndex(
+        communicator => communicator.id === lastRemoteSavedCommunicatorId
+      ) !== -1;
+
     dispatch({
       type: SYNC_COMMUNICATORS,
-      communicators: localCommunicators
+      communicators: updatedCommunicators,
+      activeCommunicatorId: needToChangeActiveCommunicator
+        ? remoteCommunicators[0].id
+        : activeCommunicatorId
     });
+
+    if (needToChangeActiveCommunicator) {
+      const newActiveCommunicator = getActiveCommunicator(getState);
+      const rootBoard = newActiveCommunicator.rootBoard;
+      dispatch(switchBoard(rootBoard));
+      history.replace(rootBoard);
+    }
   };
 }

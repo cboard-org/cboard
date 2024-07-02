@@ -274,8 +274,7 @@ function communicatorReducer(state = initialState, action) {
       return {
         ...state,
         communicators: action.communicators,
-        activeCommunicatorId:
-          action.communicators[action.communicators.length - 1].id
+        activeCommunicatorId: action.activeCommunicatorId
       };
     default:
       return state;
