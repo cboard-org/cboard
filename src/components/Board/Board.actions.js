@@ -155,11 +155,12 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       if (homeBoardId) {
         const storeBoards = getState().board.boards;
         const board = storeBoards.find(board => board.id === homeBoardId);
-        if (!board) addBoards([board]);
+        if (!board) return null;
         const goTo = `/board/${homeBoardId}`;
 
         dispatch(switchBoard(homeBoardId));
         history.replace(goTo);
+        return true;
       }
     };
 
@@ -203,9 +204,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       homeBoardId
     });
 
-    switchActiveBoard(homeBoardId);
-
-    replaceHomeBoard(homeBoardId);
+    if (switchActiveBoard(homeBoardId)) replaceHomeBoard(homeBoardId);
   };
 }
 
@@ -281,9 +280,10 @@ export function toRootBoard() {
       return null;
     }
     history.replace(firstBoardOnHistory);
-    return dispatch({
+    dispatch({
       type: TO_ROOT_BOARD
     });
+    return firstBoardOnHistory;
   };
 }
 
@@ -844,7 +844,8 @@ export function removeBoardsFromList(blacklist = [], rootBoard) {
     if (blacklist.includes(actualBoardId)) {
       history.replace(rootBoard);
       dispatch(switchBoard(rootBoard));
-      return dispatch(toRootBoard());
+      const rootBoardFinded = dispatch(toRootBoard());
+      if (!rootBoardFinded || blacklist.includes(rootBoard)) return;
     }
     dispatch({
       type: REMOVE_BOARDS_FROM_LIST,

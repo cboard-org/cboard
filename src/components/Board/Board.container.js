@@ -883,8 +883,7 @@ export class BoardContainer extends Component {
         if (
           ALL_DEFAULT_BOARDS.map(({ id }) => id).includes(loadBoardSearched)
         ) {
-          this.addDefaultBoardIfnecessary(loadBoardSearched);
-          const nextBoard = findBoardOnStore(loadBoardSearched);
+          const nextBoard = this.addDefaultBoardIfnecessary(loadBoardSearched);
           if (nextBoard) return nextBoard;
         }
       };
