@@ -21,6 +21,7 @@ import {
   GET_API_MY_COMMUNICATORS_STARTED
 } from '../Communicator.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../../Account/Login/Login.constants';
+import moment from 'moment';
 
 let mockComm, defaultCommunicatorID, initialState;
 describe('reducer', () => {
@@ -32,7 +33,8 @@ describe('reducer', () => {
       email: 'anything@cboard.io',
       id: '123',
       name: "Cboard's Communicator",
-      rootBoard: '1'
+      rootBoard: '1',
+      lastEdited: moment().format()
     };
     defaultCommunicatorID = 'cboard_default';
     initialState = {
@@ -124,7 +126,8 @@ describe('reducer', () => {
   });
   it('should handle updateApiCommunicatorSuccess', () => {
     const updateApiCommunicatorSuccess = {
-      type: UPDATE_API_COMMUNICATOR_SUCCESS
+      type: UPDATE_API_COMMUNICATOR_SUCCESS,
+      communicator: initialState
     };
     expect(
       communicatorReducer(initialState, updateApiCommunicatorSuccess)
