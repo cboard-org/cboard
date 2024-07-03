@@ -23,8 +23,9 @@ import {
 import { defaultCommunicatorID } from './Communicator.reducer';
 import API from '../../api';
 import shortid from 'shortid';
+import { removeBoardsFromList, switchBoard } from '../Board/Board.actions';
+import { ALL_DEFAULT_BOARDS } from '../../helpers';
 import moment from 'moment';
-import { switchBoard } from '../Board/Board.actions';
 import history from './../../history';
 
 export function importCommunicator(communicator) {
@@ -234,7 +235,7 @@ export function verifyAndUpsertCommunicator(
  */
 
 export function getApiMyCommunicators() {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     dispatch(getApiMyCommunicatorsStarted());
     try {
       const res = await API.getCommunicators();
@@ -245,6 +246,18 @@ export function getApiMyCommunicators() {
         } catch (e) {
           console.error(e);
         }
+        const activeCommunicator =
+          res.data.find(
+            communicator =>
+              communicator.id === getState().communicator.activeCommunicator
+          ) ?? res.data[res.data.length - 1];
+        const defaultBoardBlackList = activeCommunicator?.defaultBoardBlackList;
+        dispatch(
+          removeBoardsFromList(
+            defaultBoardBlackList,
+            activeCommunicator.rootBoard
+          )
+        );
       }
 
       return res;
@@ -382,5 +395,29 @@ export function syncCommunicators(remoteCommunicators) {
       dispatch(switchBoard(rootBoard));
       history.replace(rootBoard);
     }
+  };
+}
+
+export function concatDefaultBoardIdToBlacklist(boardId) {
+  const getActiveCommunicator = getState => {
+    return getState().communicator.communicators.find(
+      c => c.id === getState().communicator.activeCommunicatorId
+    );
+  };
+  return (dispatch, getState) => {
+    if (!ALL_DEFAULT_BOARDS.map(({ id }) => id).includes(boardId)) return;
+    const updatedCommunicatorData = { ...getActiveCommunicator(getState) };
+
+    const concatBoardIdIfNecessary = () => {
+      if (!updatedCommunicatorData?.defaultBoardBlackList.includes(boardId))
+        return updatedCommunicatorData?.defaultBoardBlackList.concat(boardId);
+      return updatedCommunicatorData?.defaultBoardBlackList;
+    };
+
+    updatedCommunicatorData.defaultBoardBlackList = updatedCommunicatorData?.defaultBoardBlackList
+      ? concatBoardIdIfNecessary()
+      : [boardId];
+
+    return dispatch(verifyAndUpsertCommunicator(updatedCommunicatorData));
   };
 }

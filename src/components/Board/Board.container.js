@@ -70,6 +70,7 @@ import {
   IS_BROWSING_FROM_APPLE_TOUCH,
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
+import { ALL_DEFAULT_BOARDS, isRemoteIdChecker } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
 
 const ogv = require('ogv');
@@ -273,9 +274,14 @@ export class BoardContainer extends Component {
 
     if (!boardExists) {
       // try the root board
-      boardExists = boards.find(b => b.id === communicator.rootBoard);
+      const homeBoard = communicator.rootBoard;
+      boardExists = boards.find(b => b.id === homeBoard);
       if (!boardExists) {
-        boardExists = boards.find(b => b.id !== '');
+        if (isRemoteIdChecker(homeBoard))
+          boardExists = this.tryRemoteBoard(homeBoard);
+        if (!boardExists)
+          boardExists = this.addDefaultBoardIfnecessary(homeBoard);
+        if (!boardExists) boardExists = boards.find(b => b.id !== '');
       }
     }
     const boardId = boardExists.id;
@@ -868,8 +874,21 @@ export class BoardContainer extends Component {
     };
 
     if (tile.loadBoard) {
+      const loadBoardFinder = loadBoardSearched => {
+        const findBoardOnStore = boardId =>
+          this.props.boards.find(b => b.id === boardId);
+
+        const nextBoard = findBoardOnStore(loadBoardSearched);
+        if (nextBoard) return nextBoard;
+        if (
+          ALL_DEFAULT_BOARDS.map(({ id }) => id).includes(loadBoardSearched)
+        ) {
+          const nextBoard = this.addDefaultBoardIfnecessary(loadBoardSearched);
+          if (nextBoard) return nextBoard;
+        }
+      };
       const nextBoard =
-        boards.find(b => b.id === tile.loadBoard) ||
+        loadBoardFinder(tile.loadBoard) ||
         // If the board id is invalid, try falling back to a board
         // with the right name.
         boards.find(b => b.name === tile.label);
@@ -1509,6 +1528,18 @@ export class BoardContainer extends Component {
           return tiles;
         })
       : [];
+  };
+
+  addDefaultBoardIfnecessary = boardId => {
+    const { boards, addBoards } = this.props;
+    if (!boards.find(b => b.id === boardId)) {
+      const board = ALL_DEFAULT_BOARDS.find(({ id }) => id === boardId);
+      if (board) {
+        addBoards([board]);
+        return board;
+      }
+      return;
+    }
   };
 
   render() {
