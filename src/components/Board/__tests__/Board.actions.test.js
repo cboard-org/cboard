@@ -132,11 +132,21 @@ describe('actions', () => {
     expect(actions.previousBoard()).toEqual(expectedAction);
   });
 
-  it('should create an action to REPLACE_ME', () => {
+  it('should create an action to REPLACE_ME', async () => {
     const expectedAction = {
       type: types.TO_ROOT_BOARD
     };
-    expect(actions.toRootBoard()).toEqual(expectedAction);
+    const store = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        navHistory: ['12345678901234567'],
+        boards: [{ ...mockBoard, id: '12345678901234567' }]
+      }
+    });
+    await store.dispatch(actions.toRootBoard());
+    const toRootBoardAction = store.getActions()[0];
+    expect(toRootBoardAction).toEqual(expectedAction);
   });
 
   it('should create an action to REPLACE_ME', () => {
