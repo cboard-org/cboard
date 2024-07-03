@@ -6,6 +6,7 @@
     "author": "Cboard Team",
     "email": "support@cboard.io",
     "rootBoard": "root",
-    "boards": ["root"]
+    "boards": ["root"],
+    "defaultBoardBlackList": []
   }
 ]
