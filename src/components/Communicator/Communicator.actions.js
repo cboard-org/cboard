@@ -236,18 +236,22 @@ export function verifyAndUpsertCommunicator(
 export function getApiMyCommunicators() {
   return async dispatch => {
     dispatch(getApiMyCommunicatorsStarted());
-    return API.getCommunicators()
-      .then(res => {
-        dispatch(getApiMyCommunicatorsSuccess(res));
-
-        return dispatch(syncCommunicators(res.data)).catch(e => {
+    try {
+      const res = await API.getCommunicators();
+      dispatch(getApiMyCommunicatorsSuccess(res));
+      if (res?.data && res.data.length) {
+        try {
+          await dispatch(syncCommunicators(res.data));
+        } catch (e) {
           console.error(e);
-        });
-      })
-      .catch(err => {
-        dispatch(getApiMyCommunicatorsFailure(err.message));
-        throw new Error(err.message);
-      });
+        }
+      }
+
+      return res;
+    } catch (err) {
+      dispatch(getApiMyCommunicatorsFailure(err.message));
+      throw new Error(err.message);
+    }
   };
 }
 
