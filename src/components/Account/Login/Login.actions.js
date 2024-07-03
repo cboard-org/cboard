@@ -147,7 +147,10 @@ export function login({ email, password, activatedData }, type = 'local') {
       );
 
       if (loginData.communicators && loginData.communicators.length) {
-        currentCommunicator = loginData.communicators[0];
+        const lastRemoteSavedCommunicatorIndex =
+          loginData.communicators.length - 1;
+        currentCommunicator =
+          loginData.communicators[lastRemoteSavedCommunicatorIndex]; //use the latest communicator
       }
 
       const localBoardsIds = [];
