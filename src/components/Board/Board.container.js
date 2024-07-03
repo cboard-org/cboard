@@ -531,16 +531,15 @@ export class BoardContainer extends Component {
           updateBoard(boardData);
         }
         //api updates
-        updateApiObjectsNoChild(boardData, createBoard)
-          .then(boardId => {
-            if (createBoard) {
-              replaceBoard({ ...boardData }, { ...boardData, id: boardId });
-            }
-            this.props.history.replace(`/board/${boardId}`);
-          })
-          .catch(err => {
-            console.log(err.message);
-          });
+        const boardId = await updateApiObjectsNoChild(
+          boardData,
+
+          createBoard
+        );
+        if (createBoard) {
+          replaceBoard({ ...boardData }, { ...boardData, id: boardId });
+        }
+        this.props.history.replace(`/board/${boardId}`);
       } catch (err) {
         console.log(err.message);
       } finally {
