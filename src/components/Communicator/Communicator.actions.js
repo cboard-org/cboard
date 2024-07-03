@@ -359,6 +359,7 @@ export function syncCommunicators(remoteCommunicators) {
     const needToChangeActiveCommunicator =
       activeCommunicatorId !== lastRemoteSavedCommunicatorId &&
       updatedCommunicators.length &&
+      lastRemoteSavedCommunicatorId &&
       updatedCommunicators.findIndex(
         communicator => communicator.id === lastRemoteSavedCommunicatorId
       ) !== -1;
@@ -367,7 +368,7 @@ export function syncCommunicators(remoteCommunicators) {
       type: SYNC_COMMUNICATORS,
       communicators: updatedCommunicators,
       activeCommunicatorId: needToChangeActiveCommunicator
-        ? remoteCommunicators[0].id
+        ? lastRemoteSavedCommunicatorId
         : activeCommunicatorId
     });
 
