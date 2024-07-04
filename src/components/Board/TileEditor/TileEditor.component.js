@@ -74,7 +74,8 @@ export class TileEditor extends Component {
     onAddSubmit: PropTypes.func.isRequired,
     boards: PropTypes.array,
     userData: PropTypes.object,
-    folders: PropTypes.array
+    folders: PropTypes.array,
+    onAddApiBoard: PropTypes.func
   };
 
   static defaultProps = {
@@ -430,6 +431,7 @@ export class TileEditor extends Component {
 
   handleLoadBoardChange = ({ boardId }) => {
     if (boardId) {
+      this.props.onAddApiBoard(boardId);
       this.updateTileProperty('loadBoard', boardId);
     }
   };

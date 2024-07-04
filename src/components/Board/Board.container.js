@@ -1541,6 +1541,17 @@ export class BoardContainer extends Component {
     }
   };
 
+  handleAddApiBoard = async boardId => {
+    if (!this.props.boards.find(board => board.id === boardId)) {
+      try {
+        const board = await API.getBoard(boardId);
+        this.props.addBoards([board]);
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+  };
+
   render() {
     const {
       navHistory,
@@ -1696,6 +1707,7 @@ export class BoardContainer extends Component {
           )}
           userData={this.props.userData}
           folders={this.props.boards}
+          onAddApiBoard={this.handleAddApiBoard}
         />
       </Fragment>
     );
