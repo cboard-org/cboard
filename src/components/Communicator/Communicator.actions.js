@@ -214,7 +214,10 @@ export function verifyAndUpsertCommunicator(
       updatedCommunicatorData.id = shortid.generate();
       updatedCommunicatorData.boards = [...communicator.boards];
 
-      if (!!communicator.defaultBoardsIncluded) {
+      const hasValidDefaultBoardsIncluded = !!communicator.defaultBoardsIncluded
+        ?.length;
+
+      if (hasValidDefaultBoardsIncluded) {
         updatedCommunicatorData.defaultBoardsIncluded = communicator.defaultBoardsIncluded.map(
           item => ({ ...item })
         );

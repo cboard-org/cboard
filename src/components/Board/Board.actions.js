@@ -123,9 +123,12 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       return initialDefaultBoardsIncluded;
     };
 
-    const defaultBoardsIncluded =
-      activeCommunicator.defaultBoardsIncluded ||
-      fallbackInitialDefaultBoardsIncluded(activeCommunicator);
+    const hasValidDefaultBoardsIncluded = !!activeCommunicator
+      .defaultBoardsIncluded?.length;
+
+    const defaultBoardsIncluded = hasValidDefaultBoardsIncluded
+      ? activeCommunicator.defaultBoardsIncluded
+      : fallbackInitialDefaultBoardsIncluded(activeCommunicator);
 
     const defaultBoardsNamesIncluded = defaultBoardsIncluded?.map(
       includedBoardObject => includedBoardObject.nameOnJSON

@@ -7,6 +7,10 @@
     "email": "support@cboard.io",
     "rootBoard": "root",
     "boards": ["root"],
-    "defaultBoardBlackList": []
+    "defaultBoardBlackList": [],
+    "defaultBoardsIncluded": [
+      { "nameOnJSON": "advanced", "homeBoard": "root" },
+      { "nameOnJSON": "picSeePal", "homeBoard": "jjmlUcQs19" }
+    ]
   }
 ]
