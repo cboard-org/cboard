@@ -7,7 +7,8 @@ import {
   UPDATE_USER_DATA,
   DISABLE_TOUR,
   ENABLE_ALL_TOURS,
-  SET_UNLOGGED_USER_LOCATION
+  SET_UNLOGGED_USER_LOCATION,
+  USER_DATA_PROPERTIES
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
@@ -142,12 +143,22 @@ function appReducer(state = initialState, action) {
         navigationSettings = { ...navigationSettings, ...navigation };
       }
 
+      const getUserData = action => {
+        const newUser = {};
+        USER_DATA_PROPERTIES.forEach(prop => {
+          newUser[prop] = action[prop];
+        });
+        return newUser;
+      };
+
+      const userData = getUserData(action.payload) || {};
+
       return {
         ...state,
         isFirstVisit: false,
         displaySettings,
         navigationSettings,
-        userData: action.payload || {}
+        userData: userData
       };
     case LOGOUT:
       return {
