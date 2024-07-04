@@ -143,11 +143,9 @@ function appReducer(state = initialState, action) {
         navigationSettings = { ...navigationSettings, ...navigation };
       }
 
-      const getUserData = action => {
-        const newUser = {};
-        USER_DATA_PROPERTIES.forEach(prop => {
-          newUser[prop] = action[prop];
-        });
+      const getUserData = payload => {
+        const newUser = { ...payload };
+        delete newUser.boards;
         return newUser;
       };
 
