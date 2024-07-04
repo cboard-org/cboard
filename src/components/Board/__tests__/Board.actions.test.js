@@ -132,11 +132,21 @@ describe('actions', () => {
     expect(actions.previousBoard()).toEqual(expectedAction);
   });
 
-  it('should create an action to REPLACE_ME', () => {
+  it('should create an action to REPLACE_ME', async () => {
     const expectedAction = {
       type: types.TO_ROOT_BOARD
     };
-    expect(actions.toRootBoard()).toEqual(expectedAction);
+    const store = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        navHistory: ['12345678901234567'],
+        boards: [{ ...mockBoard, id: '12345678901234567' }]
+      }
+    });
+    await store.dispatch(actions.toRootBoard());
+    const toRootBoardAction = store.getActions()[0];
+    expect(toRootBoardAction).toEqual(expectedAction);
   });
 
   it('should create an action to REPLACE_ME', () => {
@@ -318,7 +328,10 @@ describe('actions', () => {
           boardId: '12345678901234567',
           type: 'cboard/Board/CREATE_API_BOARD_SUCCESS'
         };
-        expect(actions[1]).toEqual(dataResp);
+        const successAction = actions.find(
+          action => action.type === types.CREATE_API_BOARD_SUCCESS
+        );
+        expect(successAction).toEqual(dataResp);
         expect(data).toEqual(mockBoard);
       })
       .catch(e => {

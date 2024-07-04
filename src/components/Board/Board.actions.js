@@ -38,14 +38,15 @@ import {
   DOWNLOAD_IMAGES_FAILURE,
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
-  DOWNLOAD_IMAGE_FAILURE
+  DOWNLOAD_IMAGE_FAILURE,
+  REMOVE_BOARDS_FROM_LIST,
+  UNMARK_SHOULD_CREATE_API_BOARD,
+  SHORT_ID_MAX_LENGTH
 } from './Board.constants';
 
 import API from '../../api';
 
 import {
-  updateApiCommunicator,
-  createApiCommunicator,
   replaceBoardCommunicator,
   upsertCommunicator,
   getApiMyCommunicators,
@@ -53,16 +54,15 @@ import {
   upsertApiCommunicator,
   updateDefaultBoardsIncluded,
   addDefaultBoardIncluded,
-  createCommunicator,
-  changeCommunicator
+  verifyAndUpsertCommunicator,
+  concatDefaultBoardIdToBlacklist
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
 import { DEFAULT_BOARDS } from '../../helpers';
 import history from './../../history';
 import { improvePhraseAbortController } from '../../api/api';
-import shortid from 'shortid';
 
-const BOARDS_PAGE_LIMIT = 100;
+const BOARDS_PAGE_LIMIT = 1000;
 
 export function importBoards(boards) {
   return {
@@ -102,18 +102,9 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
       if (userData.email && activeCommunicator.email !== userData?.email) {
         // Create a new communicator for the user if it doesn't exist
-        const newCommunicator = {
-          ...activeCommunicator,
-          boards: [...activeCommunicator.boards],
-          author: userData.name,
-          email: userData.email,
-          id: shortid.generate()
-        };
-        dispatch(createCommunicator(newCommunicator));
-        dispatch(changeCommunicator(newCommunicator.id));
-        return newCommunicator;
+        dispatch(verifyAndUpsertCommunicator(activeCommunicator));
       }
-      return activeCommunicator;
+      return getActiveCommunicator(getState);
     };
 
     const activeCommunicator = checkUserCommunicator();
@@ -164,10 +155,14 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
     const switchActiveBoard = homeBoardId => {
       if (homeBoardId) {
+        const storeBoards = getState().board.boards;
+        const board = storeBoards.find(board => board.id === homeBoardId);
+        if (!board) return null;
         const goTo = `/board/${homeBoardId}`;
 
         dispatch(switchBoard(homeBoardId));
         history.replace(goTo);
+        return true;
       }
     };
 
@@ -196,7 +191,9 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
       dispatch(editCommunicator(communicatorWithRootBoardReplaced));
       if (userData?.role) {
-        dispatch(upsertApiCommunicator(communicatorWithRootBoardReplaced));
+        dispatch(
+          upsertApiCommunicator(communicatorWithRootBoardReplaced)
+        ).catch(console.error);
       }
     };
 
@@ -209,9 +206,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       homeBoardId
     });
 
-    switchActiveBoard(homeBoardId);
-
-    replaceHomeBoard(homeBoardId);
+    if (switchActiveBoard(homeBoardId)) replaceHomeBoard(homeBoardId);
   };
 }
 
@@ -278,8 +273,19 @@ export function previousBoard() {
 }
 
 export function toRootBoard() {
-  return {
-    type: TO_ROOT_BOARD
+  return (dispatch, getState) => {
+    const navHistory = getState().board.navHistory;
+    const firstBoardOnHistory = navHistory[0];
+    const allBoardsIds = getState().board.boards.map(board => board.id);
+
+    if (!firstBoardOnHistory || !allBoardsIds.includes(firstBoardOnHistory)) {
+      return null;
+    }
+    history.replace(firstBoardOnHistory);
+    dispatch({
+      type: TO_ROOT_BOARD
+    });
+    return firstBoardOnHistory;
   };
 }
 
@@ -519,14 +525,15 @@ export function getApiMyBoards() {
 }
 
 export function createApiBoard(boardData, boardId) {
-  return dispatch => {
+  return async dispatch => {
     dispatch(createApiBoardStarted());
     boardData = {
       ...boardData,
       isPublic: false
     };
     return API.createBoard(boardData)
-      .then(res => {
+      .then(async res => {
+        await dispatch(concatDefaultBoardIdToBlacklist(boardId));
         dispatch(createApiBoardSuccess(res, boardId));
         return res;
       })
@@ -538,7 +545,7 @@ export function createApiBoard(boardData, boardId) {
 }
 
 export function updateApiBoard(boardData) {
-  return dispatch => {
+  return async dispatch => {
     dispatch(updateApiBoardStarted());
     return API.updateBoard(boardData)
       .then(res => {
@@ -689,13 +696,12 @@ function getFileNameFromUrl(url) {
 
 export function updateApiObjectsNoChild(
   parentBoard,
-  createCommunicator = false,
   createParentBoard = false
 ) {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     //create - update parent board
     const action = createParentBoard ? createApiBoard : updateApiBoard;
-    return dispatch(action(parentBoard, parentBoard.id))
+    return await dispatch(action(parentBoard, parentBoard.id))
       .then(res => {
         const updatedParentBoardId = res.id;
         //add new boards to the active communicator
@@ -722,12 +728,9 @@ export function updateApiObjectsNoChild(
           comm.activeBoardId = updatedParentBoardId;
           dispatch(upsertCommunicator(comm));
         }
-        const caction = createCommunicator
-          ? createApiCommunicator
-          : updateApiCommunicator;
-        return dispatch(caction(comm, comm.id))
-          .then(() => {
-            dispatch(updateApiMarkedBoards());
+        return dispatch(upsertApiCommunicator(comm))
+          .then(async () => {
+            await dispatch(updateApiMarkedBoards());
             return updatedParentBoardId;
           })
           .catch(e => {
@@ -740,34 +743,74 @@ export function updateApiObjectsNoChild(
   };
 }
 export function updateApiMarkedBoards() {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     const allBoards = [...getState().board.boards];
-    for (let i = 0; i < allBoards.length; i++) {
+    for await (const board of allBoards) {
+      const boardsIds = getState().board.boards?.map(board => board.id);
+      if (!boardsIds.includes(board.id)) return;
+
       if (
-        allBoards[i].id.length > 14 &&
-        allBoards[i].hasOwnProperty('email') &&
-        allBoards[i].email === getState().app.userData.email &&
-        allBoards[i].hasOwnProperty('markToUpdate') &&
-        allBoards[i].markToUpdate
+        board.id.length > 14 &&
+        board.hasOwnProperty('email') &&
+        board.email === getState().app.userData.email &&
+        board.hasOwnProperty('markToUpdate') &&
+        board.markToUpdate
       ) {
-        dispatch(updateApiBoard(allBoards[i]))
-          .then(() => {
-            dispatch(unmarkBoard(allBoards[i].id));
-            return;
-          })
-          .catch(e => {
-            throw new Error(e.message);
-          });
+        try {
+          await dispatch(updateApiBoard(board));
+          dispatch(unmarkBoard(board.id));
+        } catch (e) {
+          throw new Error(e.message);
+        }
+      }
+      if (board.id.length < SHORT_ID_MAX_LENGTH && board.shouldCreateBoard) {
+        const state = getState();
+
+        // TODO - translate name using intl in a redux action
+        //name: intl.formatMessage({ id: allBoards[i].nameKey })
+        const extractName = () => {
+          const splitedNameKey = board.nameKey.split('.');
+          const NAMEKEY_LAST_INDEX = splitedNameKey.length - 1;
+          return splitedNameKey[NAMEKEY_LAST_INDEX];
+        };
+        const name = board.name ?? extractName();
+        let boardData = {
+          ...board,
+          author: state.app.userData.name,
+          email: state.app.userData.email,
+          hidden: false,
+          locale: state.lang,
+          name
+        };
+        delete boardData.shouldCreateBoard;
+        dispatch(unmarkShouldCreateBoard(boardData.id));
+
+        dispatch(updateBoard(boardData));
+        try {
+          const boardId = await dispatch(
+            updateApiObjectsNoChild(boardData, true)
+          );
+          dispatch(
+            replaceBoard({ ...boardData }, { ...boardData, id: boardId })
+          );
+        } catch (err) {
+          console.log(err.message);
+        }
       }
     }
-    return;
+  };
+}
+
+function unmarkShouldCreateBoard(boardId) {
+  return {
+    type: UNMARK_SHOULD_CREATE_API_BOARD,
+    boardId
   };
 }
 
 export function updateApiObjects(
   childBoard,
   parentBoard,
-  createCommunicator = false,
   createParentBoard = false
 ) {
   return (dispatch, getState) => {
@@ -819,10 +862,7 @@ export function updateApiObjects(
               comm.activeBoardId = updatedParentBoardId;
               dispatch(upsertCommunicator(comm));
             }
-            const caction = createCommunicator
-              ? createApiCommunicator
-              : updateApiCommunicator;
-            return dispatch(caction(comm, comm.id))
+            return dispatch(upsertApiCommunicator(comm))
               .then(() => {
                 dispatch(updateApiMarkedBoards());
                 return updatedParentBoardId;
@@ -838,5 +878,21 @@ export function updateApiObjects(
       .catch(e => {
         throw new Error(e.message);
       });
+  };
+}
+
+export function removeBoardsFromList(blacklist = [], rootBoard) {
+  return (dispatch, getState) => {
+    const actualBoardId = getState().board.activeBoardId;
+    if (blacklist.includes(actualBoardId)) {
+      history.replace(rootBoard);
+      dispatch(switchBoard(rootBoard));
+      const rootBoardFinded = dispatch(toRootBoard());
+      if (!rootBoardFinded || blacklist.includes(rootBoard)) return;
+    }
+    dispatch({
+      type: REMOVE_BOARDS_FROM_LIST,
+      blacklist
+    });
   };
 }
