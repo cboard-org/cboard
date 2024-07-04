@@ -7,8 +7,7 @@ import {
   UPDATE_USER_DATA,
   DISABLE_TOUR,
   ENABLE_ALL_TOURS,
-  SET_UNLOGGED_USER_LOCATION,
-  USER_DATA_PROPERTIES
+  SET_UNLOGGED_USER_LOCATION
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {

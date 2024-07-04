@@ -63,24 +63,3 @@ export const APP_LANGS = [
   'zh-CN',
   'zu-ZA' // for crowdin contextual translation
 ];
-
-export const USER_DATA_PROPERTIES = [
-  'id',
-  'google',
-  'facebook',
-  'apple',
-  'name',
-  'role',
-  'provider',
-  'locale',
-  'password',
-  'location',
-  'email',
-  'isFirstLogin',
-  'birthdate',
-  'lastlogin',
-  'createdAt',
-  'updatedAt',
-  'authToken',
-  'subscriber'
-];
