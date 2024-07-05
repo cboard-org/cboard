@@ -155,6 +155,7 @@ function appReducer(state = initialState, action) {
         userData: {}
       };
     case UPDATE_USER_DATA:
+      if (action.userData.boards) delete action.userData.boards;
       return {
         ...state,
         userData: action.userData
