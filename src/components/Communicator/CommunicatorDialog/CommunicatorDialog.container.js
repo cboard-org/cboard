@@ -283,6 +283,13 @@ class CommunicatorDialogContainer extends React.Component {
       addBoardCommunicator(newBoard.id);
     }
 
+    if (!records) {
+      records = [{ prev: board.id, next: newBoard.id }];
+    } else {
+      records.push({ prev: board.id, next: newBoard.id });
+    }
+    this.updateBoardReferences(board, newBoard, records);
+
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       try {
@@ -302,23 +309,17 @@ class CommunicatorDialogContainer extends React.Component {
         });
       }
     }
-    if (!records) {
-      records = [{ prev: board.id, next: newBoard.id }];
-    } else {
-      records.push({ prev: board.id, next: newBoard.id });
-    }
-    this.updateBoardReferences(board, newBoard, records);
 
     if (board.tiles.length < 1) {
       return;
     }
 
     //return condition
-    board.tiles.forEach(async tile => {
+    for (const tile of board.tiles) {
       if (tile.loadBoard && !tile.linkedBoard) {
         try {
           const nextBoard = await API.getBoard(tile.loadBoard);
-          this.createBoardsRecursively(nextBoard, records);
+          await this.createBoardsRecursively(nextBoard, records);
         } catch (err) {
           if (err.response.status === 404) {
             //look for this board in available boards
@@ -326,12 +327,12 @@ class CommunicatorDialogContainer extends React.Component {
               b => b.id === tile.loadBoard
             );
             if (localBoard) {
-              this.createBoardsRecursively(localBoard, records);
+              await this.createBoardsRecursively(localBoard, records);
             }
           }
         }
       }
-    });
+    }
   }
 
   updateBoardReferences(board, newBoard, records) {

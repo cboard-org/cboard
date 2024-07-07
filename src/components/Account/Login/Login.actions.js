@@ -15,6 +15,7 @@ import {
 } from '../../App/App.actions';
 import { getVoiceURI } from '../../../i18n';
 import { isCordova, isElectron } from '../../../cordova-util';
+import { isRemoteIdChecker } from '../../../helpers';
 
 export function loginSuccess(payload) {
   return dispatch => {
@@ -147,7 +148,10 @@ export function login({ email, password, activatedData }, type = 'local') {
       );
 
       if (loginData.communicators && loginData.communicators.length) {
-        currentCommunicator = loginData.communicators[0];
+        const lastRemoteSavedCommunicatorIndex =
+          loginData.communicators.length - 1;
+        currentCommunicator =
+          loginData.communicators[lastRemoteSavedCommunicatorIndex]; //use the latest communicator
       }
 
       const localBoardsIds = [];
@@ -166,13 +170,12 @@ export function login({ email, password, activatedData }, type = 'local') {
           .map(async id => {
             let board = null;
             try {
-              board = await API.getBoard(id);
+              if (isRemoteIdChecker(id)) board = await API.getBoard(id);
             } catch (e) {}
             return board;
           })
           .filter(b => b !== null)
       );
-
       dispatch(addBoards(apiBoards));
       if (type === 'local') {
         dispatch(

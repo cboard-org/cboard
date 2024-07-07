@@ -19,9 +19,11 @@ import {
   UPDATE_API_COMMUNICATOR_STARTED,
   GET_API_MY_COMMUNICATORS_SUCCESS,
   GET_API_MY_COMMUNICATORS_FAILURE,
-  GET_API_MY_COMMUNICATORS_STARTED
+  GET_API_MY_COMMUNICATORS_STARTED,
+  SYNC_COMMUNICATORS
 } from './Communicator.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
+import moment from 'moment';
 
 export const defaultCommunicatorID = 'cboard_default';
 const initialState = {
@@ -55,9 +57,13 @@ function communicatorReducer(state = initialState, action) {
       };
 
     case CREATE_COMMUNICATOR:
+      const newCommunicator = {
+        ...action.payload,
+        lastEdited: moment().format()
+      };
       return {
         ...state,
-        communicators: state.communicators.concat(action.payload)
+        communicators: state.communicators.concat(newCommunicator)
       };
 
     case EDIT_COMMUNICATOR:
@@ -67,7 +73,11 @@ function communicatorReducer(state = initialState, action) {
       let newState = { ...state };
 
       if (communicatorIndex >= 0) {
-        newState.communicators[communicatorIndex] = action.payload;
+        const updatedCommunicator = {
+          ...action.payload,
+          lastEdited: moment().format()
+        };
+        newState.communicators[communicatorIndex] = updatedCommunicator;
       }
 
       return newState;
@@ -96,6 +106,7 @@ function communicatorReducer(state = initialState, action) {
         if (index !== -1) {
           const updatedCommunicators = [...state.communicators];
           updatedCommunicators[index].boards.push(action.boardId);
+          updatedCommunicators[index].lastEdited = moment().format();
           return {
             ...state,
             communicators: updatedCommunicators
@@ -112,6 +123,7 @@ function communicatorReducer(state = initialState, action) {
           const bindex = activeCommunicator.boards.indexOf(action.boardId);
           if (bindex !== -1) {
             dupdatedCommunicators[index].boards.splice(bindex, 1);
+            dupdatedCommunicators[index].lastEdited = moment().format();
             return {
               ...state,
               communicators: dupdatedCommunicators
@@ -135,6 +147,7 @@ function communicatorReducer(state = initialState, action) {
               1,
               action.nextBoardId
             );
+            updatedCommunicators[index].lastEdited = moment().format();
             return {
               ...state,
               communicators: updatedCommunicators
@@ -152,7 +165,11 @@ function communicatorReducer(state = initialState, action) {
             nameOnJSON: 'advanced',
             homeBoard: 'root'
           };
-          const defaultBoardsIncluded = activeCommunicator.defaultBoardsIncluded
+
+          const hasValidDefaultBoardsIncluded = !!activeCommunicator
+            .defaultBoardsIncluded?.length;
+
+          const defaultBoardsIncluded = hasValidDefaultBoardsIncluded
             ? [
                 ...activeCommunicator.defaultBoardsIncluded,
                 action.defaultBoardData
@@ -163,6 +180,7 @@ function communicatorReducer(state = initialState, action) {
           updatedCommunicators[
             index
           ].defaultBoardsIncluded = defaultBoardsIncluded;
+          updatedCommunicators[index].lastEdited = moment().format();
 
           return {
             ...state,
@@ -179,6 +197,7 @@ function communicatorReducer(state = initialState, action) {
           const updatedCommunicators = [...state.communicators];
           updatedCommunicators[index].defaultBoardsIncluded =
             action.defaultBoardsIncluded;
+          updatedCommunicators[index].lastEdited = moment().format();
 
           return {
             ...state,
@@ -199,7 +218,11 @@ function communicatorReducer(state = initialState, action) {
             : state.activeCommunicatorId,
         communicators: state.communicators.map(communicator =>
           communicator.id === action.communicatorId
-            ? { ...communicator, id: action.communicator.id }
+            ? {
+                ...communicator,
+                id: action.communicator.id,
+                lastEdited: action.communicator.lastEdited
+              }
             : communicator
         )
       };
@@ -216,7 +239,15 @@ function communicatorReducer(state = initialState, action) {
     case UPDATE_API_COMMUNICATOR_SUCCESS:
       return {
         ...state,
-        isFetching: false
+        isFetching: false,
+        communicators: state.communicators.map(communicator =>
+          communicator.id === action.communicator.id
+            ? {
+                ...communicator,
+                lastEdited: action.communicator.lastEdited
+              }
+            : communicator
+        )
       };
     case UPDATE_API_COMMUNICATOR_FAILURE:
       return {
@@ -229,25 +260,9 @@ function communicatorReducer(state = initialState, action) {
         isFetching: true
       };
     case GET_API_MY_COMMUNICATORS_SUCCESS:
-      let flag = false;
-      const myCommunicators = [...state.communicators];
-      for (let i = 0; i < action.communicators.data.length; i++) {
-        for (let j = 0; j < myCommunicators.length; j++) {
-          if (myCommunicators[j].id === action.communicators.data[i].id) {
-            myCommunicators[j].boards = action.communicators.data[i].boards;
-            flag = true;
-            break;
-          }
-        }
-        if (!flag) {
-          myCommunicators.push(action.communicators.data[i]);
-          flag = false;
-        }
-      }
       return {
         ...state,
-        isFetching: false,
-        communicators: myCommunicators
+        isFetching: false
       };
     case GET_API_MY_COMMUNICATORS_FAILURE:
       return {
@@ -258,6 +273,12 @@ function communicatorReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: true
+      };
+    case SYNC_COMMUNICATORS:
+      return {
+        ...state,
+        communicators: action.communicators,
+        activeCommunicatorId: action.activeCommunicatorId
       };
     default:
       return state;

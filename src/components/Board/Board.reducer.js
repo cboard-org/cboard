@@ -36,7 +36,10 @@ import {
   GET_API_MY_BOARDS_STARTED,
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
-  DOWNLOAD_IMAGE_FAILURE
+  DOWNLOAD_IMAGE_FAILURE,
+  REMOVE_BOARDS_FROM_LIST,
+  UNMARK_SHOULD_CREATE_API_BOARD,
+  SHORT_ID_MAX_LENGTH
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -249,7 +252,13 @@ function boardReducer(state = initialState, action) {
           board => action.boardId.indexOf(board.id) === -1
         )
       };
-
+    case REMOVE_BOARDS_FROM_LIST:
+      return {
+        ...state,
+        boards: state.boards.filter(
+          board => !action.blacklist?.includes(board.id)
+        )
+      };
     case CREATE_TILE:
       return {
         ...state,
@@ -289,6 +298,15 @@ function boardReducer(state = initialState, action) {
             : { ...board, markToUpdate: false }
         )
       };
+    case UNMARK_SHOULD_CREATE_API_BOARD:
+      return {
+        ...state,
+        boards: state.boards.map(board =>
+          board.id !== action.boardId
+            ? board
+            : { ...board, shouldCreateBoard: false }
+        )
+      };
     case CHANGE_OUTPUT:
       return {
         ...state,
@@ -312,6 +330,12 @@ function boardReducer(state = initialState, action) {
                 creadBoards[i].hasOwnProperty('email')
               ) {
                 creadBoards[i].markToUpdate = true;
+              }
+
+              const shouldCreateBoard =
+                creadBoards[i].id.length < SHORT_ID_MAX_LENGTH;
+              if (shouldCreateBoard) {
+                creadBoards[i].shouldCreateBoard = true;
               }
             }
           }
