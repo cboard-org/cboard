@@ -65,7 +65,7 @@ const getKeysFromApiUserDataResponse = payload => {
   const newUser = {};
   if (!payload) return newUser;
   USER_DATA_PROPERTIES.forEach(prop => {
-    newUser[prop] = payload[prop];
+    if (payload[prop] !== undefined) newUser[prop] = payload[prop];
   });
   return newUser;
 };
