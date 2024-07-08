@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 
 import { isCordova } from '../../../cordova-util';
@@ -18,10 +19,13 @@ const CboardLogo = props => {
   const [showLogo, setShowLogo] = useState(false);
   const [violetLogo, setVioletLogo] = useState(false);
 
-  useEffect(() => {
-    setShowLogo(true);
-    if (!!props.isViolet) setVioletLogo(true);
-  }, []);
+  useEffect(
+    () => {
+      setShowLogo(true);
+      if (!!props.isViolet) setVioletLogo(true);
+    },
+    [props.isViolet]
+  );
 
   return (
     <CSSTransition
@@ -37,6 +41,10 @@ const CboardLogo = props => {
       />
     </CSSTransition>
   );
+};
+
+CboardLogo.propTypes = {
+  isViolet: PropTypes.bool
 };
 
 export default CboardLogo;

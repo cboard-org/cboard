@@ -204,7 +204,7 @@ export class WelcomeScreen extends Component {
   }
 
   render() {
-    const { finishFirstVisit, heading, text, onClose } = this.props;
+    const { finishFirstVisit, onClose } = this.props;
     const { activeView, dialogWithKeyboardStyle } = this.state;
 
     return (
