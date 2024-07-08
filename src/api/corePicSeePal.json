@@ -803,7 +803,7 @@
         "sound": "",
         "type": "folder",
         "backgroundColor": "#2196F3",
-        "linkedBoard": false,
+        "linkedBoard": true,
         "id": "auYUsFh3-qI"
       }
     ],
