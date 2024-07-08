@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import amber from '@material-ui/core/colors/amber';
@@ -14,7 +15,15 @@ const setRootFontFamily = fontFamily => {
   const rootElement = document.querySelector(':root');
   rootElement.style.fontFamily = fontFamily;
 };
+
 export class ThemeProvider extends Component {
+  static propTypes = {
+    dir: PropTypes.string,
+    children: PropTypes.node.isRequired,
+    darkThemeActive: PropTypes.bool,
+    fontFamilyName: PropTypes.string.isRequired
+  };
+
   static defaultProps = {
     fontFamilyName: DEFAULT_FONT_FAMILY
   };

@@ -47,6 +47,9 @@
   flex-grow: 1;
   min-height: 0;
   padding-left: 15%;
+  @media (max-height: 630px) {
+    padding-left: 5%;
+  }
 }
 
 .WelcomeScreen__footer {

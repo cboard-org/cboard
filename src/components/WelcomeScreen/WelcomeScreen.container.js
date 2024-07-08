@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import CloseIcon from '@material-ui/icons/Close';
@@ -14,7 +15,6 @@ import {
 
 import messages from './WelcomeScreen.messages';
 import { finishFirstVisit } from '../App/App.actions';
-import Information from './Information';
 import Login from '../Account/Login';
 import SignUp from '../Account/SignUp';
 import ResetPassword from '../Account/ResetPassword';
@@ -31,6 +31,21 @@ import {
 const socialBtnStyle = {
   'border-radius': '15px'
 };
+
+const useStyles = makeStyles({
+  WelcomeScreen: {
+    height: '100%',
+    padding: '1.5rem',
+    position: 'relative',
+    color: '#eceff1',
+    overflow: 'auto',
+    backgroundColor:
+      'linear-gradient(to right, rgb(45, 22, 254), rgb(141, 92, 255))',
+    backgroundImage:
+      'url("waves.png"), linear-gradient(to right, rgb(45, 22, 254), rgb(141, 92, 255))',
+    backgroundSize: 'cover'
+  }
+});
 
 export class WelcomeScreen extends Component {
   state = {

@@ -12,7 +12,7 @@
   flex-wrap: 'wrap';
   justify-content: 'space-around';
   overflow: 'hidden';
-  padding: 16px;
+  padding: 12px;
 }
 
 .imageItem {

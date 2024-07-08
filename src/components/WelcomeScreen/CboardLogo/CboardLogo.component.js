@@ -7,8 +7,8 @@ import './CboardLogo.css';
 
 // Cordova path cannot be absolute
 const imageWhite = isCordova()
-  ? './images/logo-white.svg'
-  : '/images/logo-white.svg';
+  ? './images/logo-white-slogan.png'
+  : '/images/logo-white-slogan.png';
 
 const imageViolet = isCordova()
   ? './images/logo-violet.svg'
