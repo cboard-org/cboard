@@ -57,8 +57,7 @@ const defaultOption = {
     axisLabel: {
       color: '#ccc',
       margin: 20,
-      fontSize: 13,
-      fontFamily: 'roboto'
+      fontSize: 13
     },
     splitLine: {
       show: true,

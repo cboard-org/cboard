@@ -29,7 +29,7 @@ import {
 } from '../../cordova-util';
 
 const socialBtnStyle = {
-  'border-radius': '15px'
+  borderRadius: '15px'
 };
 
 const useStyles = makeStyles({
