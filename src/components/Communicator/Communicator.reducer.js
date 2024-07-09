@@ -165,7 +165,11 @@ function communicatorReducer(state = initialState, action) {
             nameOnJSON: 'advanced',
             homeBoard: 'root'
           };
-          const defaultBoardsIncluded = activeCommunicator.defaultBoardsIncluded
+
+          const hasValidDefaultBoardsIncluded = !!activeCommunicator
+            .defaultBoardsIncluded?.length;
+
+          const defaultBoardsIncluded = hasValidDefaultBoardsIncluded
             ? [
                 ...activeCommunicator.defaultBoardsIncluded,
                 action.defaultBoardData
