@@ -10,18 +10,17 @@ import FullScreenDialog, {
   FullScreenDialogContent
 } from '../../UI/FullScreenDialog';
 import CboardLogo from '../../WelcomeScreen/CboardLogo';
-import unicefLogo from './unicef.png';
-import microsoftLogo from './microsoft.png';
 import './About.css';
+import { isCordova } from '../../../cordova-util';
 
 const itemData = [
   {
-    img: unicefLogo,
+    img: (isCordova() ? '.' : '') + '/images/sponsers/unicef.png',
     title: 'UNICEF',
     author: 'UNICEF'
   },
   {
-    img: microsoftLogo,
+    img: (isCordova() ? '.' : '') + '/images/sponsers/microsoft.png',
     title: 'Microsoft',
     author: 'Microsoft'
   }

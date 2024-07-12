@@ -9,8 +9,6 @@
     rgb(45, 22, 254),
     rgb(141, 92, 255)
   );
-  background-image: url('waves.png'),
-    linear-gradient(to right, rgb(45, 22, 254), rgb(141, 92, 255));
   background-size: cover;
 }
 
@@ -47,6 +45,7 @@
   flex-grow: 1;
   min-height: 0;
   padding-left: 15%;
+
   @media (max-height: 630px) {
     padding-left: 5%;
   }
