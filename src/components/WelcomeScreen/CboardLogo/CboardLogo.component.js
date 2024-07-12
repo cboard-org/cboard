@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 
 import { isCordova } from '../../../cordova-util';
@@ -6,17 +7,25 @@ import { isCordova } from '../../../cordova-util';
 import './CboardLogo.css';
 
 // Cordova path cannot be absolute
-const image = isCordova()
-  ? './images/logo_no_words.svg'
-  : '/images/logo_no_words.svg';
+const imageWhite = isCordova()
+  ? './images/logo-white-slogan.png'
+  : '/images/logo-white-slogan.png';
 
-const CboardLogo = () => {
+const imageViolet = isCordova()
+  ? './images/logo-violet.svg'
+  : '/images/logo-violet.svg';
 
+const CboardLogo = props => {
   const [showLogo, setShowLogo] = useState(false);
+  const [violetLogo, setVioletLogo] = useState(false);
 
-  useEffect(() => {
-    setShowLogo(true);
-  }, []);
+  useEffect(
+    () => {
+      setShowLogo(true);
+      if (!!props.isViolet) setVioletLogo(true);
+    },
+    [props.isViolet]
+  );
 
   return (
     <CSSTransition
@@ -25,9 +34,17 @@ const CboardLogo = () => {
       classNames="transition"
       appear={true}
     >
-      <img className="CboardLogo" src={image} alt="Cboard Logo" />
+      <img
+        className="CboardLogo"
+        src={violetLogo ? imageViolet : imageWhite}
+        alt="Cboard Logo"
+      />
     </CSSTransition>
   );
-}
+};
+
+CboardLogo.propTypes = {
+  isViolet: PropTypes.bool
+};
 
 export default CboardLogo;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import CloseIcon from '@material-ui/icons/Close';
@@ -14,7 +15,6 @@ import {
 
 import messages from './WelcomeScreen.messages';
 import { finishFirstVisit } from '../App/App.actions';
-import Information from './Information';
 import Login from '../Account/Login';
 import SignUp from '../Account/SignUp';
 import ResetPassword from '../Account/ResetPassword';
@@ -22,11 +22,36 @@ import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL, GOOGLE_FIREBASE_WEB_CLIENT_ID } from '../../constants';
 import {
+  isCordova,
   isAndroid,
   isElectron,
   isIOS,
   manageKeyboardEvents
 } from '../../cordova-util';
+
+const SocialBtnStyle = {
+  borderRadius: '15px'
+};
+
+// Cordova path cannot be absolute
+const backgroundImage = isCordova()
+  ? './images/bg/waves.png'
+  : '/images/bg/waves.png';
+
+const styles = theme => ({
+  root: {},
+  WelcomeScreen: {
+    height: '100%',
+    padding: '1.5rem',
+    position: 'relative',
+    color: '#eceff1',
+    overflow: 'auto',
+    backgroundColor:
+      'linear-gradient(to right, rgb(45, 22, 254), rgb(141, 92, 255))',
+    backgroundImage: `url(${backgroundImage}), linear-gradient(to right, rgb(45, 22, 254), rgb(141, 92, 255))`,
+    backgroundSize: 'cover'
+  }
+});
 
 export class WelcomeScreen extends Component {
   state = {
@@ -42,7 +67,8 @@ export class WelcomeScreen extends Component {
     finishFirstVisit: PropTypes.func.isRequired,
     heading: PropTypes.string,
     text: PropTypes.string,
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
+    classes: PropTypes.object.isRequired
   };
 
   handleKeyboardDidShow = event => {
@@ -185,20 +211,17 @@ export class WelcomeScreen extends Component {
   }
 
   render() {
-    const { finishFirstVisit, heading, text, onClose } = this.props;
+    const { finishFirstVisit, onClose, classes } = this.props;
     const { activeView, dialogWithKeyboardStyle } = this.state;
 
     return (
-      <div className="WelcomeScreen">
+      <div className={classes.WelcomeScreen}>
         <div className="WelcomeScreen__container">
           {onClose && (
             <IconButton label="close" onClick={onClose}>
               <CloseIcon />
             </IconButton>
           )}
-          <div className="WelcomeScreen__content">
-            <Information heading={heading} text={text} />
-          </div>
           <div className="WelcomeScreen__logo">
             <CboardLogo />
           </div>
@@ -222,6 +245,7 @@ export class WelcomeScreen extends Component {
             <div className="WelcomeScreen__button WelcomeScreen__button">
               {!isElectron() && (
                 <GoogleLoginButton
+                  style={SocialBtnStyle}
                   className="WelcomeScreen__button WelcomeScreen__button--google"
                   onClick={this.handleGoogleLoginClick}
                 >
@@ -231,6 +255,7 @@ export class WelcomeScreen extends Component {
 
               {!isElectron() && (
                 <FacebookLoginButton
+                  style={SocialBtnStyle}
                   className="WelcomeScreen__button WelcomeScreen__button--facebook"
                   onClick={this.handleFacebookLoginClick}
                 >
@@ -240,6 +265,7 @@ export class WelcomeScreen extends Component {
 
               {!isAndroid() && !isElectron() && (
                 <AppleLoginButton
+                  style={SocialBtnStyle}
                   className="WelcomeScreen__button WelcomeScreen__button--google"
                   onClick={this.handleAppleLoginClick}
                 >
@@ -252,7 +278,11 @@ export class WelcomeScreen extends Component {
               <Button
                 className="WelcomeScreen__button WelcomeScreen__button--skip"
                 onClick={finishFirstVisit}
-                style={{ color: '#fff', margin: '1em auto 0 auto' }}
+                style={{
+                  color: '#fff',
+                  margin: '1em auto 0 auto',
+                  textShadow: '0px 0px 6px black'
+                }}
               >
                 <FormattedMessage {...messages.skipForNow} />
               </Button>
@@ -304,4 +334,4 @@ const mapDispatchToProps = {
 export default connect(
   null,
   mapDispatchToProps
-)(injectIntl(WelcomeScreen));
+)(injectIntl(withStyles(styles, { withTheme: true })(WelcomeScreen)));
