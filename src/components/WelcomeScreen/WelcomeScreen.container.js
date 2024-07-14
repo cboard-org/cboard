@@ -48,7 +48,7 @@ const styles = theme => ({
     overflow: 'auto',
     backgroundColor:
       'linear-gradient(to right, rgb(45, 22, 254), rgb(141, 92, 255))',
-    backgroundImage: `url(${backgroundImage}), linear-gradient(to right, rgb(45, 22, 254), rgb(141, 92, 255))`,
+    background: `url(${backgroundImage}) no-repeat center center fixed, linear-gradient(to right, rgb(45, 22, 254), rgb(141, 92, 255))`,
     backgroundSize: 'cover'
   }
 });
