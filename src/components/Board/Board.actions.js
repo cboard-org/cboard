@@ -284,7 +284,7 @@ export function toRootBoard() {
     if (!firstBoardOnHistory || !allBoardsIds.includes(firstBoardOnHistory)) {
       return null;
     }
-    history.replace(firstBoardOnHistory);
+    history.replace(`/board/${firstBoardOnHistory}`);
     dispatch({
       type: TO_ROOT_BOARD
     });
@@ -888,7 +888,7 @@ export function removeBoardsFromList(blacklist = [], rootBoard) {
   return (dispatch, getState) => {
     const actualBoardId = getState().board.activeBoardId;
     if (blacklist.includes(actualBoardId)) {
-      history.replace(rootBoard);
+      history.replace(`/board/${rootBoard}`);
       dispatch(switchBoard(rootBoard));
       const rootBoardFinded = dispatch(toRootBoard());
       if (!rootBoardFinded || blacklist.includes(rootBoard)) return;
