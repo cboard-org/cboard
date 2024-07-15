@@ -396,7 +396,7 @@ export function syncCommunicators(remoteCommunicators) {
       const newActiveCommunicator = getActiveCommunicator(getState);
       const rootBoard = newActiveCommunicator.rootBoard;
       dispatch(switchBoard(rootBoard));
-      history.replace(rootBoard);
+      history.replace(`/board/${rootBoard}`);
     }
   };
 }
