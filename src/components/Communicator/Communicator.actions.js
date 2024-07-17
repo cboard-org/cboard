@@ -332,7 +332,7 @@ export function syncCommunicators(remoteCommunicators) {
         return remote;
       }
     }
-    return remote;
+    return local;
   };
   const getActiveCommunicator = getState => {
     return getState().communicator.communicators.find(
