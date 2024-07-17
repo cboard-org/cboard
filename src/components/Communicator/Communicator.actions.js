@@ -374,10 +374,11 @@ export function syncCommunicators(remoteCommunicators) {
       }
     }
 
-    const activeCommunicatorId = getActiveCommunicator(getState).id ?? null;
     const lastRemoteSavedCommunicatorId = remoteCommunicators[0].id ?? null; //The last communicator saved on the server
     const needToChangeActiveCommunicator =
-      activeCommunicatorId !== lastRemoteSavedCommunicatorId &&
+      activeCommunicatorId === defaultCommunicatorID &&
+      // activeCommunicatorId !== lastRemoteSavedCommunicatorId &&
+      // TODO - Fix mulitple communicators creation on the server
       updatedCommunicators.length &&
       lastRemoteSavedCommunicatorId &&
       updatedCommunicators.findIndex(
