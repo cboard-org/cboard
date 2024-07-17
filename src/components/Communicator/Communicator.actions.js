@@ -343,6 +343,7 @@ export function syncCommunicators(remoteCommunicators) {
   return async (dispatch, getState) => {
     const localCommunicators = getState().communicator.communicators;
     const updatedCommunicators = [...localCommunicators];
+    const activeCommunicatorId = getActiveCommunicator(getState).id ?? null;
 
     for (const remote of remoteCommunicators) {
       const localIndex = localCommunicators.findIndex(
@@ -355,8 +356,11 @@ export function syncCommunicators(remoteCommunicators) {
           localCommunicators[localIndex],
           remote
         );
-        if (reconciled === localCommunicators[localIndex]) {
-          // Local is more recent, update the server
+        if (
+          reconciled === localCommunicators[localIndex] &&
+          activeCommunicatorId === localCommunicators[localIndex].id
+        ) {
+          // Local active communicator is recent, update the server
           try {
             const res = await dispatch(
               updateApiCommunicator(localCommunicators[localIndex])
