@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "התנתק",
   "cboard.components.Settings.People.deleteAccountPrimary": "מחיקת החשבון הזה",
   "cboard.components.Settings.People.deleteAccountSecondary": "לאחר מחיקת חשבון אי אפשר לחזור אחורה. נא לוודא שזה המהלך הרצוי.",
+  "cboard.components.Settings.People.deleteAccountFinal": "כדי לאשר, נא להקליד ‚{deleteAccount}’",
   "cboard.components.Settings.People.errorDeletingAccount": "אירעה שגיאה במחיקת חשבון. נא לנסות שוב.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "לאחר מחיקת חשבון אי אפשר לחזור אחורה. להמשיך במחיקת החשבון שלך?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "ביטול",

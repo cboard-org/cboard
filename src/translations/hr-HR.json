@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Odjava",
   "cboard.components.Settings.People.deleteAccountPrimary": "Izbriši ovaj račun",
   "cboard.components.Settings.People.deleteAccountSecondary": "Nakon što izbrišete račun, više nema povratka. Molimo budite sigurni.",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Dolazi do pogreške tijekom brisanja računa. Pokušajte ponovno.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Nakon što izbrišete račun, više nema povratka. Jeste li sigurni da želite izbrisati svoj račun?",
   "cboard.components.Settings.People.cancelDeleteAccount": "Otkaži",

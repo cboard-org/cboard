@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Kijelentkezés",
   "cboard.components.Settings.People.deleteAccountPrimary": "A fiók törlése",
   "cboard.components.Settings.People.deleteAccountSecondary": "Miután törölt egy fiókot, nincs visszaút. Kérem, legyen biztos benne.",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Hiba jelenik meg a fiók törlése során. Kérjük, próbálja újra.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Miután törölt egy fiókot, nincs visszaút. Biztosan törli fiókját?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Megszünteti",

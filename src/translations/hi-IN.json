@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "लोग आउट",
   "cboard.components.Settings.People.deleteAccountPrimary": "इस खाते को हटाएँ",
   "cboard.components.Settings.People.deleteAccountSecondary": "एक बार जब आप एक खाता हटा देते हैं, तो कोई वापस नहीं जाता है। कृपया निश्चित रहें।",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "खाता हटाने के दौरान कोई त्रुटि उत्पन्न होती है. कृपया इसे पुन: प्रयास करें.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "एक बार जब आप एक खाता हटा देते हैं, तो कोई वापस नहीं जाता है। क्या आप अपना खाता हटाना सुनिश्चित करते हैं?",
   "cboard.components.Settings.People.cancelDeleteAccount": "रद्द करना",

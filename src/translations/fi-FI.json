@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Kirjaudu ulos",
   "cboard.components.Settings.People.deleteAccountPrimary": "Poista tämä tili",
   "cboard.components.Settings.People.deleteAccountSecondary": "Kun poistat tilin, ei ole paluuta. Ole hyvä ja varma.",
+  "cboard.components.Settings.People.deleteAccountFinal": "Vahvistaaksesi, kirjoita '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Tilin poistamisen aikana tapahtui virhe. Yritä sitä uudelleen.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Kun poistat tilin, ei ole paluuta. Oletko varma että poistat tilisi?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Peruuta",

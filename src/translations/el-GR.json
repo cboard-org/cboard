@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Αποσύνδεση",
   "cboard.components.Settings.People.deleteAccountPrimary": "Διαγραφή αυτού του λογαριασμού",
   "cboard.components.Settings.People.deleteAccountSecondary": "Μόλις διαγράψετε έναν λογαριασμό, δεν υπάρχει επιστροφή. Παρακαλώ να είστε σίγουροι.",
+  "cboard.components.Settings.People.deleteAccountFinal": "Για επιβεβαίωση, πληκτρολογήστε '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Παρουσιάστηκε σφάλμα κατά τη διαγραφή λογαριασμού. Παρακαλώ δοκιμάστε ξανά.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Μόλις διαγράψετε ένα λογαριασμό, δεν υπάρχει επιστροφή. Είστε βέβαιοι να διαγράψετε τον λογαριασμό σας?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Ακύρωση",

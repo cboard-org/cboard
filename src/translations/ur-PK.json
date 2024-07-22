@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "لاگ آوٹ",
   "cboard.components.Settings.People.deleteAccountPrimary": "اس اکاؤنٹ کو حذف کریں",
   "cboard.components.Settings.People.deleteAccountSecondary": "ایک بار جب آپ کسی اکاؤنٹ کو حذف کرتے ہیں تو ، واپس جانے کا کوئی راستہ نہیں ہے۔ براہ مہربانی یقین رکھیں.",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "اکاؤنٹ حذف کرنے کے دوران ایک نقص پیدا ہوتا ہے۔ براہ مہربانی اسے دوبارہ کوشش کریں.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "ایک بار جب آپ کسی اکاؤنٹ کو حذف کرتے ہیں تو ، واپس جانے کا کوئی راستہ نہیں ہے۔ کیا آپ اپنے اکاؤنٹ کو حذف کرنے کے لئے یقینی ہیں؟.",
   "cboard.components.Settings.People.cancelDeleteAccount": "منسوخ",

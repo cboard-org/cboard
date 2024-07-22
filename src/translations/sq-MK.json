@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Shkyç",
   "cboard.components.Settings.People.deleteAccountPrimary": "Fshijeni këtë llogari",
   "cboard.components.Settings.People.deleteAccountSecondary": "Pasi të fshini një llogari, nuk ka kthim prapa. Ju lutemi të jeni të sigurt.",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Një gabim ocurs gjatë fshirjes së llogarisë. Të lutem provoje përsëri.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Pasi të fshini një llogari, nuk ka kthim prapa. A jeni i sigurt për të fshirë llogarinë tuaj?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Anulo",

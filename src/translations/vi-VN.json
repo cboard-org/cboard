@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Đăng xuất",
   "cboard.components.Settings.People.deleteAccountPrimary": "Xóa tài khoản này",
   "cboard.components.Settings.People.deleteAccountSecondary": "Sau khi bạn xóa tài khoản, bạn sẽ không thể quay lại. Xin hãy chắc chắn.",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Lỗi xảy ra trong quá trình xóa Tài khoản. Vui lòng thử lại.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Sau khi bạn xóa tài khoản, bạn sẽ không thể quay lại. Bạn có chắc chắn sẽ xóa tài khoản của mình không?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Hủy",

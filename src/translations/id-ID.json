@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Keluar",
   "cboard.components.Settings.People.deleteAccountPrimary": "Hapus Akun Ini",
   "cboard.components.Settings.People.deleteAccountSecondary": "Setelah Anda menghapus akun, akun tidak dapat dikembalikan. Mohon dipastikan.",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Terjadi kesalahan saat penghapusan Akun. Silakan coba lagi.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Setelah Anda menghapus akun, akun tidak dapat dikembalikan. Apakah Anda yakin akan menghapus akun Anda?",
   "cboard.components.Settings.People.cancelDeleteAccount": "Membatalkan",

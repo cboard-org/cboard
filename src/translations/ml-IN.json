@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "ലോഗോട്ട്",
   "cboard.components.Settings.People.deleteAccountPrimary": "ഈ അക്കൗണ്ട് ഇല്ലാതാക്കുക",
   "cboard.components.Settings.People.deleteAccountSecondary": "ഒരിക്കൽ നിങ്ങൾ ഒരു അക്കൗണ്ട് ഇല്ലാതാക്കിയാൽ പിന്നെ ഒരു തിരിച്ചുപോക്കില്ല. ദയവായി ഉറപ്പ് വരുത്തുക.",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "അക്കൗണ്ട് നീക്കം ചെയ്യുമ്പോൾ ഒരു പിശക് സംഭവിക്കുന്നു. ദയവായി വീണ്ടും ശ്രമിക്കുക.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "ഒരിക്കൽ നിങ്ങൾ ഒരു അക്കൗണ്ട് ഇല്ലാതാക്കിയാൽ പിന്നെ ഒരു തിരിച്ചുപോക്കില്ല. നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കുമെന്ന് ഉറപ്പാണോ?",
   "cboard.components.Settings.People.cancelDeleteAccount": "റദ്ദാക്കുക",

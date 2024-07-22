@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Uitloggen",
   "cboard.components.Settings.People.deleteAccountPrimary": "Verwijder dit account",
   "cboard.components.Settings.People.deleteAccountSecondary": "Als je eenmaal een account hebt verwijderd, is er geen weg terug. Wees het zeker!",
+  "cboard.components.Settings.People.deleteAccountFinal": "Om te bevestigen, typ{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Er is een fout opgetreden tijdens het verwijderen van de rekening. Probeer het opnieuw.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Als je eenmaal een account hebt verwijderd, is er geen weg terug. Weet je zeker dat je je account wilt verwijderen?",
   "cboard.components.Settings.People.cancelDeleteAccount": "annuleren",

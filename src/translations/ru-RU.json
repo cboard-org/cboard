@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Выйти",
   "cboard.components.Settings.People.deleteAccountPrimary": "Удалить эту учетную запись",
   "cboard.components.Settings.People.deleteAccountSecondary": "Как только вы удалите учетную запись, возвращаться не будет. Пожалуйста, будьте уверены.",
+  "cboard.components.Settings.People.deleteAccountFinal": "Чтобы подтвердить, введите '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Ошибка при удалении учетной записи. Пожалуйста, попробуйте еще раз.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Как только вы удалите учётную запись, возвращаться не будет. Вы уверены, что хотите удалить?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Отмена",

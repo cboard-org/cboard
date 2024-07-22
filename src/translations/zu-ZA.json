@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "crwdns50286:0crwdne50286:0",
   "cboard.components.Settings.People.deleteAccountPrimary": "crwdns56941:0crwdne56941:0",
   "cboard.components.Settings.People.deleteAccountSecondary": "crwdns56943:0crwdne56943:0",
+  "cboard.components.Settings.People.deleteAccountFinal": "crwdns57502:0{deleteAccount}crwdne57502:0",
   "cboard.components.Settings.People.errorDeletingAccount": "crwdns56945:0crwdne56945:0",
   "cboard.components.Settings.People.deleteAccountConfirmation": "crwdns56947:0crwdne56947:0",
   "cboard.components.Settings.People.cancelDeleteAccount": "crwdns56949:0crwdne56949:0",

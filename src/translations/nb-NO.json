@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Logg ut",
   "cboard.components.Settings.People.deleteAccountPrimary": "Slett denne kontoen",
   "cboard.components.Settings.People.deleteAccountSecondary": "Når du sletter en konto, er det ikke noe å gå tilbake. Vær sikker.",
+  "cboard.components.Settings.People.deleteAccountFinal": "For å bekrefte, skriv inn '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "En feil under slettingen av kontoen. Prøv på nytt.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Når du sletter en konto er det ikke mulig å gå tilbake. Er du sikker på at du vil slette din konto?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Avbryt",

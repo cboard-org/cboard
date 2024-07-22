@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Sai",
   "cboard.components.Settings.People.deleteAccountPrimary": "Apaga konta ida ne'e",
   "cboard.components.Settings.People.deleteAccountSecondary": "Bainhira ita apaga ita nia konta, sei labele fila hikas fali. Favór hanoin didi'ak.",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Mosu erru ida durante apaga Konta. Favór koko fila-fali.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Bainhira ita kansela ona konta ida, sei labele fila hikas fali. Ita hakarak tebes duni atu apaga ita nia konta?",
   "cboard.components.Settings.People.cancelDeleteAccount": "Kansela",
