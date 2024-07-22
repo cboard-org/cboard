@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "ออกจากระบบ",
   "cboard.components.Settings.People.deleteAccountPrimary": "ลบบัญชีนี้",
   "cboard.components.Settings.People.deleteAccountSecondary": "เมื่อคุณลบบัญชีจะไม่มีการย้อนกลับ โปรดมั่นใจ",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "เกิดข้อผิดพลาดระหว่างการลบบัญชี โปรดลองอีกครั้ง",
   "cboard.components.Settings.People.deleteAccountConfirmation": "เมื่อคุณลบบัญชีจะไม่มีการย้อนกลับ คุณแน่ใจหรือไม่ว่าจะลบบัญชีของคุณ?",
   "cboard.components.Settings.People.cancelDeleteAccount": "ยกเลิก",

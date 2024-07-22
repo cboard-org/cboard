@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "登出",
   "cboard.components.Settings.People.deleteAccountPrimary": "删除此帐户",
   "cboard.components.Settings.People.deleteAccountSecondary": "一旦您删除了一个帐户，就没有回退。请放心。",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "删除帐户时发生错误，请重试。",
   "cboard.components.Settings.People.deleteAccountConfirmation": "一旦您删除了一个帐户，没有回退。您确定要删除您的帐户吗？",
   "cboard.components.Settings.People.cancelDeleteAccount": "取消",

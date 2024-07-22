@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Deconectare",
   "cboard.components.Settings.People.deleteAccountPrimary": "Șterge acest cont",
   "cboard.components.Settings.People.deleteAccountSecondary": "Odată ce ștergeți un cont, nu există cale de întoarcere. Vă rugăm să fiți sigur.",
+  "cboard.components.Settings.People.deleteAccountFinal": "Pentru a confirma, tastați '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Eroare la ștergerea contului. Vă rugăm să încercați din nou.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "După ce ștergi un cont, nu mai există cale de întoarcere. Ești sigur că vrei să îți ștergi contul?",
   "cboard.components.Settings.People.cancelDeleteAccount": "Anulează",

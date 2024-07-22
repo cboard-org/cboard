@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Çyk",
   "cboard.components.Settings.People.deleteAccountPrimary": "Bu hasaby öçür",
   "cboard.components.Settings.People.deleteAccountSecondary": "Hasaby öçüreniňizden soň, yzyňyza dolanyp bolmaýar. Haýyş edýäris, anyk lal boluň.",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Account öçürme döwründe hata ocurs. ýene synap görmegiňizi haýyş edýäris.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Hasaby öçüreniňizden soň, yzyňyza dolanyp bolmaýar. Hasabyňyzy öçürjekdigiňize ynanýarmysyňyz?",
   "cboard.components.Settings.People.cancelDeleteAccount": "Bes et",

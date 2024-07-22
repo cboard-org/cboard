@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Connectez - Out",
   "cboard.components.Settings.People.deleteAccountPrimary": "Supprimer ce compte",
   "cboard.components.Settings.People.deleteAccountSecondary": "Une fois que vous supprimez un compte, il n'y a pas de retour. Soyez certain.",
+  "cboard.components.Settings.People.deleteAccountFinal": "Pour confirmer, tapez '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Une erreur est survenue lors de la suppression du compte. Veuillez réessayer.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Une fois que vous supprimez un compte, il n'y a pas de recul. Êtes-vous sûr de vouloir supprimer votre compte?",
   "cboard.components.Settings.People.cancelDeleteAccount": "Abandonner",

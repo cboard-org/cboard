@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Logga ut",
   "cboard.components.Settings.People.deleteAccountPrimary": "Ta bort detta konto",
   "cboard.components.Settings.People.deleteAccountSecondary": "När du har tagit bort ett konto, det finns ingen återvändo. Var säker på det.",
+  "cboard.components.Settings.People.deleteAccountFinal": "För att bekräfta, skriv '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Ett fel uppstod vid borttagning av kontot. Vänligen försök igen.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "När du tar bort ett konto, det finns ingen återvändo. Är du säker på att ta bort ditt konto?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Avbryt",

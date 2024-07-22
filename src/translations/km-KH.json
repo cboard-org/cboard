@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "ចាកចេញ",
   "cboard.components.Settings.People.deleteAccountPrimary": "លុប គណនី នេះ",
   "cboard.components.Settings.People.deleteAccountSecondary": "ពេល អ្នក លុប គណនី គ្មាន ការ ត្រឡប់ មក វិញ ទេ ។ សូម ប្រាកដ ។",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "កំហុស មួយ អុប ោយ ក្នុង អំឡុង ពេល ការ លុប គណនី ។ សូម សាក ល្បង វា ម្ដង ទៀត ។",
   "cboard.components.Settings.People.deleteAccountConfirmation": "ពេល អ្នក លុប គណនី គ្មាន ការ ត្រឡប់ មក វិញ ទេ ។ តើ អ្នក ប្រាកដ ជា លុប គណនី របស់ អ្នក ឬ ទេ ?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "បោះបង់",

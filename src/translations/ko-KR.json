@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "로그 아웃",
   "cboard.components.Settings.People.deleteAccountPrimary": "이 계정 삭제",
   "cboard.components.Settings.People.deleteAccountSecondary": "계정을 삭제하면 되돌릴 수 없습니다. 반드시 양해 바랍니다.",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "계정을 삭제하는 동안 오류가 발생합니다. 다시 시도하십시오.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "계정을 삭제하면 되돌릴 수 없습니다. 계정을 삭제하시겠습니까?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "취소",

@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Вийти",
   "cboard.components.Settings.People.deleteAccountPrimary": "Видалити цей обліковий запис",
   "cboard.components.Settings.People.deleteAccountSecondary": "Як тільки ви видалите обліковий запис, ви не зможете його повернути. Будь ласка, будьте певні.",
+  "cboard.components.Settings.People.deleteAccountFinal": "Для підтвердження, введіть{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Під час видалення облікового запису сталася помилка. Будь ласка, спробуйте її знову.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Коли ви видалите обліковий запис, ви впевнені, що хочете видалити його обліковий запис?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Скасувати",

@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Ausloggen",
   "cboard.components.Settings.People.deleteAccountPrimary": "Dieses Konto löschen",
   "cboard.components.Settings.People.deleteAccountSecondary": "Sobald Sie ein Konto löschen, gibt es kein Zurück mehr. Bitte seien Sie vorsichtig.",
+  "cboard.components.Settings.People.deleteAccountFinal": "Um zu bestätigen, gib '{deleteAccount} ' ein",
   "cboard.components.Settings.People.errorDeletingAccount": "Beim Löschen des Kontos ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Sobald Sie ein Konto löschen, gibt es kein Zurück mehr. Möchten Sie Ihr Konto wirklich löschen?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Abbrechen",

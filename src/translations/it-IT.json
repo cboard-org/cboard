@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Disconnettersi",
   "cboard.components.Settings.People.deleteAccountPrimary": "Elimina questo account",
   "cboard.components.Settings.People.deleteAccountSecondary": "Una volta che si elimina un account, non c'è ritorno. Si prega di essere certi.",
+  "cboard.components.Settings.People.deleteAccountFinal": "Per confermare, digita '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Si è verificato un errore durante l'eliminazione dell'account. Riprova.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Una volta che si elimina un account, non c'è ritorno. Sei sicuro di voler eliminare il tuo account?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Annulla",

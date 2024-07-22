@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Одјавување",
   "cboard.components.Settings.People.deleteAccountPrimary": "Избришете ја оваа сметка.",
   "cboard.components.Settings.People.deleteAccountSecondary": "Кога ќе ја избришеш сметката, нема враќање назад. Ве молам бидете сигурни.",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Грешка се јавува за време на избришувањето на акаунтот. Те молам пробај пак.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Кога ќе ја избришеш сметката, нема враќање назад. Дали сте сигурни дека ќе го избришете вашиот профил?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Откажи",

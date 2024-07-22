@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Sair",
   "cboard.components.Settings.People.deleteAccountPrimary": "Excluir esta conta",
   "cboard.components.Settings.People.deleteAccountSecondary": "Depois de excluir uma conta, não há volta. Por favor, certifique-se.",
+  "cboard.components.Settings.People.deleteAccountFinal": "Para confirmar, digite '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Ocorreu um erro durante a exclusão da conta. Por favor, tente novamente.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Depois de excluir uma conta, não há volta. Tem certeza de que deseja excluir sua conta?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "cancelar",

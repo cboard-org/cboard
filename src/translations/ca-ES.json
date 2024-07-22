@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Logout",
   "cboard.components.Settings.People.deleteAccountPrimary": "Suprimeix aquest compte",
   "cboard.components.Settings.People.deleteAccountSecondary": "Un cop suprimiu un compte, no hi ha marxa enrere. Si us plau, estigueu segurs.",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Un error ocorre durant la supressió del compte. Si us plau, torna-ho a provar.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Un cop suprimiu un compte, no hi ha marxa enrere. Segur que esborraràs el teu compte?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Cancel·lar",

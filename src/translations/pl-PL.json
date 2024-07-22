@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Wyloguj",
   "cboard.components.Settings.People.deleteAccountPrimary": "Usuń to konto",
   "cboard.components.Settings.People.deleteAccountSecondary": "Po usunięciu konta nie ma odwrotu. Upewnij się.",
+  "cboard.components.Settings.People.deleteAccountFinal": "Aby potwierdzić, wpisz '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Wystąpił błąd podczas usuwania konta. Spróbuj ponownie.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Po usunięciu konta nie ma odwrotu. Czy na pewno chcesz usunąć swoje konto?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Anuluj",

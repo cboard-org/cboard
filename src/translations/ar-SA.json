@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "الخروج",
   "cboard.components.Settings.People.deleteAccountPrimary": "حذف هذا الحساب",
   "cboard.components.Settings.People.deleteAccountSecondary": "بمجرد حذف الحساب، لا يوجد عائد. يرجى التأكد من ذلك.",
+  "cboard.components.Settings.People.deleteAccountFinal": "للتأكيد، اكتب '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "خطأ كبير أثناء حذف الحساب. الرجاء المحاولة مرة أخرى.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "بمجرد حذف الحساب، لا يوجد عائد. هل أنت متأكد من حذف حسابك؟.",
   "cboard.components.Settings.People.cancelDeleteAccount": "إلغاء",

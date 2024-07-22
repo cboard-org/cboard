@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Odjavi se",
   "cboard.components.Settings.People.deleteAccountPrimary": "Izbriši ovaj nalog",
   "cboard.components.Settings.People.deleteAccountSecondary": "Kada izbrišete nalog, nema nazad. Molim vas, budite sigurni.",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Greške tokom brisanja naloga. Pokušajte ponovo.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Kada izbrišete nalog, nema nazad. Da li ste sigurni da жete izbrisati svoj nalog?",
   "cboard.components.Settings.People.cancelDeleteAccount": "otkaži",

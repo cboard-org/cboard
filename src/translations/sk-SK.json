@@ -389,6 +389,7 @@
   "cboard.components.Settings.People.logout": "Odhlásiť sa",
   "cboard.components.Settings.People.deleteAccountPrimary": "Odstrániť tento účet",
   "cboard.components.Settings.People.deleteAccountSecondary": "Po odstránení účtu už niet cesty späť. Buďte si istí.",
+  "cboard.components.Settings.People.deleteAccountFinal": "To confirm, type '{deleteAccount}'",
   "cboard.components.Settings.People.errorDeletingAccount": "Počas odstraňovania konta sa vyskytne chyba. Skúste to znova.",
   "cboard.components.Settings.People.deleteAccountConfirmation": "Po odstránení účtu už niet cesty späť. Určite odstránite svoj účet?.",
   "cboard.components.Settings.People.cancelDeleteAccount": "Zrušiť",
