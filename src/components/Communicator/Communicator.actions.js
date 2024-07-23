@@ -332,7 +332,7 @@ export function syncCommunicators(remoteCommunicators) {
         return remote;
       }
     }
-    return remote;
+    return local;
   };
   const getActiveCommunicator = getState => {
     return getState().communicator.communicators.find(
@@ -343,6 +343,7 @@ export function syncCommunicators(remoteCommunicators) {
   return async (dispatch, getState) => {
     const localCommunicators = getState().communicator.communicators;
     const updatedCommunicators = [...localCommunicators];
+    const activeCommunicatorId = getActiveCommunicator(getState).id ?? null;
 
     for (const remote of remoteCommunicators) {
       const localIndex = localCommunicators.findIndex(
@@ -355,8 +356,11 @@ export function syncCommunicators(remoteCommunicators) {
           localCommunicators[localIndex],
           remote
         );
-        if (reconciled === localCommunicators[localIndex]) {
-          // Local is more recent, update the server
+        if (
+          reconciled === localCommunicators[localIndex] &&
+          activeCommunicatorId === localCommunicators[localIndex].id
+        ) {
+          // Local active communicator is recent, update the server
           try {
             const res = await dispatch(
               updateApiCommunicator(localCommunicators[localIndex])
@@ -374,10 +378,11 @@ export function syncCommunicators(remoteCommunicators) {
       }
     }
 
-    const activeCommunicatorId = getActiveCommunicator(getState).id ?? null;
     const lastRemoteSavedCommunicatorId = remoteCommunicators[0].id ?? null; //The last communicator saved on the server
     const needToChangeActiveCommunicator =
-      activeCommunicatorId !== lastRemoteSavedCommunicatorId &&
+      activeCommunicatorId === defaultCommunicatorID &&
+      // activeCommunicatorId !== lastRemoteSavedCommunicatorId &&
+      // TODO - Fix mulitple communicators creation on the server
       updatedCommunicators.length &&
       lastRemoteSavedCommunicatorId &&
       updatedCommunicators.findIndex(
