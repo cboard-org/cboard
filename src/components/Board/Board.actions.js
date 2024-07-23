@@ -272,19 +272,8 @@ export function previousBoard() {
 }
 
 export function toRootBoard() {
-  return (dispatch, getState) => {
-    const navHistory = getState().board.navHistory;
-    const firstBoardOnHistory = navHistory[0];
-    const allBoardsIds = getState().board.boards.map(board => board.id);
-
-    if (!firstBoardOnHistory || !allBoardsIds.includes(firstBoardOnHistory)) {
-      return null;
-    }
-    history.replace(`/board/${firstBoardOnHistory}`);
-    dispatch({
-      type: TO_ROOT_BOARD
-    });
-    return firstBoardOnHistory;
+  return {
+    type: TO_ROOT_BOARD
   };
 }
 
