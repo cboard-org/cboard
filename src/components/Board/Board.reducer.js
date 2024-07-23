@@ -319,6 +319,8 @@ function boardReducer(state = initialState, action) {
       };
     case CREATE_API_BOARD_SUCCESS:
       const creadBoards = [...state.boards];
+      const tilesToUpdateIds = [];
+      const boardsToMarkForCreation = [];
       for (let i = 0; i < creadBoards.length; i++) {
         let tiles = creadBoards[i].tiles;
         if (tiles) {
@@ -330,17 +332,27 @@ function boardReducer(state = initialState, action) {
                 creadBoards[i].hasOwnProperty('email')
               ) {
                 creadBoards[i].markToUpdate = true;
+                const tileUpdatedId = creadBoards[i].tiles[j].id;
+                tilesToUpdateIds.push(tileUpdatedId);
               }
 
               const shouldCreateBoard =
                 creadBoards[i].id.length < SHORT_ID_MAX_LENGTH;
               if (shouldCreateBoard) {
-                creadBoards[i].shouldCreateBoard = true;
+                boardsToMarkForCreation.push(creadBoards[i]);
               }
             }
           }
         }
       }
+      boardsToMarkForCreation.forEach(board => {
+        //if the tile id is already in a api board, we don't need to create it
+        const boardTileIds = board.tiles.map(tile => tile.id);
+        const boardIsAlreadyCreatedOnDb = boardTileIds.some(tileId =>
+          tilesToUpdateIds.includes(tileId)
+        );
+        if (!boardIsAlreadyCreatedOnDb) board.shouldCreateBoard = true;
+      });
       return {
         ...state,
         isFetching: false,
