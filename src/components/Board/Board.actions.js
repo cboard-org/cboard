@@ -39,7 +39,6 @@ import {
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
   DOWNLOAD_IMAGE_FAILURE,
-  REMOVE_BOARDS_FROM_LIST,
   UNMARK_SHOULD_CREATE_API_BOARD,
   SHORT_ID_MAX_LENGTH
 } from './Board.constants';
@@ -54,8 +53,7 @@ import {
   upsertApiCommunicator,
   updateDefaultBoardsIncluded,
   addDefaultBoardIncluded,
-  verifyAndUpsertCommunicator,
-  concatDefaultBoardIdToBlacklist
+  verifyAndUpsertCommunicator
 } from '../Communicator/Communicator.actions';
 import { isAndroid, writeCvaFile } from '../../cordova-util';
 import { DEFAULT_BOARDS } from '../../helpers';
@@ -158,14 +156,10 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
     const switchActiveBoard = homeBoardId => {
       if (homeBoardId) {
-        const storeBoards = getState().board.boards;
-        const board = storeBoards.find(board => board.id === homeBoardId);
-        if (!board) return null;
         const goTo = `/board/${homeBoardId}`;
 
         dispatch(switchBoard(homeBoardId));
         history.replace(goTo);
-        return true;
       }
     };
 
@@ -209,7 +203,9 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       homeBoardId
     });
 
-    if (switchActiveBoard(homeBoardId)) replaceHomeBoard(homeBoardId);
+    switchActiveBoard(homeBoardId);
+
+    replaceHomeBoard(homeBoardId);
   };
 }
 
@@ -535,8 +531,7 @@ export function createApiBoard(boardData, boardId) {
       isPublic: false
     };
     return API.createBoard(boardData)
-      .then(async res => {
-        await dispatch(concatDefaultBoardIdToBlacklist(boardId));
+      .then(res => {
         dispatch(createApiBoardSuccess(res, boardId));
         return res;
       })
@@ -881,21 +876,5 @@ export function updateApiObjects(
       .catch(e => {
         throw new Error(e.message);
       });
-  };
-}
-
-export function removeBoardsFromList(blacklist = [], rootBoard) {
-  return (dispatch, getState) => {
-    const actualBoardId = getState().board.activeBoardId;
-    if (blacklist.includes(actualBoardId)) {
-      history.replace(`/board/${rootBoard}`);
-      dispatch(switchBoard(rootBoard));
-      const rootBoardFinded = dispatch(toRootBoard());
-      if (!rootBoardFinded || blacklist.includes(rootBoard)) return;
-    }
-    dispatch({
-      type: REMOVE_BOARDS_FROM_LIST,
-      blacklist
-    });
   };
 }
