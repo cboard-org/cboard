@@ -277,8 +277,10 @@ export class BoardContainer extends Component {
       const homeBoard = communicator.rootBoard;
       boardExists = boards.find(b => b.id === homeBoard);
       if (!boardExists) {
-        if (isRemoteIdChecker(homeBoard))
-          boardExists = this.tryRemoteBoard(homeBoard);
+        try {
+          if (isRemoteIdChecker(homeBoard))
+            boardExists = await this.tryRemoteBoard(homeBoard);
+        } catch (err) {}
         if (!boardExists)
           boardExists = this.addDefaultBoardIfnecessary(homeBoard);
         if (!boardExists) boardExists = boards.find(b => b.id !== '');
