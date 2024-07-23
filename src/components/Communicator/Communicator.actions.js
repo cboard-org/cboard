@@ -249,14 +249,12 @@ export function getApiMyCommunicators() {
         } catch (e) {
           console.error(e);
         }
-        const getActiveCommunicator = getState => {
-          return getState().communicator.communicators.find(
-            c => c.id === getState().communicator.activeCommunicatorId
-          );
-        };
-        const activeCommunicator = getActiveCommunicator(getState);
-        const defaultBoardBlackList =
-          activeCommunicator?.defaultBoardBlackList ?? [];
+        const activeCommunicator =
+          res.data.find(
+            communicator =>
+              communicator.id === getState().communicator.activeCommunicator
+          ) ?? res.data[res.data.length - 1];
+        const defaultBoardBlackList = activeCommunicator?.defaultBoardBlackList;
         dispatch(
           removeBoardsFromList(
             defaultBoardBlackList,
