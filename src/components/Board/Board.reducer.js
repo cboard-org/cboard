@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import { DEFAULT_BOARDS } from '../../helpers';
+import { DEFAULT_BOARDS, deepCopy } from '../../helpers';
 
 import {
   IMPORT_BOARDS,
@@ -42,9 +42,13 @@ import {
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
-const [...boards] = [...DEFAULT_BOARDS.advanced, ...DEFAULT_BOARDS.picSeePal];
+const initialBoardsState = [
+  ...DEFAULT_BOARDS.advanced,
+  ...DEFAULT_BOARDS.picSeePal
+];
+
 const initialState = {
-  boards,
+  boards: deepCopy(initialBoardsState),
   output: [],
   activeBoardId: null,
   navHistory: [],
@@ -116,7 +120,7 @@ function boardReducer(state = initialState, action) {
       };
 
     case LOGOUT:
-      return initialState;
+      return { ...initialState, boards: deepCopy(initialBoardsState) };
 
     case IMPORT_BOARDS:
       return {

@@ -24,10 +24,11 @@ import {
 } from './Communicator.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import moment from 'moment';
+import { deepCopy } from '../../helpers';
 
 export const defaultCommunicatorID = 'cboard_default';
 const initialState = {
-  communicators: defaultCommunicators,
+  communicators: deepCopy(defaultCommunicators),
   activeCommunicatorId: defaultCommunicatorID
 };
 
@@ -48,7 +49,10 @@ function communicatorReducer(state = initialState, action) {
       };
 
     case LOGOUT:
-      return initialState;
+      return {
+        ...initialState,
+        communicators: deepCopy(defaultCommunicators)
+      };
 
     case IMPORT_COMMUNICATOR:
       return {
