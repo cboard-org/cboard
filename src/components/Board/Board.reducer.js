@@ -120,7 +120,7 @@ function boardReducer(state = initialState, action) {
       };
 
     case LOGOUT:
-      return deepCopy(initialState);
+      return { ...initialState, boards: deepCopy(initialBoardsState) };
 
     case IMPORT_BOARDS:
       return {
