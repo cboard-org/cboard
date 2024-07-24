@@ -5,16 +5,6 @@ export const DEFAULT_BOARDS = {
   advanced: boards.advanced,
   picSeePal: picSeePal
 };
-let advancedCopy = JSON.parse(JSON.stringify(DEFAULT_BOARDS.advanced));
-let picSeePalCopy = JSON.parse(JSON.stringify(DEFAULT_BOARDS.picSeePal));
-
-export const ALL_DEFAULT_BOARDS = [...advancedCopy, ...picSeePalCopy];
-
-export const SHORT_ID_MAX_LENGTH = 14;
-
-export const isRemoteIdChecker = id => {
-  return !(id.length < SHORT_ID_MAX_LENGTH);
-};
 
 export const dataURLtoFile = (dataurl, filename, checkExtension = false) => {
   // https://stackoverflow.com/a/38936042
