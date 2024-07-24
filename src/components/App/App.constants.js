@@ -81,5 +81,6 @@ export const USER_DATA_PROPERTIES = [
   'lastlogin',
   'createdAt',
   'updatedAt',
-  'authToken'
+  'authToken',
+  'isAdmin'
 ];
