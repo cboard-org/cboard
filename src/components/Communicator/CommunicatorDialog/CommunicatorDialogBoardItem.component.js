@@ -30,6 +30,7 @@ import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Slide from '@material-ui/core/Slide';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import LoadingIcon from '../../UI/LoadingIcon';
 
 import IconButton from '../../UI/IconButton';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
@@ -73,6 +74,8 @@ class CommunicatorDialogBoardItem extends React.Component {
         ? props.board.description
         : ''
     };
+
+    this.handleDialogClose = this.handleDialogClose.bind(this);
   }
 
   openMenu(e) {
@@ -149,7 +152,6 @@ class CommunicatorDialogBoardItem extends React.Component {
 
   async handleBoardCopy(board) {
     this.setState({
-      openCopyBoard: false,
       loading: true
     });
     try {
@@ -157,6 +159,7 @@ class CommunicatorDialogBoardItem extends React.Component {
     } catch (err) {
     } finally {
       this.setState({
+        openCopyBoard: false,
         loading: false
       });
     }
@@ -839,7 +842,9 @@ class CommunicatorDialogBoardItem extends React.Component {
                   </Dialog>
 
                   <Dialog
-                    onClose={this.handleDialogClose.bind(this)}
+                    onClose={() => {
+                      if (!this.state.loading) this.handleDialogClose();
+                    }}
                     aria-labelledby="board-copy-dialog"
                     open={this.state.openCopyBoard}
                   >
@@ -858,6 +863,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                       <Button
                         onClick={this.handleDialogClose.bind(this)}
                         color="primary"
+                        disabled={this.state.loading}
                       >
                         {intl.formatMessage(messages.close)}
                       </Button>
@@ -868,8 +874,13 @@ class CommunicatorDialogBoardItem extends React.Component {
                           }}
                           variant="contained"
                           color="primary"
+                          disabled={this.state.loading}
                         >
-                          {intl.formatMessage(messages.accept)}
+                          {this.state.loading ? (
+                            <LoadingIcon />
+                          ) : (
+                            intl.formatMessage(messages.accept)
+                          )}
                         </Button>
                       </PremiumFeature>
                     </DialogActions>

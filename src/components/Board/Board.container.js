@@ -70,6 +70,7 @@ import {
   IS_BROWSING_FROM_APPLE_TOUCH,
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
+import LoadingIcon from '../UI/LoadingIcon';
 //import { isAndroid } from '../../cordova-util';
 
 const ogv = require('ogv');
@@ -1183,6 +1184,9 @@ export class BoardContainer extends Component {
   handleCopyRemoteBoard = async () => {
     const { intl, showNotification, history, switchBoard } = this.props;
     try {
+      this.setState({
+        isSaving: true
+      });
       const copiedBoard = await this.createBoardsRecursively(
         this.state.copyPublicBoard
       );
@@ -1194,7 +1198,6 @@ export class BoardContainer extends Component {
       const translatedBoard = this.translateBoard(copiedBoard);
       this.setState({
         translatedBoard,
-        isSaving: false,
         copyPublicBoard: false,
         blockedPrivateBoard: false
       });
@@ -1202,7 +1205,11 @@ export class BoardContainer extends Component {
     } catch (err) {
       console.log(err.message);
       showNotification(intl.formatMessage(messages.boardCopyError));
+      this.handleCloseDialog();
     }
+    this.setState({
+      isSaving: false
+    });
   };
 
   async createBoardsRecursively(board, records) {
@@ -1264,10 +1271,6 @@ export class BoardContainer extends Component {
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
-      this.setState({
-        isSaving: true
-      });
-
       try {
         const boardId = await updateApiObjectsNoChild(newBoard, true);
         newBoard = {
@@ -1290,7 +1293,7 @@ export class BoardContainer extends Component {
           const nextBoard = await API.getBoard(tile.loadBoard);
           await this.createBoardsRecursively(nextBoard, records);
         } catch (err) {
-          if (err.response.status === 404) {
+          if (!err.respose || err.response?.status === 404) {
             //look for this board in available boards
             const localBoard = boards.find(b => b.id === tile.loadBoard);
             if (localBoard) {
@@ -1348,7 +1351,9 @@ export class BoardContainer extends Component {
     });
   }
 
-  handleCloseDialog = () => {
+  handleCloseDialog = (event, reason) => {
+    const { isSaving } = this.state;
+    if (isSaving) return;
     this.setState({
       copyPublicBoard: false,
       blockedPrivateBoard: false
@@ -1611,7 +1616,11 @@ export class BoardContainer extends Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleCloseDialog} color="primary">
+            <Button
+              onClick={this.handleCloseDialog}
+              color="primary"
+              disabled={this.state.isSaving}
+            >
               {this.props.intl.formatMessage(messages.boardCopyCancel)}
             </Button>
             <PremiumFeature>
@@ -1619,8 +1628,13 @@ export class BoardContainer extends Component {
                 onClick={this.handleCopyRemoteBoard}
                 color="primary"
                 variant="contained"
+                disabled={this.state.isSaving}
               >
-                {this.props.intl.formatMessage(messages.boardCopyAccept)}
+                {this.state.isSaving ? (
+                  <LoadingIcon />
+                ) : (
+                  this.props.intl.formatMessage(messages.boardCopyAccept)
+                )}
               </Button>
             </PremiumFeature>
           </DialogActions>
