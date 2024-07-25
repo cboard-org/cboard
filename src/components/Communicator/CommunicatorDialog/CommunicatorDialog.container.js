@@ -314,7 +314,7 @@ class CommunicatorDialogContainer extends React.Component {
           const nextBoard = await API.getBoard(tile.loadBoard);
           await this.createBoardsRecursively(nextBoard, records);
         } catch (err) {
-          if (err.response.status === 404) {
+          if (!err.respose || err.response?.status === 404) {
             //look for this board in available boards
             const localBoard = availableBoards.find(
               b => b.id === tile.loadBoard
