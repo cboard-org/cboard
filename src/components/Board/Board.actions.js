@@ -60,7 +60,7 @@ import { DEFAULT_BOARDS } from '../../helpers';
 import history from './../../history';
 import { improvePhraseAbortController } from '../../api/api';
 
-const BOARDS_PAGE_LIMIT = 1000;
+const BOARDS_PAGE_LIMIT = 500;
 
 export function importBoards(boards) {
   return {
