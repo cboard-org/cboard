@@ -1205,6 +1205,7 @@ export class BoardContainer extends Component {
     } catch (err) {
       console.log(err.message);
       showNotification(intl.formatMessage(messages.boardCopyError));
+      this.handleCloseDialog();
     }
     this.setState({
       isSaving: false
@@ -1292,7 +1293,7 @@ export class BoardContainer extends Component {
           const nextBoard = await API.getBoard(tile.loadBoard);
           await this.createBoardsRecursively(nextBoard, records);
         } catch (err) {
-          if (err.response.status === 404) {
+          if (!err.respose || err.response?.status === 404) {
             //look for this board in available boards
             const localBoard = boards.find(b => b.id === tile.loadBoard);
             if (localBoard) {
