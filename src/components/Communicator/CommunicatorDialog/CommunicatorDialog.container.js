@@ -293,9 +293,6 @@ class CommunicatorDialogContainer extends React.Component {
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       try {
-        this.setState({
-          loading: true
-        });
         const boardId = await updateApiObjectsNoChild(newBoard, true);
         newBoard = {
           ...newBoard,
@@ -303,10 +300,6 @@ class CommunicatorDialogContainer extends React.Component {
         };
       } catch (err) {
         console.log(err.message);
-      } finally {
-        this.setState({
-          loading: false
-        });
       }
     }
 
