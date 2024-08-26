@@ -1369,7 +1369,8 @@ export class BoardContainer extends Component {
     if (isSaving) return;
     this.setState({
       copyPublicBoard: false,
-      blockedPrivateBoard: false
+      blockedPrivateBoard: false,
+      isCbuilderBoard: false
     });
   };
 
