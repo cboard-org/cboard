@@ -1538,6 +1538,7 @@ export class BoardContainer extends Component {
       improvedPhrase,
       speak
     } = this.props;
+    const { isCbuilderBoard } = this.state;
 
     if (!this.state.translatedBoard) {
       return (
@@ -1622,11 +1623,19 @@ export class BoardContainer extends Component {
           aria-describedby="dialog-copy-desc"
         >
           <DialogTitle id="dialog-copy-board-title">
-            {this.props.intl.formatMessage(messages.copyPublicBoardTitle)}
+            {this.props.intl.formatMessage(
+              isCbuilderBoard
+                ? messages.importCbuilderBoardTitle
+                : messages.copyPublicBoardTitle
+            )}
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="dialog-copy-board-desc">
-              {this.props.intl.formatMessage(messages.copyPublicBoardDesc)}
+              {this.props.intl.formatMessage(
+                isCbuilderBoard
+                  ? messages.importCbuilderBoardDesc
+                  : messages.copyPublicBoardDesc
+              )}
             </DialogContentText>
           </DialogContent>
           <DialogActions>
@@ -1662,11 +1671,19 @@ export class BoardContainer extends Component {
           aria-describedby="dialog-blocked-desc"
         >
           <DialogTitle id="dialog-blocked-board-title">
-            {this.props.intl.formatMessage(messages.blockedPrivateBoardTitle)}
+            {this.props.intl.formatMessage(
+              isCbuilderBoard
+                ? messages.importCbuilderBoardTitle
+                : messages.blockedPrivateBoardTitle
+            )}
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="dialog-blocked-board-desc">
-              {this.props.intl.formatMessage(messages.blockedPrivateBoardDesc)}
+              {this.props.intl.formatMessage(
+                isCbuilderBoard
+                  ? messages.loginToImport
+                  : messages.blockedPrivateBoardDesc
+              )}
             </DialogContentText>
           </DialogContent>
           <DialogActions>
