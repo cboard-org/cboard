@@ -200,7 +200,8 @@ export class BoardContainer extends Component {
     isFixedBoard: false,
     copiedTiles: [],
     isScroll: false,
-    totalRows: null
+    totalRows: null,
+    isCbuilderBoard: false
   };
   constructor(props) {
     super(props);
@@ -377,8 +378,16 @@ export class BoardContainer extends Component {
   }
 
   async tryRemoteBoard(boardId) {
-    const { userData } = this.props;
-    const remoteBoard = await API.getBoard(boardId);
+    const { userData, location } = this.props;
+
+    const queryParams = new URLSearchParams(location.search);
+    const isCbuilderBoard = queryParams.get('cbuilder');
+
+    const remoteBoard = isCbuilderBoard
+      ? await API.getTemporaryBoard(boardId)
+      : await API.getBoard(boardId);
+
+    this.setState({ isCbuilderBoard });
     //if requested board is from the user just add it
     if (
       'name' in userData &&
@@ -386,6 +395,10 @@ export class BoardContainer extends Component {
       remoteBoard.email === userData.email &&
       remoteBoard.author === userData.name
     ) {
+      if (isCbuilderBoard) {
+        this.setState({ copyPublicBoard: remoteBoard });
+        return null;
+      }
       return remoteBoard;
     } else {
       //if requested board is public, ask about copy it
