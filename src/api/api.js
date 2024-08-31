@@ -286,6 +286,11 @@ class API {
     return data;
   }
 
+  async getTemporaryBoard(id) {
+    const { data } = await this.axiosInstance.get(`/board/temporary/${id}`);
+    return data;
+  }
+
   async getSettings() {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {

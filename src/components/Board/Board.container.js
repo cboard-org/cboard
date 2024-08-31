@@ -200,7 +200,8 @@ export class BoardContainer extends Component {
     isFixedBoard: false,
     copiedTiles: [],
     isScroll: false,
-    totalRows: null
+    totalRows: null,
+    isCbuilderBoard: false
   };
   constructor(props) {
     super(props);
@@ -377,8 +378,16 @@ export class BoardContainer extends Component {
   }
 
   async tryRemoteBoard(boardId) {
-    const { userData } = this.props;
-    const remoteBoard = await API.getBoard(boardId);
+    const { userData, location } = this.props;
+
+    const queryParams = new URLSearchParams(location.search);
+    const isCbuilderBoard = queryParams.get('cbuilder');
+
+    const remoteBoard = isCbuilderBoard
+      ? await API.getTemporaryBoard(boardId)
+      : await API.getBoard(boardId);
+
+    this.setState({ isCbuilderBoard });
     //if requested board is from the user just add it
     if (
       'name' in userData &&
@@ -386,6 +395,10 @@ export class BoardContainer extends Component {
       remoteBoard.email === userData.email &&
       remoteBoard.author === userData.name
     ) {
+      if (isCbuilderBoard) {
+        this.setState({ copyPublicBoard: remoteBoard });
+        return null;
+      }
       return remoteBoard;
     } else {
       //if requested board is public, ask about copy it
@@ -1356,7 +1369,8 @@ export class BoardContainer extends Component {
     if (isSaving) return;
     this.setState({
       copyPublicBoard: false,
-      blockedPrivateBoard: false
+      blockedPrivateBoard: false,
+      isCbuilderBoard: false
     });
   };
 
@@ -1524,6 +1538,7 @@ export class BoardContainer extends Component {
       improvedPhrase,
       speak
     } = this.props;
+    const { isCbuilderBoard } = this.state;
 
     if (!this.state.translatedBoard) {
       return (
@@ -1608,11 +1623,19 @@ export class BoardContainer extends Component {
           aria-describedby="dialog-copy-desc"
         >
           <DialogTitle id="dialog-copy-board-title">
-            {this.props.intl.formatMessage(messages.copyPublicBoardTitle)}
+            {this.props.intl.formatMessage(
+              isCbuilderBoard
+                ? messages.importCbuilderBoardTitle
+                : messages.copyPublicBoardTitle
+            )}
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="dialog-copy-board-desc">
-              {this.props.intl.formatMessage(messages.copyPublicBoardDesc)}
+              {this.props.intl.formatMessage(
+                isCbuilderBoard
+                  ? messages.importCbuilderBoardDesc
+                  : messages.copyPublicBoardDesc
+              )}
             </DialogContentText>
           </DialogContent>
           <DialogActions>
@@ -1648,11 +1671,19 @@ export class BoardContainer extends Component {
           aria-describedby="dialog-blocked-desc"
         >
           <DialogTitle id="dialog-blocked-board-title">
-            {this.props.intl.formatMessage(messages.blockedPrivateBoardTitle)}
+            {this.props.intl.formatMessage(
+              isCbuilderBoard
+                ? messages.importCbuilderBoardTitle
+                : messages.blockedPrivateBoardTitle
+            )}
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="dialog-blocked-board-desc">
-              {this.props.intl.formatMessage(messages.blockedPrivateBoardDesc)}
+              {this.props.intl.formatMessage(
+                isCbuilderBoard
+                  ? messages.loginToImport
+                  : messages.blockedPrivateBoardDesc
+              )}
             </DialogContentText>
           </DialogContent>
           <DialogActions>

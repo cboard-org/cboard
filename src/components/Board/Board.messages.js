@@ -218,5 +218,19 @@ export default defineMessages({
   writeAndSay: {
     id: 'cboard.components.Board.writeAndSay',
     defaultMessage: 'Write and say'
+  },
+  importCbuilderBoardTitle: {
+    id: 'cboard.components.Board.importCbuilderBoardTitle',
+    defaultMessage: 'Import CBuilder Board'
+  },
+  importCbuilderBoardDesc: {
+    id: 'cboard.components.Board.importCbuilderBoardDesc',
+    defaultMessage:
+      'You are trying to import a CBuilder board. In order to use and edit this board you have to copy it into your communicator boards.'
+  },
+  loginToImport: {
+    id: 'cboard.components.Board.loginToImport',
+    defaultMessage:
+      'In order to import a CBuilder board you have to be logged in.'
   }
 });
