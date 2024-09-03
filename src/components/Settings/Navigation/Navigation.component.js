@@ -293,7 +293,7 @@ class Navigation extends React.Component {
                 />
                 <ListItemSecondaryAction>
                   <Switch
-                    checked={this.state.enableQuietBuilderMode}
+                    checked={this.state.quietBuilderMode}
                     onChange={this.toggleQuietBuilderMode}
                     value="active"
                     color="secondary"
