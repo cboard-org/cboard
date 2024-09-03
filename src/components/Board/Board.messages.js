@@ -231,6 +231,6 @@ export default defineMessages({
   loginToImport: {
     id: 'cboard.components.Board.loginToImport',
     defaultMessage:
-      'In order to import a CBuilder board you have to be logged in.'
+      'To import a CBuilder board, you must be logged in with the same account that was used to create the board.'
   }
 });

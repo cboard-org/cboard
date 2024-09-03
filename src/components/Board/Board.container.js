@@ -382,33 +382,42 @@ export class BoardContainer extends Component {
 
     const queryParams = new URLSearchParams(location.search);
     const isCbuilderBoard = queryParams.get('cbuilder');
-
-    const remoteBoard = isCbuilderBoard
-      ? await API.getTemporaryBoard(boardId)
-      : await API.getBoard(boardId);
-
     this.setState({ isCbuilderBoard });
-    //if requested board is from the user just add it
-    if (
-      'name' in userData &&
-      'email' in userData &&
-      remoteBoard.email === userData.email &&
-      remoteBoard.author === userData.name
-    ) {
-      if (isCbuilderBoard) {
-        this.setState({ copyPublicBoard: remoteBoard });
+
+    try {
+      const remoteBoard = isCbuilderBoard
+        ? await API.getCbuilderBoard(boardId)
+        : await API.getBoard(boardId);
+
+      //if requested board is from the user just add it
+      if (
+        'name' in userData &&
+        'email' in userData &&
+        remoteBoard.email === userData.email &&
+        remoteBoard.author === userData.name
+      ) {
+        if (isCbuilderBoard) {
+          this.setState({ copyPublicBoard: remoteBoard });
+          return null;
+        }
+        return remoteBoard;
+      } else {
+        //if requested board is public, ask about copy it
+        if (remoteBoard.isPublic) {
+          this.setState({ copyPublicBoard: remoteBoard });
+        } else {
+          this.setState({ blockedPrivateBoard: true });
+        }
         return null;
       }
-      return remoteBoard;
-    } else {
-      //if requested board is public, ask about copy it
-      if (remoteBoard.isPublic) {
-        this.setState({ copyPublicBoard: remoteBoard });
-      } else {
+    } catch (err) {
+      if (
+        isCbuilderBoard &&
+        (err?.response?.status === 401 || err?.cause === 401)
+      )
         this.setState({ blockedPrivateBoard: true });
-      }
+      throw new Error('Cannot get the remote board');
     }
-    return null;
   }
 
   translateBoard(board) {

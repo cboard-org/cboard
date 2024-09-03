@@ -171,7 +171,7 @@
   "cboard.components.Board.writeAndSay": "Write and say",
   "cboard.components.Board.importCbuilderBoardTitle": "Import CBuilder Board",
   "cboard.components.Board.importCbuilderBoardDesc": "You are trying to import a CBuilder board. In order to use and edit this board you have to copy it into your communicator boards.",
-  "cboard.components.Board.loginToImport": "In order to import a CBuilder board you have to be logged in.",
+  "cboard.components.Board.loginToImport": "To import a CBuilder board, you must be logged in with the same account that was used to create the board.",
   "cboard.components.Board.ImageEditor.title": "Image editor",
   "cboard.components.Board.ImageEditor.rotateRight": "Rotate right",
   "cboard.components.Board.ImageEditor.cropImage": "Crop image",
