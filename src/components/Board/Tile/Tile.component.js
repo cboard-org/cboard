@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Scannable } from 'react-scannable';
-
+import Hammer from 'react-hammerjs';
 import './Tile.css';
 
 const propTypes = {
@@ -37,6 +37,7 @@ const Tile = props => {
     children,
     className: classNameProp,
     variant,
+    onClick,
     ...other
   } = props;
 
@@ -67,9 +68,24 @@ const Tile = props => {
 
   return (
     <Scannable onSelect={onSelect} id={'scannable'}>
-      <button className={className} type="button" {...other}>
-        <div className={tileShapeClassName} style={tileShapeStyles} />
-        {children}
+      <button className={className} {...other}>
+        <Hammer
+          onPress={e => {
+            if (typeof onClick === 'function') {
+              onClick();
+            }
+          }}
+          options={{
+            recognizers: {
+              press: { time: 20, threshold: 500 }
+            }
+          }}
+        >
+          <div>
+            <div className={tileShapeClassName} style={tileShapeStyles} />
+            {children}
+          </div>
+        </Hammer>
       </button>
     </Scannable>
   );
