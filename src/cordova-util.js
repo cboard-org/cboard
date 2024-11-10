@@ -118,9 +118,10 @@ const IOSconfigureInAppPurchasePlugin = () => {
 
 const configFacebookPlugin = () => {
   const FACEBOOK_APP_ID =
-    process.env.REACT_APP_FACEBOOK_APP_ID || '340205533290626';
-  const FACEBOOK_APP_NAME =
-    process.env.REACT_APP_FACEBOOK_APP_NAME || 'Cboard - Development';
+    process.env.REACT_APP_FACEBOOK_APP_ID || '155146678540314';
+  const FACEBOOK_APP_NAME = process.env.REACT_APP_FACEBOOK_APP_NAME || 'Cboard';
+  const FACEBOOK_CLIENT_TOKEN =
+    process.env.REACT_APP_FACEBOOK_CLIENT_TOKEN || 'cboard_client_token';
   window.facebookConnectPlugin.setApplicationId(
     FACEBOOK_APP_ID,
     function successFunction() {},
@@ -130,6 +131,13 @@ const configFacebookPlugin = () => {
   );
   window.facebookConnectPlugin.setApplicationName(
     FACEBOOK_APP_NAME,
+    function successFunction() {},
+    function errorFunction(error) {
+      console.error(error.message);
+    }
+  );
+  window.facebookConnectPlugin.setClientToken(
+    FACEBOOK_CLIENT_TOKEN,
     function successFunction() {},
     function errorFunction(error) {
       console.error(error.message);
