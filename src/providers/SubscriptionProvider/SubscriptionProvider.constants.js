@@ -20,11 +20,16 @@ export const EXPIRED = 'expired';
 export const ON_HOLD = 'on_hold';
 export const UNVERIFIED = 'unverified';
 
+export const DAYS_TO_TRY = 15;
+
 export const REQUIRING_PREMIUM_COUNTRIES = [
   'AT',
   'AU',
   'BE',
+  'BH',
+  'BM',
   'CA',
+  'CL',
   'DK',
   'KY',
   'CZ',
@@ -40,6 +45,8 @@ export const REQUIRING_PREMIUM_COUNTRIES = [
   'NZ',
   'NO',
   'PL',
+  'QA',
+  'SA',
   'SK',
   'SI',
   'SE',
