@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Täzele",
   "cboard.components.Settings.Subscribe.error": "Oops bir zat oňaýsyz ýagdaýa düşdi. Ýene-de synap görmegiňizi haýyş edýäris",
   "cboard.components.Settings.Subscribe.empty_product": "Şu wagt oňa ýazylmak mümkin däl. Ýene-de synap görmegiňizi haýyş edýäris.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Siz 30 günlük mugt sudda. Ol gutarandan soň, ähli aýratynlyklary almak üçin abuna ýazylmaly bolarsyňyz.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Siz 15 günlük mugt sudda. Ol gutarandan soň, ähli aýratynlyklary almak üçin abuna ýazylmaly bolarsyňyz.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Abuna Ýazylyş Maglumaty",
   "cboard.components.Settings.Subscribe.manageSubscription": "Abuna ýazylyşlary dolandyr",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Abuna ýazyşygy ýatyr",

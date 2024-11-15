@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "atualizar",
   "cboard.components.Settings.Subscribe.error": "Ops, algo deu errado. Por favor, tente novamente mais tarde",
   "cboard.components.Settings.Subscribe.empty_product": "Não há nenhuma assinatura disponível neste momento. Por favor, tente novamente mais tarde.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Você está no teste gratuito de 30 dias. Depois que ele terminar, você precisará se inscrever para obter todos os recursos.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Você está no teste gratuito de 15 dias. Depois que ele terminar, você precisará se inscrever para obter todos os recursos.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Informações de Subscrição",
   "cboard.components.Settings.Subscribe.manageSubscription": "Gerenciar assinatura",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Cancelar assinatura",

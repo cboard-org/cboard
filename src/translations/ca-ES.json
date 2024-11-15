@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Refrescar",
   "cboard.components.Settings.Subscribe.error": "Ui alguna cosa ha anat malament. Torneu-ho a provar més tard",
   "cboard.components.Settings.Subscribe.empty_product": "No hi ha cap subscripció disponible en aquest moment. Torneu-ho a provar més tard.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Esteu a la prova gratuïta de 30 dies. Un cop finalitzi, us haureu de subscriure per obtenir totes les funcions.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Esteu a la prova gratuïta de 15 dies. Un cop finalitzi, us haureu de subscriure per obtenir totes les funcions.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Informació de la subscripció",
   "cboard.components.Settings.Subscribe.manageSubscription": "Gestiona la subscripció",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Cancel·la la subscripció",

@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Odśwież",
   "cboard.components.Settings.Subscribe.error": "Ups, coś poszło nie tak. Spróbuj ponownie później",
   "cboard.components.Settings.Subscribe.empty_product": "W tej chwili nie ma dostępnej subskrypcji. Spróbuj ponownie później.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Jesteś w 30 dniowym bezpłatnym okresie próbnym. Po jego zakończeniu, musisz zasubskrybować, aby uzyskać wszystkie funkcje.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Jesteś w 15 dniowym bezpłatnym okresie próbnym. Po jego zakończeniu, musisz zasubskrybować, aby uzyskać wszystkie funkcje.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Informacje o subskrypcji",
   "cboard.components.Settings.Subscribe.manageSubscription": "Zarządzaj subskrypcją",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Anuluj subskrypcję",

@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Aggiorna",
   "cboard.components.Settings.Subscribe.error": "Oops qualcosa è andato storto. Riprova più tardi",
   "cboard.components.Settings.Subscribe.empty_product": "Non ci sono abbonamenti disponibili in questo momento. Riprova più tardi.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Sei nella prova gratuita di 30 giorni. Una volta terminata, dovrai iscriverti per ottenere tutte le funzionalità.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Sei nella prova gratuita di 15 giorni. Una volta terminata, dovrai iscriverti per ottenere tutte le funzionalità.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Informazioni Sull'Iscrizione",
   "cboard.components.Settings.Subscribe.manageSubscription": "Gestisci Abbonamento",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Annulla Abbonamento",

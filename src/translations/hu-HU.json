@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Felfrissít",
   "cboard.components.Settings.Subscribe.error": "Hoppá, valami hiba történt. Kérjük, próbálja újra később",
   "cboard.components.Settings.Subscribe.empty_product": "Jelenleg nincs elérhető előfizetés. Kérjük, próbálja újra később.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Ön a 30 napos ingyenes próbaverziót használja. Miután véget ér, elő kell fizetnie az összes funkció megszerzéséhez.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Ön a 15 napos ingyenes próbaverziót használja. Miután véget ér, elő kell fizetnie az összes funkció megszerzéséhez.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Előfizetési információk",
   "cboard.components.Settings.Subscribe.manageSubscription": "Előfizetés kezelése",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Előfizetés lemondása",

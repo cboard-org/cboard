@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Împrospătează",
   "cboard.components.Settings.Subscribe.error": "Ups, ceva nu a mers bine. Te rugăm să încerci din nou mai târziu",
   "cboard.components.Settings.Subscribe.empty_product": "Nu există niciun abonament disponibil în acest moment. Te rugăm să încerci din nou mai târziu.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Sunteți în perioada de probă de 30 de zile. După ce se termină, va trebui să vă abonați pentru a obține toate caracteristicile.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Sunteți în perioada de probă de 15 de zile. După ce se termină, va trebui să vă abonați pentru a obține toate caracteristicile.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Informații despre abonament",
   "cboard.components.Settings.Subscribe.manageSubscription": "Gestionare abonament",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Anulează abonamentul",

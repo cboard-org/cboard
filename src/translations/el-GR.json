@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Ανανέωση",
   "cboard.components.Settings.Subscribe.error": "Ωχ κάτι πήγε στραβά. Παρακαλώ προσπαθήστε ξανά αργότερα",
   "cboard.components.Settings.Subscribe.empty_product": "Δεν υπάρχει διαθέσιμη συνδρομή αυτή τη στιγμή. Παρακαλώ δοκιμάστε ξανά αργότερα.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Είστε σε δωρεάν δοκιμή 30 ημερών. Αφού τελειώσει, θα πρέπει να εγγραφείτε για να πάρετε όλα τα χαρακτηριστικά.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Είστε σε δωρεάν δοκιμή 15 ημερών. Αφού τελειώσει, θα πρέπει να εγγραφείτε για να πάρετε όλα τα χαρακτηριστικά.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Πληροφορίες Συνδρομής",
   "cboard.components.Settings.Subscribe.manageSubscription": "Διαχείριση Συνδρομής",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Ακύρωση Συνδρομής",

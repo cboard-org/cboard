@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "רענון",
   "cboard.components.Settings.Subscribe.error": "אופס, משהו השתבש. נא לנסות שוב מאוחר יותר",
   "cboard.components.Settings.Subscribe.empty_product": "אין מנוי זמין כרגע. נסה שוב מאוחר יותר.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "אתה נמצא בגירסת ניסיון בחינם למשך 30 יום. לאחר שהוא מסתיים, יהיה עליך להירשם כדי לקבל את כל התכונות.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "אתה נמצא בגירסת ניסיון בחינם למשך 15 יום. לאחר שהוא מסתיים, יהיה עליך להירשם כדי לקבל את כל התכונות.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "פרטי מינוי",
   "cboard.components.Settings.Subscribe.manageSubscription": "ניהול מינוי",
   "cboard.components.Settings.Subscribe.cancelSubscription": "ביטול מינוי",

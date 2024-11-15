@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Opdater",
   "cboard.components.Settings.Subscribe.error": "Ups noget gik galt. Prøv igen senere",
   "cboard.components.Settings.Subscribe.empty_product": "Der er intet abonnement tilgængeligt i øjeblikket. Prøv igen senere.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Du er på den 30 dages gratis prøveperiode. Når den er slut, skal du abonnere for at få alle funktioner.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Du er på den 15 dages gratis prøveperiode. Når den er slut, skal du abonnere for at få alle funktioner.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Abonnement Info",
   "cboard.components.Settings.Subscribe.manageSubscription": "Administrer Abonnement",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Annuller Abonnement",

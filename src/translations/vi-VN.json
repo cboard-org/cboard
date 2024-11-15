@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Làm tươi",
   "cboard.components.Settings.Subscribe.error": "Rất tiếc, đã xảy ra sự cố. Vui lòng thử lại sau",
   "cboard.components.Settings.Subscribe.empty_product": "Không có đăng ký có sẵn tại thời điểm này. Vui lòng thử lại sau.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Bạn đang dùng thử miễn phí 30 ngày. Sau khi nó kết thúc, bạn sẽ cần phải đăng ký để có được tất cả các tính năng.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Bạn đang dùng thử miễn phí 15 ngày. Sau khi nó kết thúc, bạn sẽ cần phải đăng ký để có được tất cả các tính năng.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Thông tin đăng ký",
   "cboard.components.Settings.Subscribe.manageSubscription": "Quản lý gói đăng ký",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Hủy đăng ký",

@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Uppdatera",
   "cboard.components.Settings.Subscribe.error": "Hoppsan något gick fel. Försök igen senare",
   "cboard.components.Settings.Subscribe.empty_product": "Det finns ingen prenumeration tillgänglig just nu. Försök igen senare.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Du är på 30 dagars gratis provperiod. Efter det tar slut, måste du prenumerera för att få alla funktioner.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Du är på 15 dagars gratis provperiod. Efter det tar slut, måste du prenumerera för att få alla funktioner.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Prenumerationsinformation",
   "cboard.components.Settings.Subscribe.manageSubscription": "Hantera prenumeration",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Avbryt prenumeration",

@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "تحديث",
   "cboard.components.Settings.Subscribe.error": "عفواً حدث خطأ ما. الرجاء المحاولة مرة أخرى لاحقاً",
   "cboard.components.Settings.Subscribe.empty_product": "لا يوجد اشتراك متاح في هذه اللحظة. الرجاء المحاولة مرة أخرى لاحقاً.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "أنت في التجربة المجانية لمدة 30 يوماً. بعد انتهائها، سوف تحتاج إلى الاشتراك للحصول على جميع المميزات.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "أنت في التجربة المجانية لمدة 15 يوماً. بعد انتهائها، سوف تحتاج إلى الاشتراك للحصول على جميع المميزات.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "معلومات الاشتراك",
   "cboard.components.Settings.Subscribe.manageSubscription": "إدارة الاشتراك",
   "cboard.components.Settings.Subscribe.cancelSubscription": "إلغاء الاشتراك",

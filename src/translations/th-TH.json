@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "ฟื้นฟู",
   "cboard.components.Settings.Subscribe.error": "อ๊ะมีบางอย่างผิดพลาด โปรดลองอีกครั้งในภายหลัง",
   "cboard.components.Settings.Subscribe.empty_product": "ไม่มีการสมัครสมาชิกในขณะนี้ โปรดลองอีกครั้งในภายหลัง",
-  "cboard.components.Settings.Subscribe.on_trial_period": "คุณอยู่ในช่วงทดลองใช้ฟรี 30 วัน หลังจากสิ้นสุดคุณจะต้องสมัครสมาชิกเพื่อรับคุณสมบัติทั้งหมด",
+  "cboard.components.Settings.Subscribe.on_trial_period": "คุณอยู่ในช่วงทดลองใช้ฟรี 15 วัน หลังจากสิ้นสุดคุณจะต้องสมัครสมาชิกเพื่อรับคุณสมบัติทั้งหมด",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "ข้อมูลการสมัครสมาชิก",
   "cboard.components.Settings.Subscribe.manageSubscription": "จัดการการสมัครสมาชิก",
   "cboard.components.Settings.Subscribe.cancelSubscription": "ยกเลิกการสมัครสมาชิก",

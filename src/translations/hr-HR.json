@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Osvježi",
   "cboard.components.Settings.Subscribe.error": "Ups! Nešto je pošlo po zlu. Molimo pokušajte ponovo kasnije",
   "cboard.components.Settings.Subscribe.empty_product": "Trenutno nema dostupnih pretplata. Molimo pokušajte ponovo kasnije.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Koristite 30 dana besplatnog probnog razdoblja. Nakon što završi, morat ćete se pretplatiti da biste dobili sve značajke.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Koristite 15 dana besplatnog probnog razdoblja. Nakon što završi, morat ćete se pretplatiti da biste dobili sve značajke.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Informacije o pretplati",
   "cboard.components.Settings.Subscribe.manageSubscription": "Upravljanje pretplatom",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Otkaži pretplatu",

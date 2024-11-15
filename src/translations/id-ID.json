@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "memperbaharui ",
   "cboard.components.Settings.Subscribe.error": "Ups! Ada yang tidak beres. Silakan coba lagi nanti",
   "cboard.components.Settings.Subscribe.empty_product": "Tidak ada langganan yang tersedia saat ini. Silakan coba lagi nanti.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Anda sedang dalam masa uji coba gratis 30 hari. Setelah berakhir, Anda dapat berlangganan untuk mendapatkan semua fitur.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Anda sedang dalam masa uji coba gratis 15 hari. Setelah berakhir, Anda dapat berlangganan untuk mendapatkan semua fitur.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Informasi Berlangganan",
   "cboard.components.Settings.Subscribe.manageSubscription": "Kelola Langganan",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Batalkan Langganan",

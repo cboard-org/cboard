@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Rafraîchir",
   "cboard.components.Settings.Subscribe.error": "Une erreur est survenue. Veuillez réessayer plus tard",
   "cboard.components.Settings.Subscribe.empty_product": "Il n'y a pas d'abonnement disponible pour le moment. Veuillez réessayer plus tard.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Vous êtes sur la période d'essai gratuite de 30 jours. Une fois terminée, vous devrez vous abonner pour obtenir toutes les fonctionnalités.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Vous êtes sur la période d'essai gratuite de 15 jours. Une fois terminée, vous devrez vous abonner pour obtenir toutes les fonctionnalités.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Infos de l'abonnement",
   "cboard.components.Settings.Subscribe.manageSubscription": "Gérer l'abonnement",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Annuler l'abonnement",

@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "ताजा पार्नुहोस्",
   "cboard.components.Settings.Subscribe.error": "ओह, कुछ गलत हो गया। कृपया पछि फेरि प्रयास गर्नुहोस्",
   "cboard.components.Settings.Subscribe.empty_product": "यस समयमा कुनै सदस्यता उपलब्ध छैन । कृपया पछि फेरि प्रयास गर्नुहोस्।",
-  "cboard.components.Settings.Subscribe.on_trial_period": "तपाईं 30 दिन नि: शुल्क परीक्षणमा हुनुहुन्छ। यो समाप्त भएपछि, तपाईं सबै सुविधाहरू प्राप्त गर्न सदस्यता लिन आवश्यक हुनेछ।",
+  "cboard.components.Settings.Subscribe.on_trial_period": "तपाईं 15 दिन नि: शुल्क परीक्षणमा हुनुहुन्छ। यो समाप्त भएपछि, तपाईं सबै सुविधाहरू प्राप्त गर्न सदस्यता लिन आवश्यक हुनेछ।",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "सदस्यता सूचना",
   "cboard.components.Settings.Subscribe.manageSubscription": "सदस्यता व्यवस्थापन गर्नुहोस्",
   "cboard.components.Settings.Subscribe.cancelSubscription": "सदस्यता रद्द गर्नुहोस्",

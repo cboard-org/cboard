@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "تازہ",
   "cboard.components.Settings.Subscribe.error": "اوہو، کچھ غلط ہو گیا ہے. براہ مہربانی بعد میں دوبارہ کوشش کریں",
   "cboard.components.Settings.Subscribe.empty_product": "اس وقت کوئی سبسکرپشن دستیاب نہیں ہے۔ براہ کرم بعد میں دوبارہ کوشش کریں۔",
-  "cboard.components.Settings.Subscribe.on_trial_period": "آپ 30 دن کی مفت آزمائش پر ہیں. اس کے ختم ہونے کے بعد ، آپ کو تمام خصوصیات حاصل کرنے کے لئے سبسکرائب کرنے کی ضرورت ہوگی۔",
+  "cboard.components.Settings.Subscribe.on_trial_period": "آپ 15 دن کی مفت آزمائش پر ہیں. اس کے ختم ہونے کے بعد ، آپ کو تمام خصوصیات حاصل کرنے کے لئے سبسکرائب کرنے کی ضرورت ہوگی۔",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Subscription کی معلومات",
   "cboard.components.Settings.Subscribe.manageSubscription": "رکنیت کا انتظام کریں",
   "cboard.components.Settings.Subscribe.cancelSubscription": "رکنیت منسوخ کریں",

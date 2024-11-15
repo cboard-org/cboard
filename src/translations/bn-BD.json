@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "সতেজ",
   "cboard.components.Settings.Subscribe.error": "ওহ, কিছু একটা ভুল হয়েছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন",
   "cboard.components.Settings.Subscribe.empty_product": "এই মুহুর্তে কোনও সাবস্ক্রিপশন উপলব্ধ নেই। দয়া করে পরে আবার চেষ্টা করুন।",
-  "cboard.components.Settings.Subscribe.on_trial_period": "আপনি 30 দিনের বিনামূল্যে ট্রায়ালে আছেন। এটি শেষ হওয়ার পরে, আপনাকে সমস্ত বৈশিষ্ট্য পেতে সাবস্ক্রাইব করতে হবে।",
+  "cboard.components.Settings.Subscribe.on_trial_period": "আপনি 15 দিনের বিনামূল্যে ট্রায়ালে আছেন। এটি শেষ হওয়ার পরে, আপনাকে সমস্ত বৈশিষ্ট্য পেতে সাবস্ক্রাইব করতে হবে।",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "সাবস্ক্রিপশন তথ্য",
   "cboard.components.Settings.Subscribe.manageSubscription": "সাবস্ক্রিপশন পরিচালনা করুন",
   "cboard.components.Settings.Subscribe.cancelSubscription": "সাবস্ক্রিপশন বাতিল করুন",

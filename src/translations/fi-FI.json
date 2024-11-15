@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Päivitä",
   "cboard.components.Settings.Subscribe.error": "Hups jokin meni pieleen. Yritä myöhemmin uudelleen",
   "cboard.components.Settings.Subscribe.empty_product": "Tilausta ei ole saatavilla tällä hetkellä. Yritä myöhemmin uudelleen.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Olet 30 päivän ilmainen kokeilujakso. Sen jälkeen, kun se päättyy, sinun täytyy tilata kaikki ominaisuudet.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Olet 15 päivän ilmainen kokeilujakso. Sen jälkeen, kun se päättyy, sinun täytyy tilata kaikki ominaisuudet.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Tilauksen Tiedot",
   "cboard.components.Settings.Subscribe.manageSubscription": "Hallitse Tilausta",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Peruuta Tilaus",

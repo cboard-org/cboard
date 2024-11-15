@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "പുതുക്കുക",
   "cboard.components.Settings.Subscribe.error": "ശ്ശോ! എന്തോ തെറ്റായി സംഭവിച്ചു. ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക",
   "cboard.components.Settings.Subscribe.empty_product": "ഇപ്പോൾ സബ്സ്ക്രിപ്ഷൻ ലഭ്യമല്ല. ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "നിങ്ങൾ 30 ദിവസത്തെ free trial-ൽ ആണ്. ഇത് അവസാനിച്ച ശേഷം, എല്ലാ സവിശേഷതകളും ലഭിക്കുന്നതിന് നിങ്ങൾ സബ്സ്ക്രൈബ് ചെയ്യേണ്ടതുണ്ട്.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "നിങ്ങൾ 15 ദിവസത്തെ free trial-ൽ ആണ്. ഇത് അവസാനിച്ച ശേഷം, എല്ലാ സവിശേഷതകളും ലഭിക്കുന്നതിന് നിങ്ങൾ സബ്സ്ക്രൈബ് ചെയ്യേണ്ടതുണ്ട്.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "സബ്സ്ക്രിപ്ഷൻ വിവരങ്ങൾ",
   "cboard.components.Settings.Subscribe.manageSubscription": "സബ്സ്ക്രിപ്ഷൻ മാനേജുചെയ്യുക",
   "cboard.components.Settings.Subscribe.cancelSubscription": "സബ്സ്ക്രിപ്ഷൻ റദ്ദാക്കുക",

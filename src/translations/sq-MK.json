@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Rifresko",
   "cboard.components.Settings.Subscribe.error": "Oops diçka shkoi keq. Ju lutem provoni përsëri më vonë",
   "cboard.components.Settings.Subscribe.empty_product": "Nuk ka abonim në dispozicion për momentin. Ju lutem provoni përsëri më vonë.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "Ju jeni në gjyqin 30 ditor falas. Pasi të përfundojë, ju do të duhet të abonoheni për të marrë të gjitha karakteristikat.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "Ju jeni në gjyqin 15 ditor falas. Pasi të përfundojë, ju do të duhet të abonoheni për të marrë të gjitha karakteristikat.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Info abonimi",
   "cboard.components.Settings.Subscribe.manageSubscription": "Menaxho abonimin",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Anullo abonimin",

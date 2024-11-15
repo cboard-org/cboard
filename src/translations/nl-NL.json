@@ -512,7 +512,7 @@
   "cboard.components.Settings.Subscribe.refresh": "Vernieuwen",
   "cboard.components.Settings.Subscribe.error": "Oeps, er is iets fout gegaan. Probeer het later opnieuw",
   "cboard.components.Settings.Subscribe.empty_product": "Er is op dit moment geen abonnement beschikbaar. Probeer het later opnieuw.",
-  "cboard.components.Settings.Subscribe.on_trial_period": "U bent in de gratis proefperiode van 30 dagen. Nadat het is beëindigd, moet u zich abonneren om alle functies te krijgen.",
+  "cboard.components.Settings.Subscribe.on_trial_period": "U bent in de gratis proefperiode van 15 dagen. Nadat het is beëindigd, moet u zich abonneren om alle functies te krijgen.",
   "cboard.components.Settings.Subscribe.subscriptionInfo": "Abonnement Info",
   "cboard.components.Settings.Subscribe.manageSubscription": "Abonnement beheren",
   "cboard.components.Settings.Subscribe.cancelSubscription": "Abonnement annuleren",
