@@ -210,7 +210,8 @@ export class Board extends Component {
             backgroundColor={tile.backgroundColor}
             borderColor={tile.borderColor}
             variant={variant}
-            onClick={() => {
+            onClick={e => {
+              e.stopPropagation();
               this.handleTileClick(tile);
             }}
             onFocus={() => {
@@ -253,7 +254,8 @@ export class Board extends Component {
         backgroundColor={tile.backgroundColor}
         borderColor={tile.borderColor}
         variant={variant}
-        onClick={() => {
+        onClick={e => {
+          e.stopPropagation();
           this.handleTileClick(tile);
         }}
         onFocus={() => {
