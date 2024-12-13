@@ -1192,10 +1192,10 @@
     semver "^7.3.7"
     webpack-merge "^5.8.0"
 
-"@crowdin/crowdin-api-client@^1.28.1":
-  version "1.34.0"
-  resolved "https://registry.yarnpkg.com/@crowdin/crowdin-api-client/-/crowdin-api-client-1.34.0.tgz#81df65b6756529246a851d759c377c673edbf753"
-  integrity sha512-yNTNWi+DPkfb3pnotQySlHU2xDHZfV5QKsA6gBzESfY4ckL6LAfg5VdDZ/VRZ6CyYXfGNAfRl94OayIcZLdLEw==
+"@crowdin/crowdin-api-client@^1.35.0":
+  version "1.35.0"
+  resolved "https://registry.yarnpkg.com/@crowdin/crowdin-api-client/-/crowdin-api-client-1.35.0.tgz#343112a1c45cdef90ed23b245c2da19be3efd46a"
+  integrity sha512-+QDaDeQ4N5r66KgxLPMvGvHPQL2slVGP0JyC00oVJMs4iOKKrHFaWhxhZAlsJRB5x1IXb1r1DdhFNBE8GxDB/A==
   dependencies:
     axios "^1"
 
