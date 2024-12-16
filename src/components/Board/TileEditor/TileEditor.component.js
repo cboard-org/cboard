@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import shortid from 'shortid';
@@ -18,6 +18,9 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import SketchPicker from 'react-color';
+import BlockPicker from 'react-color';
+import ColorizeIcon from '@material-ui/icons/Colorize';
 
 import messages from './TileEditor.messages';
 import SymbolSearch from '../SymbolSearch';
@@ -119,6 +122,12 @@ export class TileEditor extends Component {
       blob: null
     };
   }
+
+  handleTogglePicker = () => {
+    this.setState(prevState => ({
+      enablePicker: !prevState.enablePicker
+    }));
+  };
 
   UNSAFE_componentWillReceiveProps(props) {
     this.updateTileProperty('id', shortid.generate()); // todo not here
@@ -400,6 +409,16 @@ export class TileEditor extends Component {
     }
   };
 
+  handleChangeComplete = color => {
+    const colorhex = color.hex ? color.hex : '';
+    this.setState({ selectedBackgroundColor: colorhex });
+    if (color) {
+      this.updateTileProperty('backgroundColor', colorhex);
+    } else {
+      this.updateTileProperty('backgroundColor', this.getDefaultColor());
+    }
+  };
+
   getDefaultColor = () => {
     if (this.currentTileProp('type') === 'folder') {
       return this.defaultTileColors.folder;
@@ -451,6 +470,8 @@ export class TileEditor extends Component {
   };
 
   render() {
+    const { enablePicker, selectedBackgroundColor } = this.state;
+
     const { open, intl, boards } = this.props;
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
@@ -647,6 +668,16 @@ export class TileEditor extends Component {
                       selectedColor={this.state.selectedBackgroundColor}
                       onChange={this.handleColorChange}
                     />
+                    <ColorizeIcon
+                      onClick={this.handleTogglePicker}
+                      style={{ cursor: 'pointer' }}
+                    />
+                    {enablePicker && (
+                      <BlockPicker
+                        color={this.state.selectedBackgroundColor}
+                        onChangeComplete={this.handleChangeComplete}
+                      />
+                    )}
                   </div>
                   {this.currentTileProp('type') !== 'board' && (
                     <div className="TileEditor__voicerecorder">
