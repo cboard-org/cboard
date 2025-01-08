@@ -14,11 +14,6 @@ function mapImagesToGlobs(boards, globPrefix) {
       }
     });
   });
-  console.log(
-    globs.forEach(glob => {
-      console.log(glob);
-    })
-  );
   return globs;
 }
 
@@ -29,11 +24,21 @@ module.exports = {
   staticFileGlobs: [
     'build/*.html',
     'build/manifest.json',
-    'build/static/**/!(*map*)',
+    'build/static/**/*.*',
     ...boardImages
   ],
   maximumFileSizeToCacheInBytes: 4194304,
   runtimeCaching: [
+    {
+      urlPattern: /\/static\//,
+      handler: 'cacheFirst',
+      options: {
+        cache: {
+          name: 'static-assets',
+          maxEntries: 200
+        }
+      }
+    },
     {
       urlPattern: /\/symbols\/mulberry/,
       handler: 'cacheFirst',
@@ -62,10 +67,11 @@ module.exports = {
       }
     }
   ],
-  dontCacheBustUrlsMatching: /\.\w{8}\./,
+  navigateFallback: '/index.html',
+  navigateFallbackWhitelist: [/^\/(?!api).*/],
+  dontCacheBustUrlsMatching: /\.(js|css|json|jpg|jpeg|png|svg|ico)$/,
   dynamicUrlToDependencies: {
     '/': ['build/index.html']
   },
-  navigateFallback: '/',
   swFilePath: 'build/service-worker.js'
 };
