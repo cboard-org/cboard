@@ -133,17 +133,12 @@ export class Navbar extends React.Component {
                 this.state.deactivateScannerButton ? 'scanner__focused' : ''
               }
             >
-              <Scannable
-                onFocus={this.onScannableFocus('deactivateScannerButton')}
-                onBlur={this.onScannableBlur('deactivateScannerButton')}
+              <IconButton
+                className="Navbar__deactivateScanner"
+                onClick={onDeactivateScannerClick}
               >
-                <IconButton
-                  className="Navbar__deactivateScanner"
-                  onClick={onDeactivateScannerClick}
-                >
-                  <ScannerDeactivateIcon />
-                </IconButton>
-              </Scannable>
+                <ScannerDeactivateIcon />
+              </IconButton>
             </div>
           )}
           {!isLocked && <HelpButton component={Link} to="/settings/help" />}
