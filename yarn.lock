@@ -10703,10 +10703,10 @@ react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-joyride@^2.5.4:
-  version "2.8.2"
-  resolved "https://registry.yarnpkg.com/react-joyride/-/react-joyride-2.8.2.tgz#9165f4a19a4034a8f590593247f56b57f3c5efbe"
-  integrity sha512-2QY8HB1G0I2OT0PKMUz7gg2HAjdkG2Bqi13r0Bb1V16PAwfb9khn4wWBTOJsGsjulbAWiQ3/0YrgNUHGFmuifw==
+react-joyride@^2.9.3:
+  version "2.9.3"
+  resolved "https://registry.yarnpkg.com/react-joyride/-/react-joyride-2.9.3.tgz#97633aa78dfe70b16b45fafa59ce2ee06b14c78f"
+  integrity sha512-1+Mg34XK5zaqJ63eeBhqdbk7dlGCFp36FXwsEvgpjqrtyywX2C6h9vr3jgxP0bGHCw8Ilsp/nRDzNVq6HJ3rNw==
   dependencies:
     "@gilbarbara/deep-equal" "^0.3.1"
     deep-diff "^1.0.2"
@@ -10718,7 +10718,7 @@ react-joyride@^2.5.4:
     scroll "^3.0.1"
     scrollparent "^2.1.0"
     tree-changes "^0.11.2"
-    type-fest "^4.18.2"
+    type-fest "^4.27.0"
 
 react-lifecycles-compat@^3.0.0:
   version "3.0.4"
@@ -12731,10 +12731,10 @@ type-fest@^2.14.0:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
   integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==
 
-type-fest@^4.18.2:
-  version "4.21.0"
-  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-4.21.0.tgz#2eec399d9bda4ac686286314d07c6675fef3fdd8"
-  integrity sha512-ADn2w7hVPcK6w1I0uWnM//y1rLXZhzB9mr0a3OirzclKF1Wp6VzevUmzz/NRAWunOT6E8HrnpGY7xOfc6K57fA==
+type-fest@^4.27.0:
+  version "4.30.2"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-4.30.2.tgz#d94429edde1f7deacf554741650aab394197a4cc"
+  integrity sha512-UJShLPYi1aWqCdq9HycOL/gwsuqda1OISdBO3t8RlXQC4QvtuIz4b5FCfe2dQIWEpmlRExKmcTBfP1r9bhY7ig==
 
 type-is@~1.6.18:
   version "1.6.18"
