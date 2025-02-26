@@ -10,7 +10,6 @@ export const UPDATE_NAVIGATION_SETTINGS =
 export const UPDATE_USER_DATA = 'cboard/App/UPDATE_USER_DATA';
 export const SET_UNLOGGED_USER_LOCATION =
   'cboard/App/SET_UNLOGGED_USER_LOCATION';
-export const TOGGLE_QUICK_UNLOCK = 'TOGGLE_QUICK_UNLOCK';
 // language constants
 export const DEFAULT_LANG = 'en-US';
 export const APP_LANGS = [
