@@ -8,8 +8,7 @@ import {
   DISABLE_TOUR,
   ENABLE_ALL_TOURS,
   SET_UNLOGGED_USER_LOCATION,
-  USER_DATA_PROPERTIES,
-  TOGGLE_QUICK_UNLOCK
+  USER_DATA_PROPERTIES
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
