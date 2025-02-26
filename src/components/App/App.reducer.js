@@ -77,14 +77,6 @@ function appReducer(state = initialState, action) {
   let symbolsSettings = { ...state.symbolsSettings };
 
   switch (action.type) {
-    case TOGGLE_QUICK_UNLOCK:
-      return {
-        ...state,
-        navigationSettings: {
-          ...state.navigationSettings,
-          quickUnlockActive: !state.navigationSettings.quickUnlockActive
-        }
-      };
     case UPDATE_DISPLAY_SETTINGS:
       displaySettings = {
         ...state.displaySettings,
