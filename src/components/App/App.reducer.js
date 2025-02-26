@@ -159,7 +159,6 @@ function appReducer(state = initialState, action) {
         navigationSettings,
         userData: getKeysFromApiUserDataResponse(action.payload)
       };
-
     case LOGOUT:
       return {
         ...state,
