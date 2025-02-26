@@ -140,3 +140,9 @@ export function updateUnloggedUserLocation() {
     }
   };
 }
+
+export const TOGGLE_QUICK_UNLOCK = 'TOGGLE_QUICK_UNLOCK';
+
+export const toggleQuickUnlock = () => ({
+  type: TOGGLE_QUICK_UNLOCK
+});

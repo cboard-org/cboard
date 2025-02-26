@@ -8,7 +8,8 @@ import {
   DISABLE_TOUR,
   ENABLE_ALL_TOURS,
   SET_UNLOGGED_USER_LOCATION,
-  USER_DATA_PROPERTIES
+  USER_DATA_PROPERTIES,
+  TOGGLE_QUICK_UNLOCK
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
@@ -76,6 +77,14 @@ function appReducer(state = initialState, action) {
   let symbolsSettings = { ...state.symbolsSettings };
 
   switch (action.type) {
+    case TOGGLE_QUICK_UNLOCK:
+      return {
+        ...state,
+        navigationSettings: {
+          ...state.navigationSettings,
+          quickUnlockActive: !state.navigationSettings.quickUnlockActive
+        }
+      };
     case UPDATE_DISPLAY_SETTINGS:
       displaySettings = {
         ...state.displaySettings,
@@ -159,6 +168,7 @@ function appReducer(state = initialState, action) {
         navigationSettings,
         userData: getKeysFromApiUserDataResponse(action.payload)
       };
+
     case LOGOUT:
       return {
         ...state,
