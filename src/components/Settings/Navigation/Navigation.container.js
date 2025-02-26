@@ -44,8 +44,7 @@ NavigationContainer.props = {
 const mapStateToProps = ({ board, app }) => {
   return {
     isLiveMode: board.isLiveMode,
-    navigationSettings: app.navigationSettings,
-    quickUnlockActive: app.navigationSettings.quickUnlockActive
+    navigationSettings: app.navigationSettings
   };
 };
 
