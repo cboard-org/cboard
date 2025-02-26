@@ -6,8 +6,6 @@ import { updateNavigationSettings } from '../../App/App.actions';
 import Navigation from './Navigation.component';
 import API from '../../../api';
 import { changeLiveMode } from '../../Board/Board.actions';
-import { toggleQuickUnlock } from '../../App/App.actions';
-
 export class NavigationContainer extends PureComponent {
   static propTypes = {
     intl: intlShape.isRequired,
@@ -53,8 +51,7 @@ const mapStateToProps = ({ board, app }) => {
 
 const mapDispatchToProps = {
   updateNavigationSettingsAction: updateNavigationSettings,
-  changeLiveMode,
-  toggleQuickUnlock
+  changeLiveMode
 };
 
 export default connect(
