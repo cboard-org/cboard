@@ -950,7 +950,13 @@ export class BoardContainer extends Component {
 
   handleLockNotify = countdown => {
     const { intl, showNotification, hideNotification } = this.props;
+    const quickUnlockActive = this.props.navigationSettings?.quickUnlockActive;
 
+    if (quickUnlockActive) {
+      hideNotification();
+      this.handleLockClick();
+      return;
+    }
     if (countdown > 3) {
       return;
     }
