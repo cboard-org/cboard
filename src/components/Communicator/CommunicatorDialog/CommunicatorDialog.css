@@ -67,6 +67,7 @@
   display: flex;
   min-height: 150px;
   margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
 .is-dark .CommunicatorDialog__boards__item {
@@ -173,6 +174,7 @@
 
 .CommunicatorDialog__boards__item__data__title,
 .CommunicatorDialog__boards__item__data__author,
+.CommunicatorDialog__boards__item__data__locale,
 .CommunicatorDialog__boards__item__data__extra {
   margin-top: 2px;
   display: flex;

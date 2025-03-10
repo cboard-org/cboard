@@ -348,5 +348,9 @@ export default defineMessages({
   boardReportClose: {
     id: 'cboard.components.CommunicatorDialog.boardReportClose',
     defaultMessage: 'Close'
+  },
+  boardInfoLocale: {
+    id: 'cboard.components.CommunicatorDialog.boardInfoLanguage',
+    defaultMessage: 'Language'
   }
 });

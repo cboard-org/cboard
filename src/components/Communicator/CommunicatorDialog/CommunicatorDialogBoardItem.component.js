@@ -31,6 +31,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Slide from '@material-ui/core/Slide';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import LoadingIcon from '../../UI/LoadingIcon';
+import LanguageIcon from '@material-ui/icons/Language';
 
 import IconButton from '../../UI/IconButton';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
@@ -39,6 +40,7 @@ import { isCordova } from '../../../cordova-util';
 import InputImage from '../../UI/InputImage';
 import SymbolSearch from '../../Board/SymbolSearch';
 import PremiumFeature from '../../PremiumFeature';
+import { List } from 'echarts';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -387,6 +389,68 @@ class CommunicatorDialogBoardItem extends React.Component {
       </IconButton>
     );
 
+    const PublicBoardInfo = () => {
+      return (
+        <Dialog
+          onClose={this.handleDialogClose.bind(this)}
+          aria-labelledby="board-info-title"
+          open={this.state.openBoardInfo}
+          className="CommunicatorDialog__boardInfoDialog"
+        >
+          <DialogTitle
+            id="board-info-title"
+            onClose={this.handleDialogClose.bind(this)}
+          >
+            {board.name}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              <Typography variant="body1" gutterBottom>
+                <b>{intl.formatMessage(messages.boardInfoName)}:</b>{' '}
+                {board.name}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <b>{intl.formatMessage(messages.boardInfoAuthor)}:</b>{' '}
+                {board.author}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <b>{intl.formatMessage(messages.boardInfoLocale)}:</b>{' '}
+                {board.locale}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <b>{intl.formatMessage(messages.boardDescription)}:</b>{' '}
+                {board.description}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <b>{intl.formatMessage(messages.boardInfoDate)}:</b>{' '}
+                {moment(board.lastEdited).format('DD/MM/YYYY')}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <b>{intl.formatMessage(messages.boardInfoTiles)}:</b>{' '}
+                {board.tiles.length}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <b>{intl.formatMessage(messages.boardInfoId)}:</b> {board.id}
+              </Typography>
+              {!isCordova() && (
+                <Typography variant="body1" gutterBottom>
+                  <b>{intl.formatMessage(messages.boardInfoUrl)}:</b>{' '}
+                  <a href={boardUrl} target="_blank" rel="noopener noreferrer">
+                    {boardUrl}
+                  </a>
+                </Typography>
+              )}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleDialogClose.bind(this)} color="primary">
+              {intl.formatMessage(messages.close)}
+            </Button>
+          </DialogActions>
+        </Dialog>
+      );
+    };
+
     const ReportBoardDialog = () => {
       const ReportSuccesContent = (
         <>
@@ -617,9 +681,15 @@ class CommunicatorDialogBoardItem extends React.Component {
                     )}
                   </div>
                 }
-                secondary={intl.formatMessage(messages.tilesQty, {
-                  qty: board.tiles.length
-                })}
+                secondary={
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {intl.formatMessage(messages.tilesQty, {
+                      qty: board.tiles.length
+                    })}
+                    <span style={{ marginLeft: '1em' }} />
+                    <LanguageIcon fontSize="small" /> {board.locale}
+                  </div>
+                }
               />
             </ListItem>
           </div>
@@ -687,6 +757,7 @@ class CommunicatorDialogBoardItem extends React.Component {
           <div className="CommunicatorDialog__boards__item__data__date">
             {moment(board.lastEdited).format('DD/MM/YYYY')}
           </div>
+
           <div className="CommunicatorDialog__boards__item__data__extra">
             {board.isPublic && (
               <Tooltip
@@ -777,69 +848,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     <FlagIcon />
                   </IconButton>
                   {ReportBoardDialog()}
-                  <Dialog
-                    onClose={this.handleDialogClose.bind(this)}
-                    aria-labelledby="board-info-title"
-                    open={this.state.openBoardInfo}
-                    className="CommunicatorDialog__boardInfoDialog"
-                  >
-                    <DialogTitle
-                      id="board-info-title"
-                      onClose={this.handleDialogClose.bind(this)}
-                    >
-                      {board.name}
-                    </DialogTitle>
-                    <DialogContent>
-                      <DialogContentText>
-                        <Typography variant="body1" gutterBottom>
-                          <b>{intl.formatMessage(messages.boardInfoName)}:</b>{' '}
-                          {board.name}
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          <b>{intl.formatMessage(messages.boardInfoAuthor)}:</b>{' '}
-                          {board.author}
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          <b>
-                            {intl.formatMessage(messages.boardDescription)}:
-                          </b>{' '}
-                          {board.description}
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          <b>{intl.formatMessage(messages.boardInfoDate)}:</b>{' '}
-                          {moment(board.lastEdited).format('DD/MM/YYYY')}
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          <b>{intl.formatMessage(messages.boardInfoTiles)}:</b>{' '}
-                          {board.tiles.length}
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          <b>{intl.formatMessage(messages.boardInfoId)}:</b>{' '}
-                          {board.id}
-                        </Typography>
-                        {!isCordova() && (
-                          <Typography variant="body1" gutterBottom>
-                            <b>{intl.formatMessage(messages.boardInfoUrl)}:</b>{' '}
-                            <a
-                              href={boardUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {boardUrl}
-                            </a>
-                          </Typography>
-                        )}
-                      </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                      <Button
-                        onClick={this.handleDialogClose.bind(this)}
-                        color="primary"
-                      >
-                        {intl.formatMessage(messages.close)}
-                      </Button>
-                    </DialogActions>
-                  </Dialog>
+                  {PublicBoardInfo()}
 
                   <Dialog
                     onClose={() => {
