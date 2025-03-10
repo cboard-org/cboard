@@ -70,6 +70,11 @@
   text-transform: uppercase;
 }
 
+.CommunicatorDialog__boards__item__data__title__secondary {
+  display: flex;
+  align-items: center;
+  align-content: space-between;
+}
 .is-dark .CommunicatorDialog__boards__item {
   background-color: #424242;
 }

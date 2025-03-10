@@ -40,7 +40,6 @@ import { isCordova } from '../../../cordova-util';
 import InputImage from '../../UI/InputImage';
 import SymbolSearch from '../../Board/SymbolSearch';
 import PremiumFeature from '../../PremiumFeature';
-import { List } from 'echarts';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -682,12 +681,14 @@ class CommunicatorDialogBoardItem extends React.Component {
                   </div>
                 }
                 secondary={
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div className="CommunicatorDialog__boards__item__data__title__secondary">
                     {intl.formatMessage(messages.tilesQty, {
                       qty: board.tiles.length
                     })}
                     <span style={{ marginLeft: '1em' }} />
-                    <LanguageIcon fontSize="small" /> {board.locale}
+                    <LanguageIcon fontSize="small" />
+                    <span style={{ marginLeft: '0.05em' }} />
+                    {board.locale}
                   </div>
                 }
               />
@@ -848,7 +849,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     <FlagIcon />
                   </IconButton>
                   {ReportBoardDialog()}
-                  {PublicBoardInfo()}
+                  <PublicBoardInfo />
 
                   <Dialog
                     onClose={() => {
