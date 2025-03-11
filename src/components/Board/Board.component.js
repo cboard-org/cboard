@@ -285,6 +285,45 @@ export class Board extends Component {
   }
 
   render() {
+    handlePageChange = newPageNumber => {
+      const totalPages = this.state.maxPages;
+      console.log('Página anterior: ', this.state.pageNumber);
+      console.log('Cambiando a página: ', newPageNumber);
+      if (newPageNumber >= 0 && newPageNumber < totalPages) {
+        this.setState({ pageNumber: newPageNumber });
+      }
+      this.setState({ pageNumber: newPageNumber }); //aca tengo los problemas que tenog que ver ,
+    };
+
+    updateTilesPerPage = () => {
+      const breakpoint = getBreakpointFromWidth(
+        GRID_BREAKPOINTS,
+        window.innerWidth
+      );
+      const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
+      const tilesPerPage = cols[breakpoint] * 3;
+
+      this.setState({ tilesPerPage, pageNumber: 0 }, () => {
+        this.updatePaginatedTiles(this.renderTiles(this.props.board.tiles));
+      });
+    };
+    updatePaginatedTiles = tiles => {
+      const { pageNumber, tilesPerPage } = this.state;
+      const start = pageNumber * tilesPerPage;
+      const end = start + tilesPerPage;
+      const paginatedTiles = tiles.slice(start, end);
+
+      console.log(
+        'Actualizando paginatedTiles:',
+        paginatedTiles.length,
+        'de',
+        start,
+        'a',
+        end
+      );
+
+      this.setState({ paginatedTiles });
+    };
     const {
       board,
       intl,
