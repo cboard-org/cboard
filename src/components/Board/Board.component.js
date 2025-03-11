@@ -123,7 +123,13 @@ export class Board extends Component {
 
     this.state = {
       openTitleDialog: false,
-      titleDialogValue: props.board && props.board.name ? props.board.name : ''
+      titleDialogValue: props.board && props.board.name ? props.board.name : '',
+      pageNumber: 0,
+      maxPages: 5,
+      tilesPerPage: 0,
+      paginatedTiles: []
+
+      //internalBoard: props.board
     };
 
     this.boardContainerRef = React.createRef();
