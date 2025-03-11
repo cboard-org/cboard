@@ -35,6 +35,8 @@ import BoardTour from './BoardTour/BoardTour';
 import ScrollButtons from '../ScrollButtons';
 import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../Settings/Navigation/Navigation.constants';
 import ImprovePhraseOutput from './ImprovePhraseOutput';
+import { getBreakpointFromWidth } from '../Utils/BreakpointFromWidth';
+import { GRID_BREAKPOINTS } from '../Grid/Grid.constants';
 
 export class Board extends Component {
   static propTypes = {
