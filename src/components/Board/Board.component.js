@@ -35,6 +35,8 @@ import BoardTour from './BoardTour/BoardTour';
 import ScrollButtons from '../ScrollButtons';
 import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../Settings/Navigation/Navigation.constants';
 import ImprovePhraseOutput from './ImprovePhraseOutput';
+import { getBreakpointFromWidth } from '../Utils/BreakpointFromWidth';
+import { GRID_BREAKPOINTS } from '../Grid/Grid.constants';
 
 export class Board extends Component {
   static propTypes = {
@@ -123,7 +125,13 @@ export class Board extends Component {
 
     this.state = {
       openTitleDialog: false,
-      titleDialogValue: props.board && props.board.name ? props.board.name : ''
+      titleDialogValue: props.board && props.board.name ? props.board.name : '',
+      pageNumber: 0,
+      maxPages: 5,
+      tilesPerPage: 0,
+      paginatedTiles: []
+
+      //internalBoard: props.board
     };
 
     this.boardContainerRef = React.createRef();
@@ -278,6 +286,36 @@ export class Board extends Component {
     );
   }
 
+  handlePageChange = newPageNumber => {
+    const totalPages = this.state.maxPages;
+    console.log('Página anterior: ', this.state.pageNumber);
+    console.log('Cambiando a página: ', newPageNumber);
+    if (newPageNumber >= 0 && newPageNumber < totalPages) {
+      this.setState({ pageNumber: newPageNumber });
+    }
+    this.setState({ pageNumber: newPageNumber }); //aca tengo los problemas que tenog que ver ,
+  };
+
+  updateTilesPerPage = () => {
+    const breakpoint = getBreakpointFromWidth(
+      GRID_BREAKPOINTS,
+      window.innerWidth
+    );
+    const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
+    const tilesPerPage = cols[breakpoint] * 3;
+
+    this.setState({ tilesPerPage, pageNumber: 0 }, () => {
+      this.updatePaginatedTiles(this.renderTiles(this.props.board.tiles));
+    });
+  };
+  updatePaginatedTiles = tiles => {
+    const { pageNumber, tilesPerPage } = this.state;
+    const start = pageNumber * tilesPerPage;
+    const end = start + tilesPerPage;
+    const paginatedTiles = tiles.slice(start, end);
+
+    this.setState({ paginatedTiles });
+  };
   render() {
     const {
       board,
@@ -323,6 +361,7 @@ export class Board extends Component {
       speak
     } = this.props;
 
+    const { pageNumber } = this.state;
     const tiles = this.renderTiles(board.tiles);
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
@@ -330,6 +369,22 @@ export class Board extends Component {
       navigationSettings.navigationButtonsStyle === undefined ||
       navigationSettings.navigationButtonsStyle ===
         NAVIGATION_BUTTONS_STYLE_SIDES;
+
+    //const breackpoint = getBreakpointFromWidth(GRID_BREAKPOINTS, window.innerWidth);
+    //const tilesPerPage = cols[breackpoint]*3
+
+    //const clonedTiles = [...tiles];
+    // const initialPageNumber = pageNumber*tilesPerPage
+    //console.log("initialPageNumber",initialPageNumber)
+    //const segundoParametro = (pageNumber + 1)* tilesPerPage
+    //const paginatedTiles = clonedTiles.slice(initialPageNumber,segundoParametro)
+    //console.log("segundoParametro", segundoParametro)
+    //console.log("Total tiles:", tiles.length);
+    //console.log("Página actual:", pageNumber);
+    //console.log("Tiles por página:", tilesPerPage);
+    //console.log("Corte inicial:", pageNumber * tilesPerPage);
+    //console.log("Corte final:", (pageNumber + 1) * tilesPerPage);
+    //console.log(" paginatedTiles",paginatedTiles.length)
 
     return (
       <Scanner
@@ -505,6 +560,14 @@ export class Board extends Component {
                     isNavigationButtonsOnTheSide
                   }
                 />
+                <div className="pagination-buttons">
+                  <button onClick={() => this.handlePageChange(pageNumber - 1)}>
+                    Anterior
+                  </button>
+                  <button onClick={() => this.handlePageChange(pageNumber + 1)}>
+                    Siguiente
+                  </button>
+                </div>
               </div>
             </Scannable>
 
