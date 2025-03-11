@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { intlShape } from 'react-intl';
+import { FormattedMessage, intlShape } from 'react-intl';
 import moment from 'moment';
 import PublicIcon from '@material-ui/icons/Public';
 import KeyIcon from '@material-ui/icons/VpnKey';
@@ -40,6 +40,7 @@ import { isCordova } from '../../../cordova-util';
 import InputImage from '../../UI/InputImage';
 import SymbolSearch from '../../Board/SymbolSearch';
 import PremiumFeature from '../../PremiumFeature';
+import Language from '../../Settings/Language/Language.messages';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -51,6 +52,17 @@ const defaultReportDialogState = {
   loading: false,
   error: false,
   success: false
+};
+
+const getFormattedName = lang => {
+  lang = lang || navigator.language;
+  console.log(lang);
+  const processLanguage = lang => {
+    const locale = lang.slice(0, 2).toLowerCase();
+    const formattedLocale = locale === 'sr-ME' ? 'srme' : locale;
+    return <FormattedMessage {...Language[formattedLocale]} />;
+  };
+  return processLanguage(lang);
 };
 
 class CommunicatorDialogBoardItem extends React.Component {
@@ -339,6 +351,16 @@ class CommunicatorDialogBoardItem extends React.Component {
     await this.props.setRootBoard(board);
   }
 
+  processLanguage(lang) {
+    const locale = lang.slice(0, 2).toLowerCase();
+    let name = <FormattedMessage {...Language[locale]} />;
+    //handle custom names
+    if (locale === 'sr-ME') {
+      name = <FormattedMessage {...Language['srme']} />;
+    }
+    return name;
+  }
+
   render() {
     const {
       board,
@@ -389,6 +411,9 @@ class CommunicatorDialogBoardItem extends React.Component {
     );
 
     const PublicBoardInfo = () => {
+      const boardInfoLocale = (
+        <FormattedMessage {...messages['boardInfoLocale']} />
+      );
       return (
         <Dialog
           onClose={this.handleDialogClose.bind(this)}
@@ -413,8 +438,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                 {board.author}
               </Typography>
               <Typography variant="body1" gutterBottom>
-                <b>{intl.formatMessage(messages.boardInfoLocale)}:</b>{' '}
-                {board.locale}
+                <b>{boardInfoLocale}:</b> {getFormattedName(board.locale)}
               </Typography>
               <Typography variant="body1" gutterBottom>
                 <b>{intl.formatMessage(messages.boardDescription)}:</b>{' '}
@@ -688,7 +712,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     <span style={{ marginLeft: '1em' }} />
                     <LanguageIcon fontSize="small" />
                     <span style={{ marginLeft: '0.05em' }} />
-                    {board.locale}
+                    {getFormattedName(board.locale)}
                   </div>
                 }
               />
