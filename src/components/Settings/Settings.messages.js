@@ -160,6 +160,15 @@ export default defineMessages({
     defaultMessage:
       'You can choose where to position the label. It can be above, below or hidden.'
   },
+  labelCaseTitle: {
+    id: 'cboard.components.Settings.labelCaseTitle',
+    defaultMessage: 'Label case'
+  },
+  labelCaseDescrip: {
+    id: 'cboard.components.Settings.labelCaseDescrip',
+    defaultMessage:
+      'You can leave the case of the characters as they are or force them to lowercase or UPPERCASE.'
+  },
   enableDarkThemeTitle: {
     id: 'cboard.components.Settings.enableDarkThemeTitle',
     defaultMessage: 'Enable dark theme'
