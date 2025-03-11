@@ -286,46 +286,37 @@ export class Board extends Component {
     );
   }
 
+  handlePageChange = newPageNumber => {
+    const totalPages = this.state.maxPages;
+    console.log('Página anterior: ', this.state.pageNumber);
+    console.log('Cambiando a página: ', newPageNumber);
+    if (newPageNumber >= 0 && newPageNumber < totalPages) {
+      this.setState({ pageNumber: newPageNumber });
+    }
+    this.setState({ pageNumber: newPageNumber }); //aca tengo los problemas que tenog que ver ,
+  };
+
+  updateTilesPerPage = () => {
+    const breakpoint = getBreakpointFromWidth(
+      GRID_BREAKPOINTS,
+      window.innerWidth
+    );
+    const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
+    const tilesPerPage = cols[breakpoint] * 3;
+
+    this.setState({ tilesPerPage, pageNumber: 0 }, () => {
+      this.updatePaginatedTiles(this.renderTiles(this.props.board.tiles));
+    });
+  };
+  updatePaginatedTiles = tiles => {
+    const { pageNumber, tilesPerPage } = this.state;
+    const start = pageNumber * tilesPerPage;
+    const end = start + tilesPerPage;
+    const paginatedTiles = tiles.slice(start, end);
+
+    this.setState({ paginatedTiles });
+  };
   render() {
-    handlePageChange = newPageNumber => {
-      const totalPages = this.state.maxPages;
-      console.log('Página anterior: ', this.state.pageNumber);
-      console.log('Cambiando a página: ', newPageNumber);
-      if (newPageNumber >= 0 && newPageNumber < totalPages) {
-        this.setState({ pageNumber: newPageNumber });
-      }
-      this.setState({ pageNumber: newPageNumber }); //aca tengo los problemas que tenog que ver ,
-    };
-
-    updateTilesPerPage = () => {
-      const breakpoint = getBreakpointFromWidth(
-        GRID_BREAKPOINTS,
-        window.innerWidth
-      );
-      const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
-      const tilesPerPage = cols[breakpoint] * 3;
-
-      this.setState({ tilesPerPage, pageNumber: 0 }, () => {
-        this.updatePaginatedTiles(this.renderTiles(this.props.board.tiles));
-      });
-    };
-    updatePaginatedTiles = tiles => {
-      const { pageNumber, tilesPerPage } = this.state;
-      const start = pageNumber * tilesPerPage;
-      const end = start + tilesPerPage;
-      const paginatedTiles = tiles.slice(start, end);
-
-      console.log(
-        'Actualizando paginatedTiles:',
-        paginatedTiles.length,
-        'de',
-        start,
-        'a',
-        end
-      );
-
-      this.setState({ paginatedTiles });
-    };
     const {
       board,
       intl,
@@ -370,6 +361,15 @@ export class Board extends Component {
       speak
     } = this.props;
 
+    const { pageNumber } = this.state;
+    const tiles = this.renderTiles(board.tiles);
+    const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
+    const isLoggedIn = !!userData.email;
+    const isNavigationButtonsOnTheSide =
+      navigationSettings.navigationButtonsStyle === undefined ||
+      navigationSettings.navigationButtonsStyle ===
+        NAVIGATION_BUTTONS_STYLE_SIDES;
+
     //const breackpoint = getBreakpointFromWidth(GRID_BREAKPOINTS, window.innerWidth);
     //const tilesPerPage = cols[breackpoint]*3
 
@@ -385,14 +385,6 @@ export class Board extends Component {
     //console.log("Corte inicial:", pageNumber * tilesPerPage);
     //console.log("Corte final:", (pageNumber + 1) * tilesPerPage);
     //console.log(" paginatedTiles",paginatedTiles.length)
-
-    const tiles = this.renderTiles(board.tiles);
-    const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
-    const isLoggedIn = !!userData.email;
-    const isNavigationButtonsOnTheSide =
-      navigationSettings.navigationButtonsStyle === undefined ||
-      navigationSettings.navigationButtonsStyle ===
-        NAVIGATION_BUTTONS_STYLE_SIDES;
 
     return (
       <Scanner
@@ -568,6 +560,14 @@ export class Board extends Component {
                     isNavigationButtonsOnTheSide
                   }
                 />
+                <div className="pagination-buttons">
+                  <button onClick={() => this.handlePageChange(pageNumber - 1)}>
+                    Anterior
+                  </button>
+                  <button onClick={() => this.handlePageChange(pageNumber + 1)}>
+                    Siguiente
+                  </button>
+                </div>
               </div>
             </Scannable>
 
