@@ -368,6 +368,22 @@ export class Board extends Component {
       speak
     } = this.props;
 
+    //const breackpoint = getBreakpointFromWidth(GRID_BREAKPOINTS, window.innerWidth);
+    //const tilesPerPage = cols[breackpoint]*3
+
+    //const clonedTiles = [...tiles];
+    // const initialPageNumber = pageNumber*tilesPerPage
+    //console.log("initialPageNumber",initialPageNumber)
+    //const segundoParametro = (pageNumber + 1)* tilesPerPage
+    //const paginatedTiles = clonedTiles.slice(initialPageNumber,segundoParametro)
+    //console.log("segundoParametro", segundoParametro)
+    //console.log("Total tiles:", tiles.length);
+    //console.log("Página actual:", pageNumber);
+    //console.log("Tiles por página:", tilesPerPage);
+    //console.log("Corte inicial:", pageNumber * tilesPerPage);
+    //console.log("Corte final:", (pageNumber + 1) * tilesPerPage);
+    //console.log(" paginatedTiles",paginatedTiles.length)
+
     const tiles = this.renderTiles(board.tiles);
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
