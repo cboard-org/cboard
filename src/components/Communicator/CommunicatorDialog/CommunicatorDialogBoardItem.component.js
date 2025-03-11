@@ -54,7 +54,19 @@ const defaultReportDialogState = {
   success: false
 };
 
-const getFormattedName = lang => {
+/*************  ✨ Codeium Command ⭐  *************/
+/**
+ * Returns a formatted name for the given language.
+ * If no language is given, navigator.language is used.
+ * The locale is sliced to 2 characters and lowercased.
+ * If the locale is 'sr-ME', 'srme' is used instead.
+ * The formatted name is then looked up in the Language messages.
+ * The found translation is then wrapped in a FormattedMessage component.
+ * @param {String} lang the language to get the formatted name for
+ * @returns {ReactElement} the formatted name wrapped in a FormattedMessage component
+ */
+/******  53b502b6-7b3d-4add-825f-9fe183e6fca2  *******/
+const GetFormattedName = lang => {
   lang = lang || navigator.language;
   console.log(lang);
   const processLanguage = lang => {
@@ -438,7 +450,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                 {board.author}
               </Typography>
               <Typography variant="body1" gutterBottom>
-                <b>{boardInfoLocale}:</b> {getFormattedName(board.locale)}
+                <b>{boardInfoLocale}:</b> {GetFormattedName(board.locale)}
               </Typography>
               <Typography variant="body1" gutterBottom>
                 <b>{intl.formatMessage(messages.boardDescription)}:</b>{' '}
@@ -712,7 +724,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     <span style={{ marginLeft: '1em' }} />
                     <LanguageIcon fontSize="small" />
                     <span style={{ marginLeft: '0.05em' }} />
-                    {getFormattedName(board.locale)}
+                    {GetFormattedName(board.locale)}
                   </div>
                 }
               />
