@@ -67,8 +67,14 @@
   display: flex;
   min-height: 150px;
   margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
+.CommunicatorDialog__boards__item__data__title__secondary {
+  display: flex;
+  align-items: center;
+  align-content: space-between;
+}
 .is-dark .CommunicatorDialog__boards__item {
   background-color: #424242;
 }
@@ -173,6 +179,7 @@
 
 .CommunicatorDialog__boards__item__data__title,
 .CommunicatorDialog__boards__item__data__author,
+.CommunicatorDialog__boards__item__data__locale,
 .CommunicatorDialog__boards__item__data__extra {
   margin-top: 2px;
   display: flex;

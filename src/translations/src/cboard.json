@@ -317,6 +317,7 @@
   "cboard.components.CommunicatorDialog.boardReportSuccesSubtitle": "Report sent to support team successfully.",
   "cboard.components.CommunicatorDialog.boardReportSuccesGratitude": "Thanks for helping Cboard to be out of inappropriate content.",
   "cboard.components.CommunicatorDialog.boardReportClose": "Close",
+  "cboard.components.CommunicatorDialog.boardInfoLocale": "Language",
   "cboard.components.Notifications.refreshPage": "Refresh page",
   "cboard.components.Notifications.cloudSpeakErrorAlert": "Your internet connection is insufficient to reproduce an online voice properly.",
   "cboard.components.Notifications.changeVoiceOnError": "Change the voice",
