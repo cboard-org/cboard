@@ -54,7 +54,7 @@ const defaultReportDialogState = {
   success: false
 };
 
-const GetFormattedName = lang => {
+const getFormattedName = lang => {
   lang = lang || navigator.language;
   console.log(lang);
   const processLanguage = lang => {
@@ -428,7 +428,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                 {board.author}
               </Typography>
               <Typography variant="body1" gutterBottom>
-                <b>{boardInfoLocale}:</b> {GetFormattedName(board.locale)}
+                <b>{boardInfoLocale}:</b> {getFormattedName(board.locale)}
               </Typography>
               <Typography variant="body1" gutterBottom>
                 <b>{intl.formatMessage(messages.boardDescription)}:</b>{' '}
@@ -702,7 +702,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     <span style={{ marginLeft: '1em' }} />
                     <LanguageIcon fontSize="small" />
                     <span style={{ marginLeft: '0.05em' }} />
-                    {GetFormattedName(board.locale)}
+                    {getFormattedName(board.locale)}
                   </div>
                 }
               />
