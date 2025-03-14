@@ -30,17 +30,22 @@ const setupCSP = () => {
     ? 'http://localhost:* http://127.0.0.1:* ws://localhost:* ws://127.0.0.1:*'
     : '';
 
+  const https = 'https://*';
+  const api = 'https://api.cboard.io';
+  const app = 'https://app.cboard.io';
+  const globalsymbols = 'https://globalsymbols.com/';
+  const microsoft = 'wss://*.microsoft.com/cognitiveservices/';
+  const arasaac = 'https://api.arasaac.org/api/';
+
   const cspContent = `
-    default-src 'self' https://app.cboard.io https://api.cboard.io ${localHostSources};
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.paypal.com https://www.sandbox.paypal.com ${localHostSources};
-    style-src 'self' 'unsafe-inline' ${localHostSources};
-    img-src * data: blob: filesystem:;
-    connect-src 'self' https://api.cboard.io wss://*.microsoft.com/cognitiveservices/ https://*.paypal.com ${localHostSources};
-    media-src 'self' blob: ${localHostSources};
-    object-src 'none';
-    frame-src 'self' https://www.paypal.com https://www.sandbox.paypal.com ${localHostSources};
-    font-src 'self' data: ${localHostSources};
-  `
+    default-src 'self' 'unsafe-inline' 'unsafe-eval' ${api} ${app} ${localHostSources}
+    blob:
+    gap:
+    data:;
+    connect-src 'self' 'unsafe-inline' 'unsafe-eval' ${api} ${app} ${globalsymbols} ${microsoft} ${arasaac};
+    api-src 'unsafe-inline'  ${globalsymbols} ${arasaac} ${microsoft};
+    Img-src * data  filesystem: blob: ;
+    `
     .replace(/\s+/g, ' ')
     .trim();
 
