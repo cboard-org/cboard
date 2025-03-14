@@ -20,6 +20,36 @@ import configureStore, { getStore } from './store';
 import SubscriptionProvider from './providers/SubscriptionProvider';
 import { PAYPAL_CLIENT_ID } from './constants';
 import { initializeAppInsights } from './appInsights';
+import { useEffect } from 'react';
+
+const setupCSP = () => {
+  // Detectar entorno
+  const isDevelopment = process.env.NODE_ENV === 'development';
+
+  const localHostSources = isDevelopment
+    ? 'http://localhost:* http://127.0.0.1:* ws://localhost:* ws://127.0.0.1:*'
+    : '';
+
+  const cspContent = `
+    default-src 'self' https://app.cboard.io https://api.cboard.io ${localHostSources};
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.paypal.com https://www.sandbox.paypal.com ${localHostSources};
+    style-src 'self' 'unsafe-inline' ${localHostSources};
+    img-src * data: blob: filesystem:;
+    connect-src 'self' https://api.cboard.io wss://*.microsoft.com/cognitiveservices/ https://*.paypal.com ${localHostSources};
+    media-src 'self' blob: ${localHostSources};
+    object-src 'none';
+    frame-src 'self' https://www.paypal.com https://www.sandbox.paypal.com ${localHostSources};
+    font-src 'self' data: ${localHostSources};
+  `
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  // Añadir la meta tag dinámicamente
+  const meta = document.createElement('meta');
+  meta.httpEquiv = 'Content-Security-Policy';
+  meta.content = cspContent;
+  document.head.appendChild(meta);
+};
 
 initializeAppInsights();
 const { persistor } = configureStore();
@@ -45,6 +75,8 @@ const renderApp = () => {
   if (isCordova()) {
     initCordovaPlugins();
   }
+  setupCSP();
+
   ReactDOM.render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
