@@ -30,21 +30,32 @@ const setupCSP = () => {
     ? 'http://localhost:* http://127.0.0.1:* ws://localhost:* ws://127.0.0.1:*'
     : '';
 
-  const https = 'https://*';
   const api = 'https://api.cboard.io';
   const app = 'https://app.cboard.io';
   const globalsymbols = 'https://globalsymbols.com/';
   const microsoft = 'wss://*.microsoft.com/cognitiveservices/';
+  const eastus = 'eastus.tts.speech.microsoft.com';
   const arasaac = 'https://api.arasaac.org/api/';
+  const paypal = 'https://*.paypal.com';
+  const paypalSandbox = 'https://*.sandbox.paypal.com';
+  const googleLinks = 'https://*.google.com';
+  const cboardDownload =
+    'https://cboardgroupqadiag.blob.core.windows.net/arasaac/arasaac.zip';
+  const youtube = 'https://*.youtube.com';
+  const doubleclick = 'https://stats.g.doubleclick.ne';
+  const googleAnalytics = 'https://*.google-analytics.com';
+  const googleTagManager = 'https://*.googletagmanager.com';
 
   const cspContent = `
-    default-src 'self' 'unsafe-inline' 'unsafe-eval' ${api} ${app} ${localHostSources}
-    blob:
-    gap:
-    data:;
-    connect-src 'self' 'unsafe-inline' 'unsafe-eval' ${api} ${app} ${globalsymbols} ${microsoft} ${arasaac};
-    api-src 'unsafe-inline'  ${globalsymbols} ${arasaac} ${microsoft};
-    Img-src * data  filesystem: blob: ;
+    default-src 'self' 'unsafe-inline' 'unsafe-eval' ${api} ${app} ${localHostSources} blob: gap: data: ;
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' ${api} ${app} ${paypal} ${paypalSandbox} ${localHostSources};
+    style-src 'self' 'unsafe-inline' ${api} ${app} ${paypal} ${paypalSandbox} ${localHostSources};
+    connect-src 'self' ${api} ${app} ${localHostSources}  'unsafe-inline' 'unsafe-eval' ${arasaac} ${globalsymbols} 
+    ${microsoft} ${eastus} ${paypal} ${paypalSandbox} ${googleLinks} ${doubleclick} ${googleAnalytics} ${googleTagManager} ${cboardDownload};
+    img-src * data  filesystem: blob: ;
+    media-src * data filesystem: blob: ;
+    frame-src 'self' ${app} ${api} ${paypal} ${paypalSandbox} ${localHostSources} ${googleLinks} ${doubleclick} ${googleTagManager} ${youtube};
+    font-src 'self' data: ${paypal} ${paypalSandbox} ${localHostSources};
     `
     .replace(/\s+/g, ' ')
     .trim();
