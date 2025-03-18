@@ -1,0 +1,11 @@
+.SymbolNotFound__box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5em;
+}
+.SymbolNotFound__box .MuiSvgIcon-root {
+  font-size: 100px;
+}

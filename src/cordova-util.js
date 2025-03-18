@@ -14,17 +14,30 @@ export const onCordovaReady = onReady =>
 export const onAndroidPause = onPause =>
   document.addEventListener('pause', onPause, false);
 
-export const onAndroidResume = onResume =>
+export const manageKeyboardEvents = ({
+  onShow,
+  onHide,
+  removeEvent = false
+}) => {
+  if (!removeEvent) {
+    window.addEventListener('keyboardDidShow', onShow, false);
+    window.addEventListener('keyboardDidHide', onHide, false);
+    return;
+  }
+  window.removeEventListener('keyboardDidShow', onShow, false);
+  window.removeEventListener('keyboardDidHide', onHide, false);
+};
+
+export const onCvaResume = onResume =>
   document.addEventListener('resume', onResume, false);
+
+export const cleanUpCvaOnResume = onResume => {
+  document.removeEventListener('resume', onResume, false);
+};
 
 export const initCordovaPlugins = () => {
   console.log('now cordova is ready ');
   if (isCordova()) {
-    try {
-      window.ga.startTrackerWithId('UA-152065055-1', 20);
-    } catch (err) {
-      console.log(err.message);
-    }
     try {
       window.StatusBar.hide();
     } catch (err) {
@@ -46,7 +59,8 @@ export const initCordovaPlugins = () => {
       console.log(err.message);
     }
     try {
-      if (isAndroid) configAppPurchasePlugin();
+      if (isAndroid()) configAppPurchasePlugin();
+      if (isIOS()) IOSconfigureInAppPurchasePlugin();
     } catch (err) {
       console.log(err.message);
     }
@@ -62,6 +76,11 @@ const configAppPurchasePlugin = () => {
       id: 'one_year_subscription',
       type: ProductType.PAID_SUBSCRIPTION,
       platform: Platform.GOOGLE_PLAY
+    },
+    {
+      id: 'test',
+      type: ProductType.PAID_SUBSCRIPTION,
+      platform: Platform.GOOGLE_PLAY
     }
   ]);
   //error handler
@@ -73,11 +92,36 @@ const configAppPurchasePlugin = () => {
   store.initialize([Platform.GOOGLE_PLAY]);
 };
 
+const IOSconfigureInAppPurchasePlugin = () => {
+  const store = window.CdvPurchase.store;
+  const { ProductType, Platform } = window.CdvPurchase; // shortcuts
+  store.register([
+    {
+      id: 'one_year_subscription',
+      type: ProductType.PAID_SUBSCRIPTION,
+      platform: Platform.APPLE_APPSTORE
+    },
+    {
+      id: 'test',
+      type: ProductType.PAID_SUBSCRIPTION,
+      platform: Platform.APPLE_APPSTORE
+    }
+  ]);
+  //error handler
+  store.error(errorHandler);
+  function errorHandler(error) {
+    console.error(`ERROR ${error.code}: ${error.message}`);
+  }
+
+  store.initialize([Platform.APPLE_APPSTORE]);
+};
+
 const configFacebookPlugin = () => {
   const FACEBOOK_APP_ID =
-    process.env.REACT_APP_FACEBOOK_APP_ID || '340205533290626';
-  const FACEBOOK_APP_NAME =
-    process.env.REACT_APP_FACEBOOK_APP_NAME || 'Cboard - Development';
+    process.env.REACT_APP_FACEBOOK_APP_ID || '155146678540314';
+  const FACEBOOK_APP_NAME = process.env.REACT_APP_FACEBOOK_APP_NAME || 'Cboard';
+  const FACEBOOK_CLIENT_TOKEN =
+    process.env.REACT_APP_FACEBOOK_CLIENT_TOKEN || 'cboard_client_token';
   window.facebookConnectPlugin.setApplicationId(
     FACEBOOK_APP_ID,
     function successFunction() {},
@@ -92,11 +136,33 @@ const configFacebookPlugin = () => {
       console.error(error.message);
     }
   );
+  window.facebookConnectPlugin.setClientToken(
+    FACEBOOK_CLIENT_TOKEN,
+    function successFunction() {},
+    function errorFunction(error) {
+      console.error(error.message);
+    }
+  );
 };
 
 export const cvaTrackEvent = (category, action, label) => {
   try {
-    window.ga.trackEvent(category, action, label);
+    const convertEventToNewNomenclature = name => {
+      const inLowerCase = name.toLowerCase();
+      const event_name = inLowerCase.replace(/\s/g, '_');
+      return event_name;
+    };
+    const event_name = convertEventToNewNomenclature(action);
+
+    const eventOptions = label
+      ? {
+          event_category: category,
+          event_label: label
+        }
+      : {
+          event_category: category
+        };
+    if (!isElectron()) window.FirebasePlugin.logEvent(event_name, eventOptions);
   } catch (err) {
     console.log(err.message);
   }
@@ -150,13 +216,17 @@ export const writeCvaFile = async (name, blob) => {
         window.LocalFileSystem.PERSISTENT,
         0,
         function(fs) {
+          const extractFileName = nameWithDirectory => {
+            const nameParts = nameWithDirectory.split('/');
+            const lastIndex = nameParts.length - 1;
+            return nameParts[lastIndex];
+          };
+          const fileName = isIOS() ? extractFileName(name) : name;
           fs.root.getFile(
-            name,
+            fileName,
             { create: true, exclusive: false },
-            async function(fileEntry) {
-              //console.log('file entry: ' + fileEntry.nativeURL);
-              await writeFile(fileEntry, blob);
-              resolve(fileEntry);
+            function(fileEntry) {
+              writeFile(fileEntry, blob, resolve, reject);
             },
             function(err) {
               console.log(err);
@@ -173,23 +243,21 @@ export const writeCvaFile = async (name, blob) => {
   }
 };
 
-const writeFile = (fileEntry, dataObj) => {
-  return new Promise(function(resolve, reject) {
-    fileEntry.createWriter(function(fileWriter) {
-      fileWriter.onwriteend = function() {
-        console.log('File write success');
-        resolve();
-      };
-      fileWriter.onerror = function(e) {
-        console.log('Failed file write: ' + e.toString());
-        reject(e);
-      };
-      // If data object is not passed in, create a new Blob instead.
-      if (!dataObj) {
-        dataObj = new Blob(['some file data'], { type: 'text/plain' });
-      }
-      fileWriter.write(dataObj);
-    });
+const writeFile = (fileEntry, dataObj, resolve, reject) => {
+  fileEntry.createWriter(function(fileWriter) {
+    fileWriter.onwriteend = function() {
+      console.log('File write success');
+      resolve(fileEntry);
+    };
+    fileWriter.onerror = function(e) {
+      console.log('Failed file write: ' + e.toString());
+      reject(e);
+    };
+    // If data object is not passed in, create a new Blob instead.
+    if (!dataObj) {
+      dataObj = new Blob(['some file data'], { type: 'text/plain' });
+    }
+    fileWriter.write(dataObj);
   });
 };
 
@@ -236,72 +304,51 @@ export const requestCvaWritePermissions = () => {
   }
 };
 
-export const requestCvaPermissions = () => {
-  if (isCordova()) {
+export const requestCvaPermissions = async () => {
+  if (isAndroid()) {
     var permissions = window.cordova.plugins.permissions;
-    permissions.checkPermission(
-      permissions.READ_EXTERNAL_STORAGE,
-      function(status) {
-        console.log('Has READ_EXTERNAL_STORAGE:', status.hasPermission);
-        if (!status.hasPermission) {
-          permissions.requestPermission(
-            permissions.READ_EXTERNAL_STORAGE,
+    const androidPermissions = {
+      READ_EXTERNAL_STORAGE: 'READ_EXTERNAL_STORAGE',
+      RECORD_AUDIO: 'RECORD_AUDIO',
+      READ_MEDIA_IMAGES: 'READ_MEDIA_IMAGES',
+      READ_MEDIA_AUDIO: 'READ_MEDIA_AUDIO'
+    };
+
+    for (let permission in androidPermissions) {
+      try {
+        const { hasPermission } = await new Promise((resolve, reject) => {
+          permissions.checkPermission(
+            permissions[permission],
             function(status) {
-              console.log(
-                'success requesting READ_EXTERNAL_STORAGE permission'
-              );
+              console.log(`Has ${permission}:`, status.hasPermission);
+              resolve(status);
             },
             function(err) {
-              console.warn('No permissions granted for READ_EXTERNAL_STORAGE');
+              console.log(err);
+              resolve({ hasPermission: false });
             }
           );
+        });
+        if (!hasPermission) {
+          await new Promise((resolve, reject) => {
+            permissions.requestPermission(
+              permissions[permission],
+              function(status) {
+                console.log(`Success requesting ${permission} permission`);
+                if (!status.hasPermission)
+                  console.log(`No permissions granted for ${permission}`);
+                resolve(status);
+              },
+              function(err) {
+                console.log(`No permissions granted for ${permission}`);
+                reject(err);
+              }
+            );
+          });
         }
-      },
-      function(err) {
-        console.log(err);
+      } catch (err) {
+        console.error(err);
       }
-    );
-
-    permissions.checkPermission(
-      permissions.RECORD_AUDIO,
-      function(status) {
-        console.log('Has RECORD_AUDIO:', status.hasPermission);
-        if (!status.hasPermission) {
-          permissions.requestPermission(
-            permissions.RECORD_AUDIO,
-            function(status) {
-              console.log('success requesting RECORD_AUDIO permission');
-            },
-            function(err) {
-              console.warn('No permissions granted for RECORD_AUDIO');
-            }
-          );
-        }
-      },
-      function(err) {
-        console.log(err);
-      }
-    );
-
-    // permissions.checkPermission(
-    //   permissions.CAMERA,
-    //   function(status) {
-    //     console.log('Has CAMERA:', status.hasPermission);
-    //     if (!status.hasPermission) {
-    //       permissions.requestPermission(
-    //         permissions.CAMERA,
-    //         function(status) {
-    //           console.log('success requesting CAMERA permission');
-    //         },
-    //         function(err) {
-    //           console.warn('No permissions granted for CAMERA');
-    //         }
-    //       );
-    //     }
-    //   },
-    //   function(err) {
-    //     console.log(err);
-    //   }
-    // );
+    }
   }
 };

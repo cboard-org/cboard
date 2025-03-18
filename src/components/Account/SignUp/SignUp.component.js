@@ -22,7 +22,13 @@ export class SignUp extends Component {
   static propTypes = {
     intl: intlShape.isRequired,
     isDialogOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    isKeyboardOpen: PropTypes.bool,
+    dialogWithKeyboardStyle: PropTypes.object
+  };
+
+  static defaultProps = {
+    dialogWithKeyboardStyle: {}
   };
 
   state = {
@@ -46,22 +52,38 @@ export class SignUp extends Component {
 
     signUp(formValues)
       .then(signUpStatus => this.setState({ signUpStatus }))
-      .catch(signUpStatus => this.setState({ signUpStatus }))
+      .catch(error => {
+        const responseMessage = error?.response?.data?.message;
+        const message = responseMessage
+          ? responseMessage
+          : this.props.intl.formatMessage(messages.noConnection);
+
+        this.setState({
+          signUpStatus: { success: false, message: message }
+        });
+      })
       .finally(() => this.setState({ isSigningUp: false }));
   };
 
   render() {
     const { signUpStatus, isSigningUp } = this.state;
-    const { isDialogOpen, onClose, intl } = this.props;
+    const { isDialogOpen, onClose, intl, dialogWithKeyboardStyle } = this.props;
+
+    const { dialogStyle, dialogContentStyle } = dialogWithKeyboardStyle ?? {};
 
     const isButtonDisabled = isSigningUp || !!signUpStatus.success;
 
     return (
-      <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="sign-up">
+      <Dialog
+        open={isDialogOpen}
+        onClose={onClose}
+        aria-labelledby="sign-up"
+        style={dialogStyle}
+      >
         <DialogTitle id="sign-up">
           <FormattedMessage {...messages.signUp} />
         </DialogTitle>
-        <DialogContent>
+        <DialogContent style={dialogContentStyle}>
           <div
             className={classNames('SignUp__status', {
               'SignUp__status--error': !signUpStatus.success,

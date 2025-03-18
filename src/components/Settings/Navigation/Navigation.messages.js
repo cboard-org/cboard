@@ -47,6 +47,15 @@ export default defineMessages({
     id: 'cboard.components.Settings.Navigation.vocalizeFoldersSecondary',
     defaultMessage: "Reads a folder's name out loud when clicked"
   },
+  quietBuilderMode: {
+    id: 'cboard.components.Settings.Navigation.quietBuilderMode',
+    defaultMessage: 'Enable Quiet Builder mode'
+  },
+  quietBuilderModeSecondary: {
+    id: 'cboard.components.Settings.Navigation.quietBuilderModeSecondary',
+    defaultMessage:
+      'Disables vocalization of tiles when they are clicked as you build a sentence. Click output bar to hear the constructed sentence.'
+  },
   showLiveMode: {
     id: 'cboard.components.Settings.Navigation.showLiveMode',
     defaultMessage: 'Use the Live Mode'
@@ -55,6 +64,15 @@ export default defineMessages({
     id: 'cboard.components.Settings.Navigation.showLiveModeSecondary',
     defaultMessage:
       'Live mode allows you to write text directly into the output bar and quickly play the sound. It is intended for users that can write.'
+  },
+  activeImprovePhrase: {
+    id: 'cboard.components.Settings.Navigation.activeImprovePhrase',
+    defaultMessage: 'Use the Improve Phrase'
+  },
+  activeImprovePhraseSecondary: {
+    id: 'cboard.components.Settings.Navigation.activeImprovePhraseSecondary',
+    defaultMessage:
+      'Improve Phrase allows you to gramatically improve the output phrase using Artificial intelligence. It is intended for users of core boards'
   },
   bigScroll: {
     id: 'cboard.components.Settings.Navigation.bigScroll',

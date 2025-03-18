@@ -22,11 +22,12 @@
     * [mogućnosti prikaza](#Displaycapabilities)
     * [Mogu li promijeniti bilo koja podešavanja navigacije?](#CanIchangeanynavigationsettings)
     * [navođenje kroz pristup](#Navigationthroughtheinterface)
-* [Settings](#Settings) 
+* [Podešavanja](#Settings) 
     * [Kako da pristupim podešavanjima na Cboardu](#HowdoIaccesssettingsinCboard)
     * [Kako da odštampam moje table u Cboardu](#HowdoIprintmyboardsetinCboard)
     * [Kako da vidim Cboard preko cijelog ekrana](#HowdoIseeCboardinfullscreen)
     * [Kako da podijelim table](#HowdoIshareaboard)
+    * [Kako dijelim fraze?](#HowdoIshareaphrase)
 * [Govor](#Talking) 
     * [Kako da dodam sopstveni snimljeni glas na simbolima u Cboardu](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
     * [Kako da prebacim na drugi glas?](#HowdoIswitchtoadifferentvoice)
@@ -45,9 +46,10 @@
     * [Kako da uvezem tablu u Cboard](#HowdoIimportaboardintoCboard)
     * [Koji format datoteka koristi Cboard za uvoz/ izvoz?](#WhatfileformatdoesCboarduseforimportexport)
 * [mogućnosti prikaza](#Displaycapabilities) 
-    * [What can I change on the display?](#WhatcanIchangeonthedisplay)
+    * [Što mogu da promijenim na ekranu](#WhatcanIchangeonthedisplay)
     * [Mogu li da promijenim velilčinu dugmadi u Cboard](#CanIresizebuttonsonCboard)
-* [Scanning](#Scanning) 
+    * [Pomijerajte ekran kroz veliku dugmad](#BigScrollButtons)
+* [Skeniranje](#Scanning) 
     * [Mogu li da koristim tehnike skeniranja za pristup simbolima?](#CanIusescanningtechniquestoaccesssymbols)
 * [izrada komunikatora](#CommunicatorBuilder) 
     * [što je izrada komunikatora?](#Whatiscommbuilder)
@@ -79,39 +81,39 @@ Nakon što unesete svoje podatke, ubrzo ćete dobiti e-mail s vezom koju treba d
 
 ![Registracija putem e-pošte](/images/help/signupemail.png "Email signup")
 
-Ove informacije kompanija zadržava samo radi podrške korišćenju Cboard-a i pružanja pomoći kada je to potrebno. Nije dijeljeno sa drugim organizacijama, (Pogledaj [ Detalji privatnosti ](https://www.cboard.io/privacy/)).
+This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
 
 Nakon što verifikuješ svoj nalog, dobićeš pristup Cboard-u i drugi e-mail kojim se potvrđuje taj nalog.
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>Mogu li da se registrujem koristeći moje naloge na društvenim mrežama?
 
-da Na stranici za prijavljivanje biće data mogućnost da se prijaviš sa svojim Google ili Facebook nalogom ako želiš. Možeš da se registruješ i putem e-mail adrese.
+Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>Kako se prijavljujem na Cboard nakon što sam registrovan kao korisnik?
 
-da se prijaviš na Cboard, slijedite prvi korak kao za registraciju, na ekranu dobrodošlice umjesto da odabereš opciju UPIŠI se, izaberi opciju PRIJAVI se. nakon toga će se tražiti da uneseš prijavnu e-poštu i lozinku.
+To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
 
 ![Cboard prijava](/images/help/login.png "Cboard login")
 
 ### Koje su različite opcije za podešavanje Cboard-a?
 
-Jednom kada se prijavi na Cboard, može se pristupiti različitim opcijama za konfiguraciju i razvoj komunikacione table koja se pruža kada je Cboard u otključanom režimu. Pogledaj spisak svih ključnih opcija u nastavku:
+Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
 
 ![Cboard podešavanja](/images/help/settings.png "Cboard settings")
 
 ### <a name='HowdoIlogout'></a>Kako se odjavljujem?
 
-Može se odjaviti odabirom sličice za podešavanjie, a opcija će se pojaviti crvenom bojom. Možeš izabrati simbol za zaključavanje u desnom uglu, zatim klikni tri puta da bi se otključao ekran i pojavila crvena traka. Zatim izaberi ikonu sa lijeve strane brave (slika ako imaš učitanu) i opcija da se odjaviš će se pojaviti crvenom bojom.
+You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
 
 ![Odjava za Cboard](/images/help/logout.png "Cboard logout")
 
 ### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>koja je razlika između registrovanog i neregistrovanog korisnika?
 
-Registrovani korisnik je u mogućnosti da personalizuje svoje table, a promjene će biti sačuvane na lični nalog tako da kada god se prijavi, može da koristi svoje prilagođene table. Neregistrovani korisnik neće moći bezbjedno da sačuva promjene. Preporučujemo da se registruješ za svaki slučaj, čime je zagarantovano da se sačuvaju promjene.
+A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
 
 ### <a name='HowdoIupdatemyuserinformation'></a>Kako da ažuriram svoje korisničke podatke?
 
-Da bi se ažurirali korisnički podaci, slijedi iste korake kako kod odjavljivanja. izaberi simbol zaključavanja u gornjem desnom uglu ploče. Nakon tri klika ili dodirivanja, kada se otključa ekran, izaberi ikonu sa lijeve strane zaključavanja (inicijali korisničkog imena, fotografija). Tada možeš da urediš svoje korisničke informacije.
+To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
 
 ### <a name='HowdoIresetmypassword'></a>Kako da ponovo namjestim svoju lozinku?
 
@@ -127,11 +129,11 @@ Cboard je potpuno besplatan
 
 ### <a name='WhatdevicesandOSaresupported'></a>Koji uređaji i operativni sistemi ga podržavaju?
 
-Cboard je dostupan na mreži putem širokog spektra uređaja, uključujući kompjutere, tablete i mobilne telefone koji koriste Mac, Vindovs i Android operativne sisteme. Najbolje se pregleda u pretraživačima kao što su Chrome, Firefok, Edge i Safari, a Android aplikacija je dostupna iz Google Play-a.
+Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
 
 ![Podrška za pregledač](/images/help/browsers.png "Browser support")
 
-kako je Cboard internet aplikacija, ona će odgovoriti na postavke koje pružaju pojedini pretraživači. To može značiti da postoje različito rezultato u podešavanjima Cboard-a. Na primjer, možda ćete biti ponuđene različite opcije za izbor govora.
+Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
 
 Ne zaboravite da možete koristiti i uvećanje pregledača ili zumiranje do određene mjere u zavisnosti od veličine ekrana računara, tableta ili telefona
 
@@ -139,39 +141,39 @@ Za one koji imaju smetnje vida treba pitati Cboard o korišćenju režima visok
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Koji jezici podržavaju Cboard
 
-Cboard je podržan na 33 jezika Za odabir drugog jezika idite na POSTAVKE - odaberite JEZIK i pojaviće se dostupni jezici. Napravite izbor i pored jezika će se pojaviti oznaka „pritisni“.
+Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Može li Cboard da pročita moju poruku na glas?
 
-Da, Cboard koristi sintetički govor koji je dostupan na uređaju da bi se mogle čitati pojedinačne oznake koje se nalaze ispod svakog simbola nakon se dodaju u okvir za izlaz poruka Možete odabrati cijelu poruku koja će takođe biti pročitana naglas. Ako su nekom simbolu dodati personalizovani snimci zvuka, riječi ili fraze (uputstva pod razgovorom - Snimanje glasa), čućete taj snimak umjesto sintetizovanog glasa. To može biti korisno ako prevod nije dostupan ili je potreban dječji glas ili naglasak nije prihvatljiv. Molimo, provjerite je li omogućen mrežni pristup mikrofonu.
+Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
 
 ### <a name='Speechcapabilities'></a>Mogućnosti govora
 
-Da bi prilagodili govorne mogućnosti / glas, uđi u podešavanja, pod kategorijom JEZIK se nalazi kategorija GOVOR. kada odabereš GOVOR, moći ćeđ da uređujeteš visinu i tempo govora na Cboardu
+In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
 
 ![Mogućnosti govora](/images/help/speech.png "Speech capabilities")
 
 ### <a name='Exportandimport'></a>uvoz i izvoz
 
-Obe opcije za izvoz su u okviru opscije POSTAVKA u kategoriji SISTEM, ispod jezika i govora. Kategorija EXPORT će dati mogućnost da otpremiš OpenBoard ili PDF. Kategorija UVOZ otvoriće sačuvane datoteke nakon što se odabere OBNOVI
+Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
 
 ![Mogućnosti izvoza](/images/help/export.png "Export capabilities")
 
 ### <a name='Displaycapabilities'></a>mogućnosti ekrana
 
-Podešavanja ekrana mogu se uređivati u opciji podešavanja, unutar kategorije SISTEM. Opcija PRIKAZ je tačno ispod izvoz i uvoz Kada jednom odabereš opsciju PRIKAZ, možeš promijeniti korisničku veličinu kao i veličinu fonta za aplikaciju odabirom željene veličine. Crvena tačka će biti ispod veličine koju izabereš
+Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
 
 ![mogućnosti prikaza](/images/help/display.png "Display capabilities")
 
 ### <a name='CanIchangeanynavigationsettings'></a>Mogu li promijeniti bilo koja podešavanja navigacije?
 
-Koristi odeljak NAVIGACIJA da prikažeši olakšaš način na koji se krećeš po Cboardu, brišeš simbole u ​​polju za poruke. Navigacija na kraju kategorije SISTEM U Podešavanjima omogućava veće dugme za povratak koje je lakše odabrati. Takođe je moguće dozvoliti da se dugme za brisanje („x“) pojavi iznad svakog simbola koji je predstavljen u okviru sa porukom. Ovo može olakšati brisanje simbola unutar rečenice. Ali budite svjesni potreba korisnika jer to može zbuniti neke od njih.
+Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
 
 ### <a name='Navigationthroughtheinterface'></a>navođenje kroz komunikacioni program
 
-Da bi se izmijenilo i olakšalo navođenje nkroz Cboard, izaberi posljednju stavku u meniju u opciji SISTEM pod nazivom NAVIGACIJA, (sve u podešavanjima)- ovo omogućava dodavanje određenih detalja radi lakšeg korišćenja. Prva opcija u Navigaciji omogućava veće dugme za povratak koje je lakše izabrati zbog veličine. Drugo dodavanje dugmeta x' olakšava brisanje simbola, a treće olakšava otključavanje zahtevajući tome što se pritisne samo jedan klik da bi otključali podešavanja.
+In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
 
 ![mogućnosti navođenja](/images/help/navigation.png "Navigation capabilities")
 
@@ -181,11 +183,11 @@ Da bi se izmijenilo i olakšalo navođenje nkroz Cboard, izaberi posljednju stav
 
 Kada se prijaviš na Cboard, otvoriće se stranica HOME
 
-Da bi se pristupilo PODEŠAVANJIMA pritisni 3 puta malu bravu sa desne strane ispod strelice Nakon što to učiniš, siva traka će se pojaviti ispod crne trake sa nazivom HOME, a dugme „podešavanja“ će se pojaviti direktno sa lijeve strane zaključavanja na traci HOME: kao drugo u nizu sa desne strane.
+In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
 
 ### <a name='HowdoIprintmyboardsetinCboard'></a>Kako da štampam svoje table u Cboardu?
 
-Da bi se odštampala tabla, pritisni sličicu na kojoj je prikazan štampač na lijevoj strani crne trake HOME, nakon što se otključa HOME stranica. Jedan PDF dokumet će biti preuzet.
+To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
 
 ### <a name='HowdoIseeCboardinfullscreen'></a>Kako mogu da postavim Cboard na cio ekran
 
@@ -199,9 +201,19 @@ Da bi se podijelila tabla, otključaj ekran pritiskom na simbol zaključavanja s
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
 
+### <a name='HowdoIshareaphrase'></a>Kako dijelim fraze?
+
+To share a phrase, only for the first time, unlock the screen, go to settings > Navigation and Buttons > and turn on the 'Show the share phrase button' option.
+
+![Phrase share Settings](https://user-images.githubusercontent.com/21298844/128038972-a2848d47-2675-4e2d-9a15-6f93186f29d6.png)
+
+Assemble a phrase. Then press the share icon that appears on the right of the output phrase bar. Select the social network where you want to share the phrase. One dialog would be open with the phrase in a text field. Press the submit button to share it. If you want to copy the phrase on your clipboard, press the share button and then 'copy to clipboard' option. One Notification would be shown on your screen with a succes message.
+
+![Phrase share button](https://user-images.githubusercontent.com/21298844/128044322-d61491c6-7168-4615-8117-244dc872091e.png)
+
 ## <a name='Talking'></a>pričanje
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Kako mogu dodati svoj snimljeni glas simbolima na tabli?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Kako da dodam sopstveni snimljeni glas na simbolima u Cboardu
 
 1. idi na tablu koju želiš da koristiš
 
@@ -209,7 +221,7 @@ Da bi se podijelila tabla, otključaj ekran pritiskom na simbol zaključavanja s
 
 3. odaberi dugme EDIT sa lijeve strane
 
-4. odaberi simbol ili tablu kojoj želiš da dodaš glas kada odabereš jednu ili seriju tabli obojaće se u plavo
+4. Choose which symbol cell or tile to which you want to add a voice recording. Once you select the tile or a series of tiles, a blue tick will appear in each one and they will be highlighted.
 
 5. odaberi opciju OLOVKA na krajnjoj desnoj strani na svijetlo plavoj traci.
 
@@ -225,15 +237,15 @@ Da bi se podijelila tabla, otključaj ekran pritiskom na simbol zaključavanja s
 
 ### <a name='HowdoIswitchtoadifferentvoice'></a>Kako da prebacim na drugi glas?
 
-Da bi prilagodili govorne mogućnosti / glas, uđi u podešavanja, a pod kategorijom JEZIK je kategorija GOVOR. Kada odabereš GOVOR, možeš da uređuješ visinu i tempo govora na Cboard-u. Takođe možeš da snimiš svoj i glas za simbole prateći korake odgovora za „Kako da dodam svoj snimljeni glas simbolima na tabli?“
+In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
 
-### <a name='HowdoIchangehowavoicesounds'></a>Kako mogu da promijenim zvuk glasa 
+### <a name='HowdoIchangehowavoicesounds'></a>Kako da promijenim zvuk glasa 
 
-Da bi prilagodili govorne mogućnosti / glas, uđi u podešavanja, a pod kategorijom JEZIK je kategorija GOVOR. Kada odabereš GOVOR, možeš da uređuješ visinu i tempo govora na Cboard-u.
+In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
 
 ## <a name='BoardEditing'></a>uređivanje table
 
-### <a name='HowdoIcreateanemptyboard'></a>kako da napavim jednu praznu tablu
+### <a name='HowdoIcreateanemptyboard'></a>Kako da kreiram praznu tablu
 
 U Cboardu je prazna tabla jednaka sa folderom
 
@@ -241,15 +253,15 @@ Ako želiš da napraviš novu ili praznu tablu, moraš da kreiraš novu fasciklu
 
 Nova prazna tabla biće odmah dostupna za uređivanje i može se postaviti kao matična tabla (pomoću dugmeta, tastera za pravljenje), što znači da će to biti prva tabla koja se vidi sljedeći put kada se otvori Cboard.
 
-da kreiraš novu fasciklu, počni otključavanjem ekrana odabirom dugmeta za zaključavanje na desnoj strani. kada otključaš ekran, izaberi simbol plus (+) na desnoj strani da bi se dodala tabla. Nakon toga će se, kao prva, pojaviti opcija dodaj tablu / simbol ili odaberi opciju FOLDER. Na vaj način se pravi NOVA tabla kojoj možeš dodati više simbola i mapa.
+To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
 
-nakon što imenuješ fadciklu, možeš da otpremiš sliku na sličan način kako bi se napravila tabla sa podešavanjem boja i oznaka. ova nova fascikla će se automatski povezati s tablom iznad nje (ako sadrži red tabli). pojaviće se na listi kao prazna tabla sve dok ne bude popunjena simbolima i oznakama.
+Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Kako da personalizujem postojeću tablu na Cboardu?
+### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Kako da personalizujem postojeću tablu u Cboardu
 
-Da personalizuješ postojeću tablu, izaberi opciju zaključavanje u gornjem desnom uglu trake iznad table (ispod strelice sa krstom). Nakon što to učiniš, pojaviće se druga crta ispod crne HOME trake, a na lijevoj strani pronaći ćeš ikonicu malog bloka (EDIT) za dodavanje table ili ćelije Kada se odabere blok, siva traka će postati plava, a na desnoj strani ćeš viđeti malu kantu za smeće i olovku.
+In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
 
 ![personalizuj postojeću tablu](/images/help/personalize.png "personalize an existing board")
 
@@ -259,39 +271,39 @@ Da bi se personalizovala tabla izaberi olovku i moći ćeš da promjeniš ozna
 
 ### <a name='CanIusemyownpictureswheneditingaboard'></a>Mogu li da koristim svoje slike prilikom uređivanja table?
 
-Da, možeš da koristiš svoje slike prilikom uređivanja table da bi se koristile sopstvene slike/simboli, možeš je otpremiti kad kreiraš novu tablu (odabirom PLUS SIGN (+) na sivoj traci nakon otključavanja stranice). Takođe možeš da urediš postojeću tablu sa sopstvenom slikom7simbolom.
+Yes, you can use your own picture when editing a board. In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). You can also edit an existing tile with your own picture.
 
-### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Mogu li promijeniti redosljed elemenata na tabli?
+### <a name='CanIchangetheorderingoftheelementsinaboard'></a>mogu li promijeniti redosljed elemenata na tabli?
 
-da Kada uređuješ tablu, otključaj ekran pomoću simbola LOCK. Zatim izaberi ikonu bloka EDIT na lijevoj strani (ispod ikone BUILD). Zatim možeš povući piktogram / simbol ili fasciklu đe god želiš da ga staviš unutar iste table.
+Yes! When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
 
-### <a name='HowdoIselectmultipleelementstoedit'></a>kako da izaberem više elemenata za prikaz?
+### <a name='HowdoIselectmultipleelementstoedit'></a>kako da izaberem više elemenata za uređivanje?
 
-Na isti način kako mijenjaš redosljed elemenata na tabli, ali izaberi krug unutar piktograma / simbola. Za prikaz većeg broja simbola možeš odabrati više od jednog. Nakon toga, izaberi ikonu OLOVKA na desnoj strani i to će omogućiti da izmijeniš odabrane elemente.
+The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FindSymbols'></a>Kako mogu da pronađem nove simbole kada uređujem tablu?
 
-Izaberi ikonicu EDIT na lijevoj strani trake table i izaberi piktogram / simbol koji želiš da promijeniš. Izaberi ga i nakon što poplavi tabla, idi na ikonu OLOVKA sa desne strane. Odabirom olovke primijetićeš da postoji ikona UVELIČAVANJE za pretraživanje simbola. Kada je aktivirana funkcija pretraživanja, na traci za uređivanje viđećeš ikonicu SEARCH SIMBOL LIBRARI. Upiši koncept / oznaku / riječ koju tražiš i pojaviće se simboli. Kada odabereš jedan simbol, automatski će te vratiti na stranicu za uređivanje table.
+Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='FixedBoards'></a>Mogu li table postaviti u fiksne položaje?
 
-Prema zadatim postavkama, kada se kreira nova tabla, Cboard će dodati **fluidnu tablu**. U svakom slučaju, tablu je moguće promijeniti u **fiksnu ploču**. Imaju sljedeće karakteristike:
+By default, when a new board is created, Cboard will add a **fluent board**. Anyway, it is possible to transform the board into a **fixed board**. They have the following features:
 
 * Mreža se neće mijenjati za različite veličine ekrana ili orijentaciju uređaja. 
 * Broj redova i kolona je moguće konfigurisati. 
 * Ploče će imati fiksne položaje u mreži. 
 
-Da biste pretvorili tablu u fiksnu tablu, jednostavno uredite tablu i prebacite opciju na traci s alatkama da je popravite. Tabla će promijeniti izgled i prikazaće se indikatori redova i kolona. 
+To convert a board into a fixed board, simply edit the board and switch the option in the toolbar to make it fixed. Your board will change its appearance and the rows and columns indicators will be displayed.
 
 ![Fiksna tabla](/images/help/fixedBoard.png "Fixed board")
 
 ### <a name='FixedRows'></a>Kako da postavim određeni broj redova i kolona na svojoj tabli?
 
-Prvo morate pretvoriti ploču u **fiksnu ploču** (vidi prethodnu temu). U režimu izdanja, vaša će tabla prikazivati indikatore redova i kolona. Možete komunicirati s ovim kontrolama kako biste povećali ili smanjili broj redova i kolona koji želite.
+First, you have to transform the board into a **fixed board** (see previous topic). In edition mode, your board will display rows and columns indicators. You can interact with these controls in order to increase or decrease the number of rows and columns you want.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
@@ -305,44 +317,54 @@ Odaberi izvezi i preuzmi svoj Cboard opdabirom opcija OPENBOARD ili izvezi.
 
 ### <a name='HowdoIimportaboardintoCboard'></a>Kako da uvezem tablu u Cboard
 
-Da bi se uvezle table prati iste korake kao kod izvoza. Opcija uvezi je ispod opcije izvezi, prikazana kao strelica okrenuta prema gore sa horizontalnom trakom ispod nje.
+In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
 
 ### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Koji format datoteka Cboard koristi za uvoz/ izvoz?
 
 Za opcije uvoz i izvoz postoje dvije mogućnosti:
 
 * Koristi matične datoteke Cboarda.
-* Koristi datoteke formatirane na OpenBoard-u. [ Saznaj više o Open Board Formatu ](https://www.openboardformat.org/)
+* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>mogućnosti prikaza
 
 ### <a name='WhatcanIchangeonthedisplay'></a>Što mogu da promijenim na ekranu
 
-Podešavanja ekrana mogu se uređivati u opciji podešavanja, unutar kategorije SISTEM. Opcija Ekran je ispod kategorija izvezi i uvezi. Kada odabereš opciju DISPLAY, možeš promijeniti veličinu korisničke razmjene informacija, kao i veličinu slova za aplikaciju odabirom željene veličine. Crvena tačka će biti ispod veličine koju izabereš
+Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
 
-### <a name='CanIresizebuttonsonCboard'></a>Mogu li da promjenim veličinu dugmeta na Cboardu?
+### <a name='CanIresizebuttonsonCboard'></a>Mogu li da promijenim velilčinu dugmadi u Cboard
 
-da Možeš da promijeniš veličinu table u kategoriji Podešavanja. U kategoriji SISTEM odaberi opciju DISPLAY prikazaće se 3 opcije za veličinu: Standardna, Velika i Ekstra velika. Pogledaj donje podatke
+Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
 
-![mogućnosti prikaza](/images/help/display.png "Display capabilities")
+![mogućnosti ekrana](/images/help/display.png "Display capabilities")
+
+### <a name='BigScrollButtons'></a>Pomijerajte ekran kroz veliku dugmad
+
+It is also possible to scroll up and down a board using a couple of big buttons that can be added from the settings section. This is especially useful for eye-tracker device users, as the buttons allow to scroll the board without needing to slide the screen. To enable this feature, go to the settings section and look for the "enable big scroll buttons " switch. Toggle the switch and save the settings. See figure below:
+
+![Omogućite veliku dugmad za pomijeranje](/images/help/bigScrollSettings.png "Big scroll buttons settings")
+
+Then, you should see a couple of big buttons at the top and the bottom of a board if it is large enough, as displayed in the below image:
+
+![Big scroll buttons](/images/help/bigScrollButtons.png "Big scroll buttons")
 
 ## <a name='Scanning'></a>Skeniranje
 
 ### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Mogu li da koristim tehnike skeniranja za pristup simbolima?
 
-Skeniranje se nalazi među stavkama koje se prikazuju povremeno i korisnik vrši izbor indirektno, obično prekidačem. Skeniranje u Cboardu radi u okviru kategoriji Podešavanja i SISTEM. Postoje različita podešavanja za skeniranje. Prvo treba da omogućiš podešavanje skeniranja odabirom opcije ENABLE. Zatim odaberi vremensko odlaganje, kao i metod (automatski ili ručni). Imajte umu da kada koristiš tablet ili pametni telefon možeš imati i svoju ugrađenu opciju skeniranja.
+Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
 
 ## <a name='CommunicatorBuilder'></a>izrada komunikatora
 
 ### <a name='Whatiscommbuilder'></a>što je izrada komunikatora?
 
-Opcija Izrada komunikatora omogućava rukovanje tablama i sadrži funkcije kopiranja, brisanja, objave, dodavanja i uklanjanja table. Da bi se pristupilo ovoj opciji, potrebno je otključati postavke i kliknuti na dugme Izradi. Nakon toga se otvara stranica s tri kartice: Table Javne table i Sve moje table. Pogledaj donje podatke
+The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
 
-![izrada komunikatora](/images/help/communicator.png "Communicator builder")
+![Opcija za izradu Komunikatora](/images/help/communicator.png "Communicator builder")
 
 ### <a name='CommunicatorBoards'></a>Komunikacijska tabla
 
-Početna kartica nakon otvaranja opcije za izradu Komunikatora je kartica s tablama komunikatora koja će prikazati sve table uključene u Komunikator. Možeš uraditi izmjene na tvom komunikatoru uz pomoć sljedećeg:
+The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
 
 * Ukloni tablu iz komunikatora: ovo dugme će ukloniti tablu iz Komunikatora, ali je NEĆE obrisati iz baze podatakapa će i dalje biti dostupna u okviru opcije Sve moje table.
 
@@ -352,7 +374,7 @@ Početna kartica nakon otvaranja opcije za izradu Komunikatora je kartica s tabl
 
 ### <a name='PublicBoards'></a>javne table
 
-* Kopiraj tablu: ovo dugme će kreirati kopiju i dodati je u tvoj komunikator. Kako je ovo kopija javne table, moći ćeš da je prikazuješ kao svoju a da tom prilikom ne remetiš originalnu javnu tablu.
+* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
 
 ![javne table](/images/help/PublicBoards.png "Public boards")
 
@@ -364,10 +386,10 @@ Napomena: samo registrovani korisnici imaju pristup ovoj opciji
 
 * Dodaj tablu u Komunikator: ovo dugme će dodati ploču u Komunikator.
 
-* Objavi tablu: ovo dugme će objaviti tablu tako da bude vidljiva pod opcijom Javne table. tvoju tablu će moći svi da vide.
+* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
     
- * Odjavi tablu: ova opcija će učiniti tablu privatnom i neće biti prikazivana kao javna tabla. Tvoju tablu niko ne može da vidi.
+ * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
     
- * Obriši tablu: ovom opcijom tvoja tabla će biti bespovratno obrisana. tabla će biti uklonjena iz baze podataka.
+ * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
 
 ![sve moje table](/images/help/AllmyBoards.png "All my boards")

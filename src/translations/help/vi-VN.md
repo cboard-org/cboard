@@ -2,64 +2,66 @@
 
 ## Mục lục
 
-* [Bảng là gì?](#WhatisCboard)
-* [Đăng ký và đăng nhập](#Registrationandlogin) 
-    * [Làm thế nào để tôi đăng ký Cboard?](#HowdoIregisterforCboard)
-    * [Tôi có thể tự đăng ký bằng tài khoản truyền thông xã hội của mình không?](#CanIregistermyselfusingmysocialmediaaccounts)
-    * [Làm cách nào để tôi đăng nhập vào Cboard sau khi tôi là người dùng đã đăng ký?](#HowdoIlogintoCboardonceIamaregistereduser)
-    * [Làm thế nào để tôi đăng xuất?](#HowdoIlogout)
-    * [Sự khác biệt giữa người dùng đã đăng ký và người dùng không đăng ký là gì?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
-    * [Làm cách nào để cập nhật thông tin người dùng?](#HowdoIupdatemyuserinformation)
-    * [Làm thế nào để thiết lập lại mật khẩu của tôi?](#HowdoIresetmypassword)
-* [Giá bán](#Price) 
-    * [Cboard giá bao nhiêu?](#HowmuchdoesCboardcost)
-* [Đặc trưng](#Features) 
-    * [Những thiết bị và hệ điều hành nào được hỗ trợ?](#WhatdevicesandOSaresupported)
-    * [Những ngôn ngữ nào được hỗ trợ bởi Cboard?](#WhichlanguagesaresupportedbyCboard)
-    * [Cboard có thể đọc to tin nhắn của tôi không?](#CanCboardreadmymessageoutaloud)
-    * [Khả năng nói](#Speechcapabilities)
-    * [Xuất khẩu và nhập khẩu](#Exportandimport)
-    * [Khả năng hiển thị](#Displaycapabilities)
-    * [Tôi có thể thay đổi bất kỳ cài đặt điều hướng?](#CanIchangeanynavigationsettings)
-    * [Điều hướng qua giao diện](#Navigationthroughtheinterface)
+* [What is Cboard?](#WhatisCboard)
+* [Registration and login](#Registrationandlogin) 
+    * [How do I register for Cboard?](#HowdoIregisterforCboard)
+    * [Can I register myself using my social media accounts?](#CanIregistermyselfusingmysocialmediaaccounts)
+    * [How do I log in to Cboard once I am a registered user?](#HowdoIlogintoCboardonceIamaregistereduser)
+    * [How do I logout?](#HowdoIlogout)
+    * [What is the difference between a registered and a non-registered user?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
+    * [How do I update my user information?](#HowdoIupdatemyuserinformation)
+    * [How do I reset my password?](#HowdoIresetmypassword)
+* [Price](#Price) 
+    * [How much does Cboard cost?](#HowmuchdoesCboardcost)
+* [Features](#Features) 
+    * [What devices and OS are supported?](#WhatdevicesandOSaresupported)
+    * [Which languages are supported by Cboard?](#WhichlanguagesaresupportedbyCboard)
+    * [Can Cboard read my message out aloud?](#CanCboardreadmymessageoutaloud)
+    * [Speech capabilities](#Speechcapabilities)
+    * [Export and import](#Exportandimport)
+    * [Display capabilities](#Displaycapabilities)
+    * [Can I change any navigation settings?](#CanIchangeanynavigationsettings)
+    * [Navigation through the interface](#Navigationthroughtheinterface)
 * [Cài đặt](#Settings) 
-    * [Làm cách nào để truy cập cài đặt trong Cboard?](#HowdoIaccesssettingsinCboard)
-    * [Làm cách nào để in bảng của tôi được đặt trong Cboard?](#HowdoIprintmyboardsetinCboard)
-    * [Làm cách nào để xem Cboard trong toàn màn hình?](#HowdoIseeCboardinfullscreen)
-    * [Làm thế nào để tôi chia sẻ một bảng?](#HowdoIshareaboard)
-* [Đang nói](#Talking) 
-    * [Làm cách nào để thêm giọng nói được ghi âm cá nhân vào biểu tượng trên Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [Làm thế nào để tôi chuyển sang một giọng nói khác?](#HowdoIswitchtoadifferentvoice)
-    * [Làm thế nào để tôi thay đổi giọng nói như thế nào?](#HowdoIchangehowavoicesounds)
-* [Ban chỉnh sửa](#BoardEditing) 
-    * [Làm thế nào để tôi tạo một bảng trống?](#HowdoIcreateanemptyboard)
-    * [Làm cách nào để cá nhân hóa một bảng hiện có trong Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
-    * [Tôi có thể sử dụng hình ảnh của riêng tôi khi chỉnh sửa một bảng?](#CanIusemyownpictureswheneditingaboard)
-    * [Tôi có thể thay đổi thứ tự của các yếu tố trong một bảng không?](#CanIchangetheorderingoftheelementsinaboard)
-    * [Làm cách nào để chọn nhiều yếu tố cần chỉnh sửa?](#HowdoIselectmultipleelementstoedit)
-    * [Làm cách nào để tìm biểu tượng mới khi tôi chỉnh sửa ô?](#FindSymbols)
-    * [Tôi có thể đặt gạch bảng ở các vị trí cố định không?](#FixedBoards)
-    * [Làm cách nào để đặt một số hàng và cột cụ thể trong bảng của tôi?](#FixedRows)
-* [Xuất khẩu và nhập khẩu](#Exportandimport) 
-    * [Làm cách nào để xuất bảng của tôi trong Cboard?](#HowdoIexportmyboardinCboard)
-    * [Làm cách nào để nhập bảng vào Cboard?](#HowdoIimportaboardintoCboard)
-    * [Cboard sử dụng định dạng tệp nào để nhập / xuất?](#WhatfileformatdoesCboarduseforimportexport)
-* [Khả năng hiển thị](#Displaycapabilities) 
-    * [Tôi có thể thay đổi gì trên màn hình?](#WhatcanIchangeonthedisplay)
-    * [Tôi có thể thay đổi kích thước các nút trên Cboard không?](#CanIresizebuttonsonCboard)
-* [Quét](#Scanning) 
-    * [Tôi có thể sử dụng các kỹ thuật quét để truy cập các biểu tượng không?](#CanIusescanningtechniquestoaccesssymbols)
-* [Xây dựng giao tiếp](#CommunicatorBuilder) 
-    * [Các nhà xây dựng truyền thông là gì?](#Whatiscommbuilder)
-    * [Ban truyền thông](#CommunicatorBoards)
-    * [Bảng công khai](#PublicBoards)
-    * [Tất cả các bảng của tôi](#Allmyboards)
+    * [How do I access settings in Cboard?](#HowdoIaccesssettingsinCboard)
+    * [How do I print my board set in Cboard?](#HowdoIprintmyboardsetinCboard)
+    * [How do I see Cboard in fullscreen?](#HowdoIseeCboardinfullscreen)
+    * [How do I share a board?](#HowdoIshareaboard)
+    * [How do I share a phrase?](#HowdoIshareaphrase)
+* [Talking](#Talking) 
+    * [How do I add a personally recorded voice to symbols on Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
+    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
+    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
+* [Board Editing](#BoardEditing) 
+    * [How do I create an empty board?](#HowdoIcreateanemptyboard)
+    * [How do I personalize an existing board in Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
+    * [Can I use my own pictures when editing a board?](#CanIusemyownpictureswheneditingaboard)
+    * [Can I change the ordering of the elements in a board?](#CanIchangetheorderingoftheelementsinaboard)
+    * [How do I select multiple elements to edit?](#HowdoIselectmultipleelementstoedit)
+    * [How can I find new symbols when I am editing a tile?](#FindSymbols)
+    * [Can I place board tiles in fixed positions?](#FixedBoards)
+    * [How do I set a specific number of rows and columns in my board?](#FixedRows)
+* [Export and import](#Exportandimport) 
+    * [How do I export my board in Cboard?](#HowdoIexportmyboardinCboard)
+    * [How do I import a board into Cboard?](#HowdoIimportaboardintoCboard)
+    * [What file format does Cboard use for import/export?](#WhatfileformatdoesCboarduseforimportexport)
+* [Display capabilities](#Displaycapabilities) 
+    * [What can I change on the display?](#WhatcanIchangeonthedisplay)
+    * [Can I resize buttons on Cboard?](#CanIresizebuttonsonCboard)
+    * [Screen scroll through big buttons](#BigScrollButtons)
+* [Scanning](#Scanning) 
+    * [Can I use scanning techniques to access symbols?](#CanIusescanningtechniquestoaccesssymbols)
+* [Communicator builder](#CommunicatorBuilder) 
+    * [What is the communicator builder?](#Whatiscommbuilder)
+    * [Communicator boards](#CommunicatorBoards)
+    * [Public boards](#PublicBoards)
+    * [All my boards](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>Bảng là gì?
 
 Cboard là một ứng dụng web miễn phí dành cho trẻ em và người lớn bị khiếm khuyết về ngôn ngữ và ngôn ngữ, tạo điều kiện giao tiếp với hình ảnh và chuyển văn bản thành giọng nói.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Registrationandlogin'></a>Đăng ký và đăng nhập
 
@@ -79,39 +81,39 @@ Khi bạn đã điền thông tin này, bạn sẽ nhận được e-mail ngay s
 
 ![Đăng ký email](/images/help/signupemail.png "Email signup")
 
-Thông tin này chỉ được tổ chức bởi công ty để hỗ trợ sử dụng Cboard và cung cấp trợ giúp khi cần thiết. Nó không được chia sẻ với các tổ chức khác, (Xem [Chi tiết về quyền riêng tư](https://www.cboard.io/privacy/)).
+This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
 
 Khi bạn đã xác minh tài khoản của mình, bạn sẽ có quyền truy cập vào Cboard và sẽ nhận được một email khác xác nhận bạn đã xác minh thành công tài khoản của mình.
 
 ### <a name='CanIregistermyselfusingmysocialmediaaccounts'></a>Tôi có thể tự đăng ký bằng tài khoản truyền thông xã hội của mình không?
 
-Đúng! Trên trang đăng nhập, bạn sẽ được cung cấp tùy chọn đăng ký bằng tài khoản Google hoặc Facebook nếu bạn muốn làm như vậy. Bạn cũng có thể đăng ký với một địa chỉ email.
+Yes! On the login page, you will be given the option to sign up with your Google or Facebook account if you wish to do so. You can also register with an e-mail address.
 
 ### <a name='HowdoIlogintoCboardonceIamaregistereduser'></a>Làm cách nào để tôi đăng nhập vào Cboard sau khi tôi là người dùng đã đăng ký?
 
-Để đăng nhập vào Cboard, bạn làm theo bước đầu tiên được sử dụng để đăng ký, nhưng thay vì chọn ĐĂNG KÝ trên màn hình Chào mừng, hãy chọn ĐĂNG NHẬP. Sau đó, bạn sẽ được yêu cầu cung cấp e-mail mà bạn đã đăng ký ban đầu và mật khẩu bạn đã thiết lập.
+To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
 
 ![Đăng nhập bảng](/images/help/login.png "Cboard login")
 
 ### Các tùy chọn khác nhau để cấu hình Cboard là gì?
 
-Khi bạn đăng nhập vào Cboard, bạn có thể truy cập các tùy chọn khác nhau để định cấu hình và phát triển Bảng giao tiếp được cung cấp khi Cboard ở chế độ mở khóa. Xem danh sách tất cả các tùy chọn chính bên dưới:
+Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
 
 ![Cài đặt bảng](/images/help/settings.png "Cboard settings")
 
 ### <a name='HowdoIlogout'></a>Làm thế nào để tôi đăng xuất?
 
-Bạn có thể đăng xuất bằng cách chọn biểu tượng cài đặt và tùy chọn sẽ xuất hiện màu đỏ. Bạn cũng có thể chọn biểu tượng khóa ở góc bên phải, nhấp ba lần và khi bạn mở khóa màn hình và thanh màu đỏ xuất hiện, chọn biểu tượng ở bên trái của khóa (ảnh của bạn nếu bạn đã tải) và tùy chọn để đăng nhập ra sẽ xuất hiện trong màu đỏ.
+You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
 
 ![Đăng xuất bảng](/images/help/logout.png "Cboard logout")
 
 ### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>Sự khác biệt giữa người dùng đã đăng ký và người dùng không đăng ký là gì?
 
-Người dùng đã đăng ký có thể cá nhân hóa bảng của họ và những thay đổi được thực hiện sẽ được lưu vào tài khoản của họ để khi họ đăng nhập lại, họ có thể sử dụng bảng tùy chỉnh của mình. Người dùng chưa đăng ký sẽ không thể lưu các thay đổi một cách an toàn. Chúng tôi khuyên bạn nên đăng ký chỉ trong trường hợp, vì vậy những thay đổi của bạn được đảm bảo sẽ được lưu.
+A registered user is able to personalize their boards, and the changes made will be saved to their account so that when they log back in, they can use their customized boards. A non-registered user won't be able to save changes safely. We recommend registering just in case, so your changes are guaranteed to be saved.
 
 ### <a name='HowdoIupdatemyuserinformation'></a>Làm cách nào để cập nhật thông tin người dùng?
 
-Để cập nhật thông tin người dùng của bạn, hãy làm theo các bước tương tự bạn sẽ sử dụng nếu bạn đang cố gắng đăng xuất. Chọn biểu tượng khóa ở góc trên cùng bên phải của bảng - ba lần nhấp hoặc chạm và khi bạn mở khóa màn hình, hãy chọn biểu tượng ở bên trái của khóa (tên người dùng tên, ảnh) và sau đó bạn có thể chỉnh sửa thông tin người dùng của mình .
+To update your user information, follow the same steps you would use if you were trying to log out. Select the lock symbol on the top right corner of the board – three clicks or taps, and once you unlock the screen, select the icon to the left of the lock (user name initials, photo), and you can then edit your user information.
 
 ### <a name='HowdoIresetmypassword'></a>Làm thế nào để thiết lập lại mật khẩu của tôi?
 
@@ -127,11 +129,11 @@ Cboard là hoàn toàn miễn phí.
 
 ### <a name='WhatdevicesandOSaresupported'></a>Những thiết bị và hệ điều hành nào được hỗ trợ?
 
-Cboard có sẵn trực tuyến bằng nhiều loại thiết bị, bao gồm máy tính để bàn, máy tính bảng và điện thoại di động sử dụng hệ điều hành Mac, Windows và Android. Nó được xem tốt nhất trong các trình duyệt như Chrome, Firefox, Edge và Safari và một ứng dụng Android có sẵn từ Google Play.
+Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
 
 ![Hỗ trợ trình duyệt](/images/help/browsers.png "Browser support")
 
-Bởi vì Cboard là một ứng dụng dựa trên web, nó sẽ đáp ứng các cài đặt được cung cấp bởi các trình duyệt riêng lẻ. Điều này có thể có nghĩa là bạn có kết quả khác với các cài đặt được cung cấp bởi Cboard. Ví dụ, bạn có thể tìm thấy các tùy chọn lời nói khác nhau đang được cung cấp.
+Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
 
 Đừng quên bạn cũng có thể sử dụng phóng to hoặc thu phóng trình duyệt ở một mức độ nhất định tùy thuộc vào kích thước màn hình máy tính, máy tính bảng hoặc điện thoại.
 
@@ -139,39 +141,39 @@ Vui lòng hỏi Cboard về việc sử dụng chế độ tương phản cao ch
 
 ### <a name='WhichlanguagesaresupportedbyCboard'></a>Những ngôn ngữ nào được hỗ trợ bởi Cboard?
 
-Cboard đi kèm với sự hỗ trợ cho 33 ngôn ngữ. Để chọn một ngôn ngữ khác, hãy đi tới CÀI ĐẶT - chọn NGÔN NGỮ và những ngôn ngữ có sẵn sẽ xuất hiện. Đưa ra lựa chọn và một 'tick' sẽ xuất hiện bên cạnh ngôn ngữ.
+Cboard comes with support for 33 languages. To select a different language go to SETTINGS – select LANGUAGE and those available will appear. Make a choice and a ‘tick’ will appear beside the language.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/HHq9b3dJ0zM" frameborder="0" allowfullscreen></iframe></div>
 
 ### <a name='CanCboardreadmymessageoutaloud'></a>Cboard có thể đọc to tin nhắn của tôi không?
 
-Có, Cboard sử dụng đầu ra giọng nói tổng hợp có sẵn trên thiết bị của bạn để đọc các nhãn riêng lẻ được tìm thấy bên dưới mỗi ký hiệu khi chúng được thêm vào hộp đầu ra tin nhắn. Bạn có thể chọn một tin nhắn hoàn chỉnh và nó cũng sẽ được đọc to. Nếu bản ghi âm được cá nhân hóa của một âm thanh, từ hoặc cụm từ đã được thêm vào biểu tượng (hướng dẫn trong phần Nói - Ghi âm giọng nói), bạn sẽ nghe bản ghi âm đó thay vì giọng nói được tổng hợp. Điều này có thể rất hữu ích khi bản dịch không có sẵn bằng ngôn ngữ, giọng nói của trẻ là cần thiết hoặc giọng nói không được chấp nhận. Vui lòng đảm bảo quyền truy cập web đã được cung cấp cho micrô của bạn.
+Yes, Cboard uses the synthetic speech output available on your device to read out individual labels found below each symbol as they are added to the message output box. You can select a complete message and it will also be read aloud. If a personalised recording of a sound, word or phrase has been added to a symbol (instructions under Talking – Voice Recordings) you will hear that recording instead of the synthesised voice. This can be very helpful where a translation is not available in a language, a child’s voice is needed or an accent is unacceptable. Please ensure web access has been given to your microphone.
 
 ### <a name='Speechcapabilities'></a>Khả năng nói
 
-Để điều chỉnh khả năng nói, hãy vào CÀI ĐẶT và trong danh mục NGÔN NGỮ là danh mục LOẠI. Khi bạn chọn LOẠI, bạn sẽ có thể chỉnh sửa cao độ và tốc độ nói trên Cboard.
+In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
 
 ![Khả năng nói](/images/help/speech.png "Speech capabilities")
 
 ### <a name='Exportandimport'></a>Xuất khẩu và nhập khẩu
 
-Cả hai tùy chọn để xuất đều nằm trong CÀI ĐẶT trong danh mục HỆ THỐNG, bên dưới Ngôn ngữ và Lời nói. Danh mục XUẤT sẽ cung cấp cho bạn tùy chọn để tải lên OpenBoard hoặc PDF. Danh mục NHẬP sẽ mở các tệp đã lưu của bạn sau khi bạn chọn RESTORE.
+Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
 
 ![Khả năng xuất khẩu](/images/help/export.png "Export capabilities")
 
 ### <a name='Displaycapabilities'></a>Khả năng hiển thị
 
-Cài đặt hiển thị có thể được chỉnh sửa trong CÀI ĐẶT, trong danh mục HỆ THỐNG. Tùy chọn Hiển thị ngay bên dưới Xuất và Nhập. Một bạn chọn HIỂN THỊ, bạn có thể thay đổi kích thước UI cũng như kích thước Phông chữ của ứng dụng bằng cách chọn kích thước bạn muốn. Dấu chấm màu đỏ nên có kích thước bạn muốn chọn.
+Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
 
 ![Khả năng hiển thị](/images/help/display.png "Display capabilities")
 
 ### <a name='CanIchangeanynavigationsettings'></a>Tôi có thể thay đổi bất kỳ cài đặt điều hướng?
 
-Sử dụng phần DI CHUYỂN để chỉnh sửa và tạo điều kiện cho cách bạn sử dụng để di chuyển xung quanh Bảng và xóa các ký hiệu trong hộp thông báo. Điều hướng ở cuối Danh mục HỆ THỐNG trong CÀI ĐẶT cho phép bạn có nút 'quay lại' lớn hơn để dễ chọn hơn. Cũng có thể cho phép nút xóa ('x') xuất hiện phía trên mỗi biểu tượng khi chúng được hiển thị trong hộp thông báo. Điều này có thể làm cho nó dễ dàng hơn để xóa các biểu tượng trong một câu. Nhưng hãy lưu ý đến nhu cầu của người dùng vì nó cũng có thể gây nhầm lẫn cho một số cá nhân.
+Use the NAVIGATION section to edit and facilitate the way you use to move around Cboard and delete symbols in the message box. Navigation at the end of the SYSTEM Category in SETTINGS allows you to have a larger ‘back’ button that is easier to select. It is also possible to allow a delete (‘x’) button to appear above each symbol as they are presented within the message box. This can make it easier to delete symbols within a sentence. But be aware of user needs as it can also confuse some individuals.
 
 ### <a name='Navigationthroughtheinterface'></a>Điều hướng qua giao diện
 
-Để chỉnh sửa và hỗ trợ điều hướng qua Cboard, chọn DI CHUYỂN, mục menu cuối cùng trong HỆ THỐNG (tất cả trong Cài đặt) cho phép bạn thêm một số chi tiết nhất định để sử dụng bảng dễ dàng hơn. Tùy chọn đầu tiên trong Điều hướng cho phép nút 'trở lại' lớn hơn, dễ chọn hơn vì kích thước. Nút thứ hai thêm nút 'x' để giúp xóa biểu tượng dễ dàng hơn và nút thứ ba giúp mở khóa dễ dàng hơn bằng cách chỉ cần một cú nhấp chuột để mở khóa cài đặt.
+In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
 
 ![Khả năng điều hướng](/images/help/navigation.png "Navigation capabilities")
 
@@ -181,11 +183,11 @@ Sử dụng phần DI CHUYỂN để chỉnh sửa và tạo điều kiện cho 
 
 Khi bạn đăng nhập vào Cboard, trang HOME sẽ mở ra.
 
-Để truy cập CÀI ĐẶT, chọn khóa nhỏ ở phía bên phải ba lần, bên dưới mũi tên. Khi bạn đã hoàn thành việc này, một thanh màu xám sẽ xuất hiện bên dưới thanh HOME màu đen và nút 'cài đặt' sẽ xuất hiện trực tiếp ở bên trái của khóa trên thanh HOME, thứ hai từ bên phải.
+In order to access SETTINGS, select the small lock on the right-hand side three times, below the arrow. Once you have done this, a grey bar will appear below the black HOME bar, and the ‘settings’ button will appear directly to the left of the lock on the HOME bar, the second from the right.
 
 ### <a name='HowdoIprintmyboardsetinCboard'></a>Làm cách nào để in bảng của tôi được đặt trong Cboard?
 
-Để in bảng của bạn, nhấn logo máy in ở phía bên trái của thanh HOME màu đen, sau khi đã mở khóa trang HOME. Tài liệu Adobe Portable (.pdf) sẽ được tải xuống công nghệ của bạn.
+To print your board, press the printer logo on the left hand side of the black HOME bar, after having unlocked the HOME page. An Adobe Portable Document (.pdf) will be downloaded to your technology.
 
 ### <a name='HowdoIseeCboardinfullscreen'></a>Làm cách nào để xem Cboard trong toàn màn hình?
 
@@ -197,11 +199,21 @@ Khi bạn đăng nhập vào Cboard, trang HOME sẽ mở ra.
 
 Để chia sẻ bảng, mở khóa màn hình bằng cách nhấn biểu tượng khóa ở phía bên tay phải, sau đó ở hàng cao nhất (thanh màu đen), biểu tượng thứ ba từ bên phải cung cấp cho bạn tùy chọn chia sẻ bảng của bạn trên email, Facebook, Twitter, hoặc sao chép liên kết để gửi cho ai đó.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/fE0R6HzZ9O4" frameborder="0" allowfullscreen></iframe></div>
+
+### <a name='HowdoIshareaphrase'></a>How do I share a phrase?
+
+To share a phrase, only for the first time, unlock the screen, go to settings > Navigation and Buttons > and turn on the 'Show the share phrase button' option.
+
+![Phrase share Settings](https://user-images.githubusercontent.com/21298844/128038972-a2848d47-2675-4e2d-9a15-6f93186f29d6.png)
+
+Assemble a phrase. Then press the share icon that appears on the right of the output phrase bar. Select the social network where you want to share the phrase. One dialog would be open with the phrase in a text field. Press the submit button to share it. If you want to copy the phrase on your clipboard, press the share button and then 'copy to clipboard' option. One Notification would be shown on your screen with a succes message.
+
+![Phrase share button](https://user-images.githubusercontent.com/21298844/128044322-d61491c6-7168-4615-8117-244dc872091e.png)
 
 ## <a name='Talking'></a>Đang nói
 
-### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>Làm cách nào để thêm giọng nói được ghi âm cá nhân vào biểu tượng trên Cboard?
+### <a name='HowdoIaddapersonallyrecordedvoicetosymbolsonCboard'></a>How do I add a personally recorded voice to symbols on Cboard?
 
 1. Đi đến bảng bạn muốn sử dụng.
 
@@ -209,7 +221,7 @@ Khi bạn đăng nhập vào Cboard, trang HOME sẽ mở ra.
 
 3. Chọn nút EDIT ở phía bên tay trái.
 
-4. Chọn ô biểu tượng hoặc ô mà bạn muốn thêm ghi âm giọng nói. Khi bạn chọn lát hoặc một loạt các ô, một dấu màu xanh sẽ xuất hiện trong mỗi ô và chúng sẽ được tô sáng.
+4. Choose which symbol cell or tile to which you want to add a voice recording. Once you select the tile or a series of tiles, a blue tick will appear in each one and they will be highlighted.
 
 5. Chọn biểu tượng PENCIL ở phía bên phải trên thanh màu xanh nhạt.
 
@@ -221,153 +233,163 @@ Khi bạn đăng nhập vào Cboard, trang HOME sẽ mở ra.
     
     Nếu bạn đã chọn nhiều biểu tượng, hãy sử dụng NEXT để đi đến biểu tượng tiếp theo và lặp lại quy trình.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIswitchtoadifferentvoice'></a>Làm thế nào để tôi chuyển sang một giọng nói khác?
+### <a name='HowdoIswitchtoadifferentvoice'></a>How do I switch to a different voice?
 
-Để điều chỉnh khả năng / giọng nói, hãy đi vào cài đặt và trong danh mục LANGUAGE là danh mục LOẠI. Khi bạn chọn LOẠI, bạn sẽ có thể chỉnh sửa cao độ và tốc độ nói trên Cboard. Bạn cũng có thể ghi âm giọng nói của chính mình cho các biểu tượng theo các bước trong câu trả lời cho tên Làm thế nào để tôi thêm giọng nói được ghi âm cá nhân vào các biểu tượng trên Cboard?
+In order to adjust speech capabilities/voice, go into settings, and under the LANGUAGE category is the SPEECH category. When you select SPEECH you will be able to edit the pitch and pace of speech on Cboard. You can also record your own voice for the symbols following the steps on the answer for “How do I add a personally recorded voice to symbols on Cboard?”
 
-### <a name='HowdoIchangehowavoicesounds'></a>Làm thế nào để tôi thay đổi giọng nói như thế nào?
+### <a name='HowdoIchangehowavoicesounds'></a>How do I change how a voice sounds?
 
-Để điều chỉnh khả năng nói / giọng nói / âm thanh, hãy vào CÀI ĐẶT và trong danh mục NGÔN NGỮ, hãy chọn danh mục LOẠI. Sau đó, bạn sẽ có thể chỉnh sửa cao độ và tốc độ nói trên Cboard.
+In order to adjust speech capabilities/voice/sound, go into SETTINGS, and under the LANGUAGE category select the SPEECH category. You will then be able to edit the pitch and pace of speech on Cboard.
 
 ## <a name='BoardEditing'></a>Ban chỉnh sửa
 
-### <a name='HowdoIcreateanemptyboard'></a>Làm thế nào để tôi tạo một bảng trống?
+### <a name='HowdoIcreateanemptyboard'></a>How do I create an empty board?
 
-Trong Cboard, một bảng trống tương đương với một thư mục.
+In Cboard an empty board is equivalent to a folder.
 
-Nếu bạn muốn tạo một bảng mới hoặc trống, bạn phải tạo một thư mục mới và nó sẽ tạo một bảng mới trong vùng lưu trữ Cboard (mà bạn có thể thấy khi bạn đi tới BOARDS trên thanh giữa ở chế độ chỉnh sửa).
+If you want to create a new or empty board you have to create a new folder, and that will create a new board in the Cboard storage area (which you can see when you go to BOARDS on the middle bar in edit mode).
 
-Bảng trống mới sẽ ngay lập tức có sẵn để chỉnh sửa và có thể được đặt làm bảng gốc (sử dụng nút xây dựng), có nghĩa là nó sẽ là bảng đầu tiên bạn nhìn thấy trong lần mở Cboard tiếp theo.
+The new empty board will be immediately available for editing and can be set as the root board (using the build button), which means that it will be the first board you see the next time you open Cboard.
 
-Để tạo một thư mục mới, hãy bắt đầu bằng cách mở khóa màn hình chọn nút khóa ở phía bên tay phải. Khi bạn mở khóa màn hình, chọn biểu tượng dấu cộng (+) ở phía bên tay phải, để THÊM TILE. Sau đó, bạn sẽ được cung cấp tùy chọn để thêm Ngói / NÚT, đó là tùy chọn đầu tiên và tự động hoặc chọn FILEER Hành động này tạo ra một BAN MỚI để bạn có thể thêm nhiều ô và thư mục.
+To create a new folder, begin by unlocking the screen selecting the lock button on the right hand side. Once you unlock the screen, select the plus (+) symbol on the right hand side, in order to ADD TILE. You will then be given the option to add a Tile / BUTTON which is the first and automatic option or select the FOLDER This action makes a NEW BOARD to which you can add more tiles and folders.
 
-Khi bạn đã đặt tên cho thư mục, bạn có thể tải lên một hình ảnh theo cách tương tự như tạo một ô với cài đặt màu và nhãn. Thư mục mới này sẽ tự động liên kết với một bảng phía trên nó (nếu bao gồm một hàng gạch). Nó sẽ xuất hiện trong danh sách các bảng của bạn dưới dạng một bảng trống cho đến khi nó được điền với các biểu tượng và nhãn.
+Once you have named the folder you can upload an image in a similar manner to making a tile with a color setting and label. This new folder will automatically link to a board above it (if included a row of tiles). It will appear in your list of boards as an empty board until it is populated with symbols and labels.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/FPfbrAtj1Zg" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>Làm cách nào để cá nhân hóa một bảng hiện có trong Cboard?
+### <a name='HowdoIpersonalizeanexistingboardinCboard'></a>How do I personalize an existing board in Cboard?
 
-Để cá nhân hóa một bảng hiện có, chọn LOCK ở góc trên bên phải của thanh phía trên bảng, (bên dưới mũi tên có chữ thập). Khi bạn đã hoàn thành việc này, một thanh khác sẽ xuất hiện bên dưới thanh HOME màu đen và bạn sẽ tìm thấy biểu tượng khối nhỏ (EDIT) ở phía bên trái để thêm ô hoặc ô. Khi khối được chọn, thanh màu xám sẽ chuyển sang màu xanh và ở phía bên tay phải bạn sẽ thấy một thùng rác nhỏ và bút chì.
+In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
 
-![cá nhân hóa một bảng hiện có](/images/help/personalize.png "personalize an existing board")
+![personalize an existing board](/images/help/personalize.png "personalize an existing board")
 
-Để cá nhân hóa bảng, chọn bút chì và bạn sẽ có thể thay đổi nhãn, tải lên hình ảnh và thêm Vocalization.
+In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/sRnVvafKBLM" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='CanIusemyownpictureswheneditingaboard'></a>Tôi có thể sử dụng hình ảnh của riêng tôi khi chỉnh sửa một bảng?
+### <a name='CanIusemyownpictureswheneditingaboard'></a>Can I use my own pictures when editing a board?
 
-Có, bạn có thể sử dụng hình ảnh của riêng bạn khi chỉnh sửa một bảng. Để sử dụng hình ảnh của riêng bạn, bạn có thể tải lên hình ảnh khi bạn tạo một ô mới (bằng cách chọn TÍN HIỆU (+) trên thanh màu xám sau khi mở khóa trang). Bạn cũng có thể chỉnh sửa một ô hiện có với hình ảnh của riêng bạn.
+Yes, you can use your own picture when editing a board. In order to use your own picture, you can upload the image when you create a new tile (by selecting the PLUS SIGN (+) on the grey bar after unlocking the page). You can also edit an existing tile with your own picture.
 
-### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Tôi có thể thay đổi thứ tự của các yếu tố trong một bảng không?
+### <a name='CanIchangetheorderingoftheelementsinaboard'></a>Can I change the ordering of the elements in a board?
 
-Đúng! Khi bạn đang chỉnh sửa một bảng, mở khóa màn hình bằng biểu tượng LOCK. Sau đó chọn biểu tượng khối EDIT ở phía bên trái (bên dưới biểu tượng BUILD). Sau đó, bạn có thể kéo chữ tượng hình / biểu tượng hoặc thư mục đến bất cứ nơi nào bạn muốn đặt nó trong cùng một bảng.
+Yes! When you are editing a board, unlock the screen using the LOCK symbol. Then select the EDIT block icon on the left hand side (below the BUILD icon). You can then drag the pictogram/symbol or folder to wherever you want to put it within the same board.
 
-### <a name='HowdoIselectmultipleelementstoedit'></a>Làm cách nào để chọn nhiều yếu tố cần chỉnh sửa?
+### <a name='HowdoIselectmultipleelementstoedit'></a>How do I select multiple elements to edit?
 
-Giống như cách bạn thay đổi thứ tự các thành phần trong một bảng, nhưng thay vì chọn và kéo, bạn chọn vòng tròn bên trong hình vuông tượng hình / biểu tượng. Để chỉnh sửa nhiều biểu tượng, bạn có thể chọn nhiều hơn một. Sau khi làm như vậy, chọn biểu tượng PENCIL ở phía bên tay phải và điều này sẽ cho phép bạn chỉnh sửa các yếu tố đã chọn.
+The same way you change the ordering of elements in a board, but instead of selecting and dragging, you choose the circle inside the pictogram/symbol square. To edit many symbols you can choose more than one. After doing so, select the PENCIL icon on the right hand side and this will allow you to edit the elements selected.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ZgRUamoF8Vk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FindSymbols'></a>Làm cách nào để tìm biểu tượng mới khi tôi chỉnh sửa ô?
+### <a name='FindSymbols'></a>How can I find new symbols when I am editing a tile?
 
-Chọn biểu tượng khối EDIT ở phía bên trái của thanh bảng và chọn chữ tượng hình / biểu tượng bạn muốn thay đổi. Chọn nó và một khi vòng màu xanh có dấu tích, hãy chuyển đến biểu tượng PENCIL ở bên phải. Sau khi chọn bút chì, bạn sẽ nhận thấy rằng có một biểu tượng KÍNH TẠO để tìm kiếm biểu tượng. Khi tính năng tìm kiếm được kích hoạt, bạn sẽ thấy THƯ VIỆN BIỂU TƯỢNG TÌM KIẾM trong thanh chỉnh sửa. Nhập vào khái niệm / nhãn / từ bạn đang tìm kiếm và các biểu tượng sẽ xuất hiện. Khi bạn đã chọn một biểu tượng, nó sẽ tự động đưa bạn trở lại trang TILE chỉnh sửa.
+Select the EDIT block icon on the left hand side of the board bar and choose the pictogram/symbol you wish to change. Select it and once the blue ring has a tick, go to the PENCIL icon on the right. Having selected the pencil you will notice that there is a MAGNIFYING GLASS icon for symbol searching. When the search feature is activated you will see SEARCH SYMBOL LIBRARY in an edit bar. Type in the concept / label / word you are looking for and symbols will appear. Once you have selected one symbol it will automatically return you to the edit TILE page.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/-8OXT3b4Flk" frameborder="0" allowfullscreen></iframe></div>
 
-### <a name='FixedBoards'></a>Tôi có thể đặt gạch bảng ở các vị trí cố định không?
+### <a name='FixedBoards'></a>Can I place board tiles in fixed positions?
 
-Theo mặc định, khi một bảng mới được tạo, Cboard sẽ thêm một bảng **thông thạo**. Dù sao thì, có thể biến bảng thành bảng **cố định**. Chúng có các tính năng sau:
+By default, when a new board is created, Cboard will add a **fluent board**. Anyway, it is possible to transform the board into a **fixed board**. They have the following features:
 
 * Lưới sẽ không thay đổi đối với các kích thước màn hình hoặc hướng thiết bị khác nhau. 
 * Số lượng hàng và cột có thể định cấu hình. 
 * Các ô sẽ có vị trí cố định trong lưới. 
 
-Để chuyển đổi một bảng thành một bảng cố định, chỉ cần chỉnh sửa bảng và chuyển tùy chọn trên thanh công cụ để làm cho nó cố định. Bảng của bạn sẽ thay đổi hình thức và các chỉ báo hàng và cột sẽ được hiển thị.
+To convert a board into a fixed board, simply edit the board and switch the option in the toolbar to make it fixed. Your board will change its appearance and the rows and columns indicators will be displayed.
 
-![Bảng cố định](/images/help/fixedBoard.png "Fixed board")
+![Fixed board](/images/help/fixedBoard.png "Fixed board")
 
-### <a name='FixedRows'></a>Làm cách nào để đặt một số hàng và cột cụ thể trong bảng của tôi?
+### <a name='FixedRows'></a>How do I set a specific number of rows and columns in my board?
 
-Đầu tiên, bạn phải biến bảng thành bảng **cố định** (xem chủ đề trước). Trong chế độ ấn bản, bảng của bạn sẽ hiển thị các chỉ số hàng và cột. Bạn có thể tương tác với các điều khiển này để tăng hoặc giảm số hàng và cột bạn muốn.
+First, you have to transform the board into a **fixed board** (see previous topic). In edition mode, your board will display rows and columns indicators. You can interact with these controls in order to increase or decrease the number of rows and columns you want.
 
-<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen mark="crwd-mark"></iframe></div>
+<div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
 ## <a name='Exportandimport-1'></a>Xuất khẩu và nhập khẩu
 
-### <a name='HowdoIexportmyboardinCboard'></a>Làm cách nào để xuất bảng của tôi trong Cboard?
+### <a name='HowdoIexportmyboardinCboard'></a>How do I export my board in Cboard?
 
-Để xuất bảng của bạn trong Cboard, hãy chuyển đến CÀI ĐẶT và ngay sau khi bạn mở Cài đặt, tùy chọn XUẤT sẽ xuất hiện dưới dạng mũi tên hướng xuống, bên dưới Ngôn ngữ và giọng nói.
+In order to export your board in Cboard, go to SETTINGS, and as soon as you open Settings, the EXPORT option will appear as a downward facing arrow, below Language and Speech.
 
-Chọn EXPORT và tải xuống Cboard của bạn bằng cách chọn OPENBOARD hoặc EXPORT.
+Select EXPORT, and download your Cboard by selecting either OPENBOARD or EXPORT.
 
-### <a name='HowdoIimportaboardintoCboard'></a>Làm cách nào để nhập bảng vào Cboard?
+### <a name='HowdoIimportaboardintoCboard'></a>How do I import a board into Cboard?
 
-Để nhập bảng, hãy làm theo các bước được sử dụng để Xuất. IMPORT nằm bên dưới Export, một mũi tên hướng lên trên với thanh ngang bên dưới.
+In order to import a board, follow the steps used to Export. IMPORT is below Export, an upward facing arrow with a horizontal bar below it.
 
-### <a name='WhatfileformatdoesCboarduseforimportexport'></a>Cboard sử dụng định dạng tệp nào để nhập / xuất?
+### <a name='WhatfileformatdoesCboarduseforimportexport'></a>What file format does Cboard use for import/export?
 
-Để nhập và xuất bảng, bạn có hai tùy chọn:
+In order to Import and Export boards you have two options:
 
 * Sử dụng bảng tệp gốc Cboard.
-* Sử dụng các tệp được định dạng OpenBoard. [Tìm hiểu thêm về Định dạng bảng mở](https://www.openboardformat.org/)
+* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Khả năng hiển thị
 
-### <a name='WhatcanIchangeonthedisplay'></a>Tôi có thể thay đổi những gì trên màn hình?
+### <a name='WhatcanIchangeonthedisplay'></a>What can I change on the display?
 
-Cài đặt hiển thị có thể được chỉnh sửa trong CÀI ĐẶT, trong danh mục HỆ THỐNG. Tùy chọn Hiển thị bên dưới Xuất và Nhập. Sau khi chọn HIỂN THỊ, bạn có thể thay đổi kích thước Giao diện người dùng (UI) cũng như kích thước Phông chữ của ứng dụng bằng cách chọn kích thước bạn muốn. Dấu chấm màu đỏ phải ở dưới kích thước bạn muốn chọn.
+Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is below Export and Import. Once you select DISPLAY, you can change the User Interface (UI) size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
 
-### <a name='CanIresizebuttonsonCboard'></a>Tôi có thể thay đổi kích thước các nút trên Cboard không?
+### <a name='CanIresizebuttonsonCboard'></a>Can I resize buttons on Cboard?
 
-Đúng! Bạn có thể thay đổi kích thước Ô hoặc Nút trong CÀI ĐẶT. Trong danh mục HỆ THỐNG, chọn HIỂN THỊ và bạn sẽ có 3 tùy chọn về kích thước: Tiêu chuẩn, Lớn, Cực lớn. Xem hình bên dưới:
+Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
 
-![Khả năng hiển thị](/images/help/display.png "Display capabilities")
+![Display capabilities](/images/help/display.png "Display capabilities")
+
+### <a name='BigScrollButtons'></a>Screen scroll through big buttons
+
+It is also possible to scroll up and down a board using a couple of big buttons that can be added from the settings section. This is especially useful for eye-tracker device users, as the buttons allow to scroll the board without needing to slide the screen. To enable this feature, go to the settings section and look for the "enable big scroll buttons " switch. Toggle the switch and save the settings. See figure below:
+
+![Enable big scroll buttons](/images/help/bigScrollSettings.png "Big scroll buttons settings")
+
+Then, you should see a couple of big buttons at the top and the bottom of a board if it is large enough, as displayed in the below image:
+
+![Big scroll buttons](/images/help/bigScrollButtons.png "Big scroll buttons")
 
 ## <a name='Scanning'></a>Quét
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Tôi có thể sử dụng kỹ thuật quét để truy cập các ký hiệu không?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Can I use scanning techniques to access symbols?
 
-Quét là nơi các mục trong tập hợp lựa chọn được trình bày tuần tự theo thời gian và người dùng thực hiện lựa chọn một cách gián tiếp, thường bằng cách truy cập bằng nút chuyển. SCANNING trên Cboard hoạt động trong SETTINGS và danh mục HỆ THỐNG. Có các cài đặt khác nhau để quét. Trước tiên, bạn nên bật cài đặt quét bằng cách chọn BẬT. Sau đó, bạn có thể chọn thời gian trễ, cũng như phương pháp (tự động hoặc thủ công). Xin lưu ý rằng khi sử dụng máy tính bảng hoặc điện thoại thông minh, nó cũng có thể có tùy chọn quét tích hợp riêng.
+Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
 
 ## <a name='CommunicatorBuilder'></a>Xây dựng giao tiếp
 
-### <a name='Whatiscommbuilder'></a>Người xây dựng giao tiếp là gì?
+### <a name='Whatiscommbuilder'></a>What is the communicator builder?
 
-Trình tạo giao tiếp là một tính năng cho phép bạn xử lý các bảng để sao chép, xóa, xuất bản, thêm và xóa chúng. Để truy cập vào chức năng, bạn cần mở khóa cài đặt và nhấp vào nút 'Xây dựng'. Bạn sẽ thấy một trang mới được cấu trúc trên ba tab khác nhau: bảng, bảng công khai, tất cả bảng của tôi. Xem hình bên dưới:
+The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
 
-![Trình tạo giao tiếp](/images/help/communicator.png "Communicator builder")
+![Communicator builder](/images/help/communicator.png "Communicator builder")
 
-### <a name='CommunicatorBoards'></a>Ban giao tiếp
+### <a name='CommunicatorBoards'></a>Communicator boards
 
-Tab mặc định bạn sẽ thấy trong trình tạo trình giao tiếp là tab bảng giao tiếp, tab này sẽ hiển thị tất cả các bảng được bao gồm trong trình giao tiếp của bạn. Bạn có thể thực hiện các thay đổi trong trình giao tiếp của mình từ các nút hành động sau:
+The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
 
 * Xóa bảng khỏi bộ giao tiếp: buttton này sẽ thoát bảng khỏi bộ giao tiếp nhưng SẼ KHÔNG xóa bảng khỏi cơ sở dữ liệu và nó vẫn có sẵn trong tab 'Tất cả bảng của tôi'.
 
 * Đặt board làm root: buttton này sẽ xác định board là board đầu tiên được hiển thị mỗi khi bạn đăng nhập vào Cboard.
 
-![Ban giao tiếp](/images/help/communicatorBoards.png "Communicator boards")
+![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
 
-### <a name='PublicBoards'></a>Ban công khai
+### <a name='PublicBoards'></a>Public boards
 
-* Copy board: buttton này sẽ tạo ra một bản sao của board và nó sẽ thêm nó vào bộ giao tiếp của bạn. Vì đây là bản sao của bảng công khai, bạn có thể chỉnh sửa bảng này theo ý muốn mà không ảnh hưởng đến bảng công khai gốc.
+* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
 
-![Ban công khai](/images/help/PublicBoards.png "Public boards")
+![Public boards](/images/help/PublicBoards.png "Public boards")
 
-### <a name='Allmyboards'></a>Tất cả các bảng của tôi
+### <a name='Allmyboards'></a>All my boards
 
-Xin lưu ý rằng CHỈ người dùng đã đăng ký có thể truy cập vào chức năng của tab này.
+Please note that JUST registered users can access to this tab functionality.
 
 * Xóa bảng khỏi bộ giao tiếp: buttton này sẽ thoát bảng khỏi bộ giao tiếp nhưng SẼ KHÔNG xóa bảng khỏi cơ sở dữ liệu và nó vẫn có sẵn.
 
 * Thêm bảng cho người giao tiếp: nút này sẽ bao gồm bảng cho người giao tiếp.
 
-* Xuất bản bảng: Hành động này sẽ công khai bảng và nó sẽ được hiển thị trong tab bảng công khai. Mọi người có thể nhìn thấy bảng của bạn.
+* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
     
- * Hủy xuất bản bảng: Hành động này sẽ đặt bảng ở chế độ riêng tư và nó sẽ không được hiển thị trong tab bảng công khai. Không ai có thể nhìn thấy bảng của bạn.
+ * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
     
- * Xóa bảng: Hành động này sẽ xóa bảng và không thể khôi phục được. Bảng sẽ bị xóa khỏi cơ sở dữ liệu.
+ * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
 
-![Tất cả các bảng của tôi](/images/help/AllmyBoards.png "All my boards")
+![All my boards](/images/help/AllmyBoards.png "All my boards")

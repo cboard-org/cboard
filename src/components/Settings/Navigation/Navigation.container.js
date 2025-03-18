@@ -6,7 +6,6 @@ import { updateNavigationSettings } from '../../App/App.actions';
 import Navigation from './Navigation.component';
 import API from '../../../api';
 import { changeLiveMode } from '../../Board/Board.actions';
-
 export class NavigationContainer extends PureComponent {
   static propTypes = {
     intl: intlShape.isRequired,

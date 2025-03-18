@@ -6,7 +6,6 @@ import isMobile from 'ismobilejs';
 import { Scannable } from 'react-scannable';
 import { IconButton } from '@material-ui/core';
 import ScannerDeactivateIcon from '@material-ui/icons/ExploreOff';
-
 import BoardShare from '../BoardShare';
 import FullScreenButton from '../../UI/FullScreenButton';
 import PrintBoardButton from '../../UI/PrintBoardButton';
@@ -17,7 +16,7 @@ import AnalyticsButton from '../../UI/AnalyticsButton';
 import HelpButton from '../../UI/HelpButton';
 import SettingsButton from '../../UI/SettingsButton';
 import messages from '../Board.messages';
-import { isCordova, isAndroid } from '../../../cordova-util';
+import { isCordova, isAndroid, isIOS } from '../../../cordova-util';
 import './Navbar.css';
 import { injectIntl } from 'react-intl';
 import PremiumFeature from '../../PremiumFeature';
@@ -134,17 +133,12 @@ export class Navbar extends React.Component {
                 this.state.deactivateScannerButton ? 'scanner__focused' : ''
               }
             >
-              <Scannable
-                onFocus={this.onScannableFocus('deactivateScannerButton')}
-                onBlur={this.onScannableBlur('deactivateScannerButton')}
+              <IconButton
+                className="Navbar__deactivateScanner"
+                onClick={onDeactivateScannerClick}
               >
-                <IconButton
-                  className="Navbar__deactivateScanner"
-                  onClick={onDeactivateScannerClick}
-                >
-                  <ScannerDeactivateIcon />
-                </IconButton>
-              </Scannable>
+                <ScannerDeactivateIcon />
+              </IconButton>
             </div>
           )}
           {!isLocked && <HelpButton component={Link} to="/settings/help" />}
@@ -154,7 +148,7 @@ export class Navbar extends React.Component {
             <React.Fragment>
               <PrintBoardButton />
               {!isMobile.any && <FullScreenButton />}
-              {isLogged && !isCordova() && (
+              {isLogged && (isIOS() || !isCordova()) && (
                 <PremiumFeature>
                   <AnalyticsButton component={Link} to="/analytics" />
                 </PremiumFeature>

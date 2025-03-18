@@ -52,7 +52,8 @@ const initialState = {
   isFetching: false,
   isFixed: false,
   images: [],
-  isLiveMode: false
+  isLiveMode: false,
+  improvedPhrase: ''
 };
 
 describe('reducer', () => {
@@ -80,7 +81,7 @@ describe('reducer', () => {
       )
     ).toEqual({
       ...initialState,
-      navHistory: [null]
+      navHistory: []
     });
   });
   it('should handle createApiBoardStarted', () => {

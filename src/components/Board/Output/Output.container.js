@@ -64,6 +64,16 @@ export class OutputContainer extends Component {
     translatedOutput: []
   };
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleRepeatLastSpokenSentence);
+  }
+  componentWillUnmount() {
+    document.removeEventListener(
+      'keydown',
+      this.handleRepeatLastSpokenSentence
+    );
+  }
+
   outputReducer(accumulator, currentValue) {
     const actionValue =
       currentValue.action &&
@@ -219,6 +229,31 @@ export class OutputContainer extends Component {
     this.spliceOutput(index);
   };
 
+  handleRepeatLastSpokenSentence = event => {
+    const Z_KEY_CODE = 90;
+    const Y_KEY_CODE = 89;
+    const { output } = this.props;
+    if (
+      ((event.ctrlKey && event.shiftKey && event.keyCode === Z_KEY_CODE) ||
+        (event.ctrlKey && event.keyCode === Y_KEY_CODE)) &&
+      !!output.length
+    ) {
+      const isLastSpokenSymbol = (element, index) => {
+        if (output.length === 1) return true;
+        if (element.label) {
+          return element.type === 'live' ? index < output.length - 1 : true;
+        }
+        return false;
+      };
+
+      const lastSpokenSymbol = output.findLast((element, index) =>
+        isLastSpokenSymbol(element, index)
+      );
+      const text = lastSpokenSymbol ? lastSpokenSymbol.label : '';
+      this.speakOutput(text);
+    }
+  };
+
   handleOutputClick = event => {
     const targetEl = event.target;
     const targetElLow = targetEl.tagName.toLowerCase();
@@ -296,7 +331,7 @@ export class OutputContainer extends Component {
         onClearClick={this.handleClearClick}
         onCopyClick={this.handleCopyClick}
         onRemoveClick={this.handleRemoveClick}
-        onClick={this.handleOutputClick}
+        onClick={isLiveMode ? undefined : this.handleOutputClick}
         onKeyDown={this.handleOutputKeyDown}
         onSwitchLiveMode={this.handleSwitchLiveMode}
         symbols={this.state.translatedOutput}

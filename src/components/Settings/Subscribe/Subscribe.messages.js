@@ -75,7 +75,7 @@ export default defineMessages({
   },
   expired: {
     id: 'cboard.components.Settings.Subscribe.expired',
-    defaultMessage: 'EXPIRED'
+    defaultMessage: 'Your subscription expired on: {e}'
   },
   paused: {
     id: 'cboard.components.Settings.Subscribe.paused',
@@ -88,6 +88,11 @@ export default defineMessages({
   not_subscribed: {
     id: 'cboard.components.Settings.Subscribe.not_subscribed',
     defaultMessage: 'You are not subscribed. '
+  },
+  unverified: {
+    id: 'cboard.components.Settings.Subscribe.unverified',
+    defaultMessage:
+      'An error occurred during validation of your purchase. Please refresh'
   },
   refresh: {
     id: 'cboard.components.Settings.Subscribe.refresh',
@@ -105,7 +110,7 @@ export default defineMessages({
   on_trial_period: {
     id: 'cboard.components.Settings.Subscribe.on_trial_period',
     defaultMessage:
-      'You are on the 30 day free trial. After it ends, you will need to subscribe to get all features.'
+      'You are on the 15 day free trial. After it ends, you will need to subscribe to get all features.'
   },
   subscriptionInfo: {
     id: 'cboard.components.Settings.Subscribe.subscriptionInfo',
@@ -114,6 +119,10 @@ export default defineMessages({
   manageSubscription: {
     id: 'cboard.components.Settings.Subscribe.manageSubscription',
     defaultMessage: 'Manage Subscription'
+  },
+  cancelSubscription: {
+    id: 'cboard.components.Settings.Subscribe.cancelSubscription',
+    defaultMessage: 'Cancel Subscription'
   },
   planAmount: {
     id: 'cboard.components.Settings.Subscribe.planAmount',
@@ -142,6 +151,32 @@ export default defineMessages({
   googleAccountAlreadyOwns: {
     id: 'cboard.components.Settings.Subscribe.googleAccountAlreadyOwns',
     defaultMessage:
-      'It looks that your Google account already owns this product.'
+      'It looks like your Google account has already purchased a product. Try restarting the app.'
+  },
+  appleAccountAlreadyOwns: {
+    id: 'cboard.components.Settings.Subscribe.appleAccountAlreadyOwns',
+    defaultMessage:
+      'It looks like your Apple account has already purchased a product. Try restarting the app.'
+  },
+  fallback: {
+    id: 'cboard.components.Settings.Subscribe.fallback',
+    defaultMessage: 'Wait please...'
+  },
+  close: {
+    id: 'cboard.components.Settings.Subscribe.close',
+    defaultMessage: 'Close'
+  },
+  cancelSubscriptionDescription: {
+    id: 'cboard.components.Settings.Subscribe.cancelSubscriptionDescription',
+    defaultMessage: 'Are you sure you want to cancel your current plan?'
+  },
+  canceledSubscriptionOk: {
+    id: 'cboard.components.Settings.Subscribe.canceledSubscriptionOk',
+    defaultMessage: 'Your subscription was cancelled successfully.'
+  },
+  canceledSubscriptionError: {
+    id: 'cboard.components.Settings.Subscribe.canceledSubscriptionError',
+    defaultMessage:
+      'There was an error cancelling your subscription, please try again in a moment.'
   }
 });

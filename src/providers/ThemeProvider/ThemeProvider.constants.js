@@ -4,6 +4,10 @@ export const DARK_THEME = 'dark';
 const FONTS_FAMILIES_LIST = [
   //Default font
   {
+    fontName: 'Montserrat',
+    fontFamily: ['Montserrat', 'sans-serif'].join(',')
+  },
+  {
     fontName: 'Roboto', //Material UI default font
     fontFamily: ['Roboto', 'Helvetica', 'Arial', 'sans-serif'].join(',')
   },

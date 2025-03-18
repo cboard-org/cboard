@@ -4,6 +4,7 @@ export const DISABLE_TOUR = 'cboard/App/DISABLE_TOUR';
 export const ENABLE_ALL_TOURS = 'cboard/App/ENABLE_ALL_TOURS';
 export const UPDATE_CONNECTIVITY = 'cboard/App/UPDATE_CONNECTIVITY';
 export const UPDATE_DISPLAY_SETTINGS = 'cboard/App/UPDATE_DISPLAY_SETTINGS';
+export const UPDATE_SYMBOLS_SETTINGS = 'cboard/App/UPDATE_SYMBOLS_SETTINGS';
 export const UPDATE_NAVIGATION_SETTINGS =
   'cboard/App/UPDATE_NAVIGATION_SETTINGS';
 export const UPDATE_USER_DATA = 'cboard/App/UPDATE_USER_DATA';
@@ -35,6 +36,8 @@ export const APP_LANGS = [
   'km-KH',
   'ko-KR',
   'mk-MK',
+  'ml-IN',
+  'nb-NO',
   'ne-NP',
   'nl-NL',
   'no-NO',
@@ -59,4 +62,25 @@ export const APP_LANGS = [
   'vi-VN',
   'zh-CN',
   'zu-ZA' // for crowdin contextual translation
+];
+
+export const USER_DATA_PROPERTIES = [
+  'id',
+  'google',
+  'facebook',
+  'apple',
+  'name',
+  'role',
+  'provider',
+  'locale',
+  'password',
+  'location',
+  'email',
+  'isFirstLogin',
+  'birthdate',
+  'lastlogin',
+  'createdAt',
+  'updatedAt',
+  'authToken',
+  'isAdmin'
 ];

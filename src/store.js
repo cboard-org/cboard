@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
-import { UPDATE_CONNECTIVITY } from './components/App/App.constants';
 import googleAnalytics from './analytics';
 import createReducer from './reducers';
 
@@ -25,21 +24,6 @@ export default function configureStore(initialState = {}) {
     initialState,
     composeEnhancers(...enhancers)
   );
-
-  // TODO refactor not here
-  window.addEventListener('offline', () => {
-    store.dispatch({
-      type: UPDATE_CONNECTIVITY,
-      payload: false
-    });
-  });
-
-  window.addEventListener('online', () => {
-    store.dispatch({
-      type: UPDATE_CONNECTIVITY,
-      payload: true
-    });
-  });
 
   const persistor = persistStore(store);
 

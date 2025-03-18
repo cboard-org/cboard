@@ -49,9 +49,7 @@ export class PeopleContainer extends PureComponent {
 
   handleLogout = () => {
     if (isAndroid()) {
-      window.plugins.googleplus.disconnect(function(msg) {
-        console.log('disconnect google msg' + msg);
-      });
+      window.FirebasePlugin.unregister();
       window.facebookConnectPlugin.logout(
         function(msg) {
           console.log('disconnect facebook msg' + msg);
@@ -62,6 +60,17 @@ export class PeopleContainer extends PureComponent {
       );
     }
     this.props.logout();
+  };
+
+  handleDeleteAccount = async () => {
+    try {
+      const data = await API.deleteAccount();
+      this.handleLogout();
+      this.props.history.push('/login-signup/');
+      return data;
+    } catch (error) {
+      throw Error(error);
+    }
   };
 
   render() {
@@ -78,6 +87,7 @@ export class PeopleContainer extends PureComponent {
         location={location}
         onChangePeople={this.handleChange}
         onSubmitPeople={this.handleSubmit}
+        onDeleteAccount={this.handleDeleteAccount}
       />
     );
   }

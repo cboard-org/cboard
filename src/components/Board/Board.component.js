@@ -34,6 +34,7 @@ import './Board.css';
 import BoardTour from './BoardTour/BoardTour';
 import ScrollButtons from '../ScrollButtons';
 import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../Settings/Navigation/Navigation.constants';
+import ImprovePhraseOutput from './ImprovePhraseOutput';
 
 export class Board extends Component {
   static propTypes = {
@@ -209,7 +210,8 @@ export class Board extends Component {
             backgroundColor={tile.backgroundColor}
             borderColor={tile.borderColor}
             variant={variant}
-            onClick={() => {
+            onClick={e => {
+              e.stopPropagation();
               this.handleTileClick(tile);
             }}
             onFocus={() => {
@@ -219,6 +221,7 @@ export class Board extends Component {
             <Symbol
               image={tile.image}
               label={tile.label}
+              keyPath={tile.keyPath}
               labelpos={displaySettings.labelPosition}
             />
 
@@ -251,7 +254,8 @@ export class Board extends Component {
         backgroundColor={tile.backgroundColor}
         borderColor={tile.borderColor}
         variant={variant}
-        onClick={() => {
+        onClick={e => {
+          e.stopPropagation();
           this.handleTileClick(tile);
         }}
         onFocus={() => {
@@ -261,6 +265,7 @@ export class Board extends Component {
         <Symbol
           image={tile.image}
           label={tile.label}
+          keyPath={tile.keyPath}
           labelpos={displaySettings.labelPosition}
         />
 
@@ -313,7 +318,9 @@ export class Board extends Component {
       setIsScroll,
       isScroll,
       totalRows,
-      changeDefaultBoard
+      changeDefaultBoard,
+      improvedPhrase,
+      speak
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -522,7 +529,12 @@ export class Board extends Component {
               />
             )}
           </div>
-
+          {navigationSettings.improvePhraseActive && (
+            <ImprovePhraseOutput
+              improvedPhrase={improvedPhrase}
+              speak={speak}
+            />
+          )}
           <Dialog
             open={this.state.openTitleDialog}
             aria-labelledby="board-dialog-title"

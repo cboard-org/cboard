@@ -17,6 +17,7 @@ import { NAVIGATION_BUTTONS_STYLES } from './Navigation.constants';
 
 import './Navigation.css';
 import ResetToursItem from '../../UI/ResetToursItem';
+import PremiumFeature from '../../PremiumFeature';
 
 const propTypes = {
   /**
@@ -74,9 +75,21 @@ class Navigation extends React.Component {
     });
   };
 
+  toggleQuietBuilderMode = () => {
+    this.setState({
+      quietBuilderMode: !this.state.quietBuilderMode
+    });
+  };
+
   toggleLiveMode = () => {
     this.setState({
       liveMode: !this.state.liveMode
+    });
+  };
+
+  toggleImprovePhraseActive = () => {
+    this.setState({
+      improvePhraseActive: !this.state.improvePhraseActive
     });
   };
 
@@ -233,7 +246,7 @@ class Navigation extends React.Component {
                 </ListItemSecondaryAction>
               </ListItem>
               <Divider />
-              <ListItem disabled={true}>
+              <ListItem disabled={false}>
                 <ListItemText
                   className="Navigation__ListItemText"
                   primary={<FormattedMessage {...messages.quickUnlock} />}
@@ -243,7 +256,7 @@ class Navigation extends React.Component {
                 />
                 <ListItemSecondaryAction>
                   <Switch
-                    disabled={true}
+                    disabled={false}
                     checked={this.state.quickUnlockActive}
                     onChange={this.toggleQuickUnlock}
                     value="active"
@@ -270,6 +283,24 @@ class Navigation extends React.Component {
                 </ListItemSecondaryAction>
               </ListItem>
               <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Navigation__ListItemText"
+                  primary={<FormattedMessage {...messages.quietBuilderMode} />}
+                  secondary={
+                    <FormattedMessage {...messages.quietBuilderModeSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.quietBuilderMode}
+                    onChange={this.toggleQuietBuilderMode}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
               <ResetToursItem />
               <Divider />
               <ListItem>
@@ -287,6 +318,30 @@ class Navigation extends React.Component {
                     value="active"
                     color="secondary"
                   />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Display__ListItemText"
+                  primary={
+                    <FormattedMessage {...messages.activeImprovePhrase} />
+                  }
+                  secondary={
+                    <FormattedMessage
+                      {...messages.activeImprovePhraseSecondary}
+                    />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <PremiumFeature isLoginRequired={true}>
+                    <Switch
+                      checked={this.state.improvePhraseActive || false}
+                      onChange={this.toggleImprovePhraseActive}
+                      value="active"
+                      color="secondary"
+                    />
+                  </PremiumFeature>
                 </ListItemSecondaryAction>
               </ListItem>
             </List>

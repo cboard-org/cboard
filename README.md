@@ -61,7 +61,7 @@ Cboard is ready to be deployed.
 
 ### `yarn build-cordova-debug`
 
-Use this to produce non-minified build for use in debugging within Cordova. It uses `react-app-rewired` & `config-overrides.js` to  customize webpack operation without ejecting react.
+Use this to produce non-minified build for use in debugging within Cordova. It uses `craco` & `craco.config` to customize webpack operation without ejecting react.
 
 See [CBoard](https://github.com/nous-/cboard) repo for packaging this CBoard application within Cordova.
 
@@ -140,7 +140,7 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 
 ## :memo: Legal & licenses
 
-Copyright © 2017-2021, [OTTAA Project](https://ottaa-project.github.io/) & Cboard contributors.
+Copyright © 2017-2024, Assistive Technology LLC & Cboard contributors.
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.
 

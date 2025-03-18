@@ -3,10 +3,12 @@ import {
   UPDATE_CONNECTIVITY,
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS,
+  UPDATE_SYMBOLS_SETTINGS,
   UPDATE_USER_DATA,
   DISABLE_TOUR,
   ENABLE_ALL_TOURS,
-  SET_UNLOGGED_USER_LOCATION
+  SET_UNLOGGED_USER_LOCATION,
+  USER_DATA_PROPERTIES
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
@@ -49,18 +51,36 @@ const initialState = {
     quickUnlockActive: false,
     removeOutputActive: false,
     vocalizeFolders: false,
-    liveMode: false
+    quietBuilderMode: false,
+    liveMode: false,
+    improvePhraseActive: false
+  },
+  symbolsSettings: {
+    arasaacActive: false
   },
   userData: {}
+};
+
+const getKeysFromApiUserDataResponse = payload => {
+  const newUser = {};
+  if (!payload) return newUser;
+  USER_DATA_PROPERTIES.forEach(prop => {
+    if (payload[prop] !== undefined) newUser[prop] = payload[prop];
+  });
+  return newUser;
 };
 
 function appReducer(state = initialState, action) {
   let displaySettings = { ...state.displaySettings };
   let navigationSettings = { ...state.navigationSettings };
+  let symbolsSettings = { ...state.symbolsSettings };
 
   switch (action.type) {
     case UPDATE_DISPLAY_SETTINGS:
-      displaySettings = { ...state.displaySettings, ...action.payload };
+      displaySettings = {
+        ...state.displaySettings,
+        ...action.payload
+      };
       return {
         ...state,
         displaySettings
@@ -73,6 +93,15 @@ function appReducer(state = initialState, action) {
       return {
         ...state,
         navigationSettings
+      };
+    case UPDATE_SYMBOLS_SETTINGS:
+      symbolsSettings = {
+        ...state.symbolsSettings,
+        ...action.payload
+      };
+      return {
+        ...state,
+        symbolsSettings
       };
     case UPDATE_CONNECTIVITY:
       return {
@@ -128,7 +157,7 @@ function appReducer(state = initialState, action) {
         isFirstVisit: false,
         displaySettings,
         navigationSettings,
-        userData: action.payload || {}
+        userData: getKeysFromApiUserDataResponse(action.payload)
       };
     case LOGOUT:
       return {
@@ -138,7 +167,7 @@ function appReducer(state = initialState, action) {
     case UPDATE_USER_DATA:
       return {
         ...state,
-        userData: action.userData
+        userData: getKeysFromApiUserDataResponse(action.userData)
       };
     case SET_UNLOGGED_USER_LOCATION:
       return {
