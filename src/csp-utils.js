@@ -5,8 +5,7 @@ const localHostSources = isDevelopment
 
 const cspLinks = {
   localHost: localHostSources,
-  app: 'https://app.cboard.io',
-  api: 'https://api.cboard.io',
+  app: 'https://*.cboard.io ',
   globalsymbols: 'https://globalsymbols.com/',
   microsoft: 'wss://*.microsoft.com/cognitiveservices/',
   eastus: 'eastus.tts.speech.microsoft.com',
@@ -40,16 +39,16 @@ const setupCSP = () => {
   }`;
 
   const cspContent = `
-    default-src ${cstTypeAll} ${cspLinks.api} ${cspLinks.app} ${
+    default-src ${cstTypeAll} https://* ${cspLinks.app} ${
     cspLinks.localHost
   } blob: gap: data: ;
-    script-src ${cstTypeAll} ${cspLinks.api} ${cspLinks.app} ${
-    cspLinks.paypal
-  } ${cspLinks.paypalSandbox} ${cspLinks.localHost};
-    style-src 'self' 'unsafe-inline' ${cspLinks.api} ${cspLinks.app} ${
-    cspLinks.paypal
-  } ${cspLinks.paypalSandbox} ${cspLinks.localHost};
-    connect-src 'self' ${cspLinks.api} ${cspLinks.app} ${
+    script-src ${cstTypeAll} ${cspLinks.app} ${cspLinks.paypal} ${
+    cspLinks.paypalSandbox
+  } ${cspLinks.localHost};
+    style-src 'self' 'unsafe-inline' ${cspLinks.app} ${cspLinks.paypal} ${
+    cspLinks.paypalSandbox
+  } ${cspLinks.localHost};
+    connect-src 'self' ${cspLinks.app} ${
     cspLinks.localHost
   } 'unsafe-inline' 'unsafe-eval' ${cspLinks.arasaac} ${cspLinks.globalsymbols} 
     ${cspLinks.microsoft} ${cspLinks.eastus} ${cspLinks.paypal} ${
@@ -59,11 +58,15 @@ const setupCSP = () => {
   } ${cspLinks.googleTagManager} ${cspLinks.cboardDownload};
     img-src * data: filesystem: blob: ;
     media-src * data: filesystem: blob: ;
-    frame-src 'self' ${cspLinks.app} ${cspLinks.api} ${cspLinks.paypal} ${
+    form-action 'self' ${cspType.unsafeEval} ${cspType.unsafeInline} ${
+    cspLinks.app
+  } ${cspLinks.localHost};
+    frame-src 'self' ${cspLinks.app} ${cspLinks.paypal} ${
     cspLinks.paypalSandbox
-  } ${cspLinks.localHost} ${cspLinks.googleLinks} ${cspLinks.doubleclick} ${
-    cspLinks.googleTagManager
-  } ${cspLinks.tdDoubleClick} ${cspLinks.youtube};
+  } ${cspLinks.localHost} ${cspLinks.googleLinks}
+     ${cspLinks.doubleclick} ${cspLinks.googleTagManager} ${
+    cspLinks.tdDoubleClick
+  } ${cspLinks.youtube};
     font-src 'self' data: ${cspLinks.paypal} ${cspLinks.paypalSandbox} ${
     cspLinks.localHost
   };`
