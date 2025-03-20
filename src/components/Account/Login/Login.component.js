@@ -107,19 +107,6 @@ export class Login extends Component {
                   label={intl.formatMessage(messages.password)}
                   type={isPasswordVisible ? 'text' : 'password'}
                   name="password"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton onClick={this.togglePasswordVisibility}>
-                          {isPasswordVisible ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    )
-                  }}
                   onChange={handleChange}
                 />
                 <DialogActions>
