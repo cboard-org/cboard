@@ -19,6 +19,7 @@ import './Login.css';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
+import PasswordTextField from '../../UI/FormItems/PasswordTextField';
 
 export class Login extends Component {
   static propTypes = {
@@ -101,7 +102,7 @@ export class Login extends Component {
                   name="email"
                   onChange={handleChange}
                 />
-                <TextField
+                <PasswordTextField
                   error={errors.password}
                   label={intl.formatMessage(messages.password)}
                   type={isPasswordVisible ? 'text' : 'password'}
