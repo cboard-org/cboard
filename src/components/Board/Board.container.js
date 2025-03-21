@@ -1197,6 +1197,8 @@ export class BoardContainer extends Component {
 
   onRequestToRootBoard() {
     this.props.toRootBoard();
+    const prevBoardId = this.props.navHistory[0];
+    this.props.history.replace(`/board/${prevBoardId}`);
     this.scrollToTop();
   }
 
