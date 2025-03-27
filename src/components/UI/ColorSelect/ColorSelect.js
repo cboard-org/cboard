@@ -115,6 +115,11 @@ class ColorSelect extends React.Component {
             </IconButton>
           )}
         </RadioGroup>
+
+        <HuePicker
+          color={this.state.color}
+          onChangeComplete={this.handleHueChange}
+        />
       </FormControl>
     );
   }
