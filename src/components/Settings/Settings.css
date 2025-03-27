@@ -12,8 +12,14 @@
 .Settings__loading-Spinner {
   margin-top: 2em;
 }
+
 .Settings__section {
   margin-bottom: 8px;
+}
+
+.adSense__marker {
+  display: none;
+  height: 198px;
 }
 
 .Settings__section--secondaryAction {
@@ -125,6 +131,7 @@
   position: relative;
   background-color: none;
 }
+
 .swiper-pagination-bullets {
   bottom: 5px !important;
 }
@@ -137,6 +144,7 @@
 .Settings_Tour_Description_Scanning {
   margin-top: 4px;
 }
+
 .Settings__Tour__Scanning__Img {
   margin: 7px 0 7px 0;
 }
@@ -149,12 +157,15 @@
   :root {
     --swiper-navigation-size: 25px !important;
   }
+
   .swiper-button-next {
     right: 1px !important;
   }
+
   .swiper-button-prev {
     left: 1px !important;
   }
+
   .Settings__Tour__Step__Swiper__Container {
     height: 270px !important;
   }
@@ -162,6 +173,7 @@
   .mySwiper {
     height: 50% !important;
   }
+
   .swiper-pagination-bullets {
     bottom: -3px !important;
   }
