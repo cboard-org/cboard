@@ -272,8 +272,9 @@ export function previousBoard() {
 }
 
 export function toRootBoard() {
-  return {
-    type: TO_ROOT_BOARD
+  return dispatch => {
+    history.replace('/board/root');
+    dispatch({ type: TO_ROOT_BOARD });
   };
 }
 
