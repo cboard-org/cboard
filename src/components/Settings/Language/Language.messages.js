@@ -57,6 +57,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.finnish',
     defaultMessage: 'Finnish'
   },
+  fa: {
+    id: 'cboard.components.Settings.Language.persian',
+    defaultMessage: 'Persian'
+  },
   fr: {
     id: 'cboard.components.Settings.Language.french',
     defaultMessage: 'French'
