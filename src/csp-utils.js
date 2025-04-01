@@ -29,7 +29,8 @@ const cspLinks = {
   vsTrack:
     'https://dc.services.visualstudio.com/v2/track https://*.visualstudio.com/',
   youtube: 'https://*.youtube.com https://www.youtube.com/',
-  cloudfront: 'https://*.cloudfront.net/'
+  cloudfront: 'https://*.cloudfront.net/',
+  apple: 'com.apple.*'
 };
 
 const cspType = {
@@ -72,7 +73,7 @@ const setupCSP = () => {
     cspLinks.googleAnalytics
   } ${cspLinks.googleTagManager} ${cspLinks.cboardDownload} ${
     cspLinks.vsTrack
-  };`;
+  } ${cspLinks.apple} ;`;
 
   const imgSrc = `img-src * data: filesystem: blob: ${cspLinks.filePath} ${
     cspLinks.cloudfront
