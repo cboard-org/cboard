@@ -208,7 +208,7 @@ export class Settings extends PureComponent {
     disableTour({ isSettingsTourEnabled: true });
   };
 
-  addSense = () => {
+  AddSense = () => {
     return (
       !isCordova() && (
         <Paper className="Settings__section">
@@ -254,7 +254,7 @@ export class Settings extends PureComponent {
           )
         }
       >
-        {/*<this.addSense />*/}
+        {/*<this.AddSense />*/}
         {(isDownloadingLang && (
           <div className="Settings__spinner-container">
             <CircularProgress
