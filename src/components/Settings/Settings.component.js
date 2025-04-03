@@ -208,6 +208,22 @@ export class Settings extends PureComponent {
     disableTour({ isSettingsTourEnabled: true });
   };
 
+  AddSense = () => {
+    return (
+      !isCordova() && (
+        <Paper className="Settings__section">
+          <Adsense
+            client={ADSENSE_CLIENT}
+            slot={ADD_SLOT_SETTINGS_TOP}
+            data-adtest={ADSENSE_ON_PRODUCTION ? 'off' : 'on'}
+            format="none"
+            className="adSense__marker"
+          />
+        </Paper>
+      )
+    );
+  };
+
   render() {
     const {
       intl,
@@ -238,26 +254,7 @@ export class Settings extends PureComponent {
           )
         }
       >
-        {!isCordova() && (
-          <Paper className="Settings__section">
-            <Adsense
-              style={{
-                display: 'block',
-                height: '30vh',
-                maxHeight: '198px'
-              }}
-              client={ADSENSE_CLIENT}
-              slot={ADD_SLOT_SETTINGS_TOP}
-              data-adtest={ADSENSE_ON_PRODUCTION ? 'off' : 'on'}
-              format="none"
-              className={
-                ADSENSE_ON_PRODUCTION || ADTEST_AVAILABLE
-                  ? null
-                  : 'adSense__test__marker'
-              }
-            />
-          </Paper>
-        )}
+        {/*<this.AddSense />*/}
         {(isDownloadingLang && (
           <div className="Settings__spinner-container">
             <CircularProgress
