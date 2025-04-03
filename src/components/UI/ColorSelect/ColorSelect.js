@@ -7,10 +7,10 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import CloseIcon from '@material-ui/icons/Close';
 import MenuItem from '@material-ui/core/MenuItem';
 import { InputLabel, Select } from '@material-ui/core';
-
 import IconButton from '../IconButton';
 import Circle from './Circle';
 import messages from './ColorSelect.messages';
+import { HuePicker } from 'react-color';
 
 const colorSchemes = [
   {
@@ -49,12 +49,19 @@ class ColorSelect extends React.Component {
     super(props);
 
     this.state = {
-      colorMenu: colorSchemes[0]
+      colorMenu: colorSchemes[0],
+      color: ''
     };
   }
 
   handleColorSchemeChange = event => {
-    this.setState({ colorMenu: event.target.value });
+    const selectedScheme = event.target.value;
+    this.setState({ colorMenu: selectedScheme });
+    this.props.onChange(event.target.value);
+  };
+  handleHueChange = hue => {
+    const hslColor = `hsl(${hue.hsl.h}, 100%, 50%)`; // Convertir a HSL
+    this.props.onChange({ target: { value: hslColor } }); // Pasar un objeto con la estructura de un evento
   };
 
   render() {
@@ -115,6 +122,11 @@ class ColorSelect extends React.Component {
             </IconButton>
           )}
         </RadioGroup>
+
+        <HuePicker
+          color={this.state.color}
+          onChangeComplete={this.handleHueChange}
+        />
       </FormControl>
     );
   }
