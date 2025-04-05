@@ -89,6 +89,12 @@ function getActiveCommunicator(getState) {
   return activeCommunicator;
 }
 
+function replaceHistory(getState) {
+  const { board } = getState();
+  const id = board.activeBoardId;
+  history.replace(`/board/${id}`);
+}
+
 export function changeDefaultBoard(selectedBoardNameOnJson) {
   return (dispatch, getState) => {
     const board = DEFAULT_BOARDS[selectedBoardNameOnJson];
@@ -266,15 +272,20 @@ export function changeBoard(boardId) {
 }
 
 export function previousBoard() {
-  return {
-    type: PREVIOUS_BOARD
+  return (dispatch, getState) => {
+    dispatch({
+      type: PREVIOUS_BOARD
+    });
+    replaceHistory(getState);
   };
 }
 
 export function toRootBoard() {
-  return dispatch => {
-    history.replace('/board/root');
-    dispatch({ type: TO_ROOT_BOARD });
+  return (dispatch, getState) => {
+    dispatch({
+      type: TO_ROOT_BOARD
+    });
+    replaceHistory(getState);
   };
 }
 
