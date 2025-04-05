@@ -71,6 +71,7 @@ import {
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import LoadingIcon from '../UI/LoadingIcon';
+import { prop } from 'lodash/fp';
 //import { isAndroid } from '../../cordova-util';
 
 const ogv = require('ogv');
@@ -556,7 +557,7 @@ export class BoardContainer extends Component {
         if (createBoard) {
           replaceBoard({ ...boardData }, { ...boardData, id: boardId });
         }
-        this.props.history.replace(`/board/${boardId}`);
+        this.propsHistoryReplace(boardId);
       } catch (err) {
         console.log(err.message);
       } finally {
@@ -1156,7 +1157,7 @@ export class BoardContainer extends Component {
                   { ...parentBoardData, id: parentBoardId }
                 );
               }
-              this.props.history.replace(`/board/${parentBoardId}`);
+              this.propsHistoryReplace(parentBoardId);
               this.setState({ isSaving: false });
             })
             .catch(e => {
@@ -1174,7 +1175,7 @@ export class BoardContainer extends Component {
                   { ...parentBoardData, id: parentBoardId }
                 );
               }
-              this.props.history.replace(`/board/${parentBoardId}`);
+              this.propsHistoryReplace(parentBoardId);
               this.setState({ isSaving: false });
             })
             .catch(e => {
@@ -1185,14 +1186,18 @@ export class BoardContainer extends Component {
     }
   };
 
+  propsHistoryReplace(boardId) {
+    this.props.history.replace(`/board/${boardId}`);
+  }
+
   onRequestPreviousBoard() {
-    if (this.props.navHistory.length >= 2) {
+    this.props.previousBoard();
+    /*if (this.props.navHistory.length >= 2) {
       const prevBoardId = this.props.navHistory[
         this.props.navHistory.length - 2
       ];
-      this.props.history.replace(`/board/${prevBoardId}`);
-      this.scrollToTop();
-    }
+      this.propsHistoryReplace(prevBoardId);*/
+    this.scrollToTop();
   }
 
   onRequestToRootBoard() {
