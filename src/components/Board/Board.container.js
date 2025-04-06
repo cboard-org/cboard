@@ -71,7 +71,6 @@ import {
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import LoadingIcon from '../UI/LoadingIcon';
-import { prop } from 'lodash/fp';
 //import { isAndroid } from '../../cordova-util';
 
 const ogv = require('ogv');
