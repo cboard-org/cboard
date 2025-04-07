@@ -20,6 +20,7 @@ import configureStore, { getStore } from './store';
 import SubscriptionProvider from './providers/SubscriptionProvider';
 import { PAYPAL_CLIENT_ID } from './constants';
 import { initializeAppInsights } from './appInsights';
+import { setupCSP } from './csp-utils';
 
 initializeAppInsights();
 const { persistor } = configureStore();
@@ -45,6 +46,8 @@ const renderApp = () => {
   if (isCordova()) {
     initCordovaPlugins();
   }
+  setupCSP();
+
   ReactDOM.render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
