@@ -42,7 +42,6 @@ import {
 } from '../../../cordova-util';
 import { convertImageUrlToCatchable } from '../../../helpers';
 import PremiumFeature from '../../PremiumFeature';
-
 export class TileEditor extends Component {
   static propTypes = {
     /**
@@ -391,10 +390,10 @@ export class TileEditor extends Component {
   };
 
   handleColorChange = event => {
-    const color = event ? event.target.value : '';
+    const color = event && event.target ? event.target.value : '';
     this.setState({ selectedBackgroundColor: color });
-    if (event) {
-      this.updateTileProperty('backgroundColor', event.target.value);
+    if (color) {
+      this.updateTileProperty('backgroundColor', color);
     } else {
       this.updateTileProperty('backgroundColor', this.getDefaultColor());
     }
