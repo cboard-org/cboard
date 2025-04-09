@@ -16,9 +16,6 @@ import validationSchema from './validationSchema';
 import { login } from './Login.actions';
 import messages from './Login.messages';
 import './Login.css';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
 import PasswordTextField from '../../UI/FormItems/PasswordTextField';
 
 export class Login extends Component {
@@ -107,19 +104,6 @@ export class Login extends Component {
                   label={intl.formatMessage(messages.password)}
                   type={isPasswordVisible ? 'text' : 'password'}
                   name="password"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton onClick={this.togglePasswordVisibility}>
-                          {isPasswordVisible ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    )
-                  }}
                   onChange={handleChange}
                 />
                 <DialogActions>
