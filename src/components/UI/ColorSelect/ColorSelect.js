@@ -113,7 +113,7 @@ class ColorSelect extends React.Component {
           style={radioGroupStyle}
           onChange={onChange}
         >
-          {this.state.colorMenu.name == 'Custom' ? (
+          {this.state.colorMenu.name === 'Custom' ? (
             <HuePicker
               style={hueItemStyle}
               color={this.state.color}
@@ -135,7 +135,7 @@ class ColorSelect extends React.Component {
               label={intl.formatMessage(messages.clearSelection)}
               onClick={() => {
                 onChange();
-                this.state.color = '';
+                this.setState({ color: colorSchemes[0].colors[1] });
               }}
             >
               <CloseIcon />
