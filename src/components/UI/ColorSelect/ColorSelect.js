@@ -35,6 +35,10 @@ const colorSchemes = [
   {
     name: 'Goossens',
     colors: ['#ffc0cb', '#2196F3', '#4CAF50', '#fff176', '#ff6600']
+  },
+  {
+    name: 'Custom',
+    colors: []
   }
 ];
 
@@ -50,7 +54,7 @@ class ColorSelect extends React.Component {
 
     this.state = {
       colorMenu: colorSchemes[0],
-      color: ''
+      color: colorSchemes[0].colors[1]
     };
   }
 
@@ -58,9 +62,11 @@ class ColorSelect extends React.Component {
     const selectedScheme = event.target.value;
     this.setState({ colorMenu: selectedScheme });
     this.props.onChange(event.target.value);
+    this.setState({ color: colorSchemes[0].colors[1] }); //that return the first color of the first color of hue color
   };
   handleHueChange = hue => {
-    const hslColor = `hsl(${hue.hsl.h}, 100%, 50%)`; // Convertir a HSL
+    let hslColor = `hsl(${hue.hsl.h},85%, 70%)`; // Convertir a HSL
+    this.setState({ color: hslColor });
     this.props.onChange({ target: { value: hslColor } }); // Pasar un objeto con la estructura de un evento
   };
 
@@ -69,6 +75,7 @@ class ColorSelect extends React.Component {
     const colorLabel = intl.formatMessage(messages.color);
     const radioGroupStyle = { flexDirection: 'row' };
     const radioItemStyle = { padding: '2px' };
+    const hueItemStyle = { margin: '5px', padding: '5px' };
 
     return (
       <FormControl className="ColorSelect">
@@ -92,9 +99,13 @@ class ColorSelect extends React.Component {
               <MenuItem value={colorSchemes[2]}>
                 {colorSchemes[2].name}
               </MenuItem>
+              <MenuItem value={colorSchemes[3]}>
+                {colorSchemes[3].name}
+              </MenuItem>
             </Select>
           </FormControl>
         </div>
+
         <RadioGroup
           aria-label={colorLabel}
           name="color"
@@ -102,31 +113,35 @@ class ColorSelect extends React.Component {
           style={radioGroupStyle}
           onChange={onChange}
         >
-          {this.state.colorMenu.colors.map(color => (
-            <Radio
-              key={color}
-              value={color}
-              style={radioItemStyle}
-              icon={<Circle fill={color} />}
-              checkedIcon={<Circle fill={color} />}
+          {this.state.colorMenu.name == 'Custom' ? (
+            <HuePicker
+              style={hueItemStyle}
+              color={this.state.color}
+              onChangeComplete={this.handleHueChange}
             />
-          ))}
+          ) : (
+            this.state.colorMenu.colors?.map(color => (
+              <Radio
+                key={color}
+                value={color}
+                style={radioItemStyle}
+                icon={<Circle fill={color} />}
+                checkedIcon={<Circle fill={color} />}
+              />
+            ))
+          )}
           {selectedColor && (
             <IconButton
               label={intl.formatMessage(messages.clearSelection)}
               onClick={() => {
                 onChange();
+                this.state.color = '';
               }}
             >
               <CloseIcon />
             </IconButton>
           )}
         </RadioGroup>
-
-        <HuePicker
-          color={this.state.color}
-          onChangeComplete={this.handleHueChange}
-        />
       </FormControl>
     );
   }
