@@ -114,11 +114,12 @@ class ColorSelect extends React.Component {
           onChange={onChange}
         >
           {this.state.colorMenu.name === 'Custom' ? (
-            <HuePicker
-              style={hueItemStyle}
-              color={this.state.color}
-              onChangeComplete={this.handleHueChange}
-            />
+            <div style={hueItemStyle}>
+              <HuePicker
+                color={this.state.color}
+                onChangeComplete={this.handleHueChange}
+              />
+            </div>
           ) : (
             this.state.colorMenu.colors?.map(color => (
               <Radio
