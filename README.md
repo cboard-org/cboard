@@ -24,17 +24,17 @@ This video shows Srna. She is one of the children who have received the Cboard C
 The app supports 40 languages.
 Languages were machine translated and require proofreading: if you want to help proofread, please use our translation management platform: https://crowdin.com/project/cboard
 
-
-
 **You do not need to be a programmer!**
 
 Translations play a major role in this project and they contribute a lot for the inclusion of children, specially in non developed countries. Please consider collaborating with us!
 
 ### Translations for developers
 
-In order to pull the latest translations from CrowdIn into the codebase, you can run `yarn translations:pull`. This will update all language files such as `en.json` as well as the central `cboard.json` file. Please note that this requires the CrowdIn API key to be available in the `.private` config file. Refer to [Secrets Management](#secrets-management). After the script completes, changes to the translation files will need to be committed to the repo by the usual process.
+To add support to a new language, [follow this guide](https://github.com/cboard-org/cboard/wiki/How-to-Add-a-New-Language).
 
-to create a new language, [Read how to add a new language](https://github.com/cboard-org/cboard/wiki/How-to-Add-a-New-Language)
+#### Pulling translations from CrowdIn
+
+In order to pull the latest translations from CrowdIn into the codebase, you can run `yarn translations:pull`. This will update all language files such as `en.json` as well as the central `cboard.json` file. Please note that this requires the CrowdIn API key to be available in the `.private` config file. Refer to [Secrets Management](#secrets-management). After the script completes, changes to the translation files will need to be committed to the repo by the usual process.
 
 ## Getting Started
 
