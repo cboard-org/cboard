@@ -5,16 +5,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
   <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self'
-        'unsafe-inline'
-        'unsafe-eval'
-        https://*
-        wss://*.microsoft.com/cognitiveservices/
-        blob:
-        gap:
-        data:;
-    img-src * data:  filesystem:  blob:  ;
-    ">
+  default-src 'self'
+      'unsafe-inline'
+      'unsafe-eval'
+      http://*
+      https://*
+      wss://*.microsoft.com/cognitiveservices/
+      blob:
+      gap:
+      data:;
+  img-src * data:  filesystem:  blob:  ;
+  connect-src * data:  filesystem:  blob:  'self' 'unsafe-inline' 'unsafe-eval' http://* https://* wss://*;
+  
+  ">
 
   <!--
       manifest.json provides metadata used when your web app is added to the
