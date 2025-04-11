@@ -645,6 +645,10 @@ export class TileEditor extends Component {
                     <ColorSelect
                       selectedColor={this.state.selectedBackgroundColor}
                       onChange={this.handleColorChange}
+                      color={
+                        this.state.selectedBackgroundColor ||
+                        this.getDefaultColor()
+                      }
                     />
                   </div>
                   {this.currentTileProp('type') !== 'board' && (
