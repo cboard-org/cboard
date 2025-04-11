@@ -45,7 +45,8 @@ const colorSchemes = [
 const propTypes = {
   intl: intlShape.isRequired,
   onChange: PropTypes.func.isRequired,
-  selectedColor: PropTypes.string.isRequired
+  selectedColor: PropTypes.string.isRequired,
+  color: PropTypes.string
 };
 
 class ColorSelect extends React.Component {
@@ -54,15 +55,21 @@ class ColorSelect extends React.Component {
 
     this.state = {
       colorMenu: colorSchemes[0],
-      color: colorSchemes[0].colors[1]
+      color: this.props.selectedColor || this.props.color
     };
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedColor !== this.props.selectedColor) {
+      this.setState({ color: this.props.selectedColor });
+    }
   }
 
   handleColorSchemeChange = event => {
     const selectedScheme = event.target.value;
     this.setState({ colorMenu: selectedScheme });
-    this.props.onChange(event.target.value);
-    this.setState({ color: colorSchemes[0].colors[1] }); //that return the first color of the first color of hue color
+    const firstColor = this.props.color;
+    this.setState({ color: firstColor });
+    this.props.onChange({ target: { value: firstColor } });
   };
   handleHueChange = hue => {
     let hslColor = `hsl(${hue.hsl.h},85%, 70%)`; // Convertir a HSL
@@ -75,7 +82,7 @@ class ColorSelect extends React.Component {
     const colorLabel = intl.formatMessage(messages.color);
     const radioGroupStyle = { flexDirection: 'row' };
     const radioItemStyle = { padding: '2px' };
-    const hueItemStyle = { margin: '5px', padding: '5px' };
+    const hueItemStyle = { marginTop: '5px' };
 
     return (
       <FormControl className="ColorSelect">
@@ -136,7 +143,7 @@ class ColorSelect extends React.Component {
               label={intl.formatMessage(messages.clearSelection)}
               onClick={() => {
                 onChange();
-                this.setState({ color: colorSchemes[0].colors[1] });
+                this.setState({ color: this.props.color });
               }}
             >
               <CloseIcon />
