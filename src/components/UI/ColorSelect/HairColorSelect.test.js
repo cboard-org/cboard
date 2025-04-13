@@ -18,12 +18,12 @@ jest.mock('./HairColor.messages', () => {
 
 const intl = { formatMessage: () => 'dummy translation' };
 const HAIR_COLORS = [
-  '#FDD700',
-  '#A65E26',
-  '#6A2703',
-  '#EFEFEF',
-  '#AAABAB',
-  '#ED4120',
+  '#fdd700',
+  '#a65e26',
+  '#6a2703',
+  '#efefef',
+  '#aaabab',
+  '#ed4120',
   '#020100'
 ];
 

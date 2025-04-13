@@ -8,7 +8,7 @@ exports[`HairColorSelect tests default renderer 1`] = `
     }
   }
   onChange={[Function]}
-  selectedColor="#FDD700"
+  selectedColor="#fdd700"
   source="arasaac"
 />
 `;

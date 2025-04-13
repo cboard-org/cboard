@@ -8,7 +8,7 @@ exports[`SkinToneSelect tests default renderer 1`] = `
     }
   }
   onChange={[Function]}
-  selectedColor="#F5E5DE"
+  selectedColor="#f5e5de"
   source="arasaac"
 />
 `;

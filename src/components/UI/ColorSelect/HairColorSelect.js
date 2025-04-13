@@ -4,9 +4,7 @@ import { injectIntl, intlShape } from 'react-intl';
 import FormControl from '@material-ui/core/FormControl';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import CloseIcon from '@material-ui/icons/Close';
 
-import IconButton from '../IconButton';
 import Circle from './Circle';
 import messages from './HairColor.messages';
 
@@ -90,7 +88,7 @@ class HairColorSelect extends React.Component {
                 <Circle
                   fill={hairColor.color}
                   color="primary"
-                  strokeWidth="3"
+                  strokeWidth={3}
                 />
               }
             />

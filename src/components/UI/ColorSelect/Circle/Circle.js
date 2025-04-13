@@ -18,7 +18,7 @@ const defaultProps = {
 };
 
 function Circle(props) {
-  const { fill, color = 'grey', strokeWidth = '1' } = props;
+  const { fill, color = 'grey', strokeWidth = 1 } = props;
 
   return (
     <svg height="48" width="48">

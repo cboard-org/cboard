@@ -17,7 +17,7 @@ jest.mock('./SkinTone.messages', () => {
 });
 
 const intl = { formatMessage: () => 'dummy translation' };
-const SKIN_TONES = ['#F5E5DE', '#A65C17', '#F4ECAD', '#E3AB72', '#CF9D7C'];
+const SKIN_TONES = ['#f5e5de', '#a65c17', '#f4ecad', '#e3ab72', '#cf9d7c'];
 
 describe('SkinToneSelect tests', () => {
   const props = {
