@@ -23,6 +23,44 @@ const joyRideStyles = {
     textColor: '#333',
     width: 500,
     zIndex: 1000
+  },
+  tooltip: {
+    maxHeight: '85vh',
+    overflowY: 'auto'
+  },
+  buttonNext: {
+    backgroundColor: '#aa00ff'
+  },
+  buttonBack: {
+    color: '#aa00ff'
+  },
+  buttonSkip: {
+    color: '#aa00ff'
+  },
+  // Add custom styles for mobile view
+  tooltipContainer: {
+    textAlign: 'center'
+  },
+  tooltipFooter: {
+    position: 'sticky',
+    bottom: -20,
+    backgroundColor: '#eee',
+    padding: '10px 0',
+    marginTop: '10px',
+    borderTop: '1px solid #ddd',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between'
+  }
+};
+
+// Adjust tooltip maxHeight for mobile
+const mobileLockedHelpStepStyles = {
+  tooltip: {
+    width: '90vw',
+    maxWidth: 700,
+    maxHeight: '80vh',
+    overflowY: 'auto'
   }
 };
 
@@ -89,14 +127,7 @@ function BoardTour({
       target: 'body',
       placement: 'center',
       hideCloseButton: true,
-      styles: {
-        tooltip: {
-          width: '90vw',
-          maxWidth: 700,
-          maxHeight: '95vh',
-          overflowY: 'auto'
-        }
-      },
+      styles: mobileLockedHelpStepStyles,
       content: (
         <>
           <h2>
