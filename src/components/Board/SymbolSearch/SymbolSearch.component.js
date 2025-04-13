@@ -19,6 +19,8 @@ import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
 import SymbolNotFound from './SymbolNotFound';
+import SkinToneSelect from '../../UI/ColorSelect/SkinToneSelect';
+import HairColorSelect from '../../UI/ColorSelect/HairColorSelect';
 
 const SymbolSets = {
   mulberry: '0',
@@ -44,6 +46,9 @@ const symbolSetsOptions = [
   }
 ];
 
+const defaultSkin = 'white';
+const defaultHair = 'brown';
+
 export class SymbolSearch extends PureComponent {
   static propTypes = {
     intl: intlShape.isRequired,
@@ -68,8 +73,8 @@ export class SymbolSearch extends PureComponent {
       isFetchingGlobalsymbols: false,
       value: '',
       suggestions: [],
-      skin: 'white',
-      hair: 'brown',
+      skin: defaultSkin,
+      hair: defaultHair,
       symbolSets: symbolSetsOptions
     };
 
@@ -92,6 +97,12 @@ export class SymbolSearch extends PureComponent {
       return { value: autoFill, openMirror: true };
     if (open === false) return { openMirror: false };
     return null;
+  }
+
+  get showInclusivityOptions() {
+    return this.state.symbolSets.some(
+      opt => opt.id === SymbolSets.arasaac && opt.enabled
+    );
   }
 
   translateSymbols(symbols = []) {
@@ -145,7 +156,6 @@ export class SymbolSearch extends PureComponent {
     const {
       intl: { locale }
     } = this.props;
-    const { skin, hair } = this.state;
     if (!searchText) {
       return [];
     }
@@ -167,7 +177,10 @@ export class SymbolSearch extends PureComponent {
           return {
             id,
             src: `${ARASAAC_BASE_PATH_API}pictograms/${id}?${queryString.stringify(
-              { skin, hair }
+              {
+                skin: this.state.skin,
+                hair: this.state.hair
+              }
             )}`,
             keyPath: id,
             translatedId: label,
@@ -191,7 +204,10 @@ export class SymbolSearch extends PureComponent {
               return {
                 id: keyword.keyword,
                 src: `${ARASAAC_BASE_PATH_API}pictograms/${idPictogram}?${queryString.stringify(
-                  { skin, hair }
+                  {
+                    skin: this.state.skin,
+                    hair: this.state.hair
+                  }
                 )}`,
                 translatedId: keyword.keyword,
                 fromArasaac: true
@@ -389,6 +405,22 @@ export class SymbolSearch extends PureComponent {
     this.getSuggestions(this.state.value);
   };
 
+  handleSkinToneChange = event => {
+    const newSkin = event ? event.target.value : defaultSkin;
+    this.setState({
+      skin: newSkin
+    });
+    this.getSuggestions(this.state.value);
+  };
+
+  handleHairColorChange = event => {
+    const newHair = event ? event.target.value : defaultHair;
+    this.setState({
+      hair: newHair
+    });
+    this.getSuggestions(this.state.value);
+  };
+
   handleClearSuggest() {
     this.setState({ value: '' });
   }
@@ -414,7 +446,11 @@ export class SymbolSearch extends PureComponent {
       ) : null;
 
     const autoSuggest = (
-      <div className="react-autosuggest__container">
+      <div
+        className={`react-autosuggest__container ${
+          this.showInclusivityOptions ? 'more-options' : ''
+        }`}
+      >
         <Autosuggest
           aria-label="Search auto-suggest"
           alwaysRenderSuggestions={true}
@@ -457,6 +493,14 @@ export class SymbolSearch extends PureComponent {
           <FilterBar
             options={this.state.symbolSets}
             onChange={this.handleChangeOption}
+          />
+          <SkinToneSelect
+            selectedColor={this.state.skin}
+            onChange={this.handleSkinToneChange}
+          />
+          <HairColorSelect
+            selectedColor={this.state.hair}
+            onChange={this.handleHairColorChange}
           />
           {symbolNotFound}
         </FullScreenDialog>

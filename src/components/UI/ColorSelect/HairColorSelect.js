@@ -16,27 +16,27 @@ const hairColorSources = new Map([
     [
       {
         name: 'blonde',
-        color: '#FDD700'
+        color: '#fdd700'
       },
       {
         name: 'brown',
-        color: '#A65E26'
+        color: '#a65e26'
       },
       {
         name: 'darkBrown',
-        color: '#6A2703'
+        color: '#6a2703'
       },
       {
         name: 'gray',
-        color: '#EFEFEF'
+        color: '#efefef'
       },
       {
         name: 'darkGray',
-        color: '#AAABAB'
+        color: '#aaabab'
       },
       {
         name: 'red',
-        color: '#ED4120'
+        color: '#ed4120'
       },
       {
         name: 'black',
@@ -72,6 +72,7 @@ class HairColorSelect extends React.Component {
 
     return (
       <FormControl className="ColorSelect">
+        <label>{hairColorLabel}</label>
         <RadioGroup
           aria-label={hairColorLabel}
           name="hairColor"
@@ -82,22 +83,18 @@ class HairColorSelect extends React.Component {
           {this.state.hairColorMenu.map(hairColor => (
             <Radio
               key={hairColor.name}
-              value={hairColor.color}
+              value={hairColor.name}
               style={radioItemStyle}
-              icon={<Circle color={hairColor.color} />}
-              checkedIcon={<Circle color={hairColor.color} />}
+              icon={<Circle fill={hairColor.color} />}
+              checkedIcon={
+                <Circle
+                  fill={hairColor.color}
+                  color="primary"
+                  strokeWidth="3"
+                />
+              }
             />
           ))}
-          {selectedColor && (
-            <IconButton
-              label={intl.formatMessage(messages.clearSelection)}
-              onClick={() => {
-                onChange();
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-          )}
         </RadioGroup>
       </FormControl>
     );

@@ -1,7 +1,7 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  skinTone: {
+  hairColor: {
     id: 'cboard.components.HairColor.hairColor',
     defaultMessage: 'Hair Color'
   },

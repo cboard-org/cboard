@@ -16,23 +16,23 @@ const skinToneSources = new Map([
     [
       {
         name: 'white',
-        color: '#F5E5DE'
+        color: '#f5e5de'
       },
       {
         name: 'black',
-        color: '#A65C17'
+        color: '#a65c17'
       },
       {
         name: 'assian',
-        color: '#F4ECAD'
+        color: '#f4ecad'
       },
       {
         name: 'mulatto',
-        color: '#E3AB72'
+        color: '#e3ab72'
       },
       {
         name: 'aztec',
-        color: '#CF9D7C'
+        color: '#cf9d7c'
       }
     ]
   ]
@@ -64,6 +64,7 @@ class SkinToneSelect extends React.Component {
 
     return (
       <FormControl className="ColorSelect">
+        <label>{skinToneLabel}</label>
         <RadioGroup
           aria-label={skinToneLabel}
           name="skinTone"
@@ -74,22 +75,14 @@ class SkinToneSelect extends React.Component {
           {this.state.skinToneMenu.map(skinTone => (
             <Radio
               key={skinTone.name}
-              value={skinTone.color}
+              value={skinTone.name}
               style={radioItemStyle}
-              icon={<Circle color={skinTone.color} />}
-              checkedIcon={<Circle color={skinTone.color} />}
+              icon={<Circle fill={skinTone.color} />}
+              checkedIcon={
+                <Circle fill={skinTone.color} color="primary" strokeWidth="3" />
+              }
             />
           ))}
-          {selectedColor && (
-            <IconButton
-              label={intl.formatMessage(messages.clearSelection)}
-              onClick={() => {
-                onChange();
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-          )}
         </RadioGroup>
       </FormControl>
     );
