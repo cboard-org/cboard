@@ -482,6 +482,19 @@ export class SymbolSearch extends PureComponent {
         <SymbolNotFound />
       ) : null;
 
+    const inclusivityOptions = this.showInclusivityOptions ? (
+      <div>
+        <SkinToneSelect
+          selectedColor={this.state.skin}
+          onChange={this.handleSkinToneChange}
+        />
+        <HairColorSelect
+          selectedColor={this.state.hair}
+          onChange={this.handleHairColorChange}
+        />
+      </div>
+    ) : null;
+
     return (
       <div>
         <FullScreenDialog
@@ -494,14 +507,7 @@ export class SymbolSearch extends PureComponent {
             options={this.state.symbolSets}
             onChange={this.handleChangeOption}
           />
-          <SkinToneSelect
-            selectedColor={this.state.skin}
-            onChange={this.handleSkinToneChange}
-          />
-          <HairColorSelect
-            selectedColor={this.state.hair}
-            onChange={this.handleHairColorChange}
-          />
+          {inclusivityOptions}
           {symbolNotFound}
         </FullScreenDialog>
       </div>
