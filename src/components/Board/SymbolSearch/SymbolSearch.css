@@ -1,3 +1,8 @@
+.MuiFormControl-root.ColorSelect {
+  display: flex;
+  padding: 4px;
+}
+
 .react-autosuggest__container {
   width: 100%;
   height: 100%;
@@ -41,9 +46,21 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.more-options
+  > .react-autosuggest__container--open
+  > .react-autosuggest__suggestions-container {
+  top: 264px;
+}
+
 @media (min-width: 600px) {
   .react-autosuggest__suggestions-container {
     top: 128px;
+  }
+
+  .more-options
+    > .react-autosuggest__container--open
+    > .react-autosuggest__suggestions-container {
+    top: 278px;
   }
 }
 
