@@ -556,7 +556,7 @@ export class BoardContainer extends Component {
         if (createBoard) {
           replaceBoard({ ...boardData }, { ...boardData, id: boardId });
         }
-        this.propsHistoryReplace(boardId);
+        this.propsHistoryReplaceBoardId(boardId);
       } catch (err) {
         console.log(err.message);
       } finally {
@@ -1156,7 +1156,7 @@ export class BoardContainer extends Component {
                   { ...parentBoardData, id: parentBoardId }
                 );
               }
-              this.propsHistoryReplace(parentBoardId);
+              this.propsHistoryReplaceBoardId(parentBoardId);
               this.setState({ isSaving: false });
             })
             .catch(e => {
@@ -1174,7 +1174,7 @@ export class BoardContainer extends Component {
                   { ...parentBoardData, id: parentBoardId }
                 );
               }
-              this.propsHistoryReplace(parentBoardId);
+              this.propsHistoryReplaceBoardId(parentBoardId);
               this.setState({ isSaving: false });
             })
             .catch(e => {

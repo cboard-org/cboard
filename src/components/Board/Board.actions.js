@@ -89,7 +89,7 @@ function getActiveCommunicator(getState) {
   return activeCommunicator;
 }
 
-function replaceHistory(getState) {
+function replaceHistoryWithActiveBoardId(getState) {
   const { board } = getState();
   const id = board.activeBoardId;
   history.replace(`/board/${id}`);
@@ -276,7 +276,7 @@ export function previousBoard() {
     dispatch({
       type: PREVIOUS_BOARD
     });
-    replaceHistory(getState);
+    replaceHistoryWithActiveBoardId(getState);
   };
 }
 
@@ -285,7 +285,7 @@ export function toRootBoard() {
     dispatch({
       type: TO_ROOT_BOARD
     });
-    replaceHistory(getState);
+    replaceHistoryWithActiveBoardId(getState);
   };
 }
 
