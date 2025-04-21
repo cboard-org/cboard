@@ -26,6 +26,22 @@ const joyRideStyles = {
   }
 };
 
+const mobileLockedHelpStepStyles = {
+  tooltip: {
+    width: '90vw',
+    maxWidth: 700,
+    maxHeight: '95vh',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  tooltipContainer: {
+    overflowY: 'auto'
+  },
+  tooltipContent: {
+    padding: 0
+  }
+};
+
 function BoardTour({
   isRootBoardTourEnabled,
   isUnlockedTourEnabled,
@@ -89,14 +105,7 @@ function BoardTour({
       target: 'body',
       placement: 'center',
       hideCloseButton: true,
-      styles: {
-        tooltip: {
-          width: '90vw',
-          maxWidth: 700,
-          maxHeight: '95vh',
-          overflowY: 'auto'
-        }
-      },
+      styles: mobileLockedHelpStepStyles,
       content: (
         <>
           <h2>
