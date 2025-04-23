@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
@@ -12,8 +12,6 @@ import { intlShape, FormattedMessage } from 'react-intl';
 import SearchOffIcon from '@material-ui/icons/CloseRounded';
 
 import messages from './CommunicatorDialog.messages';
-import { dark } from '@material-ui/core/styles/createPalette';
-import { use } from 'echarts';
 
 const CommunicatorDialogButtons = ({
   intl,
