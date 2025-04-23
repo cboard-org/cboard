@@ -55,26 +55,23 @@ class ColorSelect extends React.Component {
 
     this.state = {
       colorMenu: colorSchemes[0],
-      color: this.props.selectedColor || this.props.color
+      color: this.props.color
     };
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.selectedColor !== this.props.selectedColor) {
-      this.setState({ color: this.props.selectedColor });
+    if (!this.props.selectedColor && prevProps.color !== this.props.color) {
+      this.setState({ color: this.props.color });
+      console.log(prevProps.color, this.props.color);
     }
   }
 
   handleColorSchemeChange = event => {
     const selectedScheme = event.target.value;
     this.setState({ colorMenu: selectedScheme });
-    const firstColor = this.props.color;
-    this.setState({ color: firstColor });
-    this.props.onChange({ target: { value: firstColor } });
   };
   handleHueChange = hue => {
-    let hslColor = `hsl(${hue.hsl.h},85%, 70%)`; // Convertir a HSL
-    this.setState({ color: hslColor });
-    this.props.onChange({ target: { value: hslColor } }); // Pasar un objeto con la estructura de un evento
+    this.setState({ color: hue.hex });
+    this.props.onChange({ target: { value: hue.hex } }); // Pasar un objeto con la estructura de un evento
   };
 
   render() {
