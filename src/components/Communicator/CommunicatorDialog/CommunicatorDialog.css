@@ -209,11 +209,25 @@
   margin-left: 20px;
 }
 
+.CommunicatorDialogButtons__searchInput {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
 .CommunicatorDialogButtons__searchInput input {
-  min-width: 250px;
+  min-width: 180px;
+  max-width: 250px;
   background-color: rgb(99, 112, 212);
   color: #fff;
   border-radius: 4px;
+}
+
+.CommunicatorDialogButtons__searchInput button {
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  flex-shrink: 0; /* evita que el botón se achique */
 }
 
 .is-dark .CommunicatorDialogButtons__searchInput input {

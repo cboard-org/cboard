@@ -494,6 +494,10 @@ class CommunicatorDialogContainer extends React.Component {
     this.setState({ isSearchOpen: true });
   }
 
+  closeSearchBar() {
+    this.setState({ isSearchOpen: false });
+  }
+
   async deleteMyBoard(board) {
     const {
       showNotification,
@@ -581,6 +585,7 @@ class CommunicatorDialogContainer extends React.Component {
       onTabChange: this.onTabChange.bind(this),
       onSearch: this.onSearch.bind(this),
       openSearchBar: this.openSearchBar.bind(this),
+      closeSearchBar: this.closeSearchBar.bind(this),
       disableTour: this.props.disableTour
     };
 
