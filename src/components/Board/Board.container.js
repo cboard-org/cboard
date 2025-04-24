@@ -1185,7 +1185,7 @@ export class BoardContainer extends Component {
     }
   };
 
-  historyReplaceBoardId(boardId) {
+  propsHistoryReplaceBoardId(boardId) {
     this.props.history.replace(`/board/${boardId}`);
   }
 
