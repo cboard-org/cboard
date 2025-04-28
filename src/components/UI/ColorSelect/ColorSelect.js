@@ -46,7 +46,7 @@ const propTypes = {
   intl: intlShape.isRequired,
   onChange: PropTypes.func.isRequired,
   selectedColor: PropTypes.string.isRequired,
-  defaultColor: PropTypes.string
+  defaultColor: PropTypes.string.isRequired
 };
 
 class ColorSelect extends React.Component {
@@ -54,36 +54,26 @@ class ColorSelect extends React.Component {
     super(props);
 
     this.state = {
-      colorMenu: colorSchemes[0],
-      color: this.props.defaultColor
+      colorMenu: colorSchemes[0]
     };
-  }
-  componentDidUpdate(prevProps) {
-    if (
-      !this.props.selectedColor &&
-      this.props.defaultColor !== prevProps.defaultColor
-    ) {
-      this.setState({ color: this.props.defaultColor });
-    }
   }
 
   handleColorSchemeChange = event => {
     const selectedScheme = event.target.value;
     this.setState({ colorMenu: selectedScheme });
   };
+
   handleHueChange = hue => {
-    this.setState({ color: hue.hex });
     this.props.onChange({ target: { value: hue.hex } });
   };
 
   handleRadioItemChange = event => {
     const selectedColor = event.target.value;
-    this.setState({ color: selectedColor });
     this.props.onChange({ target: { value: selectedColor } });
   };
 
   render() {
-    const { intl, onChange, selectedColor } = this.props;
+    const { intl, onChange, selectedColor, defaultColor } = this.props;
     const colorLabel = intl.formatMessage(messages.color);
     const radioGroupStyle = { flexDirection: 'row' };
     const radioItemStyle = { padding: '2px' };
@@ -120,7 +110,7 @@ class ColorSelect extends React.Component {
           {this.state.colorMenu.name === 'Custom' ? (
             <div style={hueItemStyle}>
               <HuePicker
-                color={this.state.color}
+                color={selectedColor}
                 onChangeComplete={this.handleHueChange}
               />
             </div>
@@ -135,12 +125,11 @@ class ColorSelect extends React.Component {
               />
             ))
           )}
-          {selectedColor && (
+          {defaultColor !== selectedColor && (
             <IconButton
               label={intl.formatMessage(messages.clearSelection)}
               onClick={() => {
-                onChange();
-                this.setState({ color: this.props.defaultColor });
+                onChange({ target: { value: defaultColor } });
               }}
             >
               <CloseIcon />
