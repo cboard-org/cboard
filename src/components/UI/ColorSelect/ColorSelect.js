@@ -46,7 +46,7 @@ const propTypes = {
   intl: intlShape.isRequired,
   onChange: PropTypes.func.isRequired,
   selectedColor: PropTypes.string.isRequired,
-  color: PropTypes.string
+  defaultColor: PropTypes.string
 };
 
 class ColorSelect extends React.Component {
@@ -55,13 +55,15 @@ class ColorSelect extends React.Component {
 
     this.state = {
       colorMenu: colorSchemes[0],
-      color: this.props.color
+      color: this.props.defaultColor
     };
   }
   componentDidUpdate(prevProps) {
-    if (!this.props.selectedColor && prevProps.color !== this.props.color) {
-      this.setState({ color: this.props.color });
-      console.log(prevProps.color, this.props.color);
+    if (
+      !this.props.selectedColor &&
+      this.props.defaultColor !== prevProps.defaultColor
+    ) {
+      this.setState({ color: this.props.defaultColor });
     }
   }
 
@@ -71,7 +73,13 @@ class ColorSelect extends React.Component {
   };
   handleHueChange = hue => {
     this.setState({ color: hue.hex });
-    this.props.onChange({ target: { value: hue.hex } }); // Pasar un objeto con la estructura de un evento
+    this.props.onChange({ target: { value: hue.hex } });
+  };
+
+  handleRadioItemChange = event => {
+    const selectedColor = event.target.value;
+    this.setState({ color: selectedColor });
+    this.props.onChange({ target: { value: selectedColor } });
   };
 
   render() {
@@ -109,13 +117,12 @@ class ColorSelect extends React.Component {
             </Select>
           </FormControl>
         </div>
-
         <RadioGroup
           aria-label={colorLabel}
           name="color"
           value={selectedColor}
           style={radioGroupStyle}
-          onChange={onChange}
+          onChange={this.handleRadioItemChange}
         >
           {this.state.colorMenu.name === 'Custom' ? (
             <div style={hueItemStyle}>
@@ -140,7 +147,7 @@ class ColorSelect extends React.Component {
               label={intl.formatMessage(messages.clearSelection)}
               onClick={() => {
                 onChange();
-                this.setState({ color: this.props.color });
+                this.setState({ color: this.props.defaultColor });
               }}
             >
               <CloseIcon />

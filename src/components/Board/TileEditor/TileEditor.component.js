@@ -42,6 +42,7 @@ import {
 } from '../../../cordova-util';
 import { convertImageUrlToCatchable } from '../../../helpers';
 import PremiumFeature from '../../PremiumFeature';
+
 export class TileEditor extends Component {
   static propTypes = {
     /**
@@ -645,7 +646,7 @@ export class TileEditor extends Component {
                     <ColorSelect
                       selectedColor={this.state.selectedBackgroundColor}
                       onChange={this.handleColorChange}
-                      color={this.getDefaultColor()}
+                      defaultColor={this.getDefaultColor()}
                     />
                   </div>
                   {this.currentTileProp('type') !== 'board' && (
