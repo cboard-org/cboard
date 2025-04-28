@@ -366,7 +366,11 @@ export class TileEditor extends Component {
       loadBoard,
       type
     };
-    this.setState({ tile, linkedBoard: '' });
+    this.setState({
+      tile,
+      linkedBoard: '',
+      selectedBackgroundColor: backgroundColor
+    });
   };
 
   handleBack = event => {
@@ -390,14 +394,27 @@ export class TileEditor extends Component {
     this.setState({ isEditImageBtnActive: false });
   };
 
+  getOriginalTileBackground() {
+    const { editingTiles } = this.props;
+    const { activeStep } = this.state;
+
+    return (
+      editingTiles?.[activeStep]?.backgroundColor || this.getDefaultColor()
+    );
+  }
+
   handleColorChange = event => {
-    const color = event ? event.target.value : '';
+    const color = event?.target?.value || '';
+
     this.setState({ selectedBackgroundColor: color });
-    if (event) {
-      this.updateTileProperty('backgroundColor', event.target.value);
-    } else {
-      this.updateTileProperty('backgroundColor', this.getDefaultColor());
-    }
+
+    const backgroundColor =
+      color ||
+      (this.props.editingTiles.length
+        ? this.getOriginalTileBackground()
+        : this.getDefaultColor());
+
+    this.updateTileProperty('backgroundColor', backgroundColor);
   };
 
   getDefaultColor = () => {
@@ -644,8 +661,16 @@ export class TileEditor extends Component {
                 <div className="TileEditor__form-fields">
                   <div className="TileEditor__colorselect">
                     <ColorSelect
-                      selectedColor={this.state.selectedBackgroundColor}
+                      selectedColor={
+                        this.state.selectedBackgroundColor ||
+                        tileInView.backgroundColor
+                      }
                       onChange={this.handleColorChange}
+                      defaultColor={
+                        this.editingTile()
+                          ? this.getOriginalTileBackground()
+                          : this.getDefaultColor()
+                      }
                     />
                   </div>
                   {this.currentTileProp('type') !== 'board' && (
