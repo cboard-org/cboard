@@ -6,9 +6,6 @@ import defaultBoards from '../../../api/boards.json';
 import history from './../../../history';
 
 jest.mock('../../../api/api');
-jest.mock('./../../../history', () => ({
-  replace: jest.fn() // Mockeamos la función replace
-}));
 
 const mockStore = configureMockStore([thunk]);
 
