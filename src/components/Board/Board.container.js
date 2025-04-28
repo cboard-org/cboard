@@ -556,7 +556,7 @@ export class BoardContainer extends Component {
         if (createBoard) {
           replaceBoard({ ...boardData }, { ...boardData, id: boardId });
         }
-        this.props.history.replace(`/board/${boardId}`);
+        this.historyReplaceBoardId(boardId);
       } catch (err) {
         console.log(err.message);
       } finally {
@@ -1156,7 +1156,7 @@ export class BoardContainer extends Component {
                   { ...parentBoardData, id: parentBoardId }
                 );
               }
-              this.props.history.replace(`/board/${parentBoardId}`);
+              this.historyReplaceBoardId(parentBoardId);
               this.setState({ isSaving: false });
             })
             .catch(e => {
@@ -1174,7 +1174,7 @@ export class BoardContainer extends Component {
                   { ...parentBoardData, id: parentBoardId }
                 );
               }
-              this.props.history.replace(`/board/${parentBoardId}`);
+              this.historyReplaceBoardId(parentBoardId);
               this.setState({ isSaving: false });
             })
             .catch(e => {
@@ -1185,14 +1185,13 @@ export class BoardContainer extends Component {
     }
   };
 
+  historyReplaceBoardId(boardId) {
+    this.props.history.replace(`/board/${boardId}`);
+  }
+
   onRequestPreviousBoard() {
-    if (this.props.navHistory.length >= 2) {
-      const prevBoardId = this.props.navHistory[
-        this.props.navHistory.length - 2
-      ];
-      this.props.history.replace(`/board/${prevBoardId}`);
-      this.scrollToTop();
-    }
+    this.props.previousBoard();
+    this.scrollToTop();
   }
 
   onRequestToRootBoard() {
