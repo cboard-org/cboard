@@ -102,18 +102,11 @@ class ColorSelect extends React.Component {
               value={this.state.colorMenu}
               onChange={this.handleColorSchemeChange}
             >
-              <MenuItem value={colorSchemes[0]}>
-                {colorSchemes[0].name}
-              </MenuItem>
-              <MenuItem value={colorSchemes[1]}>
-                {colorSchemes[1].name}
-              </MenuItem>
-              <MenuItem value={colorSchemes[2]}>
-                {colorSchemes[2].name}
-              </MenuItem>
-              <MenuItem value={colorSchemes[3]}>
-                {colorSchemes[3].name}
-              </MenuItem>
+              {colorSchemes.map((scheme, index) => (
+                <MenuItem key={index} value={scheme}>
+                  {scheme.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </div>
