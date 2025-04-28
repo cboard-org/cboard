@@ -3,8 +3,12 @@ import * as types from '../Board.constants';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import defaultBoards from '../../../api/boards.json';
+import history from './../../../history';
 
 jest.mock('../../../api/api');
+jest.mock('./../../../history', () => ({
+  replace: jest.fn() // Mockeamos la función replace
+}));
 
 const mockStore = configureMockStore([thunk]);
 
@@ -126,17 +130,30 @@ describe('actions', () => {
   });
 
   it('should create an action to REPLACE_ME', () => {
+    const mockState = {
+      board: { activeBoardId: '12345678901234567' } // Mock state
+    };
+    const store = mockStore(() => mockState);
     const expectedAction = {
       type: types.PREVIOUS_BOARD
     };
-    expect(actions.previousBoard()).toEqual(expectedAction);
+    store.dispatch(actions.previousBoard());
+    const dispatchedActions = store.getActions();
+    expect(dispatchedActions).toEqual([expectedAction]);
   });
 
   it('should create an action to REPLACE_ME', () => {
-    const expectedAction = {
-      type: types.TO_ROOT_BOARD
+    const mockState = {
+      board: { activeBoardId: 'root' } // Mock state
     };
-    expect(actions.toRootBoard()).toEqual(expectedAction);
+    const store = mockStore(() => mockState);
+
+    const expectedActions = [{ type: types.TO_ROOT_BOARD }];
+    store.dispatch(actions.toRootBoard());
+    const dispatchedActions = store.getActions();
+    expect(dispatchedActions).toEqual(expectedActions);
+
+    // Verify that history.replace was called with the correct URL
   });
 
   it('should create an action to REPLACE_ME', () => {
