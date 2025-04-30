@@ -90,126 +90,125 @@ const People = ({
         disableSubmit={!isLogged}
       >
         <Paper>
-          <List>
-            <ListItem>
-              <div className="Settings__UserIcon__Container">
-                <UserIcon />
-              </div>
-              <ListItemText primary={name} />
-              <ListItemSecondaryAction className="Settings--secondaryAction">
+          <Box px={3} py={4}>
+            {/* Icono y Logout */}
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              mb={4}
+            >
+              <UserIcon sx={{ fontSize: { xs: 200, sm: 240, md: 280 } }} />
+              <Typography variant="h6" sx={{ mt: 2, textAlign: 'center' }}>
+                {name}
+              </Typography>
+              <Box display="flex" justifyContent="center" width="100%">
                 <Button
-                  disabled={!isLogged}
                   variant="outlined"
                   color="primary"
                   onClick={logout}
                   component={Link}
                   to="/"
+                  disabled={!isLogged}
+                  sx={{ mt: 2 }}
                 >
                   <FormattedMessage {...messages.logout} />
                 </Button>
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem>
-              <ListItemText
-                primary={<FormattedMessage {...messages.name} />}
-                secondary={<FormattedMessage {...messages.nameSecondary} />}
-              />
-              <ListItemSecondaryAction className="Settings--secondaryAction">
+              </Box>
+            </Box>
+
+            {/* Nombre */}
+            <Grid container spacing={2} alignItems="center" mb={3}>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="subtitle1">
+                  <FormattedMessage {...messages.name} />
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  <FormattedMessage {...messages.nameSecondary} />
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6}>
                 <TextField
+                  fullWidth
                   disabled={!isLogged}
-                  id="user-name"
                   label={<FormattedMessage {...messages.name} />}
                   value={name}
-                  margin="normal"
                   onChange={onChangePeople('name')}
                 />
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem>
-              <ListItemText
-                primary={<FormattedMessage {...messages.email} />}
-                secondary={<FormattedMessage {...messages.emailSecondary} />}
-              />
-              <ListItemSecondaryAction className="Settings--secondaryAction">
+              </Grid>
+            </Grid>
+
+            {/* Email */}
+            <Grid container spacing={2} alignItems="center" mb={3}>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="subtitle1">
+                  <FormattedMessage {...messages.email} />
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  <FormattedMessage {...messages.emailSecondary} />
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6}>
                 <TextField
-                  className="Settings--secondaryAction--textField"
-                  disabled={true} // Replace with `{!isLogged}` untill fix issue #140 on cboard-api
-                  id="user-email"
+                  fullWidth
+                  disabled
                   label={<FormattedMessage {...messages.email} />}
                   value={email}
-                  margin="normal"
                   onChange={onChangePeople('email')}
                 />
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem>
-              <ListItemText
-                primary={<FormattedMessage {...messages.birthdate} />}
-                secondary={
-                  <FormattedMessage {...messages.birthdateSecondary} />
-                }
-              />
-              <ListItemSecondaryAction className="Settings--secondaryAction">
-                <TextField
-                  className="Settings--secondaryAction--textField"
-                  disabled={!isLogged}
-                  id="user-birthdate"
-                  label={<FormattedMessage {...messages.birthdate} />}
-                  type="date"
-                  value={birthdate}
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  onChange={onChangePeople('birthdate')}
-                />
-              </ListItemSecondaryAction>
-            </ListItem>
+              </Grid>
+            </Grid>
+
+            {/* País */}
             {country && (
-              <ListItem>
-                <ListItemText
-                  primary={<FormattedMessage {...messages.location} />}
-                />
-                <ListItemSecondaryAction className="Settings--secondaryAction">
+              <Grid container spacing={2} alignItems="center" mb={3}>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="subtitle1">
+                    <FormattedMessage {...messages.location} />
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
                   <TextField
-                    className="Settings--secondaryAction--textField"
-                    disabled={true}
-                    id="user-location"
+                    fullWidth
+                    disabled
                     label={<FormattedMessage {...messages.location} />}
                     value={country}
-                    margin="normal"
-                    country-code={countryCode}
                   />
-                </ListItemSecondaryAction>
-              </ListItem>
+                </Grid>
+              </Grid>
             )}
+
+            {/* Eliminar cuenta */}
             {isLogged && (
-              <ListItem>
-                <ListItemText
-                  primary={
+              <Grid container spacing={2} alignItems="center" mt={5}>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="subtitle1">
                     <FormattedMessage {...messages.deleteAccountPrimary} />
-                  }
-                  secondary={
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
                     <FormattedMessage {...messages.deleteAccountSecondary} />
-                  }
-                  className={'list_item_left'}
-                />
-                <ListItemSecondaryAction className="Settings--secondaryAction">
-                  <Button
-                    variant="outlined"
-                    color="secondary"
-                    startIcon={<DeleteIcon />}
-                    className={'delete_button'}
-                    onClick={() => {
-                      setOpenDeleteConfirmation(true);
-                    }}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Box
+                    display="flex"
+                    justifyContent={{ xs: 'center', sm: 'flex-end' }}
                   >
-                    <FormattedMessage {...messages.deleteAccountPrimary} />
-                  </Button>
-                </ListItemSecondaryAction>
-              </ListItem>
+                    <Button
+                      variant="outlined"
+                      color="secondary"
+                      startIcon={<DeleteIcon />}
+                      onClick={() => setOpenDeleteConfirmation(true)}
+                    >
+                      <FormattedMessage {...messages.deleteAccountPrimary} />
+                    </Button>
+                  </Box>
+                </Grid>
+              </Grid>
             )}
-          </List>
+          </Box>
         </Paper>
+
         <DeleteConfirmationDialog
           open={openDeleteConfirmation}
           handleClose={handleCloseDeleteDialog}
