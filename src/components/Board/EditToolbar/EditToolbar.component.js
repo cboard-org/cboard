@@ -75,10 +75,7 @@ EditToolbar.propTypes = {
    */
   onAddClick: PropTypes.func,
   onBoardTypeChange: PropTypes.func,
-  copiedTiles: PropTypes.arrayOf(PropTypes.object),
-  open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  onDialogAccecpted: PropTypes.func.isRequired
+  copiedTiles: PropTypes.arrayOf(PropTypes.object)
 };
 
 function EditToolbar({
