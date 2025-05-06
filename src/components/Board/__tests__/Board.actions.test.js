@@ -3,6 +3,7 @@ import * as types from '../Board.constants';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import defaultBoards from '../../../api/boards.json';
+import { init } from 'lodash/fp';
 
 jest.mock('../../../api/api');
 
@@ -126,10 +127,7 @@ describe('actions', () => {
   });
 
   it('should create an action to REPLACE_ME', () => {
-    const mockState = {
-      board: { activeBoardId: '12345678901234567' } // Mock state
-    };
-    const store = mockStore(() => mockState);
+    const store = mockStore(() => initialState);
     const expectedAction = {
       type: types.PREVIOUS_BOARD
     };
@@ -139,17 +137,11 @@ describe('actions', () => {
   });
 
   it('should create an action to REPLACE_ME', () => {
-    const mockState = {
-      board: { activeBoardId: 'root' } // Mock state
-    };
-    const store = mockStore(() => mockState);
-
+    const store = mockStore(() => initialState);
     const expectedActions = [{ type: types.TO_ROOT_BOARD }];
     store.dispatch(actions.toRootBoard());
     const dispatchedActions = store.getActions();
     expect(dispatchedActions).toEqual(expectedActions);
-
-    // Verify that history.replace was called with the correct URL
   });
 
   it('should create an action to REPLACE_ME', () => {
