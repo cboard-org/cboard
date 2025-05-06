@@ -3,7 +3,6 @@ import * as types from '../Board.constants';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import defaultBoards from '../../../api/boards.json';
-import { init } from 'lodash/fp';
 
 jest.mock('../../../api/api');
 
