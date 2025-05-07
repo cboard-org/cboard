@@ -98,7 +98,7 @@ const People = ({
               alignItems="center"
               mb={4}
             >
-              <UserIcon sx={{ fontSize: { xs: 200, sm: 240, md: 280 } }} />
+              <UserIcon />
               <Typography variant="h6" sx={{ mt: 2, textAlign: 'center' }}>
                 {name}
               </Typography>

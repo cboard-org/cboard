@@ -18,11 +18,23 @@ const propTypes = {
   user: PropTypes.object
 };
 
-const styles = {
+const styles = theme => ({
   greenAvatar: {
     backgroundColor: green[500]
+  },
+  responsiveSize: {
+    width: 30,
+    height: 30,
+    [theme.breakpoints.up('sm')]: {
+      width: 35,
+      height: 35
+    },
+    [theme.breakpoints.up('md')]: {
+      width: 45,
+      height: 45
+    }
   }
-};
+});
 
 export const UserIcon = ({ intl, user, classes, ...other }) => {
   let avatar = null;
@@ -57,7 +69,7 @@ export const UserIcon = ({ intl, user, classes, ...other }) => {
       {...other}
     >
       <React.Fragment>
-        {!user && <AccountIcon />}
+        {!user && <AccountIcon className={classes.responsiveSize} />}
         {!!user && (
           <Avatar className={`UserIcon__Avatar ${classes.greenAvatar}`}>
             {!hasPhotos && avatar}
