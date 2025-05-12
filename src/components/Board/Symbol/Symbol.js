@@ -9,7 +9,6 @@ import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
 import { CircularProgress, Typography } from '@material-ui/core';
 import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
-import { set } from 'lodash';
 
 const propTypes = {
   /**

@@ -43,13 +43,13 @@ const TileRenderer = ({
 };
 
 TileRenderer.propTypes = {
-  tile: PropTypes.object.isRequired,
-  isSelected: PropTypes.bool.isRequired,
-  isSelecting: PropTypes.bool.isRequired,
-  isSaving: PropTypes.bool.isRequired,
-  displaySettings: PropTypes.object.isRequired,
-  onTileClick: PropTypes.func.isRequired,
-  onTileFocus: PropTypes.func.isRequired
+  tile: PropTypes.object,
+  isSelected: PropTypes.bool,
+  isSelecting: PropTypes.bool,
+  isSaving: PropTypes.bool,
+  displaySettings: PropTypes.object,
+  onTileClick: PropTypes.func,
+  onTileFocus: PropTypes.func
 };
 
 export default TileRenderer;
