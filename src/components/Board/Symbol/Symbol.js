@@ -7,8 +7,9 @@ import messages from '../Board.messages';
 
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
-import { Typography } from '@material-ui/core';
+import { CircularProgress, Typography } from '@material-ui/core';
 import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
+import { set } from 'lodash';
 
 const propTypes = {
   /**
@@ -38,10 +39,12 @@ function Symbol(props) {
     ...other
   } = props;
   const [src, setSrc] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(
     () => {
       async function getSrc() {
+        setIsLoading(true);
         let image = null;
         if (keyPath) {
           const arasaacDB = await getArasaacDB();
@@ -61,7 +64,6 @@ function Symbol(props) {
           setSrc(image);
         }
       }
-
       getSrc();
     },
     [keyPath, setSrc, props.image]
@@ -106,7 +108,18 @@ function Symbol(props) {
         )}
       {src && (
         <div className="Symbol__image-container">
-          <img className="Symbol__image" src={src} alt="" />
+          {isLoading && (
+            <div className="Symbol__image-loading">
+              <CircularProgress size={24} />
+            </div>
+          )}
+          <img
+            className="Symbol__image"
+            src={src}
+            alt=""
+            onLoad={() => setIsLoading(false)}
+            style={{ display: isLoading ? 'none' : 'block' }}
+          />
         </div>
       )}
       {props.type !== 'live' &&

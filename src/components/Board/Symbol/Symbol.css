@@ -19,6 +19,18 @@
 .SymbolSearch__Suggestion > .Symbol {
   position: unset;
 }
+.Symbol__image-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* o un alto fijo si lo necesitás */
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: none;
+}
 
 .LiveSymbolOutput__value > .Symbol {
   padding: 0.2em 0.9em 0.2em 0.9em;

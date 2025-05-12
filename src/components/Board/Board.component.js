@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import classNames from 'classnames';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { Scanner, Scannable } from 'react-scannable';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -14,11 +13,9 @@ import Alert from '@material-ui/lab/Alert';
 
 import FixedGrid from '../FixedGrid';
 import Grid from '../Grid';
-import Symbol from './Symbol';
 import OutputContainer from './Output';
 import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
-import Tile from './Tile';
 import EmptyBoard from './EmptyBoard';
 import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
 import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
@@ -35,6 +32,7 @@ import BoardTour from './BoardTour/BoardTour';
 import ScrollButtons from '../ScrollButtons';
 import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../Settings/Navigation/Navigation.constants';
 import ImprovePhraseOutput from './ImprovePhraseOutput';
+import TileRenderer from './Tile/Tile.action';
 
 export class Board extends Component {
   static propTypes = {
@@ -136,6 +134,12 @@ export class Board extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.board.tiles !== this.props.board.tiles) {
+      console.log('Tiles updated:', this.props.board.tiles);
+    }
+  }
+
   handleTileClick = tile => {
     const { onTileClick, isSelecting } = this.props;
 
@@ -193,88 +197,33 @@ export class Board extends Component {
   };
 
   renderTiles(tiles) {
-    const {
-      isSelecting,
-      isSaving,
-      selectedTileIds,
-      displaySettings
-    } = this.props;
-
     return tiles.map(tile => {
-      const isSelected = selectedTileIds.includes(tile.id);
-      const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
-
-      return (
-        <div key={tile.id}>
-          <Tile
-            backgroundColor={tile.backgroundColor}
-            borderColor={tile.borderColor}
-            variant={variant}
-            onClick={e => {
-              e.stopPropagation();
-              this.handleTileClick(tile);
-            }}
-            onFocus={() => {
-              this.handleTileFocus(tile.id);
-            }}
-          >
-            <Symbol
-              image={tile.image}
-              label={tile.label}
-              keyPath={tile.keyPath}
-              labelpos={displaySettings.labelPosition}
-            />
-
-            {isSelecting && !isSaving && (
-              <div className="CheckCircle">
-                {isSelected && (
-                  <CheckCircleIcon className="CheckCircle__icon" />
-                )}
-              </div>
-            )}
-          </Tile>
-        </div>
-      );
+      return <div key={tile.id}>{this.renderTile(tile)}</div>;
     });
   }
 
   renderTileFixedBoard(tile) {
+    return this.renderTile(tile);
+  }
+
+  renderTile(tile) {
     const {
       isSelecting,
       isSaving,
       selectedTileIds,
       displaySettings
     } = this.props;
-
     const isSelected = selectedTileIds.includes(tile.id);
-    const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
-
     return (
-      <Tile
-        backgroundColor={tile.backgroundColor}
-        borderColor={tile.borderColor}
-        variant={variant}
-        onClick={e => {
-          e.stopPropagation();
-          this.handleTileClick(tile);
-        }}
-        onFocus={() => {
-          this.handleTileFocus(tile.id);
-        }}
-      >
-        <Symbol
-          image={tile.image}
-          label={tile.label}
-          keyPath={tile.keyPath}
-          labelpos={displaySettings.labelPosition}
-        />
-
-        {isSelecting && !isSaving && (
-          <div className="CheckCircle">
-            {isSelected && <CheckCircleIcon className="CheckCircle__icon" />}
-          </div>
-        )}
-      </Tile>
+      <TileRenderer
+        tile={tile}
+        isSelected={isSelected}
+        isSelecting={isSelecting}
+        isSaving={isSaving}
+        displaySettings={displaySettings}
+        onTileClick={this.handleTileClick}
+        onTileFocus={this.handleTileFocus}
+      />
     );
   }
 
