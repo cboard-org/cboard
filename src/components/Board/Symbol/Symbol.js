@@ -7,7 +7,7 @@ import messages from '../Board.messages';
 
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
-import { Typography } from '@material-ui/core';
+import { CircularProgress, Typography } from '@material-ui/core';
 import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
 
 const propTypes = {
@@ -25,6 +25,46 @@ const propTypes = {
   intl: PropTypes.object
 };
 
+function CheckSrc(src, setIsLoading) {
+  useEffect(
+    () => {
+      if (!src) return;
+
+      setIsLoading(true);
+
+      const img = new Image();
+      img.src = src;
+
+      if (img.complete) {
+        setIsLoading(false);
+      } else {
+        img.onload = () => setIsLoading(false);
+        img.onerror = () => setIsLoading(false);
+        img.onabort = () => setIsLoading(false);
+      }
+    },
+    [src, setIsLoading]
+  );
+}
+
+async function getSrc(keyPath, img, setSrc, setIsLoading) {
+  setIsLoading(true);
+  let image = null;
+  if (keyPath) {
+    const arasaacDB = await getArasaacDB();
+    image = await arasaacDB.getImageById(keyPath);
+  }
+  if (image) {
+    const blob = new Blob([image.data], { type: image.type });
+    const url = URL.createObjectURL(blob);
+    setSrc(url);
+  } else if (img) {
+    // Cordova path cannot be absolute
+    const image = isCordova() && img && img.search('/') === 0 ? `.${img}` : img;
+
+    setSrc(image);
+  }
+}
 function Symbol(props) {
   const {
     className,
@@ -38,34 +78,16 @@ function Symbol(props) {
     ...other
   } = props;
   const [src, setSrc] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(
     () => {
-      async function getSrc() {
-        let image = null;
-        if (keyPath) {
-          const arasaacDB = await getArasaacDB();
-          image = await arasaacDB.getImageById(keyPath);
-        }
-
-        if (image) {
-          const blob = new Blob([image.data], { type: image.type });
-          setSrc(URL.createObjectURL(blob));
-        } else if (props.image) {
-          // Cordova path cannot be absolute
-          const image =
-            isCordova() && props.image && props.image.search('/') === 0
-              ? `.${props.image}`
-              : props.image;
-
-          setSrc(image);
-        }
-      }
-
-      getSrc();
+      getSrc(keyPath, props.image, setSrc, setIsLoading);
     },
     [keyPath, setSrc, props.image]
   );
+
+  CheckSrc(src, setIsLoading);
 
   const symbolClassName = classNames('Symbol', className);
 
@@ -106,7 +128,18 @@ function Symbol(props) {
         )}
       {src && (
         <div className="Symbol__image-container">
-          <img className="Symbol__image" src={src} alt="" />
+          {isLoading && (
+            <div className="Symbol__image-loading">
+              <CircularProgress size={24} />
+            </div>
+          )}
+          <img
+            alt=""
+            className="Symbol__image"
+            src={src}
+            style={{ display: isLoading ? 'none' : 'block' }}
+            loading="lazy"
+          />
         </div>
       )}
       {props.type !== 'live' &&
