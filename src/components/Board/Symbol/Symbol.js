@@ -29,7 +29,6 @@ function CheckSrc(src, setIsLoading) {
   useEffect(
     () => {
       if (!src) return;
-
       setIsLoading(true);
 
       const img = new Image();
@@ -47,24 +46,6 @@ function CheckSrc(src, setIsLoading) {
   );
 }
 
-async function getSrc(keyPath, img, setSrc, setIsLoading) {
-  setIsLoading(true);
-  let image = null;
-  if (keyPath) {
-    const arasaacDB = await getArasaacDB();
-    image = await arasaacDB.getImageById(keyPath);
-  }
-  if (image) {
-    const blob = new Blob([image.data], { type: image.type });
-    const url = URL.createObjectURL(blob);
-    setSrc(url);
-  } else if (img) {
-    // Cordova path cannot be absolute
-    const image = isCordova() && img && img.search('/') === 0 ? `.${img}` : img;
-
-    setSrc(image);
-  }
-}
 function Symbol(props) {
   const {
     className,
@@ -82,7 +63,28 @@ function Symbol(props) {
 
   useEffect(
     () => {
-      getSrc(keyPath, props.image, setSrc, setIsLoading);
+      async function getSrc() {
+        setIsLoading(true);
+        let image = null;
+        if (keyPath) {
+          const arasaacDB = await getArasaacDB();
+          image = await arasaacDB.getImageById(keyPath);
+        }
+        if (image) {
+          const blob = new Blob([image.data], { type: image.type });
+          const url = URL.createObjectURL(blob);
+          setSrc(url);
+          return;
+        } else if (props.image) {
+          // Cordova path cannot be absolute
+          const image =
+            isCordova() && props.image && props.image.search('/') === 0
+              ? `.${props.image}`
+              : props.image;
+          setSrc(image);
+        }
+      }
+      getSrc();
     },
     [keyPath, setSrc, props.image]
   );
@@ -134,7 +136,7 @@ function Symbol(props) {
             </div>
           )}
           <img
-            alt=""
+            alt={label}
             className="Symbol__image"
             src={src}
             style={{ display: isLoading ? 'none' : 'block' }}
