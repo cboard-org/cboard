@@ -7,8 +7,9 @@ import messages from '../Board.messages';
 
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
-import { CircularProgress, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
+import { Skeleton } from '@material-ui/lab';
 
 const propTypes = {
   /**
@@ -132,16 +133,22 @@ function Symbol(props) {
         <div className="Symbol__image-container">
           {isLoading && (
             <div className="Symbol__image-loading">
-              <CircularProgress size={24} />
+              <Skeleton
+                variant="rect"
+                width="100%"
+                height="100%"
+                animation="pulse"
+              />
             </div>
           )}
-          <img
-            alt={label}
-            className="Symbol__image"
-            src={src}
-            style={{ display: isLoading ? 'none' : 'block' }}
-            loading="lazy"
-          />
+          {!isLoading && (
+            <img
+              alt={label}
+              className="Symbol__image"
+              src={src}
+              loading="lazy"
+            />
+          )}
         </div>
       )}
       {props.type !== 'live' &&
