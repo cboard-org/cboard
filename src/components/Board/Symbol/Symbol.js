@@ -101,7 +101,11 @@ function Symbol(props) {
     }
   };
 
-  return (
+  return isLoading ? (
+    <div className="Symbol__image-loading">
+      <Skeleton variant="rect" width="100%" height="100%" animation="wave" />
+    </div>
+  ) : (
     <div className={symbolClassName} image={src} {...other}>
       {props.type === 'live' && (
         <OutlinedInput
@@ -131,23 +135,7 @@ function Symbol(props) {
         )}
       {src && (
         <div className="Symbol__image-container">
-          {isLoading ? (
-            <div className="Symbol__image-loading">
-              <Skeleton
-                variant="circle"
-                width="100%"
-                height="100%"
-                animation="wave"
-              />
-            </div>
-          ) : (
-            <img
-              alt={label}
-              className="Symbol__image"
-              src={src}
-              loading="lazy"
-            />
-          )}
+          <img alt={label} className="Symbol__image" src={src} loading="lazy" />
         </div>
       )}
       {props.type !== 'live' &&
