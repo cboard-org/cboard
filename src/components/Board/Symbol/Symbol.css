@@ -69,6 +69,19 @@
   pointer-events: none;
 }
 
+.Symbol__image-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* o un alto fijo si lo necesitás */
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: none;
+}
+
 .Symbol .Symbol__label {
   width: 95%;
   font-size: 0.85rem;

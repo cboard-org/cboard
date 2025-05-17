@@ -9,6 +9,7 @@ import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
 import { Typography } from '@material-ui/core';
 import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
+import { Skeleton } from '@material-ui/lab';
 
 const propTypes = {
   /**
@@ -25,6 +26,27 @@ const propTypes = {
   intl: PropTypes.object
 };
 
+function CheckSrc(src, setIsLoading) {
+  useEffect(
+    () => {
+      if (!src) return;
+      setIsLoading(true);
+
+      const img = new Image();
+      img.src = src;
+
+      if (img.complete) {
+        setIsLoading(false);
+      } else {
+        img.onload = () => setIsLoading(false);
+        img.onerror = () => setIsLoading(false);
+        img.onabort = () => setIsLoading(false);
+      }
+    },
+    [src, setIsLoading]
+  );
+}
+
 function Symbol(props) {
   const {
     className,
@@ -38,34 +60,37 @@ function Symbol(props) {
     ...other
   } = props;
   const [src, setSrc] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(
     () => {
       async function getSrc() {
+        setIsLoading(true);
         let image = null;
         if (keyPath) {
           const arasaacDB = await getArasaacDB();
           image = await arasaacDB.getImageById(keyPath);
         }
-
         if (image) {
           const blob = new Blob([image.data], { type: image.type });
-          setSrc(URL.createObjectURL(blob));
+          const url = URL.createObjectURL(blob);
+          setSrc(url);
+          return;
         } else if (props.image) {
           // Cordova path cannot be absolute
           const image =
             isCordova() && props.image && props.image.search('/') === 0
               ? `.${props.image}`
               : props.image;
-
           setSrc(image);
         }
       }
-
       getSrc();
     },
     [keyPath, setSrc, props.image]
   );
+
+  CheckSrc(src, setIsLoading);
 
   const symbolClassName = classNames('Symbol', className);
 
@@ -76,7 +101,11 @@ function Symbol(props) {
     }
   };
 
-  return (
+  return isLoading ? (
+    <div className="Symbol__image-loading">
+      <Skeleton variant="rect" width="100%" height="100%" animation="wave" />
+    </div>
+  ) : (
     <div className={symbolClassName} image={src} {...other}>
       {props.type === 'live' && (
         <OutlinedInput
@@ -106,7 +135,7 @@ function Symbol(props) {
         )}
       {src && (
         <div className="Symbol__image-container">
-          <img className="Symbol__image" src={src} alt="" />
+          <img alt={label} className="Symbol__image" src={src} loading="lazy" />
         </div>
       )}
       {props.type !== 'live' &&
