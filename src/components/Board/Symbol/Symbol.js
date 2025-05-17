@@ -131,17 +131,16 @@ function Symbol(props) {
         )}
       {src && (
         <div className="Symbol__image-container">
-          {isLoading && (
+          {isLoading ? (
             <div className="Symbol__image-loading">
               <Skeleton
-                variant="rect"
+                variant="circle"
                 width="100%"
                 height="100%"
-                animation="pulse"
+                animation="wave"
               />
             </div>
-          )}
-          {!isLoading && (
+          ) : (
             <img
               alt={label}
               className="Symbol__image"
