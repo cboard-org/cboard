@@ -31,15 +31,16 @@ function Grid(props) {
     gridState,
     ...other
   } = props;
+  const { items } = gridState;
 
   const itemsPerPage = other.rows * other.columns;
-  const [pages, setPages] = useState(chunks(gridState.items, itemsPerPage));
+  const [pages, setPages] = useState(chunks(items, itemsPerPage));
 
   useEffect(
     () => {
-      setPages(chunks(gridState.items, itemsPerPage));
+      setPages(chunks(items, itemsPerPage));
     },
-    [gridState.items, itemsPerPage]
+    [items, itemsPerPage]
   );
 
   const gridClassName = classNames(styles.grid, className);
