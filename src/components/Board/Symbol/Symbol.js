@@ -9,7 +9,6 @@ import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
 import { Typography } from '@material-ui/core';
 import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
-import { Skeleton } from '@material-ui/lab';
 
 const propTypes = {
   /**
@@ -26,12 +25,11 @@ const propTypes = {
   intl: PropTypes.object
 };
 
-function CheckSrc(src, setIsLoading) {
+function useCheckSrc(src, setIsLoading) {
   useEffect(
     () => {
       if (!src) return;
       setIsLoading(true);
-
       const img = new Image();
       img.src = src;
 
@@ -65,7 +63,6 @@ function Symbol(props) {
   useEffect(
     () => {
       async function getSrc() {
-        setIsLoading(true);
         let image = null;
         if (keyPath) {
           const arasaacDB = await getArasaacDB();
@@ -90,7 +87,7 @@ function Symbol(props) {
     [keyPath, setSrc, props.image]
   );
 
-  CheckSrc(src, setIsLoading);
+  useCheckSrc(src, setIsLoading);
 
   const symbolClassName = classNames('Symbol', className);
 
@@ -101,11 +98,7 @@ function Symbol(props) {
     }
   };
 
-  return isLoading ? (
-    <div className="Symbol__image-loading">
-      <Skeleton variant="rect" width="100%" height="100%" animation="wave" />
-    </div>
-  ) : (
+  return (
     <div className={symbolClassName} image={src} {...other}>
       {props.type === 'live' && (
         <OutlinedInput
@@ -135,7 +128,11 @@ function Symbol(props) {
         )}
       {src && (
         <div className="Symbol__image-container">
-          <img alt={label} className="Symbol__image" src={src} loading="lazy" />
+          {isLoading ? (
+            <div className="Symbol__image-loading" />
+          ) : (
+            <img alt="" className="Symbol__image" src={src} />
+          )}
         </div>
       )}
       {props.type !== 'live' &&
