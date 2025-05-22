@@ -29,7 +29,6 @@ function GridBase(props) {
 
   const grid = useMemo(
     () => {
-      console.log('REmemoized');
       return utils.sortGrid({ columns, rows, order, items });
     },
     [columns, rows, order, items]
