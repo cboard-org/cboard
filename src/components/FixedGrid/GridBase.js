@@ -23,10 +23,9 @@ function GridBase(props) {
     ...other
   } = props;
 
-  const { items, order } = gridState;
-
   const gridClassName = classNames(styles.root, className);
 
+  const { items, order } = gridState;
   const grid = useMemo(
     () => {
       return utils.sortGrid({ columns, rows, order, items });
