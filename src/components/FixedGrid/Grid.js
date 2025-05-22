@@ -212,7 +212,7 @@ function Grid(props) {
         setIsScroll(isScroll, totalRows);
       }
     },
-    [gridState.items, pages, setIsScroll, other.rows, isBigScrollBtns]
+    [items, pages, setIsScroll, other.rows, isBigScrollBtns]
   );
 
   return (
