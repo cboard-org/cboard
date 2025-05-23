@@ -126,17 +126,21 @@ describe('actions', () => {
   });
 
   it('should create an action to REPLACE_ME', () => {
+    const store = mockStore(() => initialState);
     const expectedAction = {
       type: types.PREVIOUS_BOARD
     };
-    expect(actions.previousBoard()).toEqual(expectedAction);
+    store.dispatch(actions.previousBoard());
+    const dispatchedActions = store.getActions();
+    expect(dispatchedActions).toEqual([expectedAction]);
   });
 
   it('should create an action to REPLACE_ME', () => {
-    const expectedAction = {
-      type: types.TO_ROOT_BOARD
-    };
-    expect(actions.toRootBoard()).toEqual(expectedAction);
+    const store = mockStore(() => initialState);
+    const expectedActions = [{ type: types.TO_ROOT_BOARD }];
+    store.dispatch(actions.toRootBoard());
+    const dispatchedActions = store.getActions();
+    expect(dispatchedActions).toEqual(expectedActions);
   });
 
   it('should create an action to REPLACE_ME', () => {
