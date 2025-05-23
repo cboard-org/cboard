@@ -18,6 +18,8 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import BlockPicker from 'react-color';
+import ColorizeIcon from '@material-ui/icons/Colorize';
 
 import messages from './TileEditor.messages';
 import SymbolSearch from '../SymbolSearch';
@@ -119,6 +121,12 @@ export class TileEditor extends Component {
       blob: null
     };
   }
+
+  handleTogglePicker = () => {
+    this.setState(prevState => ({
+      enablePicker: !prevState.enablePicker
+    }));
+  };
 
   UNSAFE_componentWillReceiveProps(props) {
     this.updateTileProperty('id', shortid.generate()); // todo not here
@@ -417,6 +425,16 @@ export class TileEditor extends Component {
     this.updateTileProperty('backgroundColor', backgroundColor);
   };
 
+  handleChangeComplete = color => {
+    const colorhex = color?.hex || '';
+    this.setState({ selectedBackgroundColor: colorhex });
+    if (color) {
+      this.updateTileProperty('backgroundColor', colorhex);
+    } else {
+      this.updateTileProperty('backgroundColor', this.getDefaultColor());
+    }
+  };
+
   getDefaultColor = () => {
     if (this.currentTileProp('type') === 'folder') {
       return this.defaultTileColors.folder;
@@ -468,6 +486,8 @@ export class TileEditor extends Component {
   };
 
   render() {
+    const { enablePicker } = this.state;
+
     const { open, intl, boards } = this.props;
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
@@ -672,6 +692,16 @@ export class TileEditor extends Component {
                           : this.getDefaultColor()
                       }
                     />
+                    <ColorizeIcon
+                      onClick={this.handleTogglePicker}
+                      style={{ cursor: 'pointer' }}
+                    />
+                    {enablePicker && (
+                      <BlockPicker
+                        color={this.state.selectedBackgroundColor}
+                        onChangeComplete={this.handleChangeComplete}
+                      />
+                    )}
                   </div>
                   {this.currentTileProp('type') !== 'board' && (
                     <div className="TileEditor__voicerecorder">
