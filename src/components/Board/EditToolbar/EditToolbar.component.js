@@ -75,10 +75,7 @@ EditToolbar.propTypes = {
    */
   onAddClick: PropTypes.func,
   onBoardTypeChange: PropTypes.func,
-  copiedTiles: PropTypes.arrayOf(PropTypes.object),
-  open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  onDialogAccecpted: PropTypes.func.isRequired
+  copiedTiles: PropTypes.arrayOf(PropTypes.object)
 };
 
 function EditToolbar({
@@ -105,12 +102,20 @@ function EditToolbar({
 }) {
   const isItemsSelected = !!selectedItemsCount;
   const isFixed = !!isFixedBoard;
-  const [openDeleteTiles, setOpenDeleteTiles] = useState(false);
-  const handleClickOpen = () => {
-    setOpenDeleteTiles(true);
+
+  const [openDeleteTilesDialog, setOpenDeleteTilesDialog] = useState(false);
+
+  const handleOpenDeleteTilesDialog = () => {
+    setOpenDeleteTilesDialog(true);
   };
-  const handleClose = () => {
-    setOpenDeleteTiles(false);
+
+  const handleCloseDeleteTilesDialog = () => {
+    setOpenDeleteTilesDialog(false);
+  };
+
+  const handleDeleteTilesAccepted = () => {
+    onDeleteClick();
+    handleCloseDeleteTilesDialog();
   };
 
   return (
@@ -188,13 +193,14 @@ function EditToolbar({
             <IconButton
               label={intl.formatMessage(messages.deleteTiles)}
               disabled={!isItemsSelected}
-              onClick={() => {
-                handleClickOpen();
-              }}
+              onClick={handleOpenDeleteTilesDialog}
             >
               <DeleteIcon />
             </IconButton>
-            <Dialog open={openDeleteTiles} onClose={handleClose}>
+            <Dialog
+              open={openDeleteTilesDialog}
+              onClose={handleCloseDeleteTilesDialog}
+            >
               <DialogTitle id="alert-dialog-title">
                 {intl.formatMessage(messages.deleteTileTitle)}
               </DialogTitle>
@@ -202,11 +208,11 @@ function EditToolbar({
                 {intl.formatMessage(messages.deleteTileDescription)}
               </DialogContent>
               <DialogActions>
-                <Button onClick={handleClose} color="primary">
+                <Button onClick={handleCloseDeleteTilesDialog} color="primary">
                   {intl.formatMessage(messages.deleteTileCancel)}
                 </Button>
                 <Button
-                  onClick={onDeleteClick}
+                  onClick={handleDeleteTilesAccepted}
                   variant="contained"
                   color="primary"
                   autoFocus

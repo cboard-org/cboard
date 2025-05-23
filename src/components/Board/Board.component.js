@@ -474,8 +474,10 @@ export class Board extends Component {
 
                 {board.isFixed && (
                   <FixedGrid
-                    order={board.grid ? board.grid.order : []}
-                    items={board.tiles}
+                    gridState={{
+                      order: board.grid ? board.grid.order : [],
+                      items: board.tiles
+                    }}
                     columns={
                       board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER
                     }

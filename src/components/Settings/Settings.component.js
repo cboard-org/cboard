@@ -33,7 +33,6 @@ import { CircularProgress } from '@material-ui/core';
 import { Adsense } from '@ctrl/react-adsense';
 import {
   ADSENSE_ON_PRODUCTION,
-  ADTEST_AVAILABLE,
   ADSENSE_CLIENT,
   ADD_SLOT_SETTINGS_TOP
 } from '../../constants';
