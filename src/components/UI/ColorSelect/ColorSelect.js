@@ -111,7 +111,7 @@ class ColorSelect extends React.Component {
             <div style={hueItemStyle}>
               <HuePicker
                 color={selectedColor}
-                onChangeComplete={this.handleHueChange}
+                onChange={this.handleHueChange}
               />
             </div>
           ) : (
