@@ -25,24 +25,25 @@ const propTypes = {
   intl: PropTypes.object
 };
 
-function useCheckSrc(src, setIsLoading) {
+function useCheckSrc(src) {
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(
     () => {
       if (!src) return;
       setIsLoading(true);
       const img = new Image();
       img.src = src;
-
       if (img.complete) {
         setIsLoading(false);
-      } else {
-        img.onload = () => setIsLoading(false);
-        img.onerror = () => setIsLoading(false);
-        img.onabort = () => setIsLoading(false);
+        return;
       }
+      img.onload = () => setIsLoading(false);
+      img.onerror = () => setIsLoading(false);
+      img.onabort = () => setIsLoading(false);
     },
     [src, setIsLoading]
   );
+  return [isLoading];
 }
 
 function Symbol(props) {
@@ -58,7 +59,6 @@ function Symbol(props) {
     ...other
   } = props;
   const [src, setSrc] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(
     () => {
@@ -87,7 +87,7 @@ function Symbol(props) {
     [keyPath, setSrc, props.image]
   );
 
-  useCheckSrc(src, setIsLoading);
+  const [isLoading] = useCheckSrc(src);
 
   const symbolClassName = classNames('Symbol', className);
 
@@ -128,11 +128,7 @@ function Symbol(props) {
         )}
       {src && (
         <div className="Symbol__image-container">
-          {isLoading ? (
-            <div className="Symbol__image-loading" />
-          ) : (
-            <img alt="" className="Symbol__image" src={src} />
-          )}
+          {!isLoading && <img alt="" className="Symbol__image" src={src} />}
         </div>
       )}
       {props.type !== 'live' &&
