@@ -25,6 +25,27 @@ const propTypes = {
   intl: PropTypes.object
 };
 
+function useCheckSrc(src) {
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(
+    () => {
+      if (!src) return;
+      setIsLoading(true);
+      const img = new Image();
+      img.src = src;
+      if (img.complete) {
+        setIsLoading(false);
+        return;
+      }
+      img.onload = () => setIsLoading(false);
+      img.onerror = () => setIsLoading(false);
+      img.onabort = () => setIsLoading(false);
+    },
+    [src, setIsLoading]
+  );
+  return [isLoading];
+}
+
 function Symbol(props) {
   const {
     className,
@@ -47,25 +68,26 @@ function Symbol(props) {
           const arasaacDB = await getArasaacDB();
           image = await arasaacDB.getImageById(keyPath);
         }
-
         if (image) {
           const blob = new Blob([image.data], { type: image.type });
-          setSrc(URL.createObjectURL(blob));
+          const url = URL.createObjectURL(blob);
+          setSrc(url);
+          return;
         } else if (props.image) {
           // Cordova path cannot be absolute
           const image =
             isCordova() && props.image && props.image.search('/') === 0
               ? `.${props.image}`
               : props.image;
-
           setSrc(image);
         }
       }
-
       getSrc();
     },
     [keyPath, setSrc, props.image]
   );
+
+  const [isLoading] = useCheckSrc(src);
 
   const symbolClassName = classNames('Symbol', className);
 
@@ -106,7 +128,7 @@ function Symbol(props) {
         )}
       {src && (
         <div className="Symbol__image-container">
-          <img className="Symbol__image" src={src} alt="" />
+          {!isLoading && <img alt="" className="Symbol__image" src={src} />}
         </div>
       )}
       {props.type !== 'live' &&
