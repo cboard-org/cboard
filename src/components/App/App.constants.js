@@ -24,6 +24,7 @@ export const APP_LANGS = [
   'en-US',
   'en-GB',
   'es-ES',
+  'fa-IR',
   'fi-FI',
   'fr-FR',
   'he-IL',
@@ -81,5 +82,6 @@ export const USER_DATA_PROPERTIES = [
   'lastlogin',
   'createdAt',
   'updatedAt',
-  'authToken'
+  'authToken',
+  'isAdmin'
 ];

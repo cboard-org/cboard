@@ -5,8 +5,8 @@
 * [מה זה Cboard?](#WhatisCboard)
 * [הרשמה וכניסה](#Registrationandlogin) 
     * [איך נרשמים ל־Cboard?](#HowdoIregisterforCboard)
-    * [Can I register myself using my social media accounts?](#CanIregistermyselfusingmysocialmediaaccounts)
-    * [How do I log in to Cboard once I am a registered user?](#HowdoIlogintoCboardonceIamaregistereduser)
+    * [אוכל להירשם עם חשבונות הרשתות החברתיות שלי?](#CanIregistermyselfusingmysocialmediaaccounts)
+    * [אי אפשר להיכנס ל־Cboard לאחר ההרשמה?](#HowdoIlogintoCboardonceIamaregistereduser)
     * [איך אפשר לצאת מהמערכת?](#HowdoIlogout)
     * [מה ההבדל בין משתמשים שנרשמו לכאלה שלא?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
     * [איך אפשר לעדכן את פרטי המשתמש שלי?](#HowdoIupdatemyuserinformation)
@@ -16,7 +16,7 @@
 * [יכולות](#Features) 
     * [אילו מכשירים ומערכות הפעלה נתמכים?](#WhatdevicesandOSaresupported)
     * [אילו שפות נתמכות על ידי Cboard?](#WhichlanguagesaresupportedbyCboard)
-    * [Can Cboard read my message out aloud?](#CanCboardreadmymessageoutaloud)
+    * [האם Cboard יכול להקריא את ההודעה שלי בקול רם?](#CanCboardreadmymessageoutaloud)
     * [יכולות דיבור](#Speechcapabilities)
     * [ייצוא וייבוא](#Exportandimport)
     * [יכולות תצוגה](#Displaycapabilities)
@@ -29,18 +29,18 @@
     * [איך אפשר לשתף לוח?](#HowdoIshareaboard)
     * [איך אפשר לשתף ביטוי?](#HowdoIshareaphrase)
 * [דיבור](#Talking) 
-    * [How do I add a personally recorded voice to symbols on Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
+    * [איך אפשר להוסיף קול מוקלט משלי לסמלים ב־Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
     * [איך מחליפים לסוג קול אחר?](#HowdoIswitchtoadifferentvoice)
     * [איך אפשר לשנות את סוג הקול?](#HowdoIchangehowavoicesounds)
 * [עריכת לוח](#BoardEditing) 
     * [איך אפשר ליצור לוח ריק?](#HowdoIcreateanemptyboard)
-    * [How do I personalize an existing board in Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
-    * [Can I use my own pictures when editing a board?](#CanIusemyownpictureswheneditingaboard)
-    * [Can I change the ordering of the elements in a board?](#CanIchangetheorderingoftheelementsinaboard)
-    * [How do I select multiple elements to edit?](#HowdoIselectmultipleelementstoedit)
-    * [How can I find new symbols when I am editing a tile?](#FindSymbols)
-    * [Can I place board tiles in fixed positions?](#FixedBoards)
-    * [How do I set a specific number of rows and columns in my board?](#FixedRows)
+    * [איך אפשר להתאים אליי לוח קיים ב־Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
+    * [אוכל להשתמש בתמונות משלי בעת עריכה של לוח?](#CanIusemyownpictureswheneditingaboard)
+    * [אפשר לשנות את סדר הרכיבים בלוח?](#CanIchangetheorderingoftheelementsinaboard)
+    * [איך אפשר לבחור מגוון רכיבים לעריכה?](#HowdoIselectmultipleelementstoedit)
+    * [איך אפשר למצוא סמלים חדשים בזמן עריכת משבצת?](#FindSymbols)
+    * [אפשר להציב משבצות לוח במקומות קבועים?](#FixedBoards)
+    * [איך מגדירים מספר מסוים של שורות ועמודות בלוח שלי?](#FixedRows)
 * [ייצוא וייבוא](#Exportandimport) 
     * [איך אפשר לייצא את הלוח שלי ב־Cboard?](#HowdoIexportmyboardinCboard)
     * [איך אפשר לייבא לוח ל־Cboard?](#HowdoIimportaboardintoCboard)
@@ -50,10 +50,10 @@
     * [אפשר לשנות את גודל הכפתורים ב־Cboard?](#CanIresizebuttonsonCboard)
     * [גלילה במסך באמצעות כפתורים גדולים](#BigScrollButtons)
 * [סריקה](#Scanning) 
-    * [Can I use scanning techniques to access symbols?](#CanIusescanningtechniquestoaccesssymbols)
-* [Communicator builder](#CommunicatorBuilder) 
-    * [What is the communicator builder?](#Whatiscommbuilder)
-    * [Communicator boards](#CommunicatorBoards)
+    * [אפשר להשתמש בטכניקות סריקה כדי לגשת לסמלים?](#CanIusescanningtechniquestoaccesssymbols)
+* [בונה מתקשר](#CommunicatorBuilder) 
+    * [מה הוא בונה המתקשר?](#Whatiscommbuilder)
+    * [לוחות מתקשרים](#CommunicatorBoards)
     * [לוחות ציבוריים](#PublicBoards)
     * [כל הלוחות שלי](#Allmyboards)
 
@@ -346,11 +346,11 @@ It is also possible to scroll up and down a board using a couple of big buttons 
 
 Then, you should see a couple of big buttons at the top and the bottom of a board if it is large enough, as displayed in the below image:
 
-![Big scroll buttons](/images/help/bigScrollButtons.png "Big scroll buttons")
+![כפתורי גלילה גדולים](/images/help/bigScrollButtons.png "Big scroll buttons")
 
 ## <a name='Scanning'></a>סריקה
 
-### <a name='CanIusescanningtechniquestoaccesssymbols'></a>Can I use scanning techniques to access symbols?
+### <a name='CanIusescanningtechniquestoaccesssymbols'></a>אפשר להשתמש בטכניקות סריקה כדי לגשת לסמלים?
 
 Scanning is where the items in the selection set are presented sequentially over time and the user makes a selection indirectly, usually by switch access. SCANNING on Cboard works within SETTINGS and the SYSTEM category. There are different settings for scanning. You should first enable the scanning setting by selecting ENABLE. You can then choose the time delay, as well as the method (either automatic or manual). Please be aware that when using a tablet or smartphone, it may also have its own built-in scanning option.
 

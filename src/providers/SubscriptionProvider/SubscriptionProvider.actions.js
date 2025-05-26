@@ -14,7 +14,8 @@ import {
   PROCCESING,
   SHOW_LOGIN_REQUIRED,
   HIDE_LOGIN_REQUIRED,
-  UNVERIFIED
+  UNVERIFIED,
+  DAYS_TO_TRY
 } from './SubscriptionProvider.constants';
 import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
@@ -60,7 +61,6 @@ export function updateIsOnTrialPeriod() {
       if (!createdAt) return false; //this case are already created users
       const createdAtDate = new Date(createdAt);
       const actualDate = new Date();
-      const DAYS_TO_TRY = 30;
       const tryLimitDate = createdAtDate.setDate(
         createdAtDate.getDate() + DAYS_TO_TRY
       );

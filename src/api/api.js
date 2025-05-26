@@ -286,6 +286,22 @@ class API {
     return data;
   }
 
+  async getCbuilderBoard(id) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request', {
+        cause: 401
+      });
+    }
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const { data } = await this.axiosInstance.get(`/board/cbuilder/${id}`, {
+      headers
+    });
+    return data;
+  }
+
   async getSettings() {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {

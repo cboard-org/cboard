@@ -70,7 +70,7 @@ import {
   IS_BROWSING_FROM_APPLE_TOUCH,
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
-import { ALL_DEFAULT_BOARDS, isRemoteIdChecker } from '../../helpers';
+import LoadingIcon from '../UI/LoadingIcon';
 //import { isAndroid } from '../../cordova-util';
 
 const ogv = require('ogv');
@@ -200,7 +200,8 @@ export class BoardContainer extends Component {
     isFixedBoard: false,
     copiedTiles: [],
     isScroll: false,
-    totalRows: null
+    totalRows: null,
+    isCbuilderBoard: false
   };
   constructor(props) {
     super(props);
@@ -274,14 +275,9 @@ export class BoardContainer extends Component {
 
     if (!boardExists) {
       // try the root board
-      const homeBoard = communicator.rootBoard;
-      boardExists = boards.find(b => b.id === homeBoard);
+      boardExists = boards.find(b => b.id === communicator.rootBoard);
       if (!boardExists) {
-        if (isRemoteIdChecker(homeBoard))
-          boardExists = this.tryRemoteBoard(homeBoard);
-        if (!boardExists)
-          boardExists = this.addDefaultBoardIfnecessary(homeBoard);
-        if (!boardExists) boardExists = boards.find(b => b.id !== '');
+        boardExists = boards.find(b => b.id !== '');
       }
     }
     const boardId = boardExists.id;
@@ -382,25 +378,46 @@ export class BoardContainer extends Component {
   }
 
   async tryRemoteBoard(boardId) {
-    const { userData } = this.props;
-    const remoteBoard = await API.getBoard(boardId);
-    //if requested board is from the user just add it
-    if (
-      'name' in userData &&
-      'email' in userData &&
-      remoteBoard.email === userData.email &&
-      remoteBoard.author === userData.name
-    ) {
-      return remoteBoard;
-    } else {
-      //if requested board is public, ask about copy it
-      if (remoteBoard.isPublic) {
-        this.setState({ copyPublicBoard: remoteBoard });
+    const { userData, location } = this.props;
+
+    const queryParams = new URLSearchParams(location.search);
+    const isCbuilderBoard = queryParams.get('cbuilder');
+    this.setState({ isCbuilderBoard });
+
+    try {
+      const remoteBoard = isCbuilderBoard
+        ? await API.getCbuilderBoard(boardId)
+        : await API.getBoard(boardId);
+
+      //if requested board is from the user just add it
+      if (
+        'name' in userData &&
+        'email' in userData &&
+        remoteBoard.email === userData.email &&
+        remoteBoard.author === userData.name
+      ) {
+        if (isCbuilderBoard) {
+          this.setState({ copyPublicBoard: remoteBoard });
+          return null;
+        }
+        return remoteBoard;
       } else {
-        this.setState({ blockedPrivateBoard: true });
+        //if requested board is public, ask about copy it
+        if (remoteBoard.isPublic) {
+          this.setState({ copyPublicBoard: remoteBoard });
+        } else {
+          this.setState({ blockedPrivateBoard: true });
+        }
+        return null;
       }
+    } catch (err) {
+      if (
+        isCbuilderBoard &&
+        (err?.response?.status === 401 || err?.cause === 401)
+      )
+        this.setState({ blockedPrivateBoard: true });
+      throw new Error('Cannot get the remote board');
     }
-    return null;
   }
 
   translateBoard(board) {
@@ -539,7 +556,7 @@ export class BoardContainer extends Component {
         if (createBoard) {
           replaceBoard({ ...boardData }, { ...boardData, id: boardId });
         }
-        this.props.history.replace(`/board/${boardId}`);
+        this.historyReplaceBoardId(boardId);
       } catch (err) {
         console.log(err.message);
       } finally {
@@ -873,21 +890,8 @@ export class BoardContainer extends Component {
     };
 
     if (tile.loadBoard) {
-      const loadBoardFinder = loadBoardSearched => {
-        const findBoardOnStore = boardId =>
-          this.props.boards.find(b => b.id === boardId);
-
-        const nextBoard = findBoardOnStore(loadBoardSearched);
-        if (nextBoard) return nextBoard;
-        if (
-          ALL_DEFAULT_BOARDS.map(({ id }) => id).includes(loadBoardSearched)
-        ) {
-          const nextBoard = this.addDefaultBoardIfnecessary(loadBoardSearched);
-          if (nextBoard) return nextBoard;
-        }
-      };
       const nextBoard =
-        loadBoardFinder(tile.loadBoard) ||
+        boards.find(b => b.id === tile.loadBoard) ||
         // If the board id is invalid, try falling back to a board
         // with the right name.
         boards.find(b => b.name === tile.label);
@@ -946,7 +950,13 @@ export class BoardContainer extends Component {
 
   handleLockNotify = countdown => {
     const { intl, showNotification, hideNotification } = this.props;
+    const quickUnlockActive = this.props.navigationSettings?.quickUnlockActive;
 
+    if (quickUnlockActive) {
+      hideNotification();
+      this.handleLockClick();
+      return;
+    }
     if (countdown > 3) {
       return;
     }
@@ -1146,7 +1156,7 @@ export class BoardContainer extends Component {
                   { ...parentBoardData, id: parentBoardId }
                 );
               }
-              this.props.history.replace(`/board/${parentBoardId}`);
+              this.historyReplaceBoardId(parentBoardId);
               this.setState({ isSaving: false });
             })
             .catch(e => {
@@ -1164,7 +1174,7 @@ export class BoardContainer extends Component {
                   { ...parentBoardData, id: parentBoardId }
                 );
               }
-              this.props.history.replace(`/board/${parentBoardId}`);
+              this.historyReplaceBoardId(parentBoardId);
               this.setState({ isSaving: false });
             })
             .catch(e => {
@@ -1175,14 +1185,13 @@ export class BoardContainer extends Component {
     }
   };
 
+  historyReplaceBoardId(boardId) {
+    this.props.history.replace(`/board/${boardId}`);
+  }
+
   onRequestPreviousBoard() {
-    if (this.props.navHistory.length >= 2) {
-      const prevBoardId = this.props.navHistory[
-        this.props.navHistory.length - 2
-      ];
-      this.props.history.replace(`/board/${prevBoardId}`);
-      this.scrollToTop();
-    }
+    this.props.previousBoard();
+    this.scrollToTop();
   }
 
   onRequestToRootBoard() {
@@ -1202,6 +1211,9 @@ export class BoardContainer extends Component {
   handleCopyRemoteBoard = async () => {
     const { intl, showNotification, history, switchBoard } = this.props;
     try {
+      this.setState({
+        isSaving: true
+      });
       const copiedBoard = await this.createBoardsRecursively(
         this.state.copyPublicBoard
       );
@@ -1213,7 +1225,6 @@ export class BoardContainer extends Component {
       const translatedBoard = this.translateBoard(copiedBoard);
       this.setState({
         translatedBoard,
-        isSaving: false,
         copyPublicBoard: false,
         blockedPrivateBoard: false
       });
@@ -1221,7 +1232,11 @@ export class BoardContainer extends Component {
     } catch (err) {
       console.log(err.message);
       showNotification(intl.formatMessage(messages.boardCopyError));
+      this.handleCloseDialog();
     }
+    this.setState({
+      isSaving: false
+    });
   };
 
   async createBoardsRecursively(board, records) {
@@ -1283,10 +1298,6 @@ export class BoardContainer extends Component {
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
-      this.setState({
-        isSaving: true
-      });
-
       try {
         const boardId = await updateApiObjectsNoChild(newBoard, true);
         newBoard = {
@@ -1309,7 +1320,7 @@ export class BoardContainer extends Component {
           const nextBoard = await API.getBoard(tile.loadBoard);
           await this.createBoardsRecursively(nextBoard, records);
         } catch (err) {
-          if (err.response.status === 404) {
+          if (!err.respose || err.response?.status === 404) {
             //look for this board in available boards
             const localBoard = boards.find(b => b.id === tile.loadBoard);
             if (localBoard) {
@@ -1367,10 +1378,13 @@ export class BoardContainer extends Component {
     });
   }
 
-  handleCloseDialog = () => {
+  handleCloseDialog = (event, reason) => {
+    const { isSaving } = this.state;
+    if (isSaving) return;
     this.setState({
       copyPublicBoard: false,
-      blockedPrivateBoard: false
+      blockedPrivateBoard: false,
+      isCbuilderBoard: false
     });
   };
 
@@ -1529,18 +1543,6 @@ export class BoardContainer extends Component {
       : [];
   };
 
-  addDefaultBoardIfnecessary = boardId => {
-    const { boards, addBoards } = this.props;
-    if (!boards.find(b => b.id === boardId)) {
-      const board = ALL_DEFAULT_BOARDS.find(({ id }) => id === boardId);
-      if (board) {
-        addBoards([board]);
-        return board;
-      }
-      return;
-    }
-  };
-
   handleAddApiBoard = async boardId => {
     if (!this.props.boards.find(board => board.id === boardId)) {
       try {
@@ -1561,6 +1563,7 @@ export class BoardContainer extends Component {
       improvedPhrase,
       speak
     } = this.props;
+    const { isCbuilderBoard } = this.state;
 
     if (!this.state.translatedBoard) {
       return (
@@ -1645,15 +1648,27 @@ export class BoardContainer extends Component {
           aria-describedby="dialog-copy-desc"
         >
           <DialogTitle id="dialog-copy-board-title">
-            {this.props.intl.formatMessage(messages.copyPublicBoardTitle)}
+            {this.props.intl.formatMessage(
+              isCbuilderBoard
+                ? messages.importCbuilderBoardTitle
+                : messages.copyPublicBoardTitle
+            )}
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="dialog-copy-board-desc">
-              {this.props.intl.formatMessage(messages.copyPublicBoardDesc)}
+              {this.props.intl.formatMessage(
+                isCbuilderBoard
+                  ? messages.importCbuilderBoardDesc
+                  : messages.copyPublicBoardDesc
+              )}
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleCloseDialog} color="primary">
+            <Button
+              onClick={this.handleCloseDialog}
+              color="primary"
+              disabled={this.state.isSaving}
+            >
               {this.props.intl.formatMessage(messages.boardCopyCancel)}
             </Button>
             <PremiumFeature>
@@ -1661,8 +1676,13 @@ export class BoardContainer extends Component {
                 onClick={this.handleCopyRemoteBoard}
                 color="primary"
                 variant="contained"
+                disabled={this.state.isSaving}
               >
-                {this.props.intl.formatMessage(messages.boardCopyAccept)}
+                {this.state.isSaving ? (
+                  <LoadingIcon />
+                ) : (
+                  this.props.intl.formatMessage(messages.boardCopyAccept)
+                )}
               </Button>
             </PremiumFeature>
           </DialogActions>
@@ -1676,11 +1696,19 @@ export class BoardContainer extends Component {
           aria-describedby="dialog-blocked-desc"
         >
           <DialogTitle id="dialog-blocked-board-title">
-            {this.props.intl.formatMessage(messages.blockedPrivateBoardTitle)}
+            {this.props.intl.formatMessage(
+              isCbuilderBoard
+                ? messages.importCbuilderBoardTitle
+                : messages.blockedPrivateBoardTitle
+            )}
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="dialog-blocked-board-desc">
-              {this.props.intl.formatMessage(messages.blockedPrivateBoardDesc)}
+              {this.props.intl.formatMessage(
+                isCbuilderBoard
+                  ? messages.loginToImport
+                  : messages.blockedPrivateBoardDesc
+              )}
             </DialogContentText>
           </DialogContent>
           <DialogActions>

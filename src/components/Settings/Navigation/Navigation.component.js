@@ -246,7 +246,7 @@ class Navigation extends React.Component {
                 </ListItemSecondaryAction>
               </ListItem>
               <Divider />
-              <ListItem disabled={true}>
+              <ListItem disabled={false}>
                 <ListItemText
                   className="Navigation__ListItemText"
                   primary={<FormattedMessage {...messages.quickUnlock} />}
@@ -256,7 +256,7 @@ class Navigation extends React.Component {
                 />
                 <ListItemSecondaryAction>
                   <Switch
-                    disabled={true}
+                    disabled={false}
                     checked={this.state.quickUnlockActive}
                     onChange={this.toggleQuickUnlock}
                     value="active"
@@ -293,7 +293,7 @@ class Navigation extends React.Component {
                 />
                 <ListItemSecondaryAction>
                   <Switch
-                    checked={this.state.enableQuietBuilderMode}
+                    checked={this.state.quietBuilderMode}
                     onChange={this.toggleQuietBuilderMode}
                     value="active"
                     color="secondary"

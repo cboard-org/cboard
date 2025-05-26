@@ -21,5 +21,27 @@ export default defineMessages({
   resources: {
     id: 'cboard.components.About.resources',
     defaultMessage: 'Resources'
+  },
+  copyright: {
+    id: 'cboard.components.About.copyright',
+    defaultMessage: 'Copyright © 2017-2024, Assistive Communication LLC.'
+  },
+  contribute: {
+    id: 'cboard.components.About.contribute',
+    defaultMessage: 'Contribute'
+  },
+  contributeText: {
+    id: 'cboard.components.About.contributeText',
+    defaultMessage:
+      'Cboard is an open-source software and you can collaborate with our mission of democratize access to AAC for everyone. Please join us on Github:'
+  },
+  thanks: {
+    id: 'cboard.components.About.thanks',
+    defaultMessage: 'Special Thanks'
+  },
+  thanksBody: {
+    id: 'cboard.components.About.thanksBody',
+    defaultMessage:
+      'Cboard is possible thanks to the fantastic support of UNICEF and Microsoft. We always appreciate their confidence and financial support.'
   }
 });

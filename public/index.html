@@ -5,23 +5,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
   <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self'
-        'unsafe-inline'
-        'unsafe-eval'
-        https://*
-        http://localhost:3000/
-        http://localhost:10010/
-        http://www.googletagmanager.com/gtag/js
-        ws://localhost:3000/
-        wss://localhost:3000/
-        ws://192.168.0.109:3000/
-        wss://192.168.0.109:3000/
-        wss://*.microsoft.com/cognitiveservices/
-        blob:
-        gap:
-        data:;
-    img-src * data:  filesystem:  blob:  ;
-    ">
+  default-src 'self'
+      'unsafe-inline'
+      'unsafe-eval'
+      http://*
+      https://*
+      wss://*.microsoft.com/cognitiveservices/
+      blob:
+      gap:
+      data:;
+  img-src * data:  filesystem:  blob:  ;
+  connect-src 'self' https://* localhost:* 127.0.0.1:* wss: ws: blob:;
+  ">
 
   <!--
       manifest.json provides metadata used when your web app is added to the
@@ -54,6 +49,9 @@
 
   <!-- Color the status bar on mobile devices -->
   <meta name="theme-color" content="#000000">
+  
+  <!-- Block indexing on search engines -->
+  <meta name="robots" content="noindex">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108091601-1"></script>
@@ -64,11 +62,6 @@
 
     gtag('config', 'UA-108091601-1');
   </script>
-
-  <!-- AdSense code -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7162313874228987"
-    crossorigin="anonymous">
-    </script>
 
   <title>Cboard - AAC Communication Board</title>
 </head>

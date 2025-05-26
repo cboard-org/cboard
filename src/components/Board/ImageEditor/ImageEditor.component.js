@@ -112,21 +112,6 @@ class ImageEditor extends PureComponent {
             </div>
           </DialogTitle>
           <DialogContent>
-            <Cropper
-              style={this.state.style}
-              zoomTo={0}
-              src={srcImage}
-              viewMode={0}
-              background={true}
-              responsive={true}
-              checkOrientation={false}
-              guides={true}
-              dragMode="move"
-              autoCrop={false}
-              onInitialized={instance => {
-                this.setState({ cropper: instance });
-              }}
-            />
             <div className="ImageEditor__actionBar">
               <IconButton
                 label={intl.formatMessage(messages.rotateRight)}
@@ -172,6 +157,21 @@ class ImageEditor extends PureComponent {
                 <ZoomOutIcon />
               </IconButton>
             </div>
+            <Cropper
+              style={this.state.style}
+              zoomTo={0}
+              src={srcImage}
+              viewMode={0}
+              background={true}
+              responsive={true}
+              checkOrientation={false}
+              guides={true}
+              dragMode="move"
+              autoCrop={false}
+              onInitialized={instance => {
+                this.setState({ cropper: instance });
+              }}
+            />
           </DialogContent>
           <DialogActions>
             <IconButton

@@ -30,6 +30,10 @@ Translations play a major role in this project and they contribute a lot for the
 
 ### Translations for developers
 
+To add support to a new language, [follow this guide](https://github.com/cboard-org/cboard/wiki/How-to-Add-a-New-Language).
+
+#### Pulling translations from CrowdIn
+
 In order to pull the latest translations from CrowdIn into the codebase, you can run `yarn translations:pull`. This will update all language files such as `en.json` as well as the central `cboard.json` file. Please note that this requires the CrowdIn API key to be available in the `.private` config file. Refer to [Secrets Management](#secrets-management). After the script completes, changes to the translation files will need to be committed to the repo by the usual process.
 
 ## Getting Started

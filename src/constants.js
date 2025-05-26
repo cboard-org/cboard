@@ -55,4 +55,5 @@ export const PAYPAL_CLIENT_ID =
     : 'AZ2vK0luRWMX9zzwLs-Ko_B_TJxeHYvIFCgXWcNBt50wmj7oZcUw8n4cf11GgdClTVnYMuEs5vRnxVEk';
 // Google related constants
 export const GOOGLE_FIREBASE_WEB_CLIENT_ID =
-  process.env.REACT_APP_GOOGLE_FIREBASE_WEB_CLIENT_ID || '';
+  process.env.REACT_APP_GOOGLE_FIREBASE_WEB_CLIENT_ID ||
+  '772840497386-4m51j455n7aqi54uhfm7ub6p645or2ed.apps.googleusercontent.com';

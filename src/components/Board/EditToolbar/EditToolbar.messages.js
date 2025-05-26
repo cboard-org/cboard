@@ -13,6 +13,22 @@ export default defineMessages({
     id: 'cboard.components.Board.EditToolbar.deleteTiles',
     defaultMessage: 'Delete selected tiles'
   },
+  deleteTileTitle: {
+    id: 'cboard.components.Board.EditToolbar.deleteTileTitle',
+    defaultMessage: 'Delete Tiles'
+  },
+  deleteTileDescription: {
+    id: 'cboard.components.Board.EditToolbar.deleteTileDescription',
+    defaultMessage: 'Are you sure you want to delete the tile(s)?'
+  },
+  deleteTileCancel: {
+    id: 'cboard.components.Board.EditToolbar.deleteTileCancel',
+    defaultMessage: 'Cancel'
+  },
+  deleteTileOk: {
+    id: 'cboard.components.EditToolbar.Board.deleteTileOk',
+    defaultMessage: 'Delete'
+  },
   editTiles: {
     id: 'cboard.components.Board.EditToolbar.editTiles',
     defaultMessage: 'Edit selected tiles'

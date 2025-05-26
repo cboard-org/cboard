@@ -23,9 +23,8 @@ import {
 import { defaultCommunicatorID } from './Communicator.reducer';
 import API from '../../api';
 import shortid from 'shortid';
-import { removeBoardsFromList, switchBoard } from '../Board/Board.actions';
-import { ALL_DEFAULT_BOARDS } from '../../helpers';
 import moment from 'moment';
+import { switchBoard } from '../Board/Board.actions';
 import history from './../../history';
 
 export function importCommunicator(communicator) {
@@ -238,7 +237,7 @@ export function verifyAndUpsertCommunicator(
  */
 
 export function getApiMyCommunicators() {
-  return async (dispatch, getState) => {
+  return async dispatch => {
     dispatch(getApiMyCommunicatorsStarted());
     try {
       const res = await API.getCommunicators();
@@ -249,18 +248,6 @@ export function getApiMyCommunicators() {
         } catch (e) {
           console.error(e);
         }
-        const activeCommunicator =
-          res.data.find(
-            communicator =>
-              communicator.id === getState().communicator.activeCommunicator
-          ) ?? res.data[res.data.length - 1];
-        const defaultBoardBlackList = activeCommunicator?.defaultBoardBlackList;
-        dispatch(
-          removeBoardsFromList(
-            defaultBoardBlackList,
-            activeCommunicator.rootBoard
-          )
-        );
       }
 
       return res;
@@ -332,7 +319,7 @@ export function syncCommunicators(remoteCommunicators) {
         return remote;
       }
     }
-    return remote;
+    return local;
   };
   const getActiveCommunicator = getState => {
     return getState().communicator.communicators.find(
@@ -343,6 +330,7 @@ export function syncCommunicators(remoteCommunicators) {
   return async (dispatch, getState) => {
     const localCommunicators = getState().communicator.communicators;
     const updatedCommunicators = [...localCommunicators];
+    const activeCommunicatorId = getActiveCommunicator(getState).id ?? null;
 
     for (const remote of remoteCommunicators) {
       const localIndex = localCommunicators.findIndex(
@@ -355,8 +343,11 @@ export function syncCommunicators(remoteCommunicators) {
           localCommunicators[localIndex],
           remote
         );
-        if (reconciled === localCommunicators[localIndex]) {
-          // Local is more recent, update the server
+        if (
+          reconciled === localCommunicators[localIndex] &&
+          activeCommunicatorId === localCommunicators[localIndex].id
+        ) {
+          // Local active communicator is recent, update the server
           try {
             const res = await dispatch(
               updateApiCommunicator(localCommunicators[localIndex])
@@ -374,10 +365,11 @@ export function syncCommunicators(remoteCommunicators) {
       }
     }
 
-    const activeCommunicatorId = getActiveCommunicator(getState).id ?? null;
     const lastRemoteSavedCommunicatorId = remoteCommunicators[0].id ?? null; //The last communicator saved on the server
     const needToChangeActiveCommunicator =
-      activeCommunicatorId !== lastRemoteSavedCommunicatorId &&
+      activeCommunicatorId === defaultCommunicatorID &&
+      // activeCommunicatorId !== lastRemoteSavedCommunicatorId &&
+      // TODO - Fix mulitple communicators creation on the server
       updatedCommunicators.length &&
       lastRemoteSavedCommunicatorId &&
       updatedCommunicators.findIndex(
@@ -396,31 +388,7 @@ export function syncCommunicators(remoteCommunicators) {
       const newActiveCommunicator = getActiveCommunicator(getState);
       const rootBoard = newActiveCommunicator.rootBoard;
       dispatch(switchBoard(rootBoard));
-      history.replace(rootBoard);
+      history.replace(`/board/${rootBoard}`);
     }
-  };
-}
-
-export function concatDefaultBoardIdToBlacklist(boardId) {
-  const getActiveCommunicator = getState => {
-    return getState().communicator.communicators.find(
-      c => c.id === getState().communicator.activeCommunicatorId
-    );
-  };
-  return (dispatch, getState) => {
-    if (!ALL_DEFAULT_BOARDS.map(({ id }) => id).includes(boardId)) return;
-    const updatedCommunicatorData = { ...getActiveCommunicator(getState) };
-
-    const concatBoardIdIfNecessary = () => {
-      if (!updatedCommunicatorData?.defaultBoardBlackList.includes(boardId))
-        return updatedCommunicatorData?.defaultBoardBlackList.concat(boardId);
-      return updatedCommunicatorData?.defaultBoardBlackList;
-    };
-
-    updatedCommunicatorData.defaultBoardBlackList = updatedCommunicatorData?.defaultBoardBlackList
-      ? concatBoardIdIfNecessary()
-      : [boardId];
-
-    return dispatch(verifyAndUpsertCommunicator(updatedCommunicatorData));
   };
 }

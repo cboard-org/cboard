@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
+import TextField from '@material-ui/core/TextField';
 import { FormattedMessage } from 'react-intl';
 import messages from './People.messages';
 
@@ -31,6 +31,18 @@ const DeleteConfirmationDialog = ({
   isDeletingAccount,
   errorDeletingAccount
 }) => {
+  const DELETE_ACCOUNT = 'delete-account';
+  const [confirmationText, setConfirmationText] = useState('');
+
+  const handleConfirmationChange = e => {
+    setConfirmationText(e.target.value);
+  };
+
+  const handleDialogClose = () => {
+    setConfirmationText('');
+    handleClose();
+  };
+
   return (
     <Dialog
       open={open}
@@ -51,6 +63,17 @@ const DeleteConfirmationDialog = ({
             <FormattedMessage {...messages.deleteAccountConfirmation} />
           </DialogContentText>
         )}
+        <TextField
+          autoFocus={true}
+          fullWidth={true}
+          label={
+            <FormattedMessage
+              {...messages.deleteAccountFinal}
+              values={{ deleteAccount: DELETE_ACCOUNT }}
+            />
+          }
+          onChange={handleConfirmationChange}
+        />
       </DialogContent>
       {!isDeletingAccount && (
         <DialogActions>
@@ -58,11 +81,12 @@ const DeleteConfirmationDialog = ({
             variant="outlined"
             color="secondary"
             className={'delete_button'}
+            disabled={confirmationText !== DELETE_ACCOUNT}
             onClick={handleDeleteConfirmed}
           >
             {<FormattedMessage {...messages.deleteAccountPrimary} />}
           </Button>
-          <Button variant="outlined" onClick={handleClose} autoFocus>
+          <Button variant="outlined" onClick={handleDialogClose} autoFocus>
             {<FormattedMessage {...messages.cancelDeleteAccount} />}
           </Button>
         </DialogActions>

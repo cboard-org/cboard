@@ -293,9 +293,6 @@ class CommunicatorDialogContainer extends React.Component {
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       try {
-        this.setState({
-          loading: true
-        });
         const boardId = await updateApiObjectsNoChild(newBoard, true);
         newBoard = {
           ...newBoard,
@@ -303,10 +300,6 @@ class CommunicatorDialogContainer extends React.Component {
         };
       } catch (err) {
         console.log(err.message);
-      } finally {
-        this.setState({
-          loading: false
-        });
       }
     }
 
@@ -321,7 +314,7 @@ class CommunicatorDialogContainer extends React.Component {
           const nextBoard = await API.getBoard(tile.loadBoard);
           await this.createBoardsRecursively(nextBoard, records);
         } catch (err) {
-          if (err.response.status === 404) {
+          if (!err.respose || err.response?.status === 404) {
             //look for this board in available boards
             const localBoard = availableBoards.find(
               b => b.id === tile.loadBoard
