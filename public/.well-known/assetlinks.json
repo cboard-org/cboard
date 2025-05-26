@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.unicef.cboard",
+      "sha256_cert_fingerprints": [
+        "0C:E6:E3:49:2D:58:75:83:72:D9:23:00:F6:76:1C:1D:CE:50:47:25:9C:E3:B5:00:67:A0:0E:06:B8:B8:D8:9D"
+      ]
+    }
+  }
+]

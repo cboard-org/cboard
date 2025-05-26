@@ -89,6 +89,11 @@ export default defineMessages({
     id: 'cboard.components.Settings.Subscribe.not_subscribed',
     defaultMessage: 'You are not subscribed. '
   },
+  unverified: {
+    id: 'cboard.components.Settings.Subscribe.unverified',
+    defaultMessage:
+      'An error occurred during validation of your purchase. Please refresh'
+  },
   refresh: {
     id: 'cboard.components.Settings.Subscribe.refresh',
     defaultMessage: 'Refresh'
@@ -105,7 +110,7 @@ export default defineMessages({
   on_trial_period: {
     id: 'cboard.components.Settings.Subscribe.on_trial_period',
     defaultMessage:
-      'You are on the 30 day free trial. After it ends, you will need to subscribe to get all features.'
+      'You are on the 15 day free trial. After it ends, you will need to subscribe to get all features.'
   },
   subscriptionInfo: {
     id: 'cboard.components.Settings.Subscribe.subscriptionInfo',
@@ -147,6 +152,11 @@ export default defineMessages({
     id: 'cboard.components.Settings.Subscribe.googleAccountAlreadyOwns',
     defaultMessage:
       'It looks like your Google account has already purchased a product. Try restarting the app.'
+  },
+  appleAccountAlreadyOwns: {
+    id: 'cboard.components.Settings.Subscribe.appleAccountAlreadyOwns',
+    defaultMessage:
+      'It looks like your Apple account has already purchased a product. Try restarting the app.'
   },
   fallback: {
     id: 'cboard.components.Settings.Subscribe.fallback',

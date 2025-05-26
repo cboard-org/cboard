@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { intlShape } from 'react-intl';
+import { FormattedMessage, intlShape } from 'react-intl';
 import moment from 'moment';
 import PublicIcon from '@material-ui/icons/Public';
 import KeyIcon from '@material-ui/icons/VpnKey';
@@ -30,6 +30,8 @@ import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Slide from '@material-ui/core/Slide';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import LoadingIcon from '../../UI/LoadingIcon';
+import LanguageIcon from '@material-ui/icons/Language';
 
 import IconButton from '../../UI/IconButton';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
@@ -38,6 +40,7 @@ import { isCordova } from '../../../cordova-util';
 import InputImage from '../../UI/InputImage';
 import SymbolSearch from '../../Board/SymbolSearch';
 import PremiumFeature from '../../PremiumFeature';
+import Language from '../../Settings/Language/Language.messages';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -49,6 +52,16 @@ const defaultReportDialogState = {
   loading: false,
   error: false,
   success: false
+};
+
+const getFormattedName = lang => {
+  lang = lang || navigator.language;
+  const processLanguage = lang => {
+    const locale = lang.slice(0, 2).toLowerCase();
+    const formattedLocale = locale === 'sr-ME' ? 'srme' : locale;
+    return <FormattedMessage {...Language[formattedLocale]} />;
+  };
+  return processLanguage(lang);
 };
 
 class CommunicatorDialogBoardItem extends React.Component {
@@ -73,6 +86,8 @@ class CommunicatorDialogBoardItem extends React.Component {
         ? props.board.description
         : ''
     };
+
+    this.handleDialogClose = this.handleDialogClose.bind(this);
   }
 
   openMenu(e) {
@@ -149,7 +164,6 @@ class CommunicatorDialogBoardItem extends React.Component {
 
   async handleBoardCopy(board) {
     this.setState({
-      openCopyBoard: false,
       loading: true
     });
     try {
@@ -157,6 +171,7 @@ class CommunicatorDialogBoardItem extends React.Component {
     } catch (err) {
     } finally {
       this.setState({
+        openCopyBoard: false,
         loading: false
       });
     }
@@ -383,6 +398,70 @@ class CommunicatorDialogBoardItem extends React.Component {
         {board.isPublic ? <KeyIcon /> : <PublicIcon />}
       </IconButton>
     );
+
+    const PublicBoardInfo = () => {
+      const boardInfoLocale = (
+        <FormattedMessage {...messages['boardInfoLocale']} />
+      );
+      return (
+        <Dialog
+          onClose={this.handleDialogClose.bind(this)}
+          aria-labelledby="board-info-title"
+          open={this.state.openBoardInfo}
+          className="CommunicatorDialog__boardInfoDialog"
+        >
+          <DialogTitle
+            id="board-info-title"
+            onClose={this.handleDialogClose.bind(this)}
+          >
+            {board.name}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              <Typography variant="body1" gutterBottom>
+                <b>{intl.formatMessage(messages.boardInfoName)}:</b>{' '}
+                {board.name}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <b>{intl.formatMessage(messages.boardInfoAuthor)}:</b>{' '}
+                {board.author}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <b>{boardInfoLocale}:</b> {getFormattedName(board.locale)}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <b>{intl.formatMessage(messages.boardDescription)}:</b>{' '}
+                {board.description}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <b>{intl.formatMessage(messages.boardInfoDate)}:</b>{' '}
+                {moment(board.lastEdited).format('DD/MM/YYYY')}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <b>{intl.formatMessage(messages.boardInfoTiles)}:</b>{' '}
+                {board.tiles.length}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <b>{intl.formatMessage(messages.boardInfoId)}:</b> {board.id}
+              </Typography>
+              {!isCordova() && (
+                <Typography variant="body1" gutterBottom>
+                  <b>{intl.formatMessage(messages.boardInfoUrl)}:</b>{' '}
+                  <a href={boardUrl} target="_blank" rel="noopener noreferrer">
+                    {boardUrl}
+                  </a>
+                </Typography>
+              )}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleDialogClose.bind(this)} color="primary">
+              {intl.formatMessage(messages.close)}
+            </Button>
+          </DialogActions>
+        </Dialog>
+      );
+    };
 
     const ReportBoardDialog = () => {
       const ReportSuccesContent = (
@@ -614,9 +693,17 @@ class CommunicatorDialogBoardItem extends React.Component {
                     )}
                   </div>
                 }
-                secondary={intl.formatMessage(messages.tilesQty, {
-                  qty: board.tiles.length
-                })}
+                secondary={
+                  <div className="CommunicatorDialog__boards__item__data__title__secondary">
+                    {intl.formatMessage(messages.tilesQty, {
+                      qty: board.tiles.length
+                    })}
+                    <span style={{ marginLeft: '1em' }} />
+                    <LanguageIcon fontSize="small" />
+                    <span style={{ marginLeft: '0.05em' }} />
+                    {getFormattedName(board.locale)}
+                  </div>
+                }
               />
             </ListItem>
           </div>
@@ -684,6 +771,7 @@ class CommunicatorDialogBoardItem extends React.Component {
           <div className="CommunicatorDialog__boards__item__data__date">
             {moment(board.lastEdited).format('DD/MM/YYYY')}
           </div>
+
           <div className="CommunicatorDialog__boards__item__data__extra">
             {board.isPublic && (
               <Tooltip
@@ -774,72 +862,12 @@ class CommunicatorDialogBoardItem extends React.Component {
                     <FlagIcon />
                   </IconButton>
                   {ReportBoardDialog()}
-                  <Dialog
-                    onClose={this.handleDialogClose.bind(this)}
-                    aria-labelledby="board-info-title"
-                    open={this.state.openBoardInfo}
-                    className="CommunicatorDialog__boardInfoDialog"
-                  >
-                    <DialogTitle
-                      id="board-info-title"
-                      onClose={this.handleDialogClose.bind(this)}
-                    >
-                      {board.name}
-                    </DialogTitle>
-                    <DialogContent>
-                      <DialogContentText>
-                        <Typography variant="body1" gutterBottom>
-                          <b>{intl.formatMessage(messages.boardInfoName)}:</b>{' '}
-                          {board.name}
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          <b>{intl.formatMessage(messages.boardInfoAuthor)}:</b>{' '}
-                          {board.author}
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          <b>
-                            {intl.formatMessage(messages.boardDescription)}:
-                          </b>{' '}
-                          {board.description}
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          <b>{intl.formatMessage(messages.boardInfoDate)}:</b>{' '}
-                          {moment(board.lastEdited).format('DD/MM/YYYY')}
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          <b>{intl.formatMessage(messages.boardInfoTiles)}:</b>{' '}
-                          {board.tiles.length}
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          <b>{intl.formatMessage(messages.boardInfoId)}:</b>{' '}
-                          {board.id}
-                        </Typography>
-                        {!isCordova() && (
-                          <Typography variant="body1" gutterBottom>
-                            <b>{intl.formatMessage(messages.boardInfoUrl)}:</b>{' '}
-                            <a
-                              href={boardUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {boardUrl}
-                            </a>
-                          </Typography>
-                        )}
-                      </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                      <Button
-                        onClick={this.handleDialogClose.bind(this)}
-                        color="primary"
-                      >
-                        {intl.formatMessage(messages.close)}
-                      </Button>
-                    </DialogActions>
-                  </Dialog>
+                  <PublicBoardInfo />
 
                   <Dialog
-                    onClose={this.handleDialogClose.bind(this)}
+                    onClose={() => {
+                      if (!this.state.loading) this.handleDialogClose();
+                    }}
                     aria-labelledby="board-copy-dialog"
                     open={this.state.openCopyBoard}
                   >
@@ -858,6 +886,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                       <Button
                         onClick={this.handleDialogClose.bind(this)}
                         color="primary"
+                        disabled={this.state.loading}
                       >
                         {intl.formatMessage(messages.close)}
                       </Button>
@@ -868,8 +897,13 @@ class CommunicatorDialogBoardItem extends React.Component {
                           }}
                           variant="contained"
                           color="primary"
+                          disabled={this.state.loading}
                         >
-                          {intl.formatMessage(messages.accept)}
+                          {this.state.loading ? (
+                            <LoadingIcon />
+                          ) : (
+                            intl.formatMessage(messages.accept)
+                          )}
                         </Button>
                       </PremiumFeature>
                     </DialogActions>

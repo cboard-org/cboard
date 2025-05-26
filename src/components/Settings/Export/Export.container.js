@@ -19,6 +19,7 @@ export class ExportContainer extends PureComponent {
   handleExportClick = async (
     type = 'cboard',
     singleBoard = '',
+    labelFontSize = '',
     doneCallback
   ) => {
     const exportConfig = EXPORT_CONFIG_BY_TYPE[type];
@@ -42,6 +43,7 @@ export class ExportContainer extends PureComponent {
         if (singleBoard) {
           await EXPORT_HELPERS[exportConfig.callback](
             [singleBoard],
+            labelFontSize,
             intl,
             true
           );
@@ -49,18 +51,35 @@ export class ExportContainer extends PureComponent {
           const currentBoard = boards.filter(
             board => board.id === activeBoardId
           );
-          await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl, true);
+          await EXPORT_HELPERS[exportConfig.callback](
+            currentBoard,
+            labelFontSize,
+            intl,
+            true
+          );
         }
       } else if (type !== 'pdf' && !singleBoard) {
-        await EXPORT_HELPERS[exportConfig.callback](boards, intl);
+        await EXPORT_HELPERS[exportConfig.callback](
+          boards,
+          labelFontSize,
+          intl
+        );
       } else {
         if (singleBoard) {
-          await EXPORT_HELPERS[exportConfig.callback]([singleBoard], intl);
+          await EXPORT_HELPERS[exportConfig.callback](
+            [singleBoard],
+            labelFontSize,
+            intl
+          );
         } else {
           const currentBoard = boards.filter(
             board => board.id === activeBoardId
           );
-          await EXPORT_HELPERS[exportConfig.callback](currentBoard, intl);
+          await EXPORT_HELPERS[exportConfig.callback](
+            currentBoard,
+            labelFontSize,
+            intl
+          );
         }
       }
       const showBoardDowloadedNotification = () => {

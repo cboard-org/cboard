@@ -1,1 +1,21 @@
+.logo {
+  max-width: 40%;
+}
 
+.title {
+  padding-top: 16px;
+}
+
+.imageContainer {
+  display: 'flex';
+  flex-direction: row;
+  flex-wrap: 'wrap';
+  justify-content: 'space-around';
+  overflow: 'hidden';
+  padding: 12px;
+}
+
+.imageItem {
+  width: 20%;
+  padding: 8px;
+}

@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image:  cimg/node:16.18
+      - image: cimg/node:18.18.1
     working_directory: ~/repo
     steps:
       - checkout
@@ -24,13 +24,13 @@ jobs:
             - ~/.cache/yarn
           key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       # run tests
-      - run: 
+      - run:
           name: Run Unit Tests
-          command: yarn test -- --silent --updateSnapshot  --no-watchman --maxWorkers=50% --testPathPattern="/Board|Communicator|App|Settings|Account|UI/"
+          command: yarn test --silent --updateSnapshot --runInBand --no-watchman --testPathPattern="/Board|Communicator|App|Settings|Account|UI/"
   image:
     docker:
       # specify the version you desire here
-      - image:  cimg/node:16.18
+      - image: cimg/node:18.18.1
     working_directory: ~/repo
     steps:
       - checkout
@@ -49,10 +49,10 @@ jobs:
       # Build Docker Image
       # https://circleci.com/docs/2.0/building-docker-images/#overview
       - setup_remote_docker: # (2)
-          version: 19.03.13
+          version: default
           docker_layer_caching: false # (3)
       # build and push Docker image
-      - run: 
+      - run:
           name: Build Docker Image
           command: |
             TAG=0.1.$CIRCLE_BUILD_NUM

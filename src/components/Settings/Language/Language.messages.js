@@ -57,6 +57,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.finnish',
     defaultMessage: 'Finnish'
   },
+  fa: {
+    id: 'cboard.components.Settings.Language.persian',
+    defaultMessage: 'Persian'
+  },
   fr: {
     id: 'cboard.components.Settings.Language.french',
     defaultMessage: 'French'
@@ -104,6 +108,14 @@ export default defineMessages({
   mk: {
     id: 'cboard.components.Settings.Language.macedonian',
     defaultMessage: 'Macedonian'
+  },
+  ml: {
+    id: 'cboard.components.Settings.Language.malayalam',
+    defaultMessage: 'Malayalam'
+  },
+  nb: {
+    id: 'cboard.components.Settings.Language.norwegian',
+    defaultMessage: 'Norwegian'
   },
   ne: {
     id: 'cboard.components.Settings.Language.nepali',

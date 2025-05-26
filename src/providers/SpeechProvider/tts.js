@@ -171,7 +171,10 @@ const tts = {
     if (!isAndroid()) {
       return [];
     } else {
-      const ttsEngs = synth.getEngines();
+      if (synth === undefined) {
+        synth = window.speechSynthesis;
+      }
+      const ttsEngs = synth.getEngines() || {};
       return ttsEngs._list || [];
     }
   },
@@ -180,7 +183,7 @@ const tts = {
     if (!isAndroid()) {
       return;
     } else {
-      const ttsDefaultEng = synth.getDefaultEngine();
+      const ttsDefaultEng = synth.getDefaultEngine() || {};
       return ttsDefaultEng;
     }
   },

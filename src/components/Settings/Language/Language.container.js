@@ -231,10 +231,10 @@ export class LanguageContainer extends Component {
     });
   };
 
-  handleSubmit = async (optionalLang = null) => {
+  handleSubmit = async (optionalLang = null, isNewVoiceAvailable = false) => {
     const { onLangChange } = this.props;
     const selectedLang = optionalLang ? optionalLang : this.state.selectedLang;
-    onLangChange(selectedLang);
+    onLangChange(selectedLang, isNewVoiceAvailable);
     this.initArasaacDB(selectedLang);
     try {
       await API.updateSettings({
@@ -336,18 +336,20 @@ export class LanguageContainer extends Component {
   onDialogAcepted = downloadingLangData => {
     const { marketId, lang, ttsName, continueOnline } = downloadingLangData;
     this.setState({ openDialog: { open: false, downloadingLangData: {} } });
-    onAndroidPause(() => this.pauseCallback());
     const downloadingLangState = {
       isdownloading: true,
       isDiferentTts: false,
       engineName: ttsName,
       marketId: marketId,
       isUpdated: false,
-      selectedLang: lang
+      selectedLang: lang,
+      firstClick: false,
+      continueOnline: false
     };
     this.props.setDownloadingLang(downloadingLangState);
     if (continueOnline) this.handleSubmit(lang);
     window.cordova.plugins.market.open(marketId);
+    navigator.app.exitApp();
   };
 
   onCloseDialog = () => {

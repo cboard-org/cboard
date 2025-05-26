@@ -116,6 +116,10 @@ const extractTranslations = () => {
       {
         source: 'tu-TI',
         dest: 'pt-TL'
+      },
+      {
+        source: 'no-NO',
+        dest: 'nb-NO'
       }
     ];
     custom.forEach(data => {

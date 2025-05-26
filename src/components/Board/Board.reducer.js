@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import { DEFAULT_BOARDS } from '../../helpers';
+import { DEFAULT_BOARDS, deepCopy } from '../../helpers';
 
 import {
   IMPORT_BOARDS,
@@ -36,13 +36,19 @@ import {
   GET_API_MY_BOARDS_STARTED,
   DOWNLOAD_IMAGES_STARTED,
   DOWNLOAD_IMAGE_SUCCESS,
-  DOWNLOAD_IMAGE_FAILURE
+  DOWNLOAD_IMAGE_FAILURE,
+  UNMARK_SHOULD_CREATE_API_BOARD,
+  SHORT_ID_MAX_LENGTH
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
-const [...boards] = [...DEFAULT_BOARDS.advanced, ...DEFAULT_BOARDS.picSeePal];
+const initialBoardsState = [
+  ...DEFAULT_BOARDS.advanced,
+  ...DEFAULT_BOARDS.picSeePal
+];
+
 const initialState = {
-  boards,
+  boards: deepCopy(initialBoardsState),
   output: [],
   activeBoardId: null,
   navHistory: [],
@@ -71,6 +77,8 @@ function tileReducer(board, action) {
       return {
         ...board,
         tiles: [...board.tiles, { ...action.tile }]
+        /* some times when a tile folder is created here the last tile change loadBoard to a long Id with no reason
+      action tile before this copy has a short ID*/
       };
     case DELETE_TILES:
       return {
@@ -112,7 +120,7 @@ function boardReducer(state = initialState, action) {
       };
 
     case LOGOUT:
-      return initialState;
+      return { ...initialState, boards: deepCopy(initialBoardsState) };
 
     case IMPORT_BOARDS:
       return {
@@ -165,6 +173,8 @@ function boardReducer(state = initialState, action) {
 
       if (prev.id !== current.id) {
         const boardIndex = boards.findIndex(b => b.id === prev.id);
+        /* On create a parent board the prev board doesn't exist with a short Id
+        because is already replaced by a long one */
         if (boardIndex >= 0) {
           boards[boardIndex] = current;
         }
@@ -285,6 +295,15 @@ function boardReducer(state = initialState, action) {
             : { ...board, markToUpdate: false }
         )
       };
+    case UNMARK_SHOULD_CREATE_API_BOARD:
+      return {
+        ...state,
+        boards: state.boards.map(board =>
+          board.id !== action.boardId
+            ? board
+            : { ...board, shouldCreateBoard: false }
+        )
+      };
     case CHANGE_OUTPUT:
       return {
         ...state,
@@ -297,6 +316,8 @@ function boardReducer(state = initialState, action) {
       };
     case CREATE_API_BOARD_SUCCESS:
       const creadBoards = [...state.boards];
+      const tilesToUpdateIds = [];
+      const boardsToMarkForCreation = [];
       for (let i = 0; i < creadBoards.length; i++) {
         let tiles = creadBoards[i].tiles;
         if (tiles) {
@@ -308,11 +329,27 @@ function boardReducer(state = initialState, action) {
                 creadBoards[i].hasOwnProperty('email')
               ) {
                 creadBoards[i].markToUpdate = true;
+                const tileUpdatedId = creadBoards[i].tiles[j].id;
+                tilesToUpdateIds.push(tileUpdatedId);
+              }
+
+              const shouldCreateBoard =
+                creadBoards[i].id.length < SHORT_ID_MAX_LENGTH;
+              if (shouldCreateBoard) {
+                boardsToMarkForCreation.push(creadBoards[i]);
               }
             }
           }
         }
       }
+      boardsToMarkForCreation.forEach(board => {
+        //if the tile id is already in a api board, we don't need to create it
+        const boardTileIds = board.tiles.map(tile => tile.id);
+        const boardIsAlreadyCreatedOnDb = boardTileIds.some(tileId =>
+          tilesToUpdateIds.includes(tileId)
+        );
+        if (!boardIsAlreadyCreatedOnDb) board.shouldCreateBoard = true;
+      });
       return {
         ...state,
         isFetching: false,

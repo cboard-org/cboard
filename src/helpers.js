@@ -6,6 +6,8 @@ export const DEFAULT_BOARDS = {
   picSeePal: picSeePal
 };
 
+export const deepCopy = obj => JSON.parse(JSON.stringify(obj));
+
 export const dataURLtoFile = (dataurl, filename, checkExtension = false) => {
   // https://stackoverflow.com/a/38936042
   const arr = dataurl.split(',');

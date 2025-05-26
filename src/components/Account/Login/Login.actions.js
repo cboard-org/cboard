@@ -10,7 +10,8 @@ import {
   disableTour,
   setUnloggedUserLocation,
   updateUnloggedUserLocation,
-  enableAllTours
+  enableAllTours,
+  updateNavigationSettings
 } from '../../App/App.actions';
 import { getVoiceURI } from '../../../i18n';
 import { isCordova, isElectron } from '../../../cordova-util';
@@ -48,6 +49,7 @@ export function logout() {
       console.error(err);
     }
   return async dispatch => {
+    dispatch(updateNavigationSettings({ improvePhraseActive: false }));
     dispatch(setUnloggedUserLocation(null));
     dispatch(updateUnloggedUserLocation());
     dispatch(logoutSuccess());
@@ -145,7 +147,10 @@ export function login({ email, password, activatedData }, type = 'local') {
       );
 
       if (loginData.communicators && loginData.communicators.length) {
-        currentCommunicator = loginData.communicators[0];
+        const lastRemoteSavedCommunicatorIndex =
+          loginData.communicators.length - 1;
+        currentCommunicator =
+          loginData.communicators[lastRemoteSavedCommunicatorIndex]; //use the latest communicator
       }
 
       const localBoardsIds = [];

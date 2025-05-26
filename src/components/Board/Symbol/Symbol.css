@@ -24,6 +24,10 @@
   padding: 0.2em 0.9em 0.2em 0.9em;
 }
 
+.liveInput .MuiInputBase-input::-webkit-scrollbar {
+  display: none;
+}
+
 .Symbol textarea {
   align-self: flex-start;
   font-weight: 700;

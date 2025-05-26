@@ -6,6 +6,8 @@ export const SHOW_PREMIUM_REQUIRED =
   'cboard/subscription/SHOW_PREMIUM_REQUIRED';
 export const HIDE_PREMIUM_REQUIRED =
   'cboard/subscription/HIDE_PREMIUM_REQUIRED';
+export const SHOW_LOGIN_REQUIRED = 'cboard/subscription/SHOW_LOGIN_REQUIRED';
+export const HIDE_LOGIN_REQUIRED = 'cboard/subscription/HIDE_LOGIN_REQUIRED';
 
 export const NOT_SUBSCRIBED = 'not_subscribed';
 export const PROCCESING = 'proccesing';
@@ -16,42 +18,60 @@ export const IN_GRACE_PERIOD = 'in_grace_period';
 export const PAUSED = 'paused';
 export const EXPIRED = 'expired';
 export const ON_HOLD = 'on_hold';
+export const UNVERIFIED = 'unverified';
+
+export const DAYS_TO_TRY = 15;
 
 export const REQUIRING_PREMIUM_COUNTRIES = [
+  'AE',
   'AT',
   'AU',
   'BE',
+  'BH',
+  'BM',
   'CA',
-  'DK',
-  'KY',
+  'CH',
+  'CL',
+  'CY',
   'CZ',
+  'DE',
+  'DK',
   'EE',
+  'ES',
   'FI',
+  'FR',
+  'GB',
+  'GE',
   'GI',
   'GR',
+  'HK',
   'HU',
+  'IE',
   'IS',
+  'IT',
   'JP',
+  'KY',
+  'LI',
+  'LK',
   'LT',
+  'LU',
   'MC',
-  'NZ',
+  'NL',
   'NO',
+  'NZ',
+  'PA',
   'PL',
+  'PT',
+  'QA',
+  'RU',
+  'SA',
+  'SE',
+  'SG',
   'SK',
   'SI',
-  'SE',
-  'US',
-  'FR',
-  'DE',
-  'IE',
-  'IT',
-  'LI',
-  'LU',
-  'NL',
-  'PT',
   'SM',
-  'ES',
-  'CH',
-  'GB',
-  'VA'
+  'TW',
+  'US',
+  'VA',
+  'ZA'
 ]; // ISO-2 country codes

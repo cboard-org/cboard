@@ -16,7 +16,7 @@ import {
   ON_TRIAL_PERIOD
 } from './Subscribe.constants';
 import { formatDuration, formatTitle } from './Subscribe.helpers';
-import { isAndroid, isCordova, isElectron } from '../../../cordova-util';
+import { isAndroid, isCordova, isElectron, isIOS } from '../../../cordova-util';
 import { CircularProgress } from '@material-ui/core';
 
 import { Link } from 'react-router-dom';
@@ -26,7 +26,8 @@ import {
   EXPIRED,
   NOT_SUBSCRIBED,
   PROCCESING,
-  ON_HOLD
+  ON_HOLD,
+  UNVERIFIED
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -80,7 +81,7 @@ const SubscriptionPlans = ({
   } = subscription;
 
   let plans = [];
-  if (!isAndroid() && products) {
+  if (!(isAndroid() || isIOS()) && products) {
     products.forEach(product => {
       if (product.paypalId) plans.push(product);
     });
@@ -95,6 +96,7 @@ const SubscriptionPlans = ({
 
   const subscriptionStatus = (function() {
     if (error.showError) return ERROR;
+    if (status === UNVERIFIED) return UNVERIFIED;
     if (isOnTrialPeriod && !isSubscribed && status !== PROCCESING)
       return ON_TRIAL_PERIOD;
     if (products.length || status !== NOT_SUBSCRIBED)
@@ -111,6 +113,7 @@ const SubscriptionPlans = ({
     error: 'error',
     empty_product: 'warning',
     on_trial_period: 'info',
+    unverified: 'warning',
 
     on_hold: 'warning', //TODO
     paused: 'info', //TODO
@@ -144,7 +147,8 @@ const SubscriptionPlans = ({
   const getMessage = () => {
     function errorMessage() {
       if (error && error.code === '0001') {
-        return messages.googleAccountAlreadyOwns;
+        if (isAndroid()) return messages.googleAccountAlreadyOwns;
+        if (isIOS()) return messages.appleAccountAlreadyOwns;
       }
       return messages.error;
     }
@@ -228,7 +232,7 @@ const SubscriptionPlans = ({
                       /{formatDuration(product.billingPeriod)}
                     </Typography>
                   </Box>
-                  {isAndroid() && (
+                  {(isAndroid() || isIOS()) && (
                     <Button
                       variant="contained"
                       fullWidth={true}

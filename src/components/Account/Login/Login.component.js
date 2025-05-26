@@ -16,6 +16,7 @@ import validationSchema from './validationSchema';
 import { login } from './Login.actions';
 import messages from './Login.messages';
 import './Login.css';
+import PasswordTextField from '../../UI/FormItems/PasswordTextField';
 
 export class Login extends Component {
   static propTypes = {
@@ -32,7 +33,8 @@ export class Login extends Component {
 
   state = {
     isLogging: false,
-    loginStatus: {}
+    loginStatus: {},
+    isPasswordVisible: false
   };
 
   handleSubmit = values => {
@@ -47,9 +49,14 @@ export class Login extends Component {
       .catch(loginStatus => this.setState({ loginStatus }))
       .finally(() => this.setState({ isLogging: false }));
   };
+  togglePasswordVisibility = () => {
+    this.setState(prevState => ({
+      isPasswordVisible: !prevState.isPasswordVisible
+    }));
+  };
 
   render() {
-    const { isLogging, loginStatus } = this.state;
+    const { isLogging, loginStatus, isPasswordVisible } = this.state;
     const {
       intl,
       isDialogOpen,
@@ -92,10 +99,10 @@ export class Login extends Component {
                   name="email"
                   onChange={handleChange}
                 />
-                <TextField
+                <PasswordTextField
                   error={errors.password}
                   label={intl.formatMessage(messages.password)}
-                  type="password"
+                  type={isPasswordVisible ? 'text' : 'password'}
                   name="password"
                   onChange={handleChange}
                 />

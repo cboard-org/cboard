@@ -4,8 +4,12 @@
   position: relative;
   color: #eceff1;
   overflow: auto;
-  background: url('/images/bg/bg-pattern.png'),
-    linear-gradient(to right, rgb(121, 22, 254), rgb(172, 47, 138));
+  background-color: linear-gradient(
+    to right,
+    rgb(45, 22, 254),
+    rgb(141, 92, 255)
+  );
+  background-size: cover;
 }
 
 .WelcomeScreen__container {
@@ -21,6 +25,7 @@
 
 .WelcomeScreen__container > button {
   width: 50px;
+  border-radius: 15px;
 }
 
 .WelcomeScreen__content {
@@ -39,6 +44,11 @@
 .WelcomeScreen__logo {
   flex-grow: 1;
   min-height: 0;
+  padding-left: 15%;
+
+  @media (max-height: 630px) {
+    padding-left: 5%;
+  }
 }
 
 .WelcomeScreen__footer {
@@ -53,6 +63,7 @@
 .WelcomeScreen__footer .WelcomeScreen__button {
   width: 100%;
   margin: 0.8em auto 0;
+  border-radius: 15px;
 }
 
 .WelcomeScreen__button--skip {
@@ -60,10 +71,12 @@
 }
 
 .WelcomeScreen__footer .WelcomeScreen__button--google,
-.WelcomeScreen__footer .WelcomeScreen__button--facebook {
+.WelcomeScreen__footer .WelcomeScreen__button--facebook,
+.WelcomeScreen__footer .WelcomeScreen__button--apple {
   margin: 0.8em auto 0 !important;
   height: 36px !important;
   font-size: 1.1rem !important;
+  border-radius: 15px;
 }
 
 .WelcomeScreen__links {
@@ -71,6 +84,7 @@
   flex-direction: row;
   justify-content: space-around;
   padding: 4px;
+  text-shadow: 0px 0px 8px black;
 }
 
 .WelcomeScreen__links > a {

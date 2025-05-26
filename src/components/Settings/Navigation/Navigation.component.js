@@ -75,6 +75,12 @@ class Navigation extends React.Component {
     });
   };
 
+  toggleQuietBuilderMode = () => {
+    this.setState({
+      quietBuilderMode: !this.state.quietBuilderMode
+    });
+  };
+
   toggleLiveMode = () => {
     this.setState({
       liveMode: !this.state.liveMode
@@ -240,7 +246,7 @@ class Navigation extends React.Component {
                 </ListItemSecondaryAction>
               </ListItem>
               <Divider />
-              <ListItem disabled={true}>
+              <ListItem disabled={false}>
                 <ListItemText
                   className="Navigation__ListItemText"
                   primary={<FormattedMessage {...messages.quickUnlock} />}
@@ -250,7 +256,7 @@ class Navigation extends React.Component {
                 />
                 <ListItemSecondaryAction>
                   <Switch
-                    disabled={true}
+                    disabled={false}
                     checked={this.state.quickUnlockActive}
                     onChange={this.toggleQuickUnlock}
                     value="active"
@@ -271,6 +277,24 @@ class Navigation extends React.Component {
                   <Switch
                     checked={this.state.vocalizeFolders}
                     onChange={this.toggleVocalizeFolders}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Navigation__ListItemText"
+                  primary={<FormattedMessage {...messages.quietBuilderMode} />}
+                  secondary={
+                    <FormattedMessage {...messages.quietBuilderModeSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.quietBuilderMode}
+                    onChange={this.toggleQuietBuilderMode}
                     value="active"
                     color="secondary"
                   />
@@ -310,7 +334,7 @@ class Navigation extends React.Component {
                   }
                 />
                 <ListItemSecondaryAction>
-                  <PremiumFeature>
+                  <PremiumFeature isLoginRequired={true}>
                     <Switch
                       checked={this.state.improvePhraseActive || false}
                       onChange={this.toggleImprovePhraseActive}

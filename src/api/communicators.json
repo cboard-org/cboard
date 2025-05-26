@@ -6,6 +6,10 @@
     "author": "Cboard Team",
     "email": "support@cboard.io",
     "rootBoard": "root",
-    "boards": ["root"]
+    "boards": ["root"],
+    "defaultBoardsIncluded": [
+      { "nameOnJSON": "advanced", "homeBoard": "root" },
+      { "nameOnJSON": "picSeePal", "homeBoard": "jjmlUcQs19" }
+    ]
   }
 ]

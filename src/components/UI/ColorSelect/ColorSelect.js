@@ -7,10 +7,10 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import CloseIcon from '@material-ui/icons/Close';
 import MenuItem from '@material-ui/core/MenuItem';
 import { InputLabel, Select } from '@material-ui/core';
-
 import IconButton from '../IconButton';
 import Circle from './Circle';
 import messages from './ColorSelect.messages';
+import { HuePicker } from 'react-color';
 
 const colorSchemes = [
   {
@@ -35,13 +35,18 @@ const colorSchemes = [
   {
     name: 'Goossens',
     colors: ['#ffc0cb', '#2196F3', '#4CAF50', '#fff176', '#ff6600']
+  },
+  {
+    name: 'Custom',
+    colors: []
   }
 ];
 
 const propTypes = {
   intl: intlShape.isRequired,
   onChange: PropTypes.func.isRequired,
-  selectedColor: PropTypes.string.isRequired
+  selectedColor: PropTypes.string.isRequired,
+  defaultColor: PropTypes.string.isRequired
 };
 
 class ColorSelect extends React.Component {
@@ -54,14 +59,25 @@ class ColorSelect extends React.Component {
   }
 
   handleColorSchemeChange = event => {
-    this.setState({ colorMenu: event.target.value });
+    const selectedScheme = event.target.value;
+    this.setState({ colorMenu: selectedScheme });
+  };
+
+  handleHueChange = hue => {
+    this.props.onChange({ target: { value: hue.hex } });
+  };
+
+  handleRadioItemChange = event => {
+    const selectedColor = event.target.value;
+    this.props.onChange({ target: { value: selectedColor } });
   };
 
   render() {
-    const { intl, onChange, selectedColor } = this.props;
+    const { intl, onChange, selectedColor, defaultColor } = this.props;
     const colorLabel = intl.formatMessage(messages.color);
     const radioGroupStyle = { flexDirection: 'row' };
     const radioItemStyle = { padding: '2px' };
+    const hueItemStyle = { marginTop: '5px' };
 
     return (
       <FormControl className="ColorSelect">
@@ -76,15 +92,11 @@ class ColorSelect extends React.Component {
               value={this.state.colorMenu}
               onChange={this.handleColorSchemeChange}
             >
-              <MenuItem value={colorSchemes[0]}>
-                {colorSchemes[0].name}
-              </MenuItem>
-              <MenuItem value={colorSchemes[1]}>
-                {colorSchemes[1].name}
-              </MenuItem>
-              <MenuItem value={colorSchemes[2]}>
-                {colorSchemes[2].name}
-              </MenuItem>
+              {colorSchemes.map((scheme, index) => (
+                <MenuItem key={index} value={scheme}>
+                  {scheme.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </div>
@@ -93,22 +105,31 @@ class ColorSelect extends React.Component {
           name="color"
           value={selectedColor}
           style={radioGroupStyle}
-          onChange={onChange}
+          onChange={this.handleRadioItemChange}
         >
-          {this.state.colorMenu.colors.map(color => (
-            <Radio
-              key={color}
-              value={color}
-              style={radioItemStyle}
-              icon={<Circle fill={color} />}
-              checkedIcon={<Circle fill={color} />}
-            />
-          ))}
-          {selectedColor && (
+          {this.state.colorMenu.name === 'Custom' ? (
+            <div style={hueItemStyle}>
+              <HuePicker
+                color={selectedColor}
+                onChangeComplete={this.handleHueChange}
+              />
+            </div>
+          ) : (
+            this.state.colorMenu.colors?.map(color => (
+              <Radio
+                key={color}
+                value={color}
+                style={radioItemStyle}
+                icon={<Circle fill={color} />}
+                checkedIcon={<Circle fill={color} />}
+              />
+            ))
+          )}
+          {defaultColor !== selectedColor && (
             <IconButton
               label={intl.formatMessage(messages.clearSelection)}
               onClick={() => {
-                onChange();
+                onChange({ target: { value: defaultColor } });
               }}
             >
               <CloseIcon />

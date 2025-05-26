@@ -7,7 +7,8 @@ import {
   UPDATE_USER_DATA,
   DISABLE_TOUR,
   ENABLE_ALL_TOURS,
-  SET_UNLOGGED_USER_LOCATION
+  SET_UNLOGGED_USER_LOCATION,
+  USER_DATA_PROPERTIES
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
 import {
@@ -50,6 +51,7 @@ const initialState = {
     quickUnlockActive: false,
     removeOutputActive: false,
     vocalizeFolders: false,
+    quietBuilderMode: false,
     liveMode: false,
     improvePhraseActive: false
   },
@@ -57,6 +59,15 @@ const initialState = {
     arasaacActive: false
   },
   userData: {}
+};
+
+const getKeysFromApiUserDataResponse = payload => {
+  const newUser = {};
+  if (!payload) return newUser;
+  USER_DATA_PROPERTIES.forEach(prop => {
+    if (payload[prop] !== undefined) newUser[prop] = payload[prop];
+  });
+  return newUser;
 };
 
 function appReducer(state = initialState, action) {
@@ -146,7 +157,7 @@ function appReducer(state = initialState, action) {
         isFirstVisit: false,
         displaySettings,
         navigationSettings,
-        userData: action.payload || {}
+        userData: getKeysFromApiUserDataResponse(action.payload)
       };
     case LOGOUT:
       return {
@@ -156,7 +167,7 @@ function appReducer(state = initialState, action) {
     case UPDATE_USER_DATA:
       return {
         ...state,
-        userData: action.userData
+        userData: getKeysFromApiUserDataResponse(action.userData)
       };
     case SET_UNLOGGED_USER_LOCATION:
       return {

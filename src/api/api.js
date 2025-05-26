@@ -60,9 +60,7 @@ class API {
           error.config?.baseURL === BASE_URL
         ) {
           if (isAndroid()) {
-            window.plugins.googleplus.disconnect(function(msg) {
-              console.log('disconnect google msg' + msg);
-            });
+            window.FirebasePlugin.unregister();
             window.facebookConnectPlugin.logout(
               function(msg) {
                 console.log('disconnect facebook msg' + msg);
@@ -285,6 +283,22 @@ class API {
 
   async getBoard(id) {
     const { data } = await this.axiosInstance.get(`/board/${id}`);
+    return data;
+  }
+
+  async getCbuilderBoard(id) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request', {
+        cause: 401
+      });
+    }
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+    const { data } = await this.axiosInstance.get(`/board/cbuilder/${id}`, {
+      headers
+    });
     return data;
   }
 
@@ -520,11 +534,17 @@ class API {
     }
     const headers = {
       Authorization: `Bearer ${authToken}`,
-      requestOrigin
+      requestOrigin,
+      purchaseVersion: '1.0.0'
     };
     const { data } = await this.axiosInstance.get(`/subscriber/${userId}`, {
       headers
     });
+
+    if (data && !data.success) {
+      throw data;
+    }
+
     return data;
   }
 

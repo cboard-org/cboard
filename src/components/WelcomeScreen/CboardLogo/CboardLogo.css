@@ -1,9 +1,9 @@
 .CboardLogo {
-  padding: 3vh;
+  padding: 2vh;
   margin: 0 auto;
   display: block;
   max-height: 50vh;
-  height: 100%;
+  height: 85%;
   max-width: 100%;
   object-fit: contain;
 }
@@ -17,4 +17,3 @@
   transform: translateX(0);
   transition: opacity 5000ms, transform 5000ms;
 }
-
