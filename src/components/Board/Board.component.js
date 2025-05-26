@@ -261,6 +261,7 @@ export class Board extends Component {
         onFocus={() => {
           this.handleTileFocus(tile.id);
         }}
+        key={tile.id}
       >
         <Symbol
           image={tile.image}
