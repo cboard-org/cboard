@@ -27,10 +27,10 @@ const propTypes = {
    */
   variant: PropTypes.oneOf(['button', 'folder', 'board']),
   /**
-   * Unique key for the tile, used for React reconciliation
-   * and should be unique among siblings.
+   * Unique id for the tile key, used for React reconciliation.
+   * Should be unique among siblings.
    */
-  key: PropTypes.string
+  id: PropTypes.string
 };
 
 const defaultProps = {};
@@ -42,6 +42,7 @@ const Tile = props => {
     children,
     className: classNameProp,
     variant,
+    id,
     ...other
   } = props;
 
@@ -72,7 +73,7 @@ const Tile = props => {
 
   return (
     <Scannable onSelect={onSelect} id={'scannable'}>
-      <button className={className} type="button" {...other}>
+      <button className={className} type="button" key={id} {...other}>
         <div className={tileShapeClassName} style={tileShapeStyles} />
         {children}
       </button>
