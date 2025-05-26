@@ -25,7 +25,12 @@ const propTypes = {
   /**
    * Type of tile
    */
-  variant: PropTypes.oneOf(['button', 'folder', 'board'])
+  variant: PropTypes.oneOf(['button', 'folder', 'board']),
+  /**
+   * Unique key for the tile, used for React reconciliation
+   * and should be unique among siblings.
+   */
+  key: PropTypes.string
 };
 
 const defaultProps = {};
