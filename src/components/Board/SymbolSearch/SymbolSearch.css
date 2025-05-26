@@ -1,3 +1,14 @@
+.filter-options {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-options-item {
+  flex: 1;
+}
+
 .MuiFormControl-root.ColorSelect {
   display: flex;
   padding: 4px;
@@ -53,6 +64,12 @@
 }
 
 @media (min-width: 600px) {
+  .filter-options {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
   .react-autosuggest__suggestions-container {
     top: 128px;
   }

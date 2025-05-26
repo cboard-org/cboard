@@ -35,6 +35,7 @@ const skinToneSources = new Map([
     ]
   ]
 ]);
+const sourcesNames = new Map([['arasaac', 'ARASAAC']]);
 
 const propTypes = {
   source: PropTypes.string.isRequired,
@@ -48,6 +49,9 @@ class SkinToneSelect extends React.Component {
     super(props);
 
     this.state = {
+      sourceName: sourcesNames.has(props.source)
+        ? sourcesNames.get(props.source)
+        : sourcesNames.get('arasaac'),
       skinToneMenu: skinToneSources.has(props.source)
         ? skinToneSources.get(props.source)
         : skinToneSources.get('arasaac')
@@ -56,7 +60,9 @@ class SkinToneSelect extends React.Component {
 
   render() {
     const { intl, onChange, selectedColor } = this.props;
-    const skinToneLabel = intl.formatMessage(messages.skinTone);
+    const skinToneLabel = `${this.state.sourceName} ${intl.formatMessage(
+      messages.skinTone
+    )}`;
     const radioGroupStyle = { flexDirection: 'row' };
     const radioItemStyle = { padding: '2px' };
 

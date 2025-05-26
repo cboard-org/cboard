@@ -43,6 +43,7 @@ const hairColorSources = new Map([
     ]
   ]
 ]);
+const sourcesNames = new Map([['arasaac', 'ARASAAC']]);
 
 const propTypes = {
   source: PropTypes.string.isRequired,
@@ -56,6 +57,9 @@ class HairColorSelect extends React.Component {
     super(props);
 
     this.state = {
+      sourceName: sourcesNames.has(props.source)
+        ? sourcesNames.get(props.source)
+        : sourcesNames.get('arasaac'),
       hairColorMenu: hairColorSources.has(props.source)
         ? hairColorSources.get(props.source)
         : hairColorSources.get('arasaac')
@@ -64,7 +68,9 @@ class HairColorSelect extends React.Component {
 
   render() {
     const { intl, onChange, selectedColor } = this.props;
-    const hairColorLabel = intl.formatMessage(messages.hairColor);
+    const hairColorLabel = `${this.state.sourceName} ${intl.formatMessage(
+      messages.hairColor
+    )}`;
     const radioGroupStyle = { flexDirection: 'row' };
     const radioItemStyle = { padding: '2px' };
 
