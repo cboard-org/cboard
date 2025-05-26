@@ -104,4 +104,4 @@ workflows:
             - build
           filters:
             branches:
-              only: fix/1482-first-render-issue
+              only: master
