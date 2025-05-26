@@ -90,8 +90,7 @@ const People = ({
         disableSubmit={!isLogged}
       >
         <Paper>
-          <Box px={3} py={4}>
-            {/* Icono y Logout */}
+          <Box px={2} py={2}>
             <Box
               display="flex"
               flexDirection="column"
@@ -99,9 +98,6 @@ const People = ({
               mb={4}
             >
               <UserIcon />
-              <Typography variant="h6" sx={{ mt: 2, textAlign: 'center' }}>
-                {name}
-              </Typography>
               <Box display="flex" justifyContent="center" width="100%">
                 <Button
                   variant="outlined"
@@ -109,15 +105,12 @@ const People = ({
                   onClick={logout}
                   component={Link}
                   to="/"
-                  disabled={!isLogged}
-                  sx={{ mt: 2 }}
                 >
                   <FormattedMessage {...messages.logout} />
                 </Button>
               </Box>
             </Box>
 
-            {/* Nombre */}
             <Grid container spacing={2} alignItems="center" mb={3}>
               <Grid item xs={12} sm={6}>
                 <Typography variant="subtitle1">
@@ -131,6 +124,7 @@ const People = ({
                 <TextField
                   fullWidth
                   disabled={!isLogged}
+                  id="user-name"
                   label={<FormattedMessage {...messages.name} />}
                   value={name}
                   onChange={onChangePeople('name')}
