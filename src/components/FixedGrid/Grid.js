@@ -23,15 +23,14 @@ const focusPosition = {
 function Grid(props) {
   const {
     className,
+    items,
     style,
     setIsScroll,
     fixedRef,
     isBigScrollBtns,
     isNavigationButtonsOnTheSide,
-    gridState,
     ...other
   } = props;
-  const { items } = gridState;
 
   const itemsPerPage = other.rows * other.columns;
   const [pages, setPages] = useState(chunks(items, itemsPerPage));
@@ -230,7 +229,7 @@ function Grid(props) {
           <GridBase
             {...other}
             className={gridClassName}
-            gridState={{ items: pageItems, order: gridState.order }}
+            items={pageItems}
             key={i}
             page={i}
           />
@@ -252,17 +251,21 @@ Grid.propTypes = {
    */
   dragAndDropEnabled: PropTypes.bool,
   /**
-   * State of the grid, including items and order.
+   * Items to render.
    */
-  gridState: PropTypes.shape({
-    items: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired
-      })
-    ),
-    order: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired
-  }).isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      /**
+       * Item ID.
+       */
+      id: PropTypes.string.isRequired
+    })
+  ),
   onItemDrop: PropTypes.func,
+  /**
+   * Items order by ID.
+   */
+  order: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
   /**
    * Item empty cell.
    */
