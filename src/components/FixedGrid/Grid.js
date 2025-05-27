@@ -42,7 +42,7 @@ function Grid(props) {
     },
     [items, itemsPerPage]
   );
-
+  console.log('pages', pages);
   const gridClassName = classNames(styles.grid, className);
 
   const findPressedArrow = event => {
@@ -230,7 +230,7 @@ function Grid(props) {
           <GridBase
             {...other}
             className={gridClassName}
-            gridState={gridState}
+            gridState={{ items: pageItems, order: gridState.order }}
             key={i}
             page={i}
           />
