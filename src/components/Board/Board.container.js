@@ -820,7 +820,11 @@ export class BoardContainer extends Component {
       if (tile.sound) {
         this.playAudio(tile.sound);
       } else {
-        const toSpeak = !hasAction ? tile.vocalization || tile.label : null;
+        const toSpeak =
+          (!hasAction && tile.vocalization) ||
+          tile.label ||
+          this.props.intl?.messages[tile.labelKey] ||
+          '';
         if (toSpeak) {
           speak(toSpeak);
         }
