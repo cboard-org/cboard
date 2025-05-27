@@ -62,7 +62,7 @@ module.exports = {
       }
     }
   ],
-  navigateFallback: '/',
+  navigateFallback: '/index.html',
   dontCacheBustUrlsMatching: /\.\w{8}\./,
   dynamicUrlToDependencies: {
     '/': ['build/index.html']
