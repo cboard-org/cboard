@@ -54,7 +54,7 @@ const People = ({
   logout,
   name,
   email,
-  location: { country, countryCode },
+  location: { country },
   onChangePeople,
   onSubmitPeople,
   onDeleteAccount
@@ -132,7 +132,6 @@ const People = ({
               </Grid>
             </Grid>
 
-            {/* Email */}
             <Grid container spacing={2} alignItems="center" mb={3}>
               <Grid item xs={12} sm={6}>
                 <Typography variant="subtitle1">
@@ -153,7 +152,6 @@ const People = ({
               </Grid>
             </Grid>
 
-            {/* País */}
             {country && (
               <Grid container spacing={2} alignItems="center" mb={3}>
                 <Grid item xs={12} sm={6}>
@@ -172,7 +170,6 @@ const People = ({
               </Grid>
             )}
 
-            {/* Eliminar cuenta */}
             {isLogged && (
               <Grid container spacing={2} alignItems="center" mt={5}>
                 <Grid item xs={12} sm={6}>
