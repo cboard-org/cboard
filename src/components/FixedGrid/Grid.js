@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -24,6 +24,7 @@ function Grid(props) {
   const {
     className,
     items,
+    order,
     style,
     setIsScroll,
     fixedRef,
@@ -32,14 +33,15 @@ function Grid(props) {
     ...other
   } = props;
 
-  const itemsPerPage = other.rows * other.columns;
-  const [pages, setPages] = useState(chunks(items, itemsPerPage));
+  const pages = useMemo(() => chunks(items, other.rows * other.columns), [
+    items,
+    other.rows,
+    other.columns
+  ]);
 
-  useEffect(
-    () => {
-      setPages(chunks(items, itemsPerPage));
-    },
-    [items, itemsPerPage]
+  const memoizedGridState = useMemo(
+    () => pages.map(pageItems => ({ items: pageItems, order })),
+    [pages, order]
   );
 
   const gridClassName = classNames(styles.grid, className);
@@ -225,11 +227,11 @@ function Grid(props) {
       ref={props.fixedRef}
     >
       {pages.length > 0 ? (
-        pages.map((pageItems, i) => (
+        pages.map((_, i) => (
           <GridBase
             {...other}
             className={gridClassName}
-            items={pageItems}
+            gridState={memoizedGridState[i]}
             key={i}
             page={i}
           />
