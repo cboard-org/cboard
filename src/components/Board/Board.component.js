@@ -238,7 +238,7 @@ export class Board extends Component {
     });
   }
 
-  renderTileFixedBoard(tile) {
+  renderTileFixedBoard = tile => {
     const {
       isSelecting,
       isSaving,
@@ -277,7 +277,7 @@ export class Board extends Component {
         )}
       </Tile>
     );
-  }
+  };
 
   render() {
     const {
@@ -482,7 +482,7 @@ export class Board extends Component {
                     }
                     rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
                     dragAndDropEnabled={isSelecting}
-                    renderItem={item => this.renderTileFixedBoard(item)}
+                    renderItem={this.renderTileFixedBoard}
                     onItemDrop={onTileDrop}
                     fixedRef={this.fixedBoardContainerRef}
                     setIsScroll={setIsScroll}
