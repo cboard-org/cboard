@@ -114,7 +114,7 @@ class SymbolOutput extends PureComponent {
     return (
       <div className="SymbolOutput">
         <Scroll scrollContainerReference={this.scrollContainerRef} {...other}>
-          {symbols.map(({ image, label, type, keyPath }, index) => (
+          {symbols.map(({ image, label, labelKey, type, keyPath }, index) => (
             <div
               className={
                 type === 'live'
@@ -127,7 +127,7 @@ class SymbolOutput extends PureComponent {
                 className="SymbolOutput__symbol"
                 image={image}
                 keyPath={keyPath}
-                label={label}
+                label={label ?? (this.props.intl?.messages[labelKey] || '')}
                 type={type}
                 labelpos="Below"
                 onWrite={onWriteSymbol(index)}

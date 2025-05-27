@@ -220,7 +220,9 @@ export class Board extends Component {
           >
             <Symbol
               image={tile.image}
-              label={tile.label}
+              label={
+                tile.label ?? (this.props.intl?.messages[tile.labelKey] || '')
+              }
               keyPath={tile.keyPath}
               labelpos={displaySettings.labelPosition}
             />
@@ -265,7 +267,7 @@ export class Board extends Component {
       >
         <Symbol
           image={tile.image}
-          label={tile.label}
+          label={tile.label ?? (this.props.intl?.messages[tile.labelKey] || '')}
           keyPath={tile.keyPath}
           labelpos={displaySettings.labelPosition}
         />
