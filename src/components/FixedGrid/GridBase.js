@@ -26,12 +26,13 @@ function GridBase(props) {
   const gridClassName = classNames(styles.root, className);
 
   const { items, order } = gridState;
-  const grid = useMemo(
-    () => {
-      return utils.sortGrid({ columns, rows, order, items });
-    },
-    [columns, rows, order, items]
-  );
+
+  const grid = useMemo(() => utils.sortGrid({ columns, rows, order, items }), [
+    columns,
+    rows,
+    order,
+    items
+  ]);
 
   let itemIndex = 0;
 
