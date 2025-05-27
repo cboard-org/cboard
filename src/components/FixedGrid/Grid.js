@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -32,15 +32,11 @@ function Grid(props) {
     ...other
   } = props;
 
-  const itemsPerPage = other.rows * other.columns;
-  const [pages, setPages] = useState(chunks(items, itemsPerPage));
-
-  useEffect(
-    () => {
-      setPages(chunks(items, itemsPerPage));
-    },
-    [items, itemsPerPage]
-  );
+  const pages = useMemo(() => chunks(items, other.rows * other.columns), [
+    items,
+    other.rows,
+    other.columns
+  ]);
 
   const gridClassName = classNames(styles.grid, className);
 
