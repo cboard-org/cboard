@@ -42,7 +42,7 @@ function Grid(props) {
     },
     [items, itemsPerPage]
   );
-  console.log('pages', pages);
+
   const gridClassName = classNames(styles.grid, className);
 
   const findPressedArrow = event => {
