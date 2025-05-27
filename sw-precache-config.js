@@ -74,7 +74,7 @@ module.exports = {
   ],
   navigateFallback: '/index.html',
   navigateFallbackWhitelist: [/^\/(?!api).*/],
-  dontCacheBustUrlsMatching: /\.(js|css|json|jpg|jpeg|png|svg|ico)$/,
+  dontCacheBustUrlsMatching: /\.\w{8}\./,
   dynamicUrlToDependencies: {
     '/': ['build/index.html']
   },
