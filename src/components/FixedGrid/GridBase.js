@@ -7,31 +7,25 @@ import Row from './Row/Row';
 import DroppableCell from './DroppableCell/DroppableCell';
 import DraggableItem from './DraggableItem/DraggableItem';
 import styles from './GridBase.module.css';
-import { useMemo } from 'react';
 
 function GridBase(props) {
   const {
     className,
     columns,
     dragAndDropEnabled,
+    items,
     onItemDrop,
+    order,
     renderEmptyCell,
     renderItem,
     rows,
     page,
-    gridState,
     ...other
   } = props;
 
   const gridClassName = classNames(styles.root, className);
 
-  const { items, order } = gridState;
-  const grid = useMemo(
-    () => {
-      return utils.sortGrid({ columns, rows, order, items });
-    },
-    [columns, rows, order, items]
-  );
+  const grid = utils.sortGrid({ columns, rows, order, items });
 
   let itemIndex = 0;
 
@@ -83,16 +77,20 @@ GridBase.propTypes = {
    */
   dragAndDropEnabled: PropTypes.bool,
   /**
-   * State of the grid, including items and order.
+   * Items to render.
    */
-  gridState: PropTypes.shape({
-    items: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired
-      })
-    ),
-    order: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired
-  }).isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      /**
+       * Item ID.
+       */
+      id: PropTypes.string.isRequired
+    })
+  ),
+  /**
+   * Items order by ID.
+   */
+  order: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
   /**
    * Item renderer.
    */
