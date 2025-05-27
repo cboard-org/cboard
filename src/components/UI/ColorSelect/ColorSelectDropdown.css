@@ -1,0 +1,14 @@
+.colorSelectDropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.ColorSelect {
+  position: absolute !important;
+  margin-top: 4em !important;
+  margin-left: -1em !important;
+}
+
+.closed {
+  display: none !important;
+}

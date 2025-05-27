@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import FormControl from '@material-ui/core/FormControl';
+import { Card, CardContent, IconButton, Tooltip } from '@material-ui/core';
+import { Face } from '@material-ui/icons';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 
+import './ColorSelectDropdown.css';
 import Circle from './Circle';
 import messages from './HairColor.messages';
 
@@ -57,6 +60,7 @@ class HairColorSelect extends React.Component {
     super(props);
 
     this.state = {
+      open: false,
       sourceName: sourcesNames.has(props.source)
         ? sourcesNames.get(props.source)
         : sourcesNames.get('arasaac'),
@@ -66,41 +70,61 @@ class HairColorSelect extends React.Component {
     };
   }
 
+  toggleOpen() {
+    this.setState({
+      open: !this.state.open
+    });
+  }
+
   render() {
-    const { intl, onChange, selectedColor } = this.props;
+    const { intl, onChange, selectedColor, iconColor } = this.props;
     const hairColorLabel = `${this.state.sourceName} ${intl.formatMessage(
       messages.hairColor
     )}`;
-    const radioGroupStyle = { flexDirection: 'row' };
+    const radioGroupStyle = { flexDirection: 'column' };
     const radioItemStyle = { padding: '2px' };
 
     return (
-      <FormControl className="ColorSelect">
-        <label>{hairColorLabel}</label>
-        <RadioGroup
-          aria-label={hairColorLabel}
-          name="hairColor"
-          value={selectedColor}
-          style={radioGroupStyle}
-          onChange={onChange}
-        >
-          {this.state.hairColorMenu.map(hairColor => (
-            <Radio
-              key={hairColor.name}
-              value={hairColor.name}
-              style={radioItemStyle}
-              icon={<Circle fill={hairColor.color} />}
-              checkedIcon={
-                <Circle
-                  fill={hairColor.color}
-                  color="primary"
-                  strokeWidth={3}
-                />
-              }
-            />
-          ))}
-        </RadioGroup>
-      </FormControl>
+      <div className="colorSelectDropdown">
+        <Tooltip title={hairColorLabel} aria-label={hairColorLabel}>
+          <IconButton
+            label={hairColorLabel}
+            onClick={() => this.toggleOpen()}
+            style={{ color: iconColor ? iconColor : 'inherit' }}
+          >
+            <Face />
+          </IconButton>
+        </Tooltip>
+        <FormControl className="ColorSelect">
+          <Card className={this.state.open ? 'opened' : 'closed'}>
+            <CardContent>
+              <RadioGroup
+                aria-label={hairColorLabel}
+                name="hairColor"
+                value={selectedColor}
+                style={radioGroupStyle}
+                onChange={onChange}
+              >
+                {this.state.hairColorMenu.map(hairColor => (
+                  <Radio
+                    key={hairColor.name}
+                    value={hairColor.name}
+                    style={radioItemStyle}
+                    icon={<Circle fill={hairColor.color} />}
+                    checkedIcon={
+                      <Circle
+                        fill={hairColor.color}
+                        color="primary"
+                        strokeWidth={3}
+                      />
+                    }
+                  />
+                ))}
+              </RadioGroup>
+            </CardContent>
+          </Card>
+        </FormControl>
+      </div>
     );
   }
 }

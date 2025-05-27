@@ -444,7 +444,18 @@ export class SymbolSearch extends PureComponent {
           </Tooltip>
         </div>
       ) : null;
-
+    const skinOptions = this.showInclusivityOptions ? (
+      <SkinToneSelect
+        selectedColor={this.state.skin}
+        onChange={this.handleSkinToneChange}
+      />
+    ) : null;
+    const hairOptions = this.showInclusivityOptions ? (
+      <HairColorSelect
+        selectedColor={this.state.hair}
+        onChange={this.handleHairColorChange}
+      />
+    ) : null;
     const autoSuggest = (
       <div
         className={`react-autosuggest__container ${
@@ -471,6 +482,8 @@ export class SymbolSearch extends PureComponent {
             onChange: this.handleChange
           }}
         />
+        {skinOptions}
+        {hairOptions}
         {clearButton}
       </div>
     );
@@ -481,25 +494,11 @@ export class SymbolSearch extends PureComponent {
       this.state.suggestions.length === 0 ? (
         <SymbolNotFound />
       ) : null;
-    const inclusivityOptions = this.showInclusivityOptions ? (
-      <div class="filter-options-item ">
-        <SkinToneSelect
-          selectedColor={this.state.skin}
-          onChange={this.handleSkinToneChange}
-        />
-        <HairColorSelect
-          selectedColor={this.state.hair}
-          onChange={this.handleHairColorChange}
-        />
-      </div>
-    ) : null;
     const symbolSetOptions = (
-      <div class="filter-options-item">
-        <FilterBar
-          options={this.state.symbolSets}
-          onChange={this.handleChangeOption}
-        />
-      </div>
+      <FilterBar
+        options={this.state.symbolSets}
+        onChange={this.handleChangeOption}
+      />
     );
 
     return (
@@ -510,10 +509,7 @@ export class SymbolSearch extends PureComponent {
           transition="fade"
           onClose={onClose}
         >
-          <div class="filter-options">
-            {inclusivityOptions}
-            {symbolSetOptions}
-          </div>
+          {symbolSetOptions}
           {symbolNotFound}
         </FullScreenDialog>
       </div>
