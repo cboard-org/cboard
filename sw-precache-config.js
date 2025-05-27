@@ -29,21 +29,11 @@ module.exports = {
   staticFileGlobs: [
     'build/*.html',
     'build/manifest.json',
-    'build/static/**/*.*',
+    'build/static/**/!(*map*)',
     ...boardImages
   ],
   maximumFileSizeToCacheInBytes: 8 * 1024 * 1024, // 8 MB
   runtimeCaching: [
-    {
-      urlPattern: /\/static\//,
-      handler: 'cacheFirst',
-      options: {
-        cache: {
-          name: 'static-assets',
-          maxEntries: 200
-        }
-      }
-    },
     {
       urlPattern: /\/symbols\/mulberry/,
       handler: 'cacheFirst',
@@ -72,8 +62,7 @@ module.exports = {
       }
     }
   ],
-  navigateFallback: '/index.html',
-  navigateFallbackWhitelist: [/^\/(?!api).*/],
+  navigateFallback: '/',
   dontCacheBustUrlsMatching: /\.\w{8}\./,
   dynamicUrlToDependencies: {
     '/': ['build/index.html']
