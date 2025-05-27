@@ -32,7 +32,7 @@ module.exports = {
     'build/static/**/*.*',
     ...boardImages
   ],
-  maximumFileSizeToCacheInBytes: 4194304,
+  maximumFileSizeToCacheInBytes: 8 * 1024 * 1024, // 8 MB
   runtimeCaching: [
     {
       urlPattern: /\/static\//,
