@@ -14,7 +14,6 @@ import PhraseShare from '../PhraseShare';
 import Scroll from './Scroll';
 import './SymbolOutput.css';
 import { injectIntl } from 'react-intl';
-import { resolveLabel } from '../../../../helpers';
 
 class SymbolOutput extends PureComponent {
   constructor(props) {
