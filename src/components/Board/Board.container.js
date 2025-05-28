@@ -71,6 +71,7 @@ import {
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import LoadingIcon from '../UI/LoadingIcon';
+import { resolveLabel } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
 
 const ogv = require('ogv');
@@ -821,10 +822,7 @@ export class BoardContainer extends Component {
         this.playAudio(tile.sound);
       } else {
         const toSpeak =
-          (!hasAction && tile.vocalization) ||
-          tile.label ||
-          this.props.intl?.messages[tile.labelKey] ||
-          '';
+          (!hasAction && tile.vocalization) || resolveLabel(tile, intl);
         if (toSpeak) {
           speak(toSpeak);
         }
@@ -847,9 +845,7 @@ export class BoardContainer extends Component {
         showNotification(intl.formatMessage(messages.boardMissed));
       }
     } else {
-      clickSymbol(
-        tile.label ?? (this.props.intl?.messages[tile.labelKey] || '')
-      );
+      clickSymbol(resolveLabel(tile, intl));
       if (!navigationSettings.quietBuilderMode) {
         say();
       }

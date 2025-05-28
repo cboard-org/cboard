@@ -14,6 +14,7 @@ import PhraseShare from '../PhraseShare';
 import Scroll from './Scroll';
 import './SymbolOutput.css';
 import { injectIntl } from 'react-intl';
+import { resolveLabel } from '../../../../helpers';
 
 class SymbolOutput extends PureComponent {
   constructor(props) {
@@ -127,7 +128,13 @@ class SymbolOutput extends PureComponent {
                 className="SymbolOutput__symbol"
                 image={image}
                 keyPath={keyPath}
-                label={label ?? (this.props.intl?.messages[labelKey] || '')}
+                label={resolveLabel(
+                  {
+                    label,
+                    labelKey
+                  },
+                  intl
+                )}
                 type={type}
                 labelpos="Below"
                 onWrite={onWriteSymbol(index)}

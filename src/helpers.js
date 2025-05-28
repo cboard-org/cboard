@@ -48,3 +48,11 @@ export const convertImageUrlToCatchable = imageUrl => {
   if (isCboardProductionBlobContainer) return cboardBlobUsingCDN(imageUrl);
   return null;
 };
+
+export const resolveLabel = ({ label, labelKey }, intl) => {
+  if (label) return label;
+  if (labelKey && intl?.messages?.[labelKey]) {
+    return intl.formatMessage({ id: labelKey });
+  }
+  return '';
+};

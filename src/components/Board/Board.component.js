@@ -35,6 +35,7 @@ import BoardTour from './BoardTour/BoardTour';
 import ScrollButtons from '../ScrollButtons';
 import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../Settings/Navigation/Navigation.constants';
 import ImprovePhraseOutput from './ImprovePhraseOutput';
+import { resolveLabel } from '../../helpers';
 
 export class Board extends Component {
   static propTypes = {
@@ -220,9 +221,7 @@ export class Board extends Component {
           >
             <Symbol
               image={tile.image}
-              label={
-                tile.label ?? (this.props.intl?.messages[tile.labelKey] || '')
-              }
+              label={resolveLabel(tile, this.props.intl)}
               keyPath={tile.keyPath}
               labelpos={displaySettings.labelPosition}
             />
@@ -267,7 +266,7 @@ export class Board extends Component {
       >
         <Symbol
           image={tile.image}
-          label={tile.label ?? (this.props.intl?.messages[tile.labelKey] || '')}
+          label={resolveLabel(tile, this.props.intl)}
           keyPath={tile.keyPath}
           labelpos={displaySettings.labelPosition}
         />
