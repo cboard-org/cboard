@@ -1189,24 +1189,24 @@ export class BoardContainer extends Component {
     this.props.history.replace(`/board/${boardId}`);
   }
 
-  onRequestPreviousBoard() {
+  onRequestPreviousBoard = () => {
     this.props.previousBoard();
     this.scrollToTop();
-  }
+  };
 
-  onRequestToRootBoard() {
+  onRequestToRootBoard = () => {
     this.props.toRootBoard();
     this.scrollToTop();
-  }
+  };
 
-  scrollToTop() {
+  scrollToTop = () => {
     if (this.boardRef && !this.state.isSelecting) {
       const boardComponentRef = this.props.board.isFixed
         ? 'fixedBoardContainerRef'
         : 'boardContainerRef';
       this.boardRef.current[boardComponentRef].current.scrollTop = 0;
     }
-  }
+  };
 
   handleCopyRemoteBoard = async () => {
     const { intl, showNotification, history, switchBoard } = this.props;
@@ -1598,8 +1598,8 @@ export class BoardContainer extends Component {
           onLockClick={this.handleLockClick}
           onLockNotify={this.handleLockNotify}
           onScannerActive={this.handleScannerStrategyNotification}
-          onRequestPreviousBoard={this.onRequestPreviousBoard.bind(this)}
-          onRequestToRootBoard={this.onRequestToRootBoard.bind(this)}
+          onRequestPreviousBoard={this.onRequestPreviousBoard}
+          onRequestToRootBoard={this.onRequestToRootBoard}
           onSelectClick={this.handleSelectClick}
           onTileClick={this.handleTileClick}
           onBoardTypeChange={this.handleBoardTypeChange}
