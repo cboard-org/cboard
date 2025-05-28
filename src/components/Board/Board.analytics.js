@@ -17,7 +17,10 @@ const getTiles = (boards, boardId, tilesId) => {
 
   const tiles = board.tiles
     .filter(tile => tilesId.includes(tile.id))
-    .reduce((acc, tile) => (acc ? `${acc}, ${tile.label}` : tile.label), '');
+    .reduce((acc, tile) => {
+      const label = tile.label || tile.labelKey || tile.id;
+      return acc ? `${acc}, ${label}` : label;
+    }, '');
   return tiles;
 };
 
@@ -93,10 +96,10 @@ const deleteTiles = trackEvent((action, prevState, nextState) => {
 });
 
 const editTiles = trackEvent((action, prevState, nextState) => {
-  const editedTiles = action.tiles.reduce(
-    (acc, tile) => (acc ? `${acc}, ${tile.label}` : tile.label),
-    ''
-  );
+  const editedTiles = action.tiles.reduce((acc, tile) => {
+    const label = tile.label || tile.labelKey || tile.id;
+    return acc ? `${acc}, ${label}` : label;
+  }, '');
   const gaEvent = {
     category: 'Editing',
     action: 'Edit Tiles',

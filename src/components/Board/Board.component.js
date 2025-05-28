@@ -35,6 +35,7 @@ import BoardTour from './BoardTour/BoardTour';
 import ScrollButtons from '../ScrollButtons';
 import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../Settings/Navigation/Navigation.constants';
 import ImprovePhraseOutput from './ImprovePhraseOutput';
+import { resolveTileLabel } from '../../helpers';
 
 export class Board extends Component {
   static propTypes = {
@@ -200,7 +201,11 @@ export class Board extends Component {
       displaySettings
     } = this.props;
 
-    return tiles.map(tile => {
+    return tiles.map(tileToRender => {
+      const tile = {
+        ...tileToRender,
+        label: resolveTileLabel(tileToRender, this.props.intl)
+      };
       const isSelected = selectedTileIds.includes(tile.id);
       const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
 
@@ -238,7 +243,11 @@ export class Board extends Component {
     });
   }
 
-  renderTileFixedBoard = tile => {
+  renderTileFixedBoard = tileToRender => {
+    const tile = {
+      ...tileToRender,
+      label: resolveTileLabel(tileToRender, this.props.intl)
+    };
     const {
       isSelecting,
       isSaving,

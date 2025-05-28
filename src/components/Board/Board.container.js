@@ -71,6 +71,7 @@ import {
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import LoadingIcon from '../UI/LoadingIcon';
+import { resolveTileLabel } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
 
 const ogv = require('ogv');
@@ -193,7 +194,6 @@ export class BoardContainer extends Component {
     isSelecting: false,
     isLocked: true,
     tileEditorOpen: false,
-    translatedBoard: null,
     isGettingApiObjects: false,
     copyPublicBoard: false,
     blockedPrivateBoard: false,
@@ -285,9 +285,6 @@ export class BoardContainer extends Component {
     const goTo = id ? boardId : `board/${boardId}`;
     history.replace(goTo);
 
-    const translatedBoard = this.translateBoard(boardExists);
-    this.setState({ translatedBoard });
-
     //set board type
     this.setState({ isFixedBoard: !!boardExists.isFixed });
 
@@ -326,10 +323,6 @@ export class BoardContainer extends Component {
         }
       }
     }
-
-    // TODO: perf issues
-    const translatedBoard = this.translateBoard(nextProps.board);
-    this.setState({ translatedBoard });
   }
 
   componentDidUpdate(prevProps) {
@@ -420,48 +413,6 @@ export class BoardContainer extends Component {
     }
   }
 
-  translateBoard(board) {
-    if (!board) {
-      return null;
-    }
-
-    const { intl } = this.props;
-    let name;
-    let nameFromKey;
-    if (board.nameKey) {
-      const nameKeyArray = board.nameKey.split('.');
-      nameFromKey = nameKeyArray[nameKeyArray.length - 1];
-    }
-    if (board.nameKey && !board.name) {
-      name = intl.formatMessage({ id: board.nameKey });
-    } else if (
-      board.nameKey &&
-      board.name &&
-      nameFromKey === board.name &&
-      intl.messages[board.nameKey]
-    ) {
-      name = intl.formatMessage({ id: board.nameKey });
-    } else {
-      name = board.name;
-    }
-    const validTiles = board.tiles.filter(tile => (tile ? true : false));
-    const tiles = validTiles.map(tile => ({
-      ...tile,
-      label:
-        tile.labelKey && intl.messages[tile.labelKey]
-          ? intl.formatMessage({ id: tile.labelKey })
-          : tile.label
-    }));
-
-    const translatedBoard = {
-      ...board,
-      name,
-      tiles
-    };
-
-    return translatedBoard;
-  }
-
   async captureBoardScreenshot() {
     const node = document.getElementById('BoardTilesContainer').firstChild;
     let dataURL = null;
@@ -470,18 +421,6 @@ export class BoardContainer extends Component {
     } catch (e) {}
 
     return dataURL;
-  }
-
-  async updateBoardScreenshot() {
-    let url = null;
-    const dataURL = await this.captureBoardScreenshot();
-    if (dataURL && dataURL !== 'data:,') {
-      const filename = `${this.state.translatedBoard.name ||
-        this.state.translatedBoard.id}.png`;
-      url = await API.uploadFromDataURL(dataURL, filename);
-    }
-
-    return url;
   }
 
   async playAudio(src) {
@@ -859,7 +798,11 @@ export class BoardContainer extends Component {
     }));
   };
 
-  handleTileClick = tile => {
+  handleTileClick = clickedTile => {
+    const tile = {
+      ...clickedTile,
+      label: resolveTileLabel(clickedTile, this.props.intl)
+    };
     if (this.state.isSelecting) {
       this.toggleTileSelect(tile.id);
       return;
@@ -1222,9 +1165,7 @@ export class BoardContainer extends Component {
       }
       switchBoard(copiedBoard.id);
       history.replace(`/board/${copiedBoard.id}`, []);
-      const translatedBoard = this.translateBoard(copiedBoard);
       this.setState({
-        translatedBoard,
         copyPublicBoard: false,
         blockedPrivateBoard: false
       });
@@ -1554,7 +1495,7 @@ export class BoardContainer extends Component {
     } = this.props;
     const { isCbuilderBoard } = this.state;
 
-    if (!this.state.translatedBoard) {
+    if (!this.props.board) {
       return (
         <div className="Board__loading">
           <CircularProgress size={60} thickness={5} color="inherit" />
@@ -1576,7 +1517,7 @@ export class BoardContainer extends Component {
     return (
       <Fragment>
         <Board
-          board={this.state.translatedBoard}
+          board={board}
           intl={this.props.intl}
           scannerSettings={this.props.scannerSettings}
           deactivateScanner={this.props.deactivateScanner}
