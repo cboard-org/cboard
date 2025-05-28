@@ -49,6 +49,14 @@ export const convertImageUrlToCatchable = imageUrl => {
   return null;
 };
 
+export const resolveBoardName = ({ name, nameKey }, intl) => {
+  if (name) return name;
+  if (nameKey && intl?.messages?.[nameKey]) {
+    return intl.formatMessage({ id: nameKey });
+  }
+  return '';
+};
+
 export const resolveTileLabel = ({ label, labelKey }, intl) => {
   if (label) return label;
   if (labelKey && intl?.messages?.[labelKey]) {
