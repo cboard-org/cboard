@@ -71,7 +71,7 @@ import {
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import LoadingIcon from '../UI/LoadingIcon';
-import { resolveLabel } from '../../helpers';
+import { resolveTileLabel } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
 
 const ogv = require('ogv');
@@ -801,7 +801,7 @@ export class BoardContainer extends Component {
   handleTileClick = clickedTile => {
     const tile = {
       ...clickedTile,
-      label: resolveLabel(clickedTile, this.props.intl)
+      label: resolveTileLabel(clickedTile, this.props.intl)
     };
     if (this.state.isSelecting) {
       this.toggleTileSelect(tile.id);

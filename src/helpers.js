@@ -49,7 +49,7 @@ export const convertImageUrlToCatchable = imageUrl => {
   return null;
 };
 
-export const resolveLabel = ({ label, labelKey }, intl) => {
+export const resolveTileLabel = ({ label, labelKey }, intl) => {
   if (label) return label;
   if (labelKey && intl?.messages?.[labelKey]) {
     return intl.formatMessage({ id: labelKey });
