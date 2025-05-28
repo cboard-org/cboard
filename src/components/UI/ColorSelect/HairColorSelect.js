@@ -95,7 +95,7 @@ class HairColorSelect extends React.Component {
             <Face />
           </IconButton>
         </Tooltip>
-        <FormControl className="ColorSelect">
+        <FormControl className="colorSelectDropdown-options">
           <Card className={this.state.open ? 'opened' : 'closed'}>
             <CardContent>
               <RadioGroup

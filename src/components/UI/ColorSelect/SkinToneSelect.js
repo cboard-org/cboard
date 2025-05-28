@@ -87,7 +87,7 @@ class SkinToneSelect extends React.Component {
             <PanTool />
           </IconButton>
         </Tooltip>
-        <FormControl className="ColorSelect">
+        <FormControl className="colorSelectDropdown-options">
           <Card className={this.state.open ? 'opened' : 'closed'}>
             <CardContent>
               <RadioGroup

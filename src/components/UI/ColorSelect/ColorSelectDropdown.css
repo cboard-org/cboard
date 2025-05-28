@@ -3,12 +3,12 @@
   flex-direction: column;
 }
 
-.ColorSelect {
-  position: absolute !important;
-  margin-top: 4em !important;
-  margin-left: -1em !important;
+.MuiFormControl-root.colorSelectDropdown-options {
+  position: absolute;
+  margin-top: 4em;
+  margin-left: -1em;
 }
 
 .closed {
-  display: none !important;
+  display: none;
 }
