@@ -125,7 +125,9 @@ function EditToolbar({
       })}
     >
       {(isSaving || !isLoggedIn) && (
-        <span className="EditToolbar__BoardTitle">{board.name}</span>
+        <span className="EditToolbar__BoardTitle">
+          {board.name || intl.formatMessage({ id: board.nameKey })}
+        </span>
       )}
 
       {!isSaving && isLoggedIn && (
@@ -135,7 +137,7 @@ function EditToolbar({
           })}
           onClick={onBoardTitleClick}
         >
-          {board.name}
+          {board.name || intl.formatMessage({ id: board.nameKey })}
         </Button>
       )}
 
