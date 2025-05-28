@@ -59,6 +59,8 @@ class HairColorSelect extends React.Component {
   constructor(props) {
     super(props);
 
+    this.wrapperRef = React.createRef();
+    this.handleClickOutside = this.handleClickOutside.bind(this);
     this.state = {
       open: false,
       sourceName: sourcesNames.has(props.source)
@@ -69,6 +71,31 @@ class HairColorSelect extends React.Component {
         : hairColorSources.get('arasaac')
     };
   }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  handleChange = event => {
+    const { onChange } = this.props;
+
+    onChange(event);
+    this.setState({
+      open: false
+    });
+  };
+
+  handleClickOutside = event => {
+    if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
+      this.setState({
+        open: false
+      });
+    }
+  };
 
   toggleOpen() {
     this.setState({
@@ -85,7 +112,7 @@ class HairColorSelect extends React.Component {
     const radioItemStyle = { padding: '2px' };
 
     return (
-      <div className="colorSelectDropdown">
+      <div className="colorSelectDropdown" ref={this.wrapperRef}>
         <Tooltip title={hairColorLabel} aria-label={hairColorLabel}>
           <IconButton
             label={hairColorLabel}
@@ -103,7 +130,7 @@ class HairColorSelect extends React.Component {
                 name="hairColor"
                 value={selectedColor}
                 style={radioGroupStyle}
-                onChange={onChange}
+                onChange={this.handleChange}
               >
                 {this.state.hairColorMenu.map(hairColor => (
                   <Radio

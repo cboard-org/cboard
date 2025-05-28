@@ -51,6 +51,8 @@ class SkinToneSelect extends React.Component {
   constructor(props) {
     super(props);
 
+    this.wrapperRef = React.createRef();
+    this.handleClickOutside = this.handleClickOutside.bind(this);
     this.state = {
       open: false,
       sourceName: sourcesNames.has(props.source)
@@ -62,6 +64,31 @@ class SkinToneSelect extends React.Component {
     };
   }
 
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  handleChange = event => {
+    const { onChange } = this.props;
+
+    onChange(event);
+    this.setState({
+      open: false
+    });
+  };
+
+  handleClickOutside = event => {
+    if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
+      this.setState({
+        open: false
+      });
+    }
+  };
+
   toggleOpen() {
     this.setState({
       open: !this.state.open
@@ -69,7 +96,7 @@ class SkinToneSelect extends React.Component {
   }
 
   render() {
-    const { intl, onChange, selectedColor, iconColor } = this.props;
+    const { intl, selectedColor, iconColor } = this.props;
     const skinToneLabel = `${this.state.sourceName} ${intl.formatMessage(
       messages.skinTone
     )}`;
@@ -77,7 +104,7 @@ class SkinToneSelect extends React.Component {
     const radioItemStyle = { padding: '2px' };
 
     return (
-      <div className="colorSelectDropdown">
+      <div className="colorSelectDropdown" ref={this.wrapperRef}>
         <Tooltip title={skinToneLabel} aria-label={skinToneLabel}>
           <IconButton
             label={skinToneLabel}
@@ -95,7 +122,7 @@ class SkinToneSelect extends React.Component {
                 name="skinTone"
                 value={selectedColor}
                 style={radioGroupStyle}
-                onChange={onChange}
+                onChange={this.handleChange}
               >
                 {this.state.skinToneMenu.map(skinTone => (
                   <Radio
