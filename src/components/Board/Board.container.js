@@ -798,7 +798,11 @@ export class BoardContainer extends Component {
     }));
   };
 
-  handleTileClick = tile => {
+  handleTileClick = clickedTile => {
+    const tile = {
+      ...clickedTile,
+      label: resolveLabel(clickedTile, this.props.intl)
+    };
     if (this.state.isSelecting) {
       this.toggleTileSelect(tile.id);
       return;
@@ -821,8 +825,7 @@ export class BoardContainer extends Component {
       if (tile.sound) {
         this.playAudio(tile.sound);
       } else {
-        const toSpeak =
-          (!hasAction && tile.vocalization) || resolveLabel(tile, intl);
+        const toSpeak = !hasAction ? tile.vocalization || tile.label : null;
         if (toSpeak) {
           speak(toSpeak);
         }
@@ -845,7 +848,7 @@ export class BoardContainer extends Component {
         showNotification(intl.formatMessage(messages.boardMissed));
       }
     } else {
-      clickSymbol(resolveLabel(tile, intl));
+      clickSymbol(tile.label);
       if (!navigationSettings.quietBuilderMode) {
         say();
       }

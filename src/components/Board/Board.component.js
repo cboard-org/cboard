@@ -201,7 +201,11 @@ export class Board extends Component {
       displaySettings
     } = this.props;
 
-    return tiles.map(tile => {
+    return tiles.map(tileToRender => {
+      const tile = {
+        ...tileToRender,
+        label: resolveLabel(tileToRender, this.props.intl)
+      };
       const isSelected = selectedTileIds.includes(tile.id);
       const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
 
@@ -221,7 +225,7 @@ export class Board extends Component {
           >
             <Symbol
               image={tile.image}
-              label={resolveLabel(tile, this.props.intl)}
+              label={tile.label}
               keyPath={tile.keyPath}
               labelpos={displaySettings.labelPosition}
             />
@@ -239,7 +243,11 @@ export class Board extends Component {
     });
   }
 
-  renderTileFixedBoard = tile => {
+  renderTileFixedBoard = tileToRender => {
+    const tile = {
+      ...tileToRender,
+      label: resolveLabel(tileToRender, this.props.intl)
+    };
     const {
       isSelecting,
       isSaving,
@@ -266,7 +274,7 @@ export class Board extends Component {
       >
         <Symbol
           image={tile.image}
-          label={resolveLabel(tile, this.props.intl)}
+          label={tile.label}
           keyPath={tile.keyPath}
           labelpos={displaySettings.labelPosition}
         />
