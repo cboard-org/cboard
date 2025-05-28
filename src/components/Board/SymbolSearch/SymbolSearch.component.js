@@ -156,6 +156,7 @@ export class SymbolSearch extends PureComponent {
     const {
       intl: { locale }
     } = this.props;
+    const { skin, hair } = this.state;
     if (!searchText) {
       return [];
     }
@@ -178,8 +179,8 @@ export class SymbolSearch extends PureComponent {
             id,
             src: `${ARASAAC_BASE_PATH_API}pictograms/${id}?${queryString.stringify(
               {
-                skin: this.state.skin,
-                hair: this.state.hair
+                skin,
+                hair
               }
             )}`,
             keyPath: id,
