@@ -47,6 +47,10 @@ jest.mock('./People.messages', () => {
     logout: {
       id: 'cboard.components.Settings.People.logout',
       defaultMessage: 'Logout'
+    },
+    login: {
+      id: 'cboard.components.Settings.People.login',
+      defaultMessage: 'Login'
     }
   };
 });
