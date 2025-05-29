@@ -1,3 +1,4 @@
+import lodash from 'lodash';
 export interface Grid {
   rows: number;
   columns: number;
@@ -122,4 +123,48 @@ export function getNewOrder({ columns,
 
 export function removeOrderItems(ids: string, order: GridOrder): GridOrder {
   return order.map(row => row.map(id => (id && ids.includes(id) ? null : id)));
+}
+
+interface TileItem {
+  id: string;
+  label?: string;
+  labelKey?: string;
+  vocalization?: string;
+  image: string;
+  loadBoard?: string;
+  sound?: string;
+  type?: string;
+  backgroundColor: string;
+  linkedBoard?: boolean;
+}
+
+export function deprecatedChunks(tileItems: Array<TileItem>, size: number) {
+  const newArray = [...tileItems];
+  const results = [];
+
+  while (newArray.length) {
+    results.push(newArray.splice(0, size));
+  }
+
+  return results;
+}
+
+export function chunks({ tileItems, order }:{
+  tileItems: Array<TileItem>;
+  order: GridOrder;
+}) {
+  const firstPageItemsInOrder = order.map(row =>
+    row.map(id => tileItems.find(item => item.id === id))
+  );
+
+  const firstPage = lodash.flatten(firstPageItemsInOrder);
+
+  const size = firstPage.length;
+
+  const restOfItems = tileItems.filter(
+    item => !firstPage.find(firstItem => firstItem?.id === item.id)
+  );
+  const restOfPages = lodash.chunk(restOfItems, size);
+
+  return [firstPage, ...restOfPages];
 }
