@@ -41,6 +41,11 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.colorSelectDropdown {
+  margin-right: 1em;
+  z-index: 1;
+}
+
 @media (min-width: 600px) {
   .react-autosuggest__suggestions-container {
     top: 128px;

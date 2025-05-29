@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HairColorSelect tests default renderer 1`] = `
+<HairColorSelect
+  intl={
+    Object {
+      "formatMessage": [Function],
+    }
+  }
+  onChange={[Function]}
+  selectedColor="#fdd700"
+  source="arasaac"
+/>
+`;
