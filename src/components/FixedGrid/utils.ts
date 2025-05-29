@@ -138,33 +138,36 @@ interface TileItem {
   linkedBoard?: boolean;
 }
 
-export function deprecatedChunks(tileItems: Array<TileItem>, size: number) {
-  const newArray = [...tileItems];
-  const results = [];
-
-  while (newArray.length) {
-    results.push(newArray.splice(0, size));
-  }
-
-  return results;
-}
-
-export function chunks({ tileItems, order }:{
+export function compatibleDeprecatedChunks({ tileItems, order }:{
   tileItems: Array<TileItem>;
   order: GridOrder;
-}) {
+}):TileItem[][] {
   const firstPageItemsInOrder = order.map(row =>
-    row.map(id => tileItems.find(item => item.id === id))
+    row.map(id => tileItems.find(item => item.id === id)||null)
   );
 
   const firstPage = lodash.flatten(firstPageItemsInOrder);
+  const unnorderedTiles = tileItems.filter(
+    item => !firstPage.find(tile => tile?.id === item.id)
+  );
+  const fillEmptyPositionsWithUnnorderedTilesForOldBoards = ({firstPageItemsInOrder,unnorderedTiles}:{firstPageItemsInOrder:(TileItem|null)[][],unnorderedTiles:Array<TileItem> }) => {
+    let index = 0;
+    const deprecatedFirstPageItemsInOrder = firstPageItemsInOrder.map(row=>
+    row.map(item => {
+      if (item) return item;
+      index++;
+      return unnorderedTiles[index - 1]|| null;
+    }));
+    const deprecatedFirstPage = lodash.flatten(deprecatedFirstPageItemsInOrder).filter(item => item !== null);//
+    const restOfTiles = unnorderedTiles.slice(index);
+
+    return {deprecatedFirstPage,restOfTiles};
+  }
+  
+  const {deprecatedFirstPage ,restOfTiles} = fillEmptyPositionsWithUnnorderedTilesForOldBoards({firstPageItemsInOrder,unnorderedTiles});
 
   const size = firstPage.length;
-
-  const restOfItems = tileItems.filter(
-    item => !firstPage.find(firstItem => firstItem?.id === item.id)
-  );
-  const restOfPages = lodash.chunk(restOfItems, size);
-
-  return [firstPage, ...restOfPages];
+  const restOfPages = lodash.chunk(restOfTiles, size);
+  
+  return [deprecatedFirstPage, ...restOfPages];
 }
