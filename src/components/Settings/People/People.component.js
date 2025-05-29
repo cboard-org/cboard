@@ -12,6 +12,7 @@ import UserIcon from '../../UI/UserIcon';
 import DeleteIcon from '@material-ui/icons/Delete';
 import '../Settings.css';
 import DeleteConfirmationDialog from './DeleteConfirmationDialog';
+import LoginMessages from '../../Account/Login/Login.messages';
 
 const propTypes = {
   /**
@@ -52,6 +53,7 @@ const People = ({
   onClose,
   isLogged,
   logout,
+  login,
   name,
   email,
   location: { country },
@@ -102,11 +104,13 @@ const People = ({
                 <Button
                   variant="outlined"
                   color="primary"
-                  onClick={logout}
+                  onClick={isLogged ? logout : login}
                   component={Link}
-                  to="/"
+                  to={isLogged ? '/' : '/login-signup'}
                 >
-                  <FormattedMessage {...messages.logout} />
+                  <FormattedMessage
+                    {...(isLogged ? messages.logout : LoginMessages.login)}
+                  />
                 </Button>
               </Box>
             </Box>
