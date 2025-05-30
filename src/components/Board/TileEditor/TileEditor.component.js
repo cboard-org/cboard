@@ -42,6 +42,9 @@ import {
 } from '../../../cordova-util';
 import { convertImageUrlToCatchable } from '../../../helpers';
 import PremiumFeature from '../../PremiumFeature';
+import LoadBoardEditor from './LoadBoardEditor/LoadBoardEditor';
+import { Typography } from '@material-ui/core';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -70,7 +73,9 @@ export class TileEditor extends Component {
      */
     onAddSubmit: PropTypes.func.isRequired,
     boards: PropTypes.array,
-    userData: PropTypes.object
+    userData: PropTypes.object,
+    folders: PropTypes.array,
+    onAddApiBoard: PropTypes.func
   };
 
   static defaultProps = {
@@ -441,6 +446,13 @@ export class TileEditor extends Component {
     }
   };
 
+  handleLoadBoardChange = ({ boardId }) => {
+    if (boardId) {
+      this.props.onAddApiBoard(boardId);
+      this.updateTileProperty('loadBoard', boardId);
+    }
+  };
+
   handleOnClickImageEditor = () => {
     this.setState({ openImageEditor: true });
   };
@@ -468,7 +480,7 @@ export class TileEditor extends Component {
   };
 
   render() {
-    const { open, intl, boards } = this.props;
+    const { open, intl, boards, folders } = this.props;
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
       : this.currentTileProp('label');
@@ -482,7 +494,7 @@ export class TileEditor extends Component {
     );
 
     const selectBoardElement = (
-      <div>
+      <div style={{ marginTop: '16px' }}>
         <FormControl fullWidth>
           <InputLabel id="boards-input-label">
             {intl.formatMessage(messages.existingBoards)}
@@ -514,6 +526,27 @@ export class TileEditor extends Component {
     const tileInView = this.editingTile()
       ? this.editingTile()
       : this.state.tile;
+
+    const loadBoard = this.currentTileProp('loadBoard');
+    const loadBoardName = loadBoard
+      ? folders.find(({ id }) => id === loadBoard)?.name
+      : null;
+    const SHORT_ID_MAX_LENGTH = 14;
+    const isLocalId = loadBoard.length < SHORT_ID_MAX_LENGTH;
+
+    const LostedFolderAlert = ({ isLocalId }) => {
+      const alertDescription = !isLocalId
+        ? intl.formatMessage(messages.loadBoardAlertDescription)
+        : intl.formatMessage(messages.loadBoardAlertDescriptionLocalId);
+      return (
+        <Alert className="TileEditor__loadBoard_Alert" severity="warning">
+          <AlertTitle>
+            {intl.formatMessage(messages.loadBoardAlertTitle)}
+          </AlertTitle>
+          {alertDescription}
+        </Alert>
+      );
+    };
 
     return (
       <div className="TileEditor">
@@ -651,6 +684,28 @@ export class TileEditor extends Component {
                           </RadioGroup>
                         </FormControl>
                       </div>
+                    )}
+
+                    {this.currentTileProp('loadBoard')?.length > 0 && (
+                      <>
+                        <FormLabel style={{ marginTop: '16px' }}>
+                          {intl.formatMessage(messages.loadBoard)}
+                        </FormLabel>
+                        <div className="TileEditor__loadBoard_section">
+                          {loadBoardName ? (
+                            <Typography variant="body1">
+                              {loadBoardName}
+                            </Typography>
+                          ) : (
+                            <LostedFolderAlert isLocalId={isLocalId} />
+                          )}
+                          <LoadBoardEditor
+                            intl={intl}
+                            onLoadBoardChange={this.handleLoadBoardChange}
+                            isLostedFolder={loadBoardName === undefined}
+                          />
+                        </div>
+                      </>
                     )}
                     {this.currentTileProp('type') === 'folder' &&
                       selectBoardElement}
