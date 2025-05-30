@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isCordova } from '../../../cordova-util';
@@ -43,6 +43,17 @@ function Symbol(props) {
   } = props;
 
   const [src, setSrc] = useState(image ? formatSrc(image) : '');
+  const fetchArasaacImage = useCallback(async id => {
+    if (!id) return null;
+
+    try {
+      const arasaacDB = getArasaacDB();
+      return await arasaacDB.getImageById(id);
+    } catch (error) {
+      console.error('Failed to fetch Arasaac image:', error);
+      return null;
+    }
+  }, []);
 
   useEffect(
     () => {
