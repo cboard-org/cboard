@@ -43,6 +43,8 @@ function Symbol(props) {
   } = props;
 
   const [src, setSrc] = useState(image ? formatSrc(image) : '');
+  const objectUrlRef = useRef(null);
+
   const fetchArasaacImage = useCallback(async id => {
     if (!id) return null;
 
@@ -57,33 +59,46 @@ function Symbol(props) {
 
   useEffect(
     () => {
-      let objectUrl = '';
+      let cancelled = false;
 
       async function getSrc() {
-        let image = null;
-        if (keyPath) {
-          const arasaacDB = await getArasaacDB();
-          image = await arasaacDB.getImageById(keyPath);
+        const imageFromIndexedDb = await fetchArasaacImage(keyPath);
+
+        if (cancelled) return;
+
+        if (imageFromIndexedDb) {
+          const blob = new Blob([imageFromIndexedDb.data], {
+            type: imageFromIndexedDb.type
+          });
+          const url = URL.createObjectURL(blob);
+          setSrc(url);
+
+          if (objectUrlRef.current) {
+            URL.revokeObjectURL(objectUrlRef.current);
+          }
+          objectUrlRef.current = url;
+          return;
         }
 
         if (image) {
-          const blob = new Blob([image.data], { type: image.type });
-          objectUrl = URL.createObjectURL(blob);
-          setSrc(objectUrl);
-        } else if (props.image) {
-          setSrc(formatSrc(props.image));
+          setSrc(formatSrc(image));
+          return;
         }
-      }
 
+        setSrc('');
+      }
       getSrc();
 
+      // Cleanup function
       return () => {
-        if (objectUrl) {
-          URL.revokeObjectURL(objectUrl);
+        cancelled = true;
+        if (objectUrlRef.current) {
+          URL.revokeObjectURL(objectUrlRef.current);
+          objectUrlRef.current = null;
         }
       };
     },
-    [keyPath, props.image]
+    [fetchArasaacImage, image, keyPath]
   );
 
   const symbolClassName = classNames('Symbol', className);
