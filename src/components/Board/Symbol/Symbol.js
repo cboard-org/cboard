@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { isCordova } from '../../../cordova-util';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import messages from '../Board.messages';
+import useGetSymbolSrc from './useGetSymbolSrc';
 
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
 import { Typography } from '@material-ui/core';
-import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
 
 const propTypes = {
   /**
@@ -37,35 +36,8 @@ function Symbol(props) {
     image,
     ...other
   } = props;
-  const [src, setSrc] = useState('');
 
-  useEffect(
-    () => {
-      async function getSrc() {
-        let image = null;
-        if (keyPath) {
-          const arasaacDB = await getArasaacDB();
-          image = await arasaacDB.getImageById(keyPath);
-        }
-
-        if (image) {
-          const blob = new Blob([image.data], { type: image.type });
-          setSrc(URL.createObjectURL(blob));
-        } else if (props.image) {
-          // Cordova path cannot be absolute
-          const image =
-            isCordova() && props.image && props.image.search('/') === 0
-              ? `.${props.image}`
-              : props.image;
-
-          setSrc(image);
-        }
-      }
-
-      getSrc();
-    },
-    [keyPath, setSrc, props.image]
-  );
+  const src = useGetSymbolSrc(image, keyPath);
 
   const symbolClassName = classNames('Symbol', className);
 
