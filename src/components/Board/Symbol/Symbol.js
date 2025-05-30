@@ -46,6 +46,8 @@ function Symbol(props) {
 
   useEffect(
     () => {
+      let objectUrl = '';
+
       async function getSrc() {
         let image = null;
         if (keyPath) {
@@ -55,13 +57,20 @@ function Symbol(props) {
 
         if (image) {
           const blob = new Blob([image.data], { type: image.type });
-          setSrc(URL.createObjectURL(blob));
+          objectUrl = URL.createObjectURL(blob);
+          setSrc(objectUrl);
         } else if (props.image) {
           setSrc(formatSrc(props.image));
         }
       }
 
       getSrc();
+
+      return () => {
+        if (objectUrl) {
+          URL.revokeObjectURL(objectUrl);
+        }
+      };
     },
     [keyPath, setSrc, props.image]
   );
