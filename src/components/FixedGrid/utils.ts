@@ -1,3 +1,4 @@
+import lodash from 'lodash';
 export interface Grid {
   rows: number;
   columns: number;
@@ -122,4 +123,51 @@ export function getNewOrder({ columns,
 
 export function removeOrderItems(ids: string, order: GridOrder): GridOrder {
   return order.map(row => row.map(id => (id && ids.includes(id) ? null : id)));
+}
+
+interface TileItem {
+  id: string;
+  label?: string;
+  labelKey?: string;
+  vocalization?: string;
+  image: string;
+  loadBoard?: string;
+  sound?: string;
+  type?: string;
+  backgroundColor: string;
+  linkedBoard?: boolean;
+}
+
+export function compatibleDeprecatedChunks({ tileItems, order }:{
+  tileItems: Array<TileItem>;
+  order: GridOrder;
+}):TileItem[][] {
+  const firstPageItemsInOrder = order.map(row =>
+    row.map(id => tileItems.find(item => item.id === id)||null)
+  );
+
+  const firstPage = lodash.flatten(firstPageItemsInOrder);
+  const unnorderedTiles = tileItems.filter(
+    item => !firstPage.find(tile => tile?.id === item.id)
+  );
+  const fillEmptyPositionsWithUnnorderedTilesForOldBoards = ({firstPageItemsInOrder,unnorderedTiles}:{firstPageItemsInOrder:(TileItem|null)[][],unnorderedTiles:Array<TileItem> }) => {
+    let index = 0;
+    const deprecatedFirstPageItemsInOrder = firstPageItemsInOrder.map(row=>
+    row.map(item => {
+      if (item) return item;
+      index++;
+      return unnorderedTiles[index - 1]|| null;
+    }));
+    const deprecatedFirstPage = lodash.flatten(deprecatedFirstPageItemsInOrder).filter(item => item !== null);//
+    const restOfTiles = unnorderedTiles.slice(index);
+
+    return {deprecatedFirstPage,restOfTiles};
+  }
+  
+  const {deprecatedFirstPage ,restOfTiles} = fillEmptyPositionsWithUnnorderedTilesForOldBoards({firstPageItemsInOrder,unnorderedTiles});
+
+  const size = firstPage.length;
+  const restOfPages = lodash.chunk(restOfTiles, size);
+  
+  return [deprecatedFirstPage, ...restOfPages];
 }

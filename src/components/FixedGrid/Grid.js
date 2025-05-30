@@ -4,17 +4,7 @@ import classNames from 'classnames';
 
 import GridBase from './GridBase';
 import styles from './Grid.module.css';
-
-function chunks(array, size) {
-  const newArray = [...array];
-  const results = [];
-
-  while (newArray.length) {
-    results.push(newArray.splice(0, size));
-  }
-
-  return results;
-}
+import { compatibleDeprecatedChunks } from './utils';
 
 const focusPosition = {
   x: 0,
@@ -29,14 +19,14 @@ function Grid(props) {
     fixedRef,
     isBigScrollBtns,
     isNavigationButtonsOnTheSide,
+    order,
     ...other
   } = props;
 
-  const pages = useMemo(() => chunks(items, other.rows * other.columns), [
-    items,
-    other.rows,
-    other.columns
-  ]);
+  const pages = useMemo(
+    () => compatibleDeprecatedChunks({ tileItems: items, order }),
+    [items, order]
+  );
 
   const gridClassName = classNames(styles.grid, className);
 
@@ -226,12 +216,19 @@ function Grid(props) {
             {...other}
             className={gridClassName}
             items={pageItems}
+            order={order}
             key={i}
             page={i}
           />
         ))
       ) : (
-        <GridBase {...other} className={gridClassName} page={0} />
+        <GridBase
+          {...other}
+          order={order}
+          items={items}
+          className={gridClassName}
+          page={0}
+        />
       )}
     </div>
   );
