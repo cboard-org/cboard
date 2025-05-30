@@ -35,7 +35,7 @@ import BoardTour from './BoardTour/BoardTour';
 import ScrollButtons from '../ScrollButtons';
 import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../Settings/Navigation/Navigation.constants';
 import ImprovePhraseOutput from './ImprovePhraseOutput';
-import { resolveTileLabel } from '../../helpers';
+import { resolveTileLabel, resolveBoardName } from '../../helpers';
 
 export class Board extends Component {
   static propTypes = {
@@ -380,7 +380,7 @@ export class Board extends Component {
             onLockClick={onLockClick}
             onDeactivateScannerClick={deactivateScanner}
             onLockNotify={onLockNotify}
-            title={board.name}
+            title={resolveBoardName(board, intl)}
             board={board}
             userData={userData}
             publishBoard={publishBoard}
