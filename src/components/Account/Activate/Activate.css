@@ -1,11 +1,12 @@
 .Activate {
   height: 100%;
+
   padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #eceff1;
+  color: #000;
   background-color: linear-gradient(
     to right,
     rgb(45, 22, 254),
