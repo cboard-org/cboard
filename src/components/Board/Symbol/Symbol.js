@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import messages from '../Board.messages';
-import useGetSymbolSrc from './useGetSymbolSrc';
+import { useGetSymbolSrc } from './useGetSymbolSrc';
 
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';

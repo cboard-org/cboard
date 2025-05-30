@@ -2,7 +2,7 @@ import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
 import { isCordova } from '../../../cordova-util';
 import { useEffect, useState, useCallback, useRef } from 'react';
 
-function useGetSymbolSrc(
+export function useGetSymbolSrc(
   imageSrc?: string,
   keyPath?: string,
 ): string {
@@ -64,8 +64,6 @@ function useGetSymbolSrc(
 
   return src;
 }
-
-export default useGetSymbolSrc;
 
 function formatSrc(src: string): string {
   return isCordova() && src?.startsWith('/') ? `.${src}` : src;
