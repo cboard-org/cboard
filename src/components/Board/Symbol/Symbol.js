@@ -72,7 +72,7 @@ function Symbol(props) {
         }
       };
     },
-    [keyPath, setSrc, props.image]
+    [keyPath, props.image]
   );
 
   const symbolClassName = classNames('Symbol', className);
