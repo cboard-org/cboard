@@ -134,10 +134,9 @@ export function getDeprecatedOrderedPages({ tileItems, order }:{
     row.map(id => tileItems.find(item => item.id === id)||null)
   );
 
-  const firstPage = firstPageItemsInOrder.flat();
-  const unorderedTiles = tileItems.filter(
-    item => !firstPage.find(tile => tile?.id === item.id)
-  );
+  const firstPageIds = order.flat();
+  const orderedIds = new Set(order.flat());
+  const unorderedTiles = tileItems.filter(item => !orderedIds.has(item.id));
   const fillEmptyPositionsWithUnorderedTilesForOldBoards = ({firstPageItemsInOrder,unorderedTiles}:{firstPageItemsInOrder:(TileItem|null)[][],unorderedTiles:Array<TileItem> }) => {
     let index = 0;
     const deprecatedFirstPageItemsInOrder = firstPageItemsInOrder.map(row=>
@@ -154,7 +153,7 @@ export function getDeprecatedOrderedPages({ tileItems, order }:{
   
   const {deprecatedFirstPage ,restOfTiles} = fillEmptyPositionsWithUnorderedTilesForOldBoards({firstPageItemsInOrder,unorderedTiles});
 
-  const size = firstPage.length;
+  const size = firstPageIds.length;
   const restOfPages = lodash.chunk(restOfTiles, size);
   
   return [deprecatedFirstPage, ...restOfPages];
