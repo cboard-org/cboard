@@ -60,6 +60,7 @@ describe('People tests', () => {
   const onSubmitPeople = jest.fn();
   const onClose = jest.fn();
   const logout = jest.fn();
+  const login = jest.fn();
   test('default renderer', () => {
     shallowMatchSnapshot(
       <People
@@ -68,6 +69,7 @@ describe('People tests', () => {
         onChangePeople={onChangePeople}
         onSubmitPeople={onSubmitPeople}
         logout={logout}
+        login={login}
       />
     );
   });

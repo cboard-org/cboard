@@ -12,7 +12,6 @@ import UserIcon from '../../UI/UserIcon';
 import DeleteIcon from '@material-ui/icons/Delete';
 import '../Settings.css';
 import DeleteConfirmationDialog from './DeleteConfirmationDialog';
-import LoginMessages from '../../Account/Login/Login.messages';
 
 const propTypes = {
   /**
@@ -23,6 +22,10 @@ const propTypes = {
    * Callback fired when clicking the logout button
    */
   logout: PropTypes.func.isRequired,
+  /**
+   * flag for user
+   */
+  login: PropTypes.func.isRequired,
   /**
    * flag for user
    */
@@ -109,7 +112,7 @@ const People = ({
                   to={isLogged ? '/' : '/login-signup'}
                 >
                   <FormattedMessage
-                    {...(isLogged ? messages.logout : LoginMessages.login)}
+                    {...(isLogged ? messages.logout : messages.login)}
                   />
                 </Button>
               </Box>
