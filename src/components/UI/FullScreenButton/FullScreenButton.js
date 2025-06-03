@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
@@ -6,74 +6,68 @@ import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 
 import IconButton from '../IconButton';
 import messages from './FullScreenButton.messages';
+import { doc } from 'prettier';
 
-const propTypes = {
-  /**
-   * If true, button will be disabled
-   */
-  disabled: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  intl: intlShape.isRequired
+const FullScreenButton = ({ disabled, intl }) => {
+  const [fullscreen, setFullscreen] = useState(false);
+  const requestFullScreen = useCallback(element => {
+    let request =
+      element.requestFullscreen ||
+      element.webkitRequestFullscreen ||
+      element.mozRequestFullScreen;
+    if (request) {
+      request.call(element);
+      setFullscreen(true);
+    }
+  }, []);
+
+  const exitFullscreen = useCallback(() => {
+    let request =
+      document.exitFullscreen ||
+      document.webkitExitFullscreen ||
+      document.mozCancelFullScreen;
+    if (request) {
+      request.call(document);
+      setFullscreen(false);
+    }
+  }, []);
+  const toggleFullScreen = useCallback(
+    () => {
+      if (fullscreen) {
+        exitFullscreen();
+      } else {
+        requestFullScreen(document.documentElement);
+      }
+    },
+    [fullscreen, requestFullScreen, exitFullscreen]
+  );
+
+  const handleClick = useCallback(
+    () => {
+      toggleFullScreen();
+    },
+    [toggleFullScreen]
+  );
+
+  const fullScreenLabel = fullscreen
+    ? intl.formatMessage(messages.exitFullscreen)
+    : intl.formatMessage(messages.fullscreen);
+
+  return (
+    <IconButton
+      disabled={disabled}
+      label={fullScreenLabel}
+      onClick={handleClick}
+    >
+      {fullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
+    </IconButton>
+  );
 };
 
-class FullScreenButton extends PureComponent {
-  state = { fullscreen: false };
+FullScreenButton.propTypes = {
+  disabled: PropTypes.bool,
 
-  requestFullscreen(element) {
-    if (element.requestFullscreen) {
-      element.requestFullscreen();
-    } else if (element.mozRequestFullScreen) {
-      element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullScreen) {
-      element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-    }
-    this.setState({ fullscreen: true });
-  }
-
-  exitFullscreen() {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    }
-    this.setState({ fullscreen: false });
-  }
-
-  toggleFullscreen() {
-    if (this.state.fullscreen) {
-      this.exitFullscreen();
-    } else {
-      this.requestFullscreen(window.document.documentElement);
-    }
-  }
-
-  handleClick = () => {
-    this.toggleFullscreen();
-  };
-
-  render() {
-    const { disabled, intl } = this.props;
-
-    const fullScreenLabel = this.state.fullscreen
-      ? intl.formatMessage(messages.exitFullscreen)
-      : intl.formatMessage(messages.fullscreen);
-
-    return (
-      <IconButton
-        disabled={disabled}
-        label={fullScreenLabel}
-        onClick={this.handleClick}
-      >
-        {this.state.fullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
-      </IconButton>
-    );
-  }
-}
-
-FullScreenButton.propTypes = propTypes;
+  intl: intlShape.isRequired
+};
 
 export default injectIntl(FullScreenButton);
