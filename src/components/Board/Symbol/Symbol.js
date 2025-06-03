@@ -25,6 +25,10 @@ const propTypes = {
   intl: PropTypes.object
 };
 
+function formatSrc(src) {
+  return isCordova() && src?.startsWith('/') ? `.${src}` : src;
+}
+
 function Symbol(props) {
   const {
     className,
@@ -37,7 +41,8 @@ function Symbol(props) {
     image,
     ...other
   } = props;
-  const [src, setSrc] = useState('');
+
+  const [src, setSrc] = useState(image ? formatSrc(image) : '');
 
   useEffect(
     () => {
@@ -52,13 +57,7 @@ function Symbol(props) {
           const blob = new Blob([image.data], { type: image.type });
           setSrc(URL.createObjectURL(blob));
         } else if (props.image) {
-          // Cordova path cannot be absolute
-          const image =
-            isCordova() && props.image && props.image.search('/') === 0
-              ? `.${props.image}`
-              : props.image;
-
-          setSrc(image);
+          setSrc(formatSrc(props.image));
         }
       }
 
