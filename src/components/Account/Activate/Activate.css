@@ -6,12 +6,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #000;
-  background-color: linear-gradient(
-    to right,
-    rgb(45, 22, 254),
-    rgb(141, 92, 255)
-  );
+  color: #eceff1;
+  background: linear-gradient(to right, #2d16fe, #8d5cff);
 }
 
 .Activate_home {
