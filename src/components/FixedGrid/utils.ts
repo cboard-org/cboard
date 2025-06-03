@@ -134,7 +134,7 @@ export function compatibleDeprecatedChunks({ tileItems, order }:{
     row.map(id => tileItems.find(item => item.id === id)||null)
   );
 
-  const firstPage = lodash.flatten(firstPageItemsInOrder);
+  const firstPage = firstPageItemsInOrder.flat();
   const unnorderedTiles = tileItems.filter(
     item => !firstPage.find(tile => tile?.id === item.id)
   );
@@ -146,7 +146,7 @@ export function compatibleDeprecatedChunks({ tileItems, order }:{
       index++;
       return unnorderedTiles[index - 1]|| null;
     }));
-    const deprecatedFirstPage = lodash.flatten(deprecatedFirstPageItemsInOrder).filter(item => item !== null);//
+    const deprecatedFirstPage = deprecatedFirstPageItemsInOrder.flat().filter(item => item !== null);
     const restOfTiles = unnorderedTiles.slice(index);
 
     return {deprecatedFirstPage,restOfTiles};
