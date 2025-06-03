@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import GridBase from './GridBase';
 import styles from './Grid.module.css';
-import { compatibleDeprecatedChunks } from './utils';
+import { getDeprecatedOrderedPages } from './utils';
 
 const focusPosition = {
   x: 0,
@@ -24,7 +24,7 @@ function Grid(props) {
   } = props;
 
   const pages = useMemo(
-    () => compatibleDeprecatedChunks({ tileItems: items, order }),
+    () => getDeprecatedOrderedPages({ tileItems: items, order }),
     [items, order]
   );
 

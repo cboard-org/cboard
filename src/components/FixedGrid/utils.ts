@@ -126,7 +126,7 @@ export function removeOrderItems(ids: string, order: GridOrder): GridOrder {
   return order.map(row => row.map(id => (id && ids.includes(id) ? null : id)));
 }
 
-export function compatibleDeprecatedChunks({ tileItems, order }:{
+export function getDeprecatedOrderedPages({ tileItems, order }:{
   tileItems: Array<TileItem>;
   order: GridOrder;
 }):TileItem[][] {
