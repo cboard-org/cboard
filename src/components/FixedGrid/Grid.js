@@ -4,7 +4,17 @@ import classNames from 'classnames';
 
 import GridBase from './GridBase';
 import styles from './Grid.module.css';
-import { getDeprecatedOrderedPages } from './utils';
+
+function chunks(array, size) {
+  const newArray = [...array];
+  const results = [];
+
+  while (newArray.length) {
+    results.push(newArray.splice(0, size));
+  }
+
+  return results;
+}
 
 const focusPosition = {
   x: 0,
@@ -19,14 +29,14 @@ function Grid(props) {
     fixedRef,
     isBigScrollBtns,
     isNavigationButtonsOnTheSide,
-    order,
     ...other
   } = props;
 
-  const pages = useMemo(
-    () => getDeprecatedOrderedPages({ tileItems: items, order }),
-    [items, order]
-  );
+  const pages = useMemo(() => chunks(items, other.rows * other.columns), [
+    items,
+    other.rows,
+    other.columns
+  ]);
 
   const gridClassName = classNames(styles.grid, className);
 
@@ -216,19 +226,12 @@ function Grid(props) {
             {...other}
             className={gridClassName}
             items={pageItems}
-            order={order}
             key={i}
             page={i}
           />
         ))
       ) : (
-        <GridBase
-          {...other}
-          order={order}
-          items={items}
-          className={gridClassName}
-          page={0}
-        />
+        <GridBase {...other} className={gridClassName} page={0} />
       )}
     </div>
   );
