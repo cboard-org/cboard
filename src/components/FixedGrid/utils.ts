@@ -126,7 +126,7 @@ export function removeOrderItems(ids: string, order: GridOrder): GridOrder {
   return order.map(row => row.map(id => (id && ids.includes(id) ? null : id)));
 }
 
-export function getDeprecatedOrderedPages({ tileItems, order }:{
+function getDeprecatedOrderedPages({ tileItems, order }:{
   tileItems: Array<TileItem>;
   order: GridOrder;
 }):TileItem[][] {
@@ -157,4 +157,16 @@ export function getDeprecatedOrderedPages({ tileItems, order }:{
   const restOfPages = lodash.chunk(restOfTiles, size);
   
   return [deprecatedFirstPage, ...restOfPages];
+}
+
+export function getTilesListForNewOrder({ tileItems, order }:{
+  tileItems: Array<TileItem>;
+  order: GridOrder;
+}):TileItem[]{
+  const newPages = getDeprecatedOrderedPages({
+    tileItems,
+    order
+  });
+  const tilesListForNewOrder = newPages.flat();
+  return tilesListForNewOrder
 }
