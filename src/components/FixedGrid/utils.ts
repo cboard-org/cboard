@@ -135,24 +135,24 @@ export function compatibleDeprecatedChunks({ tileItems, order }:{
   );
 
   const firstPage = firstPageItemsInOrder.flat();
-  const unnorderedTiles = tileItems.filter(
+  const unorderedTiles = tileItems.filter(
     item => !firstPage.find(tile => tile?.id === item.id)
   );
-  const fillEmptyPositionsWithUnnorderedTilesForOldBoards = ({firstPageItemsInOrder,unnorderedTiles}:{firstPageItemsInOrder:(TileItem|null)[][],unnorderedTiles:Array<TileItem> }) => {
+  const fillEmptyPositionsWithUnorderedTilesForOldBoards = ({firstPageItemsInOrder,unorderedTiles}:{firstPageItemsInOrder:(TileItem|null)[][],unorderedTiles:Array<TileItem> }) => {
     let index = 0;
     const deprecatedFirstPageItemsInOrder = firstPageItemsInOrder.map(row=>
     row.map(item => {
       if (item) return item;
       index++;
-      return unnorderedTiles[index - 1]|| null;
+      return unorderedTiles[index - 1]|| null;
     }));
     const deprecatedFirstPage = deprecatedFirstPageItemsInOrder.flat().filter(item => item !== null);
-    const restOfTiles = unnorderedTiles.slice(index);
+    const restOfTiles = unorderedTiles.slice(index);
 
     return {deprecatedFirstPage,restOfTiles};
   }
   
-  const {deprecatedFirstPage ,restOfTiles} = fillEmptyPositionsWithUnnorderedTilesForOldBoards({firstPageItemsInOrder,unnorderedTiles});
+  const {deprecatedFirstPage ,restOfTiles} = fillEmptyPositionsWithUnorderedTilesForOldBoards({firstPageItemsInOrder,unorderedTiles});
 
   const size = firstPage.length;
   const restOfPages = lodash.chunk(restOfTiles, size);
