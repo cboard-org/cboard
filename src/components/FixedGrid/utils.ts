@@ -1,4 +1,5 @@
 import lodash from 'lodash';
+import { TileItem } from './../../types';
 export interface Grid {
   rows: number;
   columns: number;
@@ -123,19 +124,6 @@ export function getNewOrder({ columns,
 
 export function removeOrderItems(ids: string, order: GridOrder): GridOrder {
   return order.map(row => row.map(id => (id && ids.includes(id) ? null : id)));
-}
-
-interface TileItem {
-  id: string;
-  label?: string;
-  labelKey?: string;
-  vocalization?: string;
-  image: string;
-  loadBoard?: string;
-  sound?: string;
-  type?: string;
-  backgroundColor: string;
-  linkedBoard?: boolean;
 }
 
 export function compatibleDeprecatedChunks({ tileItems, order }:{
