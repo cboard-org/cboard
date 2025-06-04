@@ -10,3 +10,5 @@ exports[`FullScreenButton tests default renderer 1`] = `
   onClick={[Function]}
 />
 `;
+
+exports[`FullScreenButton tests default renderer 2`] = `undefined`;
