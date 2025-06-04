@@ -183,8 +183,8 @@ export function getTilesListForNewOrder({
   order: GridOrder;
 }): TileItem[] {
   const newPages = getDeprecatedOrderedPages({
-    tileItems,
     order,
+    tileItems,
   });
   const tilesListForNewOrder = newPages.flat();
   return tilesListForNewOrder;
