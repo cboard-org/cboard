@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
@@ -6,7 +6,6 @@ import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 
 import IconButton from '../IconButton';
 import messages from './FullScreenButton.messages';
-import { doc } from 'prettier';
 
 const FullScreenButton = ({ disabled, intl }) => {
   const [fullscreen, setFullscreen] = useState(false);
@@ -48,6 +47,32 @@ const FullScreenButton = ({ disabled, intl }) => {
     },
     [toggleFullScreen]
   );
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setFullscreen(
+        document.fullscreenElement ||
+          document.webkitFullscreenElement ||
+          document.mozFullScreenElement
+      );
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener(
+        'webkitfullscreenchange',
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        'mozfullscreenchange',
+        handleFullscreenChange
+      );
+    };
+  }, []);
 
   const fullScreenLabel = fullscreen
     ? intl.formatMessage(messages.exitFullscreen)
