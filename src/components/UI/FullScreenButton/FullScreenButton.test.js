@@ -48,6 +48,6 @@ describe('FullScreenButton tests', () => {
     button.simulate('click');
     expect(document.documentElement.requestFullscreen).toHaveBeenCalled();
     button.simulate('click');
-    expect(document.exitFullscreen).toHaveBeenCalled;
+    expect(document.exitFullscreen).toHaveBeenCalled();
   });
 });
