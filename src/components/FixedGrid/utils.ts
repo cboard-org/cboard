@@ -126,32 +126,48 @@ export function removeOrderItems(ids: string, order: GridOrder): GridOrder {
   return order.map(row => row.map(id => (id && ids.includes(id) ? null : id)));
 }
 
-function getDeprecatedOrderedPages({ tileItems, order }:{
+function getDeprecatedOrderedPages({
+  tileItems,
+  order,
+}: {
   tileItems: Array<TileItem>;
   order: GridOrder;
-}):TileItem[][] {
-  const firstPageItemsInOrder = order.map(row =>
-    row.map(id => tileItems.find(item => item.id === id)||null)
+}): TileItem[][] {
+  const firstPageItemsInOrder = order.map((row) =>
+    row.map((id) => tileItems.find((item) => item.id === id) || null),
   );
 
   const firstPageIds = order.flat();
   const orderedIds = new Set(order.flat());
-  const unorderedTiles = tileItems.filter(item => !orderedIds.has(item.id));
-  const fillEmptyPositionsWithUnorderedTilesForOldBoards = ({firstPageItemsInOrder,unorderedTiles}:{firstPageItemsInOrder:(TileItem|null)[][],unorderedTiles:Array<TileItem> }) => {
+  const unorderedTiles = tileItems.filter((item) => !orderedIds.has(item.id));
+  const fillEmptyPositionsWithUnorderedTilesForOldBoards = ({
+    firstPageItemsInOrder,
+    unorderedTiles,
+  }: {
+    firstPageItemsInOrder: (TileItem | null)[][];
+    unorderedTiles: Array<TileItem>;
+  }) => {
     let index = 0;
-    const deprecatedFirstPageItemsInOrder = firstPageItemsInOrder.map(row=>
-    row.map(item => {
+    const deprecatedFirstPageItemsInOrder = firstPageItemsInOrder.map((row) =>
+      row.map((item) => {
       if (item) return item;
       index++;
-      return unorderedTiles[index - 1]|| null;
-    }));
-    const deprecatedFirstPage = deprecatedFirstPageItemsInOrder.flat().filter(item => item !== null);
+        return unorderedTiles[index - 1] || null;
+      }),
+    );
+    const deprecatedFirstPage = deprecatedFirstPageItemsInOrder
+      .flat()
+      .filter((item) => item !== null);
     const restOfTiles = unorderedTiles.slice(index);
 
-    return {deprecatedFirstPage,restOfTiles};
-  }
+    return { deprecatedFirstPage, restOfTiles };
+  };
   
-  const {deprecatedFirstPage ,restOfTiles} = fillEmptyPositionsWithUnorderedTilesForOldBoards({firstPageItemsInOrder,unorderedTiles});
+  const { deprecatedFirstPage, restOfTiles } =
+    fillEmptyPositionsWithUnorderedTilesForOldBoards({
+      firstPageItemsInOrder,
+      unorderedTiles,
+    });
 
   const size = firstPageIds.length;
   const restOfPages = lodash.chunk(restOfTiles, size);
@@ -159,14 +175,17 @@ function getDeprecatedOrderedPages({ tileItems, order }:{
   return [deprecatedFirstPage, ...restOfPages];
 }
 
-export function getTilesListForNewOrder({ tileItems, order }:{
+export function getTilesListForNewOrder({
+  tileItems,
+  order,
+}: {
   tileItems: Array<TileItem>;
   order: GridOrder;
-}):TileItem[]{
+}): TileItem[] {
   const newPages = getDeprecatedOrderedPages({
     tileItems,
-    order
+    order,
   });
   const tilesListForNewOrder = newPages.flat();
-  return tilesListForNewOrder
+  return tilesListForNewOrder;
 }
