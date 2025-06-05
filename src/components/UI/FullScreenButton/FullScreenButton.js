@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
-
 import IconButton from '../IconButton';
 import messages from './FullScreenButton.messages';
-import { set } from 'lodash';
 
 const propTypes = {
   /**
@@ -55,9 +53,12 @@ const FullScreenButton = ({ disabled, intl }) => {
     [isFullScreen, requestFullscreen, exitFullscreen]
   );
 
-  const handleClick = useCallback(() => {
-    toggleFullscreen();
-  });
+  const handleClick = useCallback(
+    () => {
+      toggleFullscreen();
+    },
+    [toggleFullscreen]
+  );
 
   const fullScreenLabel = isFullScreen
     ? intl.formatMessage(messages.exitFullscreen)
