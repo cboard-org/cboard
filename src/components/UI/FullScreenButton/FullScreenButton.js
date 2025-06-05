@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
@@ -6,6 +6,7 @@ import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 
 import IconButton from '../IconButton';
 import messages from './FullScreenButton.messages';
+import { set } from 'lodash';
 
 const propTypes = {
   /**
@@ -18,10 +19,10 @@ const propTypes = {
   intl: intlShape.isRequired
 };
 
-class FullScreenButton extends PureComponent {
-  state = { fullscreen: false };
+const FullScreenButton = ({ disabled, intl }) => {
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
-  requestFullscreen(element) {
+  const requestFullscreen = useCallback(element => {
     if (element.requestFullscreen) {
       element.requestFullscreen();
     } else if (element.mozRequestFullScreen) {
@@ -29,10 +30,10 @@ class FullScreenButton extends PureComponent {
     } else if (element.webkitRequestFullScreen) {
       element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
     }
-    this.setState({ fullscreen: true });
-  }
+    setIsFullScreen(true);
+  }, []);
 
-  exitFullscreen() {
+  const exitFullscreen = useCallback(() => {
     if (document.exitFullscreen) {
       document.exitFullscreen();
     } else if (document.mozCancelFullScreen) {
@@ -40,39 +41,38 @@ class FullScreenButton extends PureComponent {
     } else if (document.webkitExitFullscreen) {
       document.webkitExitFullscreen();
     }
-    this.setState({ fullscreen: false });
-  }
+    setIsFullScreen(false);
+  }, []);
 
-  toggleFullscreen() {
-    if (this.state.fullscreen) {
-      this.exitFullscreen();
-    } else {
-      this.requestFullscreen(window.document.documentElement);
-    }
-  }
+  const toggleFullscreen = useCallback(
+    () => {
+      if (isFullScreen) {
+        exitFullscreen();
+      } else {
+        requestFullscreen(window.document.documentElement);
+      }
+    },
+    [isFullScreen, requestFullscreen, exitFullscreen]
+  );
 
-  handleClick = () => {
-    this.toggleFullscreen();
-  };
+  const handleClick = useCallback(() => {
+    toggleFullscreen();
+  });
 
-  render() {
-    const { disabled, intl } = this.props;
+  const fullScreenLabel = isFullScreen
+    ? intl.formatMessage(messages.exitFullscreen)
+    : intl.formatMessage(messages.fullscreen);
 
-    const fullScreenLabel = this.state.fullscreen
-      ? intl.formatMessage(messages.exitFullscreen)
-      : intl.formatMessage(messages.fullscreen);
-
-    return (
-      <IconButton
-        disabled={disabled}
-        label={fullScreenLabel}
-        onClick={this.handleClick}
-      >
-        {this.state.fullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
-      </IconButton>
-    );
-  }
-}
+  return (
+    <IconButton
+      disabled={disabled}
+      label={fullScreenLabel}
+      onClick={handleClick}
+    >
+      {isFullScreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
+    </IconButton>
+  );
+};
 
 FullScreenButton.propTypes = propTypes;
 
