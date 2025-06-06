@@ -32,7 +32,7 @@ module.exports = {
     'build/static/**/!(*map*)',
     ...boardImages
   ],
-  maximumFileSizeToCacheInBytes: 4194304,
+  maximumFileSizeToCacheInBytes: 8 * 1024 * 1024, // 8 MB
   runtimeCaching: [
     {
       urlPattern: /\/symbols\/mulberry/,
@@ -62,10 +62,10 @@ module.exports = {
       }
     }
   ],
+  navigateFallback: '/index.html',
   dontCacheBustUrlsMatching: /\.\w{8}\./,
   dynamicUrlToDependencies: {
     '/': ['build/index.html']
   },
-  navigateFallback: '/',
   swFilePath: 'build/service-worker.js'
 };

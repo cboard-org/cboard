@@ -1,3 +1,5 @@
+import lodash from 'lodash';
+import { TileItem } from './../../types';
 export interface Grid {
   rows: number;
   columns: number;
@@ -122,4 +124,68 @@ export function getNewOrder({ columns,
 
 export function removeOrderItems(ids: string, order: GridOrder): GridOrder {
   return order.map(row => row.map(id => (id && ids.includes(id) ? null : id)));
+}
+
+function getDeprecatedOrderedPages({
+  tileItems,
+  order,
+}: {
+  tileItems: Array<TileItem>;
+  order: GridOrder;
+}): TileItem[][] {
+  const firstPageItemsInOrder = order.map((row) =>
+    row.map((id) => tileItems.find((item) => item.id === id) || null),
+  );
+
+  const firstPageIds = order.flat();
+  const orderedIds = new Set(order.flat());
+  const unorderedTiles = tileItems.filter((item) => !orderedIds.has(item.id));
+  const fillEmptyPositionsWithUnorderedTilesForOldBoards = ({
+    firstPageItemsInOrder,
+    unorderedTiles,
+  }: {
+    firstPageItemsInOrder: (TileItem | null)[][];
+    unorderedTiles: Array<TileItem>;
+  }) => {
+    let index = 0;
+    const deprecatedFirstPageItemsInOrder = firstPageItemsInOrder.map((row) =>
+      row.map((item) => {
+      if (item) return item;
+      index++;
+        return unorderedTiles[index - 1] || null;
+      }),
+    );
+    const deprecatedFirstPage = deprecatedFirstPageItemsInOrder
+      .flat()
+      .filter((item) => item !== null);
+    const restOfTiles = unorderedTiles.slice(index);
+
+    return { deprecatedFirstPage, restOfTiles };
+  };
+  
+  const { deprecatedFirstPage, restOfTiles } =
+    fillEmptyPositionsWithUnorderedTilesForOldBoards({
+      firstPageItemsInOrder,
+      unorderedTiles,
+    });
+
+  const size = firstPageIds.length;
+  const restOfPages = lodash.chunk(restOfTiles, size);
+  
+  return [deprecatedFirstPage, ...restOfPages];
+}
+
+export function getTilesListForNewOrder({
+  tileItems,
+  order,
+}: {
+  tileItems: Array<TileItem>;
+  order: GridOrder;
+}): TileItem[] {
+  const newPages = getDeprecatedOrderedPages({
+    order,
+    tileItems,
+  });
+  const tilesListForNewOrder = newPages.flat();
+  return tilesListForNewOrder;
 }
