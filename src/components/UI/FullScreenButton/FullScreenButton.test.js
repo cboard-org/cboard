@@ -3,6 +3,7 @@ import { mount, shallow } from 'enzyme';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
 
 import FullScreenButton from './FullScreenButton';
+import { doc } from 'prettier';
 
 jest.mock('./FullScreenButton.messages', () => {
   return {
@@ -18,26 +19,26 @@ jest.mock('./FullScreenButton.messages', () => {
 });
 
 describe('FullScreenButton tests', () => {
+  beforeEach(() => {
+    document.documentElement.requestFullscreen = jest.fn(() =>
+      Promise.resolve()
+    );
+    document.exitFullscreen = jest.fn(() => Promise.resolve());
+  });
   test('default renderer', () => {
     shallowMatchSnapshot(<FullScreenButton onClick={() => {}} />);
   });
-  test('on buttton click', () => {
+  test('on button click', () => {
     const wrapper = mount(
-      shallow(<FullScreenButton disabled={false} />).get(0)
+      <FullScreenButton
+        disabled={false}
+        intl={{ formatMessage: msg => msg.defaultMessage }}
+      />
     );
-    wrapper.simulate('click');
-    expect(wrapper.state().fullscreen).toEqual(true);
-    wrapper.simulate('click');
-    expect(wrapper.state().fullscreen).toEqual(false);
-  });
-  test('on buttton click', () => {
-    global.window.document.requestFullscreen = jest.fn();
-    const wrapper = mount(
-      shallow(<FullScreenButton disabled={false} />).get(0)
-    );
-    wrapper.simulate('click');
-    expect(wrapper.state().fullscreen).toEqual(true);
-    wrapper.simulate('click');
-    expect(wrapper.state().fullscreen).toEqual(false);
+    const button = wrapper.find('button');
+    button.simulate('click');
+    expect(document.documentElement.requestFullscreen).toHaveBeenCalled();
+    button.simulate('click');
+    expect(document.exitFullscreen).toHaveBeenCalled();
   });
 });
