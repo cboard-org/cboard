@@ -60,7 +60,6 @@
   background: #fff;
   direction: ltr; /* for grid */
   overflow-x: hidden;
-  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
 
