@@ -1,0 +1,28 @@
+.loaderContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 16px;
+}
+
+.boardsListContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.pagination {
+  padding: 8px;
+}
+
+.boardsList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.searchButton {
+  margin-top: 8px;
+}
