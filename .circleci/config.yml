@@ -104,4 +104,4 @@ workflows:
             - build
           filters:
             branches:
-              only: master
+              only: tomivm:feature/edit-folder-load-board
