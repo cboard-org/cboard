@@ -24,6 +24,7 @@ import messages from './EditToolbar.messages';
 import './EditToolbar.css';
 import { FormControlLabel } from '@material-ui/core';
 import PremiumFeature from '../../PremiumFeature';
+import { resolveBoardName } from '../../../helpers';
 
 EditToolbar.propTypes = {
   /**
@@ -125,7 +126,9 @@ function EditToolbar({
       })}
     >
       {(isSaving || !isLoggedIn) && (
-        <span className="EditToolbar__BoardTitle">{board.name}</span>
+        <span className="EditToolbar__BoardTitle">
+          {resolveBoardName(board, intl)}
+        </span>
       )}
 
       {!isSaving && isLoggedIn && (
@@ -135,7 +138,7 @@ function EditToolbar({
           })}
           onClick={onBoardTitleClick}
         >
-          {board.name}
+          {resolveBoardName(board, intl)}
         </Button>
       )}
 
