@@ -24,7 +24,7 @@ import {
   speak,
   cancelSpeech
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
-import { moveOrderItem } from '../FixedGrid/utils';
+import { getTilesListForNewOrder, moveOrderItem } from '../FixedGrid/utils';
 import {
   addBoards,
   changeBoard,
@@ -664,8 +664,14 @@ export class BoardContainer extends Component {
       } else {
         newOrder = this.getDefaultOrdering(board.tiles);
       }
+      const tilesForNewOrder = getTilesListForNewOrder({
+        tileItems: board.tiles,
+        order: newOrder
+      });
+
       const newBoard = {
         ...board,
+        tiles: tilesForNewOrder,
         grid: {
           ...board.grid,
           rows: newRows,
@@ -697,8 +703,13 @@ export class BoardContainer extends Component {
       } else {
         newOrder = this.getDefaultOrdering(board.tiles);
       }
+      const tilesForNewOrder = getTilesListForNewOrder({
+        tileItems: board.tiles,
+        order: newOrder
+      });
       const newBoard = {
         ...board,
+        tiles: tilesForNewOrder,
         grid: {
           ...board.grid,
           columns: newColumns,
