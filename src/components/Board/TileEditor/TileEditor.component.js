@@ -538,6 +538,8 @@ export class TileEditor extends Component {
       const alertDescription = !isLocalId
         ? intl.formatMessage(messages.loadBoardAlertDescription)
         : intl.formatMessage(messages.loadBoardAlertDescriptionLocalId);
+
+      if (isLocalId) return null;
       return (
         <Alert className="TileEditor__loadBoard_Alert" severity="warning">
           <AlertTitle>
