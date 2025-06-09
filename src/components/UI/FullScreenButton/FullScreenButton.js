@@ -46,10 +46,9 @@ const FullScreenButton = ({ disabled, intl }) => {
   const toggleFullscreen = useCallback(
     () => {
       if (isFullScreen) {
-        exitFullscreen();
-      } else {
-        requestFullscreen(window.document.documentElement);
+        return exitFullscreen();
       }
+      return requestFullscreen(window.document.documentElement);
     },
     [isFullScreen, requestFullscreen, exitFullscreen]
   );
