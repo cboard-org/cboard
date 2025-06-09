@@ -91,7 +91,6 @@ function Symbol(props) {
       }
       getSrc();
 
-      // Cleanup function
       return () => {
         cancelled = true;
         if (objectUrlRef.current) {
