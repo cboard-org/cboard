@@ -78,6 +78,8 @@ const FullScreenButton = ({ disabled, intl }) => {
       document.addEventListener(event, handleFullScreenChange)
     );
 
+    handleFullScreenChange();
+
     return () => {
       events.forEach(event =>
         document.removeEventListener(event, handleFullScreenChange)
