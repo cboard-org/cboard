@@ -3,7 +3,6 @@ import { mount, shallow } from 'enzyme';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
 
 import FullScreenButton from './FullScreenButton';
-import { doc } from 'prettier';
 
 jest.mock('./FullScreenButton.messages', () => {
   return {
