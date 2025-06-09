@@ -45,14 +45,14 @@ function Symbol(props) {
   const [src, setSrc] = useState(image ? formatSrc(image) : '');
   const objectUrlRef = useRef(null);
 
-  const fetchArasaacImage = useCallback(async id => {
+  const fetchArasaacImagefromIndexedDB = useCallback(async id => {
     if (!id) return null;
 
     try {
       const arasaacDB = getArasaacDB();
       return await arasaacDB.getImageById(id);
     } catch (error) {
-      console.error('Failed to fetch Arasaac image:', error);
+      console.error('Failed to fetch Arasaac image from Indexed DB:', error);
       return null;
     }
   }, []);
@@ -62,7 +62,9 @@ function Symbol(props) {
       let cancelled = false;
 
       async function getSrc() {
-        const imageFromIndexedDb = await fetchArasaacImage(keyPath);
+        const imageFromIndexedDb = await fetchArasaacImagefromIndexedDB(
+          keyPath
+        );
 
         if (cancelled) return;
 
@@ -98,7 +100,7 @@ function Symbol(props) {
         }
       };
     },
-    [fetchArasaacImage, image, keyPath]
+    [fetchArasaacImagefromIndexedDB, image, keyPath]
   );
 
   const symbolClassName = classNames('Symbol', className);
