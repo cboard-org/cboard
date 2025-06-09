@@ -35,6 +35,7 @@ import BoardTour from './BoardTour/BoardTour';
 import ScrollButtons from '../ScrollButtons';
 import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../Settings/Navigation/Navigation.constants';
 import ImprovePhraseOutput from './ImprovePhraseOutput';
+import { resolveTileLabel, resolveBoardName } from '../../helpers';
 
 export class Board extends Component {
   static propTypes = {
@@ -200,7 +201,11 @@ export class Board extends Component {
       displaySettings
     } = this.props;
 
-    return tiles.map(tile => {
+    return tiles.map(tileToRender => {
+      const tile = {
+        ...tileToRender,
+        label: resolveTileLabel(tileToRender, this.props.intl)
+      };
       const isSelected = selectedTileIds.includes(tile.id);
       const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
 
@@ -238,7 +243,11 @@ export class Board extends Component {
     });
   }
 
-  renderTileFixedBoard(tile) {
+  renderTileFixedBoard = tileToRender => {
+    const tile = {
+      ...tileToRender,
+      label: resolveTileLabel(tileToRender, this.props.intl)
+    };
     const {
       isSelecting,
       isSaving,
@@ -261,6 +270,7 @@ export class Board extends Component {
         onFocus={() => {
           this.handleTileFocus(tile.id);
         }}
+        id={tile.id}
       >
         <Symbol
           image={tile.image}
@@ -276,7 +286,7 @@ export class Board extends Component {
         )}
       </Tile>
     );
-  }
+  };
 
   render() {
     const {
@@ -370,7 +380,7 @@ export class Board extends Component {
             onLockClick={onLockClick}
             onDeactivateScannerClick={deactivateScanner}
             onLockNotify={onLockNotify}
-            title={board.name}
+            title={resolveBoardName(board, intl)}
             board={board}
             userData={userData}
             publishBoard={publishBoard}
@@ -481,7 +491,7 @@ export class Board extends Component {
                     }
                     rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
                     dragAndDropEnabled={isSelecting}
-                    renderItem={item => this.renderTileFixedBoard(item)}
+                    renderItem={this.renderTileFixedBoard}
                     onItemDrop={onTileDrop}
                     fixedRef={this.fixedBoardContainerRef}
                     setIsScroll={setIsScroll}

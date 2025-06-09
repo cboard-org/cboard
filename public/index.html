@@ -15,8 +15,7 @@
       gap:
       data:;
   img-src * data:  filesystem:  blob:  ;
-  connect-src * data:  filesystem:  blob:  'self' 'unsafe-inline' 'unsafe-eval' http://* https://* wss://*;
-  
+  connect-src 'self' https://* localhost:* 127.0.0.1:* wss: ws: blob:;
   ">
 
   <!--
@@ -50,6 +49,9 @@
 
   <!-- Color the status bar on mobile devices -->
   <meta name="theme-color" content="#000000">
+  
+  <!-- Block indexing on search engines -->
+  <meta name="robots" content="noindex">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108091601-1"></script>
