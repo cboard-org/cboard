@@ -1,1 +1,1 @@
-export { default } from './LostedFolderForLoadBoardAlert';
+export { LostedFolderForLoadBoardAlert } from './LostedFolderForLoadBoardAlert';

@@ -44,7 +44,7 @@ import { convertImageUrlToCatchable } from '../../../helpers';
 import PremiumFeature from '../../PremiumFeature';
 import LoadBoardEditor from './LoadBoardEditor/LoadBoardEditor';
 import { Typography } from '@material-ui/core';
-import LostedFolderForLoadBoardAlert from './LostedFolderForLoadBoardAlert';
+import { LostedFolderForLoadBoardAlert } from './LostedFolderForLoadBoardAlert';
 import { SHORT_ID_MAX_LENGTH } from '../Board.constants';
 
 export class TileEditor extends Component {
