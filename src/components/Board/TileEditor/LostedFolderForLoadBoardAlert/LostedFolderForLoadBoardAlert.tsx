@@ -5,7 +5,7 @@ import messages from '../TileEditor.messages';
 export function LostedFolderForLoadBoardAlert({
   intl
 }: {
-  intl: { formatMessage: (message: any) => string };
+  intl: { formatMessage: (message: string) => string };
 }) {
   return (
     <Alert className="TileEditor__loadBoard_Alert" severity="warning">
