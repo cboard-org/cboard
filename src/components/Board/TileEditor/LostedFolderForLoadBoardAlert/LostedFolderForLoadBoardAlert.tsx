@@ -1,0 +1,18 @@
+import * as React from 'react';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import messages from '../TileEditor.messages';
+
+export default function LostedFolderForLoadBoardAlert({
+  intl
+}: {
+  intl: { formatMessage: (message: any) => string };
+}) {
+  return (
+    <Alert className="TileEditor__loadBoard_Alert" severity="warning">
+      <AlertTitle>
+        {intl.formatMessage(messages.loadBoardAlertTitle)}
+      </AlertTitle>
+      {intl.formatMessage(messages.loadBoardAlertDescription)}
+    </Alert>
+  );
+}

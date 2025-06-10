@@ -44,7 +44,8 @@ import { convertImageUrlToCatchable } from '../../../helpers';
 import PremiumFeature from '../../PremiumFeature';
 import LoadBoardEditor from './LoadBoardEditor/LoadBoardEditor';
 import { Typography } from '@material-ui/core';
-import { Alert, AlertTitle } from '@material-ui/lab';
+import LostedFolderForLoadBoardAlert from './LostedFolderForLoadBoardAlert';
+import { SHORT_ID_MAX_LENGTH } from '../Board.constants';
 
 export class TileEditor extends Component {
   static propTypes = {
@@ -528,27 +529,13 @@ export class TileEditor extends Component {
       : this.state.tile;
 
     const loadBoard = this.currentTileProp('loadBoard');
-    const loadBoardName = loadBoard
-      ? folders.find(({ id }) => id === loadBoard)?.name
+    const haveLoadBoard = loadBoard?.length > 0;
+
+    const loadBoardName = haveLoadBoard
+      ? folders?.find(({ id }) => id === loadBoard)?.name
       : null;
-    const SHORT_ID_MAX_LENGTH = 14;
-    const isLocalId = loadBoard.length < SHORT_ID_MAX_LENGTH;
 
-    const LostedFolderAlert = ({ isLocalId }) => {
-      const alertDescription = !isLocalId
-        ? intl.formatMessage(messages.loadBoardAlertDescription)
-        : intl.formatMessage(messages.loadBoardAlertDescriptionLocalId);
-
-      if (isLocalId) return null;
-      return (
-        <Alert className="TileEditor__loadBoard_Alert" severity="warning">
-          <AlertTitle>
-            {intl.formatMessage(messages.loadBoardAlertTitle)}
-          </AlertTitle>
-          {alertDescription}
-        </Alert>
-      );
-    };
+    const isLocalLoadBoard = loadBoard?.length < SHORT_ID_MAX_LENGTH;
 
     return (
       <div className="TileEditor">
@@ -688,7 +675,7 @@ export class TileEditor extends Component {
                       </div>
                     )}
 
-                    {this.currentTileProp('loadBoard')?.length > 0 && (
+                    {haveLoadBoard && !isLocalLoadBoard && (
                       <>
                         <FormLabel style={{ marginTop: '16px' }}>
                           {intl.formatMessage(messages.loadBoard)}
@@ -699,7 +686,7 @@ export class TileEditor extends Component {
                               {loadBoardName}
                             </Typography>
                           ) : (
-                            <LostedFolderAlert isLocalId={isLocalId} />
+                            <LostedFolderForLoadBoardAlert intl={intl} />
                           )}
                           <LoadBoardEditor
                             intl={intl}
