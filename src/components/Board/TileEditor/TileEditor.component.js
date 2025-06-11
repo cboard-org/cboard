@@ -678,7 +678,7 @@ export class TileEditor extends Component {
                     {haveLoadBoard && !isLocalLoadBoard && (
                       <>
                         <FormLabel style={{ marginTop: '16px' }}>
-                          {intl.formatMessage(messages.loadBoard)}
+                          {intl.formatMessage(messages.loadFolderBoard)}
                         </FormLabel>
                         <div className="TileEditor__loadBoard_section">
                           {loadBoardName ? (
