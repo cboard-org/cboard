@@ -37,6 +37,7 @@ import ImageEditor from '../ImageEditor';
 import API from '../../../api';
 import {
   isAndroid,
+  isCordova,
   requestCvaPermissions,
   writeCvaFile
 } from '../../../cordova-util';
@@ -683,20 +684,22 @@ export class TileEditor extends Component {
                         <FormLabel style={{ marginTop: '16px' }}>
                           {intl.formatMessage(messages.loadFolderBoard)}
                         </FormLabel>
-                        <div className="TileEditor__loadBoard_section">
-                          {loadBoardName ? (
-                            <Typography variant="body1">
-                              {loadBoardName}
-                            </Typography>
-                          ) : (
-                            <LostedFolderForLoadBoardAlert intl={intl} />
-                          )}
-                          <LoadBoardEditor
-                            intl={intl}
-                            onLoadBoardChange={this.handleLoadBoardChange}
-                            isLostedFolder={loadBoardName === undefined}
-                          />
-                        </div>
+                        {!isCordova() && (
+                          <div className="TileEditor__loadBoard_section">
+                            {loadBoardName ? (
+                              <Typography variant="body1">
+                                {loadBoardName}
+                              </Typography>
+                            ) : (
+                              <LostedFolderForLoadBoardAlert intl={intl} />
+                            )}
+                            <LoadBoardEditor
+                              intl={intl}
+                              onLoadBoardChange={this.handleLoadBoardChange}
+                              isLostedFolder={loadBoardName === undefined}
+                            />
+                          </div>
+                        )}
                       </>
                     )}
                     {this.currentTileProp('type') === 'folder' &&
