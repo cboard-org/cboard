@@ -6,11 +6,7 @@
   justify-content: center;
   align-items: center;
   color: #eceff1;
-  background-color: linear-gradient(
-    to right,
-    rgb(45, 22, 254),
-    rgb(141, 92, 255)
-  );
+  background: linear-gradient(to right, rgb(45, 22, 254), rgb(141, 92, 255));
 }
 
 .Activate_home {

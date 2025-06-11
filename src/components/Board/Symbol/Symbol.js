@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isCordova } from '../../../cordova-util';
@@ -43,27 +43,63 @@ function Symbol(props) {
   } = props;
 
   const [src, setSrc] = useState(image ? formatSrc(image) : '');
+  const objectUrlRef = useRef(null);
+
+  const fetchArasaacImagefromIndexedDB = useCallback(async id => {
+    if (!id) return null;
+
+    try {
+      const arasaacDB = getArasaacDB();
+      return await arasaacDB.getImageById(id);
+    } catch (error) {
+      console.error('Failed to fetch Arasaac image from Indexed DB:', error);
+      return null;
+    }
+  }, []);
 
   useEffect(
     () => {
+      let cancelled = false;
+
       async function getSrc() {
-        let image = null;
-        if (keyPath) {
-          const arasaacDB = await getArasaacDB();
-          image = await arasaacDB.getImageById(keyPath);
+        const imageFromIndexedDb = await fetchArasaacImagefromIndexedDB(
+          keyPath
+        );
+
+        if (cancelled) return;
+
+        if (imageFromIndexedDb) {
+          const blob = new Blob([imageFromIndexedDb.data], {
+            type: imageFromIndexedDb.type
+          });
+          const url = URL.createObjectURL(blob);
+          setSrc(url);
+
+          if (objectUrlRef.current) {
+            URL.revokeObjectURL(objectUrlRef.current);
+          }
+          objectUrlRef.current = url;
+          return;
         }
 
         if (image) {
-          const blob = new Blob([image.data], { type: image.type });
-          setSrc(URL.createObjectURL(blob));
-        } else if (props.image) {
-          setSrc(formatSrc(props.image));
+          setSrc(formatSrc(image));
+          return;
         }
-      }
 
+        setSrc('');
+      }
       getSrc();
+
+      return () => {
+        cancelled = true;
+        if (objectUrlRef.current) {
+          URL.revokeObjectURL(objectUrlRef.current);
+          objectUrlRef.current = null;
+        }
+      };
     },
-    [keyPath, setSrc, props.image]
+    [fetchArasaacImagefromIndexedDB, image, keyPath]
   );
 
   const symbolClassName = classNames('Symbol', className);
