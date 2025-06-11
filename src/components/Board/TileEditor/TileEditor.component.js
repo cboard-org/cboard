@@ -686,9 +686,12 @@ export class TileEditor extends Component {
                       !isCordova() &&
                       this.editingTile() && (
                         <>
-                          <FormLabel style={{ marginTop: '16px' }}>
+                          <InputLabel
+                            id="boards-input-label"
+                            style={{ marginTop: '16px' }}
+                          >
                             {intl.formatMessage(messages.loadFolderBoard)}
-                          </FormLabel>
+                          </InputLabel>
                           <div className="TileEditor__loadBoard_section">
                             {loadBoardName ? (
                               <Typography variant="body1">
