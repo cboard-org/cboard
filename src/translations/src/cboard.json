@@ -97,7 +97,7 @@
   "cboard.components.Board.EditToolbar.pasteTiles": "Paste tiles",
   "cboard.components.Board.share": "Share",
   "cboard.components.Board.copyMessage": "Copied to clipboard!",
-  "cboard.components.Board.boardMissed": "We are sorry but we have missed this folder / board. We recommend you to create it again.",
+  "cboard.components.Board.boardMissed": "We are sorry but we have missed this folder / board. Edit this tile to find it again.",
   "cboard.components.Board.copyPublicBoardTitle": "Do you want to copy a public board?",
   "cboard.components.Board.copyPublicBoardDesc": "You are trying to open a public shared board. In order to use and edit this board you have to copy it into your communicator boards.",
   "cboard.components.Board.blockedPrivateBoardTitle": "Private board!",
