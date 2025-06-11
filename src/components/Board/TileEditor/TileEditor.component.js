@@ -678,6 +678,8 @@ export class TileEditor extends Component {
                         </FormControl>
                       </div>
                     )}
+                    {this.currentTileProp('type') === 'folder' &&
+                      selectBoardElement}
 
                     {haveLoadBoard &&
                       !isLocalLoadBoard &&
@@ -703,8 +705,6 @@ export class TileEditor extends Component {
                           </div>
                         </>
                       )}
-                    {this.currentTileProp('type') === 'folder' &&
-                      selectBoardElement}
                   </div>
                 </div>
               </div>
