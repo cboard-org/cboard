@@ -38,7 +38,10 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     marginLeft: theme.spacing(2),
-    flex: 1
+    flex: 1,
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+    }
   },
   search: {
     position: 'relative',
