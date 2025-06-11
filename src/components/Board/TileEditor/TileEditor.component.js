@@ -40,7 +40,7 @@ import {
   requestCvaPermissions,
   writeCvaFile
 } from '../../../cordova-util';
-import { convertImageUrlToCatchable } from '../../../helpers';
+import { convertImageUrlToCatchable, resolveBoardName } from '../../../helpers';
 import PremiumFeature from '../../PremiumFeature';
 import LoadBoardEditor from './LoadBoardEditor/LoadBoardEditor';
 import { Typography } from '@material-ui/core';
@@ -531,10 +531,12 @@ export class TileEditor extends Component {
     const loadBoard = this.currentTileProp('loadBoard');
     const haveLoadBoard = loadBoard?.length > 0;
 
-    const loadBoardName = haveLoadBoard
-      ? folders?.find(({ id }) => id === loadBoard)?.name
+    const loadBoardData = haveLoadBoard
+      ? folders?.find(({ id }) => id === loadBoard)
       : null;
 
+    const loadBoardName =
+      loadBoardData && resolveBoardName(loadBoardData, intl);
     const isLocalLoadBoard = loadBoard?.length < SHORT_ID_MAX_LENGTH;
 
     return (
