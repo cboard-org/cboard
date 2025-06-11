@@ -451,6 +451,7 @@ export class TileEditor extends Component {
     if (boardId) {
       this.props.onAddApiBoard(boardId);
       this.updateTileProperty('loadBoard', boardId);
+      this.setLinkedBoard();
     }
   };
 
