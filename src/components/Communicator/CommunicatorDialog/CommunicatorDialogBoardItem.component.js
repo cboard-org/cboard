@@ -591,7 +591,7 @@ class CommunicatorDialogBoardItem extends React.Component {
       <div className="CommunicatorDialog__boards__item">
         <div className="CommunicatorDialog__boards__item__image">
           {!!boardCaption && (
-            <div>
+            <>
               <div className="CommunicatorDialog__boards__item__image_container">
                 <img src={boardCaption} alt={title} />
               </div>
@@ -609,7 +609,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                   </Button>
                 )}
               </div>
-            </div>
+            </>
           )}
           {!boardCaption && (
             <div className="CommunicatorDialog__boards__item__image__empty">
@@ -698,7 +698,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                   </div>
                 }
                 secondary={
-                  <div className="CommunicatorDialog__boards__item__data__title__secondary">
+                  <>
                     <div className="CommunicatorDialog__boards__item__data__title__secondary__items">
                       {intl.formatMessage(messages.tilesQty, {
                         qty: board.tiles.length
@@ -710,7 +710,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                       <span style={{ marginLeft: '1em' }} />
                       {getFormattedName(board.locale)}
                     </div>
-                  </div>
+                  </>
                 }
               />
             </ListItem>

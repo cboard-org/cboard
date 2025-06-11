@@ -68,7 +68,9 @@
   min-height: 150px;
   margin-bottom: 10px;
   text-transform: uppercase;
-  border-bottom: 1px solid #ccc; /* Light gray divider */
+  border: #3f51b5 1px solid;
+  border-radius: 4px;
+  padding: 4px;
 }
 
 .CommunicatorDialog__boards__item__data__title__secondary {
