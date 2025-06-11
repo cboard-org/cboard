@@ -679,27 +679,25 @@ export class TileEditor extends Component {
                       </div>
                     )}
 
-                    {haveLoadBoard && !isLocalLoadBoard && (
+                    {haveLoadBoard && !isLocalLoadBoard && !isCordova() && (
                       <>
                         <FormLabel style={{ marginTop: '16px' }}>
                           {intl.formatMessage(messages.loadFolderBoard)}
                         </FormLabel>
-                        {!isCordova() && (
-                          <div className="TileEditor__loadBoard_section">
-                            {loadBoardName ? (
-                              <Typography variant="body1">
-                                {loadBoardName}
-                              </Typography>
-                            ) : (
-                              <LostedFolderForLoadBoardAlert intl={intl} />
-                            )}
-                            <LoadBoardEditor
-                              intl={intl}
-                              onLoadBoardChange={this.handleLoadBoardChange}
-                              isLostedFolder={loadBoardName === undefined}
-                            />
-                          </div>
-                        )}
+                        <div className="TileEditor__loadBoard_section">
+                          {loadBoardName ? (
+                            <Typography variant="body1">
+                              {loadBoardName}
+                            </Typography>
+                          ) : (
+                            <LostedFolderForLoadBoardAlert intl={intl} />
+                          )}
+                          <LoadBoardEditor
+                            intl={intl}
+                            onLoadBoardChange={this.handleLoadBoardChange}
+                            isLostedFolder={loadBoardName === undefined}
+                          />
+                        </div>
                       </>
                     )}
                     {this.currentTileProp('type') === 'folder' &&
