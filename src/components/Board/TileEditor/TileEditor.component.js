@@ -691,13 +691,15 @@ export class TileEditor extends Component {
                                 {loadBoardName}
                               </Typography>
                             ) : (
-                              <LostedFolderForLoadBoardAlert intl={intl} />
+                              <>
+                                <LostedFolderForLoadBoardAlert intl={intl} />
+                                <LoadBoardEditor
+                                  intl={intl}
+                                  onLoadBoardChange={this.handleLoadBoardChange}
+                                  isLostedFolder={loadBoardName === undefined}
+                                />
+                              </>
                             )}
-                            <LoadBoardEditor
-                              intl={intl}
-                              onLoadBoardChange={this.handleLoadBoardChange}
-                              isLostedFolder={loadBoardName === undefined}
-                            />
                           </div>
                         )}
                       </>
