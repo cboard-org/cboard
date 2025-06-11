@@ -164,7 +164,7 @@
   "cboard.components.Board.TileEditor.none": "None",
   "cboard.components.Board.TileEditor.symbols": "Symbols",
   "cboard.components.Board.TileEditor.editImage": "Edit image",
-  "cboard.components.Board.TileEditor.loadBoard": "Load folder",
+  "cboard.components.Board.TileEditor.loadFolderBoard": "Load folder",
   "cboard.components.Board.TileEditor.loadBoardAlertTitle": "We can't find this folder",
   "cboard.components.Board.TileEditor.loadBoardAlertDescription": "Try to find it manualy on your remote folders by clicking on the search button.",
   "cboard.components.Board.TileEditor.loadBoardAlertDescriptionLocalId": "It's looks like this folder is localy stored on the device that you create it. If you want to use it, please make a change in it connected to the internet. Or edit this value to use another folder.",
