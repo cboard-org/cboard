@@ -71,7 +71,7 @@ export default defineMessages({
   },
   loadFolderBoard: {
     id: 'cboard.components.Board.TileEditor.loadFolderBoard',
-    defaultMessage: 'Link to a folder'
+    defaultMessage: 'Link to an existing folder'
   },
   loadBoardAlertTitle: {
     id: 'cboard.components.Board.TileEditor.loadBoardAlertTitle',
