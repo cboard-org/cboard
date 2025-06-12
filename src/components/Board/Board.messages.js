@@ -72,7 +72,7 @@ export default defineMessages({
   boardMissed: {
     id: 'cboard.components.Board.boardMissed',
     defaultMessage:
-      'We are sorry but we have missed this folder / board. Edit this tile to find it again.'
+      'Sorry, this folder or board is missing. Edit this tile to link it again.'
   },
   copyPublicBoardTitle: {
     id: 'cboard.components.Board.copyPublicBoardTitle',
