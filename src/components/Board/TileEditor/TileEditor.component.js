@@ -47,7 +47,7 @@ import LoadBoardEditor from './LoadBoardEditor/LoadBoardEditor';
 import { Typography } from '@material-ui/core';
 import { LostedFolderForLoadBoardAlert } from './LostedFolderForLoadBoardAlert';
 import { SHORT_ID_MAX_LENGTH } from '../Board.constants';
-
+const NONE_VALUE = 'none';
 export class TileEditor extends Component {
   static propTypes = {
     /**
@@ -439,7 +439,7 @@ export class TileEditor extends Component {
   handleBoardsChange = event => {
     const board = event ? event.target.value : '';
     this.setState({ linkedBoard: board });
-    if (board && board !== 'none') {
+    if (board && board !== NONE_VALUE) {
       this.updateTileProperty('linkedBoard', true);
       this.updateTileProperty('loadBoard', board.id);
     } else {
@@ -479,7 +479,7 @@ export class TileEditor extends Component {
         ? this.currentTileProp('loadBoard')
         : null);
     const linkedBoard =
-      this.props.boards.find(board => board.id === loadBoard) || 'none';
+      this.props.boards.find(board => board.id === loadBoard) || NONE_VALUE;
     this.setState({ linkedBoard: linkedBoard });
   };
 
@@ -511,7 +511,7 @@ export class TileEditor extends Component {
             onChange={this.handleBoardsChange}
           >
             {!this.editingTile() && (
-              <MenuItem value="none">
+              <MenuItem value={NONE_VALUE}>
                 <em>{intl.formatMessage(messages.none)}</em>
               </MenuItem>
             )}
@@ -695,7 +695,7 @@ export class TileEditor extends Component {
                           </FormLabel>
                           <div className="TileEditor__loadBoard_section">
                             {loadBoardName ? (
-                              this.state.linkedBoard === 'none' && (
+                              this.state.linkedBoard === NONE_VALUE && (
                                 <Typography variant="body1">
                                   {loadBoardName}
                                 </Typography>
