@@ -88,6 +88,10 @@ export class Login extends Component {
             <Typography color="inherit">{loginStatus.message}</Typography>
           </div>
           <Formik
+            initialValues={{
+              email: '',
+              password: ''
+            }}
             onSubmit={this.handleSubmit}
             validationSchema={validationSchema}
           >

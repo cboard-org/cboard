@@ -109,6 +109,10 @@ export class ChangePassword extends Component {
             )}
             {storePasswordState && !storePasswordState.success && (
               <Formik
+                initialValues={{
+                  password: '',
+                  passwordRepeat: ''
+                }}
                 onSubmit={this.handleSubmit}
                 validationSchema={validationSchema}
               >

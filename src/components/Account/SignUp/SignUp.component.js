@@ -98,6 +98,10 @@ export class SignUp extends Component {
               onSubmit={this.handleSubmit}
               validationSchema={validationSchema}
               initialValues={{
+                name: '',
+                email: '',
+                password: '',
+                passwordConfirm: '',
                 isTermsAccepted: false
               }}
             >
