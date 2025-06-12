@@ -452,7 +452,7 @@ export class TileEditor extends Component {
     if (boardId) {
       this.props.onAddApiBoard(boardId);
       this.updateTileProperty('loadBoard', boardId);
-      this.setLinkedBoard();
+      this.setLinkedBoard(boardId);
     }
   };
 
@@ -472,11 +472,12 @@ export class TileEditor extends Component {
     this.updateTileProperty('image', image);
   };
 
-  setLinkedBoard = () => {
+  setLinkedBoard = updatedLoadBoardId => {
     const loadBoard =
-      this.currentTileProp('linkedBoard') || this.editingTile()
+      updatedLoadBoardId ??
+      (this.currentTileProp('linkedBoard') || this.editingTile()
         ? this.currentTileProp('loadBoard')
-        : null;
+        : null);
     const linkedBoard =
       this.props.boards.find(board => board.id === loadBoard) || 'none';
     this.setState({ linkedBoard: linkedBoard });
@@ -694,9 +695,11 @@ export class TileEditor extends Component {
                           </FormLabel>
                           <div className="TileEditor__loadBoard_section">
                             {loadBoardName ? (
-                              <Typography variant="body1">
-                                {loadBoardName}
-                              </Typography>
+                              this.state.linkedBoard === 'none' && (
+                                <Typography variant="body1">
+                                  {loadBoardName}
+                                </Typography>
+                              )
                             ) : (
                               <LostedFolderForLoadBoardAlert intl={intl} />
                             )}
