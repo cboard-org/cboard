@@ -84,9 +84,7 @@ export default defineMessages({
   },
   loadBoardAlertDescriptionLocalId: {
     id: 'cboard.components.Board.TileEditor.loadBoardAlertDescriptionLocalId',
-    defaultMessage: `It's looks like this folder is localy stored on the device that you
-          create it. If you want to use it, please make a change in it connected
-          to the internet. Or edit this value to use another folder.`
+    defaultMessage: `It looks like this folder is stored locally on the device where it was created. To use it, please connect that device to the internet and make a change to the folder. Alternatively, edit this tile to select a different folder.`
   },
   loadBoardAlertSearch: {
     id: 'cboard.components.Board.TileEditor.loadBoardAlertSearch',

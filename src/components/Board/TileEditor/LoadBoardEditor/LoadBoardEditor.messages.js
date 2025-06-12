@@ -3,8 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   confirmationTitle: {
     id: 'cboard.components.LoadBoardEditor.confirmationTitle',
-    defaultMessage:
-      'Are you sure you want change the board to open by this tile?'
+    defaultMessage: 'Are you sure you want to change the board this tile opens?'
   },
   openBoardInNewTab: {
     id: 'cboard.components.LoadBoardEditor.openBoardInNewTab',
