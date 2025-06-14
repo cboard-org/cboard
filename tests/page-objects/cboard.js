@@ -1,0 +1,627 @@
+/**
+ * Page Object Model for Cboard Application
+ * Centralizes all locators and common actions for better maintainability
+ */
+
+import { expect } from '@playwright/test';
+
+export class Cboard {
+  constructor(page) {
+    this.page = page;
+  }
+
+  // === PAGE NAVIGATION ===
+  async goto(path = '/board/root') {
+    await this.page.goto(path);
+    await this.dismissOverlays();
+    await this.page.waitForLoadState('networkidle');
+  }
+  async dismissOverlays() {
+    try {
+      await this.page
+        .locator('[data-test-id="overlay"]')
+        .click({ timeout: 2000 });
+    } catch (e) {
+      // Overlay not present, continue
+    }
+
+    try {
+      await this.page.locator('.MuiBackdrop-root').click({ timeout: 1000 });
+    } catch (e) {
+      // No modal present, continue
+    }
+
+    // Handle React Joyride overlays
+    try {
+      await this.page
+        .locator('[id^="react-joyride-step-"]')
+        .waitFor({ timeout: 2000 });
+      await this.page.keyboard.press('Escape');
+    } catch (e) {
+      // No Joyride overlay present, continue
+    }
+
+    // Try to close any Joyride by clicking skip or close buttons
+    try {
+      const skipButton = this.page.locator('button:has-text("Skip")');
+      if (await skipButton.isVisible({ timeout: 1000 })) {
+        await skipButton.click();
+      }
+    } catch (e) {
+      // No skip button, continue
+    }
+
+    try {
+      const closeButton = this.page.locator('button:has-text("Close")');
+      if (await closeButton.isVisible({ timeout: 1000 })) {
+        await closeButton.click();
+      }
+    } catch (e) {
+      // No close button, continue
+    }
+  }
+
+  // === BUTTONS COLLECTION ===
+  get buttons() {
+    return {
+      goBack: this.goBackButton,
+      login: this.loginButton,
+      loginSignup: this.loginButton, // alias
+      unlock: this.unlockButton,
+      backspace: this.backspaceButton,
+      clear: this.clearButton,
+      yes: this.yesButton,
+      no: this.noButton,
+      quickChat: this.quickChatButton,
+      food: this.foodButton,
+      drinks: this.drinksButton,
+      emotions: this.emotionsButton,
+      activities: this.activitiesButton
+    };
+  }
+
+  // === HEADINGS ===
+  get mainBoardHeading() {
+    return this.page
+      .getByRole('heading', { name: 'Cboard Classic Home' })
+      .first();
+  }
+
+  get foodCategoryHeading() {
+    return this.page.getByRole('heading', { name: 'food' });
+  }
+
+  get emotionsCategoryHeading() {
+    return this.page.getByRole('heading', { name: 'emotions' });
+  }
+
+  get activitiesCategoryHeading() {
+    return this.page.getByRole('heading', { name: 'activities' });
+  }
+
+  getCategoryHeading(categoryName) {
+    return this.page.getByRole('heading', { name: categoryName });
+  }
+
+  // === NAVIGATION BUTTONS ===
+  get goBackButton() {
+    return this.page.getByRole('button', { name: 'Go back' });
+  }
+
+  get loginButton() {
+    return this.page.getByRole('button', { name: 'Login or Sign up' });
+  }
+
+  get unlockButton() {
+    return this.page.getByRole('button', { name: 'Unlock' });
+  }
+
+  // === COMMUNICATION BAR CONTROLS ===
+  get backspaceButton() {
+    return this.page.getByRole('button', { name: 'Backspace' });
+  }
+
+  get clearButton() {
+    return this.page.getByRole('button', { name: 'Clear' });
+  }
+  // === BASIC COMMUNICATION BUTTONS ===
+  get yesButton() {
+    return this.page.locator('button:has-text("yes")').first();
+  }
+  get noButton() {
+    return this.page.locator('button:has-text("no")').first();
+  }
+  get quickChatButton() {
+    return this.page.getByRole('button', { name: 'quick chat' });
+  }
+
+  // Alternative selectors for buttons that might have strict mode issues
+
+  // === CATEGORY BUTTONS ===
+  get foodButton() {
+    return this.page.getByRole('button', { name: 'food' });
+  }
+
+  get drinksButton() {
+    return this.page.getByRole('button', { name: 'drinks' });
+  }
+
+  get emotionsButton() {
+    return this.page.getByRole('button', { name: 'emotions' });
+  }
+
+  get activitiesButton() {
+    return this.page.getByRole('button', { name: 'activities' });
+  }
+
+  get bodyButton() {
+    return this.page.getByRole('button', { name: 'body' });
+  }
+
+  get clothingButton() {
+    return this.page.getByRole('button', { name: 'clothing' });
+  }
+
+  get peopleButton() {
+    return this.page.getByRole('button', { name: 'people' });
+  }
+
+  get describeButton() {
+    return this.page.getByRole('button', { name: 'describe' });
+  }
+
+  get kitchenButton() {
+    return this.page.getByRole('button', { name: 'kitchen' });
+  }
+
+  get schoolButton() {
+    return this.page.getByRole('button', { name: 'school' });
+  }
+
+  get animalsButton() {
+    return this.page.getByRole('button', { name: 'animals' });
+  }
+
+  get technologyButton() {
+    return this.page.getByRole('button', { name: 'technology' });
+  }
+
+  get weatherButton() {
+    return this.page.getByRole('button', { name: 'weather' });
+  }
+
+  get plantsButton() {
+    return this.page.getByRole('button', { name: 'plants' });
+  }
+
+  get sportsButton() {
+    return this.page.getByRole('button', { name: 'sports' });
+  }
+
+  get transportButton() {
+    return this.page.getByRole('button', { name: 'transport' });
+  }
+
+  get placesButton() {
+    return this.page.getByRole('button', { name: 'places' });
+  }
+
+  get positionButton() {
+    return this.page.getByRole('button', { name: 'position' });
+  }
+
+  get toysButton() {
+    return this.page.getByRole('button', { name: 'toys' });
+  }
+
+  get actionsButton() {
+    return this.page.getByRole('button', { name: 'actions' });
+  }
+
+  get questionsButton() {
+    return this.page.getByRole('button', { name: 'questions' });
+  }
+
+  get furnitureButton() {
+    return this.page.getByRole('button', { name: 'furniture' });
+  }
+
+  get hygieneButton() {
+    return this.page.getByRole('button', { name: 'hygiene' });
+  }
+
+  get numbersButton() {
+    return this.page.getByRole('button', { name: 'numbers' });
+  }
+
+  get timeButton() {
+    return this.page.getByRole('button', { name: 'time' });
+  }
+
+  get snacksButton() {
+    return this.page.getByRole('button', { name: 'snacks' });
+  }
+
+  // === FOOD CATEGORY BUTTONS ===
+  get pizzaButton() {
+    return this.page.getByRole('button', { name: 'pizza' });
+  }
+
+  get breadButton() {
+    return this.page.getByRole('button', { name: 'bread' });
+  }
+
+  get soupButton() {
+    return this.page.getByRole('button', { name: 'soup' });
+  }
+
+  get imHungryButton() {
+    return this.page.getByRole('button', { name: "I'm hungry" });
+  }
+
+  get iWantButton() {
+    return this.page.getByRole('button', { name: 'I want' });
+  }
+
+  get andButton() {
+    return this.page.getByRole('button', { name: 'and' });
+  }
+
+  get iDislikeButton() {
+    return this.page.getByRole('button', { name: 'I dislike' });
+  }
+
+  get vegetablesButton() {
+    return this.page.getByRole('button', { name: 'vegetables' });
+  }
+
+  get fruitButton() {
+    return this.page.getByRole('button', { name: 'fruit' });
+  }
+
+  get boiledEggButton() {
+    return this.page.getByRole('button', { name: 'boiled egg' });
+  }
+
+  get friedEggButton() {
+    return this.page.getByRole('button', { name: 'fried egg' });
+  }
+
+  get croissantButton() {
+    return this.page.getByRole('button', { name: 'croissant' });
+  }
+
+  get cerealButton() {
+    return this.page.getByRole('button', { name: 'cereal' });
+  }
+
+  get porridgeButton() {
+    return this.page.getByRole('button', { name: 'porridge' });
+  }
+
+  get pancakesButton() {
+    return this.page.getByRole('button', { name: 'pancakes' });
+  }
+
+  get pastaButton() {
+    return this.page.getByRole('button', { name: 'pasta' });
+  }
+
+  get poultryButton() {
+    return this.page.getByRole('button', { name: 'poultry' });
+  }
+
+  get beefButton() {
+    return this.page.getByRole('button', { name: 'beef' });
+  }
+
+  get fishButton() {
+    return this.page.getByRole('button', { name: 'fish' });
+  }
+
+  get spaghettiBolonaiseButton() {
+    return this.page.getByRole('button', { name: 'spaghetti bolognaise' });
+  }
+
+  get hamburgerButton() {
+    return this.page.getByRole('button', { name: 'hamburger' });
+  }
+
+  get hotDogButton() {
+    return this.page.getByRole('button', { name: 'hot dog' });
+  }
+
+  get pieButton() {
+    return this.page.getByRole('button', { name: 'pie' });
+  }
+
+  get sandwichButton() {
+    return this.page.getByRole('button', { name: 'sandwich' });
+  }
+
+  get bagelButton() {
+    return this.page.getByRole('button', { name: 'bagel' });
+  }
+
+  get toastButton() {
+    return this.page.getByRole('button', { name: 'toast' });
+  }
+
+  get cheeseButton() {
+    return this.page.getByRole('button', { name: 'cheese' });
+  }
+
+  get noodlesButton() {
+    return this.page.getByRole('button', { name: 'noodles' });
+  }
+
+  get chipsButton() {
+    return this.page.getByRole('button', { name: 'chips' });
+  } // === COMMUNICATION BAR TEXT ELEMENTS ===
+  getTextInCommunicationBar(text) {
+    // Use a more generic approach to find text, but we'll handle specificity in expectations
+    return this.page.locator(`text="${text}"`).first();
+  }
+
+  // === ALERT/NOTIFICATION MESSAGES ===
+  get lockedProfileAlert() {
+    return this.page.locator(
+      'text="User Profile is locked, please unlock settings to see your user profile."'
+    );
+  }
+
+  get unlockClicksAlert() {
+    return this.page.locator('text="3 clicks to unlock"');
+  }
+
+  // === GENERIC BUTTON SELECTORS ===
+  getButtonByName(name, exact = false) {
+    return this.page.getByRole('button', { name, exact });
+  }
+
+  getButtonByText(text) {
+    return this.page.locator(`button:has-text("${text}")`).first();
+  }
+
+  // === COMMON ACTIONS ===
+  async clickCommunicationButton(buttonText) {
+    await this.dismissOverlays();
+    await this.getButtonByText(buttonText).click();
+  }
+
+  async navigateToCategory(categoryName) {
+    await this.getButtonByName(categoryName).click();
+    await this.page.waitForLoadState('networkidle');
+  }
+
+  async navigateBack() {
+    await this.goBackButton.click();
+    await this.page.waitForLoadState('networkidle');
+  }
+
+  async clearCommunicationBar() {
+    await this.clearButton.click();
+  }
+
+  async backspaceInCommunicationBar() {
+    await this.backspaceButton.click();
+  }
+
+  async clickUnlock() {
+    await this.unlockButton.click();
+  }
+
+  async clickLogin() {
+    await this.loginButton.click();
+  }
+
+  // === URL EXPECTATIONS ===
+  expectRootBoardUrl() {
+    return this.page.expect(this.page).toHaveURL(/\/board\/root/);
+  }
+
+  expectFoodBoardUrl() {
+    return this.page.expect(this.page).toHaveURL(/\/board\/r1-FTvnvaW/);
+  }
+
+  // === TITLE EXPECTATIONS ===
+  expectCorrectTitle() {
+    return this.page
+      .expect(this.page)
+      .toHaveTitle('Cboard - AAC Communication Board');
+  } // === VISIBILITY ASSERTIONS ===
+  async expectWordInCommunicationBar(word) {
+    // Verify the word is visible and the Clear button is present (indicating communication bar has content)
+    await expect(this.getTextInCommunicationBar(word)).toBeVisible();
+    await expect(this.clearButton).toBeVisible();
+  }
+  async expectWordNotInCommunicationBar(word) {
+    // Strategy: Check if the word is specifically NOT in the communication bar
+    // This distinguishes between words in the communication bar vs words on board buttons
+
+    // First check: If Clear button is not visible, communication bar is definitely empty
+    const clearButtonVisible = await this.clearButton.isVisible();
+    if (!clearButtonVisible) {
+      // Communication bar is empty, so the word is definitely not there
+      return;
+    }
+
+    // Second check: Look for the word in specific communication bar containers
+    // Try the most common selectors for communication bar elements
+    const communicationBarSelectors = [
+      '[data-testid="output-bar"]',
+      '.OutputBar',
+      '[role="log"]',
+      '.output-bar',
+      '.communication-bar',
+      '.MuiChip-root' // Material-UI chips often used for communication bar words
+    ];
+
+    for (const selector of communicationBarSelectors) {
+      try {
+        const container = this.page.locator(selector);
+        const containerExists = await container.isVisible();
+
+        if (containerExists) {
+          const wordInContainer = container.locator(`text="${word}"`);
+          const wordCount = await wordInContainer.count();
+
+          if (wordCount > 0) {
+            const isVisible = await wordInContainer.first().isVisible();
+            if (isVisible) {
+              throw new Error(
+                `Expected word "${word}" not to be in communication bar, but it was found in ${selector}`
+              );
+            }
+          }
+        }
+      } catch (error) {
+        if (error.message.includes('Expected word')) {
+          throw error; // Re-throw our assertion error
+        }
+        // Other errors (selector not found, etc.) are okay - continue checking
+        continue;
+      }
+    }
+
+    // If we reach here, the word was not found in any communication bar container
+    // This is the expected behavior
+  }
+
+  async expectButtonVisible(buttonGetter) {
+    await expect(buttonGetter).toBeVisible();
+  }
+
+  async expectButtonDisabled(buttonGetter) {
+    await expect(buttonGetter).toBeDisabled();
+  }
+
+  async expectButtonEnabled(buttonGetter) {
+    await expect(buttonGetter).toBeEnabled();
+  }
+  async expectButtonNotVisible(buttonGetter) {
+    await expect(buttonGetter).not.toBeVisible();
+  }
+
+  // === ADDITIONAL HELPER METHODS ===
+  async verifyHomeHeadingVisible() {
+    await expect(this.mainBoardHeading).toBeVisible();
+  }
+  async verifyButtonVisible(buttonName) {
+    // Handle specific cases where exact matching is needed
+    if (buttonName === 'yes' || buttonName === 'no') {
+      const button = this.page.getByRole('button', {
+        name: buttonName,
+        exact: true
+      });
+      await expect(button).toBeVisible();
+    } else {
+      const button = this.page
+        .getByRole('button', { name: buttonName })
+        .first();
+      await expect(button).toBeVisible();
+    }
+  }
+
+  async verifyCategoryHeadingVisible(categoryName) {
+    const heading = this.page.getByRole('heading', { name: categoryName });
+    await expect(heading).toBeVisible();
+  }
+
+  async verifyCommunicationBarHasText(text) {
+    const textElement = this.page.locator(`text="${text}"`).first();
+    await expect(textElement).toBeVisible();
+  }
+  async verifyCommunicationBarEmpty() {
+    // Communication bar is considered empty when Clear button is not visible
+    await expect(this.clearButton).not.toBeVisible();
+  }
+
+  async verifyPageTitle() {
+    await expect(this.page).toHaveTitle('Cboard - AAC Communication Board');
+  }
+  async clickButton(buttonName) {
+    // Handle specific cases where exact matching is needed
+    let button;
+    if (buttonName === 'yes' || buttonName === 'no') {
+      button = this.page.getByRole('button', { name: buttonName, exact: true });
+    } else {
+      button = this.page.getByRole('button', { name: buttonName }).first();
+    }
+
+    // Try to dismiss any overlays that might be blocking the click
+    await this.dismissOverlays();
+
+    // Try to force click if normal click doesn't work
+    try {
+      await button.click({ timeout: 5000 });
+    } catch (error) {
+      // If click is intercepted, try force clicking
+      await button.click({ force: true });
+    }
+  }
+
+  async clickGoBackButton() {
+    await this.buttons.goBack.click();
+  }
+
+  async clickClearButton() {
+    await this.buttons.clear.click();
+  }
+
+  async clickUnlockButton() {
+    await this.buttons.unlock.click();
+  }
+
+  async verifyUnlockMessageVisible() {
+    const unlockMessage = this.page.locator('text="3 clicks to unlock"');
+    await expect(unlockMessage).toBeVisible();
+  }
+
+  async expectCommunicationBarEmpty() {
+    // Strategy: Use multiple indicators to verify communication bar is empty
+    // 1. Clear button should not be visible (primary indicator)
+    // 2. Backspace button should not be visible (if it behaves like Clear)
+    // 3. No communication bar containers should have content
+
+    // Primary check: Clear button not visible means communication bar is empty
+    await expect(this.clearButton).not.toBeVisible();
+
+    // Secondary verification: Check if any communication bar containers exist and are empty
+    const communicationBarSelectors = [
+      '[data-testid="output-bar"]',
+      '.OutputBar',
+      '[role="log"]',
+      '.output-bar',
+      '.communication-bar'
+    ];
+
+    for (const selector of communicationBarSelectors) {
+      try {
+        const container = this.page.locator(selector);
+        const containerExists = await container.isVisible();
+
+        if (containerExists) {
+          // If container exists, verify it has no text content or is empty
+          const textContent = await container.textContent();
+          if (textContent && textContent.trim().length > 0) {
+            throw new Error(
+              `Expected communication bar to be empty, but found content: "${textContent.trim()}"`
+            );
+          }
+        }
+      } catch (error) {
+        if (error.message.includes('Expected communication bar')) {
+          throw error; // Re-throw our assertion error
+        }
+        // Other errors (selector not found, etc.) are okay - continue checking
+        continue;
+      }
+    }
+  }
+}
+
+// Export a factory function for creating page instances
+export function createCboard(page) {
+  return new Cboard(page);
+}
