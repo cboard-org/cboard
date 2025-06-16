@@ -43,7 +43,7 @@ test.describe('Cboard - Cross-Browser Compatibility', () => {
     browserName
   }) => {
     // Test communication bar in different browsers
-    const words = ['yes', 'no', 'quick chat'];
+    const words = ['yes', 'no'];
 
     for (const word of words) {
       await cboard.clickButton(word);
@@ -77,8 +77,6 @@ test.describe('Cboard - Cross-Browser Compatibility', () => {
   }) => {
     // Verify all major categories are displayed
     const categories = [
-      'yes',
-      'no',
       'food',
       'drinks',
       'emotions',

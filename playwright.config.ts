@@ -17,11 +17,11 @@ export default defineConfig({
   
   /* Maximum parallel execution */
   fullyParallel: true,
+    /* Optimal worker count for cross-browser stability */
+  workers: process.env.CI ? 1 : 2, // Reduced for stability
   
-  /* Optimal worker count for parallel execution */
-  workers: process.env.CI ? 2 : '75%',
-    /* Fast timeout settings */
-  timeout: 30 * 1000,
+  /* Balanced timeout settings */
+  timeout: 60 * 1000, // Increased test timeout for slower browsers
   expect: {
     timeout: 10 * 1000,
   },
@@ -38,11 +38,11 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://app.qa.cboard.io',
 
-    /* Faster action timeout */
-    actionTimeout: 10 * 1000,
+    /* Balanced timeout settings for reliability vs speed */
+    actionTimeout: 15 * 1000,
     
-    /* Faster navigation timeout */
-    navigationTimeout: 15 * 1000,
+    /* Longer navigation timeout for slow environments */
+    navigationTimeout: 60 * 1000,
 
     /* No traces, videos, or screenshots for maximum speed */
     trace: 'off',
