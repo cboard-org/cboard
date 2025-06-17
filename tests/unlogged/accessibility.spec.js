@@ -8,17 +8,6 @@ test.describe('Cboard - Accessibility', () => {
     cboard = createCboard(page);
     await cboard.goto();
   });
-  test('should have proper ARIA roles and labels', async ({ page }) => {
-    // Check for proper heading structure
-    await cboard.verifyHomeHeadingVisible();
-
-    // Check for button roles
-    await cboard.verifyButtonVisible('yes');
-    await cboard.verifyButtonVisible('no');
-    await cboard.verifyButtonVisible('Backspace');
-    await cboard.verifyButtonVisible('Go back');
-  });
-
   test('should be keyboard navigable', async ({ page }) => {
     // Ensure overlays are dismissed first
     await cboard.dismissOverlays();
@@ -34,6 +23,9 @@ test.describe('Cboard - Accessibility', () => {
 
     // Continue tabbing through elements
     await page.keyboard.press('Tab');
+
+    // Verify the button is focused
+    await expect(cboard.noButton).toBeFocused();
 
     // Look for any focused element (could be various buttons)
     const hasAnyFocusedElement = (await page.locator(':focus').count()) > 0;

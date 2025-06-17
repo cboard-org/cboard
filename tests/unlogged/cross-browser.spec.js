@@ -19,8 +19,6 @@ test.describe('Cboard - Cross-Browser Compatibility', () => {
     // Test core functionality across browsers
     await cboard.clickButton('yes');
     await cboard.verifyCommunicationBarHasText('yes');
-
-    console.log(`Test passed in ${browserName}`);
   });
   test('should handle navigation consistently across browsers', async ({
     page,
@@ -35,8 +33,6 @@ test.describe('Cboard - Cross-Browser Compatibility', () => {
 
     await cboard.clickGoBackButton();
     await cboard.verifyHomeHeadingVisible();
-
-    console.log(`Navigation test passed in ${browserName}`);
   });
   test('should maintain communication bar functionality across browsers', async ({
     page,
@@ -53,8 +49,6 @@ test.describe('Cboard - Cross-Browser Compatibility', () => {
     // Test Clear functionality
     await cboard.clickClearButton();
     await cboard.verifyCommunicationBarEmpty();
-
-    console.log(`Communication bar test passed in ${browserName}`);
   });
   test('should handle button interactions consistently', async ({
     page,
@@ -68,8 +62,6 @@ test.describe('Cboard - Cross-Browser Compatibility', () => {
     // Test unlock functionality
     await cboard.clickUnlockButton();
     await cboard.verifyUnlockMessageVisible();
-
-    console.log(`Button interaction test passed in ${browserName}`);
   });
   test('should display categories consistently', async ({
     page,
@@ -92,7 +84,5 @@ test.describe('Cboard - Cross-Browser Compatibility', () => {
     for (const category of categories) {
       await cboard.verifyButtonVisible(category);
     }
-
-    console.log(`Category display test passed in ${browserName}`);
   });
 });
