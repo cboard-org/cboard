@@ -25,37 +25,24 @@ test.describe('Cboard - Security Features', () => {
     // Verify unlock message appears
     await cboard.expectButtonVisible(cboard.unlockClicksAlert);
   });
-  test('should maintain unlock message on repeated clicks', async ({
+  test('should maintain unlock message for five seconds on a single click', async ({
     page
   }) => {
     // Click unlock button and check if there's any unlock feedback
     await cboard.clickUnlock();
 
-    // Try to find any unlock-related message or feedback
-    // The exact text might be different than expected
-    const unlockMessages = [
-      cboard.unlockClicksAlert,
-      page.locator('text*="click"'),
-      page.locator('text*="unlock"'),
-      page.locator('[role="alert"]'),
-      page.locator('.unlock-message, .alert, .snackbar')
-    ];
-
-    let messageFound = false;
-    for (const messageLocator of unlockMessages) {
-      try {
-        await expect(messageLocator).toBeVisible({ timeout: 2000 });
-        messageFound = true;
-        break;
-      } catch (e) {
-        // Continue to next locator
+    // verify unlock message appears during 5 seconds after clicking
+    for (let i = 0; i < 5; i++) {
+      if (i < 4) {
+        // Verify unlock message appears
+        await cboard.expectButtonVisible(cboard.unlockClicksAlert);
+        await page.waitForTimeout(1600);
+      } else {
+        // After 2 seconds, the message should not be visible
+        await expect(page.locator('[role="alert"]')).not.toBeVisible({
+          timeout: 1
+        });
       }
-    }
-
-    // If no unlock message system exists, verify the unlock button is still functional
-    if (!messageFound) {
-      await expect(cboard.unlockButton).toBeVisible();
-      await expect(cboard.unlockButton).toBeEnabled();
     }
   });
 
@@ -69,34 +56,12 @@ test.describe('Cboard - Security Features', () => {
   }) => {
     // Click unlock to show message
     await cboard.clickUnlock();
-
-    // Try to find any unlock-related feedback
-    const unlockMessages = [
-      cboard.unlockClicksAlert,
-      page.locator('text*="click"'),
-      page.locator('text*="unlock"'),
-      page.locator('[role="alert"]')
-    ];
-
-    let hasUnlockFeedback = false;
-    for (const messageLocator of unlockMessages) {
-      try {
-        await expect(messageLocator).toBeVisible({ timeout: 2000 });
-        hasUnlockFeedback = true;
-        break;
-      } catch (e) {
-        // Continue to next locator
-      }
-    }
-
-    console.log('Unlock feedback found:', hasUnlockFeedback);
-
+    await cboard.expectButtonVisible(cboard.unlockClicksAlert);
     // Navigate to food category
     await cboard.navigateToCategory('food');
 
     // Verify unlock button is still functional
-    await expect(cboard.unlockButton).toBeVisible();
-    await cboard.clickUnlock();
+    await cboard.expectButtonVisible(cboard.unlockClicksAlert);
 
     // Navigate back
     await cboard.navigateBack();
@@ -104,5 +69,6 @@ test.describe('Cboard - Security Features', () => {
     // Verify we're back on main page and unlock still works
     await expect(cboard.mainBoardHeading).toBeVisible();
     await expect(cboard.unlockButton).toBeEnabled();
+    await cboard.expectButtonVisible(cboard.unlockClicksAlert);
   });
 });
