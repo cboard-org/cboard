@@ -794,6 +794,51 @@ export class Cboard {
     );
   }
 
+  get displayHeading() {
+    return this.page.getByRole('heading', { name: 'Display' });
+  }
+
+  get saveButton() {
+    return this.page.getByRole('button', { name: 'Save' });
+  }
+
+  get displayGoBackButton() {
+    return this.page.getByRole('button', { name: 'Go back' });
+  }
+
+  // UI Size settings
+  get uiSizeDropdown() {
+    return this.page.getByRole('button', { name: 'Standard' }).first();
+  }
+
+  // Font Family settings
+  get fontFamilyDropdown() {
+    return this.page.getByRole('button', { name: 'Montserrat' });
+  }
+
+  // Font Size settings
+  get fontSizeDropdown() {
+    return this.page.getByRole('button', { name: 'Standard' }).last();
+  }
+
+  // Label Position settings
+  get labelPositionDropdown() {
+    return this.page.getByRole('button', { name: 'Below' });
+  }
+
+  // Checkboxes
+  get hideOutputBarCheckbox() {
+    return this.page.locator('input[type="checkbox"]').first();
+  }
+
+  get actionButtonsCheckbox() {
+    return this.page.locator('input[type="checkbox"]').nth(1);
+  }
+
+  get darkThemeCheckbox() {
+    return this.page.locator('input[type="checkbox"]').last();
+  }
+
   get fontSizeSlider() {
     return this.page
       .locator('[role="slider"]:has-text("Font"), input[type="range"]')
@@ -1125,6 +1170,117 @@ export class Cboard {
     // Check for navigation-related controls
     const hasNavigationContent = await this.navigationAndButtonsPanel.textContent();
     expect(hasNavigationContent).toBeTruthy();
+  }
+
+  // === DISPLAY SETTINGS ACTIONS ===
+  async verifyDisplaySettingsUI() {
+    await expect(this.displayHeading).toBeVisible();
+    await expect(this.saveButton).toBeVisible();
+    await expect(this.displayGoBackButton).toBeVisible();
+  }
+
+  async verifyUISettings() {
+    await expect(this.page.locator('text=UI Size')).toBeVisible();
+    await expect(this.page.locator('text=Elements size')).toBeVisible();
+    await expect(this.uiSizeDropdown).toBeVisible();
+  }
+
+  async verifyFontFamilySettings() {
+    await expect(this.page.locator('text=Font family')).toBeVisible();
+    await expect(
+      this.page.locator(
+        'text=Change the text font used in the entire application'
+      )
+    ).toBeVisible();
+    await expect(this.fontFamilyDropdown).toBeVisible();
+  }
+
+  async verifyFontSizeSettings() {
+    await expect(this.page.locator('text=Font Size').first()).toBeVisible();
+    await expect(this.page.locator('text=App font size')).toBeVisible();
+    await expect(this.fontSizeDropdown).toBeVisible();
+  }
+
+  async verifyOutputBarSettings() {
+    await expect(this.page.locator('text=Hide the output bar')).toBeVisible();
+    await expect(
+      this.page.locator(
+        'text=Hides the white bar on the top where you build a sentence.'
+      )
+    ).toBeVisible();
+    await expect(this.hideOutputBarCheckbox).toBeVisible();
+  }
+
+  async verifyActionButtonsSettings() {
+    await expect(
+      this.page.locator(
+        'text=Increase the size of action buttons on the output bar'
+      )
+    ).toBeVisible();
+    await expect(
+      this.page.locator(
+        'text=Increase the size of the action buttons that are on the white bar where you build a sentence.'
+      )
+    ).toBeVisible();
+    await expect(this.actionButtonsCheckbox).toBeVisible();
+  }
+
+  async verifyLabelPositionSettings() {
+    await expect(this.page.locator('text=Label Position')).toBeVisible();
+    await expect(
+      this.page.locator(
+        'text=Whether labels on tiles should be visible, or positioned above or below'
+      )
+    ).toBeVisible();
+    await expect(this.labelPositionDropdown).toBeVisible();
+  }
+
+  async verifyDarkThemeSettings() {
+    await expect(this.page.locator('text=Enable dark theme')).toBeVisible();
+    await expect(
+      this.page.locator(
+        'text=The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.'
+      )
+    ).toBeVisible();
+    await expect(this.darkThemeCheckbox).toBeVisible();
+  }
+
+  async toggleCheckbox(checkbox) {
+    const initialState = await checkbox.isChecked();
+    await checkbox.click();
+    const newState = await checkbox.isChecked();
+    expect(newState).toBe(!initialState);
+    return newState;
+  }
+
+  async clickUISize() {
+    await this.uiSizeDropdown.click();
+  }
+
+  async clickFontFamily() {
+    await this.fontFamilyDropdown.click();
+  }
+
+  async clickFontSize() {
+    await this.fontSizeDropdown.click();
+  }
+
+  async clickLabelPosition() {
+    await this.labelPositionDropdown.click();
+  }
+
+  async saveDisplaySettings() {
+    await this.saveButton.click();
+  }
+
+  async goBackFromDisplay() {
+    await this.displayGoBackButton.click();
+    await expect(
+      this.page.getByRole('heading', { name: 'Settings' })
+    ).toBeVisible();
+    await expect(
+      this.page.getByRole('button', { name: 'Display' })
+    ).toBeVisible();
   }
 }
 
