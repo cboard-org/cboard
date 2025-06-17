@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
-import isMobile from 'ismobilejs';
 import { Scannable } from 'react-scannable';
 import { IconButton } from '@material-ui/core';
 import ScannerDeactivateIcon from '@material-ui/icons/ExploreOff';
@@ -147,7 +146,7 @@ export class Navbar extends React.Component {
           {!isLocked && (
             <React.Fragment>
               <PrintBoardButton />
-              {!isMobile.any && <FullScreenButton />}
+              {!isCordova() && <FullScreenButton />}
               {isLogged && (isIOS() || !isCordova()) && (
                 <PremiumFeature>
                   <AnalyticsButton component={Link} to="/analytics" />
