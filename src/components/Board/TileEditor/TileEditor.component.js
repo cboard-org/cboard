@@ -37,12 +37,17 @@ import ImageEditor from '../ImageEditor';
 import API from '../../../api';
 import {
   isAndroid,
+  isCordova,
   requestCvaPermissions,
   writeCvaFile
 } from '../../../cordova-util';
-import { convertImageUrlToCatchable } from '../../../helpers';
+import { convertImageUrlToCatchable, resolveBoardName } from '../../../helpers';
 import PremiumFeature from '../../PremiumFeature';
-
+import LoadBoardEditor from './LoadBoardEditor/LoadBoardEditor';
+import { Typography } from '@material-ui/core';
+import { LostedFolderForLoadBoardAlert } from './LostedFolderForLoadBoardAlert';
+import { SHORT_ID_MAX_LENGTH } from '../Board.constants';
+const NONE_VALUE = 'none';
 export class TileEditor extends Component {
   static propTypes = {
     /**
@@ -70,7 +75,9 @@ export class TileEditor extends Component {
      */
     onAddSubmit: PropTypes.func.isRequired,
     boards: PropTypes.array,
-    userData: PropTypes.object
+    userData: PropTypes.object,
+    folders: PropTypes.array,
+    onAddApiBoard: PropTypes.func
   };
 
   static defaultProps = {
@@ -432,12 +439,20 @@ export class TileEditor extends Component {
   handleBoardsChange = event => {
     const board = event ? event.target.value : '';
     this.setState({ linkedBoard: board });
-    if (board && board !== 'none') {
+    if (board && board !== NONE_VALUE) {
       this.updateTileProperty('linkedBoard', true);
       this.updateTileProperty('loadBoard', board.id);
     } else {
       this.updateTileProperty('linkedBoard', false);
       this.updateTileProperty('loadBoard', shortid.generate());
+    }
+  };
+
+  handleLoadBoardChange = ({ boardId }) => {
+    if (boardId) {
+      this.props.onAddApiBoard(boardId);
+      this.updateTileProperty('loadBoard', boardId);
+      this.setLinkedBoard(boardId);
     }
   };
 
@@ -457,18 +472,19 @@ export class TileEditor extends Component {
     this.updateTileProperty('image', image);
   };
 
-  setLinkedBoard = () => {
+  setLinkedBoard = updatedLoadBoardId => {
     const loadBoard =
-      this.currentTileProp('linkedBoard') || this.editingTile()
+      updatedLoadBoardId ??
+      (this.currentTileProp('linkedBoard') || this.editingTile()
         ? this.currentTileProp('loadBoard')
-        : null;
+        : null);
     const linkedBoard =
-      this.props.boards.find(board => board.id === loadBoard) || 'none';
+      this.props.boards.find(board => board.id === loadBoard) || NONE_VALUE;
     this.setState({ linkedBoard: linkedBoard });
   };
 
   render() {
-    const { open, intl, boards } = this.props;
+    const { open, intl, boards, folders } = this.props;
     const currentLabel = this.currentTileProp('labelKey')
       ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
       : this.currentTileProp('label');
@@ -482,7 +498,7 @@ export class TileEditor extends Component {
     );
 
     const selectBoardElement = (
-      <div>
+      <div style={{ marginTop: '16px' }}>
         <FormControl fullWidth>
           <InputLabel id="boards-input-label">
             {intl.formatMessage(messages.existingBoards)}
@@ -495,7 +511,7 @@ export class TileEditor extends Component {
             onChange={this.handleBoardsChange}
           >
             {!this.editingTile() && (
-              <MenuItem value="none">
+              <MenuItem value={NONE_VALUE}>
                 <em>{intl.formatMessage(messages.none)}</em>
               </MenuItem>
             )}
@@ -514,6 +530,17 @@ export class TileEditor extends Component {
     const tileInView = this.editingTile()
       ? this.editingTile()
       : this.state.tile;
+
+    const loadBoard = this.currentTileProp('loadBoard');
+    const haveLoadBoard = loadBoard?.length > 0;
+
+    const loadBoardData = haveLoadBoard
+      ? folders?.find(({ id }) => id === loadBoard)
+      : null;
+
+    const loadBoardName =
+      loadBoardData && resolveBoardName(loadBoardData, intl);
+    const isLocalLoadBoard = loadBoard?.length < SHORT_ID_MAX_LENGTH;
 
     return (
       <div className="TileEditor">
@@ -654,6 +681,36 @@ export class TileEditor extends Component {
                     )}
                     {this.currentTileProp('type') === 'folder' &&
                       selectBoardElement}
+
+                    {haveLoadBoard &&
+                      !isLocalLoadBoard &&
+                      !isCordova() &&
+                      this.editingTile() && (
+                        <>
+                          <FormLabel
+                            id="boards-input-label"
+                            style={{ marginTop: '16px' }}
+                          >
+                            {intl.formatMessage(messages.loadFolderBoard)}
+                          </FormLabel>
+                          <div className="TileEditor__loadBoard_section">
+                            {loadBoardName ? (
+                              this.state.linkedBoard === NONE_VALUE && (
+                                <Typography variant="body1">
+                                  {loadBoardName}
+                                </Typography>
+                              )
+                            ) : (
+                              <LostedFolderForLoadBoardAlert intl={intl} />
+                            )}
+                            <LoadBoardEditor
+                              intl={intl}
+                              onLoadBoardChange={this.handleLoadBoardChange}
+                              isLostedFolder={loadBoardName === undefined}
+                            />
+                          </div>
+                        </>
+                      )}
                   </div>
                 </div>
               </div>
