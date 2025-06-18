@@ -10,5 +10,5 @@
   "endOfLine": "auto",
   "jsxSingleQuote": false,
   "proseWrap": "preserve",
-  "jsxBracketSameLine": false
+  "bracketSameLine": false
 }
