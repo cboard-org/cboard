@@ -63,7 +63,7 @@ jobs:
             docker push cboard/cboard:$TAG
   deploy:
     machine:
-      image: ubuntu-2204:2023.07.2
+      image: ubuntu-2204:2024.11.1
     steps:
       - run:
           name: Deploy Over SSH
