@@ -62,36 +62,15 @@ jobs:
             docker push cboard/cboard:latest
             docker push cboard/cboard:$TAG
   deploy:
-    machine: true
+    machine:
+      image: ubuntu-2204:2023.07.2
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - '70:3a:28:02:d9:74:fd:be:c8:79:f6:2e:9b:f7:21:04'
-      - run: |
-          ssh -t $SSH_USERNAME@$SSH_SERVER 'bash -ic "docker run --rm \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            cboard/cboard-bootstrap \
-            pull && \
-            docker run --rm \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            -e URL \
-            -e SUBDOMAINS \
-            -e VALIDATION \
-            -e EMAIL \
-            -e ONLY_SUBDOMAINS=true \
-            -e PUID=”$(id -u $USER)” \
-            -e PGID=”$(id -g $USER)” \
-            -e AZURE_STORAGE_CONNECTION_STRING \
-            -e SENDGRID_API_KEY \
-            -e JWT_SECRET \
-            -e FACEBOOK_APP_ID \
-            -e FACEBOOK_APP_SECRET \
-            -e FACEBOOK_CALLBACK_URL \
-            -e GOOGLE_APP_ID \
-            -e GOOGLE_APP_SECRET \
-            -e GOOGLE_CALLBACK_URL \
-            cboard/cboard-bootstrap \
-            up -d --no-deps cboard" && exit'
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh $SSH_USERNAME@$SSH_SERVER 'bash -ic "docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock --env-file \
+            /home/sharedFolder/env.qa cboard/cboard-bootstrap up -d" && exit'
 workflows:
   version: 2
   build_test_image:
@@ -102,6 +81,14 @@ workflows:
           context: azure
           requires:
             - build
+      - deploy:
+          context: azure
+          requires:
+            - image
+          # - e2e:
+          #     context: azure
+          #     requires:
+          #       - deploy
           filters:
             branches:
-              only: master
+              only: Playwright
