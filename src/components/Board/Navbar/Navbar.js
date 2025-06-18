@@ -148,11 +148,11 @@ export class Navbar extends React.Component {
             <React.Fragment>
               <PrintBoardButton />
               {!isMobile.any && <FullScreenButton />}
-              {isLogged && (isIOS() || !isCordova()) && (
+              {/*isLogged && (isIOS() || !isCordova()) && (
                 <PremiumFeature>
                   <AnalyticsButton component={Link} to="/analytics" />
                 </PremiumFeature>
-              )}
+              )*/}
               <SettingsButton component={Link} to="/settings" />
               <BoardShare
                 label={intl.formatMessage(messages.share)}
