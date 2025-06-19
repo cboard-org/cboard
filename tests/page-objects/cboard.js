@@ -434,7 +434,8 @@ export class Cboard {
   }
 
   get unlockClicksAlert() {
-    return this.page.locator('text="3 clicks to unlock"');
+    // Dynamic text showing countdown: "3 clicks to unlock", "2 clicks to unlock", etc.
+    return this.page.locator('text=/\\d+ clicks to unlock/');
   }
 
   // === GENERIC BUTTON SELECTORS ===
@@ -652,7 +653,7 @@ export class Cboard {
   }
 
   async verifyUnlockMessageVisible() {
-    const unlockMessage = this.page.locator('text="3 clicks to unlock"');
+    const unlockMessage = this.page.locator('text=/\\d+ clicks to unlock/');
     await expect(unlockMessage).toBeVisible();
   }
 
@@ -1882,6 +1883,44 @@ export class Cboard {
     // Check that we're in the symbols settings by verifying key elements
     await expect(this.symbolsHeading).toBeVisible();
     await expect(this.downloadArasaacButton).toBeVisible();
+  }
+
+  // === SAFE BUTTON CLICKING ===
+  async safeClick(locator, options = {}) {
+    const maxAttempts = 3;
+    let attempt = 0;
+
+    while (attempt < maxAttempts) {
+      try {
+        await this.dismissOverlays();
+        await locator.click({ timeout: 5000, ...options });
+        return; // Success
+      } catch (error) {
+        attempt++;
+        if (
+          error.message?.includes('intercepts pointer events') ||
+          error.message?.includes('react-joyride__overlay')
+        ) {
+          // Try to dismiss overlays more aggressively
+          try {
+            await this.page
+              .locator('.react-joyride__overlay')
+              .click({ timeout: 1000 });
+            await this.page.waitForTimeout(500);
+          } catch (e) {
+            // Continue trying
+          }
+
+          // Try using force click as last resort
+          if (attempt === maxAttempts - 1) {
+            await locator.click({ force: true, timeout: 5000, ...options });
+            return;
+          }
+        } else {
+          throw error; // Re-throw if it's a different error
+        }
+      }
+    }
   }
 }
 
