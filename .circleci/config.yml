@@ -95,7 +95,7 @@ jobs:
       # run tests
       - run:
           name: Run E2E Tests
-          command: test:e2e
+          command: yarn test:e2e
       - store_artifacts:
           path: ./playwright-report
           destination: playwright-report-first
