@@ -71,24 +71,54 @@ jobs:
             ssh $SSH_USERNAME@$SSH_SERVER 'bash -ic "docker run --rm \
             -v /var/run/docker.sock:/var/run/docker.sock --env-file \
             /home/sharedFolder/env.qa cboard/cboard-bootstrap up -d" && exit'
+  e2e:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.40.0-jammy
+    working_directory: ~/repo
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-
+      # Install and save node_modules to cache
+      - run:
+          name: Install dependencies
+          command: yarn install --cache-folder ~/.cache/yarn
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      # run tests
+      - run:
+          name: Run E2E Tests
+          command: test:e2e
+      - store_artifacts:
+          path: ./playwright-report
+          destination: playwright-report-first
+      - store_artifacts:
+          path: /tmp/artifacts
 workflows:
   version: 2
   build_test_image:
     jobs:
       - build:
           context: azure
-      - image:
+      # - image:
+      #     context: azure
+      #     requires:
+      #       - build
+      # - deploy:
+      #     context: azure
+      #     requires:
+      #      - image
+      - e2e:
           context: azure
-          requires:
-            - build
-      - deploy:
-          context: azure
-          requires:
-            - image
-          # - e2e:
-          #     context: azure
-          #     requires:
-          #       - deploy
+          # requires:
+          #   - deploy
           filters:
             branches:
               only: Playwright
