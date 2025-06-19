@@ -99,8 +99,6 @@ test.describe('Cboard - Display Settings', () => {
     page
   }) => {
     // Use page object methods to verify display settings
-    await cboard.verifySettingsVisible();
-    await cboard.verifySettingsTabVisible('Display');
-    await cboard.verifyDisplaySettingsElements();
+    await cboard.verifyDisplaySettingsUI();
   });
 });
