@@ -33,7 +33,7 @@ export default defineConfig({
   retries: 0,
   
   /* Minimal reporter for speed */
-  reporter: process.env.CI ? [['junit', { outputFile: 'results.xml' }]] : 'line',  /* Optimized settings for fastest execution */
+  reporter: [['junit', { outputFile: 'test-results/results.xml' }], ['html', { open: 'never' }]],
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://app.qa.cboard.io',
