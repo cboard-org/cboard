@@ -96,7 +96,7 @@ jobs:
       - run:
           name: Run E2E Tests
           command: |
-            yarn test:e2e tests/smoke.spec.js --reporter=junit --output-dir=test-results
+            yarn test:e2e --output test-results --reporter "junit" tests/smoke.spec.js
           when: always
       # Store test results for CircleCI test insights
       - store_test_results:
