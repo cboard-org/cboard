@@ -95,12 +95,28 @@ jobs:
       # run tests
       - run:
           name: Run E2E Tests
-          command: yarn test:e2e tests/smoke.spec.js
+          command: |
+            yarn test:e2e tests/smoke.spec.js --reporter=junit --output-dir=test-results
+          when: always
+      # Store test results for CircleCI test insights
+      - store_test_results:
+          path: test-results
+      # Store Playwright HTML report
       - store_artifacts:
           path: ./playwright-report
-          destination: playwright-report-first
+          destination: playwright-report
+      # Store test results XML files
+      - store_artifacts:
+          path: ./test-results
+          destination: test-results
+      # Store screenshots and videos on failure
+      - store_artifacts:
+          path: ./test-results
+          destination: test-artifacts
+      # Store any additional artifacts
       - store_artifacts:
           path: /tmp/artifacts
+          destination: tmp-artifacts
 workflows:
   version: 2
   build_test_image:
