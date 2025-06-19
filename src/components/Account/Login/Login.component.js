@@ -37,6 +37,12 @@ export class Login extends Component {
     isPasswordVisible: false
   };
 
+  componentDidUpdate({ isDialogOpen }) {
+    if (this.props.isDialogOpen && this.props.isDialogOpen !== isDialogOpen) {
+      this.setState({ loginStatus: {} });
+    }
+  }
+
   handleSubmit = values => {
     const { login } = this.props;
 
