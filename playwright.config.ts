@@ -18,7 +18,7 @@ export default defineConfig({
   /* Maximum parallel execution */
   fullyParallel: true,
     /* Optimal worker count for cross-browser stability */
-  workers: process.env.CI ? 1 : 2, // Reduced for stability
+  workers: process.env.CI ? 4 : 2, // Reduced for stability
   
   /* Balanced timeout settings */
   timeout: 60 * 1000, // Increased test timeout for slower browsers
@@ -33,7 +33,7 @@ export default defineConfig({
   retries: 0,
   
   /* Minimal reporter for speed */
-  reporter: [['junit', { outputFile: 'test-results/results.xml' }], ['html', { open: 'never' }]],
+  reporter: [['junit', { outputFile: 'test-results/results.xml' }], ['html', { open: 'never' }], ['list']],
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://app.qa.cboard.io',
