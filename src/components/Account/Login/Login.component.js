@@ -27,20 +27,18 @@ export function Login({
 }) {
   const [isLogging, setIsLogging] = useState(false);
   const [loginStatus, setLoginStatus] = useState({});
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   function handleSubmit(values) {
-    const { login } = this.props;
     setIsLogging(true);
     setLoginStatus({});
     login(values)
+      .then(response => {
+        if (response.success) {
+        }
+      })
       .catch(loginStatus => setLoginStatus(loginStatus))
       .finally(() => setIsLogging(false));
   }
-
-  const togglePasswordVisibility = () => {
-    setIsPasswordVisible(prev => !prev);
-  };
 
   const isButtonDisabled = isLogging || !!loginStatus.success;
 
@@ -70,20 +68,21 @@ export function Login({
           onSubmit={handleSubmit}
           validationSchema={validationSchema}
         >
-          {({ errors, handleChange, handleSubmit }) => (
+          {({ values, errors, handleChange, handleSubmit }) => (
             <form className="Login__form" onSubmit={handleSubmit}>
               <TextField
                 error={errors.email}
                 label={intl.formatMessage(messages.email)}
                 name="email"
+                values={values.email}
                 onChange={handleChange}
               />
               <PasswordTextField
                 error={errors.password}
                 label={intl.formatMessage(messages.password)}
-                type={isPasswordVisible ? 'text' : 'password'}
                 name="password"
-                onChange={togglePasswordVisibility}
+                value={values.password}
+                onChange={handleChange}
               />
               <DialogActions>
                 <Button
