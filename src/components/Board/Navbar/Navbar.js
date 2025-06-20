@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
-import isMobile from 'ismobilejs';
 import { Scannable } from 'react-scannable';
 import { IconButton } from '@material-ui/core';
 import ScannerDeactivateIcon from '@material-ui/icons/ExploreOff';
@@ -12,14 +11,12 @@ import PrintBoardButton from '../../UI/PrintBoardButton';
 import UserIcon from '../../UI/UserIcon';
 import LockToggle from '../../UI/LockToggle';
 import BackButton from '../../UI/BackButton';
-import AnalyticsButton from '../../UI/AnalyticsButton';
 import HelpButton from '../../UI/HelpButton';
 import SettingsButton from '../../UI/SettingsButton';
 import messages from '../Board.messages';
-import { isCordova, isAndroid, isIOS } from '../../../cordova-util';
+import { isCordova, isAndroid } from '../../../cordova-util';
 import './Navbar.css';
 import { injectIntl } from 'react-intl';
-import PremiumFeature from '../../PremiumFeature';
 
 export class Navbar extends React.Component {
   constructor(props) {
@@ -147,12 +144,7 @@ export class Navbar extends React.Component {
           {!isLocked && (
             <React.Fragment>
               <PrintBoardButton />
-              {!isMobile.any && <FullScreenButton />}
-              {isLogged && (isIOS() || !isCordova()) && (
-                <PremiumFeature>
-                  <AnalyticsButton component={Link} to="/analytics" />
-                </PremiumFeature>
-              )}
+              {!isCordova() && <FullScreenButton />}
               <SettingsButton component={Link} to="/settings" />
               <BoardShare
                 label={intl.formatMessage(messages.share)}
