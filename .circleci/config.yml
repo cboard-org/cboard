@@ -117,17 +117,20 @@ workflows:
     jobs:
       - build:
           context: azure
-      # - image:
-      #     context: azure
-      #     requires:
-      #       - build
-      #     filters:
-      #       branches:
-      #         only: Playwright
+      - image:
+          context: azure
+          requires:
+            - build
+          filters:
+            branches:
+              only: Playwright
       - deploy:
           context: azure
-          # requires:
-          #   - image
+          requires:
+            - image
+          filters:
+            branches:
+              only: Playwright
       - e2e:
           context: azure
           requires:
