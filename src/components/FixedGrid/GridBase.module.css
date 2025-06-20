@@ -2,6 +2,7 @@
   box-sizing: border-box;
   height: 100%;
   width: 100%;
+  overflow: auto;
   padding: 6px;
   display: flex;
   flex-direction: column;
