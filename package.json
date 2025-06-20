@@ -169,7 +169,6 @@
     "translations:pull": "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
     "translations:push": "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
     "eject": "craco eject",
-    "postinstall": "npm update browserstack-node-sdk",
     "translations:pull-browserstack": "CBOARD_ENV=local browserstack-node-sdk node ./scripts/crowdin-fetch-latest.js",
     "translations:push-browserstack": "CBOARD_ENV=local browserstack-node-sdk node ./scripts/crowdin-push-changes.js",
     "test:e2e-browserstack": "browserstack-node-sdk playwright test",

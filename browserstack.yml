@@ -7,9 +7,9 @@ platforms:
     browserName: chrome
     browserVersion: latest
   - os: android
-    osVersion: 13.0
+    osVersion: 15.0
     browserName: chrome
-    deviceName: Samsung Galaxy S23
+    deviceName: Samsung Galaxy S25
   # - os: OS X
   #   osVersion: Ventura
   #   browserName: playwright-webkit
