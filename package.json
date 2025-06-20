@@ -104,7 +104,7 @@
     "jest-mock-axios": "^3.2.0",
     "lint-staged": "^10.0.3",
     "node-polyfill-webpack-plugin": "^2.0.1",
-    "prettier": "1.15.3",
+    "prettier": "^3.5.3",
     "react-scripts": "5.0.1",
     "react-test-renderer": "^17.0.2",
     "redux-mock-store": "^1.5.4",
@@ -118,9 +118,8 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,css}": [
-      "prettier --write",
-      "git add"
+    "*.{js,ts,tsx,json,css}": [
+      "prettier --write"
     ]
   },
   "jest": {
