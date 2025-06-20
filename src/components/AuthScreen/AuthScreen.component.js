@@ -17,7 +17,9 @@ class AuthScreen extends Component {
         <WelcomeScreen
           heading={intl.formatMessage(messages.heading)}
           text={intl.formatMessage(messages.text)}
-          onClose={history.goBack}
+          onClose={() => {
+            history.action === 'PUSH' ? history.goBack() : history.push('/');
+          }}
         />
       </div>
     );
