@@ -36,7 +36,7 @@ test.describe('Cboard - Security Features', () => {
       if (i < 4) {
         // Verify unlock message appears
         await cboard.expectButtonVisible(cboard.unlockClicksAlert);
-        await page.waitForTimeout(1600);
+        await page.waitForTimeout(1300);
       } else {
         // After 2 seconds, the message should not be visible
         await expect(page.locator('[role="alert"]')).not.toBeVisible({

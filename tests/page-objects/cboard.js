@@ -776,15 +776,15 @@ export class Cboard {
   }
 
   get spanishButton() {
-    return this.page.getByRole('button', { name: 'Español Spanish online' });
+    return this.page.getByRole('button', { name: /Español/i });
   }
 
   get frenchButton() {
-    return this.page.getByRole('button', { name: 'Français French online' });
+    return this.page.getByRole('button', { name: /Français/i });
   }
 
   get germanButton() {
-    return this.page.getByRole('button', { name: 'Deutsch German online' });
+    return this.page.getByRole('button', { name: /Deutsch/i });
   }
 
   get moreLanguagesButton() {
