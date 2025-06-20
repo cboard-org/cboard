@@ -68,6 +68,8 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
+            echo 'cboard-qa06.westus.cloudapp.azure.com \
+            AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK9FTOTcgK0KgvdqdUhPLfvnDhzbViGnvtaXWg1XKgq2LEzgUTaHwyDsV5lZ3NnXimwptzF6GvO3u1ySlR2C19s=' >> ~/.ssh/known_hosts
             ssh $SSH_USERNAME@$SSH_SERVER 'bash -ic "docker run --rm \
             -v /var/run/docker.sock:/var/run/docker.sock --env-file \
             /home/sharedFolder/env.qa cboard/cboard-bootstrap up -d" && exit'
@@ -115,21 +117,21 @@ workflows:
     jobs:
       - build:
           context: azure
-      - image:
-          context: azure
-          requires:
-            - build
-          filters:
-            branches:
-              only: Playwright
-      # - deploy:
+      # - image:
       #     context: azure
       #     requires:
-      #      - image
+      #       - build
+      #     filters:
+      #       branches:
+      #         only: Playwright
+      - deploy:
+          context: azure
+          # requires:
+          #   - image
       - e2e:
           context: azure
           requires:
-            - image
+            - deploy
           filters:
             branches:
               only: Playwright
