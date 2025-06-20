@@ -30,6 +30,12 @@ export class ResetPassword extends Component {
     forgotState: {}
   };
 
+  componentDidUpdate({ isDialogOpen }) {
+    if (this.props.isDialogOpen && this.props.isDialogOpen !== isDialogOpen) {
+      this.setState({ forgotState: {} });
+    }
+  }
+
   handleSubmit = values => {
     const { forgot } = this.props;
 
