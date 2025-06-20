@@ -18,7 +18,7 @@ export default defineConfig({
   /* Maximum parallel execution */
   fullyParallel: true,
     /* Optimal worker count for cross-browser stability */
-  workers: process.env.CI ? 5 : 5, // Reduced for stability
+  workers: process.env.CI ? 4 : 5, // Reduced for stability
   
   /* Balanced timeout settings */
   timeout: 60 * 1000, // Increased test timeout for slower browsers

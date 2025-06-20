@@ -6,6 +6,10 @@ platforms:
     osVersion: 11
     browserName: chrome
     browserVersion: latest
+  - os: android
+    osVersion: 13.0
+    browserName: chrome
+    deviceName: Samsung Galaxy S23
   # - os: OS X
   #   osVersion: Ventura
   #   browserName: playwright-webkit
@@ -15,9 +19,9 @@ platforms:
   #   browserName: playwright-firefox
   #   browserVersion: latest
 browserstackLocal: false
-buildName: cboard-smoke-test
+buildName: cboard-e2e-test
 projectName: Cboard AAC
-CUSTOM_TAG_1: 'Smoke Test Run'
+CUSTOM_TAG_1: 'Playwright Test Run'
 # Use CUSTOM_TAG_<N> and set more build tags as you need.
 debug: true
 consoleLogs: info
