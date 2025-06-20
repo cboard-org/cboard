@@ -1,0 +1,24 @@
+# This file is used to configure BrowserStack for running Playwright tests.
+# For more information, see https://www.browserstack.com/docs/playwright/getting-started
+framework: playwright
+platforms:
+  - os: Windows
+    osVersion: 11
+    browserName: chrome
+    browserVersion: latest
+  # - os: OS X
+  #   osVersion: Ventura
+  #   browserName: playwright-webkit
+  #   browserVersion: latest
+  # - os: Windows
+  #   osVersion: 11
+  #   browserName: playwright-firefox
+  #   browserVersion: latest
+browserstackLocal: false
+buildName: cboard-smoke-test
+projectName: Cboard AAC
+CUSTOM_TAG_1: 'Smoke Test Run'
+# Use CUSTOM_TAG_<N> and set more build tags as you need.
+debug: true
+consoleLogs: info
+playwrightVersion: 1.50.0

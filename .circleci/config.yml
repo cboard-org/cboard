@@ -96,7 +96,7 @@ jobs:
       - run:
           name: Run E2E Tests
           command: |
-            yarn test:e2e
+            yarn test:e2e-browserstack
           when: always
       # Store test results for CircleCI test insights
       - store_test_results:

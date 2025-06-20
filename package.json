@@ -93,10 +93,11 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@craco/craco": "^7.1.0",
-    "@playwright/test": "^1.53.0",
+    "@playwright/test": "1.50.0",
     "@types/mime-types": "^2.1.1",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
     "babel-plugin-transform-import-meta": "^2.2.1",
+    "browserstack-node-sdk": "^1.36.4",
     "decompress-zip": "^0.3.1",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "3.3.5",
@@ -167,7 +168,16 @@
     "encrypt:prod": "./scripts/encrypt-private.sh prod",
     "translations:pull": "CBOARD_ENV=local node ./scripts/crowdin-fetch-latest.js",
     "translations:push": "CBOARD_ENV=local node ./scripts/crowdin-push-changes.js",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "postinstall": "npm update browserstack-node-sdk",
+    "translations:pull-browserstack": "CBOARD_ENV=local browserstack-node-sdk node ./scripts/crowdin-fetch-latest.js",
+    "translations:push-browserstack": "CBOARD_ENV=local browserstack-node-sdk node ./scripts/crowdin-push-changes.js",
+    "test:e2e-browserstack": "browserstack-node-sdk playwright test",
+    "test:e2e:headed-browserstack": "browserstack-node-sdk playwright test --headed",
+    "test:e2e:debug-browserstack": "browserstack-node-sdk playwright test --debug",
+    "test:e2e:report-browserstack": "browserstack-node-sdk playwright show-report",
+    "test:e2e:ui-browserstack": "browserstack-node-sdk playwright test --ui",
+    "test:e2e:install-browserstack": "browserstack-node-sdk playwright install"
   },
   "funding": {
     "type": "opencollective",
