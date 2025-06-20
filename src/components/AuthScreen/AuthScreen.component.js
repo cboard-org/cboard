@@ -6,7 +6,7 @@ import './AuthScreen.css';
 
 class AuthScreen extends Component {
   static propTypes = {
-    intl: intlShape.isRequired,
+    intl: intlShape.isRequired
   };
 
   render() {
@@ -17,7 +17,9 @@ class AuthScreen extends Component {
         <WelcomeScreen
           heading={intl.formatMessage(messages.heading)}
           text={intl.formatMessage(messages.text)}
-          onClose={() => history.replace('/board/root')}
+          onClose={() => {
+            history.action === 'PUSH' ? history.goBack() : history.push('/');
+          }}
         />
       </div>
     );
