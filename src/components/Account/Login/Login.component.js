@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { Formik } from 'formik';
@@ -27,6 +27,28 @@ export function Login({
 }) {
   const [isLogging, setIsLogging] = useState(false);
   const [loginStatus, setLoginStatus] = useState({});
+  const prevIsDialogOpen = usePrevious(isDialogOpen);
+
+  useEffect(
+    () => {
+      if (isDialogOpen && isDialogOpen !== prevIsDialogOpen) {
+        setLoginStatus({});
+        setIsLogging(false);
+      }
+    },
+    [prevIsDialogOpen, isDialogOpen]
+  );
+
+  function usePrevious(value) {
+    const ref = React.useRef();
+    useEffect(
+      () => {
+        ref.current = value;
+      },
+      [value]
+    );
+    return ref.current;
+  }
 
   function handleSubmit(values) {
     setIsLogging(true);
