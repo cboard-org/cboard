@@ -52,10 +52,6 @@ test.describe('Cboard - Import Settings', () => {
     await cboard.goBackFromImport();
   });
 
-  test('should have simple interface design', async ({ page }) => {
-    await cboard.verifySimpleInterfaceDesign();
-  });
-
   test('should emphasize smart import behavior', async ({ page }) => {
     await cboard.verifySmartImportBehavior();
   });

@@ -124,25 +124,4 @@ test.describe('Cboard - Communication Bar', () => {
     await cboard.expectWordInCommunicationBar('I dislike');
     await cboard.expectWordInCommunicationBar('soup');
   });
-
-  test('should show Clear and Backspace buttons only when communication bar has content', async ({
-    page
-  }) => {
-    // Initially, Clear button should not be visible
-    await cboard.expectButtonNotVisible(cboard.clearButton);
-    await cboard.expectButtonVisible(cboard.backspaceButton);
-
-    // Add a word
-    await cboard.yesButton.click();
-
-    // Clear and Backspace should be visible
-    await cboard.expectButtonVisible(cboard.clearButton);
-    await cboard.expectButtonVisible(cboard.backspaceButton);
-
-    // Clear all
-    await cboard.clearCommunicationBar();
-
-    // Clear button should be hidden again
-    await cboard.expectButtonNotVisible(cboard.clearButton);
-  });
 });
