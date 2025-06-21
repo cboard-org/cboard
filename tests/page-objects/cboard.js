@@ -826,7 +826,7 @@ export class Cboard {
   }
 
   get currentVoiceDisplay() {
-    return this.page.locator('text=Microsoft David - English (United States)');
+    return this.page.getByLabel('Voice').getByRole('paragraph');
   }
 
   get pitchSlider() {
