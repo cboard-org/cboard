@@ -85,9 +85,6 @@ test.describe('Cboard - Navigation', () => {
     ];
 
     for (const category of categories) {
-      // Navigate to main board first
-      await cboard.goto();
-
       // Click category
       await cboard.navigateToCategory(category.name);
 
