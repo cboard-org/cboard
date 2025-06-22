@@ -78,6 +78,7 @@ test.describe('Cboard - Navigation', () => {
   // test('should navigate to multiple categories in sequence', async ({
   //   page
   // }) => {
+  //   // Navigate to food category
   //   const categories = [
   //     { name: 'drinks', expectedHeading: 'drinks' },
   //     { name: 'animals', expectedHeading: 'animals' },
