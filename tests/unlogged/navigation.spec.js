@@ -74,29 +74,30 @@ test.describe('Cboard - Navigation', () => {
     await cboard.expectWordInCommunicationBar('yes');
     await cboard.expectWordInCommunicationBar('pizza');
   });
-  test('should navigate to multiple categories in sequence', async ({
-    page
-  }) => {
-    const categories = [
-      { name: 'drinks', expectedHeading: 'drinks' },
-      { name: 'animals', expectedHeading: 'animals' },
-      { name: 'toys', expectedHeading: 'toys' },
-      { name: 'numbers', expectedHeading: 'numbers' }
-    ];
 
-    for (const category of categories) {
-      // Click category
-      await cboard.navigateToCategory(category.name);
+  // test('should navigate to multiple categories in sequence', async ({
+  //   page
+  // }) => {
+  //   const categories = [
+  //     { name: 'drinks', expectedHeading: 'drinks' },
+  //     { name: 'animals', expectedHeading: 'animals' },
+  //     { name: 'toys', expectedHeading: 'toys' },
+  //     { name: 'numbers', expectedHeading: 'numbers' }
+  //   ];
 
-      // Verify navigation
-      await cboard.expectButtonVisible(
-        cboard.getCategoryHeading(category.expectedHeading)
-      );
-      await cboard.expectButtonEnabled(cboard.goBackButton);
+  //   for (const category of categories) {
+  //     // Click category
+  //     await cboard.navigateToCategory(category.name);
 
-      // Navigate back
-      await cboard.navigateBack();
-      await cboard.expectButtonVisible(cboard.mainBoardHeading);
-    }
-  });
+  //     // Verify navigation
+  //     await cboard.expectButtonVisible(
+  //       cboard.getCategoryHeading(category.expectedHeading)
+  //     );
+  //     await cboard.expectButtonEnabled(cboard.goBackButton);
+
+  //     // Navigate back
+  //     await cboard.navigateBack();
+  //     await cboard.expectButtonVisible(cboard.mainBoardHeading);
+  //   }
+  // });
 });

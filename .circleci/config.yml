@@ -3,6 +3,8 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2.1
+orbs:
+  discord: antonioned/discord@0.1.0
 jobs:
   build:
     docker:
@@ -74,6 +76,11 @@ jobs:
             ssh $SSH_USERNAME@$SSH_SERVER 'bash -ic "docker run --rm \
             -v /var/run/docker.sock:/var/run/docker.sock --env-file \
             /home/sharedFolder/env.qa cboard/cboard-bootstrap up -d" && exit'
+      - discord/status:
+          fail_only: false
+          failure_message: "**${CIRCLE_USERNAME}**'s Cboard deploy to QA: **${CIRCLE_JOB}** failed."
+          webhook: '${DISCORD_STATUS_WEBHOOK}'
+          success_message: '**${CIRCLE_USERNAME}** deployed Cboard to QA!!.'
   e2e:
     docker:
       - image: mcr.microsoft.com/playwright:v1.53.0-jammy
@@ -101,6 +108,12 @@ jobs:
           command: |
             yarn test:e2e-browserstack
           when: always
+
+      - discord/status:
+          fail_only: false
+          failure_message: '**${CIRCLE_USERNAME}** Cboard E2E Tests FAILED: **${CIRCLE_JOB}** failed.'
+          webhook: '${DISCORD_STATUS_WEBHOOK}'
+          success_message: '**${CIRCLE_USERNAME}** Cboard E2E Tests PASSED on QA!!.'
       # Store test results for CircleCI test insights
       - store_test_results:
           path: test-results
