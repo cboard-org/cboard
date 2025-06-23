@@ -3,10 +3,8 @@ import {
   SET_LANGS,
   SET_DOWNLOADING_LANG
 } from './LanguageProvider.constants';
-import { updateUserData } from '../../components/App/App.actions';
 
 export function changeLang(lang, isNewVoiceAvailable = false) {
-  updateUserData();
   return {
     type: CHANGE_LANG,
     lang,
