@@ -142,7 +142,9 @@
 }
 
 .CommunicatorDialog__boards__item__actions {
+  display: inline-flex;
   position: relative;
+  align-items: center;
   width: 10%;
   color: #838383;
 }
@@ -291,9 +293,10 @@
 }
 
 .CommunicatorDialog__boards__item__edit-title {
-  display: inline;
+  display: inline-flex;
   margin: 0;
   padding: 0;
+  vertical-align: middle;
 }
 
 .CommunicatorDialog__board-report-dialog {
