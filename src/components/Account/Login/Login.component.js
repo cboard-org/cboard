@@ -27,28 +27,16 @@ export function Login({
 }) {
   const [isLogging, setIsLogging] = useState(false);
   const [loginStatus, setLoginStatus] = useState({});
-  const prevIsDialogOpen = usePrevious(isDialogOpen);
 
   useEffect(
     () => {
-      if (isDialogOpen && isDialogOpen !== prevIsDialogOpen) {
+      if (isDialogOpen) {
         setLoginStatus({});
         setIsLogging(false);
       }
     },
-    [prevIsDialogOpen, isDialogOpen]
+    [isDialogOpen]
   );
-
-  function usePrevious(value) {
-    const ref = React.useRef();
-    useEffect(
-      () => {
-        ref.current = value;
-      },
-      [value]
-    );
-    return ref.current;
-  }
 
   function handleSubmit(values) {
     setIsLogging(true);
@@ -96,7 +84,7 @@ export function Login({
                 error={errors.email}
                 label={intl.formatMessage(messages.email)}
                 name="email"
-                values={values.email}
+                value={values.email}
                 onChange={handleChange}
               />
               <PasswordTextField
