@@ -95,20 +95,19 @@ jobs:
             - yarn-packages-v1-{{ .Branch }}-
             - yarn-packages-v1-
       # Install and save node_modules to cache
-      - run:
-          name: Install dependencies
-          command: yarn install --cache-folder ~/.cache/yarn
-      - save_cache:
-          paths:
-            - ~/.cache/yarn
-          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      # - run:
+      #     name: Install dependencies
+      #     command: yarn install --cache-folder ~/.cache/yarn
+      # - save_cache:
+      #     paths:
+      #       - ~/.cache/yarn
+      #     key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       # run tests
       - run:
           name: Run E2E Tests
           command: |
             yarn test:e2e-browserstack
           when: always
-
       - discord/status:
           fail_only: false
           failure_message: '**${CIRCLE_USERNAME}** Cboard E2E Tests FAILED: **${CIRCLE_JOB}** failed.'
