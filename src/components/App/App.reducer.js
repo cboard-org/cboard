@@ -167,7 +167,7 @@ function appReducer(state = initialState, action) {
     case UPDATE_USER_DATA:
       return {
         ...state,
-        userData: getKeysFromApiUserDataResponse(action.userData)
+        userData: action.userData ? getKeysFromApiUserDataResponse(action.userData) : state.userData
       };
     case SET_UNLOGGED_USER_LOCATION:
       return {
