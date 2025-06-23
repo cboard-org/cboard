@@ -263,7 +263,7 @@ export class Cboard {
 
   // === FORM BUTTONS ===
   get loginFormLoginButton() {
-    return this.loginDialog.locator('button:has-text("Login")');
+    return this.page.getByRole('button', { name: 'Login' });
   }
 
   get loginFormCancelButton() {
@@ -275,7 +275,7 @@ export class Cboard {
   }
 
   get signUpFormSubmitButton() {
-    return this.signUpDialog.locator('button:has-text("Sign me up")');
+    return this.page.getByRole('button', { name: 'Sign me up' });
   }
 
   get signUpFormCancelButton() {
