@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TextField, InputAdornment, IconButton } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 
-const PasswordTextField = ({ label, error, name, value, onChange }) => {
+const PasswordTextField = ({ label, error, name, onChange }) => {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -16,7 +16,6 @@ const PasswordTextField = ({ label, error, name, value, onChange }) => {
       label={label}
       type={isPasswordVisible ? 'text' : 'password'}
       name={name}
-      value={value}
       onChange={onChange}
       InputProps={{
         endAdornment: (
