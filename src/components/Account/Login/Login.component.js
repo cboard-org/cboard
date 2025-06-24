@@ -38,17 +38,16 @@ export function Login({
     [isDialogOpen]
   );
 
-  function handleSubmit(values) {
+  const handleSubmit = async values => {
     setIsLogging(true);
     setLoginStatus({});
-    login(values)
-      .then(response => {
-        if (response.success) {
-        }
-      })
-      .catch(loginStatus => setLoginStatus(loginStatus))
-      .finally(() => setIsLogging(false));
-  }
+    try {
+      await login(values);
+    } catch (loginStatus) {
+      setLoginStatus(loginStatus);
+      setIsLogging(false);
+    }
+  };
 
   const isButtonDisabled = isLogging || !!loginStatus.success;
 
