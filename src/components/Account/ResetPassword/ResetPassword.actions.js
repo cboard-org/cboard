@@ -37,10 +37,10 @@ export function forgot({ email }) {
       if (err.response != null) {
         return Promise.reject(err.response.data);
       }
-      const disonnected = {
+      const disconnected = {
         message: 'Unable to contact server. Try in a moment'
       };
-      return Promise.reject(disonnected);
+      return Promise.reject(disconnected);
     }
   };
 }
