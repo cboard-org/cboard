@@ -77,20 +77,18 @@ export function Login({
           onSubmit={handleSubmit}
           validationSchema={validationSchema}
         >
-          {({ values, errors, handleChange, handleSubmit }) => (
+          {({ errors, handleChange, handleSubmit }) => (
             <form className="Login__form" onSubmit={handleSubmit}>
               <TextField
                 error={errors.email}
                 label={intl.formatMessage(messages.email)}
                 name="email"
-                value={values.email}
                 onChange={handleChange}
               />
               <PasswordTextField
                 error={errors.password}
                 label={intl.formatMessage(messages.password)}
                 name="password"
-                value={values.password}
                 onChange={handleChange}
               />
               <DialogActions>
