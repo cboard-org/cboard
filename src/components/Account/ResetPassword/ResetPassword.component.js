@@ -23,7 +23,7 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
   const [forgotState, setForgotState] = useState({});
   const isButtonDisabled = isSending || !!forgotState.success;
 
-  function handleSubmit(values) {
+  const handleSubmit = values => {
     setIsSending(true);
     setForgotState({});
 
@@ -31,7 +31,7 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
       .then(res => setForgotState(res))
       .catch(err => setForgotState(err))
       .finally(() => setIsSending(false));
-  }
+  };
 
   useEffect(
     () => {
