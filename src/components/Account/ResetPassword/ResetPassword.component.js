@@ -35,7 +35,6 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
 
   useEffect(
     () => {
-      // Reset forgotState when dialog is closed
       if (!isDialogOpen) {
         setForgotState({});
       }
