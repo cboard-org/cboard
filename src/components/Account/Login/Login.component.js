@@ -17,6 +17,11 @@ import messages from './Login.messages';
 import './Login.css';
 import PasswordTextField from '../../UI/FormItems/PasswordTextField';
 
+const initialValues = {
+  email: '',
+  password: ''
+};
+
 export function Login({
   intl,
   isDialogOpen,
@@ -73,7 +78,7 @@ export function Login({
           <Typography color="inherit">{loginStatus.message}</Typography>
         </div>
         <Formik
-          initialValues={{ email: '', password: '' }}
+          initialValues={initialValues}
           onSubmit={handleSubmit}
           validationSchema={validationSchema}
         >
