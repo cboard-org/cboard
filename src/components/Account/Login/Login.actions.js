@@ -23,12 +23,15 @@ export function loginSuccess(payload) {
       payload
     });
     if (payload.isFirstLogin) firstLoginActions(dispatch, payload);
-    if (isCordova() && !isElectron())
+
+    if (isCordova() && !isElectron()) {
       try {
         window.FirebasePlugin.setUserId(payload.id);
       } catch (err) {
         console.error(err);
       }
+    }
+    if (!isCordova()) window.gtag('set', { user_id: payload.id });
   };
 }
 
@@ -48,6 +51,11 @@ export function logout() {
     } catch (err) {
       console.error(err);
     }
+
+  if (!isCordova()) {
+    window.gtag('set', { user_id: null });
+  }
+
   return async dispatch => {
     dispatch(updateNavigationSettings({ improvePhraseActive: false }));
     dispatch(setUnloggedUserLocation(null));
