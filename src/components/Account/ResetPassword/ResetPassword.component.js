@@ -21,7 +21,14 @@ import './ResetPassword.css';
 export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
   const [isSending, setIsSending] = useState(false);
   const [forgotState, setForgotState] = useState({});
-  const isButtonDisabled = isSending || !!forgotState.success;
+  useEffect(
+    () => {
+      if (!isDialogOpen) {
+        setForgotState({});
+      }
+    },
+    [isDialogOpen]
+  );
 
   const handleSubmit = values => {
     setIsSending(true);
@@ -33,14 +40,7 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
       .finally(() => setIsSending(false));
   };
 
-  useEffect(
-    () => {
-      if (!isDialogOpen) {
-        setForgotState({});
-      }
-    },
-    [isDialogOpen]
-  );
+  const isButtonDisabled = isSending || !!forgotState.success;
 
   return (
     <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="forgot">
