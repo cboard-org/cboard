@@ -17,7 +17,6 @@ import validationSchema from './validationSchema';
 import { forgot } from './ResetPassword.actions';
 import messages from './ResetPassword.messages';
 import './ResetPassword.css';
-import { values } from 'lodash';
 
 export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
   const [isSending, setIsSending] = useState(false);
@@ -73,8 +72,9 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
             initialValues={{ email: '' }}
             onSubmit={handleSubmit}
             validationSchema={validationSchema}
+            enableReinitialize
           >
-            {({ errors, handleChange, handleSubmit }) => (
+            {({ values, errors, handleChange, handleSubmit }) => (
               <form className="Forgot__form" onSubmit={handleSubmit}>
                 <TextField
                   error={errors.email}
