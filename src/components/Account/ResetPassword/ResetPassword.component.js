@@ -30,17 +30,21 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
     [isDialogOpen]
   );
 
-  const handleSubmit = values => {
+  const handleSubmit = async values => {
     setIsSending(true);
     setForgotState({});
-
-    forgot(values)
-      .then(res => setForgotState(res))
-      .catch(err => setForgotState(err))
-      .finally(() => setIsSending(false));
+    try {
+      const res = await forgot(values);
+      setForgotState(values);
+    } catch (err) {
+      setForgotState(err);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const isButtonDisabled = isSending || !!forgotState.success;
+  const initialValues = { email: '' };
 
   return (
     <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="forgot">
@@ -68,7 +72,7 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
         </div>
         {forgotState && !forgotState.success && (
           <Formik
-            initialValues={{ email: '' }}
+            initialValues={initialValues}
             onSubmit={handleSubmit}
             validationSchema={validationSchema}
             enableReinitialize
