@@ -31,7 +31,8 @@ export function loginSuccess(payload) {
         console.error(err);
       }
     }
-    if (!isCordova()) window.gtag('set', { user_id: payload.id });
+    if (!isCordova() && typeof window?.gtag === 'function')
+      window.gtag('set', { user_id: payload.id });
   };
 }
 
@@ -52,7 +53,7 @@ export function logout() {
       console.error(err);
     }
 
-  if (!isCordova()) {
+  if (!isCordova() && typeof window?.gtag === 'function') {
     window.gtag('set', { user_id: null });
   }
 

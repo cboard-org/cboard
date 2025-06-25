@@ -78,7 +78,7 @@ export class AppContainer extends Component {
         return;
       }
 
-      if (!isCordova()) {
+      if (!isCordova() && typeof window?.gtag === 'function') {
         window.gtag('set', { user_id: userId });
       }
     };
