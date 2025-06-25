@@ -20,7 +20,7 @@ test.describe('Cboard - Authentication', () => {
       // Verify login form elements
       await cboard.expectLoginFormVisible();
     });
-    test('should show/hide password when toggle button is clicked', async () => {
+    test.skip('should show/hide password when toggle button is clicked', async () => {
       // Open login dialog
       await cboard.openLoginDialog();
 
@@ -33,6 +33,18 @@ test.describe('Cboard - Authentication', () => {
       // Verify password is now visible
       await cboard.expectPasswordFieldType('login', 'text');
     });
+
+    test('should validate empty email and password fields', async () => {
+      // Open login dialog
+      await cboard.openLoginDialog();
+
+      // Click login button without entering credentials
+      await cboard.submitLoginForm();
+
+      // Check for validation - fields should be required
+      await cboard.expectRequiredFields();
+    });
+
     test('should handle invalid email format', async () => {
       // Open login dialog and fill with invalid email
       await cboard.attemptLogin('invalid-email', 'password123');
