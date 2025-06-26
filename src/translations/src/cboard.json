@@ -49,6 +49,7 @@
   "cboard.components.ResetPassword.resetPassword": "Reset Your Password",
   "cboard.components.ResetPassword.resetPasswordText": "Enter your email address and we will send you a link to reset your password.",
   "cboard.components.ResetPassword.resetPasswordSuccess": "Success!! Check your mail to reset your password.",
+  "cboard.components.ResetPassword.noConnection": "Unable to connect to the server. Please try again later.",
   "cboard.components.SelectedCounter.items": "items",
   "cboard.components.App.save": "Save",
   "cboard.components.App.newContentAvailable": "New content is available; please refresh.",

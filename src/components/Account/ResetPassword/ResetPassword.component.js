@@ -23,7 +23,7 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
   const [forgotState, setForgotState] = useState({});
   useEffect(
     () => {
-      if (!isDialogOpen) {
+      if (isDialogOpen) {
         setForgotState({});
       }
     },
@@ -35,9 +35,13 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
     setForgotState({});
     try {
       const res = await forgot(values);
-      setForgotState(values);
+      setForgotState(res);
     } catch (err) {
-      setForgotState(err);
+      const responseMessage = err?.respnse?.data?.message;
+      const message = responseMessage
+        ? responseMessage
+        : intl.formatMessage(messages.noConnection);
+      setForgotState({ success: false, message });
     } finally {
       setIsSending(false);
     }
@@ -77,13 +81,12 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
             validationSchema={validationSchema}
             enableReinitialize
           >
-            {({ values, errors, handleChange, handleSubmit }) => (
+            {({ errors, handleChange, handleSubmit }) => (
               <form className="Forgot__form" onSubmit={handleSubmit}>
                 <TextField
                   error={errors.email}
                   label={intl.formatMessage(messages.email)}
                   name="email"
-                  value={values.email}
                   onChange={handleChange}
                 />
                 <DialogActions>
