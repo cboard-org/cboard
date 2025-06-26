@@ -36,26 +36,34 @@ function SignUp(props) {
     [isDialogOpen]
   );
 
-  function handleSubmit(values) {
+  async function handleSubmit(values) {
     const { passwordConfirm, ...formValues } = values;
 
     setIsSigningUp(true);
-    setIsSigningUp({});
+    setSignUpStatus({});
 
-    signUp(formValues)
-      .then(response => setSignUpStatus(response))
-      .catch(error => {
-        const responseMessage = error?.response?.data?.message;
-        const message = responseMessage
-          ? responseMessage
-          : this.props.intl.formatMessage(messages.noConnection);
-
-        setSignUpStatus({ success: false, message: message });
-      })
-      .finally(() => setIsSigningUp(false));
+    try {
+      const res = await signUp(formValues);
+      setSignUpStatus(res);
+    } catch (err) {
+      const responseMessage = err?.response?.data?.message;
+      const message = responseMessage
+        ? responseMessage
+        : intl.formatMessage(messages.noConnection);
+      setSignUpStatus({ success: false, message });
+    } finally {
+      setIsSigningUp(false);
+    }
   }
 
   const { dialogStyle, dialogContentStyle } = dialogWithKeyboardStyle ?? {};
+  const values = {
+    name: '',
+    email: '',
+    password: '',
+    passwordConfirm: '',
+    isTermsAccepted: false
+  };
 
   return (
     <Dialog
@@ -80,9 +88,7 @@ function SignUp(props) {
           <Formik
             onSubmit={handleSubmit}
             validationSchema={validationSchema}
-            initialValues={{
-              isTermsAccepted: false
-            }}
+            initialValues={values}
           >
             {({ errors, handleChange, handleSubmit }) => (
               <form className="SignUp__form" onSubmit={handleSubmit}>
