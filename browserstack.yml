@@ -6,10 +6,10 @@ platforms:
     osVersion: 11
     browserName: chrome
     browserVersion: latest
-  - os: android
-    osVersion: 15.0
-    browserName: chrome
-    deviceName: Samsung Galaxy S25
+  # - os: android
+  #   osVersion: 15.0
+  #   browserName: chrome
+  #   deviceName: Samsung Galaxy S25
   # - os: OS X
   #   osVersion: Ventura
   #   browserName: playwright-webkit

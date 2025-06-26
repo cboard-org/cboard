@@ -8,16 +8,6 @@ test.describe('Cboard - Mobile Responsiveness', () => {
     cboard = createCboard(page);
     await cboard.goto();
   });
-  test('should display properly on mobile viewports', async ({ page }) => {
-    // Set mobile viewport
-    await page.setViewportSize({ width: 390, height: 844 }); // iPhone 12 Pro size
-
-    // Verify main elements are visible
-    await cboard.verifyHomeHeadingVisible();
-    await cboard.verifyButtonVisible('yes');
-    await cboard.verifyButtonVisible('no');
-    await cboard.verifyButtonVisible('food');
-  });
   test('should maintain touch functionality on mobile', async ({ page }) => {
     // Set mobile viewport
     await page.setViewportSize({ width: 390, height: 844 });

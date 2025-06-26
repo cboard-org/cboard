@@ -3,7 +3,6 @@ import { createCboard } from '../page-objects/cboard.js';
 
 test.describe('Cboard - Basic Functionality', () => {
   let cboard;
-
   test.beforeEach(async ({ page }) => {
     cboard = createCboard(page);
     await cboard.goto();
@@ -21,6 +20,8 @@ test.describe('Cboard - Basic Functionality', () => {
     await cboard.expectButtonVisible(cboard.foodButton);
     await cboard.expectButtonVisible(cboard.drinksButton);
     await cboard.expectButtonVisible(cboard.emotionsButton);
+    await cboard.expectButtonVisible(cboard.peopleButton);
+    await cboard.expectButtonVisible(cboard.bodyButton);
     await cboard.expectButtonVisible(cboard.activitiesButton);
   });
 

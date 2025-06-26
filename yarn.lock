@@ -4160,10 +4160,10 @@ browserstack-local@^1.5.3:
     ps-tree "=1.2.0"
     temp-fs "^0.9.9"
 
-browserstack-node-sdk@^1.36.4:
-  version "1.36.4"
-  resolved "https://registry.yarnpkg.com/browserstack-node-sdk/-/browserstack-node-sdk-1.36.4.tgz#16e5edb4ff03e6e9d2cb8fe8cac73da94e04d1b8"
-  integrity sha512-v2mXdHLfb7h2XPTdr0ylOYX5ivlQeIbTu17BHvqyBj1Nvo1dmxZ1tS08h5xB/XwxLqVvpozZ6OIoLGDQb9O4xQ==
+browserstack-node-sdk@^1.36.5:
+  version "1.36.5"
+  resolved "https://registry.yarnpkg.com/browserstack-node-sdk/-/browserstack-node-sdk-1.36.5.tgz#74240026670349344e7e8590cbdc12545d8ed9a5"
+  integrity sha512-gqMeqjXyGqm5L8VgGX0TXfRGjO8JRpU6kcP8p2l1LnoJ4/4N9b4BTzzdvkUaJTufCC/Wdnf5AHHPRDuF+ntovg==
   dependencies:
     "@google-cloud/compute" "^4.0.1"
     "@google-cloud/container" "^5.2.0"

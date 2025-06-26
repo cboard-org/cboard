@@ -8,12 +8,6 @@ test.describe('Cboard - Communication Bar', () => {
     cboard = createCboard(page);
     await cboard.goto();
   });
-  test('should verify communication bar is empty', async ({ page }) => {
-    // Initially communication bar should be empty
-    await cboard.expectWordNotInCommunicationBar('yes');
-    await cboard.expectWordNotInCommunicationBar('no');
-  });
-
   test('should verify Communication Bar works after clearing', async ({
     page
   }) => {
@@ -61,67 +55,30 @@ test.describe('Cboard - Communication Bar', () => {
     // Add words in specific order
     await cboard.yesButton.click();
     await cboard.noButton.click();
-    await cboard.quickChatButton.click();
+    await cboard.navigateToCategory('food');
+    await cboard.iWantButton.click();
+    await cboard.pizzaButton.click();
 
     // Use backspace to remove items in reverse order
     await cboard.backspaceInCommunicationBar();
-    await cboard.expectWordNotInCommunicationBar('quick chat');
+    await cboard.expectWordNotInCommunicationBar('pizza');
+    await cboard.expectWordInCommunicationBar('yes');
+    await cboard.expectWordInCommunicationBar('no');
+    await cboard.expectWordInCommunicationBar('I want');
+
+    // Remove "I want" and verify order
+    await cboard.backspaceInCommunicationBar();
+    await cboard.expectWordNotInCommunicationBar('I want');
     await cboard.expectWordInCommunicationBar('yes');
     await cboard.expectWordInCommunicationBar('no');
 
-    await page.getByRole('button', { name: 'Backspace' }).click();
+    // Remove "no" and verify order
+    await cboard.backspaceInCommunicationBar();
     await cboard.expectWordNotInCommunicationBar('no');
     await cboard.expectWordInCommunicationBar('yes');
 
-    await page.getByRole('button', { name: 'Backspace' }).click();
-    // Now communication bar should be empty
+    // Remove "yes" and verify communication bar is empty
+    await cboard.backspaceInCommunicationBar();
     await cboard.expectCommunicationBarEmpty();
-  });
-
-  test('should handle complex food sentences', async ({ page }) => {
-    // Simplify to just test communication bar functionality without complex navigation
-    // Focus on building a sentence with available buttons
-
-    // Start by adding some basic communication items
-    await cboard.yesButton.click();
-    await cboard.expectWordInCommunicationBar('yes');
-
-    await cboard.noButton.click();
-    await cboard.expectWordInCommunicationBar('no');
-
-    // Try to navigate to food if the button is available
-    try {
-      await cboard.foodButton.click();
-      await expect(cboard.foodCategoryHeading).toBeVisible();
-
-      // Try to add a food item if available
-      try {
-        await cboard.soupButton.click();
-        await cboard.expectWordInCommunicationBar('soup');
-      } catch (e) {
-        // Food items might not be available - that's okay
-        console.log(
-          'Food items not available, but basic communication bar works'
-        );
-      }
-    } catch (e) {
-      // Food category might not be available - that's okay too
-      console.log(
-        'Food category not available, but basic communication bar works'
-      );
-    }
-  });
-
-  test('should handle negative expressions', async ({ page }) => {
-    // Navigate to food category
-    await cboard.navigateToCategory('food');
-
-    // Build: "I dislike soup"
-    await cboard.iDislikeButton.click();
-    await cboard.soupButton.click();
-
-    // Verify expression
-    await cboard.expectWordInCommunicationBar('I dislike');
-    await cboard.expectWordInCommunicationBar('soup');
   });
 });

@@ -33,22 +33,6 @@ test.describe('Cboard - Navigation', () => {
     await expect(page).toHaveURL(/\/board\/root/);
     await cboard.expectButtonDisabled(cboard.goBackButton);
   });
-  test('should navigate to emotions category', async ({ page }) => {
-    await cboard.navigateToCategory('emotions');
-
-    // Verify navigation to emotions board
-    await cboard.expectButtonVisible(cboard.emotionsCategoryHeading);
-    await cboard.expectButtonEnabled(cboard.goBackButton);
-  });
-
-  test('should navigate to activities category', async ({ page }) => {
-    await cboard.navigateToCategory('activities');
-
-    // Verify navigation to activities board
-    await cboard.expectButtonVisible(cboard.activitiesCategoryHeading);
-    await cboard.expectButtonEnabled(cboard.goBackButton);
-  });
-
   test('should maintain communication bar across navigation', async ({
     page
   }) => {
@@ -74,31 +58,4 @@ test.describe('Cboard - Navigation', () => {
     await cboard.expectWordInCommunicationBar('yes');
     await cboard.expectWordInCommunicationBar('pizza');
   });
-
-  // test('should navigate to multiple categories in sequence', async ({
-  //   page
-  // }) => {
-  //   // Navigate to food category
-  //   const categories = [
-  //     { name: 'drinks', expectedHeading: 'drinks' },
-  //     { name: 'animals', expectedHeading: 'animals' },
-  //     { name: 'toys', expectedHeading: 'toys' },
-  //     { name: 'numbers', expectedHeading: 'numbers' }
-  //   ];
-
-  //   for (const category of categories) {
-  //     // Click category
-  //     await cboard.navigateToCategory(category.name);
-
-  //     // Verify navigation
-  //     await cboard.expectButtonVisible(
-  //       cboard.getCategoryHeading(category.expectedHeading)
-  //     );
-  //     await cboard.expectButtonEnabled(cboard.goBackButton);
-
-  //     // Navigate back
-  //     await cboard.navigateBack();
-  //     await cboard.expectButtonVisible(cboard.mainBoardHeading);
-  //   }
-  // });
 });

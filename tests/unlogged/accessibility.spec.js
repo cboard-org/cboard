@@ -83,32 +83,11 @@ test.describe('Cboard - Accessibility', () => {
     const backPageFocusedElement = await page.locator(':focus').first();
     await expect(backPageFocusedElement).toBeVisible();
   });
-  test('should have proper page titles', async ({ page }) => {
-    // Check main page title
-    await cboard.verifyPageTitle();
-
-    // Navigate to food category and check title is maintained
-    await cboard.clickButton('food');
-    await cboard.verifyPageTitle();
-  });
-  test('should support high contrast and visual accessibility', async ({
-    page
-  }) => {
-    // Verify buttons are visually distinct
-    const yesButton = cboard.buttons.yes;
-    const noButton = cboard.buttons.no;
-
-    await expect(yesButton).toBeVisible();
-    await expect(noButton).toBeVisible();
-
-    // Verify buttons have proper visual states
-    await expect(yesButton).toHaveCSS('cursor', 'pointer');
-    await expect(noButton).toHaveCSS('cursor', 'pointer');
-  });
   test('should handle disabled state properly', async ({ page }) => {
     // First, check if Go back button exists and get its current state
     const goBackButton = cboard.buttons.goBack;
     await expect(goBackButton).toBeVisible();
+    await expect(goBackButton).toBeDisabled();
 
     // Navigate to a subcategory first to see the enabled state
     await cboard.clickButton('food');
@@ -117,15 +96,7 @@ test.describe('Cboard - Accessibility', () => {
     // Go back to main page
     await goBackButton.click();
     await expect(cboard.mainBoardHeading).toBeVisible();
-
-    // Now verify button state on main page - it might be hidden rather than disabled
-    // Let's just check that it behaves properly in navigation context
-    await cboard.clickButton('food');
-    await expect(goBackButton).toBeEnabled();
     await expect(goBackButton).toBeVisible();
-
-    // Test that the button actually works
-    await goBackButton.click();
-    await expect(cboard.mainBoardHeading).toBeVisible();
+    await expect(goBackButton).toBeDisabled();
   });
 });

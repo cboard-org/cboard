@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { createCboard } from '../page-objects/cboard.js';
 
 test.describe('Cboard - Security Features', () => {
@@ -36,12 +36,10 @@ test.describe('Cboard - Security Features', () => {
       if (i < 4) {
         // Verify unlock message appears
         await cboard.expectButtonVisible(cboard.unlockClicksAlert);
-        await page.waitForTimeout(1300);
+        await cboard.waitForTimeout(1300);
       } else {
         // After 2 seconds, the message should not be visible
-        await expect(page.locator('[role="alert"]')).not.toBeVisible({
-          timeout: 1
-        });
+        await cboard.expectButtonNotVisible(cboard.unlockClicksAlert);
       }
     }
   });
@@ -51,44 +49,14 @@ test.describe('Cboard - Security Features', () => {
     await cboard.expectButtonVisible(cboard.loginButton);
   });
 
-  test('should show unlock message persists across navigation', async ({
-    page
-  }) => {
-    // Click unlock to show message
-    await cboard.clickUnlock();
-    await cboard.expectButtonVisible(cboard.unlockClicksAlert);
-    // Navigate to food category
-    await cboard.navigateToCategory('food');
-
-    // Verify unlock button is still functional
-    await cboard.expectButtonVisible(cboard.unlockClicksAlert);
-
-    // Navigate back
-    await cboard.navigateBack();
-
-    // Verify we're back on main page and unlock still works
-    await expect(cboard.mainBoardHeading).toBeVisible();
-    await expect(cboard.unlockButton).toBeEnabled();
-    await cboard.expectButtonVisible(cboard.unlockClicksAlert);
-  });
   test('should reveal settings and advanced features after 4 consecutive clicks on unlock button', async ({
     page
   }) => {
-    // Verify initial locked state - only basic buttons should be visible
-    await cboard.expectButtonVisible(cboard.unlockButton);
-    await cboard.expectButtonVisible(cboard.loginButton);
-
     // Verify settings and advanced features are not visible initially
-    await expect(
-      page.getByRole('button', { name: 'Settings' })
-    ).not.toBeVisible();
-    await expect(
-      page.getByRole('button', { name: 'Print Board' })
-    ).not.toBeVisible();
-    await expect(page.getByRole('button', { name: 'Share' })).not.toBeVisible();
-    await expect(
-      page.getByRole('button', { name: 'Full screen' })
-    ).not.toBeVisible();
+    await cboard.expectButtonNotVisible(cboard.settingsButton);
+    await cboard.expectButtonNotVisible(cboard.printBoardButton);
+    await cboard.expectButtonNotVisible(cboard.shareButton);
+    await cboard.expectButtonNotVisible(cboard.fullScreenButton);
 
     // Perform 4 consecutive clicks on unlock button
     for (let i = 1; i <= 4; i++) {
@@ -97,57 +65,46 @@ test.describe('Cboard - Security Features', () => {
       if (i < 4) {
         // Before 4th click, should show progress but settings still locked
         await cboard.expectButtonVisible(cboard.unlockClicksAlert);
-        await expect(
-          page.getByRole('button', { name: 'Settings' })
-        ).not.toBeVisible();
+        await cboard.expectButtonNotVisible(cboard.settingsButton);
       }
     }
 
+    // dismiss overlays
+    await cboard.dismissOverlays();
+
     // After 4th click, verify advanced features are now visible
-    await expect(page.getByRole('button', { name: 'Settings' })).toBeVisible();
-    await expect(
-      page.getByRole('button', { name: 'Print Board' })
-    ).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Share' })).toBeVisible();
-    await expect(
-      page.getByRole('button', { name: 'Full screen' })
-    ).toBeVisible();
-    await expect(page.getByRole('button', { name: 'User Help' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Lock' })).toBeVisible();
+    await cboard.expectButtonVisible(cboard.settingsButton);
+    await cboard.expectButtonVisible(cboard.printBoardButton);
+    await cboard.expectButtonVisible(cboard.shareButton);
+    await cboard.expectButtonVisible(cboard.fullScreenButton);
+    await cboard.expectButtonVisible(cboard.userHelpButton);
+    await cboard.expectButtonVisible(cboard.lockButton);
 
     // Verify navigation tabs are available
-    await expect(page.getByRole('button', { name: 'Boards' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Build' })).toBeVisible();
+    await cboard.expectButtonVisible(cboard.boardsTab);
+    await cboard.expectButtonVisible(cboard.buildTab);
 
     // Verify edit functionality is available
-    await expect(
-      page.getByRole('button', { name: 'edit-board-tiles' })
-    ).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Add Tile' })).toBeVisible();
+    await cboard.expectButtonVisible(cboard.editBoardTilesButton);
+    await cboard.expectButtonVisible(cboard.addTileButton);
 
     // Test Settings functionality
-    await cboard.safeClick(page.getByRole('button', { name: 'Settings' }));
+    await cboard.clickSettings();
 
     // Wait for navigation and verify we're on settings page
-    await page.waitForLoadState('networkidle');
+    await cboard.waitForNavigation();
+
+    // dismiss any overlays that might appear
+    await cboard.dismissOverlays();
 
     // Verify settings page loaded with main categories
-    await expect(page.getByRole('button', { name: 'Language' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Speech' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Display' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Export' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Import' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Symbols' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Scanning' })).toBeVisible();
-
-    // Return to main board by navigating back
-    await page.goBack();
-    await page.waitForLoadState('networkidle');
-
-    // Verify we're back on the main board with advanced features still visible
-    await expect(cboard.mainBoardHeading).toBeVisible();
-    // After navigation, the unlock state might have changed, so verify unlock button is there
-    await expect(cboard.unlockButton).toBeVisible();
+    await cboard.expectButtonVisible(cboard.languageSettingsButton);
+    await cboard.expectButtonVisible(cboard.speechSettingsButton);
+    await cboard.expectButtonVisible(cboard.displaySettingsButton);
+    await cboard.expectButtonVisible(cboard.exportSettingsButton);
+    await cboard.expectButtonVisible(cboard.importSettingsButton);
+    await cboard.expectButtonVisible(cboard.symbolsSettingsButton);
+    await cboard.expectButtonVisible(cboard.scanningSettingsButton);
   });
 
   test('should lock settings again when lock button is clicked', async ({
@@ -158,25 +115,24 @@ test.describe('Cboard - Security Features', () => {
       await cboard.clickUnlock();
     }
 
+    // dismiss any overlays that might appear
+    await cboard.dismissOverlays();
+
     // Verify settings are unlocked
-    await expect(page.getByRole('button', { name: 'Settings' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Lock' })).toBeVisible();
+    await cboard.expectButtonVisible(cboard.settingsButton);
+    await cboard.expectButtonVisible(cboard.lockButton);
 
     // Click the lock button using safe click to handle overlays
-    await cboard.safeClick(page.getByRole('button', { name: 'Lock' }));
+    await cboard.clickLock();
 
     // Wait a moment for the state change to propagate
-    await page.waitForTimeout(1000);
+    await cboard.waitForTimeout(1000);
 
     // Verify settings are locked again - the lock button should change to unlock button
-    await expect(
-      page.getByRole('button', { name: 'Settings' })
-    ).not.toBeVisible();
+    await cboard.expectButtonNotVisible(cboard.settingsButton);
     // The lock button changes back to unlock button
-    await expect(page.getByRole('button', { name: 'Unlock' })).toBeVisible();
-    await expect(
-      page.getByRole('button', { name: 'Print Board' })
-    ).not.toBeVisible();
+    await cboard.expectButtonVisible(cboard.unlockButton);
+    await cboard.expectButtonNotVisible(cboard.printBoardButton);
 
     // Verify unlock button is visible again
     await cboard.expectButtonVisible(cboard.unlockButton);

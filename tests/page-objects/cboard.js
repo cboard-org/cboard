@@ -71,7 +71,7 @@ export class Cboard {
 
     // Handle React Joyride overlays first (most common blocker)
     try {
-      const joyrideOverlay = this.page.locator('[data-test-id="overlay"]');
+      const joyrideOverlay = this.page.locator('[data-test-id="button-skip"]');
       if (await joyrideOverlay.isVisible()) {
         await joyrideOverlay.click({ timeout: 2000 });
         // Wait for overlay to disappear
@@ -79,14 +79,6 @@ export class Cboard {
       }
     } catch (e) {
       // Overlay not present or couldn't click, continue
-    }
-
-    // Try to press Escape to close any modal dialogs or tours
-    try {
-      await this.page.keyboard.press('Escape');
-      await this.page.waitForTimeout(500);
-    } catch (e) {
-      // Escape didn't work, continue
     }
 
     // Handle Material-UI backdrops
@@ -103,7 +95,7 @@ export class Cboard {
     try {
       const skipButton = this.page
         .locator(
-          'button:has-text("Skip"), button:has-text("Close"), button:has-text("Next")'
+          'data-test-id="button-skip", button:has-text("Skip"), button:has-text("Close"), button:has-text("Next")'
         )
         .first();
       if (await skipButton.isVisible()) {
@@ -169,7 +161,7 @@ export class Cboard {
 
   // === NAVIGATION BUTTONS ===
   get goBackButton() {
-    return this.page.getByRole('button', { name: 'Go back' });
+    return this.page.getByRole('button', { name: 'Go back' }).first();
   }
 
   get loginButton() {
@@ -597,6 +589,74 @@ export class Cboard {
     return this.page.locator(`button:has-text("${text}")`).first();
   }
 
+  // === ADVANCED FEATURE BUTTONS ===
+  get printBoardButton() {
+    return this.page.getByRole('button', { name: 'Print Board' });
+  }
+
+  get shareButton() {
+    return this.page.getByRole('button', { name: 'Share' });
+  }
+
+  get fullScreenButton() {
+    return this.page.getByRole('button', { name: 'Full Screen' });
+  }
+
+  get userHelpButton() {
+    return this.page.getByRole('button', { name: 'Help' });
+  }
+
+  get lockButton() {
+    return this.page.getByRole('button', { name: 'Lock' });
+  }
+
+  // === TAB NAVIGATION ===
+  get boardsTab() {
+    return this.page.getByRole('button', { name: 'Boards' });
+  }
+
+  get buildTab() {
+    return this.page.getByRole('button', { name: 'Build' });
+  }
+
+  // === EDIT FUNCTIONALITY ===
+  get editBoardTilesButton() {
+    return this.page.getByRole('button', { name: 'edit-board-tiles' });
+  }
+
+  get addTileButton() {
+    return this.page.getByRole('button', { name: 'Add Tile' });
+  }
+
+  // === SETTINGS NAVIGATION BUTTONS ===
+  get languageSettingsButton() {
+    return this.page.getByRole('button', { name: 'Language' });
+  }
+
+  get speechSettingsButton() {
+    return this.page.getByRole('button', { name: 'Speech' });
+  }
+
+  get displaySettingsButton() {
+    return this.page.getByRole('button', { name: 'Display' });
+  }
+
+  get exportSettingsButton() {
+    return this.page.getByRole('button', { name: 'Export' });
+  }
+
+  get importSettingsButton() {
+    return this.page.getByRole('button', { name: 'Import' });
+  }
+
+  get symbolsSettingsButton() {
+    return this.page.getByRole('button', { name: 'Symbols' });
+  }
+
+  get scanningSettingsButton() {
+    return this.page.getByRole('button', { name: 'Scanning' });
+  }
+
   // === COMMON ACTIONS ===
   async clickCommunicationButton(buttonText) {
     await this.dismissOverlays();
@@ -610,7 +670,7 @@ export class Cboard {
 
   async navigateBack() {
     await this.goBackButton.click();
-    await this.page.waitForLoadState('networkidle');
+    //await this.page.waitForLoadState('networkidle');
   }
 
   async clearCommunicationBar() {
@@ -627,6 +687,24 @@ export class Cboard {
 
   async clickLogin() {
     await this.loginButton.click();
+  }
+
+  async clickSettings() {
+    await this.safeClick(this.settingsButton);
+  }
+
+  async waitForNavigation() {
+    await this.page.waitForLoadState('networkidle', { timeout: 10000 });
+    await this.page.waitForTimeout(1000); // Additional wait for UI to settle
+  }
+
+  async goBackToMainBoard() {
+    // Click the go back button and wait for navigation to complete
+    await this.safeClick(this.goBackButton);
+    await this.waitForNavigation();
+
+    // Wait for the main board heading to be visible to confirm we're on the main board
+    await expect(this.mainBoardHeading).toBeVisible({ timeout: 10000 });
   }
 
   // === URL EXPECTATIONS ===
@@ -1032,6 +1110,10 @@ export class Cboard {
 
   async clickUnlockButton() {
     await this.buttons.unlock.click();
+  }
+
+  async clickLock() {
+    await this.safeClick(this.lockButton);
   }
 
   async verifyUnlockMessageVisible() {
@@ -2303,6 +2385,10 @@ export class Cboard {
         }
       }
     }
+  }
+
+  async waitForTimeout(ms = 1000) {
+    await this.page.waitForTimeout(ms);
   }
 }
 
