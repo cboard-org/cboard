@@ -36,6 +36,7 @@ const CommunicatorDialog = ({
   activeBoardId,
   search,
   isSearchOpen,
+  closeSearchBar,
   loadNextPage,
   onClose,
   onTabChange,
@@ -66,6 +67,7 @@ const CommunicatorDialog = ({
         isSearchOpen={isSearchOpen}
         searchValue={search}
         dark={dark}
+        closeSearchBar={closeSearchBar}
       />
     }
   >
