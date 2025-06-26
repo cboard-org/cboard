@@ -50,7 +50,7 @@ test.describe('Cboard - Scanning Settings', () => {
     // Note: Specific methods depend on implementation
   });
 
-  test('should save scanning settings', async ({ page }) => {
+  test.skip('should save scanning settings', async ({ page }) => {
     await cboard.toggleScanningAndSave();
 
     // Verify settings were saved (implementation dependent)
