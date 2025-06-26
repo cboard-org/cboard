@@ -72,9 +72,9 @@ jobs:
           command: |
             echo 'cboard-qa06.westus.cloudapp.azure.com \
             AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK9FTOTcgK0KgvdqdUhPLfvnDhzbViGnvtaXWg1XKgq2LEzgUTaHwyDsV5lZ3NnXimwptzF6GvO3u1ySlR2C19s=' >> ~/.ssh/known_hosts
-            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock cboard/cboard-bootstrap pull
             ssh $SSH_USERNAME@$SSH_SERVER 'bash -ic "docker run --rm \
-            -v /var/run/docker.sock:/var/run/docker.sock --env-file \
+            -v /var/run/docker.sock:/var/run/docker.sock cboard/cboard-bootstrap pull && \
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock --env-file \
             /home/sharedFolder/env.qa cboard/cboard-bootstrap up -d" && exit'
       - discord/status:
           fail_only: false
