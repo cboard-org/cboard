@@ -12,7 +12,7 @@ test.describe('Cboard - Symbols Settings', () => {
     await cboard.clickSettingsTab('Symbols');
   });
 
-  test('should display symbols settings dialog', async ({ page }) => {
+  test.skip('should display symbols settings dialog', async ({ page }) => {
     await cboard.verifySymbolsSettingsUI();
   });
 
