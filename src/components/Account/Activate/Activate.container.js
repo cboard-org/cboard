@@ -1,74 +1,73 @@
-import React, { Fragment, PureComponent } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { activate } from './Activate.actions';
 import './Activate.css';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './Activate.messages';
 
-class ActivateContainer extends PureComponent {
-  state = {
-    isActivating: false,
-    activationStatus: {}
-  };
+function ActivateContainer() {
+  const [isActivating, setIsActivating] = useState(true);
+  const [error, setError] = useState(false);
 
-  componentDidMount() {
-    const {
-      match: {
-        params: { url }
-      }
-    } = this.props;
+  const { url } = useParams();
+  const history = useHistory();
 
-    this.setState({ isActivating: true });
+  const redirectToLogin = useCallback(
+    () => {
+      setTimeout(() => {
+        history.replace('/login-signup');
+      }, 2000);
+    },
+    [history]
+  );
 
-    activate(url)
-      .then(activationStatus => {
-        this.setState({ activationStatus });
-        if (activationStatus.success) {
-          setTimeout(() => {
-            this.props.history.replace('/login-signup');
-          }, 2000);
-          return;
-        }
-        this.handleError();
-      })
-      .catch(activationStatus => {
-        this.setState({ activationStatus });
-        this.handleError();
-      })
-      .finally(() => this.setState({ isActivating: false }));
-  }
+  const handleError = useCallback(
+    () => {
+      setError(true);
+      redirectToLogin();
+    },
+    [redirectToLogin]
+  );
 
-  handleError() {
-    this.setState({ error: true });
-    setTimeout(() => {
-      this.props.history.replace('/login-signup');
-    }, 2000);
-  }
+  useEffect(
+    () => {
+      setIsActivating(true);
+      activate(url)
+        .then(status => {
+          if (status.success) {
+            redirectToLogin();
+          } else {
+            handleError();
+          }
+        })
+        .catch(status => {
+          handleError();
+        })
+        .finally(() => setIsActivating(false));
+    },
+    [url, redirectToLogin, handleError]
+  );
 
-  render() {
-    const { isActivating, error } = this.state;
-
-    return (
-      <div className="Activate">
-        {isActivating ? (
-          <FormattedMessage {...messages.activating} />
-        ) : (
-          <Fragment>
-            {error ? (
-              <FormattedMessage {...messages.error} />
-            ) : (
-              <FormattedMessage {...messages.success} />
-            )}
-            <br />
-            <Link to="/login-signup" className="Activate_home">
-              <FormattedMessage {...messages.loginSignUpPage} />
-            </Link>
-          </Fragment>
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className="Activate">
+      {isActivating ? (
+        <FormattedMessage {...messages.activating} />
+      ) : (
+        <Fragment>
+          {error ? (
+            <FormattedMessage {...messages.error} />
+          ) : (
+            <FormattedMessage {...messages.success} />
+          )}
+          <br />
+          <Link to="/login-signup" className="Activate_home">
+            <FormattedMessage {...messages.loginSignUpPage} />
+          </Link>
+        </Fragment>
+      )}
+    </div>
+  );
 }
 
 export default ActivateContainer;
