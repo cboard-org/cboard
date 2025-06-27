@@ -25,7 +25,7 @@ export function forgotApiSuccess(board) {
   };
 }
 
-export function forgot({ email }, type = 'local') {
+export function forgot({ email }) {
   return async dispatch => {
     try {
       dispatch(forgotApiStarted());
@@ -37,10 +37,10 @@ export function forgot({ email }, type = 'local') {
       if (err.response != null) {
         return Promise.reject(err.response.data);
       }
-      var disonnected = {
+      const disconnected = {
         message: 'Unable to contact server. Try in a moment'
       };
-      return Promise.reject(disonnected);
+      return Promise.reject(disconnected);
     }
   };
 }
