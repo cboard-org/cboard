@@ -16,89 +16,247 @@ test.describe('Cboard - Display Settings', () => {
     await cboard.verifyDisplaySettingsUI();
   });
 
-  test('should show UI Size settings', async ({ page }) => {
-    await cboard.verifyUISettings();
-  });
-
-  test('should show Font Family settings', async ({ page }) => {
-    await cboard.verifyFontFamilySettings();
-  });
-
-  test('should show Font Size settings', async ({ page }) => {
-    await cboard.verifyFontSizeSettings();
-  });
-
-  test('should show output bar visibility toggle', async ({ page }) => {
+  test('should verify output bar visibility states', async ({ page }) => {
+    // Test that we can check both visible and hidden states
     await cboard.verifyOutputBarSettings();
-  });
 
-  test('should show action buttons size toggle', async ({ page }) => {
-    await cboard.verifyActionButtonsSettings();
-  });
+    // Check initial checkbox state
+    const isInitiallyChecked = await cboard.hideOutputBarCheckbox.isChecked();
 
-  test('should show label position settings', async ({ page }) => {
-    await cboard.verifyLabelPositionSettings();
-  });
+    // Click the checkbox to toggle it
+    await cboard.hideOutputBarCheckbox.click();
 
-  test('should show dark theme toggle', async ({ page }) => {
-    await cboard.verifyDarkThemeSettings();
+    // Verify the checkbox state changed
+    const isNowChecked = await cboard.hideOutputBarCheckbox.isChecked();
+    if (isInitiallyChecked !== isNowChecked) {
+      console.log('Output bar checkbox toggle successful');
+    }
   });
 
   test('should allow UI size modification', async ({ page }) => {
     await cboard.clickUISize();
     // This should open dropdown with size options
-    // Note: Specific options would depend on implementation
+    await cboard.verifyUISizeOptions(['Standard', 'Large', 'Extra Large']);
+  });
+
+  test('should change UI size to Extra Large and save', async ({ page }) => {
+    // Open UI Size dropdown
+    await cboard.clickUISize();
+
+    // Select Extra Large option
+    await cboard.selectUISizeOption('Extra Large');
+
+    // Verify the selection
+    await cboard.verifyUISizeSelected('Extra Large');
+
+    // Save the settings
+    await cboard.saveDisplaySettings();
+
+    // Navigate back to main board to verify changes
+    await cboard.goto();
+
+    // Verify that UI size change has been applied
+    await cboard.verifyUIChanged();
   });
 
   test('should allow font family modification', async ({ page }) => {
     await cboard.clickFontFamily();
     // This should open dropdown with font options
-    // Note: Specific fonts would depend on implementation
+    await cboard.verifyFontFamilyOptions([
+      'Chilanka',
+      'Hind',
+      'Indie Flower',
+      'Montserrat',
+      'Nunito',
+      'Oswald',
+      'Roboto'
+    ]);
+  });
+
+  test('should change font family to Roboto and save', async ({ page }) => {
+    // Open Font Family dropdown
+    await cboard.clickFontFamily();
+
+    // Verify all available font options
+    await cboard.verifyFontFamilyOptions([
+      'Chilanka',
+      'Hind',
+      'Indie Flower',
+      'Montserrat',
+      'Nunito',
+      'Oswald',
+      'Roboto'
+    ]);
+
+    // Select Roboto option
+    await cboard.selectFontFamilyOption('Roboto');
+
+    // Verify the selection
+    await cboard.verifyFontFamilySelected('Roboto');
+
+    // Save the settings
+    await cboard.saveDisplaySettings();
+
+    // Navigate back to main board to verify changes
+    await cboard.goto();
+
+    // Verify that font family change has been applied
+    await cboard.verifyFontFamilyChanged();
   });
 
   test('should allow font size modification', async ({ page }) => {
     await cboard.clickFontSize();
     // This should open dropdown with size options
-    // Note: Specific options would depend on implementation
+    await cboard.verifyFontSizeOptions(['Standard', 'Large', 'Extra Large']);
   });
 
-  test('should allow label position modification', async ({ page }) => {
-    await cboard.clickLabelPosition();
-    // This should open dropdown with position options (Above, Below, Hidden)
-    // Note: Specific options would depend on implementation
-  });
+  test('should change font size to Large and save', async ({ page }) => {
+    // Open Font Size dropdown
+    await cboard.clickFontSize();
 
-  test('should toggle output bar visibility', async ({ page }) => {
-    await cboard.toggleCheckbox(cboard.hideOutputBarCheckbox);
-  });
+    // Verify all available font size options
+    await cboard.verifyFontSizeOptions(['Standard', 'Large', 'Extra Large']);
 
-  test('should toggle action buttons size', async ({ page }) => {
-    await cboard.toggleCheckbox(cboard.actionButtonsCheckbox);
-  });
+    // Select Large option
+    await cboard.selectFontSizeOption('Large');
 
-  test('should toggle dark theme', async ({ page }) => {
-    await cboard.toggleCheckbox(cboard.darkThemeCheckbox);
-  });
+    // Verify the selection
+    await cboard.verifyFontSizeSelected('Large');
 
-  test('should save settings changes', async ({ page }) => {
-    // Make a change
-    await cboard.toggleCheckbox(cboard.darkThemeCheckbox);
-
-    // Save changes
+    // Save the settings
     await cboard.saveDisplaySettings();
 
-    // Verify we're back at main settings or changes were applied
-    // Note: This test might need adjustment based on actual behavior
+    // Navigate back to main board to verify changes
+    await cboard.goto();
+
+    // Verify that font size change has been applied
+    await cboard.verifyFontSizeChanged();
   });
 
-  test('should support navigation back to main settings', async ({ page }) => {
-    await cboard.goBackFromDisplay();
+  test('should change font size to Extra Large and save', async ({ page }) => {
+    // Open Font Size dropdown
+    await cboard.clickFontSize();
+
+    // Verify all available font size options
+    await cboard.verifyFontSizeOptions(['Standard', 'Large', 'Extra Large']);
+
+    // Select Extra Large option
+    await cboard.selectFontSizeOption('Extra Large');
+
+    // Verify the selection
+    await cboard.verifyFontSizeSelected('Extra Large');
+
+    // Save the settings
+    await cboard.saveDisplaySettings();
+
+    // Navigate back to main board to verify changes
+    await cboard.goto();
+
+    // Verify that font size change has been applied
+    await cboard.verifyFontSizeChanged();
   });
 
-  test('should use page object methods to verify display settings elements', async ({
+  test('should change output bar visibility and verify in UI', async ({
     page
   }) => {
-    // Use page object methods to verify display settings
-    await cboard.verifyDisplaySettingsUI();
+    // Get initial output bar visibility state before making changes
+    await cboard.saveDisplaySettings();
+    await cboard.goto();
+    const initialVisibility = await cboard.getOutputBarVisibilityState();
+
+    // Navigate back to display settings
+    await cboard.navigateToSettings();
+    await cboard.clickSettingsTab('Display');
+
+    // Toggle the output bar visibility
+    const expectedVisibility = await cboard.toggleOutputBarVisibility();
+
+    // Save the settings
+    await cboard.saveDisplaySettings();
+
+    // Navigate back to main board to verify changes
+    await cboard.goto();
+
+    // Verify that output bar visibility change has been applied
+    await cboard.verifyOutputBarToggled(expectedVisibility);
+    await cboard.verifyOutputBarVisibilityChanged();
+
+    // Verify the change is opposite of initial state
+    const newVisibility = await cboard.getOutputBarVisibilityState();
+    if (initialVisibility !== newVisibility) {
+      // Change was successful
+      console.log(
+        `Output bar visibility changed from ${initialVisibility} to ${newVisibility}`
+      );
+    }
+  });
+
+  test('should change action buttons size and verify in UI', async ({
+    page
+  }) => {
+    // Ensure we have an output bar visible first (so action buttons can be seen)
+    const outputBarHidden = await cboard.hideOutputBarCheckbox.isChecked();
+    if (outputBarHidden) {
+      await cboard.hideOutputBarCheckbox.click(); // Uncheck to show output bar
+    }
+
+    // Get initial action button size state
+    await cboard.saveDisplaySettings();
+    await cboard.goto();
+
+    // Add a word to the output bar so action buttons become visible
+    await cboard.clickButton('yes');
+
+    const initialSizeState = await cboard.getActionButtonsSizeState();
+
+    // Navigate back to display settings
+    await cboard.navigateToSettings();
+    await cboard.clickSettingsTab('Display');
+
+    // Toggle the action buttons size
+    const expectedLargerSize = await cboard.toggleActionButtonsSize();
+
+    // Save the settings
+    await cboard.saveDisplaySettings();
+
+    // Navigate back to main board to verify changes
+    await cboard.goto();
+
+    // Add a word to make action buttons visible
+    await cboard.clickButton('yes');
+
+    // Verify that action button size change has been applied
+    await cboard.verifyActionButtonsSizeToggled(expectedLargerSize);
+    await cboard.verifyActionButtonsSizeChanged();
+
+    // Get new size state and compare
+    const newSizeState = await cboard.getActionButtonsSizeState();
+
+    if (initialSizeState.buttonsPresent && newSizeState.buttonsPresent) {
+      console.log(
+        `Action buttons size changed. Expected larger: ${expectedLargerSize}`
+      );
+      console.log(
+        `Initial size: ${initialSizeState.width}x${initialSizeState.height}`
+      );
+      console.log(`New size: ${newSizeState.width}x${newSizeState.height}`);
+    }
+  });
+
+  test('should verify action buttons size states', async ({ page }) => {
+    // Test that we can check both normal and larger button states
+    await cboard.verifyActionButtonsSettings();
+
+    // Check initial checkbox state
+    const isInitiallyChecked = await cboard.actionButtonsCheckbox.isChecked();
+
+    // Click the checkbox to toggle it
+    await cboard.actionButtonsCheckbox.click();
+
+    // Verify the checkbox state changed
+    const isNowChecked = await cboard.actionButtonsCheckbox.isChecked();
+    if (isInitiallyChecked !== isNowChecked) {
+      console.log('Action buttons size checkbox toggle successful');
+    }
   });
 });

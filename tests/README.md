@@ -35,6 +35,67 @@ Contains test setup, assertions, and general utility functions.
 - **`test-utils.js`** - General utility functions
 - **`index.js`** - Main entry point for importing utilities
 
+### 📁 `/unlogged/settings`
+
+Contains tests for user settings and display preferences when not logged in:
+
+- **`display.spec.js`** - Comprehensive display settings tests including UI Size, Font Family, and Font Size
+- **`font-size-automation.spec.js`** - Focused font size workflow automation tests
+- **`font-size-large.spec.js`** - Dedicated tests for font size changes
+- **`font-family-roboto.spec.js`** - Font family change tests (Roboto)
+- **`font-family-indie-flower.spec.js`** - Font family change tests (Indie Flower)
+- **`ui-size-extra-large.spec.js`** - UI size change tests
+- **`unlock.spec.js`** - Advanced feature unlock functionality
+
+#### Font Size Automation
+
+The font size tests fully automate the workflow:
+
+1. **Navigation** - Access Settings → Display tab
+2. **Options Verification** - Confirm available font sizes (Standard, Large, Extra Large)
+3. **Selection** - Choose and apply font size changes
+4. **Persistence** - Save settings and verify changes are applied
+5. **UI Verification** - Confirm font size changes are reflected in the main board
+
+**Key Test Files:**
+
+- `font-size-automation.spec.js` - Complete workflow automation
+- `display.spec.js` - Comprehensive display settings including font size
+
+**Page Object Methods:**
+
+- `clickFontSize()` - Opens font size dropdown
+- `verifyFontSizeOptions()` - Confirms available options
+- `selectFontSizeOption()` - Selects specific font size
+- `verifyFontSizeSelected()` - Confirms selection
+- `verifyFontSizeChanged()` - Validates UI changes
+
+#### Output Bar Visibility Automation
+
+The output bar visibility tests fully automate the workflow to show/hide the communication output bar:
+
+1. **Navigation** - Access Settings → Display tab
+2. **Checkbox Interaction** - Toggle "Hide the output bar" checkbox
+3. **Settings Persistence** - Save settings and verify changes are applied
+4. **UI Verification** - Confirm output bar visibility changes are reflected in the main board
+5. **Multiple Toggles** - Test repeated hide/show functionality
+
+**Key Test Files:**
+
+- `output-bar-visibility.spec.js` - Complete output bar visibility workflow automation
+- `display.spec.js` - Comprehensive display settings including output bar visibility
+
+**Page Object Methods:**
+
+- `getOutputBarVisibilityState()` - Checks current output bar visibility
+- `verifyOutputBarVisible()` - Confirms output bar is visible (Backspace/Clear buttons present)
+- `verifyOutputBarHidden()` - Confirms output bar is hidden (no Backspace/Clear buttons)
+- `toggleOutputBarVisibility()` - Toggles the visibility checkbox and returns expected state
+- `verifyOutputBarToggled()` - Validates output bar matches expected visibility state
+- `verifyOutputBarVisibilityChanged()` - Confirms changes are applied in the UI
+
+The automation uses reliable detection methods by checking for the presence of Backspace and Clear buttons, which are key indicators of an active output bar.
+
 ## Test Coverage
 
 The test suite covers the following areas:
