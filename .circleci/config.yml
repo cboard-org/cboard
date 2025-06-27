@@ -136,18 +136,18 @@ workflows:
             - build
           filters:
             branches:
-              only: Playwright
+              only: master
       - deploy:
           context: azure
           requires:
             - image
           filters:
             branches:
-              only: Playwright
+              only: master
       - e2e:
           context: azure
           requires:
             - deploy
           filters:
             branches:
-              only: Playwright
+              only: master
