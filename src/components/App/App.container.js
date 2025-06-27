@@ -64,9 +64,9 @@ export class AppContainer extends Component {
       }
     };
 
-    const initCVAGa4 = () => {
+    const initGoogleAnalytics = () => {
       const { isLogged, userId } = this.props;
-      if (!isElectron()) {
+      if (isCordova() && !isElectron()) {
         try {
           if (isLogged) {
             window.FirebasePlugin.setUserId(userId);
@@ -75,6 +75,11 @@ export class AppContainer extends Component {
         } catch (err) {
           console.error(err);
         }
+        return;
+      }
+
+      if (!isCordova() && typeof window?.gtag === 'function') {
+        window.gtag('set', { user_id: userId });
       }
     };
 
@@ -85,7 +90,7 @@ export class AppContainer extends Component {
 
     localizeUser();
 
-    if (isCordova()) initCVAGa4();
+    initGoogleAnalytics();
 
     const configureConnectionStatus = () => {
       const { updateConnectivity } = this.props;

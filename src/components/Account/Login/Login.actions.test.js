@@ -366,3 +366,26 @@ describe('actions', () => {
     expect(changeVoiceAction.type).not.toBe(CHANGE_VOICE);
   });
 });
+it('should set google analytics user id after login - WEB', async () => {
+  window.gtag = jest.fn();
+  const store = mockStore(initialState);
+  const user = { email: 'test', password: '1122' };
+
+  await store.dispatch(actions.login(user, 'local'));
+  expect(window.gtag).toHaveBeenCalledWith('set', { user_id: userData.id });
+});
+
+it('should set google analytics user id after login - ANDROID IOS', async () => {
+  window.cordova = jest.fn(() => true);
+  window.cordova.platformId = 'notElectron';
+  window.FirebasePlugin = {
+    setUserId: jest.fn(),
+    logEvent: jest.fn()
+  };
+
+  const store = mockStore(initialState);
+  const user = { email: 'test', password: '1122' };
+
+  await store.dispatch(actions.login(user, 'local'));
+  expect(window.FirebasePlugin.setUserId).toHaveBeenCalledWith(userData.id);
+});
