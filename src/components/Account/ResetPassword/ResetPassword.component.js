@@ -37,7 +37,7 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
       const res = await forgot(values);
       setForgotState(res);
     } catch (err) {
-      const responseMessage = err?.respnse?.data?.message;
+      const responseMessage = err?.response?.data?.message;
       const message = responseMessage
         ? responseMessage
         : intl.formatMessage(messages.noConnection);
