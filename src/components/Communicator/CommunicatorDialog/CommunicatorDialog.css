@@ -68,13 +68,29 @@
   min-height: 150px;
   margin-bottom: 10px;
   text-transform: uppercase;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), 0px 4px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 4px;
 }
 
 .CommunicatorDialog__boards__item__data__title__secondary {
-  display: flex;
+  display: table-row;
   align-items: center;
   align-content: space-between;
 }
+
+.CommunicatorDialog__boards__language {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px;
+}
+
+.CommunicatorDialog__boards__language span {
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
 .is-dark .CommunicatorDialog__boards__item {
   background-color: #424242;
 }
@@ -92,21 +108,32 @@
 
 .CommunicatorDialog__boards__item__image {
   position: relative;
+  align-self: center;
   width: 40%;
+  height: 80%;
+  display: block;
+  flex: 0 0 120px;
 }
 
 .CommunicatorDialog__boards__item__image_container {
   position: relative;
+  height: 50%;
+  vertical-align: middle;
   width: 100%;
+  flex-direction: column;
+  display: flex;
 }
 
 .CommunicatorDialog__boards__item__image_container button {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  padding: 5px;
-  min-width: 20px;
+  align-self: flex-end;
   background-color: #838383;
+  padding: 5px;
+  margin: 5px 0 5px 0;
+  border: none;
+  border-radius: 4px;
+  min-width: 20px;
+  aspect-ratio: 1;
+  cursor: pointer;
 }
 
 .CommunicatorDialog__boards__item__image_container svg {
@@ -115,7 +142,9 @@
 }
 
 .CommunicatorDialog__boards__item__actions {
+  display: inline-flex;
   position: relative;
+  align-items: center;
   width: 10%;
   color: #838383;
 }
@@ -264,9 +293,10 @@
 }
 
 .CommunicatorDialog__boards__item__edit-title {
-  display: inline;
+  display: inline-flex;
   margin: 0;
   padding: 0;
+  vertical-align: middle;
 }
 
 .CommunicatorDialog__board-report-dialog {
