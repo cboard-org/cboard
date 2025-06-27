@@ -12,16 +12,8 @@ import { defineConfig, devices } from '@playwright/test';
  * 
  * @see https://playwright.dev/docs/test-configuration
  */
-export default defineConfig({
-  testDir: './tests',
-  
-  /* Maximum parallel execution */
-  fullyParallel: true,
-    /* Optimal worker count for cross-browser stability */
-  workers: process.env.CI ? 5 : 5, // Reduced for stability
-  
+const config = defineConfig({
   /* Balanced timeout settings */
-  timeout: 60 * 1000, // Increased test timeout for slower browsers
   expect: {
     timeout: 10 * 1000,
   },
@@ -29,26 +21,10 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   
-  /* No retries for faster execution - let failures fail fast */
-  retries: 0,
+  /* Maximum parallel execution */
+  fullyParallel: true,
   
-  /* Minimal reporter for speed */
-  reporter: [['junit', { outputFile: 'test-results/results.xml' }], ['html', { open: 'never' }], ['list']],
-  use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'https://app.qa.cboard.io',
-
-    /* Balanced timeout settings for reliability vs speed */
-    actionTimeout: 15 * 1000,
-    
-    /* Longer navigation timeout for slow environments */
-    navigationTimeout: 60 * 1000,
-
-    /* No traces, videos, or screenshots for maximum speed */
-    trace: 'off',
-    screenshot: 'off',
-    video: 'off',
-  },  /* Essential browser coverage for fastest execution */
+  /* Essential browser coverage for fastest execution */
   projects: [
     {
       name: 'chromium',
@@ -70,6 +46,36 @@ export default defineConfig({
       },
     },
   ],
+  
+  /* Minimal reporter for speed */
+  reporter: [['junit', { outputFile: 'test-results/results.xml' }], ['html', { open: 'never' }], ['list']],
+  
+  /* No retries for faster execution - let failures fail fast */
+  retries: 0,
+  
+  testDir: './tests',
+  
+  /* Balanced timeout settings */
+  timeout: 60 * 1000, // Increased test timeout for slower browsers,
+  
+  use: {
+    /* Balanced timeout settings for reliability vs speed */
+    actionTimeout: 15 * 1000,
+
+    /* Base URL to use in actions like `await page.goto('/')`. */
+    baseURL: 'https://app.qa.cboard.io',
+    
+    /* Longer navigation timeout for slow environments */
+    navigationTimeout: 60 * 1000,
+
+    /* No traces, videos, or screenshots for maximum speed */
+    screenshot: 'off',
+    trace: 'off',
+    video: 'off',
+  },
+  
+  /* Optimal worker count for cross-browser stability */
+  workers: process.env.CI ? 5 : 5, // Reduced for stability
 
   /* Run your local dev server before starting the tests */
   // webServer: {
@@ -78,3 +84,5 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
+
+export default config;
