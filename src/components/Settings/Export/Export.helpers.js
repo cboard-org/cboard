@@ -379,7 +379,8 @@ async function generatePDFBoard(
   intl,
   breakPage = true,
   picsee = false,
-  labelFontSize
+  labelFontSize,
+  showTileBorders = false
 ) {
   const header = {
     absolutePosition: { x: 0, y: 5 },
@@ -387,7 +388,16 @@ async function generatePDFBoard(
     alignment: 'center',
     fontSize: 8
   };
-
+  const tileRect = {
+    type: 'rect',
+    x: tileX,
+    y: tileY,
+    w: tileWidth,
+    h: tileHeight,
+    lineWidth: showTileBorders ? 1 : 0,
+    lineColor: showTileBorders ? 'black' : undefined
+  };
+  canvas.push(tileRect);
   const columns =
     board.isFixed && board.grid ? board.grid.columns : CBOARD_COLUMNS;
   const rows = board.isFixed && board.grid ? board.grid.rows : CBOARD_ROWS;
@@ -892,7 +902,8 @@ export async function pdfExportAdapter(
   boards = [],
   labelFontSize,
   intl,
-  picsee = false
+  picsee = false,
+  showTileBorders = false
 ) {
   const font = definePDFfont(intl);
   const docDefinition = {
@@ -973,7 +984,8 @@ export async function pdfExportAdapter(
       intl,
       breakPage,
       picsee,
-      labelFontSize
+      labelFontSize,
+      showTileBorders
     );
     return prevContent.concat(boardPDFData);
   }, Promise.resolve([]));
