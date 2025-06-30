@@ -705,7 +705,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                       })}
                       <span style={{ marginLeft: '1em' }} />
                     </div>
-                    <div className="CommunicatorDialog__boards__language">
+                    <div className="CommunicatorDialog__boards__item__data__language">
                       <LanguageIcon fontSize="small" />
                       <span>{getFormattedName(board.locale)}</span>
                     </div>
