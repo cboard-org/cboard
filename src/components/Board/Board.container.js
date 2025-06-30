@@ -228,8 +228,6 @@ export class BoardContainer extends Component {
 
     // Loggedin user?
     if ('name' in userData && 'email' in userData && window.navigator.onLine) {
-      //synchronize user id in analytics
-      window.gtag('set', { user_id: userData.id });
       //synchronize communicator and boards with API
       this.setState({ isGettingApiObjects: true });
       getApiObjects().then(() => this.setState({ isGettingApiObjects: false }));
