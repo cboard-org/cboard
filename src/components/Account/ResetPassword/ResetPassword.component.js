@@ -18,6 +18,8 @@ import { forgot } from './ResetPassword.actions';
 import messages from './ResetPassword.messages';
 import './ResetPassword.css';
 
+const initialValues = { email: '' };
+
 export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
   const [isSending, setIsSending] = useState(false);
   const [forgotState, setForgotState] = useState({});
@@ -46,7 +48,6 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
   };
 
   const isButtonDisabled = isSending || !!forgotState.success;
-  const initialValues = { email: '' };
 
   return (
     <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="forgot">
@@ -77,7 +78,6 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
             initialValues={initialValues}
             onSubmit={handleSubmit}
             validationSchema={validationSchema}
-            enableReinitialize
           >
             {({ errors, handleChange, handleSubmit }) => (
               <form className="Forgot__form" onSubmit={handleSubmit}>
