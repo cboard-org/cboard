@@ -23,24 +23,32 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
   const [forgotState, setForgotState] = useState({});
   useEffect(
     () => {
-      if (!isDialogOpen) {
+      if (isDialogOpen) {
         setForgotState({});
       }
     },
     [isDialogOpen]
   );
 
-  const handleSubmit = values => {
+  const handleSubmit = async values => {
     setIsSending(true);
     setForgotState({});
-
-    forgot(values)
-      .then(res => setForgotState(res))
-      .catch(err => setForgotState(err))
-      .finally(() => setIsSending(false));
+    try {
+      const res = await forgot(values);
+      setForgotState(res);
+    } catch (err) {
+      const responseMessage = err?.response?.data?.message;
+      const message = responseMessage
+        ? responseMessage
+        : intl.formatMessage(messages.noConnection);
+      setForgotState({ success: false, message });
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const isButtonDisabled = isSending || !!forgotState.success;
+  const initialValues = { email: '' };
 
   return (
     <Dialog open={isDialogOpen} onClose={onClose} aria-labelledby="forgot">
@@ -68,18 +76,17 @@ export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
         </div>
         {forgotState && !forgotState.success && (
           <Formik
-            initialValues={{ email: '' }}
+            initialValues={initialValues}
             onSubmit={handleSubmit}
             validationSchema={validationSchema}
             enableReinitialize
           >
-            {({ values, errors, handleChange, handleSubmit }) => (
+            {({ errors, handleChange, handleSubmit }) => (
               <form className="Forgot__form" onSubmit={handleSubmit}>
                 <TextField
                   error={errors.email}
                   label={intl.formatMessage(messages.email)}
                   name="email"
-                  value={values.email}
                   onChange={handleChange}
                 />
                 <DialogActions>
