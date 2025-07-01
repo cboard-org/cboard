@@ -8,7 +8,7 @@ import messages from './Activate.messages';
 
 function ActivateContainer() {
   const [isActivating, setIsActivating] = useState(true);
-  const [error, setError] = useState(false);
+  const [isErrorActivating, setIsErrorActivating] = useState(false);
 
   const { url } = useParams();
   const history = useHistory();
@@ -24,7 +24,7 @@ function ActivateContainer() {
 
   const handleError = useCallback(
     () => {
-      setError(true);
+      setIsErrorActivating(true);
       redirectToLogin();
     },
     [redirectToLogin]
@@ -55,7 +55,7 @@ function ActivateContainer() {
         <FormattedMessage {...messages.activating} />
       ) : (
         <Fragment>
-          {error ? (
+          {isErrorActivating ? (
             <FormattedMessage {...messages.error} />
           ) : (
             <FormattedMessage {...messages.success} />
