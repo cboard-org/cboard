@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Dialog from '@material-ui/core/Dialog';
@@ -20,58 +20,42 @@ import './ImageEditor.css';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 
-class ImageEditor extends PureComponent {
-  static defaultProps = {
-    open: false
-  };
-  static propTypes = {
-    open: PropTypes.bool,
-    onImageEditorClose: PropTypes.func,
-    onImageEditorDone: PropTypes.func,
-    image: PropTypes.string,
-    intl: PropTypes.object.isRequired
+function ImageEditor(props) {
+  const { intl, open, onImageEditorClose, onImageEditorDone, image } = props;
+
+  const [isCropActive, setIsCropActive] = useState(false);
+  const [imgCropped, setImgCropped] = useState(null);
+  const [style, setStyle] = useState(() => {
+    return window.innerWidth < 576
+      ? { width: 248, height: 182 }
+      : { width: 492, height: 369 };
+  });
+  const [cropper, setCropper] = useState(null);
+  const srcImage = imgCropped ? imgCropped : image;
+
+  const handleOnClickCrop = () => {
+    setIsCropActive(true);
+    cropper.setDragMode('crop');
+    cropper.crop();
   };
 
-  constructor(props) {
-    super(props);
-    const setImageSize = () => {
-      if (window.innerWidth < 576) {
-        return { width: 248, height: 182 };
-      } else {
-        return { width: 492, height: 369 };
-      }
-    };
-    this.state = {
-      isCropActive: false,
-      imgCropped: null,
-      style: setImageSize()
-    };
-  }
-
-  handleOnClickCrop = () => {
-    this.setState({ isCropActive: true });
-    this.state.cropper.setDragMode('crop');
-    this.state.cropper.crop();
-  };
-  handleOnClickDoneCrop = () => {
-    const { cropper } = this.state;
-    this.setState({
-      isCropActive: false,
-      imgCropped: cropper.getCroppedCanvas().toDataURL()
-    });
-    this.state.cropper.setDragMode('move');
-  };
-  handleOnClickClose = () => {
-    this.setState({ isCropActive: false, imgCropped: null });
-    this.state.cropper.destroy();
-    this.props.onImageEditorClose();
-  };
-
-  handleOnClickDone = async () => {
-    const { cropper } = this.state;
+  const handleOnClickDoneCrop = () => {
+    setImgCropped(cropper.getCroppedCanvas().toDataURL());
+    setIsCropActive(false);
     cropper.setDragMode('move');
-    this.setState({ imgCropped: null });
-    this.props.onImageEditorClose();
+  };
+
+  const handleOnClickClose = () => {
+    setIsCropActive(false);
+    setImgCropped(null);
+    cropper?.destroy?.();
+    onImageEditorClose();
+  };
+
+  const handleOnClickDone = async () => {
+    cropper.setDragMode('move');
+    setImgCropped(null);
+    onImageEditorClose();
     cropper
       .getCroppedCanvas({
         maxWidth: 200,
@@ -82,117 +66,121 @@ class ImageEditor extends PureComponent {
       })
       .toBlob(
         blob => {
-          this.props.onImageEditorDone(blob);
+          onImageEditorDone(blob);
         },
         'image/png',
         1
       );
     cropper.destroy();
   };
-  handleOnClickCancelCrop = () => {
-    this.setState({ isCropActive: false });
-    this.state.cropper.clear();
-    this.state.cropper.setDragMode('move');
+  const handleOnClickCancelCrop = () => {
+    cropper.setDragMode('move');
+    cropper.clear();
+    setIsCropActive(false);
   };
 
-  render() {
-    const { intl, open, onImageEditorClose, image } = this.props;
-    const srcImage = this.state.imgCropped ? this.state.imgCropped : image;
-    return (
-      <React.Fragment>
-        <Dialog
-          open={open}
-          onClose={onImageEditorClose}
-          fullScreen={false}
-          className="ImageEditor__container"
-        >
-          <DialogTitle className="ImageEditor__title">
-            <div className="ImageEditor__Container">
-              <FormattedMessage {...messages.title} />
-            </div>
-          </DialogTitle>
-          <DialogContent>
-            <div className="ImageEditor__actionBar">
-              <IconButton
-                label={intl.formatMessage(messages.rotateRight)}
-                onClick={() => {
-                  this.state.cropper.rotate(90);
-                }}
-              >
-                <RotateRightIcon />
-              </IconButton>
-              {this.state.isCropActive ? (
-                <React.Fragment>
-                  <IconButton
-                    label={intl.formatMessage(messages.cropImage)}
-                    onClick={this.handleOnClickDoneCrop}
-                  >
-                    <DoneIcon />
-                  </IconButton>
-                  <IconButton
-                    label={intl.formatMessage(messages.cancelCrop)}
-                    onClick={this.handleOnClickCancelCrop}
-                  >
-                    <BlockIcon />
-                  </IconButton>
-                </React.Fragment>
-              ) : (
+  return (
+    <React.Fragment>
+      <Dialog
+        open={open}
+        onClose={onImageEditorClose}
+        fullScreen={false}
+        className="ImageEditor__container"
+      >
+        <DialogTitle className="ImageEditor__title">
+          <div className="ImageEditor__Container">
+            <FormattedMessage {...messages.title} />
+          </div>
+        </DialogTitle>
+        <DialogContent>
+          <div className="ImageEditor__actionBar">
+            <IconButton
+              label={intl.formatMessage(messages.rotateRight)}
+              onClick={() => {
+                cropper.rotate(90);
+              }}
+            >
+              <RotateRightIcon />
+            </IconButton>
+            {isCropActive ? (
+              <React.Fragment>
                 <IconButton
                   label={intl.formatMessage(messages.cropImage)}
-                  onClick={this.handleOnClickCrop}
+                  onClick={handleOnClickDoneCrop}
                 >
-                  <CropIcon />
+                  <DoneIcon />
                 </IconButton>
-              )}
+                <IconButton
+                  label={intl.formatMessage(messages.cancelCrop)}
+                  onClick={handleOnClickCancelCrop}
+                >
+                  <BlockIcon />
+                </IconButton>
+              </React.Fragment>
+            ) : (
               <IconButton
-                label={intl.formatMessage(messages.zoomIn)}
-                onClick={() => this.state.cropper.zoom(0.1)}
+                label={intl.formatMessage(messages.cropImage)}
+                onClick={handleOnClickCrop}
               >
-                <ZoomInIcon />
+                <CropIcon />
               </IconButton>
-              <IconButton
-                label={intl.formatMessage(messages.zoomOut)}
-                onClick={() => this.state.cropper.zoom(-0.1)}
-              >
-                <ZoomOutIcon />
-              </IconButton>
-            </div>
-            <Cropper
-              style={this.state.style}
-              zoomTo={0}
-              src={srcImage}
-              viewMode={0}
-              background={true}
-              responsive={true}
-              checkOrientation={false}
-              guides={true}
-              dragMode="move"
-              autoCrop={false}
-              onInitialized={instance => {
-                this.setState({ cropper: instance });
-              }}
-            />
-          </DialogContent>
-          <DialogActions>
+            )}
             <IconButton
-              label={intl.formatMessage(messages.done)}
-              onClick={this.handleOnClickDone}
-              disabled={this.state.isCropActive}
+              label={intl.formatMessage(messages.zoomIn)}
+              onClick={() => cropper.zoom(0.1)}
             >
-              <DoneIcon />
+              <ZoomInIcon />
             </IconButton>
+            <IconButton
+              label={intl.formatMessage(messages.zoomOut)}
+              onClick={() => cropper.zoom(-0.1)}
+            >
+              <ZoomOutIcon />
+            </IconButton>
+          </div>
+          <Cropper
+            style={style}
+            zoomTo={0}
+            src={srcImage}
+            viewMode={0}
+            background={true}
+            responsive={true}
+            checkOrientation={false}
+            guides={true}
+            dragMode="move"
+            autoCrop={false}
+            onInitialized={instance => {
+              setCropper(instance);
+            }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <IconButton
+            label={intl.formatMessage(messages.done)}
+            onClick={handleOnClickDone}
+            disabled={isCropActive}
+          >
+            <DoneIcon />
+          </IconButton>
 
-            <IconButton
-              label={intl.formatMessage(messages.close)}
-              onClick={this.handleOnClickClose}
-            >
-              <CloseIcon />
-            </IconButton>
-          </DialogActions>
-        </Dialog>
-      </React.Fragment>
-    );
-  }
+          <IconButton
+            label={intl.formatMessage(messages.close)}
+            onClick={handleOnClickClose}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogActions>
+      </Dialog>
+    </React.Fragment>
+  );
 }
+
+ImageEditor.propTypes = {
+  open: PropTypes.bool,
+  onImageEditorClose: PropTypes.func,
+  onImageEditorDone: PropTypes.func,
+  image: PropTypes.string,
+  intl: PropTypes.object.isRequired
+};
 
 export default withMobileDialog()(ImageEditor);
