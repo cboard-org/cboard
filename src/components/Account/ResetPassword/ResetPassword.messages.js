@@ -26,8 +26,8 @@ export default defineMessages({
     id: 'cboard.components.ResetPassword.resetPasswordSuccess',
     defaultMessage: 'Success!! Check your mail to reset your password.'
   },
-  noConnection: {
-    id: 'cboard.components.ResetPassword.noConnection',
-    default: 'Unable to connect to the server. Please try again later.'
+  resetPasswordError: {
+    id: 'cboard.components.ResetPassword.resetPasswordError',
+    defaultMessage: 'Failed to reset password. Please try again.'
   }
 });
