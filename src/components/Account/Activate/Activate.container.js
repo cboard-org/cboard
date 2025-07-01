@@ -32,19 +32,20 @@ function ActivateContainer() {
 
   useEffect(
     () => {
-      setIsActivating(true);
-      activate(url)
-        .then(status => {
-          if (status.success) {
-            redirectToLogin();
-          } else {
-            handleError();
+      const activateAccount = async () => {
+        setIsActivating(true);
+        try {
+          const status = await activate(url);
+          if (!status.success) {
+            throw new Error('Activation failed');
           }
-        })
-        .catch(status => {
+          redirectToLogin();
+        } catch (error) {
           handleError();
-        })
-        .finally(() => setIsActivating(false));
+        }
+        setIsActivating(false);
+      };
+      activateAccount();
     },
     [url, redirectToLogin, handleError]
   );
