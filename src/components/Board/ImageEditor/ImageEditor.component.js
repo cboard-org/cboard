@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Dialog from '@material-ui/core/Dialog';
@@ -25,13 +25,16 @@ function ImageEditor(props) {
 
   const [isCropActive, setIsCropActive] = useState(false);
   const [imgCropped, setImgCropped] = useState(null);
-  const [style, setStyle] = useState(() => {
-    return window.innerWidth < 576
-      ? { width: 248, height: 182 }
-      : { width: 492, height: 369 };
-  });
+  const [style, setStyle] = useState(getInitialStyle);
+
   const [cropper, setCropper] = useState(null);
   const srcImage = imgCropped ? imgCropped : image;
+
+  function getInitialStyle() {
+    return window.innterWith < 576
+      ? { with: 248, height: 182 }
+      : { with: 492, height: 369 };
+  }
 
   const handleOnClickCrop = () => {
     setIsCropActive(true);
@@ -78,6 +81,16 @@ function ImageEditor(props) {
     cropper.clear();
     setIsCropActive(false);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setStyle(getInitialStyle());
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <React.Fragment>
