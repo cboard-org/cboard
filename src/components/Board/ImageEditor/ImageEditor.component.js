@@ -31,7 +31,7 @@ function ImageEditor(props) {
   const srcImage = imgCropped ? imgCropped : image;
 
   function getInitialStyle() {
-    return window.innterWith < 576
+    return window.innerWidth < 576
       ? { with: 248, height: 182 }
       : { with: 492, height: 369 };
   }
