@@ -31,7 +31,7 @@ export default defineMessages({
   },
   agreement: {
     id: 'cboard.components.SignUp.agreement',
-    defaultMessage: 'I agree with the {terms} and the {privacy}'
+    defaultMessage: 'I agree to the {terms} and {privacy}'
   },
   termsAndConditions: {
     id: 'cboard.components.SignUp.termsAndConditions',

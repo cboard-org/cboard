@@ -32,7 +32,7 @@
   "cboard.components.SignUp.confirmYourPassword": "Confirm your password",
   "cboard.components.SignUp.cancel": "Cancel",
   "cboard.components.SignUp.signMeUp": "Sign me up",
-  "cboard.components.SignUp.agreement": "I agree to the :terms and :privacy.",
+  "cboard.components.SignUp.agreement": "I agree to the {terms} and {privacy}.",
   "cboard.components.SignUp.termsAndConditions": "Terms",
   "cboard.components.SignUp.privacy": "Privacy Policy",
   "cboard.components.SignUp.noConnection": "Unable to connect to the server. Please try again later.",
