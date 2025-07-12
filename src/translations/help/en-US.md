@@ -2,64 +2,68 @@
 
 ## Table of contents
 
-* [What is Cboard?](#WhatisCboard)
-* [Registration and login](#Registrationandlogin) 
-    * [How do I register for Cboard?](#HowdoIregisterforCboard)
-    * [Can I register myself using my social media accounts?](#CanIregistermyselfusingmysocialmediaaccounts)
-    * [How do I log in to Cboard once I am a registered user?](#HowdoIlogintoCboardonceIamaregistereduser)
-    * [How do I logout?](#HowdoIlogout)
-    * [What is the difference between a registered and a non-registered user?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
-    * [How do I update my user information?](#HowdoIupdatemyuserinformation)
-    * [How do I reset my password?](#HowdoIresetmypassword)
-* [Price](#Price) 
-    * [How much does Cboard cost?](#HowmuchdoesCboardcost)
-* [Features](#Features) 
-    * [What devices and OS are supported?](#WhatdevicesandOSaresupported)
-    * [Which languages are supported by Cboard?](#WhichlanguagesaresupportedbyCboard)
-    * [Can Cboard read my message out aloud?](#CanCboardreadmymessageoutaloud)
-    * [Speech capabilities](#Speechcapabilities)
-    * [Export and import](#Exportandimport)
-    * [Display capabilities](#Displaycapabilities)
-    * [Can I change any navigation settings?](#CanIchangeanynavigationsettings)
-    * [Navigation through the interface](#Navigationthroughtheinterface)
-* [Settings](#Settings) 
-    * [How do I access settings in Cboard?](#HowdoIaccesssettingsinCboard)
-    * [How do I print my board set in Cboard?](#HowdoIprintmyboardsetinCboard)
-    * [How do I see Cboard in fullscreen?](#HowdoIseeCboardinfullscreen)
-    * [How do I share a board?](#HowdoIshareaboard)
-    * [How do I share a phrase?](#HowdoIshareaphrase)
-* [Talking](#Talking) 
-    * [How do I add a personally recorded voice to symbols on Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
-    * [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
-    * [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
-* [Board Editing](#BoardEditing) 
-    * [How do I create an empty board?](#HowdoIcreateanemptyboard)
-    * [How do I personalize an existing board in Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
-    * [Can I use my own pictures when editing a board?](#CanIusemyownpictureswheneditingaboard)
-    * [Can I change the ordering of the elements in a board?](#CanIchangetheorderingoftheelementsinaboard)
-    * [How do I select multiple elements to edit?](#HowdoIselectmultipleelementstoedit)
-    * [How can I find new symbols when I am editing a tile?](#FindSymbols)
-    * [Can I place board tiles in fixed positions?](#FixedBoards)
-    * [How do I set a specific number of rows and columns in my board?](#FixedRows)
-* [Export and import](#Exportandimport) 
-    * [How do I export my board in Cboard?](#HowdoIexportmyboardinCboard)
-    * [How do I import a board into Cboard?](#HowdoIimportaboardintoCboard)
-    * [What file format does Cboard use for import/export?](#WhatfileformatdoesCboarduseforimportexport)
-* [Display capabilities](#Displaycapabilities) 
-    * [What can I change on the display?](#WhatcanIchangeonthedisplay)
-    * [Can I resize buttons on Cboard?](#CanIresizebuttonsonCboard)
-    * [Screen scroll through big buttons](#BigScrollButtons)
-* [Scanning](#Scanning) 
-    * [Can I use scanning techniques to access symbols?](#CanIusescanningtechniquestoaccesssymbols)
-* [Communicator builder](#CommunicatorBuilder) 
-    * [What is the communicator builder?](#Whatiscommbuilder)
-    * [Communicator boards](#CommunicatorBoards)
-    * [Public boards](#PublicBoards)
-    * [All my boards](#Allmyboards)
+- [What is Cboard?](#WhatisCboard)
+- [Registration and login](#Registrationandlogin)
+  - [How do I register for Cboard?](#HowdoIregisterforCboard)
+  - [Can I register myself using my social media accounts?](#CanIregistermyselfusingmysocialmediaaccounts)
+  - [How do I log in to Cboard once I am a registered user?](#HowdoIlogintoCboardonceIamaregistereduser)
+  - [What are the different options to configure Cboard?](#WhataredifferentoptionstoconfigureCboard)
+  - [How do I logout?](#HowdoIlogout)
+  - [What is the difference between a registered and a non-registered user?](#Whatisthedifferencebetweenaregisteredandanon-registereduser)
+  - [How do I update my user information?](#HowdoIupdatemyuserinformation)
+  - [How do I reset my password?](#HowdoIresetmypassword)
+- [Price](#Price)
+  - [How much does Cboard cost?](#HowmuchdoesCboardcost)
+- [Features](#Features)
+  - [What devices and OS are supported?](#WhatdevicesandOSaresupported)
+  - [Which languages are supported by Cboard?](#WhichlanguagesaresupportedbyCboard)
+  - [Can Cboard read my message out aloud?](#CanCboardreadmymessageoutaloud)
+  - [Speech capabilities](#Speechcapabilities)
+  - [How does communication work in Cboard?](#CommunicationWorkflow)
+  - [Can I change any navigation settings?](#CanIchangeanynavigationsettings)
+  - [Navigation through the interface](#Navigationthroughtheinterface)
+- [Settings](#Settings)
+  - [How do I access settings in Cboard?](#HowdoIaccesssettingsinCboard)
+  - [How do I print my board set in Cboard?](#HowdoIprintmyboardsetinCboard)
+  - [How do I see Cboard in fullscreen?](#HowdoIseeCboardinfullscreen)
+  - [How do I share a board?](#HowdoIshareaboard)
+  - [How do I share a phrase?](#HowdoIshareaphrase)
+- [Talking](#Talking)
+  - [How do I add a personally recorded voice to symbols on Cboard?](#HowdoIaddapersonallyrecordedvoicetosymbolsonCboard)
+  - [How do I switch to a different voice?](#HowdoIswitchtoadifferentvoice)
+  - [How do I change how a voice sounds?](#HowdoIchangehowavoicesounds)
+- [Board Editing](#BoardEditing)
+  - [How do I create an empty board?](#HowdoIcreateanemptyboard)
+  - [How do I personalize an existing board in Cboard?](#HowdoIpersonalizeanexistingboardinCboard)
+  - [Can I use my own pictures when editing a board?](#CanIusemyownpictureswheneditingaboard)
+  - [Can I change the ordering of the elements in a board?](#CanIchangetheorderingoftheelementsinaboard)
+  - [How do I select multiple elements to edit?](#HowdoIselectmultipleelementstoedit)
+  - [How can I find new symbols when I am editing a tile?](#FindSymbols)
+  - [Can I place board tiles in fixed positions?](#FixedBoards)
+  - [How do I set a specific number of rows and columns in my board?](#FixedRows)
+- [Export and import](#Exportandimport)
+  - [How do I export my board in Cboard?](#HowdoIexportmyboardinCboard)
+  - [How do I import a board into Cboard?](#HowdoIimportaboardintoCboard)
+  - [What file format does Cboard use for import/export?](#WhatfileformatdoesCboarduseforimportexport)
+- [Display capabilities](#Displaycapabilities)
+  - [What can I change on the display?](#WhatcanIchangeonthedisplay)
+  - [Can I resize buttons on Cboard?](#CanIresizebuttonsonCboard)
+  - [Screen scroll through big buttons](#BigScrollButtons)
+- [Scanning](#Scanning)
+  - [Can I use scanning techniques to access symbols?](#CanIusescanningtechniquestoaccesssymbols)
+- [Communicator builder](#CommunicatorBuilder)
+  - [What is the communicator builder?](#Whatiscommbuilder)
+  - [Communicator boards](#CommunicatorBoards)
+  - [Public boards](#PublicBoards)
+  - [All my boards](#Allmyboards)
 
 ## <a name='WhatisCboard'></a>What is Cboard?
 
 Cboard is a free web application for children and adults with speech and language impairments, facilitating communication with pictures and text-to-speech.
+
+![Cboard Main Interface](/images/help/cboard-main-interface.png 'Cboard Main Interface')
+
+The main Cboard interface features a clean, accessible design with symbol tiles organized in categories. Users can click on symbols to build sentences in the communication output bar at the top of the screen. The interface supports both hierarchical navigation through categories and direct symbol selection for efficient communication.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/pjoLEtiFf2A" frameborder="0" allowfullscreen></iframe></div>
 
@@ -69,17 +73,19 @@ Cboard is a free web application for children and adults with speech and languag
 
 To register for Cboard, begin by following the steps on the Welcome page where you will find a choice of logins.
 
-![Cboard website](/images/help/website.png "Cboard website")
+![Cboard website](/images/help/website.png 'Cboard website')
 
-![Welcome page](/images/help/welcome-page.png "Welcome page")
+![Welcome page](/images/help/welcome-page.png 'Welcome page')
+
+The modern Cboard welcome screen provides multiple login options including traditional email/password registration, as well as social media authentication through Google, Facebook, and Apple. Users can also skip registration and try the application immediately.
 
 If you are a new user, press SIGN UP, and a short form will pop up asking for basic information in order to create your account.
 
-![Cboard signup](/images/help/signup.png "Cboard signup")
+![Cboard signup](/images/help/signup.png 'Cboard signup')
 
 Once you have filled out this information, you will receive an e-mail shortly after with a link to follow in order to confirm your account.
 
-![Email signup](/images/help/signupemail.png "Email signup")
+![Email signup](/images/help/signupemail.png 'Email signup')
 
 This information is only held by the company to support use of Cboard and offer help when necessary. It is not shared with other organizations, (See [Privacy details](https://www.cboard.io/privacy/)).
 
@@ -93,19 +99,30 @@ Yes! On the login page, you will be given the option to sign up with your Google
 
 To log in to Cboard, you follow the first step used to sign up, but instead of selecting SIGN UP on the Welcome screen, select LOGIN. You will then be asked to provide the e-mail you initially signed up with, and the password you set up.
 
-![Cboard login](/images/help/login.png "Cboard login")
+![Cboard login](/images/help/login.png 'Cboard login')
 
-### What are the different options to configure Cboard?
+### <a name='WhataredifferentoptionstoconfigureCboard'></a>What are the different options to configure Cboard?
 
 Once you login to Cboard, you can access different options to configure and develop the Communication Board provided when Cboard is in unlocked mode. See the list of all the key options below:
 
-![Cboard settings](/images/help/settings.png "Cboard settings")
+![Cboard settings](/images/help/settings.png 'Cboard settings')
+
+**Unlocking the Interface:**
+To access advanced features, click the lock icon three times. This reveals additional controls including:
+
+- **Print Board**: Export the current board as a PDF
+- **Full Screen**: Enter fullscreen mode for distraction-free communication
+- **Settings**: Access comprehensive configuration options
+- **Share**: Share boards via email, social media, or direct links
+- **Build**: Access the communicator builder for managing boards
+- **Edit**: Modify existing boards and add new symbols
+- **Boards**: Navigate between different communication boards
 
 ### <a name='HowdoIlogout'></a>How do I logout?
 
 You can log out by selecting the settings icon, and the option will appear in red. You can also select the lock symbol on the right corner, click three times and once you unlocked the screen and the red bar appears, select the icon to the left of the lock (your picture if you have one loaded) and the option to log out will appear in red.
 
-![Cboard logout](/images/help/logout.png "Cboard logout")
+![Cboard logout](/images/help/logout.png 'Cboard logout')
 
 ### <a name='Whatisthedifferencebetweenaregisteredandanon-registereduser'></a>What is the difference between a registered and a non-registered user?
 
@@ -123,7 +140,37 @@ In order to reset your password, please e-mail support@cboard.io and we will get
 
 ### <a name='HowmuchdoesCboardcost'></a>How much does Cboard cost?
 
-Cboard is completely free of any charge.
+Cboard offers multiple pricing options to suit different user needs:
+
+**Free Plan (\$0/Forever)**
+
+- Basic communication features
+- Access to symbol libraries
+- Board creation and editing
+- Limited feature set
+
+**Pro Monthly Plan (\$8/Month)**
+
+- All free features plus:
+- Online neural voices
+- Copy public boards
+- Publish boards
+- Copy tiles
+- Powerful usage analytics
+- Share boards
+- Ads free experience
+- Export to Open Board Format (OBF)
+- Share phrases
+- Private support channel
+- Voice recording for tiles
+
+**Pro Yearly Plan (\$79/Year)**
+
+- All Pro Monthly features
+- Significant savings compared to monthly billing
+- Best value for regular users
+
+The free version provides essential AAC functionality, while Pro subscriptions unlock advanced features for enhanced communication, sharing, and customization capabilities. Users can upgrade to Pro plans through the settings menu when logged into their Cboard account.
 
 ## <a name='Features'></a>Features
 
@@ -131,7 +178,7 @@ Cboard is completely free of any charge.
 
 Cboard is available online using a wide variety of devices, including desktops, tablets and mobile phones using Mac, Windows and Android operating systems. It is best viewed in browsers such as Chrome, Firefox, Edge and Safari and an Android app is available from Google Play.
 
-![Browser support](/images/help/browsers.png "Browser support")
+![Browser support](/images/help/browsers.png 'Browser support')
 
 Because Cboard is a web based app it will respond to the settings provided by the individual browsers. This may mean you have different results to the settings provided by Cboard. For example you may find different speech options being offered.
 
@@ -153,19 +200,96 @@ Yes, Cboard uses the synthetic speech output available on your device to read ou
 
 In order to adjust speech capabilities, go into SETTINGS, and under the LANGUAGE category is the SPEECH category. When you select SPEECH, you will be able to edit the pitch and pace of speech on Cboard.
 
-![Speech capabilities](/images/help/speech.png "Speech capabilities")
+![Speech capabilities](/images/help/speech.png 'Speech capabilities')
 
-### <a name='Exportandimport'></a>Export and import
+### <a name='CommunicationWorkflow'></a>How does communication work in Cboard?
 
-Both options to export are within SETTINGS in the SYSTEM category, below Language and Speech. The EXPORT category will give you the option to upload either an OpenBoard or PDF. The IMPORT category will open your saved files once you select RESTORE.
+Cboard uses a hierarchical symbol-based communication system. Users navigate through categories to find appropriate symbols and build sentences in the output bar.
 
-![Export capabilities](/images/help/export.png "Export capabilities")
+**Basic Communication Steps:**
+
+1. Click on symbols to add them to the output bar at the top
+2. Navigate through categories (like "food", "emotions", "actions") to find specific symbols
+3. Build complete sentences by selecting multiple symbols in sequence
+4. Use the backspace button to remove the last symbol or clear button to start over
+5. Click on the completed sentence to have it read aloud using text-to-speech
+
+**Navigation Features:**
+
+- **Category Boards**: Major categories like food, activities, emotions each contain related symbols
+- **Back Navigation**: Easy return to previous boards or the main home screen
+- **Output Bar**: Shows selected symbols and provides playback controls
+- **Quick Access**: Common symbols like "yes", "no", and "quick chat" available on the main screen
 
 ### <a name='Displaycapabilities'></a>Display capabilities
 
-Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is right below Export and Import. One you select DISPLAY, you can change the UI size as well as the app Font size by selecting the size you want. The red dot should be under the size you want to choose.
+Display settings can be edited in SETTINGS, within the SYSTEM category. The Display option is located below Export and Import under the System section. To access display settings:
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+1. Unlock the interface by clicking the lock icon three times
+2. Click Settings (gear icon) in the top navigation bar
+3. Select "Display" from the System section
+
+![Display capabilities](/images/help/cboard-display-settings.png 'Display capabilities')
+
+**Available Display Options:**
+
+- **UI Size**: Controls the overall size of interface elements
+
+  - Standard (default)
+  - Large
+  - Extra Large
+
+- **Font Family**: Change the text font used throughout the application
+
+  - Default: Montserrat
+  - Affects all text within the application interface
+
+- **Font Size**: Adjust the application font size
+
+  - Standard (default)
+  - Large
+  - Extra Large
+
+- **Hide the output bar**: Toggle to hide the white communication bar at the top where sentences are built
+
+  - Checkbox option
+  - When enabled, removes the sentence construction area from view
+
+- **Increase action button size**: Enlarge the action buttons on the output bar
+
+  - Checkbox option
+  - Makes backspace, clear, and playback buttons larger for easier access
+
+- **Label Position**: Control the position of text labels on symbol tiles
+
+  - Below (default) - Labels appear underneath symbols
+  - Above - Labels appear above symbols
+  - Hidden - Labels are not displayed on tiles
+
+- **Enable dark theme**: Switch to dark mode color scheme
+  - Checkbox option
+  - Changes component colors, surface darkness, shadow levels, and ink element opacity
+  - Improves accessibility in low-light conditions
+
+Remember to click "Save" after making changes to apply your display preferences.
+
+### <a name='WhatcanIchangeonthedisplay'></a>What can I change on the display?
+
+As detailed above, you can change UI size, font family and size, output bar visibility and button size, label positioning, and theme settings through the Display section in Settings.
+
+### <a name='CanIresizebuttonsonCboard'></a>Can I resize buttons on Cboard?
+
+Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for UI size: Standard, Large, Extra Large. You can also adjust the Font Size with the same three options.
+
+### <a name='BigScrollButtons'></a>Screen scroll through big buttons
+
+It is also possible to scroll up and down a board using a couple of big buttons that can be added from the settings section. This is especially useful for eye-tracker device users, as the buttons allow to scroll the board without needing to slide the screen. To enable this feature, go to the settings section and look for the "enable big scroll buttons" switch. Toggle the switch and save the settings.
+
+![Enable big scroll buttons](/images/help/bigScrollSettings.png 'Big scroll buttons settings')
+
+Then, you should see a couple of big buttons at the top and the bottom of a board if it is large enough, as displayed in the below image:
+
+![Big scroll buttons](/images/help/bigScrollButtons.png 'Big scroll buttons')
 
 ### <a name='CanIchangeanynavigationsettings'></a>Can I change any navigation settings?
 
@@ -175,7 +299,7 @@ Use the NAVIGATION section to edit and facilitate the way you use to move around
 
 In order to edit and facilitate navigating through Cboard, select NAVIGATION, the last menu item within SYSTEM (all in Settings) allows you to add certain details to make using the board easier. The first option within Navigation allows a larger ‘back’ button that is easier to select because of the size. The second adds an ‘x’ button to make it easier to delete symbols, and the third makes it easier to unlock by requiring only one click to unlock settings.
 
-![Navigation  capabilities](/images/help/navigation.png "Navigation capabilities")
+![Navigation  capabilities](/images/help/navigation.png 'Navigation capabilities')
 
 ## <a name='Settings'></a>Settings
 
@@ -193,7 +317,7 @@ To print your board, press the printer logo on the left hand side of the black H
 
 In order to see Cboard in fullscreen, unlock the screen by pressing the lock symbol on the right hand side, and then on the highest row (the black bar), the second symbol from the left that looks like a rectangle expands the screen.
 
-![fullscreen capabilities](/images/help/fullscreen.png "Fullscreen")
+![fullscreen capabilities](/images/help/fullscreen.png 'Fullscreen')
 
 ### <a name='HowdoIshareaboard'></a>How do I share a board?
 
@@ -230,8 +354,8 @@ Assemble a phrase. Then press the share icon that appears on the right of the ou
 7. Add the label for the vocalisation
 
 8. Finally select the microphone symbol and record, you can record multiple times and can play it back before saving it to the board.
-    
-    If you have selected multiple symbols use NEXT to go to the next symbol and repeat the process.
+
+   If you have selected multiple symbols use NEXT to go to the next symbol and repeat the process.
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/KZwCP4PkM4I" frameborder="0" allowfullscreen></iframe></div>
 
@@ -263,7 +387,7 @@ Once you have named the folder you can upload an image in a similar manner to ma
 
 In order to personalize an existing board, select the LOCK on the top right hand corner of the bar above the board, (below the arrow with a cross). Once you have done this, another bar will appear below the black HOME bar, and you will find a small block (EDIT) icon on the left hand side to add a tile or cell. Once the block is selected, the grey bar should turn blue, and on the right hand side you will see a small trash can and a pencil.
 
-![personalize an existing board](/images/help/personalize.png "personalize an existing board")
+![personalize an existing board](/images/help/personalize.png 'personalize an existing board')
 
 In order to personalize the board, select the pencil and you will be able to change the label, upload an image, and add Vocalization.
 
@@ -293,13 +417,13 @@ Select the EDIT block icon on the left hand side of the board bar and choose the
 
 By default, when a new board is created, Cboard will add a **fluent board**. Anyway, it is possible to transform the board into a **fixed board**. They have the following features:
 
-* The grid will not change for different screen sizes or device orientation. 
-* The number of rows and columns are configurable. 
-* The tiles will have fixed positions in the grid. 
+- The grid will not change for different screen sizes or device orientation.
+- The number of rows and columns are configurable.
+- The tiles will have fixed positions in the grid.
 
 To convert a board into a fixed board, simply edit the board and switch the option in the toolbar to make it fixed. Your board will change its appearance and the rows and columns indicators will be displayed.
 
-![Fixed board](/images/help/fixedBoard.png "Fixed board")
+![Fixed board](/images/help/fixedBoard.png 'Fixed board')
 
 ### <a name='FixedRows'></a>How do I set a specific number of rows and columns in my board?
 
@@ -307,7 +431,7 @@ First, you have to transform the board into a **fixed board** (see previous topi
 
 <div><iframe width="420" height="315" src="https://www.youtube.com/embed/XEAz85zrZ70" frameborder="0" allowfullscreen></iframe></div>
 
-## <a name='Exportandimport-1'></a>Export and import
+## <a name='Exportandimport'></a>Export and import
 
 ### <a name='HowdoIexportmyboardinCboard'></a>How do I export my board in Cboard?
 
@@ -323,8 +447,8 @@ In order to import a board, follow the steps used to Export. IMPORT is below Exp
 
 In order to Import and Export boards you have two options:
 
-* Use Cboard native file boards.
-* Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
+- Use Cboard native file boards.
+- Use OpenBoard formatted files. [Learn more about Open Board Format](https://www.openboardformat.org/)
 
 ## <a name='Displaycapabilities-1'></a>Display capabilities
 
@@ -336,17 +460,17 @@ Display settings can be edited in SETTINGS, within the SYSTEM category. The Disp
 
 Yes! You can resize Tiles or Buttons in SETTINGS. In the category SYSTEM, select DISPLAY and you will be given 3 options for size: Standard, Large, Extra Large. See figure below:
 
-![Display capabilities](/images/help/display.png "Display capabilities")
+![Display capabilities](/images/help/display.png 'Display capabilities')
 
 ### <a name='BigScrollButtons'></a>Screen scroll through big buttons
 
 It is also possible to scroll up and down a board using a couple of big buttons that can be added from the settings section. This is especially useful for eye-tracker device users, as the buttons allow to scroll the board without needing to slide the screen. To enable this feature, go to the settings section and look for the "enable big scroll buttons " switch. Toggle the switch and save the settings. See figure below:
 
-![Enable big scroll buttons](/images/help/bigScrollSettings.png "Big scroll buttons settings")
+![Enable big scroll buttons](/images/help/bigScrollSettings.png 'Big scroll buttons settings')
 
 Then, you should see a couple of big buttons at the top and the bottom of a board if it is large enough, as displayed in the below image:
 
-![Big scroll buttons](/images/help/bigScrollButtons.png "Big scroll buttons")
+![Big scroll buttons](/images/help/bigScrollButtons.png 'Big scroll buttons')
 
 ## <a name='Scanning'></a>Scanning
 
@@ -360,36 +484,34 @@ Scanning is where the items in the selection set are presented sequentially over
 
 The communicator builder is a feature that allows you to handle boards in order to copy, delete, publish, add and remove them. In order to access to the functionality you need to unlock settings and click on 'Build' buttton. You will see a new page structured on three different tabs: boards, public boards, all my boards. See figure below:
 
-![Communicator builder](/images/help/communicator.png "Communicator builder")
+![Communicator builder](/images/help/communicator.png 'Communicator builder')
 
 ### <a name='CommunicatorBoards'></a>Communicator boards
 
 The default tab you will see in communicator builder is the communicator boards tab, that will display all boards included into your communicator. You can make changes in your communicator from following action buttons:
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available under 'All my boards' tab.
+- Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available under 'All my boards' tab.
 
-* Set board as root: this buttton will define the board as the first board to be displayed every time you login to Cboard.
+- Set board as root: this buttton will define the board as the first board to be displayed every time you login to Cboard.
 
-![Communicator boards](/images/help/communicatorBoards.png "Communicator boards")
+![Communicator boards](/images/help/communicatorBoards.png 'Communicator boards')
 
 ### <a name='PublicBoards'></a>Public boards
 
-* Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
+- Copy board: this buttton will create a copy of the board and it will add it into your communicator. As this is a copy of the public board, you can edit this board as you want without affecting the original public board.
 
-![Public boards](/images/help/PublicBoards.png "Public boards")
+![Public boards](/images/help/PublicBoards.png 'Public boards')
 
 ### <a name='Allmyboards'></a>All my boards
 
 Please note that JUST registered users can access to this tab functionality.
 
-* Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available.
+- Remove board from communicator: this buttton will quit the board from communicator but WILL NOT delete the board from the database and it is still available.
 
-* Add board to the communicator: this buttton will include the board to the communicator.
+- Add board to the communicator: this buttton will include the board to the communicator.
 
-* Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
-    
- * Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
-    
- * Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
+- Publish board: This action will make public the board and it will be displayed under the public boards tab. Everybody can see your board.
+- Unpublish board: This action will make the board private and it won't be displayed under the public boards tab. Nobody can see your board.
+- Delete board: This action will delete the board and it cannot be recovered. The board will be removed from the database.
 
-![All my boards](/images/help/AllmyBoards.png "All my boards")
+![All my boards](/images/help/AllmyBoards.png 'All my boards')
