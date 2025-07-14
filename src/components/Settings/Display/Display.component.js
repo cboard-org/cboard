@@ -22,7 +22,10 @@ import {
   DISPLAY_SIZE_EXTRALARGE,
   LABEL_POSITION_ABOVE,
   LABEL_POSITION_BELOW,
-  LABEL_POSITION_HIDDEN
+  LABEL_POSITION_HIDDEN,
+  LABEL_CASE_LOWER,
+  LABEL_CASE_DEFAULT,
+  LABEL_CASE_UPPER
 } from './Display.constants';
 
 import {
@@ -104,6 +107,25 @@ class Display extends React.Component {
   }
 
   renderSelect(name) {
+    const values = {
+      uiSize: [
+        DISPLAY_SIZE_STANDARD,
+        DISPLAY_SIZE_LARGE,
+        DISPLAY_SIZE_EXTRALARGE
+      ],
+      fontSize: [
+        DISPLAY_SIZE_STANDARD,
+        DISPLAY_SIZE_LARGE,
+        DISPLAY_SIZE_EXTRALARGE
+      ],
+      labelPosition: [
+        LABEL_POSITION_ABOVE,
+        LABEL_POSITION_BELOW,
+        LABEL_POSITION_HIDDEN
+      ],
+      labelCase: [LABEL_CASE_LOWER, LABEL_CASE_DEFAULT, LABEL_CASE_UPPER]
+    };
+
     return (
       <FormControl>
         <Select
@@ -113,44 +135,14 @@ class Display extends React.Component {
           value={this.state[name]}
           onChange={e => this.onDisplaySettingsChange(name, e)}
         >
-          <MenuItem
-            value={
-              name === 'labelPosition'
-                ? LABEL_POSITION_ABOVE
-                : DISPLAY_SIZE_STANDARD
-            }
-          >
-            {this.props.intl.formatMessage(
-              name === 'labelPosition'
-                ? messages[LABEL_POSITION_ABOVE]
-                : messages[DISPLAY_SIZE_STANDARD]
-            )}
+          <MenuItem value={values[name][0]}>
+            {this.props.intl.formatMessage(messages[values[name][0]])}
           </MenuItem>
-          <MenuItem
-            value={
-              name === 'labelPosition'
-                ? LABEL_POSITION_BELOW
-                : DISPLAY_SIZE_LARGE
-            }
-          >
-            {this.props.intl.formatMessage(
-              name === 'labelPosition'
-                ? messages[LABEL_POSITION_BELOW]
-                : messages[DISPLAY_SIZE_LARGE]
-            )}
+          <MenuItem value={values[name][1]}>
+            {this.props.intl.formatMessage(messages[values[name][1]])}
           </MenuItem>
-          <MenuItem
-            value={
-              name === 'labelPosition'
-                ? LABEL_POSITION_HIDDEN
-                : DISPLAY_SIZE_EXTRALARGE
-            }
-          >
-            {this.props.intl.formatMessage(
-              name === 'labelPosition'
-                ? messages[LABEL_POSITION_HIDDEN]
-                : messages[DISPLAY_SIZE_EXTRALARGE]
-            )}
+          <MenuItem value={values[name][2]}>
+            {this.props.intl.formatMessage(messages[values[name][2]])}
           </MenuItem>
         </Select>
       </FormControl>
@@ -257,6 +249,19 @@ class Display extends React.Component {
               />
               <ListItemSecondaryAction className="Display__Options">
                 {this.renderSelect('labelPosition')}
+              </ListItemSecondaryAction>
+            </ListItem>
+            <Divider />
+            <ListItem>
+              <ListItemText
+                className="Display__ListItemText"
+                primary={<FormattedMessage {...messages.labelCase} />}
+                secondary={
+                  <FormattedMessage {...messages.labelCaseSecondary} />
+                }
+              />
+              <ListItemSecondaryAction className="Display__Options">
+                {this.renderSelect('labelCase')}
               </ListItemSecondaryAction>
             </ListItem>
             <Divider />
