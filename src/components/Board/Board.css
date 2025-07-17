@@ -92,3 +92,20 @@
   overflow-x: hidden;
   flex: 1 1;
 }
+
+#BoardTilesContainer {
+  overflow-x: hidden !important;
+  overflow-y: auto;
+}
+
+.Board__tiles {
+  overflow-x: hidden !important;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+.Board {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  position: relative;
+}

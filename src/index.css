@@ -8,7 +8,7 @@ html,
 body {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow-x: hidden !important;
 }
 
 html {
@@ -34,4 +34,37 @@ body {
   display: flex;
   justify-content: center;
   padding: 2em;
+}
+
+html,
+body,
+#root {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  position: relative;
+}
+
+.Board,
+.Main,
+#BoardTilesContainer {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  position: relative;
+}
+
+/* Hide overflow created by resize observer elements */
+div[style*='1466px'],
+div[style*='200%'],
+div[style*='scroll'] {
+  display: none !important;
+}
+
+/* FULL KILLER - Hides ResizeObserver Scroll Creators */
+.erd_scroll_detection_container,
+.erd_scroll_detection_container > div,
+.erd_scroll_detection_container > div > div {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
 }
