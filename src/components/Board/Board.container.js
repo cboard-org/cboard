@@ -15,6 +15,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
+import { useSearchParams } from 'react-router-dom';
 import {
   showNotification,
   hideNotification
@@ -196,7 +197,7 @@ export class BoardContainer extends Component {
     tileEditorOpen: false,
     isGettingApiObjects: false,
     copyPublicBoard: false,
-    isVariantBoard: false,
+    //copyVariantBoard: false,
     blockedPrivateBoard: false,
     isFixedBoard: false,
     copiedTiles: [],
@@ -383,7 +384,7 @@ export class BoardContainer extends Component {
         : await API.getBoard(boardId);
 
       if (isVariantBoard) {
-        this.setState({ isVariantBoard: true });
+        //this.setState({ copyVariantBoard: remoteBoard });
         this.handleCopyRemoteBoard(remoteBoard);
         return null;
       }
@@ -1345,7 +1346,6 @@ export class BoardContainer extends Component {
     if (isSaving) return;
     this.setState({
       copyPublicBoard: false,
-      isVariantBoard: false,
       blockedPrivateBoard: false,
       isCbuilderBoard: false
     });
@@ -1360,15 +1360,6 @@ export class BoardContainer extends Component {
     const processedBoard = this.updateIfFeaturedBoard(newBoard);
     updateBoard(processedBoard);
     this.saveApiBoardOperation(processedBoard);
-  };
-
-  handleRootBoardTourEnabled = () => {
-    if (this.state.isVariantBoard) {
-      // If the board is a variant, we don't want to show the root board tour
-      return false;
-    } else {
-      return this.props.isRootBoardTourEnabled;
-    }
   };
 
   handleCopyTiles = () => {
@@ -1570,7 +1561,7 @@ export class BoardContainer extends Component {
           isSelecting={this.state.isSelecting}
           isSelectAll={this.state.isSelectAll}
           isFixedBoard={this.state.isFixedBoard}
-          isRootBoardTourEnabled={this.handleRootBoardTourEnabled}
+          isRootBoardTourEnabled={this.props.isRootBoardTourEnabled}
           isUnlockedTourEnabled={this.props.isUnlockedTourEnabled}
           //updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
