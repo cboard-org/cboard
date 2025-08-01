@@ -1365,9 +1365,10 @@ export class BoardContainer extends Component {
   handleRootBoardTourEnabled = () => {
     if (this.state.isVariantBoard) {
       // If the board is a variant, we don't want to show the root board tour
-      disableTour({ isRootBoardTourEnabled: false });
+      return false;
+    } else {
+      return this.props.isRootBoardTourEnabled;
     }
-    return this.props.disableTour;
   };
 
   handleCopyTiles = () => {
@@ -1569,7 +1570,7 @@ export class BoardContainer extends Component {
           isSelecting={this.state.isSelecting}
           isSelectAll={this.state.isSelectAll}
           isFixedBoard={this.state.isFixedBoard}
-          isRootBoardTourEnabled={this.props.isRootBoardTourEnabled}
+          isRootBoardTourEnabled={this.handleRootBoardTourEnabled}
           isUnlockedTourEnabled={this.props.isUnlockedTourEnabled}
           //updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
@@ -1598,7 +1599,7 @@ export class BoardContainer extends Component {
           onAddRemoveRow={this.handleAddRemoveRow}
           onTileDrop={this.handleTileDrop}
           onLayoutChange={this.handleLayoutChange}
-          disableTour={this.handleRootBoardTourEnabled}
+          disableTour={this.props.disableTour}
           onCopyTiles={this.handleCopyTiles}
           onPasteTiles={this.handlePasteTiles}
           copiedTiles={this.state.copiedTiles}
