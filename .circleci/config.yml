@@ -136,18 +136,18 @@ workflows:
             - build
           filters:
             branches:
-              only: expo-ortopedica
+              only: master
       - deploy:
           context: azure
           requires:
             - image
           filters:
             branches:
-              only: expo-ortopedica
+              only: master
       - e2e:
           context: azure
           requires:
             - deploy
           filters:
             branches:
-              only: expo-ortopedica
+              only: master
