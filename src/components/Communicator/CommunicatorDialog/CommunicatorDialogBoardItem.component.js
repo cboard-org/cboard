@@ -591,21 +591,25 @@ class CommunicatorDialogBoardItem extends React.Component {
       <div className="CommunicatorDialog__boards__item">
         <div className="CommunicatorDialog__boards__item__image">
           {!!boardCaption && (
-            <div className="CommunicatorDialog__boards__item__image_container">
-              <img src={boardCaption} alt={title} />
-              {selectedTab === TAB_INDEXES.MY_BOARDS && (
-                <Button
-                  variant="contained"
-                  disableElevation={true}
-                  onClick={() => {
-                    this.setState({ openImageBoard: true });
-                  }}
-                  id="CommunicatorDialog__boards__item__image__Btn"
-                >
-                  <EditIcon />
-                </Button>
-              )}
-            </div>
+            <>
+              <div className="CommunicatorDialog__boards__item__image_container">
+                <img src={boardCaption} alt={title} />
+              </div>
+              <div className="CommunicatorDialog__boards__item__image_container">
+                {selectedTab === TAB_INDEXES.MY_BOARDS && (
+                  <Button
+                    variant="contained"
+                    disableElevation={true}
+                    onClick={() => {
+                      this.setState({ openImageBoard: true });
+                    }}
+                    id="CommunicatorDialog__boards__item__image__Btn"
+                  >
+                    <EditIcon />
+                  </Button>
+                )}
+              </div>
+            </>
           )}
           {!boardCaption && (
             <div className="CommunicatorDialog__boards__item__image__empty">
@@ -675,34 +679,20 @@ class CommunicatorDialogBoardItem extends React.Component {
           <div className="CommunicatorDialog__boards__item__data__title">
             <ListItem disableGutters={true}>
               <ListItemText
-                primary={
-                  <div>
-                    {title}
-                    {selectedTab === TAB_INDEXES.MY_BOARDS && (
-                      <div className="CommunicatorDialog__boards__item__edit-title">
-                        <IconButton
-                          aria-label="edit-title"
-                          onClick={() => {
-                            this.setState({ openEditBoardTitle: true });
-                          }}
-                          label={intl.formatMessage(messages.editBoardTitle)}
-                        >
-                          <EditIcon fontSize="small" />
-                        </IconButton>
-                      </div>
-                    )}
-                  </div>
-                }
+                primary={<div>{title}</div>}
                 secondary={
-                  <div className="CommunicatorDialog__boards__item__data__title__secondary">
-                    {intl.formatMessage(messages.tilesQty, {
-                      qty: board.tiles.length
-                    })}
-                    <span style={{ marginLeft: '1em' }} />
-                    <LanguageIcon fontSize="small" />
-                    <span style={{ marginLeft: '0.05em' }} />
-                    {getFormattedName(board.locale)}
-                  </div>
+                  <>
+                    <div className="CommunicatorDialog__boards__item__data__title__secondary__items">
+                      {intl.formatMessage(messages.tilesQty, {
+                        qty: board.tiles.length
+                      })}
+                      <span style={{ marginLeft: '1em' }} />
+                    </div>
+                    <div className="CommunicatorDialog__boards__item__data__language">
+                      <LanguageIcon fontSize="small" />
+                      <span>{getFormattedName(board.locale)}</span>
+                    </div>
+                  </>
                 }
               />
             </ListItem>
@@ -912,6 +902,15 @@ class CommunicatorDialogBoardItem extends React.Component {
               )}
               {selectedTab === TAB_INDEXES.MY_BOARDS && (
                 <div>
+                  <IconButton
+                    aria-label="edit-title"
+                    onClick={() => {
+                      this.setState({ openEditBoardTitle: true });
+                    }}
+                    label={intl.formatMessage(messages.editBoardTitle)}
+                  >
+                    <EditIcon fontSize="small" />
+                  </IconButton>
                   <IconButton
                     disabled={communicator.rootBoard === board.id}
                     label={
