@@ -15,7 +15,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
-import { useSearchParams } from 'react-router-dom';
 import {
   showNotification,
   hideNotification
@@ -197,7 +196,7 @@ export class BoardContainer extends Component {
     tileEditorOpen: false,
     isGettingApiObjects: false,
     copyPublicBoard: false,
-    //copyVariantBoard: false,
+    isVariantBoard: false,
     blockedPrivateBoard: false,
     isFixedBoard: false,
     copiedTiles: [],
@@ -1601,6 +1600,7 @@ export class BoardContainer extends Component {
           changeDefaultBoard={this.props.changeDefaultBoard}
           improvedPhrase={improvedPhrase}
           speak={speak}
+          isVariantBoard={this.state.isVariantBoard}
         />
         <Dialog
           open={!!this.state.copyPublicBoard && !isPremiumRequiredModalOpen}
