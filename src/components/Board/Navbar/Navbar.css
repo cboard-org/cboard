@@ -60,3 +60,19 @@
 .Navbar .LoginSignUpButton:focus {
   color: #fff;
 }
+
+@media (max-width: 768px) {
+  .Navbar__group--end .MuiIconButton-root,
+  .Navbar__group--start .MuiIconButton-root {
+    padding: 6px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Navbar__group--end,
+  .Navbar__group--start {
+    align-items: center;
+  }
+}
