@@ -61,18 +61,13 @@
   color: #fff;
 }
 
-@media (max-width: 768px) {
-  .Navbar__group--end .MuiIconButton-root,
-  .Navbar__group--start .MuiIconButton-root {
-    padding: 6px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.Navbar__group {
+  align-items: center;
+}
 
-  .Navbar__group--end,
-  .Navbar__group--start {
-    align-items: center;
+@media (max-width: 380px) {
+  .Navbar__group button,
+  .Navbar__group a {
+    padding-inline: 8px;
   }
 }
