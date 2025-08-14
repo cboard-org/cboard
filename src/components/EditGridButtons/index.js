@@ -1,3 +1,3 @@
-import EditGridButtons from './EditGridButtons.component';
+import EditGridButtons from './EditGridButtons.component.js';
 
 export default EditGridButtons;

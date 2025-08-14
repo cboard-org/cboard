@@ -1,99 +1,75 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import { injectIntl, intlShape } from 'react-intl';
+import messages from './EditGridButtons.messages.js';
 import './EditGridButtons.css';
 
-class EditGridButtons extends React.Component {
-  static propTypes = {
-    active: PropTypes.bool.isRequired,
-    rows: PropTypes.number.isRequired,
-    columns: PropTypes.number.isRequired,
-    onAddRemoveColumn: PropTypes.func.isRequired,
-    onAddRemoveRow: PropTypes.func.isRequired,
-    moveColsButtonToLeft: PropTypes.bool
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {};
+function EditGridButtons({
+  isVertical,
+  active,
+  columns,
+  rows,
+  onAddRemoveRow,
+  onAddRemoveColumn,
+  intl
+}) {
+  const orientation = isVertical
+    ? intl.formatMessage(messages.columns)
+    : intl.formatMessage(messages.rows);
+  const isLeftOrTop = false;
+  if (!active) {
+    return null;
   }
-
-  onAddRemoveColumn(isAdd, isLeftOrTop) {
-    const { onAddRemoveColumn } = this.props;
-    onAddRemoveColumn(isAdd, isLeftOrTop);
-  }
-
-  onAddRemoveRow(isAdd, isLeftOrTop) {
-    const { onAddRemoveRow } = this.props;
-    onAddRemoveRow(isAdd, isLeftOrTop);
-  }
-
-  renderButtons = (isVertical, isLeftOrTop) => {
-    const { rows, columns } = this.props;
-    return (
-      <ButtonGroup
-        orientation={isVertical ? 'vertical' : 'horizontal'}
-        color="primary"
-        aria-label="edit_grid_button_group"
-        fullWidth={true}
-        size="large"
-        variant="contained"
+  return (
+    <React.Fragment>
+      <span>{orientation}:</span>
+      <Button
+        className="EditGridButtons__roundButton"
+        onClick={
+          isVertical
+            ? () => {
+                onAddRemoveColumn(false, isLeftOrTop);
+              }
+            : () => {
+                onAddRemoveRow(false, isLeftOrTop);
+              }
+        }
+        aria-label="edit_grid_button"
       >
-        <Button
-          onClick={
-            isVertical
-              ? this.onAddRemoveColumn.bind(this, true, isLeftOrTop)
-              : this.onAddRemoveRow.bind(this, true, isLeftOrTop)
-          }
-          aria-label="edit_grid_button"
-        >
-          {isVertical ? <KeyboardArrowRightIcon /> : <KeyboardArrowDownIcon />}
-        </Button>
-        <Button aria-label="edit_grid_value">
-          {isVertical ? columns.toString() : rows.toString()}
-        </Button>
-        <Button
-          onClick={
-            isVertical
-              ? this.onAddRemoveColumn.bind(this, false, isLeftOrTop)
-              : this.onAddRemoveRow.bind(this, false, isLeftOrTop)
-          }
-          aria-label="edit_grid_button"
-        >
-          {isVertical ? <KeyboardArrowLeftIcon /> : <KeyboardArrowUpIcon />}
-        </Button>
-      </ButtonGroup>
-    );
-  };
-
-  render() {
-    const { active, moveColsButtonToLeft } = this.props;
-    if (!active) {
-      return null;
-    }
-
-    return (
-      <React.Fragment>
-        <div
-          className={`EditGridButtons ${
-            moveColsButtonToLeft ? 'left' : 'right'
-          }`}
-        >
-          {this.renderButtons(true, false)}
-        </div>
-        <div className="EditGridButtons bottom">
-          {this.renderButtons(false, false)}
-        </div>
-      </React.Fragment>
-    );
-  }
+        <RemoveIcon />
+      </Button>
+      <div className="EditGridButtons__box" aria-label="edit_grid_value">
+        <span>{isVertical ? columns.toString() : rows.toString()}</span>
+      </div>
+      <Button
+        className="EditGridButtons__roundButton"
+        onClick={
+          isVertical
+            ? () => {
+                onAddRemoveColumn(true, isLeftOrTop);
+              }
+            : () => {
+                onAddRemoveRow(true, isLeftOrTop);
+              }
+        }
+        aria-label="edit_grid_button"
+      >
+        <AddIcon />
+      </Button>
+    </React.Fragment>
+  );
 }
+EditGridButtons.propTypes = {
+  isVertical: PropTypes.bool.isRequired,
+  active: PropTypes.bool.isRequired,
+  columns: PropTypes.number.isRequired,
+  rows: PropTypes.number.isRequired,
+  onAddRemoveRow: PropTypes.func.isRequired,
+  onAddRemoveColumn: PropTypes.func.isRequired,
+  intl: intlShape.isRequired
+};
 
-export default EditGridButtons;
+export default injectIntl(EditGridButtons);

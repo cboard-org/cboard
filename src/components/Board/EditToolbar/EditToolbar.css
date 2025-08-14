@@ -59,6 +59,9 @@
   order: 2;
   justify-content: flex-end;
 }
+.EditToolbar__group--middle {
+  justify-content: center;
+}
 @media (max-width: 480px) {
   .EditToolbar .EditToolbar__BoardTitle {
     display: none;
