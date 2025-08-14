@@ -2,6 +2,21 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
 import { SignUp } from './SignUp.component';
+import { createIntl, createIntlCache } from 'react-intl';
+
+const cache = createIntlCache();
+const intl = createIntl({ locale: 'en', messages: {} }, cache);
+
+it('handles submit failure', async () => {
+  const wrapper = shallow(
+    <SignUp
+      intl={intl}
+      isDialogOpen
+      onClose={jest.fn()}
+      dialogWithKeyboardStyle={{}}
+    />
+  );
+});
 
 jest.mock('./SignUp.messages', () => {
   return {
