@@ -191,4 +191,5 @@ SignUp.propTypes = {
   dialogWithKeyboardStyle: PropTypes.object
 };
 
+export { SignUp };  
 export default injectIntl(SignUp);
