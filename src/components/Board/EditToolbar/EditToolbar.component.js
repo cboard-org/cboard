@@ -287,7 +287,7 @@ function EditToolbar({
           )}
         </div>
       </div>
-      {isSelecting && (
+      {isSelecting && isFixed && (
         <div className="EditToolbar__footer EditToolbar__group EditToolbar--selecting">
           {renderButtons(false)}
           {renderButtons(true)}
