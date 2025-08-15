@@ -23,7 +23,6 @@ import EmptyBoard from './EmptyBoard';
 import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
 import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
 import NavigationButtons from '../NavigationButtons';
-import EditGridButtons from '../EditGridButtons';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
 import { Link } from 'react-router-dom';
@@ -438,6 +437,11 @@ export class Board extends Component {
             onCopyTiles={onCopyTiles}
             onPasteTiles={onPasteTiles}
             copiedTiles={this.props.copiedTiles}
+            active={isFixedBoard && isSelecting && !isSaving ? true : false}
+            columns={board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER}
+            rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
+            onAddRemoveRow={onAddRemoveRow}
+            onAddRemoveColumn={onAddRemoveColumn}
           />
           <div className="BoardSideButtonsContainer">
             {navigationSettings.caBackButtonActive && (
@@ -501,22 +505,6 @@ export class Board extends Component {
                     isNavigationButtonsOnTheSide={isNavigationButtonsOnTheSide}
                   />
                 )}
-
-                <EditGridButtons
-                  active={
-                    isFixedBoard && isSelecting && !isSaving ? true : false
-                  }
-                  columns={
-                    board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER
-                  }
-                  rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
-                  onAddRemoveRow={onAddRemoveRow}
-                  onAddRemoveColumn={onAddRemoveColumn}
-                  moveColsButtonToLeft={
-                    navigationSettings.bigScrollButtonsActive &&
-                    isNavigationButtonsOnTheSide
-                  }
-                />
               </div>
             </Scannable>
 

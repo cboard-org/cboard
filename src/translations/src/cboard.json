@@ -643,6 +643,8 @@
   "cboard.components.LoadBoardEditor.confirmationTitle": "Are you sure you want to change the board this tile opens?",
   "cboard.components.LoadBoardEditor.accept": "Accept",
   "cboard.components.LoadBoardEditor.cancel": "Cancel",
+  "cboard.components.EditGridButtons.rows": "Rows",
+  "cboard.components.EditGridButtons.columns": "Columns",
   "cboard.board.home": "home",
   "cboard.vocalization.myNameIsAmberley": "my name is Amberley",
   "cboard.vocalization.niceToMeetYou": "nice to meet you",
