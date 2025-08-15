@@ -18,6 +18,17 @@
   align-items: center;
 }
 
+.EditToolbar__footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-around;
+  color: #fff;
+  white-space: nowrap;
+}
+
 .EditToolbar .EditToolbar__Spinner {
   color: white;
   margin: 0;
