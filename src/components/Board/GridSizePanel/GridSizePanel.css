@@ -16,8 +16,8 @@
 
 .GridSizePanel__roundButton.MuiButton-root {
   display: flex;
-  margin-left: 7px;
-  margin-right: 7px;
+  margin-left: 5px;
+  margin-right: 5px;
   min-width: 0;
   padding: 0;
   width: 23px;
@@ -29,4 +29,10 @@
 
 .GridSizePanel__roundButton.MuiButton-root:hover {
   background-color: rgb(165, 7, 62);
+}
+
+.GridSizePanel__counter {
+  display: flex;
+  justify-content: center;
+  width: 2ch;
 }

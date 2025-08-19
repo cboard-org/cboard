@@ -45,7 +45,10 @@ function GridSizePanel({
         >
           <RemoveIcon />
         </Button>
-        <div aria-label="gridSize_panel_value">
+        <div
+          className="GridSizePanel__counter"
+          aria-label="gridSize_panel_value"
+        >
           <span>{isVertical ? columns.toString() : rows.toString()}</span>
         </div>
         <Button
