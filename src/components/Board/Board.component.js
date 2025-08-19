@@ -18,6 +18,7 @@ import Symbol from './Symbol';
 import OutputContainer from './Output';
 import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
+import FooterEditToolbar from './FooterEditToolbar/index';
 import Tile from './Tile';
 import EmptyBoard from './EmptyBoard';
 import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
@@ -437,11 +438,6 @@ export class Board extends Component {
             onCopyTiles={onCopyTiles}
             onPasteTiles={onPasteTiles}
             copiedTiles={this.props.copiedTiles}
-            active={isFixedBoard && isSelecting && !isSaving ? true : false}
-            columns={board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER}
-            rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
-            onAddRemoveRow={onAddRemoveRow}
-            onAddRemoveColumn={onAddRemoveColumn}
           />
           <div className="BoardSideButtonsContainer">
             {navigationSettings.caBackButtonActive && (
@@ -569,6 +565,15 @@ export class Board extends Component {
               </Button>
             </DialogActions>
           </Dialog>
+          <FooterEditToolbar
+            isSelecting={isSelecting}
+            isFixedBoard={isFixedBoard}
+            active={isFixedBoard && isSelecting && !isSaving ? true : false}
+            columns={board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER}
+            rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
+            onAddRemoveRow={onAddRemoveRow}
+            onAddRemoveColumn={onAddRemoveColumn}
+          />
         </div>
       </Scanner>
     );

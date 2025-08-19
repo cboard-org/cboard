@@ -2,11 +2,11 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   rows: {
-    id: 'cboard.components.EditGridButtons.rows',
+    id: 'cboard.components.Board.GridSizePanel.rows',
     defaultMessage: 'Rows'
   },
   columns: {
-    id: 'cboard.components.EditGridButtons.columns',
+    id: 'cboard.components.Board.GridSizePanel.columns',
     defaultMessage: 'Columns'
   }
 });

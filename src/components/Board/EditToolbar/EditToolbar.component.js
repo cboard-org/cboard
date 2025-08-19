@@ -25,7 +25,6 @@ import './EditToolbar.css';
 import { FormControlLabel } from '@material-ui/core';
 import PremiumFeature from '../../PremiumFeature';
 import { resolveBoardName } from '../../../helpers';
-import EditGridButtons from '../../EditGridButtons/index.js';
 
 EditToolbar.propTypes = {
   /**
@@ -100,12 +99,7 @@ function EditToolbar({
   onBoardTypeChange,
   onCopyTiles,
   onPasteTiles,
-  copiedTiles,
-  active,
-  columns,
-  rows,
-  onAddRemoveRow,
-  onAddRemoveColumn
+  copiedTiles
 }) {
   const isItemsSelected = !!selectedItemsCount;
   const isFixed = !!isFixedBoard;
@@ -125,175 +119,146 @@ function EditToolbar({
     handleCloseDeleteTilesDialog();
   };
 
-  const renderButtons = (isVertical) => {
-    return (
-      <EditGridButtons
-        isVertical={isVertical}
-        active={active}
-        columns={columns}
-        rows={rows}
-        onAddRemoveRow={onAddRemoveRow}
-        onAddRemoveColumn={onAddRemoveColumn}
-      />
-    );
-  };
-
   return (
-    <React.Fragment>
-      <div
-        className={classNames('EditToolbar', className, {
-          'EditToolbar--selecting': isSelecting
-        })}
-      >
-        {(isSaving || !isLoggedIn) && (
-          <span className="EditToolbar__BoardTitle">
-            {resolveBoardName(board, intl)}
-          </span>
-        )}
-
-        {!isSaving && isLoggedIn && (
-          <Button
-            className={classNames('EditToolbar__BoardTitle', {
-              'logged-in': isLoggedIn
-            })}
-            onClick={onBoardTitleClick}
-          >
-            {resolveBoardName(board, intl)}
-          </Button>
-        )}
-
-        <div className="EditToolbar__group EditToolbar__group--start">
-          <Button
-            label={intl.formatMessage(
-              messages[isSelecting ? 'cancel' : 'editTilesButton']
-            )}
-            id="edit-board-tiles"
-            aria-label="edit-board-tiles"
-            onClick={onSelectClick}
-            disabled={isSaving}
-            className={'edit__board__ride'}
-          >
-            {isSelecting ? (
-              <DashboardOutlinedIcon className="EditToolbar__group EditToolbar__group--start--button" />
-            ) : (
-              <DashboardIcon className="EditToolbar__group EditToolbar__group--start--button" />
-            )}
-            {!isSelecting ? intl.formatMessage(messages.editTilesButton) : ''}
-          </Button>
-
-          {isSelecting && (
-            <Fragment>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={isFixed}
-                    onChange={onBoardTypeChange}
-                    name="switchFixedBoard"
-                    color="secondary"
-                  />
-                }
-                label={intl.formatMessage(messages.fixedBoard)}
-              />
-            </Fragment>
-          )}
-
-          {isSaving && (
-            <CircularProgress
-              size={24}
-              className="EditToolbar__Spinner"
-              thickness={7}
-            />
-          )}
-        </div>
-        <div className="EditToolbar__group EditToolbar__group--end">
-          {isSelecting && (
-            <Fragment>
-              <Checkbox checked={isSelectAll} onChange={onSelectAllToggle} />
-              <SelectedCounter
-                count={selectedItemsCount}
-                className="EditToolbar__SelectedCounter"
-              />
-              <IconButton
-                label={intl.formatMessage(messages.deleteTiles)}
-                disabled={!isItemsSelected}
-                onClick={handleOpenDeleteTilesDialog}
-              >
-                <DeleteIcon />
-              </IconButton>
-              <Dialog
-                open={openDeleteTilesDialog}
-                onClose={handleCloseDeleteTilesDialog}
-              >
-                <DialogTitle id="alert-dialog-title">
-                  {intl.formatMessage(messages.deleteTileTitle)}
-                </DialogTitle>
-                <DialogContent>
-                  {intl.formatMessage(messages.deleteTileDescription)}
-                </DialogContent>
-                <DialogActions>
-                  <Button
-                    onClick={handleCloseDeleteTilesDialog}
-                    color="primary"
-                  >
-                    {intl.formatMessage(messages.deleteTileCancel)}
-                  </Button>
-                  <Button
-                    onClick={handleDeleteTilesAccepted}
-                    variant="contained"
-                    color="primary"
-                    autoFocus
-                  >
-                    {intl.formatMessage(messages.deleteTileOk)}
-                  </Button>
-                </DialogActions>
-              </Dialog>
-
-              <PremiumFeature>
-                <IconButton
-                  label={intl.formatMessage(messages.copyTiles)}
-                  disabled={!isItemsSelected}
-                  onClick={onCopyTiles}
-                >
-                  <MdContentCopy />
-                </IconButton>
-                <IconButton
-                  label={intl.formatMessage(messages.pasteTiles)}
-                  disabled={!copiedTiles.length}
-                  onClick={onPasteTiles}
-                >
-                  <MdContentPaste />
-                </IconButton>
-              </PremiumFeature>
-              <IconButton
-                label={intl.formatMessage(messages.editTiles)}
-                disabled={!isItemsSelected}
-                onClick={onEditClick}
-              >
-                <EditIcon />
-              </IconButton>
-            </Fragment>
-          )}
-          {!isSelecting && (
-            <div className={'add__board__tile'}>
-              <IconButton
-                label={intl.formatMessage(messages.addTileButton)}
-                onClick={onAddClick}
-                disabled={isSaving}
-                color="inherit"
-              >
-                <AddBoxIcon />
-              </IconButton>
-            </div>
-          )}
-        </div>
-      </div>
-      {isSelecting && isFixed && (
-        <div className="EditToolbar__footer EditToolbar__group EditToolbar--selecting">
-          {renderButtons(false)}
-          {renderButtons(true)}
-        </div>
+    <div
+      className={classNames('EditToolbar', className, {
+        'EditToolbar--selecting': isSelecting
+      })}
+    >
+      {(isSaving || !isLoggedIn) && (
+        <span className="EditToolbar__BoardTitle">
+          {resolveBoardName(board, intl)}
+        </span>
       )}
-    </React.Fragment>
+      {!isSaving && isLoggedIn && (
+        <Button
+          className={classNames('EditToolbar__BoardTitle', {
+            'logged-in': isLoggedIn
+          })}
+          onClick={onBoardTitleClick}
+        >
+          {resolveBoardName(board, intl)}
+        </Button>
+      )}
+      <div className="EditToolbar__group EditToolbar__group--start">
+        <Button
+          label={intl.formatMessage(
+            messages[isSelecting ? 'cancel' : 'editTilesButton']
+          )}
+          id="edit-board-tiles"
+          aria-label="edit-board-tiles"
+          onClick={onSelectClick}
+          disabled={isSaving}
+          className={'edit__board__ride'}
+        >
+          {isSelecting ? (
+            <DashboardOutlinedIcon className="EditToolbar__group EditToolbar__group--start--button" />
+          ) : (
+            <DashboardIcon className="EditToolbar__group EditToolbar__group--start--button" />
+          )}
+          {!isSelecting ? intl.formatMessage(messages.editTilesButton) : ''}
+        </Button>
+        {isSelecting && (
+          <Fragment>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={isFixed}
+                  onChange={onBoardTypeChange}
+                  name="switchFixedBoard"
+                  color="secondary"
+                />
+              }
+              label={intl.formatMessage(messages.fixedBoard)}
+            />
+          </Fragment>
+        )}
+        {isSaving && (
+          <CircularProgress
+            size={24}
+            className="EditToolbar__Spinner"
+            thickness={7}
+          />
+        )}
+      </div>
+      <div className="EditToolbar__group EditToolbar__group--end">
+        {isSelecting && (
+          <Fragment>
+            <Checkbox checked={isSelectAll} onChange={onSelectAllToggle} />
+            <SelectedCounter
+              count={selectedItemsCount}
+              className="EditToolbar__SelectedCounter"
+            />
+            <IconButton
+              label={intl.formatMessage(messages.deleteTiles)}
+              disabled={!isItemsSelected}
+              onClick={handleOpenDeleteTilesDialog}
+            >
+              <DeleteIcon />
+            </IconButton>
+            <Dialog
+              open={openDeleteTilesDialog}
+              onClose={handleCloseDeleteTilesDialog}
+            >
+              <DialogTitle id="alert-dialog-title">
+                {intl.formatMessage(messages.deleteTileTitle)}
+              </DialogTitle>
+              <DialogContent>
+                {intl.formatMessage(messages.deleteTileDescription)}
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleCloseDeleteTilesDialog} color="primary">
+                  {intl.formatMessage(messages.deleteTileCancel)}
+                </Button>
+                <Button
+                  onClick={handleDeleteTilesAccepted}
+                  variant="contained"
+                  color="primary"
+                  autoFocus
+                >
+                  {intl.formatMessage(messages.deleteTileOk)}
+                </Button>
+              </DialogActions>
+            </Dialog>
+            <PremiumFeature>
+              <IconButton
+                label={intl.formatMessage(messages.copyTiles)}
+                disabled={!isItemsSelected}
+                onClick={onCopyTiles}
+              >
+                <MdContentCopy />
+              </IconButton>
+              <IconButton
+                label={intl.formatMessage(messages.pasteTiles)}
+                disabled={!copiedTiles.length}
+                onClick={onPasteTiles}
+              >
+                <MdContentPaste />
+              </IconButton>
+            </PremiumFeature>
+            <IconButton
+              label={intl.formatMessage(messages.editTiles)}
+              disabled={!isItemsSelected}
+              onClick={onEditClick}
+            >
+              <EditIcon />
+            </IconButton>
+          </Fragment>
+        )}
+        {!isSelecting && (
+          <div className={'add__board__tile'}>
+            <IconButton
+              label={intl.formatMessage(messages.addTileButton)}
+              onClick={onAddClick}
+              disabled={isSaving}
+              color="inherit"
+            >
+              <AddBoxIcon />
+            </IconButton>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
