@@ -1,3 +1,3 @@
-import FooterEditToolbar from './FooterEditToolbar.component';
+import FooterEditToolbar from './FooterEditToolbar.js';
 
 export default FooterEditToolbar;

@@ -130,6 +130,7 @@ function EditToolbar({
           {resolveBoardName(board, intl)}
         </span>
       )}
+
       {!isSaving && isLoggedIn && (
         <Button
           className={classNames('EditToolbar__BoardTitle', {
@@ -140,6 +141,7 @@ function EditToolbar({
           {resolveBoardName(board, intl)}
         </Button>
       )}
+
       <div className="EditToolbar__group EditToolbar__group--start">
         <Button
           label={intl.formatMessage(
@@ -158,6 +160,7 @@ function EditToolbar({
           )}
           {!isSelecting ? intl.formatMessage(messages.editTilesButton) : ''}
         </Button>
+
         {isSelecting && (
           <Fragment>
             <FormControlLabel
@@ -173,6 +176,7 @@ function EditToolbar({
             />
           </Fragment>
         )}
+
         {isSaving && (
           <CircularProgress
             size={24}
@@ -220,6 +224,7 @@ function EditToolbar({
                 </Button>
               </DialogActions>
             </Dialog>
+
             <PremiumFeature>
               <IconButton
                 label={intl.formatMessage(messages.copyTiles)}

@@ -1,20 +1,11 @@
-.GridSizePanel {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 40px;
-  color: #fff;
-  white-space: nowrap;
-  background-color: #2196f3;
-}
-.GridSizePanel__ButtonGroup {
+.GridSizeSelector__ButtonGroup {
   display: flex;
   align-items: center;
   justify-content: center;
   flex: 1 1;
 }
 
-.GridSizePanel__roundButton.MuiButton-root {
+.GridSizeSelector__roundButton.MuiButton-root {
   display: flex;
   margin-left: 5px;
   margin-right: 5px;
@@ -27,11 +18,19 @@
   color: white;
 }
 
-.GridSizePanel__roundButton.MuiButton-root:hover {
+.GridSizeSelector__roundButton.MuiButton-root:hover {
   background-color: rgb(165, 7, 62);
 }
 
-.GridSizePanel__counter {
+.GridSizeSelector__roundButton.MuiButton-root.Mui-disabled {
+  background-color: darkgray;
+}
+
+.GridSizeSelector__roundButton.MuiButton-root.Mui-disabled:hover {
+  background-color: darkgray;
+}
+
+.GridSizeSelector__counter {
   display: flex;
   justify-content: center;
   width: 2ch;
