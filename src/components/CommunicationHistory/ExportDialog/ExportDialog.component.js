@@ -95,7 +95,6 @@ const ExportDialog = ({
     }
 
     // Filter by date range
-    const now = moment();
     let startDate = null;
     let endDate = moment().endOf('day');
 

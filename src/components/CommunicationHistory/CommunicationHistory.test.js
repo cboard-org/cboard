@@ -2,8 +2,7 @@ import {
   addCommunicationEntry,
   trackSymbolSelection,
   trackPhraseSpoken,
-  trackClearAction,
-  trackBackspaceAction
+  trackClearAction
 } from './CommunicationHistory.actions';
 import {
   ADD_COMMUNICATION_ENTRY,
@@ -140,43 +139,13 @@ describe('CommunicationHistory', () => {
   });
 
   describe('PDF Report Service', () => {
-    it('should generate report data structure correctly', () => {
-      const testData = {
-        entries: [
-          {
-            id: '1',
-            type: COMMUNICATION_ENTRY_TYPES.SYMBOL,
-            label: 'Hello',
-            timestamp: '2024-01-15T10:00:00.000Z',
-            userId: 'test@example.com'
-          },
-          {
-            id: '2',
-            type: COMMUNICATION_ENTRY_TYPES.SYMBOL,
-            label: 'World',
-            timestamp: '2024-01-15T10:01:00.000Z',
-            userId: 'test@example.com'
-          },
-          {
-            id: '3',
-            type: COMMUNICATION_ENTRY_TYPES.PHRASE,
-            label: 'Hello World',
-            symbols: [{ label: 'Hello' }, { label: 'World' }],
-            timestamp: '2024-01-15T10:02:00.000Z',
-            userId: 'test@example.com'
-          }
-        ],
-        userId: 'test@example.com',
-        userName: 'Test User',
-        dateRange: {
-          from: '2024-01-15',
-          to: '2024-01-15'
-        }
-      };
-
-      // This would normally generate a PDF, but for testing we just verify the service exists
+    it('should verify PDF service exists and has required methods', () => {
+      // Verify the service exists and has the required method
       expect(PDFReportService).toBeDefined();
       expect(PDFReportService.generateCommunicationReport).toBeDefined();
+      expect(typeof PDFReportService.generateCommunicationReport).toBe(
+        'function'
+      );
     });
   });
 });

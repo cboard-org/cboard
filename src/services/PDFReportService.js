@@ -23,8 +23,7 @@ class PDFReportService {
       entries = [],
       userId = 'Unknown',
       userName = 'User',
-      dateRange = {},
-      metadata = {}
+      dateRange = {}
     } = data;
 
     const docDefinition = {
