@@ -8,7 +8,7 @@ html,
 body {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 html {
@@ -34,4 +34,35 @@ body {
   display: flex;
   justify-content: center;
   padding: 2em;
+}
+
+html,
+body,
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
+}
+
+.Board,
+.Main,
+#BoardTilesContainer {
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
+}
+
+div[style*='1466px'],
+div[style*='200%'],
+div[style*='scroll'] {
+  display: none;
+}
+
+.erd_scroll_detection_container,
+.erd_scroll_detection_container > div,
+.erd_scroll_detection_container > div > div {
+  display: none;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
