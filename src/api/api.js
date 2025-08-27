@@ -400,9 +400,19 @@ class API {
   }
 
   async boardReport(reportedBoardData) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
     const { data } = await this.axiosInstance.post(
       `/board/report`,
-      reportedBoardData
+      reportedBoardData,
+      { headers }
     );
     return data;
   }
