@@ -18,4 +18,5 @@
 .FixedGridScrollButtonsOnTheSides {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  overflow: auto; /* Added overflow control for when user set big scroll buttons */
 }
