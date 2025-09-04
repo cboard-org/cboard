@@ -437,9 +437,20 @@ export function createApiBoardFailure(message) {
 }
 
 export function updateApiBoardSuccess(board) {
-  return {
-    type: UPDATE_API_BOARD_SUCCESS,
-    board
+  return dispatch => {
+    const { isLocalUpdateNeeded, ...boardData } = board;
+
+    if (isLocalUpdateNeeded) {
+      dispatch({
+        type: UPDATE_BOARD,
+        boardData: boardData
+      });
+    }
+
+    dispatch({
+      type: UPDATE_API_BOARD_SUCCESS,
+      boardData
+    });
   };
 }
 
