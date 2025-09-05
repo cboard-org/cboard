@@ -438,7 +438,12 @@ export function createApiBoardFailure(message) {
 
 export function updateApiBoardSuccess(board) {
   return dispatch => {
-    const { isLocalUpdateNeeded, ...boardData } = board;
+    const { isLocalUpdateNeeded, ...boardData } = board ?? {};
+
+    if (!board || Object.keys(boardData).length === 0) {
+      dispatch(updateApiBoardFailure('No board data to update'));
+      return;
+    }
 
     if (isLocalUpdateNeeded) {
       dispatch({
