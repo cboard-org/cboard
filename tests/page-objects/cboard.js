@@ -2764,6 +2764,61 @@ export class Cboard {
       console.log('Action buttons should be standard size');
     }
   }
+
+  // === COMMUNICATOR DIALOG METHODS ===
+  async openCommunicatorDialog() {
+    // Ensure the app is unlocked first
+    for (let i = 1; i <= 4; i++) {
+      await this.clickUnlock();
+    }
+    await this.dismissOverlays();
+
+    // Click the build tab to open communicator dialog
+    await this.buildTab.click();
+    await this.dismissOverlays();
+    await this.page.waitForSelector('.CommunicatorDialog__container', {
+      state: 'visible',
+      timeout: 10000
+    });
+  }
+
+  async navigateToPublicBoardsTab() {
+    const publicBoardsTab = this.page
+      .locator('#CommunicatorDialog__PublicBoardsBtn')
+      .first();
+    await expect(publicBoardsTab).toBeVisible();
+    await publicBoardsTab.click();
+    await this.page.waitForTimeout(1000); // Allow time for boards to load
+  }
+
+  async getPublicBoardItems() {
+    return this.page.locator('.CommunicatorDialog__boards__item');
+  }
+
+  async getReportButton(boardItem) {
+    // Use aria-label instead of text content, as we discovered in debugging
+    return boardItem.locator('button[aria-label="Report this Board"]');
+  }
+
+  async expectReportButtonDisabled() {
+    const reportButton = await this.getReportButton();
+    await expect(reportButton).toBeVisible();
+    await expect(reportButton).toBeDisabled();
+  }
+
+  async expectReportDialogOpen() {
+    const reportDialog = this.page.locator(
+      '[role="dialog"]:has-text("Report this Board")'
+    );
+    await expect(reportDialog).toBeVisible();
+  }
+
+  async expectNoReportDialogOpen() {
+    const reportDialog = this.page.locator(
+      '[role="dialog"]:has-text("Report this Board")'
+    );
+    await expect(reportDialog).not.toBeVisible();
+  }
 }
 
 // Export a factory function for creating page instances
