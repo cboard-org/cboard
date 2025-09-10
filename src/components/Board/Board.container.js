@@ -1167,14 +1167,20 @@ export class BoardContainer extends Component {
     }
   };
 
-  handleCopyRemoteBoard = async boardToCopy => {
+  handleCopyRemoteBoard = async (variantBoard = false) => {
     const { intl, showNotification, history, switchBoard } = this.props;
     try {
       this.setState({
         isSaving: true
       });
 
-      const copiedBoard = await this.createBoardsRecursively(boardToCopy);
+      let toCopyBoard = null;
+      if (variantBoard) {
+        toCopyBoard = variantBoard;
+      } else {
+        toCopyBoard = this.state.copyPublicBoard;
+      }
+      const copiedBoard = await this.createBoardsRecursively(toCopyBoard);
       if (!copiedBoard?.id) {
         throw new Error('Board not copied correctly');
       }
@@ -1630,9 +1636,7 @@ export class BoardContainer extends Component {
             </Button>
             <PremiumFeature>
               <Button
-                onClick={() =>
-                  this.handleCopyRemoteBoard(this.state.copyPublicBoard)
-                }
+                onClick={this.handleCopyRemoteBoard}
                 color="primary"
                 variant="contained"
                 disabled={this.state.isSaving}
