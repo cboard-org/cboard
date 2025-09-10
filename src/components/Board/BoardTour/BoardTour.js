@@ -136,7 +136,7 @@ function BoardTour({
 
   return (
     <div>
-      {isLocked && isRootBoardTourEnabled && !isVariantBoard && (
+      {isLocked && isRootBoardTourEnabled && (
         <Joyride
           callback={data => {
             const { status } = data;
