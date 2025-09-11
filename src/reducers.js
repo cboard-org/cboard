@@ -12,6 +12,7 @@ import boardReducer from './components/Board/Board.reducer';
 import communicatorReducer from './components/Communicator/Communicator.reducer';
 import notificationsReducer from './components/Notifications/Notifications.reducer';
 import subscriptionProviderReducer from './providers/SubscriptionProvider/SubscriptionProvider.reducer';
+import communicationHistoryReducer from './components/CommunicationHistory/CommunicationHistory.reducer';
 import storage from 'redux-persist/lib/storage';
 import { DEFAULT_BOARDS } from '../src/helpers';
 
@@ -50,6 +51,7 @@ export default function createReducer() {
     communicator: communicatorReducer,
     scanner: scannerProviderReducer,
     notification: notificationsReducer,
-    subscription: subscriptionProviderReducer
+    subscription: subscriptionProviderReducer,
+    communicationHistory: communicationHistoryReducer
   });
 }

@@ -50,6 +50,12 @@ import {
   changeDefaultBoard
 } from './Board.actions';
 import {
+  trackSymbolSelection,
+  trackPhraseSpoken,
+  trackClearAction,
+  trackBackspaceAction
+} from '../CommunicationHistory/CommunicationHistory.actions';
+import {
   addBoardCommunicator,
   verifyAndUpsertCommunicator
 } from '../Communicator/Communicator.actions';
@@ -826,7 +832,10 @@ export class BoardContainer extends Component {
       boards,
       showNotification,
       navigationSettings,
-      isLiveMode
+      isLiveMode,
+      trackSymbolSelection,
+      userData,
+      board
     } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
 
@@ -857,6 +866,17 @@ export class BoardContainer extends Component {
         showNotification(intl.formatMessage(messages.boardMissed));
       }
     } else {
+      // Track the symbol selection in communication history
+      const enhancedTile = {
+        ...tile,
+        boardId: board.id
+      };
+      trackSymbolSelection(
+        enhancedTile,
+        userData?.email || userData?.id || null,
+        this.props.sessionId || null
+      );
+
       clickSymbol(tile.label);
       if (!navigationSettings.quietBuilderMode) {
         say();
@@ -1762,7 +1782,11 @@ const mapDispatchToProps = {
   createApiBoard,
   upsertApiBoard,
   changeDefaultBoard,
-  verifyAndUpsertCommunicator
+  verifyAndUpsertCommunicator,
+  trackSymbolSelection,
+  trackPhraseSpoken,
+  trackClearAction,
+  trackBackspaceAction
 };
 
 export default connect(
