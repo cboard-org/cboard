@@ -251,6 +251,41 @@ const tts = {
           initAzureSynthesizer();
         }
       );
+    } else if (voice && voice.voiceSource === 'elevenlabs') {
+      if (appleFirstCloudPlay) {
+        audioElement
+          .play()
+          .then(() => {})
+          .catch(() => {})
+          .finally(() => {
+            console.log('Apple user Agent is ready to reproduce cloud voices');
+          });
+        audioElement.pause();
+        appleFirstCloudPlay = false;
+      }
+      const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
+
+      try {
+        const audioBlob = await API.synthesizeSpeechElevenLabs(text, voiceURI);
+        clearTimeout(speakAlertTimeoutId);
+
+        if (audioBlob) {
+          const audioResult = {
+            audioData: await audioBlob.arrayBuffer(),
+            endCallback: onend
+          };
+          speakQueue.push(audioResult);
+          if (audioElement.paused) {
+            playQueue();
+          }
+        } else {
+          onend({ error: true });
+        }
+      } catch (err) {
+        console.error('ElevenLabs speech synthesis error:', err);
+        clearTimeout(speakAlertTimeoutId);
+        onend({ error: true });
+      }
     } else {
       if (!platformVoices.length) {
         try {
