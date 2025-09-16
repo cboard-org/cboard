@@ -227,7 +227,11 @@ const Speech = ({
                   <div className="Speech__VoiceLabel">
                     {getVoiceLabel(voice)}
                   </div>
-                  {voice.voiceSource === 'cloud' && (
+                  {voice.voiceSource === 'elevenlabs' && (
+                    <Chip label="ElevenLabs" size="small" color="primary" />
+                  )}
+                  {(voice.voiceSource === 'cloud' ||
+                    voice.voiceSource === 'elevenlabs') && (
                     <Chip label="online" size="small" color="secondary" />
                   )}
                 </div>
@@ -237,7 +241,10 @@ const Speech = ({
             const PremiumVoice = <PremiumFeature> {VoiceItem}</PremiumFeature>;
 
             const VoiceOption =
-              voice.voiceSource === 'cloud' ? PremiumVoice : VoiceItem;
+              voice.voiceSource === 'cloud' ||
+              voice.voiceSource === 'elevenlabs'
+                ? PremiumVoice
+                : VoiceItem;
             return VoiceOption;
           })}
         </Menu>
