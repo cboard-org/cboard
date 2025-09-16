@@ -10,6 +10,15 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Slider from '@material-ui/core/Slider';
 import Chip from '@material-ui/core/Chip';
+import TextField from '@material-ui/core/TextField';
+import {
+  IconButton,
+  CircularProgress,
+  FormHelperText
+} from '@material-ui/core';
+import CloudIcon from '@material-ui/icons/Cloud';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ErrorIcon from '@material-ui/icons/Error';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import { isCordova } from '../../../cordova-util';
@@ -38,7 +47,13 @@ const propTypes = {
   rate: PropTypes.number,
   selectedVoiceIndex: PropTypes.number,
   isVoiceOpen: PropTypes.bool.isRequired,
-  voice: PropTypes.object.isRequired
+  voice: PropTypes.object.isRequired,
+  elevenLabsApiKey: PropTypes.string,
+  elevenLabsConnected: PropTypes.bool,
+  handleElevenLabsApiKeyChange: PropTypes.func,
+  testElevenLabsConnection: PropTypes.func,
+  elevenLabsValidationError: PropTypes.string,
+  elevenLabsValidating: PropTypes.bool
 };
 
 const styles = theme => ({
@@ -78,7 +93,13 @@ const Speech = ({
   rate,
   selectedVoiceIndex,
   isVoiceOpen,
-  voice
+  voice,
+  elevenLabsApiKey,
+  elevenLabsConnected,
+  handleElevenLabsApiKeyChange,
+  testElevenLabsConnection,
+  elevenLabsValidationError,
+  elevenLabsValidating
 }) => (
   <div className="Speech">
     <FullScreenDialog
@@ -145,6 +166,48 @@ const Speech = ({
             </div>
           </ListItem>
         </List>
+
+        <ListItem divider>
+          <ListItemText
+            primary={<FormattedMessage {...messages.elevenLabsApiKey} />}
+            secondary={
+              <div>
+                <FormattedMessage {...messages.elevenLabsApiKeyDescription} />
+                {elevenLabsValidationError && (
+                  <FormHelperText error>
+                    {elevenLabsValidationError}
+                  </FormHelperText>
+                )}
+              </div>
+            }
+          />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <TextField
+              type="password"
+              value={elevenLabsApiKey || ''}
+              onChange={handleElevenLabsApiKeyChange}
+              placeholder="sk_..."
+              error={!!elevenLabsValidationError}
+              variant="outlined"
+              size="small"
+              style={{ minWidth: '200px' }}
+            />
+            <IconButton
+              onClick={testElevenLabsConnection}
+              disabled={elevenLabsValidating || !elevenLabsApiKey}
+            >
+              {elevenLabsValidating ? (
+                <CircularProgress size={20} />
+              ) : elevenLabsConnected ? (
+                <CheckCircleIcon color="primary" />
+              ) : elevenLabsValidationError ? (
+                <ErrorIcon color="error" />
+              ) : (
+                <CloudIcon color="disabled" />
+              )}
+            </IconButton>
+          </div>
+        </ListItem>
       </Paper>
       {langVoices.length && (
         <Menu
