@@ -10,7 +10,9 @@ import {
   EMPTY_VOICES,
   RECEIVE_TTS_ENGINES,
   RECEIVE_TTS_DEFAULT_ENGINE,
-  RECEIVE_TTS_ENGINE
+  RECEIVE_TTS_ENGINE,
+  CACHE_ELEVENLABS_VOICES,
+  CLEAR_ELEVENLABS_CACHE
 } from './SpeechProvider.constants';
 import {
   getVoiceURI,
@@ -35,7 +37,12 @@ const initialState = {
     rate: 1.0,
     volume: 1
   },
-  isSpeaking: false
+  isSpeaking: false,
+  elevenLabsCache: {
+    voices: [],
+    timestamp: null,
+    ttl: 24 * 60 * 60 * 1000
+  }
 };
 
 function speechProviderReducer(state = initialState, action) {
@@ -147,6 +154,24 @@ function speechProviderReducer(state = initialState, action) {
       return { ...state, isSpeaking: action.isSpeaking };
     case CANCEL_SPEECH:
       return { ...state, isSpeaking: action.isSpeaking };
+    case CACHE_ELEVENLABS_VOICES:
+      return {
+        ...state,
+        elevenLabsCache: {
+          ...state.elevenLabsCache,
+          voices: action.voices,
+          timestamp: Date.now()
+        }
+      };
+    case CLEAR_ELEVENLABS_CACHE:
+      return {
+        ...state,
+        elevenLabsCache: {
+          ...state.elevenLabsCache,
+          voices: [],
+          timestamp: null
+        }
+      };
     default:
       return state;
   }
