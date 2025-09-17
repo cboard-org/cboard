@@ -124,7 +124,8 @@ export class Board extends Component {
 
     this.state = {
       openTitleDialog: false,
-      titleDialogValue: props.board && props.board.name ? props.board.name : ''
+      titleDialogValue: props.board && props.board.name ? props.board.name : '',
+      currentPage: 1
     };
 
     this.boardContainerRef = React.createRef();
@@ -191,6 +192,27 @@ export class Board extends Component {
       openTitleDialog: false,
       titleDialogValue: this.props.board.name || this.props.board.id || ''
     });
+  };
+
+  // Pagination helpers (for non-fixed boards)
+  pageSize = 20; // symbols per page (can be adjusted or made configurable)
+
+  getTotalPages = totalItems => {
+    return Math.max(1, Math.ceil(totalItems / this.pageSize));
+  };
+
+  goToPrevPage = totalItems => {
+    this.setState(prev => ({
+      currentPage: prev.currentPage > 1 ? prev.currentPage - 1 : 1
+    }));
+  };
+
+  goToNextPage = totalItems => {
+    const totalPages = this.getTotalPages(totalItems);
+    this.setState(prev => ({
+      currentPage:
+        prev.currentPage < totalPages ? prev.currentPage + 1 : totalPages
+    }));
   };
 
   renderTiles(tiles) {
@@ -333,7 +355,17 @@ export class Board extends Component {
       speak
     } = this.props;
 
-    const tiles = this.renderTiles(board.tiles);
+    // Pagination (non-fixed boards): slice tiles per page
+    const totalTiles = board.tiles.length;
+    const totalPages = this.getTotalPages(totalTiles);
+    const safeCurrentPage = Math.min(this.state.currentPage, totalPages);
+    const startIdx = (safeCurrentPage - 1) * this.pageSize;
+    const endIdx = startIdx + this.pageSize;
+    const pagedTilesSrc = board.isFixed
+      ? board.tiles
+      : board.tiles.slice(startIdx, endIdx);
+
+    const tiles = this.renderTiles(pagedTilesSrc);
     const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
     const isNavigationButtonsOnTheSide =
@@ -515,6 +547,48 @@ export class Board extends Component {
                     isNavigationButtonsOnTheSide
                   }
                 />
+                {!board.isFixed && totalPages > 1 && (
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      padding: '8px 0'
+                    }}
+                  >
+                    <Button
+                      size="small"
+                      onClick={() => this.goToPrevPage(totalTiles)}
+                      disabled={safeCurrentPage === 1}
+                      style={{ marginRight: 8 }}
+                    >
+                      {intl.formatMessage({
+                        id: 'pagination.prev',
+                        defaultMessage: 'Previous'
+                      })}
+                    </Button>
+                    <span style={{ fontSize: 12 }}>
+                      {intl.formatMessage(
+                        {
+                          id: 'pagination.pageOf',
+                          defaultMessage: 'Page {page} of {pages}'
+                        },
+                        { page: safeCurrentPage, pages: totalPages }
+                      )}
+                    </span>
+                    <Button
+                      size="small"
+                      onClick={() => this.goToNextPage(totalTiles)}
+                      disabled={safeCurrentPage === totalPages}
+                      style={{ marginLeft: 8 }}
+                    >
+                      {intl.formatMessage({
+                        id: 'pagination.next',
+                        defaultMessage: 'Next'
+                      })}
+                    </Button>
+                  </div>
+                )}
               </div>
             </Scannable>
 
