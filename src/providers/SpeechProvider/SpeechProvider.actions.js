@@ -211,15 +211,21 @@ export function getVoices() {
       );
 
       try {
-        const elevenLabsVoices = await API.getElevenLabsVoices();
-        const formattedElevenLabsVoices = elevenLabsVoices.map(voice => ({
+        const elevenLabsVoice = await API.getElevenLabsVoices();
+        const formattedElevenLabsVoices = elevenLabsVoice.map(voice => ({
           voiceURI: voice.voice_id,
+          name: voice.name,
           lang: voice.labels?.language || 'en-US',
-          name: `${voice.name} (ElevenLabs)`,
           voiceSource: 'elevenlabs',
+          voice_id: voice.voice_id,
           category: voice.category,
           description: voice.description,
-          labels: voice.labels
+          labels: voice.labels,
+          settings: {
+            stability: 0.5,
+            similarity_boost: 0.8,
+            style: 0.0
+          }
         }));
         voices = [...formattedElevenLabsVoices, ...voices];
       } catch (err) {
