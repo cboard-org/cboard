@@ -63,7 +63,7 @@ const config = defineConfig({
     actionTimeout: 15 * 1000,
 
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'https://app.qa.cboard.io',
+    baseURL: process.env.BASE_URL || 'https://app.qa.cboard.io',
     
     /* Longer navigation timeout for slow environments */
     navigationTimeout: 60 * 1000,
