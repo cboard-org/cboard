@@ -1,13 +1,14 @@
 import axios from 'axios';
 import history from '../history';
 import { alpha2ToAlpha3T } from '@cospired/i18n-iso-languages';
-
 import {
   API_URL,
   ARASAAC_BASE_PATH_API,
   GLOBALSYMBOLS_BASE_PATH_API,
   AZURE_VOICES_BASE_PATH_API,
-  AZURE_SPEECH_SUBSCR_KEY
+  AZURE_SPEECH_SUBSCR_KEY,
+  ELEVENLABS_API_BASE_URL,
+  ELEVENLABS_DEFAULT_TIMEOUT
 } from '../constants';
 import { getStore } from '../store';
 import { dataURLtoFile } from '../helpers';
@@ -681,6 +682,139 @@ class API {
     } catch (error) {
       if (error.message !== 'canceled') console.error(error);
       return { phrase: '' };
+    }
+  }
+
+  saveElevenLabsApiKey(key) {
+    localStorage.setItem('elevenlabs_api_key', key);
+  }
+
+  getElevenLabsApiKey() {
+    return localStorage.getItem('elevenlabs_api_key') || '';
+  }
+
+  validateElevenLabsApiKeyFormat(apiKey) {
+    const apiKeyRegex = /^sk_[a-f0-9]{48}$/;
+    return apiKeyRegex.test(apiKey);
+  }
+
+  async validateElevenLabsApiKey(apiKey) {
+    if (!this.validateElevenLabsApiKeyFormat(apiKey)) {
+      return {
+        isValid: false,
+        error: 'INVALID_FORMAT',
+        message: 'Invalid API key format'
+      };
+    }
+
+    const store = getStore();
+    const isConnected = store.getState()?.app?.isConnected;
+
+    if (!isConnected || !navigator.onLine) {
+      return {
+        isValid: false,
+        error: 'NO_INTERNET',
+        message: 'No internet connection'
+      };
+    }
+
+    try {
+      const voices = await this.getElevenLabsVoices();
+      const isValid = voices && voices.length > 0;
+
+      return {
+        isValid,
+        error: isValid ? null : 'UNAUTHORIZED',
+        message: isValid
+          ? 'API key is valid'
+          : 'API key unauthorized or expired'
+      };
+    } catch (error) {
+      let errorType = 'NETWORK_ERROR';
+      let message = 'Failed to validate API key';
+
+      if (error.response?.status === 401) {
+        errorType = 'UNAUTHORIZED';
+        message = 'API key unauthorized or expired';
+      }
+
+      return {
+        isValid: false,
+        error: errorType,
+        message
+      };
+    }
+  }
+
+  async getElevenLabsVoices() {
+    const apiKey = this.getElevenLabsApiKey();
+    if (!apiKey) return [];
+
+    const headers = { 'xi-api-key': apiKey };
+    const url = `${ELEVENLABS_API_BASE_URL}/voices`;
+
+    try {
+      const { status, data } = await this.axiosInstance.get(url, {
+        headers,
+        timeout: ELEVENLABS_DEFAULT_TIMEOUT
+      });
+      if (status === 200) return data.voices || [];
+      return [];
+    } catch (err) {
+      console.error('ElevenLabs API error:', err.message);
+      return [];
+    }
+  }
+
+  async synthesizeSpeechElevenLabs(text, voiceId, settings = {}) {
+    const apiKey = this.getElevenLabsApiKey();
+    if (!apiKey) return;
+
+    const store = getStore();
+    const isConnected = store.getState()?.app?.isConnected;
+    if (!isConnected || !navigator.onLine) {
+      throw new Error('No internet connection');
+    }
+
+    const url = `${ELEVENLABS_API_BASE_URL}/text-to-speech/${voiceId}`;
+    const headers = {
+      'xi-api-key': apiKey,
+      'Content-Type': 'application/json',
+      Accept: 'audio/mpeg'
+    };
+
+    const payload = {
+      text,
+      voice_settings: {
+        stability: settings.stability || 0.5,
+        similarity_boost: settings.similarity_boost || 0.5
+      },
+      ...settings
+    };
+
+    try {
+      const response = await this.axiosInstance.post(url, payload, {
+        headers,
+        responseType: 'blob',
+        timeout: ELEVENLABS_DEFAULT_TIMEOUT
+      });
+
+      if (response.status === 200) {
+        return response.data;
+      }
+
+      throw new Error('Failed to synthesize speech');
+    } catch (error) {
+      if (error.response?.status === 401) {
+        throw new Error('API key unauthorized or expired');
+      }
+      if (error.response?.status === 429) {
+        throw new Error('Rate limit exceeded');
+      }
+      if (error.code === 'ECONNABORTED') {
+        throw new Error('Request timed out');
+      }
+      throw new Error(error.message || 'Failed to synthesize speech');
     }
   }
 }
