@@ -62,7 +62,8 @@ export const APP_LANGS = [
   'uk-UA',
   'vi-VN',
   'zh-CN',
-  'zu-ZA' // for crowdin contextual translation
+  'zu-ZA',
+  'lo-LA' // for crowdin contextual translation
 ];
 
 export const USER_DATA_PROPERTIES = [
