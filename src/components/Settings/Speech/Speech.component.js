@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage, intlShape } from 'react-intl';
+import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -21,6 +21,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
+import PasswordTextField from '../../UI/FormItems/PasswordTextField';
 import { isCordova } from '../../../cordova-util';
 import {
   MIN_PITCH,
@@ -62,6 +63,15 @@ const styles = theme => ({
     position: 'relative',
     justifyContent: 'center',
     width: '100%'
+  },
+  apiKeyInput: {
+    width: '200px',
+    [theme.breakpoints.up('sm')]: {
+      width: '300px'
+    },
+    '& .MuiTextField-root': {
+      width: '100%'
+    }
   }
 });
 
@@ -166,48 +176,66 @@ const Speech = ({
             </div>
           </ListItem>
         </List>
-
-        <ListItem divider>
-          <ListItemText
-            primary={<FormattedMessage {...messages.elevenLabsApiKey} />}
-            secondary={
-              <div>
-                <FormattedMessage {...messages.elevenLabsApiKeyDescription} />
-                {elevenLabsValidationError && (
-                  <FormHelperText error>
-                    {elevenLabsValidationError}
-                  </FormHelperText>
-                )}
-              </div>
-            }
-          />
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <TextField
-              type="password"
-              value={elevenLabsApiKey || ''}
-              onChange={handleElevenLabsApiKeyChange}
-              placeholder="sk_..."
-              error={!!elevenLabsValidationError}
-              variant="outlined"
-              size="small"
-              style={{ minWidth: '200px' }}
+      </Paper>
+      <Paper style={{ marginTop: 10 }}>
+        <List>
+          <ListItem>
+            <ListItemText
+              primary={<FormattedMessage {...messages.elevenLabsApiKey} />}
+              secondary={
+                <div>
+                  <FormattedMessage {...messages.elevenLabsApiKeyDescription} />
+                  {elevenLabsValidationError && (
+                    <FormHelperText error>
+                      {elevenLabsValidationError}
+                    </FormHelperText>
+                  )}
+                </div>
+              }
             />
-            <IconButton
-              onClick={testElevenLabsConnection}
-              disabled={elevenLabsValidating || !elevenLabsApiKey}
-            >
-              {elevenLabsValidating ? (
-                <CircularProgress size={20} />
-              ) : elevenLabsConnected ? (
-                <CheckCircleIcon color="primary" />
-              ) : elevenLabsValidationError ? (
-                <ErrorIcon color="error" />
-              ) : (
-                <CloudIcon color="disabled" />
-              )}
-            </IconButton>
-          </div>
-        </ListItem>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div className={classes.apiKeyInput}>
+                <PasswordTextField
+                  label=""
+                  name="elevenLabsApiKey"
+                  onChange={handleElevenLabsApiKeyChange}
+                  error={elevenLabsValidationError}
+                />
+              </div>
+              <IconButton
+                onClick={testElevenLabsConnection}
+                disabled={elevenLabsValidating || !elevenLabsApiKey}
+              >
+                {elevenLabsValidating ? (
+                  <CircularProgress size={20} />
+                ) : elevenLabsConnected ? (
+                  <CheckCircleIcon color="primary" />
+                ) : elevenLabsValidationError ? (
+                  <ErrorIcon color="error" />
+                ) : (
+                  <CloudIcon color="disabled" />
+                )}
+              </IconButton>
+            </div>
+          </ListItem>
+        </List>
+        <div className="Speech__HelpText">
+          <FormattedMessage
+            {...messages.elevenLabsApiKeyHelp}
+            values={{
+              elevenLabsLink: (
+                <a
+                  href="https://elevenlabs.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#1976d2', textDecoration: 'none' }}
+                >
+                  elevenlabs.io
+                </a>
+              )
+            }}
+          />
+        </div>
       </Paper>
       {langVoices.length && (
         <Menu
@@ -255,4 +283,4 @@ const Speech = ({
 
 Speech.propTypes = propTypes;
 
-export default withStyles(styles)(Speech);
+export default withStyles(styles)(injectIntl(Speech));
