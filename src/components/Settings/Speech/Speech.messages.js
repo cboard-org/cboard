@@ -68,5 +68,10 @@ export default defineMessages({
   elevenLabsTestError: {
     id: 'cboard.components.Settings.Speech.elevenLabsTestError',
     defaultMessage: 'Failed to validate API key'
+  },
+  elevenLabsApiKeyHelp: {
+    id: 'cboard.components.Settings.Speech.elevenLabsApiKeyHelp',
+    defaultMessage:
+      'Get your API key from {elevenLabsLink} and enter it to enable your voices'
   }
 });
