@@ -685,12 +685,39 @@ class API {
     }
   }
 
-  saveElevenLabsApiKey(key) {
-    localStorage.setItem('elevenlabs_api_key', key);
+  async saveElevenLabsApiKey(key) {
+    try {
+      return await this.updateSettings({
+        elevenLabs: { apiKey: key }
+      });
+    } catch (error) {
+      console.error('Failed to save ElevenLabs API key to settings:', error);
+      throw error;
+    }
   }
 
-  getElevenLabsApiKey() {
-    return localStorage.getItem('elevenlabs_api_key') || '';
+  async getElevenLabsApiKey() {
+    try {
+      const settings = await this.getSettings();
+      return settings?.elevenLabs?.apiKey || '';
+    } catch (error) {
+      console.error('Failed to get ElevenLabs API key from settings:', error);
+      return '';
+    }
+  }
+
+  async deleteElevenLabsApiKey() {
+    try {
+      return await this.updateSettings({
+        elevenLabs: { apiKey: null }
+      });
+    } catch (error) {
+      console.error(
+        'Failed to delete ElevenLabs API key from settings:',
+        error
+      );
+      throw error;
+    }
   }
 
   validateElevenLabsApiKeyFormat(apiKey) {
@@ -747,7 +774,7 @@ class API {
   }
 
   async getElevenLabsVoices() {
-    const apiKey = this.getElevenLabsApiKey();
+    const apiKey = await this.getElevenLabsApiKey();
     if (!apiKey) return [];
 
     const headers = { 'xi-api-key': apiKey };
@@ -767,7 +794,7 @@ class API {
   }
 
   async synthesizeSpeechElevenLabs(text, voiceId, settings = {}) {
-    const apiKey = this.getElevenLabsApiKey();
+    const apiKey = await this.getElevenLabsApiKey();
     if (!apiKey) return;
 
     const store = getStore();
