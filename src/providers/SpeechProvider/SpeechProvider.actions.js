@@ -12,7 +12,11 @@ import {
   END_SPEECH,
   CANCEL_SPEECH,
   CACHE_ELEVENLABS_VOICES,
-  CLEAR_ELEVENLABS_CACHE
+  CLEAR_ELEVENLABS_CACHE,
+  CHANGE_ELEVENLABS_STABILITY,
+  CHANGE_ELEVENLABS_SIMILARITY,
+  CHANGE_ELEVENLABS_STYLE,
+  RESET_ELEVENLABS_SETTINGS
 } from './SpeechProvider.constants';
 
 import {
@@ -343,5 +347,36 @@ export function setCurrentVoiceSource() {
       dispatch(changeVoice(voiceURI, lang));
       return;
     }
+  };
+}
+
+export function changeElevenLabsStability(voiceId, stability) {
+  return {
+    type: CHANGE_ELEVENLABS_STABILITY,
+    voiceId,
+    stability
+  };
+}
+
+export function changeElevenLabsSimilarity(voiceId, similarity) {
+  return {
+    type: CHANGE_ELEVENLABS_SIMILARITY,
+    voiceId,
+    similarity
+  };
+}
+
+export function changeElevenLabsStyle(voiceId, style) {
+  return {
+    type: CHANGE_ELEVENLABS_STYLE,
+    voiceId,
+    style
+  };
+}
+
+export function resetElevenLabsSettings(voiceId) {
+  return {
+    type: RESET_ELEVENLABS_SETTINGS,
+    voiceId
   };
 }
