@@ -9,7 +9,11 @@ import {
   cancelSpeech,
   changeVoice,
   changePitch,
-  changeRate
+  changeRate,
+  changeElevenLabsStability,
+  changeElevenLabsSimilarity,
+  changeElevenLabsStyle,
+  resetElevenLabsSettings
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import Speech from './Speech.component';
 import messages from './Speech.messages';
@@ -114,6 +118,66 @@ export class SpeechContainer extends Component {
     this.speakSample();
   };
 
+  handleChangeElevenLabsStability = async (event, value) => {
+    const { changeElevenLabsStability } = this.props;
+    const {
+      speech: {
+        options: { voiceURI }
+      }
+    } = this.props;
+    const voice = this.props.speech.voices.find(v => v.voiceURI === voiceURI);
+
+    if (voice?.voiceSource === 'elevenlabs') {
+      changeElevenLabsStability(voice.voice_id, value);
+      this.speakSample();
+    }
+  };
+
+  handleChangeElevenLabsSimilarity = async (event, value) => {
+    const { changeElevenLabsSimilarity } = this.props;
+    const {
+      speech: {
+        options: { voiceURI }
+      }
+    } = this.props;
+    const voice = this.props.speech.voices.find(v => v.voiceURI === voiceURI);
+
+    if (voice?.voiceSource === 'elevenlabs') {
+      changeElevenLabsSimilarity(voice.voice_id, value);
+      this.speakSample();
+    }
+  };
+
+  handleChangeElevenLabsStyle = async (event, value) => {
+    const { changeElevenLabsStyle } = this.props;
+    const {
+      speech: {
+        options: { voiceURI }
+      }
+    } = this.props;
+    const voice = this.props.speech.voices.find(v => v.voiceURI === voiceURI);
+
+    if (voice?.voiceSource === 'elevenlabs') {
+      changeElevenLabsStyle(voice.voice_id, value);
+      this.speakSample();
+    }
+  };
+
+  handleResetElevenLabsSettings = async () => {
+    const { resetElevenLabsSettings } = this.props;
+    const {
+      speech: {
+        options: { voiceURI }
+      }
+    } = this.props;
+    const voice = this.props.speech.voices.find(v => v.voiceURI === voiceURI);
+
+    if (voice?.voiceSource === 'elevenlabs') {
+      resetElevenLabsSettings(voice.voice_id);
+      this.speakSample();
+    }
+  };
+
   handleVoiceClose = () => {
     this.setState({ isVoiceOpen: false });
   };
@@ -187,6 +251,19 @@ export class SpeechContainer extends Component {
     await this.validateApiKey(elevenLabsApiKey, true);
   };
 
+  getElevenLabsSettings(voice) {
+    if (!voice || voice?.voiceSource !== 'elevenlabs') {
+      return { stability: 0.5, similarity: 0.75, style: 0.0 };
+    }
+
+    const settings = voice.settings || {};
+    return {
+      stability: settings.stability ?? 0.5,
+      similarity: settings.similarity_boost ?? 0.75,
+      style: settings.style ?? 0.0
+    };
+  }
+
   render() {
     const {
       history,
@@ -217,11 +294,17 @@ export class SpeechContainer extends Component {
       };
     }
 
+    const elevenLabsSettings = this.getElevenLabsSettings(voice);
+
     return (
       <Speech
         {...this.state}
         handleChangePitch={this.handleChangePitch}
         handleChangeRate={this.handleChangeRate}
+        handleChangeElevenLabsStability={this.handleChangeElevenLabsStability}
+        handleChangeElevenLabsSimilarity={this.handleChangeElevenLabsSimilarity}
+        handleChangeElevenLabsStyle={this.handleChangeElevenLabsStyle}
+        handleResetElevenLabsSettings={this.handleResetElevenLabsSettings}
         handleClickListItem={this.handleClickListItem}
         onMenuItemClick={this.handleMenuItemClick}
         handleVoiceClose={this.handleVoiceClose}
@@ -231,6 +314,7 @@ export class SpeechContainer extends Component {
         pitch={pitch}
         rate={rate}
         voice={voice}
+        elevenLabsSettings={elevenLabsSettings}
         handleElevenLabsApiKeyChange={this.handleElevenLabsApiKeyChange}
         testElevenLabsConnection={this.testElevenLabsConnection}
         elevenLabsValidationError={this.state.elevenLabsValidationError}
@@ -252,6 +336,10 @@ const mapDispatchToProps = {
   changeVoice,
   changePitch,
   changeRate,
+  changeElevenLabsStability,
+  changeElevenLabsSimilarity,
+  changeElevenLabsStyle,
+  resetElevenLabsSettings,
   speak
 };
 
