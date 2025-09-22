@@ -14,7 +14,9 @@ import TextField from '@material-ui/core/TextField';
 import {
   IconButton,
   CircularProgress,
-  FormHelperText
+  FormHelperText,
+  Tooltip,
+  Button
 } from '@material-ui/core';
 import CloudIcon from '@material-ui/icons/Cloud';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -33,10 +35,15 @@ import {
 import messages from './Speech.messages';
 import './Speech.css';
 import PremiumFeature from '../../PremiumFeature';
+import { max } from 'lodash';
 
 const propTypes = {
   handleChangePitch: PropTypes.func,
   handleChangeRate: PropTypes.func,
+  handleChangeElevenLabsStability: PropTypes.func,
+  handleChangeElevenLabsSimilarity: PropTypes.func,
+  handleChangeElevenLabsStyle: PropTypes.func,
+  handleResetElevenLabsSettings: PropTypes.func,
   handleClickListItem: PropTypes.func,
   onMenuItemClick: PropTypes.func,
   handleVoiceClose: PropTypes.func,
@@ -48,6 +55,7 @@ const propTypes = {
   selectedVoiceIndex: PropTypes.number,
   isVoiceOpen: PropTypes.bool.isRequired,
   voice: PropTypes.object.isRequired,
+  elevenLabsSettings: PropTypes.object,
   elevenLabsApiKey: PropTypes.string,
   elevenLabsConnected: PropTypes.bool,
   handleElevenLabsApiKeyChange: PropTypes.func,
@@ -61,7 +69,9 @@ const styles = theme => ({
     display: 'flex',
     position: 'relative',
     justifyContent: 'center',
-    width: '100%'
+    width: '100%',
+    maxWidth: '461px',
+    paddingLeft: '12px'
   }
 });
 
@@ -83,6 +93,10 @@ const Speech = ({
   classes,
   handleChangePitch,
   handleChangeRate,
+  handleChangeElevenLabsStability,
+  handleChangeElevenLabsSimilarity,
+  handleChangeElevenLabsStyle,
+  handleResetElevenLabsSettings,
   handleClickListItem,
   onMenuItemClick,
   handleVoiceClose,
@@ -94,6 +108,7 @@ const Speech = ({
   selectedVoiceIndex,
   isVoiceOpen,
   voice,
+  elevenLabsSettings,
   elevenLabsApiKey,
   elevenLabsConnected,
   handleElevenLabsApiKeyChange,
@@ -146,6 +161,7 @@ const Speech = ({
           </ListItem>
           <ListItem
             disabled={voice && voice.voiceSource === 'cloud' ? true : false}
+            divider
             aria-label={intl.formatMessage(messages.rate)}
           >
             <ListItemText
@@ -165,6 +181,106 @@ const Speech = ({
               />
             </div>
           </ListItem>
+
+          {voice?.voiceSource === 'elevenlabs' && (
+            <>
+              <ListItem
+                divider
+                aria-label={intl.formatMessage(messages.elevenLabsStability)}
+              >
+                <ListItemText
+                  className="Speech__ListItemText"
+                  primary={
+                    <FormattedMessage {...messages.elevenLabsStability} />
+                  }
+                  secondary={
+                    <FormattedMessage
+                      {...messages.elevenLabsStabilityDescription}
+                    />
+                  }
+                />
+                <div className={classes.container}>
+                  <Slider
+                    color="secondary"
+                    value={elevenLabsSettings?.stability || 0.5}
+                    min={0}
+                    max={1}
+                    step={0.1}
+                    onChange={handleChangeElevenLabsStability}
+                  />
+                </div>
+              </ListItem>
+              <ListItem
+                divider
+                aria-label={intl.formatMessage(messages.elevenLabsSimilarity)}
+              >
+                <ListItemText
+                  className="Speech__ListItemText"
+                  primary={
+                    <FormattedMessage {...messages.elevenLabsSimilarity} />
+                  }
+                  secondary={
+                    <FormattedMessage
+                      {...messages.elevenLabsSimilarityDescription}
+                    />
+                  }
+                />
+                <div className={classes.container}>
+                  <Slider
+                    color="secondary"
+                    value={elevenLabsSettings?.similarity || 0.75}
+                    min={0}
+                    max={1}
+                    step={0.1}
+                    onChange={handleChangeElevenLabsSimilarity}
+                  />
+                </div>
+              </ListItem>
+              <ListItem
+                divider
+                aria-label={intl.formatMessage(messages.elevenLabsStyle)}
+              >
+                <ListItemText
+                  className="Speech__ListItemText"
+                  primary={<FormattedMessage {...messages.elevenLabsStyle} />}
+                  secondary={
+                    <FormattedMessage
+                      {...messages.elevenLabsStyleDescription}
+                    />
+                  }
+                />
+                <div className={classes.container}>
+                  <Slider
+                    color="secondary"
+                    value={elevenLabsSettings?.style || 0.0}
+                    min={0}
+                    max={1}
+                    step={0.1}
+                    onChange={handleChangeElevenLabsStyle}
+                  />
+                </div>
+              </ListItem>
+              <ListItem>
+                <div
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    padding: '16px 0'
+                  }}
+                >
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    onClick={handleResetElevenLabsSettings}
+                    size="small"
+                  >
+                    <FormattedMessage {...messages.resetToDefaults} />
+                  </Button>
+                </div>
+              </ListItem>
+            </>
+          )}
         </List>
 
         <ListItem divider>
