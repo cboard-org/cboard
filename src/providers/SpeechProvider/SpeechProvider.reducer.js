@@ -10,7 +10,13 @@ import {
   EMPTY_VOICES,
   RECEIVE_TTS_ENGINES,
   RECEIVE_TTS_DEFAULT_ENGINE,
-  RECEIVE_TTS_ENGINE
+  RECEIVE_TTS_ENGINE,
+  CACHE_ELEVENLABS_VOICES,
+  CLEAR_ELEVENLABS_CACHE,
+  CHANGE_ELEVENLABS_STABILITY,
+  CHANGE_ELEVENLABS_SIMILARITY,
+  CHANGE_ELEVENLABS_STYLE,
+  RESET_ELEVENLABS_SETTINGS
 } from './SpeechProvider.constants';
 import {
   getVoiceURI,
@@ -35,7 +41,12 @@ const initialState = {
     rate: 1.0,
     volume: 1
   },
-  isSpeaking: false
+  isSpeaking: false,
+  elevenLabsCache: {
+    voices: [],
+    timestamp: null,
+    ttl: 24 * 60 * 60 * 1000
+  }
 };
 
 function speechProviderReducer(state = initialState, action) {
@@ -147,6 +158,86 @@ function speechProviderReducer(state = initialState, action) {
       return { ...state, isSpeaking: action.isSpeaking };
     case CANCEL_SPEECH:
       return { ...state, isSpeaking: action.isSpeaking };
+    case CACHE_ELEVENLABS_VOICES:
+      return {
+        ...state,
+        elevenLabsCache: {
+          ...state.elevenLabsCache,
+          voices: action.voices,
+          timestamp: Date.now()
+        }
+      };
+    case CLEAR_ELEVENLABS_CACHE:
+      return {
+        ...state,
+        elevenLabsCache: {
+          ...state.elevenLabsCache,
+          voices: [],
+          timestamp: null
+        }
+      };
+    case CHANGE_ELEVENLABS_STABILITY:
+      return {
+        ...state,
+        voices: state.voices.map(voice =>
+          voice.voice_id === action.voiceId
+            ? {
+                ...voice,
+                settings: {
+                  ...voice.settings,
+                  stability: action.stability
+                }
+              }
+            : voice
+        )
+      };
+    case CHANGE_ELEVENLABS_SIMILARITY:
+      return {
+        ...state,
+        voices: state.voices.map(voice =>
+          voice.voice_id === action.voiceId
+            ? {
+                ...voice,
+                settings: {
+                  ...voice.settings,
+                  similarity_boost: action.similarity
+                }
+              }
+            : voice
+        )
+      };
+    case CHANGE_ELEVENLABS_STYLE:
+      return {
+        ...state,
+        voices: state.voices.map(voice =>
+          voice.voice_id === action.voiceId
+            ? {
+                ...voice,
+                settings: {
+                  ...voice.settings,
+                  style: action.style
+                }
+              }
+            : voice
+        )
+      };
+    case RESET_ELEVENLABS_SETTINGS:
+      return {
+        ...state,
+        voices: state.voices.map(voice =>
+          voice.voice_id === action.voiceId
+            ? {
+                ...voice,
+                settings: {
+                  ...voice.settings,
+                  stability: 0.5,
+                  similarity_boost: 0.75,
+                  style: 0.0
+                }
+              }
+            : voice
+        )
+      };
     default:
       return state;
   }
