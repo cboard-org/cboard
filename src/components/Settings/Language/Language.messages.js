@@ -21,10 +21,6 @@ export default defineMessages({
     id: 'cboard.components.Settings.Language.belarusian',
     defaultMessage: 'Belarusian'
   },
-  lo: {
-    id: 'cboard.components.Settings.Language.lao',
-    defaultMessage: 'Lao'
-  },
   bg: {
     id: 'cboard.components.Settings.Language.bulgarian',
     defaultMessage: 'Bulgarian'
@@ -104,6 +100,10 @@ export default defineMessages({
   ko: {
     id: 'cboard.components.Settings.Language.korean',
     defaultMessage: 'Korean'
+  },
+  lo: {
+    id: 'cboard.components.Settings.Language.lao',
+    defaultMessage: 'Lao'
   },
   me: {
     id: 'cboard.components.Settings.Language.montenegrin',
