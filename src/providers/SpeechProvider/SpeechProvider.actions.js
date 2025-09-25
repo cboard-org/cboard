@@ -10,7 +10,9 @@ import {
   CHANGE_RATE,
   START_SPEECH,
   END_SPEECH,
-  CANCEL_SPEECH
+  CANCEL_SPEECH,
+  CACHE_ELEVENLABS_VOICES,
+  CLEAR_ELEVENLABS_CACHE
 } from './SpeechProvider.constants';
 
 import {
@@ -25,6 +27,7 @@ import {
 } from '../../i18n';
 import tts from './tts';
 import { showNotification } from '../../components/Notifications/Notifications.actions';
+import API from '../../api';
 
 export function requestVoices() {
   return {
@@ -164,7 +167,7 @@ export function changeRate(rate) {
 }
 
 export function getVoices() {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     let voices = [];
     dispatch(requestVoices());
     try {
@@ -208,6 +211,45 @@ export function getVoices() {
           return voice;
         }
       );
+
+      const state = getState ? getState() : null;
+      const elevenLabsCache = state?.speech?.elevenLabsCache;
+      let formattedElevenLabsVoices = [];
+
+      if (elevenLabsCache && isElevenLabsCacheValid(elevenLabsCache)) {
+        formattedElevenLabsVoices = elevenLabsCache.voices;
+      } else {
+        try {
+          const elevenLabsVoice = await API.getElevenLabsVoices();
+          formattedElevenLabsVoices = elevenLabsVoice.map(voice => ({
+            voiceURI: voice.voice_id,
+            name: voice.name,
+            lang: voice.labels?.language || 'en-US',
+            voiceSource: 'elevenlabs',
+            voice_id: voice.voice_id,
+            category: voice.category,
+            description: voice.description,
+            labels: voice.labels,
+            settings: {
+              stability: 0.5,
+              similarity_boost: 0.8,
+              style: 0.0
+            }
+          }));
+
+          if (dispatch) {
+            dispatch(cacheElevenLabsVoices(formattedElevenLabsVoices));
+          }
+        } catch (err) {
+          console.error('Failed to fetch ElevenLabs voices:', err.message);
+          if (elevenLabsCache?.voices?.length) {
+            formattedElevenLabsVoices = elevenLabsCache.voices;
+          }
+        }
+      }
+
+      voices = [...formattedElevenLabsVoices, ...voices];
+
       dispatch(receiveVoices(voices));
     } catch (err) {
       console.error(err.message);
@@ -271,6 +313,27 @@ export function speak(text, onend = () => {}) {
       setCloudSpeakAlertTimeout
     );
   };
+}
+
+export function cacheElevenLabsVoices(voices) {
+  return {
+    type: CACHE_ELEVENLABS_VOICES,
+    voices
+  };
+}
+
+export function clearElevenLabsCache() {
+  return {
+    type: CLEAR_ELEVENLABS_CACHE
+  };
+}
+
+function isElevenLabsCacheValid(cache) {
+  if (!cache.timestamp || !cache.voices.length) {
+    return false;
+  }
+  const now = Date.now();
+  return now - cache.timestamp < cache.ttl;
 }
 
 export function setCurrentVoiceSource() {
