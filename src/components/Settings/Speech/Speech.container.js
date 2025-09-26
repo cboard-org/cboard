@@ -18,6 +18,7 @@ import API from '../../../api';
 import { DEFAULT_LANG } from '../../App/App.constants';
 import { EMPTY_VOICES } from '../../../providers/SpeechProvider/SpeechProvider.constants';
 import elevenLabsEngine from '../../../providers/SpeechProvider/engine/elevenlabs';
+import tts from '../../../providers/SpeechProvider/tts';
 
 export class SpeechContainer extends Component {
   static propTypes = {
@@ -46,15 +47,7 @@ export class SpeechContainer extends Component {
     anchorEl: undefined
   };
 
-  async componentDidMount() {
-    const {
-      speech: { elevenLabsApiKey }
-    } = this.props;
-
-    if (elevenLabsApiKey) {
-      elevenLabsEngine.initialize(elevenLabsApiKey);
-    }
-  }
+  async componentDidMount() {}
 
   handleUpdateElevenLabsApiKey = async apiKey => {
     const { changeElevenLabsApiKey } = this.props;
@@ -63,7 +56,7 @@ export class SpeechContainer extends Component {
       throw new Error('Invalid API key format');
     }
     changeElevenLabsApiKey(apiKey);
-    elevenLabsEngine.initialize(apiKey);
+    tts.reinitializeElevenLabs();
     await this.updateSettings('elevenLabsApiKey', apiKey);
   };
 
