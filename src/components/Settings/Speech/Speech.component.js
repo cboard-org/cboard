@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage, intlShape } from 'react-intl';
+import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -10,8 +10,18 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Slider from '@material-ui/core/Slider';
 import Chip from '@material-ui/core/Chip';
+import TextField from '@material-ui/core/TextField';
+import {
+  IconButton,
+  CircularProgress,
+  FormHelperText
+} from '@material-ui/core';
+import CloudIcon from '@material-ui/icons/Cloud';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ErrorIcon from '@material-ui/icons/Error';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
+import PasswordTextField from '../../UI/FormItems/PasswordTextField';
 import { isCordova } from '../../../cordova-util';
 import {
   MIN_PITCH,
@@ -38,7 +48,13 @@ const propTypes = {
   rate: PropTypes.number,
   selectedVoiceIndex: PropTypes.number,
   isVoiceOpen: PropTypes.bool.isRequired,
-  voice: PropTypes.object.isRequired
+  voice: PropTypes.object.isRequired,
+  elevenLabsApiKey: PropTypes.string,
+  elevenLabsConnected: PropTypes.bool,
+  handleElevenLabsApiKeyChange: PropTypes.func,
+  testElevenLabsConnection: PropTypes.func,
+  elevenLabsValidationError: PropTypes.string,
+  elevenLabsValidating: PropTypes.bool
 };
 
 const styles = theme => ({
@@ -47,6 +63,15 @@ const styles = theme => ({
     position: 'relative',
     justifyContent: 'center',
     width: '100%'
+  },
+  apiKeyInput: {
+    width: '200px',
+    [theme.breakpoints.up('sm')]: {
+      width: '300px'
+    },
+    '& .MuiTextField-root': {
+      width: '100%'
+    }
   }
 });
 
@@ -78,7 +103,13 @@ const Speech = ({
   rate,
   selectedVoiceIndex,
   isVoiceOpen,
-  voice
+  voice,
+  elevenLabsApiKey,
+  elevenLabsConnected,
+  handleElevenLabsApiKeyChange,
+  testElevenLabsConnection,
+  elevenLabsValidationError,
+  elevenLabsValidating
 }) => (
   <div className="Speech">
     <FullScreenDialog
@@ -146,6 +177,66 @@ const Speech = ({
           </ListItem>
         </List>
       </Paper>
+      <Paper style={{ marginTop: 10 }}>
+        <List>
+          <ListItem>
+            <ListItemText
+              primary={<FormattedMessage {...messages.elevenLabsApiKey} />}
+              secondary={
+                <div>
+                  <FormattedMessage {...messages.elevenLabsApiKeyDescription} />
+                  {elevenLabsValidationError && (
+                    <FormHelperText error>
+                      {elevenLabsValidationError}
+                    </FormHelperText>
+                  )}
+                </div>
+              }
+            />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div className={classes.apiKeyInput}>
+                <PasswordTextField
+                  label=""
+                  name="elevenLabsApiKey"
+                  onChange={handleElevenLabsApiKeyChange}
+                  error={elevenLabsValidationError}
+                />
+              </div>
+              <IconButton
+                onClick={testElevenLabsConnection}
+                disabled={elevenLabsValidating || !elevenLabsApiKey}
+              >
+                {elevenLabsValidating ? (
+                  <CircularProgress size={20} />
+                ) : elevenLabsConnected ? (
+                  <CheckCircleIcon color="primary" />
+                ) : elevenLabsValidationError ? (
+                  <ErrorIcon color="error" />
+                ) : (
+                  <CloudIcon color="disabled" />
+                )}
+              </IconButton>
+            </div>
+          </ListItem>
+        </List>
+        <div className="Speech__HelpText">
+          <FormattedMessage
+            {...messages.elevenLabsApiKeyHelp}
+            values={{
+              elevenLabsLink: (
+                <a
+                  href="https://elevenlabs.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#1976d2', textDecoration: 'none' }}
+                >
+                  elevenlabs.io
+                </a>
+              )
+            }}
+          />
+        </div>
+      </Paper>
       {langVoices.length && (
         <Menu
           id="voice-menu"
@@ -164,7 +255,11 @@ const Speech = ({
                   <div className="Speech__VoiceLabel">
                     {getVoiceLabel(voice)}
                   </div>
-                  {voice.voiceSource === 'cloud' && (
+                  {voice.voiceSource === 'elevenlabs' && (
+                    <Chip label="ElevenLabs" size="small" color="primary" />
+                  )}
+                  {(voice.voiceSource === 'cloud' ||
+                    voice.voiceSource === 'elevenlabs') && (
                     <Chip label="online" size="small" color="secondary" />
                   )}
                 </div>
@@ -174,7 +269,10 @@ const Speech = ({
             const PremiumVoice = <PremiumFeature> {VoiceItem}</PremiumFeature>;
 
             const VoiceOption =
-              voice.voiceSource === 'cloud' ? PremiumVoice : VoiceItem;
+              voice.voiceSource === 'cloud' ||
+              voice.voiceSource === 'elevenlabs'
+                ? PremiumVoice
+                : VoiceItem;
             return VoiceOption;
           })}
         </Menu>
@@ -185,4 +283,4 @@ const Speech = ({
 
 Speech.propTypes = propTypes;
 
-export default withStyles(styles)(Speech);
+export default withStyles(styles)(injectIntl(Speech));
