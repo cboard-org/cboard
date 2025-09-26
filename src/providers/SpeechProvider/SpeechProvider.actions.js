@@ -8,6 +8,7 @@ import {
   CHANGE_VOICE,
   CHANGE_PITCH,
   CHANGE_RATE,
+  CHANGE_ELEVENLABS_API_KEY,
   START_SPEECH,
   END_SPEECH,
   CANCEL_SPEECH
@@ -160,6 +161,13 @@ export function changeRate(rate) {
   return {
     type: CHANGE_RATE,
     rate
+  };
+}
+
+export function changeElevenLabsApiKey(elevenLabsApiKey) {
+  return {
+    type: CHANGE_ELEVENLABS_API_KEY,
+    elevenLabsApiKey
   };
 }
 

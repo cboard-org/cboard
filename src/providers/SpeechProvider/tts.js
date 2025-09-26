@@ -9,6 +9,7 @@ import {
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import { getStore } from '../../store';
+import elevenLabsEngine from './engine/elevenlabs';
 
 // this is the local synthesizer
 let synth = window.speechSynthesis;
@@ -50,6 +51,17 @@ const initAzureSynthesizer = () => {
   );
 };
 
+const initElevenLabsEngine = () => {
+  const store = getStore();
+  const {
+    speech: { elevenLabsApiKey }
+  } = store.getState();
+
+  if (elevenLabsApiKey) {
+    elevenLabsEngine.initialize(elevenLabsApiKey);
+  }
+};
+
 const playQueue = () => {
   if (speakQueue.length) {
     const blob = new Blob([speakQueue[0].audioData], { type: 'audio/wav' });
@@ -71,10 +83,15 @@ const playQueue = () => {
 };
 
 initAzureSynthesizer();
+initElevenLabsEngine();
 
 const tts = {
   isSupported() {
     return 'speechSynthesis' in window;
+  },
+
+  reinitializeElevenLabs() {
+    initElevenLabsEngine();
   },
 
   getVoiceByVoiceURI(VoiceURI) {

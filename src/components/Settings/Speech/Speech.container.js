@@ -9,13 +9,16 @@ import {
   cancelSpeech,
   changeVoice,
   changePitch,
-  changeRate
+  changeRate,
+  changeElevenLabsApiKey
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import Speech from './Speech.component';
 import messages from './Speech.messages';
 import API from '../../../api';
 import { DEFAULT_LANG } from '../../App/App.constants';
 import { EMPTY_VOICES } from '../../../providers/SpeechProvider/SpeechProvider.constants';
+import elevenLabsEngine from '../../../providers/SpeechProvider/engine/elevenlabs';
+import tts from '../../../providers/SpeechProvider/tts';
 
 export class SpeechContainer extends Component {
   static propTypes = {
@@ -46,6 +49,17 @@ export class SpeechContainer extends Component {
 
   async componentDidMount() {}
 
+  handleUpdateElevenLabsApiKey = async apiKey => {
+    const { changeElevenLabsApiKey } = this.props;
+
+    if (apiKey && !elevenLabsEngine.validateApiKeyFormat(apiKey)) {
+      throw new Error('Invalid API key format');
+    }
+    changeElevenLabsApiKey(apiKey);
+    tts.reinitializeElevenLabs();
+    await this.updateSettings('elevenLabsApiKey', apiKey);
+  };
+
   speakSample = debounce(() => {
     const { cancelSpeech, intl, speak } = this.props;
     const text = intl.formatMessage(messages.sampleSentence);
@@ -73,7 +87,8 @@ export class SpeechContainer extends Component {
     this.updateSettingsTimeout = setTimeout(async () => {
       const {
         speech: {
-          options: { voiceURI, pitch, rate }
+          options: { voiceURI, pitch, rate },
+          elevenLabsApiKey
         }
       } = this.props;
 
@@ -81,6 +96,7 @@ export class SpeechContainer extends Component {
         voiceURI,
         pitch,
         rate,
+        elevenLabsApiKey,
         [property]: value
       };
 
@@ -115,7 +131,7 @@ export class SpeechContainer extends Component {
       lang,
       speech: {
         voices,
-        options: { voiceURI, pitch, rate }
+        options: { voiceURI, pitch, rate, elevenLabsApiKey }
       }
     } = this.props;
 
@@ -160,7 +176,8 @@ export class SpeechContainer extends Component {
 const mapStateToProps = state => ({
   lang: state.language.lang,
   voices: state.speech.voices,
-  speech: state.speech
+  speech: state.speech,
+  elevenLabsApiKey: state.speech.elevenLabsApiKey
 });
 
 const mapDispatchToProps = {
@@ -168,6 +185,7 @@ const mapDispatchToProps = {
   changeVoice,
   changePitch,
   changeRate,
+  changeElevenLabsApiKey,
   speak
 };
 
