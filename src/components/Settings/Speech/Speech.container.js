@@ -87,9 +87,9 @@ export class SpeechContainer extends Component {
     this.updateSettingsTimeout = setTimeout(async () => {
       const {
         speech: {
-          options: { voiceURI, pitch, rate },
-          elevenLabsApiKey
-        }
+          options: { voiceURI, pitch, rate }
+        },
+        elevenLabsApiKey
       } = this.props;
 
       const speech = {
