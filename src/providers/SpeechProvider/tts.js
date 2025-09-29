@@ -53,7 +53,7 @@ const initAzureSynthesizer = () => {
   );
 };
 
-const initElevenLabsEngine = () => {
+const initElevenLabsSynthesizer = () => {
   const store = getStore();
   if (!store) {
     return;
@@ -70,7 +70,7 @@ const initElevenLabsEngine = () => {
 
 const ensureElevenLabsInitialized = () => {
   if (!elevenLabsSynthesizer || !elevenLabsSynthesizer.isInitialized()) {
-    initElevenLabsEngine();
+    initElevenLabsSynthesizer();
   }
 };
 
@@ -103,7 +103,7 @@ const tts = {
 
   reinitializeElevenLabs() {
     elevenLabsSynthesizer = null;
-    initElevenLabsEngine();
+    initElevenLabsSynthesizer();
   },
 
   getVoiceByVoiceURI(VoiceURI) {
