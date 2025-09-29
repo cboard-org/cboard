@@ -7,10 +7,13 @@ export function validateApiKeyFormat(apiKey) {
 
 export class ElevenLabsEngine {
   constructor(apiKey) {
-    if (apiKey && !validateApiKeyFormat(apiKey)) {
+    if (!apiKey) {
+      throw new Error('ElevenLabs API key is required');
+    }
+    if (!validateApiKeyFormat(apiKey)) {
       throw new Error('Invalid ElevenLabs API key format');
     }
-    this.apiKey = apiKey || null;
+    this.apiKey = apiKey;
   }
 
   isInitialized() {
