@@ -18,7 +18,7 @@ class ElevenLabsEngine {
     return apiKeyRegex.test(apiKey);
   }
 
-  async getElevenLabsVoices() {
+  async getElevenLabsPersonalVoices() {
     if (!this.isInitialized()) {
       return [];
     }
