@@ -24,13 +24,16 @@ class ElevenLabsEngine {
     }
 
     try {
-      const response = await fetch(`${ELEVENLABS_API_BASE_URL}/v2/voices`, {
-        method: 'GET',
-        headers: {
-          'xi-api-key': this.apiKey,
-          'Content-Type': 'application/json'
+      const response = await fetch(
+        `${ELEVENLABS_API_BASE_URL}/v2/voices?voices-type=personal`,
+        {
+          method: 'GET',
+          headers: {
+            'xi-api-key': this.apiKey,
+            'Content-Type': 'application/json'
+          }
         }
-      });
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
