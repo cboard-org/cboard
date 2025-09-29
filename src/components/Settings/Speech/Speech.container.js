@@ -17,7 +17,7 @@ import messages from './Speech.messages';
 import API from '../../../api';
 import { DEFAULT_LANG } from '../../App/App.constants';
 import { EMPTY_VOICES } from '../../../providers/SpeechProvider/SpeechProvider.constants';
-import elevenLabsEngine from '../../../providers/SpeechProvider/engine/elevenlabs';
+import { validateApiKeyFormat } from '../../../providers/SpeechProvider/engine/elevenlabs';
 import tts from '../../../providers/SpeechProvider/tts';
 
 export class SpeechContainer extends Component {
@@ -52,7 +52,7 @@ export class SpeechContainer extends Component {
   handleUpdateElevenLabsApiKey = async apiKey => {
     const { changeElevenLabsApiKey } = this.props;
 
-    if (apiKey && !elevenLabsEngine.validateApiKeyFormat(apiKey)) {
+    if (apiKey && !validateApiKeyFormat(apiKey)) {
       throw new Error('Invalid API key format');
     }
     changeElevenLabsApiKey(apiKey);
