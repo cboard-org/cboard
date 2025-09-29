@@ -1,21 +1,20 @@
 import { ELEVENLABS_API_BASE_URL } from '../../../constants';
 
-class ElevenLabsEngine {
-  constructor() {
-    this.apiKey = null;
-  }
+export function validateApiKeyFormat(apiKey) {
+  const apiKeyRegex = /^sk_[a-f0-9]{48}$/;
+  return apiKeyRegex.test(apiKey);
+}
 
-  initialize(apiKey) {
-    this.apiKey = apiKey;
+export class ElevenLabsEngine {
+  constructor(apiKey) {
+    if (apiKey && !validateApiKeyFormat(apiKey)) {
+      throw new Error('Invalid ElevenLabs API key format');
+    }
+    this.apiKey = apiKey || null;
   }
 
   isInitialized() {
     return this.apiKey !== null;
-  }
-
-  validateApiKeyFormat(apiKey) {
-    const apiKeyRegex = /^sk_[a-f0-9]{48}$/;
-    return apiKeyRegex.test(apiKey);
   }
 
   async getElevenLabsPersonalVoices() {
@@ -102,6 +101,3 @@ class ElevenLabsEngine {
     this.apiKey = null;
   }
 }
-
-const elevenLabsEngine = new ElevenLabsEngine();
-export default elevenLabsEngine;
