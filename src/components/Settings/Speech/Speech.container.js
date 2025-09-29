@@ -131,7 +131,7 @@ export class SpeechContainer extends Component {
       lang,
       speech: {
         voices,
-        options: { voiceURI, pitch, rate, elevenLabsApiKey }
+        options: { voiceURI, pitch, rate }
       }
     } = this.props;
 
