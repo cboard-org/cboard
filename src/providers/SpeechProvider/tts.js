@@ -17,6 +17,8 @@ let synth = window.speechSynthesis;
 // this is the cloud synthesizer
 var azureSynthesizer;
 
+let elevenLabsInitialized = false;
+
 const audioElement = new Audio();
 
 let appleFirstCloudPlay = IS_BROWSING_FROM_APPLE;
@@ -53,12 +55,23 @@ const initAzureSynthesizer = () => {
 
 const initElevenLabsEngine = () => {
   const store = getStore();
+  if (!store) {
+    return;
+  }
+
   const {
     speech: { elevenLabsApiKey }
   } = store.getState();
 
   if (elevenLabsApiKey) {
     elevenLabsEngine.initialize(elevenLabsApiKey);
+    elevenLabsInitialized = true;
+  }
+};
+
+const ensureElevenLabsInitialized = () => {
+  if (!elevenLabsInitialized) {
+    initElevenLabsEngine();
   }
 };
 
@@ -83,7 +96,6 @@ const playQueue = () => {
 };
 
 initAzureSynthesizer();
-initElevenLabsEngine();
 
 const tts = {
   isSupported() {
@@ -91,6 +103,7 @@ const tts = {
   },
 
   reinitializeElevenLabs() {
+    elevenLabsInitialized = false;
     initElevenLabsEngine();
   },
 
@@ -216,6 +229,7 @@ const tts = {
     { voiceURI, pitch = 1, rate = 1, volume = 1, onend },
     setCloudSpeakAlertTimeout
   ) {
+    ensureElevenLabsInitialized();
     const voice = this.getVoiceByVoiceURI(voiceURI);
     if (voice && voice.voiceSource === 'cloud') {
       if (appleFirstCloudPlay) {
