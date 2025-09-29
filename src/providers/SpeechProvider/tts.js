@@ -9,7 +9,7 @@ import {
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import { getStore } from '../../store';
-import elevenLabsEngine from './engine/elevenlabs';
+import { ElevenLabsEngine } from './engine/elevenlabs';
 
 // this is the local synthesizer
 let synth = window.speechSynthesis;
@@ -17,7 +17,7 @@ let synth = window.speechSynthesis;
 // this is the cloud synthesizer
 var azureSynthesizer;
 
-let elevenLabsInitialized = false;
+var elevenLabsSynthesizer = null;
 
 const audioElement = new Audio();
 
@@ -64,13 +64,12 @@ const initElevenLabsEngine = () => {
   } = store.getState();
 
   if (elevenLabsApiKey) {
-    elevenLabsEngine.initialize(elevenLabsApiKey);
-    elevenLabsInitialized = true;
+    elevenLabsSynthesizer = new ElevenLabsEngine(elevenLabsApiKey);
   }
 };
 
 const ensureElevenLabsInitialized = () => {
-  if (!elevenLabsInitialized) {
+  if (!elevenLabsSynthesizer || !elevenLabsSynthesizer.isInitialized()) {
     initElevenLabsEngine();
   }
 };
@@ -103,7 +102,7 @@ const tts = {
   },
 
   reinitializeElevenLabs() {
-    elevenLabsInitialized = false;
+    elevenLabsSynthesizer = null;
     initElevenLabsEngine();
   },
 
