@@ -9,7 +9,11 @@ import {
   cancelSpeech,
   changeVoice,
   changePitch,
-  changeRate
+  changeRate,
+  changeElevenLabsStability,
+  changeElevenLabsSimilarity,
+  changeElevenLabsStyle,
+  resetElevenLabsSettings
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import Speech from './Speech.component';
 import messages from './Speech.messages';
@@ -41,10 +45,20 @@ export class SpeechContainer extends Component {
   state = {
     selectedVoiceIndex: 0,
     isVoiceOpen: false,
-    anchorEl: undefined
+    anchorEl: undefined,
+    elevenLabsApiKey: '',
+    elevenLabsConnected: false,
+    elevenLabsValidationError: '',
+    elevenLabsValidating: false
   };
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    const apiKey = API.getElevenLabsApiKey();
+    this.setState({ elevenLabsApiKey: apiKey });
+    if (apiKey) {
+      await this.validateApiKey(apiKey, false);
+    }
+  }
 
   speakSample = debounce(() => {
     const { cancelSpeech, intl, speak } = this.props;
@@ -104,9 +118,151 @@ export class SpeechContainer extends Component {
     this.speakSample();
   };
 
+  handleChangeElevenLabsStability = async (event, value) => {
+    const { changeElevenLabsStability } = this.props;
+    const {
+      speech: {
+        options: { voiceURI }
+      }
+    } = this.props;
+    const voice = this.props.speech.voices.find(v => v.voiceURI === voiceURI);
+
+    if (voice?.voiceSource === 'elevenlabs') {
+      changeElevenLabsStability(voice.voice_id, value);
+      this.speakSample();
+    }
+  };
+
+  handleChangeElevenLabsSimilarity = async (event, value) => {
+    const { changeElevenLabsSimilarity } = this.props;
+    const {
+      speech: {
+        options: { voiceURI }
+      }
+    } = this.props;
+    const voice = this.props.speech.voices.find(v => v.voiceURI === voiceURI);
+
+    if (voice?.voiceSource === 'elevenlabs') {
+      changeElevenLabsSimilarity(voice.voice_id, value);
+      this.speakSample();
+    }
+  };
+
+  handleChangeElevenLabsStyle = async (event, value) => {
+    const { changeElevenLabsStyle } = this.props;
+    const {
+      speech: {
+        options: { voiceURI }
+      }
+    } = this.props;
+    const voice = this.props.speech.voices.find(v => v.voiceURI === voiceURI);
+
+    if (voice?.voiceSource === 'elevenlabs') {
+      changeElevenLabsStyle(voice.voice_id, value);
+      this.speakSample();
+    }
+  };
+
+  handleResetElevenLabsSettings = async () => {
+    const { resetElevenLabsSettings } = this.props;
+    const {
+      speech: {
+        options: { voiceURI }
+      }
+    } = this.props;
+    const voice = this.props.speech.voices.find(v => v.voiceURI === voiceURI);
+
+    if (voice?.voiceSource === 'elevenlabs') {
+      resetElevenLabsSettings(voice.voice_id);
+      this.speakSample();
+    }
+  };
+
   handleVoiceClose = () => {
     this.setState({ isVoiceOpen: false });
   };
+
+  handleElevenLabsApiKeyChange = async event => {
+    const apiKey = event.target.value;
+    this.setState({
+      elevenLabsApiKey: apiKey,
+      elevenLabsValidationError: '',
+      elevenLabsConnected: false
+    });
+
+    if (apiKey) {
+      API.saveElevenLabsApiKey(apiKey);
+      await this.validateApiKey(apiKey, true);
+    } else {
+      API.saveElevenLabsApiKey('');
+    }
+  };
+
+  validateApiKey = async (apiKey, showMessages = true) => {
+    const { intl } = this.props;
+
+    this.setState({ elevenLabsValidating: true });
+
+    try {
+      const result = await API.validateElevenLabsApiKey(apiKey);
+
+      let errorMessage = '';
+      if (!result.isValid && showMessages) {
+        switch (result.error) {
+          case 'INVALID_FORMAT':
+            errorMessage = intl.formatMessage(messages.elevenLabsApiKeyInvalid);
+            break;
+          case 'UNAUTHORIZED':
+            errorMessage = intl.formatMessage(
+              messages.elevenLabsApiKeyUnauthorized
+            );
+            break;
+          default:
+            errorMessage = intl.formatMessage(messages.elevenLabsTestError);
+            break;
+        }
+      }
+
+      this.setState({
+        elevenLabsConnected: result.isValid,
+        elevenLabsValidationError: errorMessage,
+        elevenLabsValidating: false
+      });
+
+      return result.isValid;
+    } catch (error) {
+      this.setState({
+        elevenLabsConnected: false,
+        elevenLabsValidationError: showMessages
+          ? intl.formatMessage(messages.elevenLabsTestError)
+          : '',
+        elevenLabsValidating: false
+      });
+
+      return false;
+    }
+  };
+
+  testElevenLabsConnection = async () => {
+    const { elevenLabsApiKey } = this.state;
+    if (!elevenLabsApiKey) {
+      return;
+    }
+    await this.validateApiKey(elevenLabsApiKey, true);
+  };
+
+  getElevenLabsSettings(voice) {
+    if (!voice || voice?.voiceSource !== 'elevenlabs') {
+      return { stability: 0.5, similarity: 0.75, style: 0.0 };
+    }
+
+    const settings = voice.settings || {};
+    return {
+      stability: settings.stability ?? 0.5,
+      similarity: settings.similarity_boost ?? 0.75,
+      style: settings.style ?? 0.0
+    };
+  }
 
   render() {
     const {
@@ -138,11 +294,17 @@ export class SpeechContainer extends Component {
       };
     }
 
+    const elevenLabsSettings = this.getElevenLabsSettings(voice);
+
     return (
       <Speech
         {...this.state}
         handleChangePitch={this.handleChangePitch}
         handleChangeRate={this.handleChangeRate}
+        handleChangeElevenLabsStability={this.handleChangeElevenLabsStability}
+        handleChangeElevenLabsSimilarity={this.handleChangeElevenLabsSimilarity}
+        handleChangeElevenLabsStyle={this.handleChangeElevenLabsStyle}
+        handleResetElevenLabsSettings={this.handleResetElevenLabsSettings}
         handleClickListItem={this.handleClickListItem}
         onMenuItemClick={this.handleMenuItemClick}
         handleVoiceClose={this.handleVoiceClose}
@@ -152,6 +314,11 @@ export class SpeechContainer extends Component {
         pitch={pitch}
         rate={rate}
         voice={voice}
+        elevenLabsSettings={elevenLabsSettings}
+        handleElevenLabsApiKeyChange={this.handleElevenLabsApiKeyChange}
+        testElevenLabsConnection={this.testElevenLabsConnection}
+        elevenLabsValidationError={this.state.elevenLabsValidationError}
+        elevenLabsValidating={this.state.elevenLabsValidating}
       />
     );
   }
@@ -160,7 +327,8 @@ export class SpeechContainer extends Component {
 const mapStateToProps = state => ({
   lang: state.language.lang,
   voices: state.speech.voices,
-  speech: state.speech
+  speech: state.speech,
+  isConnected: state.app.isConnected
 });
 
 const mapDispatchToProps = {
@@ -168,6 +336,10 @@ const mapDispatchToProps = {
   changeVoice,
   changePitch,
   changeRate,
+  changeElevenLabsStability,
+  changeElevenLabsSimilarity,
+  changeElevenLabsStyle,
+  resetElevenLabsSettings,
   speak
 };
 

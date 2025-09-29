@@ -18,6 +18,9 @@ describe('reducer', () => {
   beforeEach(() => {
     initialState = {
       voices: [],
+      ttsEngines: [],
+      ttsDefaultEngine: {},
+      ttsEngine: {},
       langs: [],
       options: {
         lang: '',
@@ -28,9 +31,11 @@ describe('reducer', () => {
         volume: 1
       },
       isSpeaking: false,
-      ttsDefaultEngine: {},
-      ttsEngine: {},
-      ttsEngines: []
+      elevenLabsCache: {
+        voices: [],
+        timestamp: null,
+        ttl: 24 * 60 * 60 * 1000
+      }
     };
     mockApSpeechProvider = {
       isSpeaking: true,
