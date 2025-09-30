@@ -45,29 +45,36 @@ export class SpeechContainer extends Component {
     selectedVoiceIndex: 0,
     isVoiceOpen: false,
     anchorEl: undefined,
-    elevenLabsApiKey: '',
     elevenLabsConnected: false,
-    elevenLabsValidationError: '',
-    elevenLabsValidating: false
+    elevenLabsValidating: false,
+    elevenLabsConnectionError: null
   };
-
-  async componentDidMount() {
-    const apiKey = API.getElevenLabsApiKey();
-    this.setState({ elevenLabsApiKey: apiKey });
-    if (apiKey) {
-      await this.validateApiKey(apiKey, false);
-    }
-  }
 
   handleUpdateElevenLabsApiKey = async apiKey => {
     const { changeElevenLabsApiKey } = this.props;
 
-    if (apiKey && !validateApiKeyFormat(apiKey)) {
-      throw new Error('Invalid API key format');
-    }
     changeElevenLabsApiKey(apiKey);
+
+    if (!apiKey || !validateApiKeyFormat(apiKey)) {
+      this.setState({
+        elevenLabsConnected: false,
+        elevenLabsValidating: false,
+        elevenLabsConnectionError: null
+      });
+      return;
+    }
+
     tts.reinitializeElevenLabs();
     await this.updateSettings('elevenLabsApiKey', apiKey);
+
+    this.setState({ elevenLabsValidating: true });
+    const result = await tts.testElevenLabsConnection();
+
+    this.setState({
+      elevenLabsConnected: result.isValid,
+      elevenLabsValidating: false,
+      elevenLabsConnectionError: result.isValid ? null : result.error
+    });
   };
 
   speakSample = debounce(() => {
@@ -134,75 +141,6 @@ export class SpeechContainer extends Component {
     this.setState({ isVoiceOpen: false });
   };
 
-  handleElevenLabsApiKeyChange = async event => {
-    const apiKey = event.target.value;
-    this.setState({
-      elevenLabsApiKey: apiKey,
-      elevenLabsValidationError: '',
-      elevenLabsConnected: false
-    });
-
-    if (apiKey) {
-      API.saveElevenLabsApiKey(apiKey);
-      await this.validateApiKey(apiKey, true);
-    } else {
-      API.saveElevenLabsApiKey('');
-    }
-  };
-
-  validateApiKey = async (apiKey, showMessages = true) => {
-    const { intl } = this.props;
-
-    this.setState({ elevenLabsValidating: true });
-
-    try {
-      const result = await API.validateElevenLabsApiKey(apiKey);
-
-      let errorMessage = '';
-      if (!result.isValid && showMessages) {
-        switch (result.error) {
-          case 'INVALID_FORMAT':
-            errorMessage = intl.formatMessage(messages.elevenLabsApiKeyInvalid);
-            break;
-          case 'UNAUTHORIZED':
-            errorMessage = intl.formatMessage(
-              messages.elevenLabsApiKeyUnauthorized
-            );
-            break;
-          default:
-            errorMessage = intl.formatMessage(messages.elevenLabsTestError);
-            break;
-        }
-      }
-
-      this.setState({
-        elevenLabsConnected: result.isValid,
-        elevenLabsValidationError: errorMessage,
-        elevenLabsValidating: false
-      });
-
-      return result.isValid;
-    } catch (error) {
-      this.setState({
-        elevenLabsConnected: false,
-        elevenLabsValidationError: showMessages
-          ? intl.formatMessage(messages.elevenLabsTestError)
-          : '',
-        elevenLabsValidating: false
-      });
-
-      return false;
-    }
-  };
-
-  testElevenLabsConnection = async () => {
-    const { elevenLabsApiKey } = this.state;
-    if (!elevenLabsApiKey) {
-      return;
-    }
-    await this.validateApiKey(elevenLabsApiKey, true);
-  };
-
   render() {
     const {
       history,
@@ -247,10 +185,8 @@ export class SpeechContainer extends Component {
         pitch={pitch}
         rate={rate}
         voice={voice}
-        handleElevenLabsApiKeyChange={this.handleElevenLabsApiKeyChange}
-        testElevenLabsConnection={this.testElevenLabsConnection}
-        elevenLabsValidationError={this.state.elevenLabsValidationError}
-        elevenLabsValidating={this.state.elevenLabsValidating}
+        elevenLabsApiKey={this.props.elevenLabsApiKey}
+        handleUpdateElevenLabsApiKey={this.handleUpdateElevenLabsApiKey}
       />
     );
   }
