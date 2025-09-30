@@ -21,7 +21,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
-import PasswordTextField from '../../UI/FormItems/PasswordTextField';
+import ApiKeyTextField from '../../UI/FormItems/ApiKeyTextField';
 import { isCordova } from '../../../cordova-util';
 import {
   MIN_PITCH,
@@ -34,6 +34,7 @@ import {
 import messages from './Speech.messages';
 import './Speech.css';
 import PremiumFeature from '../../PremiumFeature';
+import { validateApiKeyFormat } from '../../../providers/SpeechProvider/engine/elevenlabs';
 
 const propTypes = {
   handleChangePitch: PropTypes.func,
@@ -50,11 +51,10 @@ const propTypes = {
   isVoiceOpen: PropTypes.bool.isRequired,
   voice: PropTypes.object.isRequired,
   elevenLabsApiKey: PropTypes.string,
+  handleUpdateElevenLabsApiKey: PropTypes.func,
   elevenLabsConnected: PropTypes.bool,
-  handleElevenLabsApiKeyChange: PropTypes.func,
-  testElevenLabsConnection: PropTypes.func,
-  elevenLabsValidationError: PropTypes.string,
-  elevenLabsValidating: PropTypes.bool
+  elevenLabsValidating: PropTypes.bool,
+  elevenLabsConnectionError: PropTypes.string
 };
 
 const styles = theme => ({
@@ -105,11 +105,10 @@ const Speech = ({
   isVoiceOpen,
   voice,
   elevenLabsApiKey,
+  handleUpdateElevenLabsApiKey,
   elevenLabsConnected,
-  handleElevenLabsApiKeyChange,
-  testElevenLabsConnection,
-  elevenLabsValidationError,
-  elevenLabsValidating
+  elevenLabsValidating,
+  elevenLabsConnectionError
 }) => (
   <div className="Speech">
     <FullScreenDialog
@@ -183,39 +182,70 @@ const Speech = ({
             <ListItemText
               primary={<FormattedMessage {...messages.elevenLabsApiKey} />}
               secondary={
-                <div>
-                  <FormattedMessage {...messages.elevenLabsApiKeyDescription} />
-                  {elevenLabsValidationError && (
-                    <FormHelperText error>
-                      {elevenLabsValidationError}
-                    </FormHelperText>
-                  )}
-                </div>
+                <FormattedMessage {...messages.elevenLabsApiKeyDescription} />
               }
             />
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div className={classes.apiKeyInput}>
-                <PasswordTextField
-                  label=""
-                  name="elevenLabsApiKey"
-                  onChange={handleElevenLabsApiKeyChange}
-                  error={elevenLabsValidationError}
-                />
-              </div>
-              <IconButton
-                onClick={testElevenLabsConnection}
-                disabled={elevenLabsValidating || !elevenLabsApiKey}
+            <div>
+              <div
+                style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
               >
-                {elevenLabsValidating ? (
-                  <CircularProgress size={20} />
-                ) : elevenLabsConnected ? (
-                  <CheckCircleIcon color="primary" />
-                ) : elevenLabsValidationError ? (
-                  <ErrorIcon color="error" />
-                ) : (
-                  <CloudIcon color="disabled" />
+                <div className={classes.apiKeyInput}>
+                  <ApiKeyTextField
+                    label=""
+                    name="elevenlabs-api-key"
+                    value={elevenLabsApiKey || ''}
+                    onChange={async e => {
+                      try {
+                        await handleUpdateElevenLabsApiKey(
+                          e.target.value || null
+                        );
+                      } catch (error) {
+                        console.error(
+                          'Error updating ElevenLabs API key:',
+                          error
+                        );
+                      }
+                    }}
+                    placeholder="sk-..."
+                    error={
+                      (elevenLabsApiKey &&
+                        !validateApiKeyFormat(elevenLabsApiKey)) ||
+                      !!elevenLabsConnectionError
+                    }
+                  />
+                </div>
+                <IconButton disabled>
+                  {elevenLabsValidating ? (
+                    <CircularProgress size={20} />
+                  ) : (
+                    <CloudIcon
+                      color={elevenLabsConnected ? 'primary' : 'disabled'}
+                    />
+                  )}
+                </IconButton>
+              </div>
+              {elevenLabsApiKey && !validateApiKeyFormat(elevenLabsApiKey) && (
+                <FormHelperText error>
+                  {intl.formatMessage(messages.elevenLabsApiKeyInvalid)}
+                </FormHelperText>
+              )}
+              {elevenLabsConnectionError === 'UNAUTHORIZED' && (
+                <FormHelperText error>
+                  {intl.formatMessage(messages.elevenLabsApiKeyUnauthorized)}
+                </FormHelperText>
+              )}
+              {elevenLabsConnectionError &&
+                elevenLabsConnectionError !== 'UNAUTHORIZED' && (
+                  <FormHelperText error>
+                    {intl.formatMessage(messages.elevenLabsTestError)}
+                  </FormHelperText>
                 )}
-              </IconButton>
+              {elevenLabsConnected &&
+                validateApiKeyFormat(elevenLabsApiKey) && (
+                  <FormHelperText style={{ color: '#1976d2' }}>
+                    {intl.formatMessage(messages.elevenLabsTestSuccess)}
+                  </FormHelperText>
+                )}
             </div>
           </ListItem>
         </List>
