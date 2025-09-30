@@ -1,7 +1,6 @@
 import axios from 'axios';
 import history from '../history';
 import { alpha2ToAlpha3T } from '@cospired/i18n-iso-languages';
-
 import {
   API_URL,
   ARASAAC_BASE_PATH_API,
