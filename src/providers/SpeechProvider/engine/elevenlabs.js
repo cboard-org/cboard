@@ -100,6 +100,33 @@ export class ElevenLabsEngine {
     }
   }
 
+  async testConnection() {
+    if (!this.isInitialized()) {
+      throw new Error('ElevenLabs engine not initialized');
+    }
+
+    try {
+      const response = await fetch(`${ELEVENLABS_API_BASE_URL}/v1/user`, {
+        method: 'GET',
+        headers: {
+          'xi-api-key': this.apiKey,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        if (response.status === 401 || response.status === 400) {
+          return { isValid: false, error: 'UNAUTHORIZED' };
+        }
+        return { isValid: false, error: `HTTP_${response.status}` };
+      }
+
+      return { isValid: true };
+    } catch (error) {
+      return { isValid: false, error: 'CONNECTION_ERROR' };
+    }
+  }
+
   reset() {
     this.apiKey = null;
   }
