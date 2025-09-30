@@ -68,10 +68,21 @@ const initElevenLabsSynthesizer = () => {
   }
 };
 
-const ensureElevenLabsInitialized = () => {
+const ensureElevenLabsInitialized = async () => {
   if (!elevenLabsSynthesizer || !elevenLabsSynthesizer.isInitialized()) {
     initElevenLabsSynthesizer();
+
+    if (elevenLabsSynthesizer && elevenLabsSynthesizer.isInitialized()) {
+      try {
+        const result = await elevenLabsSynthesizer.testConnection();
+        return result;
+      } catch (error) {
+        console.error('ElevenLabs connection test failed:', error);
+        return { isValid: false, error: error.message };
+      }
+    }
   }
+  return { isValid: true };
 };
 
 const playQueue = () => {
@@ -104,6 +115,18 @@ const tts = {
   reinitializeElevenLabs() {
     elevenLabsSynthesizer = null;
     initElevenLabsSynthesizer();
+  },
+
+  async testElevenLabsConnection() {
+    if (!elevenLabsSynthesizer || !elevenLabsSynthesizer.isInitialized()) {
+      return { isValid: false, error: 'NOT_INITIALIZED' };
+    }
+    try {
+      const result = await elevenLabsSynthesizer.testConnection();
+      return result;
+    } catch (error) {
+      return { isValid: false, error: error.message };
+    }
   },
 
   getVoiceByVoiceURI(VoiceURI) {
@@ -228,7 +251,7 @@ const tts = {
     { voiceURI, pitch = 1, rate = 1, volume = 1, onend },
     setCloudSpeakAlertTimeout
   ) {
-    ensureElevenLabsInitialized();
+    await ensureElevenLabsInitialized();
     const voice = this.getVoiceByVoiceURI(voiceURI);
     if (voice && voice.voiceSource === 'cloud') {
       if (appleFirstCloudPlay) {
