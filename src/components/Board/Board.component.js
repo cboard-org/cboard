@@ -330,8 +330,7 @@ export class Board extends Component {
       totalRows,
       changeDefaultBoard,
       improvedPhrase,
-      speak,
-      isVariantBoard
+      speak
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -361,7 +360,6 @@ export class Board extends Component {
             disableTour={disableTour}
             intl={intl}
             onDefaultBoardOptionClick={changeDefaultBoard}
-            isVariantBoard={isVariantBoard}
           />
           <Scannable>
             <div
