@@ -193,14 +193,26 @@ export function getVoices() {
       const regex = new RegExp('^[a-zA-Z]{2,}-$', 'g');
       const fvoices = pvoices.filter(voice => !regex.test(voice.lang));
       voices = fvoices.map(
-        ({ voiceURI, lang, name, Locale, ShortName, DisplayName, Gender }) => {
+        ({
+          voiceURI,
+          lang,
+          name,
+          Locale,
+          ShortName,
+          DisplayName,
+          Gender,
+          voiceSource
+        }) => {
           let voice = {};
           if (lang) {
             voice.lang = lang;
           } else if (Locale) {
             voice.lang = Locale;
           }
-          if (voiceURI) {
+          if (voiceSource) {
+            voice.voiceSource = voiceSource;
+            voice.voiceURI = voiceURI;
+          } else if (voiceURI) {
             voice.voiceURI = voiceURI;
             voice.voiceSource = 'local';
           } else if (ShortName) {
