@@ -10,7 +10,8 @@ import {
   changeVoice,
   changePitch,
   changeRate,
-  changeElevenLabsApiKey
+  changeElevenLabsApiKey,
+  getVoices
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import Speech from './Speech.component';
 import messages from './Speech.messages';
@@ -51,7 +52,7 @@ export class SpeechContainer extends Component {
   };
 
   handleUpdateElevenLabsApiKey = async apiKey => {
-    const { changeElevenLabsApiKey } = this.props;
+    const { changeElevenLabsApiKey, getVoices } = this.props;
 
     changeElevenLabsApiKey(apiKey);
 
@@ -61,10 +62,11 @@ export class SpeechContainer extends Component {
         elevenLabsValidating: false,
         elevenLabsConnectionError: null
       });
+      await getVoices();
       return;
     }
 
-    tts.reinitializeElevenLabs();
+    tts.reinitializeElevenLabs(apiKey);
     await this.updateSettings('elevenLabsApiKey', apiKey);
 
     this.setState({ elevenLabsValidating: true });
@@ -75,6 +77,10 @@ export class SpeechContainer extends Component {
       elevenLabsValidating: false,
       elevenLabsConnectionError: result.isValid ? null : result.error
     });
+
+    if (result.isValid) {
+      await getVoices();
+    }
   };
 
   speakSample = debounce(() => {
@@ -206,7 +212,8 @@ const mapDispatchToProps = {
   changePitch,
   changeRate,
   changeElevenLabsApiKey,
-  speak
+  speak,
+  getVoices
 };
 
 const EnhancedSpeechContainer = injectIntl(SpeechContainer);
