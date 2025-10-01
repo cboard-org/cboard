@@ -27,7 +27,7 @@ export class ElevenLabsEngine {
 
     try {
       const response = await fetch(
-        `${ELEVENLABS_API_BASE_URL}/v2/voices?voices-type=personal`,
+        `${ELEVENLABS_API_BASE_URL}/v2/voices?voice_type=personal`,
         {
           method: 'GET',
           headers: {
@@ -66,11 +66,11 @@ export class ElevenLabsEngine {
           body: JSON.stringify({
             text,
             voice_settings: {
-              stability: settings.stability,
-              similarity_boost: settings.similarity_boost,
-              style: settings.style
+              stability: settings.stability ?? 0.5,
+              similarity_boost: settings.similarity_boost ?? 0.75,
+              ...(settings.style !== undefined && { style: settings.style })
             },
-            model_id: settings.model_id || 'elevenlabs_multilingual_v2'
+            model_id: settings.model_id || 'eleven_turbo_v2_5'
           })
         }
       );
