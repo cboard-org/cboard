@@ -12,6 +12,8 @@ import {
 } from './App.constants';
 
 import { updateIsInFreeCountry } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
+import { changeElevenLabsApiKey } from '../../providers/SpeechProvider/SpeechProvider.actions';
+import tts from '../../providers/SpeechProvider/tts';
 
 export function updateConnectivity({ isConnected = false }) {
   return {
@@ -114,6 +116,15 @@ export function updateUserDataFromAPI() {
       const { id } = userData;
       const newUserData = await API.getUserData(id);
       dispatch(updateUserData({ ...userData, ...newUserData }));
+
+      if (newUserData.settings?.speech?.elevenLabsApiKey) {
+        dispatch(
+          changeElevenLabsApiKey(newUserData.settings.speech.elevenLabsApiKey)
+        );
+        tts.reinitializeElevenLabs(
+          newUserData.settings.speech.elevenLabsApiKey
+        );
+      }
     } catch (error) {
       console.error(error);
       //could show an alert and offer the posibility of rerun de update.
