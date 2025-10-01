@@ -112,9 +112,17 @@ const tts = {
     return 'speechSynthesis' in window;
   },
 
-  reinitializeElevenLabs() {
+  reinitializeElevenLabs(apiKey) {
     elevenLabsSynthesizer = null;
-    initElevenLabsSynthesizer();
+    if (apiKey) {
+      try {
+        elevenLabsSynthesizer = new ElevenLabsEngine(apiKey);
+      } catch (error) {
+        console.error('Failed to initialize ElevenLabs:', error);
+      }
+    } else {
+      initElevenLabsSynthesizer();
+    }
   },
 
   async testElevenLabsConnection() {
@@ -157,16 +165,37 @@ const tts = {
 
   async getVoices() {
     let cloudVoices = [];
+    let elevenLabsVoices = [];
+
     // first, request for cloud based voices
     try {
       cloudVoices = await API.getAzureVoices();
     } catch (err) {
       console.error(err.message);
     }
+
+    try {
+      if (elevenLabsSynthesizer && elevenLabsSynthesizer.isInitialized()) {
+        const voices = await elevenLabsSynthesizer.getElevenLabsPersonalVoices();
+        elevenLabsVoices = voices.map(voice => ({
+          voiceURI: voice.voice_id,
+          lang: voice.labels?.language || 'en-US',
+          name: voice.name,
+          voiceSource: 'elevenlabs'
+        }));
+      }
+    } catch (err) {
+      console.error('Error fetching ElevenLabs voices:', err.message);
+    }
+
     return new Promise((resolve, reject) => {
       platformVoices = this._getPlatformVoices() || [];
+      const allVoices = platformVoices
+        .concat(cloudVoices)
+        .concat(elevenLabsVoices);
+
       if (platformVoices.length) {
-        resolve(platformVoices.concat(cloudVoices));
+        resolve(allVoices);
       }
 
       // Android
@@ -179,13 +208,15 @@ const tts = {
             synth.removeEventListener('voiceschanged', voiceslst);
             // On Cordova, voice results are under `._list`
             platformVoices = voices._list || voices;
-            resolve(platformVoices.concat(cloudVoices));
+            resolve(
+              platformVoices.concat(cloudVoices).concat(elevenLabsVoices)
+            );
           }
         });
       } else if (isCordova()) {
         // Samsung devices on Cordova
         platformVoices = this._getPlatformVoices();
-        resolve(platformVoices.concat(cloudVoices));
+        resolve(platformVoices.concat(cloudVoices).concat(elevenLabsVoices));
       }
     });
   },
@@ -253,7 +284,43 @@ const tts = {
   ) {
     await ensureElevenLabsInitialized();
     const voice = this.getVoiceByVoiceURI(voiceURI);
-    if (voice && voice.voiceSource === 'cloud') {
+
+    if (voice && voice.voiceSource === 'elevenlabs') {
+      if (appleFirstCloudPlay) {
+        audioElement
+          .play()
+          .then(() => {})
+          .catch(() => {})
+          .finally(() => {
+            console.log('Apple user Agent is ready to reproduce cloud voices');
+          });
+        audioElement.pause();
+        appleFirstCloudPlay = false;
+      }
+      const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
+
+      try {
+        const audioBlob = await elevenLabsSynthesizer.synthesizeSpeechElevenLabs(
+          text,
+          voiceURI
+        );
+        clearTimeout(speakAlertTimeoutId);
+
+        const result = {
+          audioData: audioBlob,
+          endCallback: onend
+        };
+
+        speakQueue.push(result);
+        if (audioElement.paused) {
+          playQueue();
+        }
+      } catch (err) {
+        console.error('ElevenLabs speech synthesis error:', err);
+        clearTimeout(speakAlertTimeoutId);
+        onend({ error: true });
+      }
+    } else if (voice && voice.voiceSource === 'cloud') {
       if (appleFirstCloudPlay) {
         audioElement
           .play()
