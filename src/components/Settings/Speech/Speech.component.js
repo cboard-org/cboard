@@ -10,15 +10,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Slider from '@material-ui/core/Slider';
 import Chip from '@material-ui/core/Chip';
-import TextField from '@material-ui/core/TextField';
-import {
-  IconButton,
-  CircularProgress,
-  FormHelperText
-} from '@material-ui/core';
+import { IconButton, CircularProgress } from '@material-ui/core';
 import CloudIcon from '@material-ui/icons/Cloud';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ErrorIcon from '@material-ui/icons/Error';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import ApiKeyTextField from '../../UI/FormItems/ApiKeyTextField';
@@ -225,27 +218,32 @@ const Speech = ({
                 </IconButton>
               </div>
               {elevenLabsApiKey && !validateApiKeyFormat(elevenLabsApiKey) && (
-                <FormHelperText error>
-                  {intl.formatMessage(messages.elevenLabsApiKeyInvalid)}
-                </FormHelperText>
+                <div style={{ color: '#f44336' }}>
+                  <FormattedMessage
+                    {...messages.elevenLabsApiKeyInvalid}
+                    error
+                  />
+                </div>
               )}
               {elevenLabsConnectionError === 'UNAUTHORIZED' && (
-                <FormHelperText error>
-                  {intl.formatMessage(messages.elevenLabsApiKeyUnauthorized)}
-                </FormHelperText>
+                <div style={{ color: '#f44336' }}>
+                  <FormattedMessage
+                    {...messages.elevenLabsApiKeyUnauthorized}
+                    error
+                  />
+                </div>
               )}
               {elevenLabsConnectionError &&
                 elevenLabsConnectionError !== 'UNAUTHORIZED' && (
-                  <FormHelperText error>
-                    {intl.formatMessage(messages.elevenLabsTestError)}
-                  </FormHelperText>
+                  <div style={{ color: '#f44336' }}>
+                    <FormattedMessage {...messages.elevenLabsTestError} error />
+                  </div>
                 )}
-              {elevenLabsConnected &&
-                validateApiKeyFormat(elevenLabsApiKey) && (
-                  <FormHelperText style={{ color: '#1976d2' }}>
-                    {intl.formatMessage(messages.elevenLabsTestSuccess)}
-                  </FormHelperText>
-                )}
+              {elevenLabsConnected && validateApiKeyFormat(elevenLabsApiKey) && (
+                <div style={{ color: '#1976d2' }}>
+                  <FormattedMessage {...messages.elevenLabsTestSuccess} />
+                </div>
+              )}
             </div>
           </ListItem>
         </List>
