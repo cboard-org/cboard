@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
+import { FormattedMessage, intlShape } from 'react-intl';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -219,24 +219,20 @@ const Speech = ({
               </div>
               {elevenLabsApiKey && !validateApiKeyFormat(elevenLabsApiKey) && (
                 <div style={{ color: '#f44336' }}>
-                  <FormattedMessage
-                    {...messages.elevenLabsApiKeyInvalid}
-                    error
-                  />
+                  <FormattedMessage {...messages.elevenLabsApiKeyInvalid} />
                 </div>
               )}
               {elevenLabsConnectionError === 'UNAUTHORIZED' && (
                 <div style={{ color: '#f44336' }}>
                   <FormattedMessage
                     {...messages.elevenLabsApiKeyUnauthorized}
-                    error
                   />
                 </div>
               )}
               {elevenLabsConnectionError &&
                 elevenLabsConnectionError !== 'UNAUTHORIZED' && (
                   <div style={{ color: '#f44336' }}>
-                    <FormattedMessage {...messages.elevenLabsTestError} error />
+                    <FormattedMessage {...messages.elevenLabsTestError} />
                   </div>
                 )}
               {elevenLabsConnected && validateApiKeyFormat(elevenLabsApiKey) && (
@@ -311,4 +307,4 @@ const Speech = ({
 
 Speech.propTypes = propTypes;
 
-export default withStyles(styles)(injectIntl(Speech));
+export default withStyles(styles)(Speech);
