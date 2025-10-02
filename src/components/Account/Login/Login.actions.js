@@ -121,7 +121,7 @@ export function login({ email, password, activatedData }, type = 'local') {
           if (loginData.settings.speech.rate) {
             dispatch(changeRate(loginData.settings.speech.rate));
           }
-          if (loginData.settings.speech.elevenLabsApiKey) {
+          if (loginData?.settings?.speech?.elevenLabsApiKey) {
             dispatch(
               changeElevenLabsApiKey(loginData.settings.speech.elevenLabsApiKey)
             );
