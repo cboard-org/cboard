@@ -11,13 +11,17 @@ import {
   setTtsEngine,
   setCurrentVoiceSource
 } from './SpeechProvider.actions';
+import { setDownloadingLang } from '../LanguageProvider/LanguageProvider.actions';
+
 import { isAndroid } from '../../cordova-util';
 
 export class SpeechProvider extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     ttsEngine: PropTypes.object,
-    setTtsEngine: PropTypes.func
+    setTtsEngine: PropTypes.func,
+    downloadingLang: PropTypes.object,
+    setDownloadingLang: PropTypes.func
   };
 
   async componentDidMount() {
@@ -26,30 +30,68 @@ export class SpeechProvider extends Component {
       updateLangSpeechStatus,
       getTtsEngines,
       getTtsDefaultEngine,
+      ttsEngines,
       ttsEngine,
+      ttsDefaultEngine,
       setTtsEngine,
-      setCurrentVoiceSource
+      setCurrentVoiceSource,
+      downloadingLang,
+      setDownloadingLang
     } = this.props;
 
+    const getTtsEngineName = () => {
+      const ttsEnginesNames = ttsEngines?.map(tts => tts.name);
+      if (!ttsEnginesNames) return null;
+      if (
+        downloadingLang?.isdownloading &&
+        downloadingLang.engineName &&
+        ttsEnginesNames.includes(downloadingLang.engineName)
+      ) {
+        forceChangeVoice = true;
+        return downloadingLang.engineName;
+      }
+
+      if (
+        ttsEngine &&
+        ttsEngine.name &&
+        ttsEnginesNames.includes(ttsEngine.name)
+      )
+        return ttsEngine.name;
+
+      const defaultEngineName = ttsDefaultEngine?.name;
+      if (ttsEnginesNames.includes(defaultEngineName)) return defaultEngineName;
+      return null;
+    };
+
+    let forceChangeVoice = false;
     if (tts.isSupported()) {
       //if android we have to set the tts engine first
-      if (isAndroid()) {
-        getTtsEngines();
-        getTtsDefaultEngine();
+      try {
+        if (isAndroid()) {
+          getTtsEngines();
+          getTtsDefaultEngine();
+        }
+      } catch (error) {
+        console.error(error);
       }
-      if (ttsEngine && ttsEngine.name) {
+
+      const ttsEngineName = getTtsEngineName();
+
+      if (ttsEngineName) {
         try {
-          await setTtsEngine(ttsEngine.name);
+          await setTtsEngine(ttsEngineName);
         } catch (err) {
           console.error(err.message);
+          forceChangeVoice = false;
         }
       }
       try {
         const voices = await getVoices();
-        await updateLangSpeechStatus(voices);
+        await updateLangSpeechStatus(voices, forceChangeVoice);
       } catch (err) {
         console.error(err.message);
       }
+      setDownloadingLang({ ...downloadingLang, isUpdated: true });
     }
     setCurrentVoiceSource();
   }
@@ -62,7 +104,11 @@ export class SpeechProvider extends Component {
 }
 
 const mapStateToProps = state => ({
-  ttsEngine: state.speech.ttsEngine
+  ttsEngines: state.speech.ttsEngines,
+  ttsEngine: state.speech.ttsEngine,
+  ttsDefaultEngine: state.speech.ttsDefaultEngine,
+  //todo: downloadingVoices
+  downloadingLang: state.language.downloadingLang
 });
 
 const mapDispatchToProps = {
@@ -71,7 +117,9 @@ const mapDispatchToProps = {
   getTtsDefaultEngine,
   setTtsEngine,
   updateLangSpeechStatus,
-  setCurrentVoiceSource
+  setCurrentVoiceSource,
+  //todo: setDownloadingVoices
+  setDownloadingLang
 };
 
 export default connect(
