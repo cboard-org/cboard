@@ -269,9 +269,15 @@ const Speech = ({
           onClose={handleVoiceClose}
         >
           {langVoices.map((voice, index) => {
+            const key = voice.voiceURI || index;
+            const isPremium = voice.voiceSource === 'cloud';
+            const isOnline =
+              voice.voiceSource === 'cloud' ||
+              voice.voiceSource === 'elevenlabs';
+
             const VoiceItem = (
               <MenuItem
-                key={index}
+                key={key}
                 selected={index === selectedVoiceIndex}
                 onClick={() => onMenuItemClick(voice, index)}
               >
@@ -282,22 +288,18 @@ const Speech = ({
                   {voice.voiceSource === 'elevenlabs' && (
                     <Chip label="ElevenLabs" size="small" color="primary" />
                   )}
-                  {(voice.voiceSource === 'cloud' ||
-                    voice.voiceSource === 'elevenlabs') && (
+                  {isOnline && (
                     <Chip label="online" size="small" color="secondary" />
                   )}
                 </div>
               </MenuItem>
             );
 
-            const PremiumVoice = <PremiumFeature> {VoiceItem}</PremiumFeature>;
-
-            const VoiceOption =
-              voice.voiceSource === 'cloud' ||
-              voice.voiceSource === 'elevenlabs'
-                ? PremiumVoice
-                : VoiceItem;
-            return VoiceOption;
+            return isPremium ? (
+              <PremiumFeature key={key}>{VoiceItem}</PremiumFeature>
+            ) : (
+              VoiceItem
+            );
           })}
         </Menu>
       )}
