@@ -20,7 +20,8 @@ export class ExportContainer extends PureComponent {
     type = 'cboard',
     singleBoard = '',
     labelFontSize = '',
-    doneCallback
+    doneCallback,
+    showTileBorders = false
   ) => {
     const exportConfig = EXPORT_CONFIG_BY_TYPE[type];
     const EXPORT_HELPERS = await import('./Export.helpers');
@@ -45,7 +46,8 @@ export class ExportContainer extends PureComponent {
             [singleBoard],
             labelFontSize,
             intl,
-            true
+            true,
+            showTileBorders
           );
         } else {
           const currentBoard = boards.filter(
@@ -62,14 +64,18 @@ export class ExportContainer extends PureComponent {
         await EXPORT_HELPERS[exportConfig.callback](
           boards,
           labelFontSize,
-          intl
+          intl,
+          false,
+          showTileBorders
         );
       } else {
         if (singleBoard) {
           await EXPORT_HELPERS[exportConfig.callback](
             [singleBoard],
             labelFontSize,
-            intl
+            intl,
+            false,
+            showTileBorders
           );
         } else {
           const currentBoard = boards.filter(
@@ -78,7 +84,9 @@ export class ExportContainer extends PureComponent {
           await EXPORT_HELPERS[exportConfig.callback](
             currentBoard,
             labelFontSize,
-            intl
+            intl,
+            false,
+            showTileBorders
           );
         }
       }
