@@ -16,82 +16,92 @@ class EditGridButtons extends React.Component {
     columns: PropTypes.number.isRequired,
     onAddRemoveColumn: PropTypes.func.isRequired,
     onAddRemoveRow: PropTypes.func.isRequired,
-    moveColsButtonToLeft: PropTypes.bool
+    position: PropTypes.string
   };
 
-  constructor(props) {
-    super(props);
+  static defaultProps = {
+    position: 'toolbar-left'
+  };
 
-    this.state = {};
-  }
+  onAddRemoveColumn = (isAdd, isLeftOrTop) => {
+    this.props.onAddRemoveColumn(isAdd, isLeftOrTop);
+  };
 
-  onAddRemoveColumn(isAdd, isLeftOrTop) {
-    const { onAddRemoveColumn } = this.props;
-    onAddRemoveColumn(isAdd, isLeftOrTop);
-  }
+  onAddRemoveRow = (isAdd, isLeftOrTop) => {
+    this.props.onAddRemoveRow(isAdd, isLeftOrTop);
+  };
 
-  onAddRemoveRow(isAdd, isLeftOrTop) {
-    const { onAddRemoveRow } = this.props;
-    onAddRemoveRow(isAdd, isLeftOrTop);
-  }
-
-  renderButtons = (isVertical, isLeftOrTop) => {
-    const { rows, columns } = this.props;
+  renderColumnButtons = () => {
+    const { columns } = this.props;
     return (
       <ButtonGroup
-        orientation={isVertical ? 'vertical' : 'horizontal'}
+        orientation="horizontal"
         color="primary"
-        aria-label="edit_grid_button_group"
-        fullWidth={true}
-        size="large"
+        aria-label="edit_grid_column_buttons"
+        size="small"
         variant="contained"
       >
         <Button
-          onClick={
-            isVertical
-              ? this.onAddRemoveColumn.bind(this, true, isLeftOrTop)
-              : this.onAddRemoveRow.bind(this, true, isLeftOrTop)
-          }
-          aria-label="edit_grid_button"
+          onClick={() => this.onAddRemoveColumn(false, false)}
+          aria-label="remove_column"
         >
-          {isVertical ? <KeyboardArrowRightIcon /> : <KeyboardArrowDownIcon />}
+          <KeyboardArrowLeftIcon />
         </Button>
-        <Button aria-label="edit_grid_value">
-          {isVertical ? columns.toString() : rows.toString()}
+        <Button aria-label="column_count" disabled>
+          {columns}
         </Button>
         <Button
-          onClick={
-            isVertical
-              ? this.onAddRemoveColumn.bind(this, false, isLeftOrTop)
-              : this.onAddRemoveRow.bind(this, false, isLeftOrTop)
-          }
-          aria-label="edit_grid_button"
+          onClick={() => this.onAddRemoveColumn(true, false)}
+          aria-label="add_column"
         >
-          {isVertical ? <KeyboardArrowLeftIcon /> : <KeyboardArrowUpIcon />}
+          <KeyboardArrowRightIcon />
+        </Button>
+      </ButtonGroup>
+    );
+  };
+
+  renderRowButtons = () => {
+    const { rows } = this.props;
+    return (
+      <ButtonGroup
+        orientation="horizontal"
+        color="primary"
+        aria-label="edit_grid_row_buttons"
+        size="small"
+        variant="contained"
+      >
+        <Button
+          onClick={() => this.onAddRemoveRow(false, false)}
+          aria-label="remove_row"
+        >
+          <KeyboardArrowUpIcon />
+        </Button>
+        <Button aria-label="row_count" disabled>
+          {rows}
+        </Button>
+        <Button
+          onClick={() => this.onAddRemoveRow(true, false)}
+          aria-label="add_row"
+        >
+          <KeyboardArrowDownIcon />
         </Button>
       </ButtonGroup>
     );
   };
 
   render() {
-    const { active, moveColsButtonToLeft } = this.props;
+    const { active, position } = this.props;
     if (!active) {
       return null;
     }
 
     return (
-      <React.Fragment>
-        <div
-          className={`EditGridButtons ${
-            moveColsButtonToLeft ? 'left' : 'right'
-          }`}
-        >
-          {this.renderButtons(true, false)}
+      <div className={`EditGridButtons ${position}`}>
+        <div className="button-container">
+          {this.renderRowButtons()}
+          {this.renderColumnButtons()}
         </div>
-        <div className="EditGridButtons bottom">
-          {this.renderButtons(false, false)}
-        </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

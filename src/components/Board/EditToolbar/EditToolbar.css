@@ -59,13 +59,16 @@
   order: 2;
   justify-content: flex-end;
 }
+
 @media (max-width: 480px) {
   .EditToolbar .EditToolbar__BoardTitle {
     display: none;
   }
+
   .SelectedCounter {
     display: none;
   }
+
   .EditToolbar__group .MuiIconButton-root {
     padding: 9px;
   }

@@ -1,53 +1,40 @@
 .EditGridButtons {
   position: fixed;
-  z-index: 1000;
+  z-index: 1100;
   padding: 8px;
-  background: rgba(40, 158, 255, 0.5);
-  border-radius: 6px;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.EditGridButtons:hover {
-  background: rgba(40, 158, 255, 0.8);
+.EditGridButtons.toolbar-left {
+  top: 170px;
+  left: 170px;
+  transform: translateY(0);
 }
 
-.EditGridButtons.left {
-  top: 55%;
-  left: 6px;
-  max-width: 4rem;
+.EditGridButtons.toolbar-left .button-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
-.EditGridButtons.right {
-  top: 55%;
-  right: 6px;
-  max-width: 4rem;
+.EditGridButtons.toolbar-left button {
+  min-width: 40px;
+  padding: 2px 8px;
 }
 
-.EditGridButtons.right button,
-.EditGridButtons.left button {
-  min-height: 50px;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-.EditGridButtons.top {
-  left: 40%;
-  top: 240px;
-}
-
-.EditGridButtons.bottom {
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%);
-  bottom: 6px;
-  max-width: 50%;
-  max-height: 4rem;
+.EditGridButtons .MuiButton-root.Mui-disabled {
+  background-color: #1976d2 !important;
+  color: white !important;
 }
 
 @media (max-width: 480px) {
+  .EditGridButtons.toolbar-left {
+    left: 150px;
+    top: 120px;
+  }
+
   .EditGridButtons button svg {
     width: 100%;
     height: 100%;
