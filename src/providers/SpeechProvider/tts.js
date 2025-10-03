@@ -20,7 +20,7 @@ var azureSynthesizer;
 /**
  * @type {ElevenLabsEngine | null}
  */
-let elevenLabsSynthesizer = null; // initialized without key
+let elevenLabsSynthesizer = null;
 
 const audioElement = new Audio();
 
