@@ -76,6 +76,20 @@ const initElevenLabsSynthesizer = apiKey => {
   return null;
 };
 
+const initAppleUserAgent = () => {
+  if (appleFirstCloudPlay) {
+    audioElement
+      .play()
+      .then(() => {})
+      .catch(() => {})
+      .finally(() => {
+        console.log('Apple user Agent is ready to reproduce cloud voices');
+      });
+    audioElement.pause();
+    appleFirstCloudPlay = false;
+  }
+};
+
 const playQueue = () => {
   if (speakQueue.length) {
     const blob = new Blob([speakQueue[0].audioData], { type: 'audio/wav' });
@@ -268,17 +282,7 @@ const tts = {
     const voice = this.getVoiceByVoiceURI(voiceURI);
 
     if (voice && voice.voiceSource === 'elevenlabs') {
-      if (appleFirstCloudPlay) {
-        audioElement
-          .play()
-          .then(() => {})
-          .catch(() => {})
-          .finally(() => {
-            console.log('Apple user Agent is ready to reproduce cloud voices');
-          });
-        audioElement.pause();
-        appleFirstCloudPlay = false;
-      }
+      initAppleUserAgent();
       const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
 
       try {
@@ -303,17 +307,7 @@ const tts = {
         onend({ error: true });
       }
     } else if (voice && voice.voiceSource === 'cloud') {
-      if (appleFirstCloudPlay) {
-        audioElement
-          .play()
-          .then(() => {})
-          .catch(() => {})
-          .finally(() => {
-            console.log('Apple user Agent is ready to reproduce cloud voices');
-          });
-        audioElement.pause();
-        appleFirstCloudPlay = false;
-      }
+      initAppleUserAgent();
       const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
       // set voice to speak
       azureSynthesizer.properties.setProperty(
