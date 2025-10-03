@@ -31,6 +31,8 @@
   max-width: 80%;
 }
 
-.MuiChip-root {
+.Speech__VoiceChips {
+  display: flex;
+  gap: 8px;
   margin-left: auto;
 }

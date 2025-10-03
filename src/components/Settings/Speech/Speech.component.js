@@ -285,12 +285,14 @@ const Speech = ({
                   <div className="Speech__VoiceLabel">
                     {getVoiceLabel(voice)}
                   </div>
-                  {voice.voiceSource === 'elevenlabs' && (
-                    <Chip label="ElevenLabs" size="small" color="primary" />
-                  )}
-                  {isOnline && (
-                    <Chip label="online" size="small" color="secondary" />
-                  )}
+                  <div className="Speech__VoiceChips">
+                    {voice.voiceSource === 'elevenlabs' && (
+                      <Chip label="ElevenLabs" size="small" color="primary" />
+                    )}
+                    {isOnline && (
+                      <Chip label="online" size="small" color="secondary" />
+                    )}
+                  </div>
                 </div>
               </MenuItem>
             );
