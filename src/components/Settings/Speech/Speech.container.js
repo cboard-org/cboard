@@ -51,8 +51,17 @@ export class SpeechContainer extends Component {
     elevenLabsConnectionError: null
   };
 
+  componentDidUpdate(prevProps) {
+    const { speech, getVoices } = this.props;
+
+    // Refresh voices when ElevenLabs API key changes
+    if (prevProps.speech.elevenLabsApiKey !== speech.elevenLabsApiKey) {
+      getVoices();
+    }
+  }
+
   handleUpdateElevenLabsApiKey = async apiKey => {
-    const { changeElevenLabsApiKey, getVoices } = this.props;
+    const { changeElevenLabsApiKey } = this.props;
 
     changeElevenLabsApiKey(apiKey);
 
@@ -62,7 +71,6 @@ export class SpeechContainer extends Component {
         elevenLabsValidating: false,
         elevenLabsConnectionError: null
       });
-      await getVoices();
       return;
     }
 
@@ -77,10 +85,6 @@ export class SpeechContainer extends Component {
       elevenLabsValidating: false,
       elevenLabsConnectionError: result.isValid ? null : result.error
     });
-
-    if (result.isValid) {
-      await getVoices();
-    }
   };
 
   speakSample = debounce(() => {
