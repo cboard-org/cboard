@@ -9,7 +9,7 @@ import {
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import { getStore } from '../../store';
-import { ElevenLabsEngine } from './engine/elevenlabs';
+import { ElevenLabsEngine, validateApiKeyFormat } from './engine/elevenlabs';
 
 // this is the local synthesizer
 let synth = window.speechSynthesis;
@@ -17,7 +17,10 @@ let synth = window.speechSynthesis;
 // this is the cloud synthesizer
 var azureSynthesizer;
 
-var elevenLabsSynthesizer = null;
+/**
+ * @type {ElevenLabsEngine | null}
+ */
+let elevenLabsSynthesizer = null; // initialized without key
 
 const audioElement = new Audio();
 
@@ -53,36 +56,24 @@ const initAzureSynthesizer = () => {
   );
 };
 
-const initElevenLabsSynthesizer = () => {
-  const store = getStore();
-  if (!store) {
-    return;
-  }
-
-  const {
-    speech: { elevenLabsApiKey }
-  } = store.getState();
-
-  if (elevenLabsApiKey) {
-    elevenLabsSynthesizer = new ElevenLabsEngine(elevenLabsApiKey);
-  }
-};
-
-const ensureElevenLabsInitialized = async () => {
-  if (!elevenLabsSynthesizer || !elevenLabsSynthesizer.isInitialized()) {
-    initElevenLabsSynthesizer();
-
-    if (elevenLabsSynthesizer && elevenLabsSynthesizer.isInitialized()) {
-      try {
-        const result = await elevenLabsSynthesizer.testConnection();
-        return result;
-      } catch (error) {
-        console.error('ElevenLabs connection test failed:', error);
-        return { isValid: false, error: error.message };
-      }
+const initElevenLabsSynthesizer = apiKey => {
+  const getStoreApiKey = () => {
+    const store = getStore();
+    if (!store) {
+      return null;
     }
+    const {
+      speech: { elevenLabsApiKey }
+    } = store.getState();
+    return elevenLabsApiKey;
+  };
+
+  const elevenLabsApiKey = apiKey || getStoreApiKey();
+
+  if (elevenLabsApiKey && validateApiKeyFormat(elevenLabsApiKey)) {
+    return new ElevenLabsEngine(elevenLabsApiKey);
   }
-  return { isValid: true };
+  return null;
 };
 
 const playQueue = () => {
@@ -114,19 +105,11 @@ const tts = {
 
   reinitializeElevenLabs(apiKey) {
     elevenLabsSynthesizer = null;
-    if (apiKey) {
-      try {
-        elevenLabsSynthesizer = new ElevenLabsEngine(apiKey);
-      } catch (error) {
-        console.error('Failed to initialize ElevenLabs:', error);
-      }
-    } else {
-      initElevenLabsSynthesizer();
-    }
+    elevenLabsSynthesizer = initElevenLabsSynthesizer(apiKey);
   },
 
   async testElevenLabsConnection() {
-    if (!elevenLabsSynthesizer || !elevenLabsSynthesizer.isInitialized()) {
+    if (!elevenLabsSynthesizer) {
       return { isValid: false, error: 'NOT_INITIALIZED' };
     }
     try {
@@ -175,7 +158,7 @@ const tts = {
     }
 
     try {
-      if (elevenLabsSynthesizer && elevenLabsSynthesizer.isInitialized()) {
+      if (elevenLabsSynthesizer) {
         const voices = await elevenLabsSynthesizer.getElevenLabsPersonalVoices();
         elevenLabsVoices = voices.map(voice => ({
           voiceURI: voice.voice_id,
@@ -282,7 +265,6 @@ const tts = {
     { voiceURI, pitch = 1, rate = 1, volume = 1, onend },
     setCloudSpeakAlertTimeout
   ) {
-    await ensureElevenLabsInitialized();
     const voice = this.getVoiceByVoiceURI(voiceURI);
 
     if (voice && voice.voiceSource === 'elevenlabs') {
