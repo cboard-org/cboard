@@ -15,3 +15,4 @@ export const RECEIVE_TTS_DEFAULT_ENGINE =
 export const REQUEST_TTS_ENGINE = 'cboard/Speech/REQUEST_TTS_ENGINE';
 export const RECEIVE_TTS_ENGINE = 'cboard/Speech/RECEIVE_TTS_ENGINE';
 export const EMPTY_VOICES = 'empty voices';
+export const ELEVEN_LABS = 'elevenlabs';

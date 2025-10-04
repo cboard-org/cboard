@@ -10,7 +10,8 @@ import {
   changeVoice,
   changePitch,
   changeRate,
-  changeElevenLabsApiKey
+  changeElevenLabsApiKey,
+  getVoices
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import Speech from './Speech.component';
 import messages from './Speech.messages';
@@ -44,20 +45,40 @@ export class SpeechContainer extends Component {
   state = {
     selectedVoiceIndex: 0,
     isVoiceOpen: false,
-    anchorEl: undefined
+    anchorEl: undefined,
+    elevenLabsConnected: false,
+    elevenLabsValidating: false,
+    elevenLabsConnectionError: null
   };
-
-  async componentDidMount() {}
 
   handleUpdateElevenLabsApiKey = async apiKey => {
     const { changeElevenLabsApiKey } = this.props;
 
-    if (apiKey && !validateApiKeyFormat(apiKey)) {
-      throw new Error('Invalid API key format');
-    }
     changeElevenLabsApiKey(apiKey);
-    tts.reinitializeElevenLabs();
+
+    if (!apiKey || !validateApiKeyFormat(apiKey)) {
+      this.setState({
+        elevenLabsConnected: false,
+        elevenLabsValidating: false,
+        elevenLabsConnectionError: null
+      });
+      getVoices();
+      return;
+    }
+
+    tts.initElevenLabsInstance(apiKey);
     await this.updateSettings('elevenLabsApiKey', apiKey);
+
+    this.setState({ elevenLabsValidating: true });
+    const result = await tts.testElevenLabsConnection();
+
+    this.setState({
+      elevenLabsConnected: result.isValid,
+      elevenLabsValidating: false,
+      elevenLabsConnectionError: result.isValid ? null : result.error
+    });
+
+    getVoices();
   };
 
   speakSample = debounce(() => {
@@ -168,6 +189,8 @@ export class SpeechContainer extends Component {
         pitch={pitch}
         rate={rate}
         voice={voice}
+        elevenLabsApiKey={this.props.elevenLabsApiKey}
+        handleUpdateElevenLabsApiKey={this.handleUpdateElevenLabsApiKey}
       />
     );
   }
@@ -177,6 +200,7 @@ const mapStateToProps = state => ({
   lang: state.language.lang,
   voices: state.speech.voices,
   speech: state.speech,
+  isConnected: state.app.isConnected,
   elevenLabsApiKey: state.speech.elevenLabsApiKey
 });
 
@@ -186,7 +210,8 @@ const mapDispatchToProps = {
   changePitch,
   changeRate,
   changeElevenLabsApiKey,
-  speak
+  speak,
+  getVoices
 };
 
 const EnhancedSpeechContainer = injectIntl(SpeechContainer);
