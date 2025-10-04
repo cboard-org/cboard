@@ -10,6 +10,7 @@ import {
 } from '../../constants';
 import { getStore } from '../../store';
 import { ElevenLabsEngine, validateApiKeyFormat } from './engine/elevenlabs';
+import { ELEVEN_LABS } from './SpeechProvider.constants';
 
 // this is the local synthesizer
 let synth = window.speechSynthesis;
@@ -178,7 +179,7 @@ const tts = {
           voiceURI: voice.voice_id,
           lang: voice.labels?.language || 'en-US',
           name: voice.name,
-          voiceSource: 'elevenlabs'
+          voiceSource: ELEVEN_LABS
         }));
       }
     } catch (err) {
@@ -281,7 +282,7 @@ const tts = {
   ) {
     const voice = this.getVoiceByVoiceURI(voiceURI);
 
-    if (voice && voice.voiceSource === 'elevenlabs') {
+    if (voice && voice.voiceSource === ELEVEN_LABS) {
       initAppleUserAgent();
       const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
 
