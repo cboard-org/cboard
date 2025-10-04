@@ -51,15 +51,6 @@ export class SpeechContainer extends Component {
     elevenLabsConnectionError: null
   };
 
-  componentDidUpdate(prevProps) {
-    const { speech, getVoices } = this.props;
-
-    // Refresh voices when ElevenLabs API key changes
-    if (prevProps.speech.elevenLabsApiKey !== speech.elevenLabsApiKey) {
-      getVoices();
-    }
-  }
-
   handleUpdateElevenLabsApiKey = async apiKey => {
     const { changeElevenLabsApiKey } = this.props;
 
