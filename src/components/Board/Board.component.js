@@ -510,10 +510,7 @@ export class Board extends Component {
                   rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
                   onAddRemoveRow={onAddRemoveRow}
                   onAddRemoveColumn={onAddRemoveColumn}
-                  moveColsButtonToLeft={
-                    navigationSettings.bigScrollButtonsActive &&
-                    isNavigationButtonsOnTheSide
-                  }
+                  position="toolbar-left"
                 />
               </div>
             </Scannable>
