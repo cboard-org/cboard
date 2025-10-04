@@ -71,6 +71,7 @@ export class SpeechContainer extends Component {
         elevenLabsValidating: false,
         elevenLabsConnectionError: null
       });
+      getVoices();
       return;
     }
 
@@ -85,6 +86,8 @@ export class SpeechContainer extends Component {
       elevenLabsValidating: false,
       elevenLabsConnectionError: result.isValid ? null : result.error
     });
+
+    getVoices();
   };
 
   speakSample = debounce(() => {
