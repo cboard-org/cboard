@@ -121,7 +121,7 @@ export function updateUserDataFromAPI() {
         dispatch(
           changeElevenLabsApiKey(newUserData.settings.speech.elevenLabsApiKey)
         );
-        tts.reinitializeElevenLabs(
+        tts.initElevenLabsInstance(
           newUserData.settings.speech.elevenLabsApiKey
         );
       }

@@ -125,7 +125,7 @@ export function login({ email, password, activatedData }, type = 'local') {
             dispatch(
               changeElevenLabsApiKey(loginData.settings.speech.elevenLabsApiKey)
             );
-            tts.reinitializeElevenLabs(
+            tts.initElevenLabsInstance(
               loginData.settings.speech.elevenLabsApiKey
             );
           }

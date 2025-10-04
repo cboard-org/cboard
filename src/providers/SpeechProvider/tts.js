@@ -117,7 +117,7 @@ const tts = {
     return 'speechSynthesis' in window;
   },
 
-  reinitializeElevenLabs(apiKey) {
+  initElevenLabsInstance(apiKey) {
     elevenLabsSynthesizer = null;
     elevenLabsSynthesizer = initElevenLabsSynthesizer(apiKey);
   },

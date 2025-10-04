@@ -74,7 +74,7 @@ export class SpeechContainer extends Component {
       return;
     }
 
-    tts.reinitializeElevenLabs(apiKey);
+    tts.initElevenLabsInstance(apiKey);
     await this.updateSettings('elevenLabsApiKey', apiKey);
 
     this.setState({ elevenLabsValidating: true });

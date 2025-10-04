@@ -33,7 +33,7 @@ export class SpeechProvider extends Component {
     } = this.props;
 
     if (elevenLabsApiKey) {
-      tts.reinitializeElevenLabs(elevenLabsApiKey);
+      tts.initElevenLabsInstance(elevenLabsApiKey);
     }
 
     if (tts.isSupported()) {
