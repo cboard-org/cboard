@@ -74,7 +74,7 @@ class EditGridButtons extends React.Component {
           onClick={() => this.onAddRemoveRow(false, false)}
           aria-label="remove_row"
         >
-          <KeyboardArrowUpIcon />
+          <KeyboardArrowDownIcon />
         </Button>
         <Button aria-label="row_count" disabled>
           {rows}
@@ -83,7 +83,7 @@ class EditGridButtons extends React.Component {
           onClick={() => this.onAddRemoveRow(true, false)}
           aria-label="add_row"
         >
-          <KeyboardArrowDownIcon />
+          <KeyboardArrowUpIcon />
         </Button>
       </ButtonGroup>
     );
