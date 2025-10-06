@@ -27,7 +27,6 @@ import {
 import messages from './Speech.messages';
 import './Speech.css';
 import PremiumFeature from '../../PremiumFeature';
-import { validateApiKeyFormat } from '../../../providers/SpeechProvider/engine/elevenlabs';
 
 const propTypes = {
   handleChangePitch: PropTypes.func,
@@ -187,24 +186,11 @@ const Speech = ({
                     label=""
                     name="elevenlabs-api-key"
                     value={elevenLabsApiKey || ''}
-                    onChange={async e => {
-                      try {
-                        await handleUpdateElevenLabsApiKey(
-                          e.target.value || null
-                        );
-                      } catch (error) {
-                        console.error(
-                          'Error updating ElevenLabs API key:',
-                          error
-                        );
-                      }
+                    onChange={e => {
+                      handleUpdateElevenLabsApiKey(e.target.value || null);
                     }}
                     placeholder="sk-..."
-                    error={
-                      (elevenLabsApiKey &&
-                        !validateApiKeyFormat(elevenLabsApiKey)) ||
-                      !!elevenLabsConnectionError
-                    }
+                    error={!!elevenLabsConnectionError}
                   />
                 </div>
                 <IconButton disabled>
@@ -217,7 +203,7 @@ const Speech = ({
                   )}
                 </IconButton>
               </div>
-              {elevenLabsApiKey && !validateApiKeyFormat(elevenLabsApiKey) && (
+              {elevenLabsConnectionError === 'INVALID_FORMAT' && (
                 <div style={{ color: '#f44336' }}>
                   <FormattedMessage {...messages.elevenLabsApiKeyInvalid} />
                 </div>
@@ -230,12 +216,13 @@ const Speech = ({
                 </div>
               )}
               {elevenLabsConnectionError &&
-                elevenLabsConnectionError !== 'UNAUTHORIZED' && (
+                elevenLabsConnectionError !== 'UNAUTHORIZED' &&
+                elevenLabsConnectionError !== 'INVALID_FORMAT' && (
                   <div style={{ color: '#f44336' }}>
                     <FormattedMessage {...messages.elevenLabsTestError} />
                   </div>
                 )}
-              {elevenLabsConnected && validateApiKeyFormat(elevenLabsApiKey) && (
+              {elevenLabsConnected && (
                 <div style={{ color: '#1976d2' }}>
                   <FormattedMessage {...messages.elevenLabsTestSuccess} />
                 </div>
