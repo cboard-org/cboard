@@ -8,6 +8,7 @@ import {
   CHANGE_VOICE,
   CHANGE_PITCH,
   CHANGE_RATE,
+  CHANGE_ELEVENLABS_API_KEY,
   START_SPEECH,
   END_SPEECH,
   CANCEL_SPEECH
@@ -164,6 +165,13 @@ export function changeRate(rate) {
   };
 }
 
+export function changeElevenLabsApiKey(elevenLabsApiKey) {
+  return {
+    type: CHANGE_ELEVENLABS_API_KEY,
+    elevenLabsApiKey
+  };
+}
+
 export function getVoices() {
   return async dispatch => {
     let voices = [];
@@ -186,14 +194,26 @@ export function getVoices() {
       const regex = new RegExp('^[a-zA-Z]{2,}-$', 'g');
       const fvoices = pvoices.filter(voice => !regex.test(voice.lang));
       voices = fvoices.map(
-        ({ voiceURI, lang, name, Locale, ShortName, DisplayName, Gender }) => {
+        ({
+          voiceURI,
+          lang,
+          name,
+          Locale,
+          ShortName,
+          DisplayName,
+          Gender,
+          voiceSource
+        }) => {
           let voice = {};
           if (lang) {
             voice.lang = lang;
           } else if (Locale) {
             voice.lang = Locale;
           }
-          if (voiceURI) {
+          if (voiceSource) {
+            voice.voiceSource = voiceSource;
+            voice.voiceURI = voiceURI;
+          } else if (voiceURI) {
             voice.voiceURI = voiceURI;
             voice.voiceSource = 'local';
           } else if (ShortName) {

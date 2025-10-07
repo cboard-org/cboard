@@ -10,17 +10,11 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Slider from '@material-ui/core/Slider';
 import Chip from '@material-ui/core/Chip';
-import TextField from '@material-ui/core/TextField';
-import {
-  IconButton,
-  CircularProgress,
-  FormHelperText
-} from '@material-ui/core';
+import { IconButton, CircularProgress } from '@material-ui/core';
 import CloudIcon from '@material-ui/icons/Cloud';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ErrorIcon from '@material-ui/icons/Error';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
+import ApiKeyTextField from '../../UI/FormItems/ApiKeyTextField';
 import { isCordova } from '../../../cordova-util';
 import {
   MIN_PITCH,
@@ -49,11 +43,10 @@ const propTypes = {
   isVoiceOpen: PropTypes.bool.isRequired,
   voice: PropTypes.object.isRequired,
   elevenLabsApiKey: PropTypes.string,
+  handleUpdateElevenLabsApiKey: PropTypes.func,
   elevenLabsConnected: PropTypes.bool,
-  handleElevenLabsApiKeyChange: PropTypes.func,
-  testElevenLabsConnection: PropTypes.func,
-  elevenLabsValidationError: PropTypes.string,
-  elevenLabsValidating: PropTypes.bool
+  elevenLabsValidating: PropTypes.bool,
+  elevenLabsConnectionError: PropTypes.string
 };
 
 const styles = theme => ({
@@ -62,6 +55,15 @@ const styles = theme => ({
     position: 'relative',
     justifyContent: 'center',
     width: '100%'
+  },
+  apiKeyInput: {
+    width: '200px',
+    [theme.breakpoints.up('sm')]: {
+      width: '300px'
+    },
+    '& .MuiTextField-root': {
+      width: '100%'
+    }
   }
 });
 
@@ -95,11 +97,10 @@ const Speech = ({
   isVoiceOpen,
   voice,
   elevenLabsApiKey,
+  handleUpdateElevenLabsApiKey,
   elevenLabsConnected,
-  handleElevenLabsApiKeyChange,
-  testElevenLabsConnection,
-  elevenLabsValidationError,
-  elevenLabsValidating
+  elevenLabsValidating,
+  elevenLabsConnectionError
 }) => (
   <div className="Speech">
     <FullScreenDialog
@@ -166,48 +167,86 @@ const Speech = ({
             </div>
           </ListItem>
         </List>
-
-        <ListItem divider>
-          <ListItemText
-            primary={<FormattedMessage {...messages.elevenLabsApiKey} />}
-            secondary={
-              <div>
+      </Paper>
+      <Paper style={{ marginTop: 10 }}>
+        <List>
+          <ListItem>
+            <ListItemText
+              primary={<FormattedMessage {...messages.elevenLabsApiKey} />}
+              secondary={
                 <FormattedMessage {...messages.elevenLabsApiKeyDescription} />
-                {elevenLabsValidationError && (
-                  <FormHelperText error>
-                    {elevenLabsValidationError}
-                  </FormHelperText>
-                )}
-              </div>
-            }
-          />
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <TextField
-              type="password"
-              value={elevenLabsApiKey || ''}
-              onChange={handleElevenLabsApiKeyChange}
-              placeholder="sk_..."
-              error={!!elevenLabsValidationError}
-              variant="outlined"
-              size="small"
-              style={{ minWidth: '200px' }}
+              }
             />
-            <IconButton
-              onClick={testElevenLabsConnection}
-              disabled={elevenLabsValidating || !elevenLabsApiKey}
-            >
-              {elevenLabsValidating ? (
-                <CircularProgress size={20} />
-              ) : elevenLabsConnected ? (
-                <CheckCircleIcon color="primary" />
-              ) : elevenLabsValidationError ? (
-                <ErrorIcon color="error" />
-              ) : (
-                <CloudIcon color="disabled" />
+            <div>
+              <div
+                style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+              >
+                <div className={classes.apiKeyInput}>
+                  <ApiKeyTextField
+                    label=""
+                    name="elevenlabs-api-key"
+                    value={elevenLabsApiKey || ''}
+                    onChange={e => {
+                      handleUpdateElevenLabsApiKey(e.target.value || null);
+                    }}
+                    placeholder="sk-..."
+                    error={!!elevenLabsConnectionError}
+                  />
+                </div>
+                <IconButton disabled>
+                  {elevenLabsValidating ? (
+                    <CircularProgress size={20} />
+                  ) : (
+                    <CloudIcon
+                      color={elevenLabsConnected ? 'primary' : 'disabled'}
+                    />
+                  )}
+                </IconButton>
+              </div>
+              {elevenLabsConnectionError === 'INVALID_FORMAT' && (
+                <div style={{ color: '#f44336' }}>
+                  <FormattedMessage {...messages.elevenLabsApiKeyInvalid} />
+                </div>
               )}
-            </IconButton>
-          </div>
-        </ListItem>
+              {elevenLabsConnectionError === 'UNAUTHORIZED' && (
+                <div style={{ color: '#f44336' }}>
+                  <FormattedMessage
+                    {...messages.elevenLabsApiKeyUnauthorized}
+                  />
+                </div>
+              )}
+              {elevenLabsConnectionError &&
+                elevenLabsConnectionError !== 'UNAUTHORIZED' &&
+                elevenLabsConnectionError !== 'INVALID_FORMAT' && (
+                  <div style={{ color: '#f44336' }}>
+                    <FormattedMessage {...messages.elevenLabsTestError} />
+                  </div>
+                )}
+              {elevenLabsConnected && (
+                <div style={{ color: '#1976d2' }}>
+                  <FormattedMessage {...messages.elevenLabsTestSuccess} />
+                </div>
+              )}
+            </div>
+          </ListItem>
+        </List>
+        <div className="Speech__HelpText">
+          <FormattedMessage
+            {...messages.elevenLabsApiKeyHelp}
+            values={{
+              elevenLabsLink: (
+                <a
+                  href="https://elevenlabs.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#1976d2', textDecoration: 'none' }}
+                >
+                  elevenlabs.io
+                </a>
+              )
+            }}
+          />
+        </div>
       </Paper>
       {langVoices.length && (
         <Menu
@@ -217,9 +256,15 @@ const Speech = ({
           onClose={handleVoiceClose}
         >
           {langVoices.map((voice, index) => {
+            const key = voice.voiceURI || index;
+            const isPremium = voice.voiceSource === 'cloud';
+            const isOnline =
+              voice.voiceSource === 'cloud' ||
+              voice.voiceSource === 'elevenlabs';
+
             const VoiceItem = (
               <MenuItem
-                key={index}
+                key={key}
                 selected={index === selectedVoiceIndex}
                 onClick={() => onMenuItemClick(voice, index)}
               >
@@ -227,25 +272,23 @@ const Speech = ({
                   <div className="Speech__VoiceLabel">
                     {getVoiceLabel(voice)}
                   </div>
-                  {voice.voiceSource === 'elevenlabs' && (
-                    <Chip label="ElevenLabs" size="small" color="primary" />
-                  )}
-                  {(voice.voiceSource === 'cloud' ||
-                    voice.voiceSource === 'elevenlabs') && (
-                    <Chip label="online" size="small" color="secondary" />
-                  )}
+                  <div className="Speech__VoiceChips">
+                    {voice.voiceSource === 'elevenlabs' && (
+                      <Chip label="ElevenLabs" size="small" color="primary" />
+                    )}
+                    {isOnline && (
+                      <Chip label="online" size="small" color="secondary" />
+                    )}
+                  </div>
                 </div>
               </MenuItem>
             );
 
-            const PremiumVoice = <PremiumFeature> {VoiceItem}</PremiumFeature>;
-
-            const VoiceOption =
-              voice.voiceSource === 'cloud' ||
-              voice.voiceSource === 'elevenlabs'
-                ? PremiumVoice
-                : VoiceItem;
-            return VoiceOption;
+            return isPremium ? (
+              <PremiumFeature key={key}>{VoiceItem}</PremiumFeature>
+            ) : (
+              VoiceItem
+            );
           })}
         </Menu>
       )}

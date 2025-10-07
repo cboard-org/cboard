@@ -3,6 +3,7 @@ import {
   CHANGE_VOICE,
   CHANGE_PITCH,
   CHANGE_RATE,
+  CHANGE_ELEVENLABS_API_KEY,
   CHANGE_VOLUME,
   START_SPEECH,
   END_SPEECH,
@@ -35,7 +36,8 @@ const initialState = {
     rate: 1.0,
     volume: 1
   },
-  isSpeaking: false
+  isSpeaking: false,
+  elevenLabsApiKey: ''
 };
 
 function speechProviderReducer(state = initialState, action) {
@@ -46,12 +48,17 @@ function speechProviderReducer(state = initialState, action) {
 
       const pitch = speech && speech.pitch ? speech.pitch : state.options.pitch;
       const rate = speech && speech.rate ? speech.rate : state.options.rate;
+      const elevenLabsApiKey =
+        speech && speech.elevenLabsApiKey
+          ? speech.elevenLabsApiKey
+          : state.elevenLabsApiKey;
 
       const options = { ...state.options, pitch, rate };
 
       return {
         ...state,
-        options
+        options,
+        elevenLabsApiKey
       };
     case RECEIVE_VOICES:
       const langs = action.voices.map(voice =>
@@ -139,6 +146,11 @@ function speechProviderReducer(state = initialState, action) {
       return { ...state, options: { ...state.options, pitch: action.pitch } };
     case CHANGE_RATE:
       return { ...state, options: { ...state.options, rate: action.rate } };
+    case CHANGE_ELEVENLABS_API_KEY:
+      return {
+        ...state,
+        elevenLabsApiKey: action.elevenLabsApiKey
+      };
     case CHANGE_VOLUME:
       return { ...state, options: { ...state.options, volume: action.volume } };
     case START_SPEECH:
