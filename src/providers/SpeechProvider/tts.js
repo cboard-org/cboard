@@ -286,25 +286,96 @@ const tts = {
       initAppleUserAgent();
       const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
 
-      try {
-        const audioBlob = await elevenLabsSynthesizer.synthesizeSpeechElevenLabs(
-          text,
-          voiceURI
-        );
-        clearTimeout(speakAlertTimeoutId);
+      const MAX_RETRIES = 2;
 
-        const result = {
-          audioData: audioBlob,
-          endCallback: onend
-        };
+      const isRetryableError = error => {
+        const message = error.message.toLowerCase();
+        const retryableErrors = [
+          'rate limit',
+          '429',
+          'network',
+          'fetch',
+          'timeout',
+          '500',
+          '502',
+          '503',
+          '504'
+        ];
 
-        speakQueue.push(result);
-        if (audioElement.paused) {
-          playQueue();
+        return retryableErrors.some(errorType => message.includes(errorType));
+      };
+
+      const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+      let success = false;
+      for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+        try {
+          if (attempt > 0) {
+            const backoffMs = Math.pow(2, attempt) * 1000;
+            await delay(backoffMs);
+          }
+
+          const audioBlob = await elevenLabsSynthesizer.synthesizeSpeechElevenLabs(
+            text,
+            voiceURI
+          );
+          clearTimeout(speakAlertTimeoutId);
+
+          const result = {
+            audioData: audioBlob,
+            endCallback: onend
+          };
+
+          speakQueue.push(result);
+          if (audioElement.paused) {
+            playQueue();
+          }
+          success = true;
+          break;
+        } catch (err) {
+          if (attempt === MAX_RETRIES || !isRetryableError(err)) {
+            break;
+          }
         }
-      } catch (err) {
-        console.error('ElevenLabs speech synthesis error:', err);
+      }
+
+      if (!success) {
         clearTimeout(speakAlertTimeoutId);
+
+        if (!platformVoices.length) {
+          try {
+            await this.getVoices();
+          } catch (voiceErr) {
+            console.error(
+              'Failed to get voices for fallback:',
+              voiceErr.message
+            );
+          }
+        }
+
+        if (platformVoices.length && voice.lang) {
+          const fallbackVoice = platformVoices.find(
+            v => v.lang && v.lang.substring(0, 2) === voice.lang.substring(0, 2)
+          );
+
+          if (fallbackVoice) {
+            const msg = new SpeechSynthesisUtterance(text);
+            msg.text = text;
+            msg.voice = fallbackVoice;
+            msg.name = fallbackVoice.name;
+            msg.lang = fallbackVoice.lang;
+            msg.voiceURI = fallbackVoice.voiceURI;
+            msg.pitch = pitch;
+            msg.rate = rate;
+            msg.volume = volume;
+            msg.onend = onend;
+            if (IS_BROWSING_FROM_SAFARI || IS_BROWSING_FROM_APPLE_TOUCH)
+              synth.cancel();
+            synth.speak(msg);
+            return;
+          }
+        }
+
         onend({ error: true });
       }
     } else if (voice && voice.voiceSource === 'cloud') {
@@ -348,41 +419,6 @@ const tts = {
           initAzureSynthesizer();
         }
       );
-    } else if (voice && voice.voiceSource === 'elevenlabs') {
-      if (appleFirstCloudPlay) {
-        audioElement
-          .play()
-          .then(() => {})
-          .catch(() => {})
-          .finally(() => {
-            console.log('Apple user Agent is ready to reproduce cloud voices');
-          });
-        audioElement.pause();
-        appleFirstCloudPlay = false;
-      }
-      const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
-
-      try {
-        const audioBlob = await API.synthesizeSpeechElevenLabs(text, voiceURI);
-        clearTimeout(speakAlertTimeoutId);
-
-        if (audioBlob) {
-          const audioResult = {
-            audioData: await audioBlob.arrayBuffer(),
-            endCallback: onend
-          };
-          speakQueue.push(audioResult);
-          if (audioElement.paused) {
-            playQueue();
-          }
-        } else {
-          onend({ error: true });
-        }
-      } catch (err) {
-        console.error('ElevenLabs speech synthesis error:', err);
-        clearTimeout(speakAlertTimeoutId);
-        onend({ error: true });
-      }
     } else {
       if (!platformVoices.length) {
         try {
