@@ -44,5 +44,34 @@ export default defineMessages({
   voice: {
     id: 'cboard.components.Settings.Speech.voice',
     defaultMessage: 'Voice'
+  },
+  elevenLabsApiKey: {
+    id: 'cboard.components.Settings.Speech.elevenLabsApiKey',
+    defaultMessage: 'ElevenLabs'
+  },
+  elevenLabsApiKeyDescription: {
+    id: 'cboard.components.Settings.Speech.elevenLabsApiKeyDescription',
+    defaultMessage: 'Enter your ElevenLabs API key'
+  },
+  elevenLabsApiKeyInvalid: {
+    id: 'cboard.components.Settings.Speech.elevenLabsApiKeyInvalid',
+    defaultMessage: 'Invalid API key format'
+  },
+  elevenLabsApiKeyUnauthorized: {
+    id: 'cboard.components.Settings.Speech.elevenLabsApiKeyUnauthorized',
+    defaultMessage: 'API key unauthorized or expired'
+  },
+  elevenLabsTestSuccess: {
+    id: 'cboard.components.Settings.Speech.elevenLabsTestSuccess',
+    defaultMessage: 'API key validated successfully'
+  },
+  elevenLabsTestError: {
+    id: 'cboard.components.Settings.Speech.elevenLabsTestError',
+    defaultMessage: 'Failed to validate API key'
+  },
+  elevenLabsApiKeyHelp: {
+    id: 'cboard.components.Settings.Speech.elevenLabsApiKeyHelp',
+    defaultMessage:
+      'Get your API key from {elevenLabsLink} and enter it to enable your voices'
   }
 });
