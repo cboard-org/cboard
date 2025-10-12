@@ -197,19 +197,23 @@ const tts = {
       }
 
       // Android
+      // ✅ Fix for Linux freeze when no TTS voices available
       if ('onvoiceschanged' in synth) {
         synth.addEventListener('voiceschanged', function voiceslst() {
           const voices = synth.getVoices();
-          if (!voices.length) {
-            return null;
-          } else {
+
+          // 🛠️ Handle case: no voices found
+          if (!voices || voices.length === 0) {
+            console.warn('No TTS voices available. Resolving with empty list.');
             synth.removeEventListener('voiceschanged', voiceslst);
-            // On Cordova, voice results are under `._list`
-            platformVoices = voices._list || voices;
-            resolve(
-              platformVoices.concat(cloudVoices).concat(elevenLabsVoices)
-            );
+            resolve([]); // resolve with empty array instead of freezing
+            return;
           }
+
+          // 🧠 Normal case: voices found
+          synth.removeEventListener('voiceschanged', voiceslst);
+          platformVoices = voices._list || voices;
+          resolve(platformVoices.concat(cloudVoices).concat(elevenLabsVoices));
         });
       } else if (isCordova()) {
         // Samsung devices on Cordova
