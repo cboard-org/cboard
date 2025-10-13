@@ -311,7 +311,7 @@ const tts = {
       for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
         try {
           if (attempt > 0) {
-            const backoffMs = Math.pow(2, attempt) * 1000;
+            const backoffMs = Math.pow(2, attempt) * 300;
             await delay(backoffMs);
           }
 
