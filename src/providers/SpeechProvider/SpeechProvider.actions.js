@@ -8,6 +8,7 @@ import {
   CHANGE_VOICE,
   CHANGE_PITCH,
   CHANGE_RATE,
+  CHANGE_ELEVENLABS_API_KEY,
   START_SPEECH,
   END_SPEECH,
   CANCEL_SPEECH,
@@ -27,7 +28,6 @@ import {
 } from '../../i18n';
 import tts from './tts';
 import { showNotification } from '../../components/Notifications/Notifications.actions';
-import API from '../../api';
 
 export function requestVoices() {
   return {
@@ -166,6 +166,13 @@ export function changeRate(rate) {
   };
 }
 
+export function changeElevenLabsApiKey(elevenLabsApiKey) {
+  return {
+    type: CHANGE_ELEVENLABS_API_KEY,
+    elevenLabsApiKey
+  };
+}
+
 export function getVoices() {
   return async (dispatch, getState) => {
     let voices = [];
@@ -188,14 +195,26 @@ export function getVoices() {
       const regex = new RegExp('^[a-zA-Z]{2,}-$', 'g');
       const fvoices = pvoices.filter(voice => !regex.test(voice.lang));
       voices = fvoices.map(
-        ({ voiceURI, lang, name, Locale, ShortName, DisplayName, Gender }) => {
+        ({
+          voiceURI,
+          lang,
+          name,
+          Locale,
+          ShortName,
+          DisplayName,
+          Gender,
+          voiceSource
+        }) => {
           let voice = {};
           if (lang) {
             voice.lang = lang;
           } else if (Locale) {
             voice.lang = Locale;
           }
-          if (voiceURI) {
+          if (voiceSource) {
+            voice.voiceSource = voiceSource;
+            voice.voiceURI = voiceURI;
+          } else if (voiceURI) {
             voice.voiceURI = voiceURI;
             voice.voiceSource = 'local';
           } else if (ShortName) {
@@ -211,44 +230,6 @@ export function getVoices() {
           return voice;
         }
       );
-
-      const state = getState ? getState() : null;
-      const elevenLabsCache = state?.speech?.elevenLabsCache;
-      let formattedElevenLabsVoices = [];
-
-      if (elevenLabsCache && isElevenLabsCacheValid(elevenLabsCache)) {
-        formattedElevenLabsVoices = elevenLabsCache.voices;
-      } else {
-        try {
-          const elevenLabsVoice = await API.getElevenLabsVoices();
-          formattedElevenLabsVoices = elevenLabsVoice.map(voice => ({
-            voiceURI: voice.voice_id,
-            name: voice.name,
-            lang: voice.labels?.language || 'en-US',
-            voiceSource: 'elevenlabs',
-            voice_id: voice.voice_id,
-            category: voice.category,
-            description: voice.description,
-            labels: voice.labels,
-            settings: {
-              stability: 0.5,
-              similarity_boost: 0.8,
-              style: 0.0
-            }
-          }));
-
-          if (dispatch) {
-            dispatch(cacheElevenLabsVoices(formattedElevenLabsVoices));
-          }
-        } catch (err) {
-          console.error('Failed to fetch ElevenLabs voices:', err.message);
-          if (elevenLabsCache?.voices?.length) {
-            formattedElevenLabsVoices = elevenLabsCache.voices;
-          }
-        }
-      }
-
-      voices = [...formattedElevenLabsVoices, ...voices];
 
       dispatch(receiveVoices(voices));
     } catch (err) {
