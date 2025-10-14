@@ -26,7 +26,6 @@ import {
 } from '../../i18n';
 import tts from './tts';
 import { showNotification } from '../../components/Notifications/Notifications.actions';
-import { ElevenLabsEngine } from './engine/elevenlabs';
 
 export function requestVoices() {
   return {
@@ -229,24 +228,6 @@ export function getVoices() {
           return voice;
         }
       );
-
-      try {
-        if (ElevenLabsEngine.isInitialized()) {
-          const elevenLabsVoices = await ElevenLabsEngine.getVoices();
-          const formattedElevenLabsVoices = elevenLabsVoices.map(voice => ({
-            voiceURI: voice.voice_id,
-            lang: voice.labels?.language || 'en-US',
-            name: `${voice.name} (ElevenLabs)`,
-            voiceSource: 'elevenlabs',
-            category: voice.category,
-            description: voice.description,
-            labels: voice.labels
-          }));
-          voices = [...formattedElevenLabsVoices, ...voices];
-        }
-      } catch (err) {
-        console.error('Failed to fetch ElevenLabs voices:', err.message);
-      }
 
       dispatch(receiveVoices(voices));
     } catch (err) {
