@@ -228,6 +228,7 @@ export function getVoices() {
           return voice;
         }
       );
+
       dispatch(receiveVoices(voices));
     } catch (err) {
       console.error(err.message);
