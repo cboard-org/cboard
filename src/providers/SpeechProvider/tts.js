@@ -9,12 +9,19 @@ import {
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import { getStore } from '../../store';
+import { ElevenLabsEngine, validateApiKeyFormat } from './engine/elevenlabs';
+import { ELEVEN_LABS } from './SpeechProvider.constants';
 
 // this is the local synthesizer
 let synth = window.speechSynthesis;
 
 // this is the cloud synthesizer
 var azureSynthesizer;
+
+/**
+ * @type {ElevenLabsEngine | null}
+ */
+let elevenLabsSynthesizer = null;
 
 const audioElement = new Audio();
 
@@ -50,6 +57,40 @@ const initAzureSynthesizer = () => {
   );
 };
 
+const initElevenLabsSynthesizer = apiKey => {
+  const getStoreApiKey = () => {
+    const store = getStore();
+    if (!store) {
+      return null;
+    }
+    const {
+      speech: { elevenLabsApiKey }
+    } = store.getState();
+    return elevenLabsApiKey;
+  };
+
+  const elevenLabsApiKey = apiKey || getStoreApiKey();
+
+  if (elevenLabsApiKey && validateApiKeyFormat(elevenLabsApiKey)) {
+    return new ElevenLabsEngine(elevenLabsApiKey);
+  }
+  return null;
+};
+
+const initAppleUserAgent = () => {
+  if (appleFirstCloudPlay) {
+    audioElement
+      .play()
+      .then(() => {})
+      .catch(() => {})
+      .finally(() => {
+        console.log('Apple user Agent is ready to reproduce cloud voices');
+      });
+    audioElement.pause();
+    appleFirstCloudPlay = false;
+  }
+};
+
 const playQueue = () => {
   if (speakQueue.length) {
     const blob = new Blob([speakQueue[0].audioData], { type: 'audio/wav' });
@@ -75,6 +116,23 @@ initAzureSynthesizer();
 const tts = {
   isSupported() {
     return 'speechSynthesis' in window;
+  },
+
+  initElevenLabsInstance(apiKey) {
+    elevenLabsSynthesizer = null;
+    elevenLabsSynthesizer = initElevenLabsSynthesizer(apiKey);
+  },
+
+  async testElevenLabsConnection() {
+    if (!elevenLabsSynthesizer) {
+      return { isValid: false, error: 'NOT_INITIALIZED' };
+    }
+    try {
+      const result = await elevenLabsSynthesizer.testConnection();
+      return result;
+    } catch (error) {
+      return { isValid: false, error: error.message };
+    }
   },
 
   getVoiceByVoiceURI(VoiceURI) {
@@ -105,16 +163,48 @@ const tts = {
 
   async getVoices() {
     let cloudVoices = [];
+    let elevenLabsVoices = [];
+
     // first, request for cloud based voices
     try {
       cloudVoices = await API.getAzureVoices();
     } catch (err) {
       console.error(err.message);
     }
+
+    try {
+      if (elevenLabsSynthesizer) {
+        const voices = await elevenLabsSynthesizer.getElevenLabsPersonalVoices();
+        elevenLabsVoices = voices.map(voice => ({
+          voiceURI: voice.voice_id,
+          lang: voice.labels?.language || 'en-US',
+          name: voice.name,
+          voiceSource: ELEVEN_LABS,
+          voice_id: voice.voice_id,
+          category: voice.category,
+          description: voice.description,
+          labels: voice.labels,
+          settings: {
+            stability: 0.5,
+            use_speaker_boost: true,
+            similarity_boost: 0.75,
+            style: 0,
+            speed: 1
+          }
+        }));
+      }
+    } catch (err) {
+      console.error('Error fetching ElevenLabs voices:', err.message);
+    }
+
     return new Promise((resolve, reject) => {
       platformVoices = this._getPlatformVoices() || [];
+      const allVoices = platformVoices
+        .concat(cloudVoices)
+        .concat(elevenLabsVoices);
+
       if (platformVoices.length) {
-        resolve(platformVoices.concat(cloudVoices));
+        resolve(allVoices);
       }
 
       // Android
@@ -127,13 +217,15 @@ const tts = {
             synth.removeEventListener('voiceschanged', voiceslst);
             // On Cordova, voice results are under `._list`
             platformVoices = voices._list || voices;
-            resolve(platformVoices.concat(cloudVoices));
+            resolve(
+              platformVoices.concat(cloudVoices).concat(elevenLabsVoices)
+            );
           }
         });
       } else if (isCordova()) {
         // Samsung devices on Cordova
         platformVoices = this._getPlatformVoices();
-        resolve(platformVoices.concat(cloudVoices));
+        resolve(platformVoices.concat(cloudVoices).concat(elevenLabsVoices));
       }
     });
   },
@@ -200,18 +292,105 @@ const tts = {
     setCloudSpeakAlertTimeout
   ) {
     const voice = this.getVoiceByVoiceURI(voiceURI);
-    if (voice && voice.voiceSource === 'cloud') {
-      if (appleFirstCloudPlay) {
-        audioElement
-          .play()
-          .then(() => {})
-          .catch(() => {})
-          .finally(() => {
-            console.log('Apple user Agent is ready to reproduce cloud voices');
-          });
-        audioElement.pause();
-        appleFirstCloudPlay = false;
+
+    if (voice && voice.voiceSource === ELEVEN_LABS) {
+      initAppleUserAgent();
+      const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
+
+      const MAX_RETRIES = 2;
+
+      const isRetryableError = error => {
+        const message = error.message.toLowerCase();
+        const retryableErrors = [
+          'rate limit',
+          '429',
+          'network',
+          'fetch',
+          'timeout',
+          '500',
+          '502',
+          '503',
+          '504'
+        ];
+
+        return retryableErrors.some(errorType => message.includes(errorType));
+      };
+
+      const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+      let success = false;
+      for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+        try {
+          if (attempt > 0) {
+            const backoffMs = Math.pow(2, attempt) * 300;
+            await delay(backoffMs);
+          }
+
+          const audioBlob = await elevenLabsSynthesizer.synthesizeSpeechElevenLabs(
+            text,
+            voiceURI
+          );
+          clearTimeout(speakAlertTimeoutId);
+
+          const result = {
+            audioData: audioBlob,
+            endCallback: onend
+          };
+
+          speakQueue.push(result);
+          if (audioElement.paused) {
+            playQueue();
+          }
+          success = true;
+          break;
+        } catch (err) {
+          if (attempt === MAX_RETRIES || !isRetryableError(err)) {
+            break;
+          }
+        }
       }
+
+      if (!success) {
+        clearTimeout(speakAlertTimeoutId);
+
+        if (!platformVoices.length) {
+          try {
+            await this.getVoices();
+          } catch (voiceErr) {
+            console.error(
+              'Failed to get voices for fallback:',
+              voiceErr.message
+            );
+          }
+        }
+
+        if (platformVoices.length && voice.lang) {
+          const fallbackVoice = platformVoices.find(
+            v => v.lang && v.lang.substring(0, 2) === voice.lang.substring(0, 2)
+          );
+
+          if (fallbackVoice) {
+            const msg = new SpeechSynthesisUtterance(text);
+            msg.text = text;
+            msg.voice = fallbackVoice;
+            msg.name = fallbackVoice.name;
+            msg.lang = fallbackVoice.lang;
+            msg.voiceURI = fallbackVoice.voiceURI;
+            msg.pitch = pitch;
+            msg.rate = rate;
+            msg.volume = volume;
+            msg.onend = onend;
+            if (IS_BROWSING_FROM_SAFARI || IS_BROWSING_FROM_APPLE_TOUCH)
+              synth.cancel();
+            synth.speak(msg);
+            return;
+          }
+        }
+
+        onend({ error: true });
+      }
+    } else if (voice && voice.voiceSource === 'cloud') {
+      initAppleUserAgent();
       const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
       // set voice to speak
       azureSynthesizer.properties.setProperty(
@@ -251,41 +430,6 @@ const tts = {
           initAzureSynthesizer();
         }
       );
-    } else if (voice && voice.voiceSource === 'elevenlabs') {
-      if (appleFirstCloudPlay) {
-        audioElement
-          .play()
-          .then(() => {})
-          .catch(() => {})
-          .finally(() => {
-            console.log('Apple user Agent is ready to reproduce cloud voices');
-          });
-        audioElement.pause();
-        appleFirstCloudPlay = false;
-      }
-      const speakAlertTimeoutId = setCloudSpeakAlertTimeout();
-
-      try {
-        const audioBlob = await API.synthesizeSpeechElevenLabs(text, voiceURI);
-        clearTimeout(speakAlertTimeoutId);
-
-        if (audioBlob) {
-          const audioResult = {
-            audioData: await audioBlob.arrayBuffer(),
-            endCallback: onend
-          };
-          speakQueue.push(audioResult);
-          if (audioElement.paused) {
-            playQueue();
-          }
-        } else {
-          onend({ error: true });
-        }
-      } catch (err) {
-        console.error('ElevenLabs speech synthesis error:', err);
-        clearTimeout(speakAlertTimeoutId);
-        onend({ error: true });
-      }
     } else {
       if (!platformVoices.length) {
         try {

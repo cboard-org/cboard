@@ -59,5 +59,5 @@ export const GOOGLE_FIREBASE_WEB_CLIENT_ID =
   '772840497386-4m51j455n7aqi54uhfm7ub6p645or2ed.apps.googleusercontent.com';
 
 // ElevenLabs related constants
-export const ELEVENLABS_API_BASE_URL = 'https://api.elevenlabs.io/v1';
+export const ELEVENLABS_API_BASE_URL = 'https://api.elevenlabs.io';
 export const ELEVENLABS_DEFAULT_TIMEOUT = 10000;

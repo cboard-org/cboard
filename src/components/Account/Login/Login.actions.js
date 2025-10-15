@@ -4,7 +4,8 @@ import { addBoards } from '../../Board/Board.actions';
 import {
   changeVoice,
   changePitch,
-  changeRate
+  changeRate,
+  changeElevenLabsApiKey
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import {
   disableTour,
@@ -15,6 +16,7 @@ import {
 } from '../../App/App.actions';
 import { getVoiceURI } from '../../../i18n';
 import { isCordova, isElectron } from '../../../cordova-util';
+import tts from '../../../providers/SpeechProvider/tts';
 
 export function loginSuccess(payload) {
   return dispatch => {
@@ -118,6 +120,14 @@ export function login({ email, password, activatedData }, type = 'local') {
           }
           if (loginData.settings.speech.rate) {
             dispatch(changeRate(loginData.settings.speech.rate));
+          }
+          if (loginData?.settings?.speech?.elevenLabsApiKey) {
+            dispatch(
+              changeElevenLabsApiKey(loginData.settings.speech.elevenLabsApiKey)
+            );
+            tts.initElevenLabsInstance(
+              loginData.settings.speech.elevenLabsApiKey
+            );
           }
           return;
         }

@@ -63,7 +63,7 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push cboard/cboard:latest
             docker push cboard/cboard:$TAG
-  deploy:
+  deploy-qa:
     machine:
       image: ubuntu-2204:2024.11.1
     steps:
@@ -72,16 +72,18 @@ jobs:
           command: |
             echo 'cboard-qa06.westus.cloudapp.azure.com \
             AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK9FTOTcgK0KgvdqdUhPLfvnDhzbViGnvtaXWg1XKgq2LEzgUTaHwyDsV5lZ3NnXimwptzF6GvO3u1ySlR2C19s=' >> ~/.ssh/known_hosts
-            ssh $SSH_USERNAME@$SSH_SERVER 'bash -ic "docker run --rm \
-            -v /var/run/docker.sock:/var/run/docker.sock cboard/cboard-bootstrap pull && \
-            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock --env-file \
-            /home/sharedFolder/env.qa cboard/cboard-bootstrap up -d" && exit'
+            ssh $SSH_USERNAME@$SSH_SERVER 'bash -ic \
+            "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock cboard/cboard-bootstrap pull && \
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock cboard/cboard-bootstrap stop cboard && \
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock cboard/cboard-bootstrap kill cboard && \
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock --env-file /home/sharedFolder/env.qa cboard/cboard-bootstrap up -d --no-deps cboard \
+            " && exit'
       - discord/status:
           fail_only: false
           failure_message: "**${CIRCLE_USERNAME}**'s Cboard deploy to QA: **${CIRCLE_JOB}** failed."
           webhook: '${DISCORD_STATUS_WEBHOOK}'
           success_message: '**${CIRCLE_USERNAME}** deployed Cboard to QA!!.'
-  e2e:
+  e2e-qa:
     docker:
       - image: mcr.microsoft.com/playwright:v1.53.0-jammy
     working_directory: ~/repo
@@ -125,8 +127,7 @@ jobs:
           path: ./test-results
           destination: test-results
 workflows:
-  version: 2
-  build_image_deploy_e2e:
+  build_image_deploy_e2e-qa:
     jobs:
       - build:
           context: azure
@@ -137,17 +138,17 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy:
+      - deploy-qa:
           context: azure
           requires:
             - image
           filters:
             branches:
               only: master
-      - e2e:
+      - e2e-qa:
           context: azure
           requires:
-            - deploy
+            - deploy-qa
           filters:
             branches:
               only: master

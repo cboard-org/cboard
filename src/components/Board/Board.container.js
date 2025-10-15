@@ -196,7 +196,6 @@ export class BoardContainer extends Component {
     tileEditorOpen: false,
     isGettingApiObjects: false,
     copyPublicBoard: false,
-    isVariantBoard: false,
     blockedPrivateBoard: false,
     isFixedBoard: false,
     copiedTiles: [],
@@ -374,19 +373,13 @@ export class BoardContainer extends Component {
 
     const queryParams = new URLSearchParams(location.search);
     const isCbuilderBoard = queryParams.get('cbuilder');
-    const isVariantBoard = queryParams.get('variant');
-    this.setState({ isCbuilderBoard, isVariantBoard });
+    this.setState({ isCbuilderBoard });
 
     try {
       const remoteBoard = isCbuilderBoard
         ? await API.getCbuilderBoard(boardId)
         : await API.getBoard(boardId);
 
-      if (isVariantBoard) {
-        //this.setState({ copyVariantBoard: remoteBoard });
-        this.handleCopyRemoteBoard(remoteBoard);
-        return null;
-      }
       //if requested board is from the user just add it
       if (
         'name' in userData &&
@@ -1167,20 +1160,15 @@ export class BoardContainer extends Component {
     }
   };
 
-  handleCopyRemoteBoard = async (variantBoard = false) => {
+  handleCopyRemoteBoard = async () => {
     const { intl, showNotification, history, switchBoard } = this.props;
     try {
       this.setState({
         isSaving: true
       });
-
-      let toCopyBoard = null;
-      if (variantBoard) {
-        toCopyBoard = variantBoard;
-      } else {
-        toCopyBoard = this.state.copyPublicBoard;
-      }
-      const copiedBoard = await this.createBoardsRecursively(toCopyBoard);
+      const copiedBoard = await this.createBoardsRecursively(
+        this.state.copyPublicBoard
+      );
       if (!copiedBoard?.id) {
         throw new Error('Board not copied correctly');
       }
@@ -1600,7 +1588,6 @@ export class BoardContainer extends Component {
           changeDefaultBoard={this.props.changeDefaultBoard}
           improvedPhrase={improvedPhrase}
           speak={speak}
-          isVariantBoard={this.state.isVariantBoard}
         />
         <Dialog
           open={!!this.state.copyPublicBoard && !isPremiumRequiredModalOpen}

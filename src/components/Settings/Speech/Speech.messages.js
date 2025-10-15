@@ -100,5 +100,10 @@ export default defineMessages({
   resetToDefaults: {
     id: 'cboard.components.Settings.Speech.resetToDefaults',
     defaultMessage: 'Reset to Defaults'
+  },
+  elevenLabsApiKeyHelp: {
+    id: 'cboard.components.Settings.Speech.elevenLabsApiKeyHelp',
+    defaultMessage:
+      'Get your API key from {elevenLabsLink} and enter it to enable your voices'
   }
 });
