@@ -179,7 +179,18 @@ const tts = {
           voiceURI: voice.voice_id,
           lang: voice.labels?.language || 'en-US',
           name: voice.name,
-          voiceSource: ELEVEN_LABS
+          voiceSource: ELEVEN_LABS,
+          voice_id: voice.voice_id,
+          category: voice.category,
+          description: voice.description,
+          labels: voice.labels,
+          settings: {
+            stability: 0.5,
+            use_speaker_boost: true,
+            similarity_boost: 0.75,
+            style: 0,
+            speed: 1
+          }
         }));
       }
     } catch (err) {
