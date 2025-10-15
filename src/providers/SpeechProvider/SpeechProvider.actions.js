@@ -177,6 +177,14 @@ export function getVoices() {
   return async (dispatch, getState) => {
     let voices = [];
     dispatch(requestVoices());
+
+    const { elevenLabsCache } = getState().speech;
+
+    const isCacheValid =
+      elevenLabsCache.timestamp &&
+      elevenLabsCache.voices.length > 0 &&
+      Date.now() - elevenLabsCache.timestamp < elevenLabsCache.ttl;
+
     try {
       const localizeSerbianVoicesNames = (voiceName, voiceLang) => {
         if (voiceLang?.startsWith('sr')) {
@@ -191,9 +199,29 @@ export function getVoices() {
       };
 
       const pvoices = await tts.getVoices();
+
+      const elevenLabsVoices = pvoices.filter(
+        v => v.voiceSource === 'elevenlabs'
+      );
+      const otherVoices = pvoices.filter(v => v.voiceSource !== 'elevenlabs');
+
+      let allVoices = [];
+
+      if (elevenLabsVoices.length > 0) {
+        dispatch(cacheElevenLabsVoices(elevenLabsVoices));
+        allVoices = pvoices;
+      } else if (isCacheValid) {
+        allVoices = [...otherVoices, ...elevenLabsCache.voices];
+      } else if (elevenLabsCache.voices.length > 0) {
+        console.warn('Using expired ElevenLabs cache due to fetch failure');
+        allVoices = [...otherVoices, ...elevenLabsCache.voices];
+      } else {
+        allVoices = pvoices;
+      }
+
       // some TTS engines do return invalid voices, so we filter them
       const regex = new RegExp('^[a-zA-Z]{2,}-$', 'g');
-      const fvoices = pvoices.filter(voice => !regex.test(voice.lang));
+      const fvoices = allVoices.filter(voice => !regex.test(voice.lang));
       voices = fvoices.map(
         ({
           voiceURI,
@@ -307,14 +335,6 @@ export function clearElevenLabsCache() {
   return {
     type: CLEAR_ELEVENLABS_CACHE
   };
-}
-
-function isElevenLabsCacheValid(cache) {
-  if (!cache.timestamp || !cache.voices.length) {
-    return false;
-  }
-  const now = Date.now();
-  return now - cache.timestamp < cache.ttl;
 }
 
 export function setCurrentVoiceSource() {
