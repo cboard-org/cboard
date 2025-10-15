@@ -67,7 +67,7 @@ Cboard is ready to be deployed.
 
 Use this to produce non-minified build for use in debugging within Cordova. It uses `craco` & `craco.config` to customize webpack operation without ejecting react.
 
-See [CBoard](https://github.com/nous-/cboard) repo for packaging this CBoard application within Cordova.
+See [CCBoard](https://github.com/cboard-org/ccboard) repo for packaging this CBoard application within Cordova.
 
 ## Docker getting started
 
