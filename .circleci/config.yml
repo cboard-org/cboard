@@ -76,7 +76,7 @@ jobs:
             "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock cboard/cboard-bootstrap pull && \
             docker run --rm -v /var/run/docker.sock:/var/run/docker.sock cboard/cboard-bootstrap stop cboard && \
             docker run --rm -v /var/run/docker.sock:/var/run/docker.sock cboard/cboard-bootstrap kill cboard && \
-            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock --env-file /home/sharedFolder/env.prod cboard/cboard-bootstrap up -d --no-deps cboard \
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock --env-file /home/sharedFolder/env.qa cboard/cboard-bootstrap up -d --no-deps cboard \
             " && exit'
       - discord/status:
           fail_only: false
