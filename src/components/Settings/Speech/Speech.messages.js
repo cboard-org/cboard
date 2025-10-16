@@ -93,10 +93,6 @@ export default defineMessages({
     id: 'cboard.components.Settings.Speech.elevenLabsStyleDescription',
     defaultMessage: 'Determines the style exaggeration of the voice.'
   },
-  elevenLabsAdvancedSettings: {
-    id: 'cboard.components.Settings.Speech.elevenLabsAdvancedSettings',
-    defaultMessage: 'ElevenLabs Advanced Settings'
-  },
   resetToDefaults: {
     id: 'cboard.components.Settings.Speech.resetToDefaults',
     defaultMessage: 'Reset to Defaults'
