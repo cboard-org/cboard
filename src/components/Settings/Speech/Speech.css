@@ -1,5 +1,5 @@
 .Speech__ListItemText {
-  max-width: 50%;
+  flex: 1 1 0%;
 }
 
 .Speech__HelpText {
