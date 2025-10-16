@@ -235,7 +235,8 @@ export function getVoices() {
           ShortName,
           DisplayName,
           Gender,
-          voiceSource
+          voiceSource,
+          voice_id
         }) => {
           let voice = {};
           if (lang) {
@@ -259,6 +260,12 @@ export function getVoices() {
             voice.name = `${DisplayName} (${voice.lang}) - ${Gender}`;
           }
           voice.name = localizeSerbianVoicesNames(voice.name, voice.lang);
+
+          // Include voice_id for ElevenLabs voices
+          if (voice_id) {
+            voice.voice_id = voice_id;
+          }
+
           return voice;
         }
       );
@@ -351,33 +358,29 @@ export function setCurrentVoiceSource() {
   };
 }
 
-export function changeElevenLabsStability(voiceId, stability) {
+export function changeElevenLabsStability(stability) {
   return {
     type: CHANGE_ELEVENLABS_STABILITY,
-    voiceId,
     stability
   };
 }
 
-export function changeElevenLabsSimilarity(voiceId, similarity) {
+export function changeElevenLabsSimilarity(similarity) {
   return {
     type: CHANGE_ELEVENLABS_SIMILARITY,
-    voiceId,
     similarity
   };
 }
 
-export function changeElevenLabsStyle(voiceId, style) {
+export function changeElevenLabsStyle(style) {
   return {
     type: CHANGE_ELEVENLABS_STYLE,
-    voiceId,
     style
   };
 }
 
-export function resetElevenLabsSettings(voiceId) {
+export function resetElevenLabsSettings() {
   return {
-    type: RESET_ELEVENLABS_SETTINGS,
-    voiceId
+    type: RESET_ELEVENLABS_SETTINGS
   };
 }
