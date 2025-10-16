@@ -17,7 +17,8 @@ import {
   CHANGE_ELEVENLABS_STABILITY,
   CHANGE_ELEVENLABS_SIMILARITY,
   CHANGE_ELEVENLABS_STYLE,
-  RESET_ELEVENLABS_SETTINGS
+  RESET_ELEVENLABS_SETTINGS,
+  ELEVEN_LABS
 } from './SpeechProvider.constants';
 import {
   getVoiceURI,
@@ -40,7 +41,10 @@ const initialState = {
     isCloud: null,
     pitch: 1.0,
     rate: 1.0,
-    volume: 1
+    volume: 1,
+    elevenLabsStability: 0.5,
+    elevenLabsSimilarity: 0.75,
+    elevenLabsStyle: 0.0
   },
   isSpeaking: false,
   elevenLabsCache: {
@@ -48,8 +52,50 @@ const initialState = {
     timestamp: null,
     ttl: 24 * 60 * 60 * 1000
   },
-  elevenLabsApiKey: ''
+  elevenLabsApiKey: '',
+  elevenLabsVoiceSettings: {}
 };
+
+function updateElevenLabsVoiceSetting(state, settingKey, settingValue) {
+  const currentVoice = state.voices.find(
+    v => v.voiceURI === state.options.voiceURI
+  );
+  const voiceId = currentVoice?.voice_id;
+
+  const updatedVoiceSettings = {};
+  if (voiceId && currentVoice?.voiceSource === ELEVEN_LABS) {
+    updatedVoiceSettings[voiceId] = {
+      ...(state.elevenLabsVoiceSettings[voiceId] || {}),
+      [settingKey]: settingValue
+    };
+  }
+
+  return {
+    ...state.elevenLabsVoiceSettings,
+    ...updatedVoiceSettings
+  };
+}
+
+function resetElevenLabsVoiceSettings(state) {
+  const currentVoice = state.voices.find(
+    v => v.voiceURI === state.options.voiceURI
+  );
+  const voiceId = currentVoice?.voice_id;
+
+  const updatedVoiceSettings = {};
+  if (voiceId && currentVoice?.voiceSource === ELEVEN_LABS) {
+    updatedVoiceSettings[voiceId] = {
+      stability: 0.5,
+      similarity_boost: 0.75,
+      style: 0.0
+    };
+  }
+
+  return {
+    ...state.elevenLabsVoiceSettings,
+    ...updatedVoiceSettings
+  };
+}
 
 function speechProviderReducer(state = initialState, action) {
   switch (action.type) {
@@ -64,12 +110,40 @@ function speechProviderReducer(state = initialState, action) {
           ? speech.elevenLabsApiKey
           : state.elevenLabsApiKey;
 
-      const options = { ...state.options, pitch, rate };
+      const savedVoiceSettings =
+        speech && speech.elevenLabsVoiceSettings
+          ? speech.elevenLabsVoiceSettings
+          : {};
+
+      const currentVoiceURI = state.options.voiceURI;
+      const currentVoice = state.voices.find(
+        v => v.voiceURI === currentVoiceURI
+      );
+      const currentVoiceId = currentVoice?.voice_id;
+
+      const currentVoiceSettings =
+        currentVoiceId && savedVoiceSettings[currentVoiceId]
+          ? savedVoiceSettings[currentVoiceId]
+          : {
+              stability: state.options.elevenLabsStability,
+              similarity_boost: state.options.elevenLabsSimilarity,
+              style: state.options.elevenLabsStyle
+            };
+
+      const options = {
+        ...state.options,
+        pitch,
+        rate,
+        elevenLabsStability: currentVoiceSettings.stability ?? 0.5,
+        elevenLabsSimilarity: currentVoiceSettings.similarity_boost ?? 0.75,
+        elevenLabsStyle: currentVoiceSettings.style ?? 0.0
+      };
 
       return {
         ...state,
         options,
-        elevenLabsApiKey
+        elevenLabsApiKey,
+        elevenLabsVoiceSettings: savedVoiceSettings
       };
     case RECEIVE_VOICES:
       const langs = action.voices.map(voice =>
@@ -91,13 +165,35 @@ function speechProviderReducer(state = initialState, action) {
         langs: [...new Set(langs)].sort()
       };
     case CHANGE_VOICE:
+      const newVoice = state.voices.find(v => v.voiceURI === action.voiceURI);
+      const newVoiceId = newVoice?.voice_id;
+
+      let elevenLabsOptions = {};
+      if (newVoice?.voiceSource === ELEVEN_LABS && newVoiceId) {
+        const voiceSettings = state.elevenLabsVoiceSettings[newVoiceId];
+        if (voiceSettings) {
+          elevenLabsOptions = {
+            elevenLabsStability: voiceSettings.stability ?? 0.5,
+            elevenLabsSimilarity: voiceSettings.similarity_boost ?? 0.75,
+            elevenLabsStyle: voiceSettings.style ?? 0.0
+          };
+        } else {
+          elevenLabsOptions = {
+            elevenLabsStability: 0.5,
+            elevenLabsSimilarity: 0.75,
+            elevenLabsStyle: 0.0
+          };
+        }
+      }
+
       return {
         ...state,
         options: {
           ...state.options,
           voiceURI: action ? action.voiceURI : EMPTY_VOICES,
           lang: action ? action.lang : DEFAULT_LANG,
-          isCloud: action ? action.isCloud || null : null
+          isCloud: action ? action.isCloud || null : null,
+          ...elevenLabsOptions
         }
       };
     case RECEIVE_TTS_ENGINES:
@@ -191,64 +287,52 @@ function speechProviderReducer(state = initialState, action) {
     case CHANGE_ELEVENLABS_STABILITY:
       return {
         ...state,
-        voices: state.voices.map(voice =>
-          voice.voice_id === action.voiceId
-            ? {
-                ...voice,
-                settings: {
-                  ...voice.settings,
-                  stability: action.stability
-                }
-              }
-            : voice
+        options: {
+          ...state.options,
+          elevenLabsStability: action.stability
+        },
+        elevenLabsVoiceSettings: updateElevenLabsVoiceSetting(
+          state,
+          'stability',
+          action.stability
         )
       };
     case CHANGE_ELEVENLABS_SIMILARITY:
       return {
         ...state,
-        voices: state.voices.map(voice =>
-          voice.voice_id === action.voiceId
-            ? {
-                ...voice,
-                settings: {
-                  ...voice.settings,
-                  similarity_boost: action.similarity
-                }
-              }
-            : voice
+        options: {
+          ...state.options,
+          elevenLabsSimilarity: action.similarity
+        },
+        elevenLabsVoiceSettings: updateElevenLabsVoiceSetting(
+          state,
+          'similarity_boost',
+          action.similarity
         )
       };
     case CHANGE_ELEVENLABS_STYLE:
       return {
         ...state,
-        voices: state.voices.map(voice =>
-          voice.voice_id === action.voiceId
-            ? {
-                ...voice,
-                settings: {
-                  ...voice.settings,
-                  style: action.style
-                }
-              }
-            : voice
+        options: {
+          ...state.options,
+          elevenLabsStyle: action.style
+        },
+        elevenLabsVoiceSettings: updateElevenLabsVoiceSetting(
+          state,
+          'style',
+          action.style
         )
       };
     case RESET_ELEVENLABS_SETTINGS:
       return {
         ...state,
-        voices: state.voices.map(voice =>
-          voice.voice_id === action.voiceId
-            ? {
-                ...voice,
-                settings: {
-                  ...voice.settings,
-                  stability: 0.5,
-                  similarity_boost: 0.75,
-                  style: 0.0
-                }
-              }
-            : voice
-        )
+        options: {
+          ...state.options,
+          elevenLabsStability: 0.5,
+          elevenLabsSimilarity: 0.75,
+          elevenLabsStyle: 0.0
+        },
+        elevenLabsVoiceSettings: resetElevenLabsVoiceSettings(state)
       };
     default:
       return state;
