@@ -27,6 +27,7 @@ import {
 import messages from './Speech.messages';
 import './Speech.css';
 import PremiumFeature from '../../PremiumFeature';
+import { ELEVEN_LABS } from '../../../providers/SpeechProvider/SpeechProvider.constants';
 
 const propTypes = {
   handleChangePitch: PropTypes.func,
@@ -59,7 +60,12 @@ const styles = theme => ({
     display: 'flex',
     position: 'relative',
     justifyContent: 'center',
-    width: '100%'
+    flex: '0 0 40%',
+    minWidth: '150px',
+    [theme.breakpoints.up('sm')]: {
+      flex: '0 0 50%',
+      minWidth: '430px'
+    }
   },
   apiKeyInput: {
     width: '200px',
@@ -178,7 +184,7 @@ const Speech = ({
             </div>
           </ListItem>
 
-          {voice?.voiceSource === 'elevenlabs' && (
+          {voice?.voiceSource === ELEVEN_LABS && (
             <>
               <ListItem
                 divider
