@@ -13,7 +13,11 @@ import {
   END_SPEECH,
   CANCEL_SPEECH,
   CACHE_ELEVENLABS_VOICES,
-  CLEAR_ELEVENLABS_CACHE
+  CLEAR_ELEVENLABS_CACHE,
+  CHANGE_ELEVENLABS_STABILITY,
+  CHANGE_ELEVENLABS_SIMILARITY,
+  CHANGE_ELEVENLABS_STYLE,
+  RESET_ELEVENLABS_SETTINGS
 } from './SpeechProvider.constants';
 
 import {
@@ -231,7 +235,8 @@ export function getVoices() {
           ShortName,
           DisplayName,
           Gender,
-          voiceSource
+          voiceSource,
+          voice_id
         }) => {
           let voice = {};
           if (lang) {
@@ -255,6 +260,12 @@ export function getVoices() {
             voice.name = `${DisplayName} (${voice.lang}) - ${Gender}`;
           }
           voice.name = localizeSerbianVoicesNames(voice.name, voice.lang);
+
+          // Include voice_id for ElevenLabs voices
+          if (voice_id) {
+            voice.voice_id = voice_id;
+          }
+
           return voice;
         }
       );
@@ -344,5 +355,32 @@ export function setCurrentVoiceSource() {
       dispatch(changeVoice(voiceURI, lang));
       return;
     }
+  };
+}
+
+export function changeElevenLabsStability(stability) {
+  return {
+    type: CHANGE_ELEVENLABS_STABILITY,
+    stability
+  };
+}
+
+export function changeElevenLabsSimilarity(similarity) {
+  return {
+    type: CHANGE_ELEVENLABS_SIMILARITY,
+    similarity
+  };
+}
+
+export function changeElevenLabsStyle(style) {
+  return {
+    type: CHANGE_ELEVENLABS_STYLE,
+    style
+  };
+}
+
+export function resetElevenLabsSettings() {
+  return {
+    type: RESET_ELEVENLABS_SETTINGS
   };
 }

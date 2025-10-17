@@ -55,6 +55,19 @@ export class ElevenLabsEngine {
     }
 
     try {
+      const voiceSettings = {
+        stability: settings.stability ?? 0.5,
+        similarity_boost: settings.similarity_boost ?? 0.75,
+        speed: settings.speed ?? 1.0,
+        style: settings.style ?? 0.0
+      };
+
+      const requestBody = {
+        text,
+        voice_settings: voiceSettings,
+        model_id: settings.model_id || 'eleven_multilingual_v2'
+      };
+
       const response = await fetch(
         `${ELEVENLABS_API_BASE_URL}/v1/text-to-speech/${voiceId}`,
         {
@@ -63,24 +76,21 @@ export class ElevenLabsEngine {
             'xi-api-key': this.apiKey,
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({
-            text,
-            voice_settings: {
-              stability: settings.stability ?? 0.5,
-              similarity_boost: settings.similarity_boost ?? 0.75,
-              ...(settings.style !== undefined && { style: settings.style })
-            },
-            model_id: settings.model_id || 'eleven_turbo_v2_5'
-          })
+          body: JSON.stringify(requestBody)
         }
       );
 
       if (!response.ok) {
+        const errorText = await response.text();
+
         if (response.status === 401) {
           throw new Error('API key unauthorized or expired');
         }
         if (response.status === 429) {
           throw new Error('Rate limit exceeded');
+        }
+        if (response.status === 400) {
+          throw new Error(`Bad request: ${errorText}`);
         }
         throw new Error(`HTTP error! status: ${response.status}`);
       }

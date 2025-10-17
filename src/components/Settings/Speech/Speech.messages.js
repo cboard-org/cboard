@@ -69,6 +69,34 @@ export default defineMessages({
     id: 'cboard.components.Settings.Speech.elevenLabsTestError',
     defaultMessage: 'Failed to validate API key'
   },
+  elevenLabsStability: {
+    id: 'cboard.components.Settings.Speech.elevenLabsStability',
+    defaultMessage: 'Stability'
+  },
+  elevenLabsStabilityDescription: {
+    id: 'cboard.components.Settings.Speech.elevenLabsStabilityDescription',
+    defaultMessage: 'Determines how stable the voice is.'
+  },
+  elevenLabsSimilarity: {
+    id: 'cboard.components.Settings.Speech.elevenLabsSimilarity',
+    defaultMessage: 'Similarity'
+  },
+  elevenLabsSimilarityDescription: {
+    id: 'cboard.components.Settings.Speech.elevenLabsSimilarityDescription',
+    defaultMessage: 'Enhances similarity to the original voice.'
+  },
+  elevenLabsStyle: {
+    id: 'cboard.components.Settings.Speech.elevenLabsStyle',
+    defaultMessage: 'Style'
+  },
+  elevenLabsStyleDescription: {
+    id: 'cboard.components.Settings.Speech.elevenLabsStyleDescription',
+    defaultMessage: 'Determines the style exaggeration of the voice.'
+  },
+  resetToDefaults: {
+    id: 'cboard.components.Settings.Speech.resetToDefaults',
+    defaultMessage: 'Reset to Defaults'
+  },
   elevenLabsApiKeyHelp: {
     id: 'cboard.components.Settings.Speech.elevenLabsApiKeyHelp',
     defaultMessage:
