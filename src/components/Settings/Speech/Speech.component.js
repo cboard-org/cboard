@@ -22,7 +22,19 @@ import {
   INCREMENT_PITCH,
   MIN_RATE,
   MAX_RATE,
-  INCREMENT_RATE
+  INCREMENT_RATE,
+  MIN_ELEVENLABS_SPEED,
+  MAX_ELEVENLABS_SPEED,
+  INCREMENT_ELEVENLABS_SPEED,
+  MIN_ELEVENLABS_STABILITY,
+  MAX_ELEVENLABS_STABILITY,
+  INCREMENT_ELEVENLABS_STABILITY,
+  MIN_ELEVENLABS_SIMILARITY,
+  MAX_ELEVENLABS_SIMILARITY,
+  INCREMENT_ELEVENLABS_SIMILARITY,
+  MIN_ELEVENLABS_STYLE,
+  MAX_ELEVENLABS_STYLE,
+  INCREMENT_ELEVENLABS_STYLE
 } from './Speech.constants';
 import messages from './Speech.messages';
 import './Speech.css';
@@ -141,7 +153,13 @@ const Speech = ({
             />
           </ListItem>
           <ListItem
-            disabled={voice && voice.voiceSource === 'cloud' ? true : false}
+            disabled={
+              voice &&
+              (voice.voiceSource === 'cloud' ||
+                voice.voiceSource === ELEVEN_LABS)
+                ? true
+                : false
+            }
             divider
             aria-label={intl.formatMessage(messages.pitch)}
           >
@@ -157,7 +175,13 @@ const Speech = ({
                 max={MAX_PITCH}
                 step={INCREMENT_PITCH}
                 onChange={handleChangePitch}
-                disabled={voice && voice.voiceSource === 'cloud' ? true : false}
+                disabled={
+                  voice &&
+                  (voice.voiceSource === 'cloud' ||
+                    voice.voiceSource === ELEVEN_LABS)
+                    ? true
+                    : false
+                }
               />
             </div>
           </ListItem>
@@ -175,9 +199,21 @@ const Speech = ({
               <Slider
                 color="secondary"
                 value={rate}
-                min={MIN_RATE}
-                max={MAX_RATE}
-                step={INCREMENT_RATE}
+                min={
+                  voice && voice.voiceSource === ELEVEN_LABS
+                    ? MIN_ELEVENLABS_SPEED
+                    : MIN_RATE
+                }
+                max={
+                  voice && voice.voiceSource === ELEVEN_LABS
+                    ? MAX_ELEVENLABS_SPEED
+                    : MAX_RATE
+                }
+                step={
+                  voice && voice.voiceSource === ELEVEN_LABS
+                    ? INCREMENT_ELEVENLABS_SPEED
+                    : INCREMENT_RATE
+                }
                 onChange={handleChangeRate}
                 disabled={voice && voice.voiceSource === 'cloud' ? true : false}
               />
@@ -204,10 +240,10 @@ const Speech = ({
                 <div className={classes.container}>
                   <Slider
                     color="secondary"
-                    value={elevenLabsSettings?.stability || 0.5}
-                    min={0}
-                    max={1}
-                    step={0.1}
+                    value={elevenLabsSettings?.stability ?? 0.5}
+                    min={MIN_ELEVENLABS_STABILITY}
+                    max={MAX_ELEVENLABS_STABILITY}
+                    step={INCREMENT_ELEVENLABS_STABILITY}
                     onChange={handleChangeElevenLabsStability}
                   />
                 </div>
@@ -230,10 +266,10 @@ const Speech = ({
                 <div className={classes.container}>
                   <Slider
                     color="secondary"
-                    value={elevenLabsSettings?.similarity || 0.75}
-                    min={0}
-                    max={1}
-                    step={0.1}
+                    value={elevenLabsSettings?.similarity ?? 0.75}
+                    min={MIN_ELEVENLABS_SIMILARITY}
+                    max={MAX_ELEVENLABS_SIMILARITY}
+                    step={INCREMENT_ELEVENLABS_SIMILARITY}
                     onChange={handleChangeElevenLabsSimilarity}
                   />
                 </div>
@@ -254,10 +290,10 @@ const Speech = ({
                 <div className={classes.container}>
                   <Slider
                     color="secondary"
-                    value={elevenLabsSettings?.style || 0.0}
-                    min={0}
-                    max={1}
-                    step={0.1}
+                    value={elevenLabsSettings?.style ?? 0.0}
+                    min={MIN_ELEVENLABS_STYLE}
+                    max={MAX_ELEVENLABS_STYLE}
+                    step={INCREMENT_ELEVENLABS_STYLE}
                     onChange={handleChangeElevenLabsStyle}
                   />
                 </div>
