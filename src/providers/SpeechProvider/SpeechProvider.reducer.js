@@ -328,6 +328,7 @@ function speechProviderReducer(state = initialState, action) {
         ...state,
         options: {
           ...state.options,
+          rate: 1.0,
           elevenLabsStability: 0.5,
           elevenLabsSimilarity: 0.75,
           elevenLabsStyle: 0.0
