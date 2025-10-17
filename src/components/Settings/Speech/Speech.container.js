@@ -232,6 +232,7 @@ export class SpeechContainer extends Component {
     await this.updateSettings('elevenLabsStability', 0.5);
     await this.updateSettings('elevenLabsSimilarity', 0.75);
     await this.updateSettings('elevenLabsStyle', 0.0);
+    await this.updateSettings('rate', 1.0);
     this.speakSample();
   };
 
