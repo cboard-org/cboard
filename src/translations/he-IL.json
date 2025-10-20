@@ -507,7 +507,7 @@
   "cboard.components.Settings.Speech.lower": "נמוך יותר",
   "cboard.components.Settings.Speech.faster": "מהיר יותר",
   "cboard.components.Settings.Speech.slower": "איטי יותר",
-  "cboard.components.Settings.Speech.elevenLabsApiKey": "אחת עשרה מעבדות",
+  "cboard.components.Settings.Speech.elevenLabsApiKey": "ElevenLabs",
   "cboard.components.Settings.Speech.elevenLabsApiKeyDescription": "הזן את מפתח ה-API שלך ב-ElevenLabs",
   "cboard.components.Settings.Speech.elevenLabsApiKeyInvalid": "תבנית מפתח API לא חוקית",
   "cboard.components.Settings.Speech.elevenLabsApiKeyUnauthorized": "מפתח API לא מורשה או שפג תוקפו",
