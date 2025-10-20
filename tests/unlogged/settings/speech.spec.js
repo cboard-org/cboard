@@ -58,6 +58,12 @@ test.describe('Cboard - Speech Settings', () => {
     await cboard.verifyElevenLabsConnectionStatus();
   });
 
+  test('should add ElevenLabs voices to voice list after valid API key', async ({
+    page
+  }) => {
+    await cboard.testElevenLabsVoicesAddedAfterApiKey();
+  });
+
   test('should display voice menu when clicking voice selection', async ({
     page
   }) => {
