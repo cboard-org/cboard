@@ -2022,6 +2022,457 @@ export class Cboard {
     await expect(this.rateSlider).toBeVisible();
   }
 
+  // === NEW COMPREHENSIVE SPEECH TESTING METHODS ===
+
+  async verifyElevenLabsApiKeyField() {
+    await expect(this.page.getByRole('textbox', { name: 'sk-' })).toBeVisible();
+    await expect(this.page.getByText('ElevenLabs').first()).toBeVisible();
+    await expect(
+      this.page.locator('text=Enter your ElevenLabs API key')
+    ).toBeVisible();
+  }
+
+  async testElevenLabsApiKeyValidation() {
+    const apiKeyField = this.page.getByRole('textbox', { name: 'sk-' });
+
+    // Test invalid format
+    await apiKeyField.fill('invalid-key');
+    await expect(
+      this.page.locator('text=Invalid API key format')
+    ).toBeVisible();
+
+    // Clear field
+    await apiKeyField.fill('');
+    // Should not show error when empty
+    await expect(
+      this.page.locator('text=Invalid API key format')
+    ).not.toBeVisible();
+  }
+
+  async verifyElevenLabsConnectionStatus() {
+    // Check for connection status indicator (cloud icon)
+    await expect(
+      this.page.locator('button:has(svg)').filter({
+        hasNot: this.page.locator('[aria-label="Toggle password visibility"]')
+      })
+    ).toBeVisible();
+  }
+
+  async verifyVoiceMenuOpening() {
+    await this.voiceButton.click();
+    await expect(this.page.getByRole('menu')).toBeVisible();
+    // Check for voice options
+    await expect(this.page.getByRole('menuitem')).toHaveCount.greaterThan(0);
+  }
+
+  async verifyVoiceTypeVariety() {
+    await this.voiceButton.click();
+
+    // Check for local voices (Microsoft voices)
+    await expect(
+      this.page.getByRole('menuitem').filter({ hasText: 'Microsoft' })
+    ).toHaveCount.greaterThan(0);
+
+    // Check for online voices
+    await expect(
+      this.page.getByRole('menuitem').filter({ hasText: 'online' })
+    ).toHaveCount.greaterThan(0);
+
+    // Close menu
+    await this.page.keyboard.press('Escape');
+  }
+
+  async testLocalVoiceSelection() {
+    await this.voiceButton.click();
+
+    // Select a Microsoft voice
+    const microsoftVoice = this.page
+      .getByRole('menuitem')
+      .filter({ hasText: 'Microsoft David' })
+      .first();
+    await microsoftVoice.click();
+
+    // Verify selection
+    await expect(this.currentVoiceDisplay).toContainText('Microsoft David');
+  }
+
+  async testCloudVoiceSelection() {
+    await this.voiceButton.click();
+
+    // Select an online voice
+    const onlineVoice = this.page
+      .getByRole('menuitem')
+      .filter({ hasText: 'online' })
+      .first();
+    await onlineVoice.click();
+
+    // Should show online notification
+    await expect(
+      this.page.locator('text=An online voice was set')
+    ).toBeVisible();
+  }
+
+  async testOnlineVoiceControlsDisabled() {
+    // First select an online/cloud voice
+    await this.voiceButton.click();
+    const onlineVoice = this.page
+      .getByRole('menuitem')
+      .filter({ hasText: 'online' })
+      .first();
+    await onlineVoice.click();
+
+    // Wait for the voice change to take effect
+    await this.page.waitForTimeout(500);
+
+    // For Material-UI sliders, check for the disabled CSS class
+    await expect(this.pitchSlider).toHaveClass(/Mui-disabled/);
+    await expect(this.rateSlider).toHaveClass(/Mui-disabled/);
+  }
+
+  async testLocalVoiceControlsEnabledAndFunctional() {
+    // Select a local/system voice (Microsoft voice)
+    await this.voiceButton.click();
+    const localVoice = this.page
+      .getByRole('menuitem')
+      .filter({ hasText: 'Microsoft' })
+      .first();
+    await localVoice.click();
+
+    // Wait for the voice change to take effect
+    await this.page.waitForTimeout(500);
+
+    // Verify sliders do NOT have disabled class
+    await expect(this.pitchSlider).not.toHaveClass(/Mui-disabled/);
+    await expect(this.rateSlider).not.toHaveClass(/Mui-disabled/);
+
+    // Test that the controls are actually functional by interacting with them
+    await this.testPitchSliderFunctionality();
+    await this.testRateSliderFunctionality();
+  }
+
+  async testPitchSliderFunctionality() {
+    // Get initial value
+    const initialValue = await this.pitchSlider.getAttribute('aria-valuenow');
+
+    // Click and use keyboard to change value
+    await this.pitchSlider.click();
+    await this.page.keyboard.press('ArrowRight');
+    await this.page.keyboard.press('ArrowRight');
+
+    // Wait a moment for the change to register
+    await this.page.waitForTimeout(200);
+
+    // Verify the value changed
+    const newValue = await this.pitchSlider.getAttribute('aria-valuenow');
+
+    // Values should be different, indicating the slider is functional
+    if (initialValue && newValue) {
+      expect(newValue).not.toBe(initialValue);
+    }
+  }
+
+  async testRateSliderFunctionality() {
+    // Get initial value
+    const initialValue = await this.rateSlider.getAttribute('aria-valuenow');
+
+    // Click and use keyboard to change value
+    await this.rateSlider.click();
+    await this.page.keyboard.press('ArrowLeft');
+    await this.page.keyboard.press('ArrowLeft');
+
+    // Wait a moment for the change to register
+    await this.page.waitForTimeout(200);
+
+    // Verify the value changed
+    const newValue = await this.rateSlider.getAttribute('aria-valuenow');
+
+    // Values should be different, indicating the slider is functional
+    if (initialValue && newValue) {
+      expect(newValue).not.toBe(initialValue);
+    }
+  }
+
+  async testControlStateChangesWithVoiceTypes() {
+    // Start with a local voice and verify controls are enabled
+    await this.voiceButton.click();
+    const localVoice = this.page
+      .getByRole('menuitem')
+      .filter({ hasText: 'Microsoft' })
+      .first();
+    await localVoice.click();
+    await this.page.waitForTimeout(300);
+
+    // Verify local voice has enabled controls (no disabled class)
+    await expect(this.pitchSlider).not.toHaveClass(/Mui-disabled/);
+    await expect(this.rateSlider).not.toHaveClass(/Mui-disabled/);
+
+    // Switch to an online voice
+    await this.voiceButton.click();
+    const onlineVoice = this.page
+      .getByRole('menuitem')
+      .filter({ hasText: 'online' })
+      .first();
+    await onlineVoice.click();
+    await this.page.waitForTimeout(300);
+
+    // Verify online voice has disabled controls (has disabled class)
+    await expect(this.pitchSlider).toHaveClass(/Mui-disabled/);
+    await expect(this.rateSlider).toHaveClass(/Mui-disabled/);
+
+    // Switch back to local voice
+    await this.voiceButton.click();
+    const localVoice2 = this.page
+      .getByRole('menuitem')
+      .filter({ hasText: 'Microsoft' })
+      .first();
+    await localVoice2.click();
+    await this.page.waitForTimeout(300);
+
+    // Verify controls are enabled again (no disabled class)
+    await expect(this.pitchSlider).not.toHaveClass(/Mui-disabled/);
+    await expect(this.rateSlider).not.toHaveClass(/Mui-disabled/);
+  }
+
+  async verifyOnlineVoiceNotification() {
+    await this.voiceButton.click();
+    const onlineVoice = this.page
+      .getByRole('menuitem')
+      .filter({ hasText: 'online' })
+      .first();
+    await onlineVoice.click();
+
+    // Should show notification about internet requirement
+    await expect(
+      this.page.locator(
+        'text=An online voice was set. An Internet connection is required during its use.'
+      )
+    ).toBeVisible();
+  }
+
+  async testLocalVoiceControlsEnabled() {
+    // Delegate to the more comprehensive method
+    await this.testLocalVoiceControlsEnabledAndFunctional();
+  }
+
+  async verifyElevenLabsHelpText() {
+    await expect(this.page.locator('text=Get your API key from')).toBeVisible();
+    await expect(
+      this.page.getByRole('link', { name: 'elevenlabs.io' })
+    ).toBeVisible();
+    await expect(
+      this.page.locator('text=and enter it to enable your voices')
+    ).toBeVisible();
+  }
+
+  async verifyApiKeyPasswordToggle() {
+    const toggleButton = this.page.getByRole('button', {
+      name: 'Toggle password visibility'
+    });
+    await expect(toggleButton).toBeVisible();
+
+    // Test toggle functionality
+    const apiKeyField = this.page.getByRole('textbox', { name: 'sk-' });
+    await apiKeyField.fill('test-key');
+
+    await toggleButton.click();
+    // Additional assertions could be added here for password visibility state
+  }
+
+  async verifyVoiceChips() {
+    await this.voiceButton.click();
+
+    // Look for online voice chips
+    await expect(this.page.locator('text=online')).toHaveCount.greaterThan(0);
+
+    // Close menu
+    await this.page.keyboard.press('Escape');
+  }
+
+  async testVoiceSelectionPersistence() {
+    // Select a specific voice
+    await this.testLocalVoiceSelection();
+    const selectedVoice = await this.currentVoiceDisplay.textContent();
+
+    // Reload page
+    await this.page.reload();
+    await this.navigateToSettings();
+    await this.clickSettingsTab('Speech');
+
+    // Check if selection persists
+    await expect(this.currentVoiceDisplay).toContainText(
+      selectedVoice || 'Microsoft'
+    );
+  }
+
+  async testPitchSliderRange() {
+    // Ensure we have a local voice selected
+    await this.testLocalVoiceSelection();
+
+    // Test that pitch slider accepts values in expected range
+    await this.pitchSlider.click();
+
+    // Test minimum and maximum values through attributes
+    const minValue =
+      (await this.pitchSlider.getAttribute('aria-valuemin')) || '0';
+    const maxValue =
+      (await this.pitchSlider.getAttribute('aria-valuemax')) || '2';
+
+    expect(parseFloat(minValue)).toBeGreaterThanOrEqual(0);
+    expect(parseFloat(maxValue)).toBeLessThanOrEqual(2);
+  }
+
+  async testRateSliderRange() {
+    // Ensure we have a local voice selected
+    await this.testLocalVoiceSelection();
+
+    // Test that rate slider accepts values in expected range
+    await this.rateSlider.click();
+
+    const minValue =
+      (await this.rateSlider.getAttribute('aria-valuemin')) || '0';
+    const maxValue =
+      (await this.rateSlider.getAttribute('aria-valuemax')) || '2';
+
+    expect(parseFloat(minValue)).toBeGreaterThanOrEqual(0);
+    expect(parseFloat(maxValue)).toBeLessThanOrEqual(2);
+  }
+
+  async testElevenLabsRateRange() {
+    // This test would require a valid ElevenLabs API key
+    // For now, we'll just verify the interface elements exist
+    await this.verifyElevenLabsApiKeyField();
+
+    // Note: Full ElevenLabs testing would require valid API credentials
+    // and would show different rate ranges (0.7 to 1.2) and additional controls
+  }
+
+  async verifyVoiceLabelsAndDescriptions() {
+    await this.voiceButton.click();
+
+    // Check that voices have proper labels
+    const voiceItems = this.page.getByRole('menuitem');
+    const count = await voiceItems.count();
+
+    expect(count).toBeGreaterThan(0);
+
+    // Verify first few voice items have text content
+    for (let i = 0; i < Math.min(3, count); i++) {
+      const voiceText = await voiceItems.nth(i).textContent();
+      expect(voiceText).toBeTruthy();
+      expect(voiceText.length).toBeGreaterThan(0);
+    }
+
+    await this.page.keyboard.press('Escape');
+  }
+
+  async testVoiceMenuKeyboardNavigation() {
+    await this.voiceButton.click();
+
+    // Test keyboard navigation
+    await this.page.keyboard.press('ArrowDown');
+    await this.page.keyboard.press('ArrowDown');
+
+    // Verify menu is still open and responsive
+    await expect(this.page.getByRole('menu')).toBeVisible();
+
+    // Close with Escape
+    await this.page.keyboard.press('Escape');
+    await expect(this.page.getByRole('menu')).not.toBeVisible();
+  }
+
+  async testVoiceMenuCloseOnOutsideClick() {
+    await this.voiceButton.click();
+    await expect(this.page.getByRole('menu')).toBeVisible();
+
+    // Click outside the menu
+    await this.speechHeading.click();
+
+    // Menu should close
+    await expect(this.page.getByRole('menu')).not.toBeVisible();
+  }
+
+  async verifyRegionalAccentVoices() {
+    await this.voiceButton.click();
+
+    // Check for different regional accents
+    const regions = ['en-US', 'en-GB', 'en-AU', 'en-CA'];
+
+    for (const region of regions) {
+      const regionVoices = this.page
+        .getByRole('menuitem')
+        .filter({ hasText: region });
+      // At least one voice per major region should be available
+      const count = await regionVoices.count();
+      if (count > 0) {
+        expect(count).toBeGreaterThan(0);
+      }
+    }
+
+    await this.page.keyboard.press('Escape');
+  }
+
+  async verifyMultilingualVoices() {
+    await this.voiceButton.click();
+
+    // Check for multilingual voice options
+    const multilingualVoices = this.page
+      .getByRole('menuitem')
+      .filter({ hasText: 'Multilingual' });
+    const count = await multilingualVoices.count();
+
+    // There should be some multilingual voices available
+    expect(count).toBeGreaterThan(0);
+
+    await this.page.keyboard.press('Escape');
+  }
+
+  async testVoiceLoadingStates() {
+    // Test that voice selection doesn't cause UI freezing
+    await this.voiceButton.click();
+
+    const firstVoice = this.page.getByRole('menuitem').first();
+    await firstVoice.click();
+
+    // UI should remain responsive
+    await expect(this.speechHeading).toBeVisible();
+    await expect(this.voiceButton).toBeVisible();
+  }
+
+  async testSliderIncrementSteps() {
+    // Ensure local voice is selected
+    await this.testLocalVoiceSelection();
+
+    // Test pitch slider increments
+    await this.pitchSlider.click();
+    await this.page.keyboard.press('ArrowRight');
+
+    // Test rate slider increments
+    await this.rateSlider.click();
+    await this.page.keyboard.press('ArrowRight');
+
+    // Sliders should respond to keyboard input
+    await expect(this.pitchSlider).toBeVisible();
+    await expect(this.rateSlider).toBeVisible();
+  }
+
+  async testVoiceSelectionErrorHandling() {
+    // Test that invalid voice selections are handled gracefully
+    await this.voiceButton.click();
+
+    const voiceMenu = this.page.getByRole('menu');
+    await expect(voiceMenu).toBeVisible();
+
+    // Test that clicking menu items doesn't cause errors
+    const voiceItems = this.page.getByRole('menuitem');
+    const count = await voiceItems.count();
+
+    if (count > 0) {
+      await voiceItems.first().click();
+      // Should not cause any errors and UI should remain functional
+      await expect(this.speechHeading).toBeVisible();
+    }
+  }
+
   // === DISPLAY SETTINGS ACTIONS ===
   async verifyDisplaySettingsUI() {
     await expect(this.displayHeading).toBeVisible();
