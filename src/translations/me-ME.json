@@ -99,7 +99,7 @@
   "cboard.components.Board.EditToolbar.pasteTiles": "zalijepi ploču",
   "cboard.components.Board.share": "podijeli",
   "cboard.components.Board.copyMessage": "Kopiraj u clipboard!",
-  "cboard.components.Board.boardMissed": "Sorry, this folder or board is missing. Edit this tile to link it again.",
+  "cboard.components.Board.boardMissed": "Žao nam je, ali smo propustili ovu faciklu / tablu. Preporučujemo da napraviš ponovo.",
   "cboard.components.Board.copyPublicBoardTitle": "Do you want to copy a public board?",
   "cboard.components.Board.copyPublicBoardDesc": "You are trying to open a public shared board. In order to use and edit this board you have to copy it into your communicator boards.",
   "cboard.components.Board.blockedPrivateBoardTitle": "Private board!",
