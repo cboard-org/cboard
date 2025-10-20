@@ -318,6 +318,25 @@ const tts = {
 
       const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+      const store = getStore();
+      const {
+        speech: { options, elevenLabsVoiceSettings }
+      } = store.getState();
+
+      const voiceId = voice.voice_id;
+      const voiceSettings = elevenLabsVoiceSettings[voiceId] || {};
+
+      const elevenLabsSettings = {
+        stability:
+          voiceSettings.stability ?? options.elevenLabsStability ?? 0.5,
+        similarity_boost:
+          voiceSettings.similarity_boost ??
+          options.elevenLabsSimilarity ??
+          0.75,
+        style: voiceSettings.style ?? options.elevenLabsStyle ?? 0.0,
+        speed: rate ?? 1.0
+      };
+
       let success = false;
       for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
         try {
@@ -328,7 +347,8 @@ const tts = {
 
           const audioBlob = await elevenLabsSynthesizer.synthesizeSpeechElevenLabs(
             text,
-            voiceURI
+            voiceURI,
+            elevenLabsSettings
           );
           clearTimeout(speakAlertTimeoutId);
 

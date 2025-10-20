@@ -10,6 +10,10 @@ import {
   changeVoice,
   changePitch,
   changeRate,
+  changeElevenLabsStability,
+  changeElevenLabsSimilarity,
+  changeElevenLabsStyle,
+  resetElevenLabsSettings,
   changeElevenLabsApiKey,
   getVoices
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
@@ -17,7 +21,10 @@ import Speech from './Speech.component';
 import messages from './Speech.messages';
 import API from '../../../api';
 import { DEFAULT_LANG } from '../../App/App.constants';
-import { EMPTY_VOICES } from '../../../providers/SpeechProvider/SpeechProvider.constants';
+import {
+  EMPTY_VOICES,
+  ELEVEN_LABS
+} from '../../../providers/SpeechProvider/SpeechProvider.constants';
 import { validateApiKeyFormat } from '../../../providers/SpeechProvider/engine/elevenlabs';
 import tts from '../../../providers/SpeechProvider/tts';
 
@@ -152,7 +159,8 @@ export class SpeechContainer extends Component {
     this.updateSettingsTimeout = setTimeout(async () => {
       const {
         speech: {
-          options: { voiceURI, pitch, rate }
+          options: { voiceURI, pitch, rate },
+          elevenLabsVoiceSettings
         },
         elevenLabsApiKey
       } = this.props;
@@ -162,6 +170,7 @@ export class SpeechContainer extends Component {
         pitch,
         rate,
         elevenLabsApiKey,
+        elevenLabsVoiceSettings,
         [property]: value
       };
 
@@ -185,9 +194,65 @@ export class SpeechContainer extends Component {
     this.speakSample();
   };
 
+  getCurrentElevenLabsVoice = () => {
+    const {
+      speech: {
+        voices,
+        options: { voiceURI }
+      }
+    } = this.props;
+    const voice = voices.find(v => v.voiceURI === voiceURI);
+    return voice?.voiceSource === ELEVEN_LABS ? voice : null;
+  };
+
+  handleChangeElevenLabsStability = async (event, value) => {
+    const { changeElevenLabsStability } = this.props;
+    await this.updateSettings('elevenLabsStability', value);
+    changeElevenLabsStability(value);
+    this.speakSample();
+  };
+
+  handleChangeElevenLabsSimilarity = async (event, value) => {
+    const { changeElevenLabsSimilarity } = this.props;
+    await this.updateSettings('elevenLabsSimilarity', value);
+    changeElevenLabsSimilarity(value);
+    this.speakSample();
+  };
+
+  handleChangeElevenLabsStyle = async (event, value) => {
+    const { changeElevenLabsStyle } = this.props;
+    await this.updateSettings('elevenLabsStyle', value);
+    changeElevenLabsStyle(value);
+    this.speakSample();
+  };
+
+  handleResetElevenLabsSettings = async () => {
+    const { resetElevenLabsSettings } = this.props;
+    resetElevenLabsSettings();
+    await this.updateSettings('elevenLabsStability', 0.5);
+    await this.updateSettings('elevenLabsSimilarity', 0.75);
+    await this.updateSettings('elevenLabsStyle', 0.0);
+    await this.updateSettings('rate', 1.0);
+    this.speakSample();
+  };
+
   handleVoiceClose = () => {
     this.setState({ isVoiceOpen: false });
   };
+
+  getElevenLabsSettings() {
+    const {
+      speech: {
+        options: { elevenLabsStability, elevenLabsSimilarity, elevenLabsStyle }
+      }
+    } = this.props;
+
+    return {
+      stability: elevenLabsStability ?? 0.5,
+      similarity: elevenLabsSimilarity ?? 0.75,
+      style: elevenLabsStyle ?? 0.0
+    };
+  }
 
   render() {
     const {
@@ -219,11 +284,17 @@ export class SpeechContainer extends Component {
       };
     }
 
+    const elevenLabsSettings = this.getElevenLabsSettings();
+
     return (
       <Speech
         {...this.state}
         handleChangePitch={this.handleChangePitch}
         handleChangeRate={this.handleChangeRate}
+        handleChangeElevenLabsStability={this.handleChangeElevenLabsStability}
+        handleChangeElevenLabsSimilarity={this.handleChangeElevenLabsSimilarity}
+        handleChangeElevenLabsStyle={this.handleChangeElevenLabsStyle}
+        handleResetElevenLabsSettings={this.handleResetElevenLabsSettings}
         handleClickListItem={this.handleClickListItem}
         onMenuItemClick={this.handleMenuItemClick}
         handleVoiceClose={this.handleVoiceClose}
@@ -233,6 +304,7 @@ export class SpeechContainer extends Component {
         pitch={pitch}
         rate={rate}
         voice={voice}
+        elevenLabsSettings={elevenLabsSettings}
         elevenLabsApiKey={this.state.elevenLabsApiKeyInput}
         handleUpdateElevenLabsApiKey={this.handleUpdateElevenLabsApiKey}
       />
@@ -253,6 +325,10 @@ const mapDispatchToProps = {
   changeVoice,
   changePitch,
   changeRate,
+  changeElevenLabsStability,
+  changeElevenLabsSimilarity,
+  changeElevenLabsStyle,
+  resetElevenLabsSettings,
   changeElevenLabsApiKey,
   speak,
   getVoices
