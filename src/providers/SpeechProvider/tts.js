@@ -206,7 +206,7 @@ const tts = {
           if (!voices || voices.length === 0) {
             console.warn('No TTS voices available. Resolving with empty list.');
             synth.removeEventListener('voiceschanged', voiceslst);
-            resolve([]); // resolve with empty array instead of freezing
+            resolve(cloudVoices.concat(elevenLabsVoices));
             return;
           }
 
