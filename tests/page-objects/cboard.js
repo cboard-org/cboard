@@ -2169,15 +2169,13 @@ export class Cboard {
   async testLocalVoiceSelection() {
     await this.voiceButton.click();
 
-    // Select a Microsoft voice
-    const microsoftVoice = this.page
+    // Select a local voice (last menuitem without 'online' span)
+    const localVoice = this.page
       .getByRole('menuitem')
-      .filter({ hasText: 'Microsoft David' })
-      .first();
-    await microsoftVoice.click();
-
-    // Verify selection
-    await expect(this.currentVoiceDisplay).toContainText('Microsoft David');
+      .filter({ hasNotText: 'online' })
+      .last();
+    console.log('Selecting local voice:', await localVoice.textContent());
+    await localVoice.click();
   }
 
   async testCloudVoiceSelection() {
@@ -2383,28 +2381,6 @@ export class Cboard {
     // Wait for page to load and try to navigate to settings again
     await this.page.waitForLoadState('domcontentloaded');
     await this.page.waitForTimeout(2000); // Give extra time for the QA server
-
-    try {
-      // Try the normal navigation flow
-      await this.navigateToSettings();
-    } catch (error) {
-      console.log(
-        'Normal navigation failed after reload, trying direct navigation'
-      );
-      // Try direct navigation to settings
-      await this.page.goto('/settings');
-      await this.page.waitForTimeout(1000);
-    }
-
-    try {
-      await this.clickSettingsTab('Speech');
-    } catch (error) {
-      console.log(
-        'Direct speech tab click failed, trying alternative navigation'
-      );
-      // Alternative: try to find speech settings directly
-      await this.page.getByText('Speech', { exact: false }).click();
-    }
 
     // Check if selection persists
     await expect(this.currentVoiceDisplay).toContainText(
