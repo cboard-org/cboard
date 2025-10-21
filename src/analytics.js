@@ -14,7 +14,7 @@ const eventsMap = {
   ...speechEventsMap
 };
 
-const trackingId = 'UA-108091601-1';
+const trackingId = 'G-Y706E4YK8Q';
 const ga = GoogleAnalyticsGtag(trackingId);
 
 const gaMiddleware = createMiddleware(eventsMap, ga, {
