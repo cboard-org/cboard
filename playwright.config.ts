@@ -15,9 +15,9 @@ import { defineConfig, devices } from '@playwright/test';
 
 // Test credentials configuration
 export const testCredentials = {
+  elevenLabsApiKey: process.env.ELEVENLABS_API_KEY || 'sk_0000000000000000000',
   email: process.env.TEST_USER_EMAIL || 'anything@cboard.io',
   password: process.env.TEST_USER_PASSWORD || 'lote10mza126',
-  elevenLabsApiKey: process.env.ELEVENLABS_API_KEY || 'sk_0000000000000000000',
 };
 
 // Set environment variables for backward compatibility
