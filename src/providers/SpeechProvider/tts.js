@@ -201,17 +201,13 @@ const tts = {
       if ('onvoiceschanged' in synth) {
         synth.addEventListener('voiceschanged', function voiceslst() {
           const voices = synth.getVoices();
+          synth.removeEventListener('voiceschanged', voiceslst);
 
-          // 🛠️ Handle case: no voices found
           if (!voices || voices.length === 0) {
-            console.warn('No TTS voices available. Resolving with empty list.');
-            synth.removeEventListener('voiceschanged', voiceslst);
             resolve(cloudVoices.concat(elevenLabsVoices));
-            return;
+            return null;
           }
 
-          // 🧠 Normal case: voices found
-          synth.removeEventListener('voiceschanged', voiceslst);
           platformVoices = voices._list || voices;
           resolve(platformVoices.concat(cloudVoices).concat(elevenLabsVoices));
         });
