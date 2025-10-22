@@ -772,46 +772,23 @@ class CommunicatorDialogBoardItem extends React.Component {
             {moment(board.lastEdited).format('DD/MM/YYYY')}
           </div>
 
-          <div
-            className="CommunicatorDialog__boards__item__data__extra"
-            style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
-          >
+          <div className="CommunicatorDialog__boards__item__data__extra">
             {board.isPublic && (
               <Tooltip
                 title={intl.formatMessage(messages.publicBoard)}
                 name="CommunicatorDialog__PropertyOption"
               >
-                <div
-                  style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
-                >
-                  <PublicIcon />
-                  {board.language && (
-                    <span style={{ fontSize: '0.85rem', opacity: 0.8 }}>
-                      {board.language}
-                    </span>
-                  )}
-                </div>
+                <PublicIcon />
               </Tooltip>
             )}
-
             {!board.isPublic && (
               <Tooltip
                 title={intl.formatMessage(messages.privateBoard)}
                 name="CommunicatorDialog__PropertyOption"
               >
-                <div
-                  style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
-                >
-                  <KeyIcon />
-                  {board.language && (
-                    <span style={{ fontSize: '0.85rem', opacity: 0.8 }}>
-                      {board.language}
-                    </span>
-                  )}
-                </div>
+                <KeyIcon />
               </Tooltip>
             )}
-
             {communicator.rootBoard === board.id && (
               <Tooltip
                 title={intl.formatMessage(messages.rootBoard)}
@@ -820,13 +797,12 @@ class CommunicatorDialogBoardItem extends React.Component {
                 <HomeIcon />
               </Tooltip>
             )}
-
             {activeBoardId === board.id && (
               <Tooltip
                 title={intl.formatMessage(messages.activeBoard)}
                 name="CommunicatorDialog__PropertyOption"
               >
-                <EditIcon />
+                <RemoveRedEyeIcon />
               </Tooltip>
             )}
           </div>
