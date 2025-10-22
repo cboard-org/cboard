@@ -197,7 +197,6 @@ const tts = {
       }
 
       // Android
-      // ✅ Fix for Linux freeze when no TTS voices available
       if ('onvoiceschanged' in synth) {
         synth.addEventListener('voiceschanged', function voiceslst() {
           const voices = synth.getVoices();
