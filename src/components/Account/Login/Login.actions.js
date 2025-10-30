@@ -5,7 +5,8 @@ import {
   changeVoice,
   changePitch,
   changeRate,
-  changeElevenLabsApiKey
+  changeElevenLabsApiKey,
+  getVoices
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import {
   disableTour,
@@ -74,7 +75,15 @@ function logoutSuccess() {
 }
 
 export function login({ email, password, activatedData }, type = 'local') {
-  const setAVoice = ({ loginData, dispatch, getState }) => {
+  const setAVoice = async ({ loginData, dispatch, getState }) => {
+    if (loginData?.settings?.speech?.elevenLabsApiKey) {
+      dispatch(
+        changeElevenLabsApiKey(loginData.settings.speech.elevenLabsApiKey)
+      );
+      tts.initElevenLabsInstance(loginData.settings.speech.elevenLabsApiKey);
+      await dispatch(getVoices());
+    }
+
     const {
       language: { lang: appLang },
       speech: {
@@ -91,15 +100,6 @@ export function login({ email, password, activatedData }, type = 'local') {
         return v.voiceURI;
       });
 
-      //if redux state have a defined voiceUri. Set it By default
-      if (
-        deviceVoiceUri &&
-        deviceVoiceLanguageCode === appLanguageCode &&
-        uris.includes(deviceVoiceUri)
-      ) {
-        return;
-      }
-      //if not Try to use API stored Voice
       if (loginData.settings?.speech) {
         const userVoiceUri = loginData.settings.speech.voiceURI; //ATENTION speech options on DB is under Speech directly. on state is under options
 
@@ -121,16 +121,16 @@ export function login({ email, password, activatedData }, type = 'local') {
           if (loginData.settings.speech.rate) {
             dispatch(changeRate(loginData.settings.speech.rate));
           }
-          if (loginData?.settings?.speech?.elevenLabsApiKey) {
-            dispatch(
-              changeElevenLabsApiKey(loginData.settings.speech.elevenLabsApiKey)
-            );
-            tts.initElevenLabsInstance(
-              loginData.settings.speech.elevenLabsApiKey
-            );
-          }
           return;
         }
+      }
+
+      if (
+        deviceVoiceUri &&
+        deviceVoiceLanguageCode === appLanguageCode &&
+        uris.includes(deviceVoiceUri)
+      ) {
+        return;
       }
 
       const defaultVoiceUri = getVoiceURI(appLang, voices);
@@ -207,7 +207,7 @@ export function login({ email, password, activatedData }, type = 'local') {
         );
       }
       dispatch(loginSuccess(loginData));
-      setAVoice({ loginData, dispatch, getState });
+      await setAVoice({ loginData, dispatch, getState });
     } catch (e) {
       if (e.response != null) {
         return Promise.reject(e.response.data);
