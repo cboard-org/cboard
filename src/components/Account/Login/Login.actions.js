@@ -114,7 +114,9 @@ export function login({ email, password, activatedData }, type = 'local') {
           appLanguageCode === userVoiceLanguageCode &&
           uris.includes(userVoiceUri)
         ) {
-          dispatch(changeVoice(userVoiceUri, userVoiceLanguage));
+          if (userVoiceUri !== deviceVoiceUri) {
+            dispatch(changeVoice(userVoiceUri, userVoiceLanguage));
+          }
           if (loginData.settings.speech.pitch) {
             dispatch(changePitch(loginData.settings.speech.pitch));
           }
