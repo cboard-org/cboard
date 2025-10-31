@@ -189,8 +189,8 @@ const tts = {
     return new Promise((resolve, reject) => {
       platformVoices = this._getPlatformVoices() || [];
       const allVoices = platformVoices
-        .concat(cloudVoices)
-        .concat(elevenLabsVoices);
+        .concat(elevenLabsVoices)
+        .concat(cloudVoices);
 
       if (platformVoices.length) {
         resolve(allVoices);
