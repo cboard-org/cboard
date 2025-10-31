@@ -200,8 +200,8 @@ const tts = {
     return new Promise((resolve, reject) => {
       platformVoices = this._getPlatformVoices() || [];
       const allVoices = platformVoices
-        .concat(cloudVoices)
-        .concat(elevenLabsVoices);
+        .concat(elevenLabsVoices)
+        .concat(cloudVoices);
 
       if (platformVoices.length) {
         resolve(allVoices);
@@ -211,16 +211,15 @@ const tts = {
       if ('onvoiceschanged' in synth) {
         synth.addEventListener('voiceschanged', function voiceslst() {
           const voices = synth.getVoices();
-          if (!voices.length) {
+          synth.removeEventListener('voiceschanged', voiceslst);
+
+          if (!voices || voices.length === 0) {
+            resolve(cloudVoices.concat(elevenLabsVoices));
             return null;
-          } else {
-            synth.removeEventListener('voiceschanged', voiceslst);
-            // On Cordova, voice results are under `._list`
-            platformVoices = voices._list || voices;
-            resolve(
-              platformVoices.concat(cloudVoices).concat(elevenLabsVoices)
-            );
           }
+
+          platformVoices = voices._list || voices;
+          resolve(platformVoices.concat(cloudVoices).concat(elevenLabsVoices));
         });
       } else if (isCordova()) {
         // Samsung devices on Cordova
