@@ -203,17 +203,17 @@ const tts = {
           synth.removeEventListener('voiceschanged', voiceslst);
 
           if (!voices || voices.length === 0) {
-            resolve(cloudVoices.concat(elevenLabsVoices));
+            resolve(elevenLabsVoices.concat(cloudVoices));
             return null;
           }
 
           platformVoices = voices._list || voices;
-          resolve(platformVoices.concat(cloudVoices).concat(elevenLabsVoices));
+          resolve(platformVoices.concat(elevenLabsVoices).concat(cloudVoices));
         });
       } else if (isCordova()) {
         // Samsung devices on Cordova
         platformVoices = this._getPlatformVoices();
-        resolve(platformVoices.concat(cloudVoices).concat(elevenLabsVoices));
+        resolve(platformVoices.concat(elevenLabsVoices).concat(cloudVoices));
       }
     });
   },
