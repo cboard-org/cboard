@@ -76,11 +76,11 @@ function logoutSuccess() {
 
 export function login({ email, password, activatedData }, type = 'local') {
   const setAVoice = async ({ loginData, dispatch, getState }) => {
-    if (loginData?.settings?.speech?.elevenLabsApiKey) {
-      dispatch(
-        changeElevenLabsApiKey(loginData.settings.speech.elevenLabsApiKey)
-      );
-      tts.initElevenLabsInstance(loginData.settings.speech.elevenLabsApiKey);
+    const elevenLabsApiKey = loginData?.settings?.speech?.elevenLabsApiKey;
+
+    if (elevenLabsApiKey) {
+      dispatch(changeElevenLabsApiKey(elevenLabsApiKey));
+      tts.initElevenLabsInstance(elevenLabsApiKey);
       await dispatch(getVoices());
     }
 
