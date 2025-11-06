@@ -358,7 +358,9 @@ function speechProviderReducer(state = initialState, action) {
         : null;
 
       const logoutIsCloud = isCurrentVoiceElevenLabs
-        ? logoutVoice?.voiceSource === 'cloud' ?? null
+        ? logoutVoice
+          ? logoutVoice.voiceSource === 'cloud'
+          : null
         : state.options.isCloud;
 
       return {
