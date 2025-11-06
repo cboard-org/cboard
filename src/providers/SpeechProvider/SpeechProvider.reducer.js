@@ -349,6 +349,18 @@ function speechProviderReducer(state = initialState, action) {
       const isCurrentVoiceElevenLabs =
         currentVoice?.voiceSource === ELEVEN_LABS;
 
+      const logoutVoiceURI = isCurrentVoiceElevenLabs
+        ? getVoiceURI(state.options.lang, nonElevenLabsVoices)
+        : state.options.voiceURI;
+
+      const logoutVoice = isCurrentVoiceElevenLabs
+        ? nonElevenLabsVoices.find(v => v.voiceURI === logoutVoiceURI)
+        : null;
+
+      const logoutIsCloud = isCurrentVoiceElevenLabs
+        ? logoutVoice?.voiceSource === 'cloud' ?? null
+        : state.options.isCloud;
+
       return {
         ...state,
         elevenLabsApiKey: '',
@@ -361,10 +373,8 @@ function speechProviderReducer(state = initialState, action) {
         voices: nonElevenLabsVoices,
         options: {
           ...state.options,
-          voiceURI: isCurrentVoiceElevenLabs
-            ? getVoiceURI(state.options.lang, nonElevenLabsVoices)
-            : state.options.voiceURI,
-          isCloud: isCurrentVoiceElevenLabs ? null : state.options.isCloud,
+          voiceURI: logoutVoiceURI,
+          isCloud: logoutIsCloud,
           elevenLabsStability: 0.5,
           elevenLabsSimilarity: 0.75,
           elevenLabsStyle: 0.0
