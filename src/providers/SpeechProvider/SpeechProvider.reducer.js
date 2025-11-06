@@ -361,7 +361,9 @@ function speechProviderReducer(state = initialState, action) {
         voices: nonElevenLabsVoices,
         options: {
           ...state.options,
-          voiceURI: isCurrentVoiceElevenLabs ? null : state.options.voiceURI,
+          voiceURI: isCurrentVoiceElevenLabs
+            ? getVoiceURI(state.options.lang, nonElevenLabsVoices)
+            : state.options.voiceURI,
           isCloud: isCurrentVoiceElevenLabs ? null : state.options.isCloud,
           elevenLabsStability: 0.5,
           elevenLabsSimilarity: 0.75,
