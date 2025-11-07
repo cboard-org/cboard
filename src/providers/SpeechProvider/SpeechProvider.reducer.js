@@ -349,19 +349,15 @@ function speechProviderReducer(state = initialState, action) {
       const isCurrentVoiceElevenLabs =
         currentVoice?.voiceSource === ELEVEN_LABS;
 
-      const logoutVoiceURI = isCurrentVoiceElevenLabs
+      const newVoiceURI = isCurrentVoiceElevenLabs
         ? getVoiceURI(state.options.lang, nonElevenLabsVoices)
         : state.options.voiceURI;
 
-      const logoutVoice = isCurrentVoiceElevenLabs
-        ? nonElevenLabsVoices.find(v => v.voiceURI === logoutVoiceURI)
-        : null;
+      const newVoice = isCurrentVoiceElevenLabs
+        ? nonElevenLabsVoices.find(v => v.voiceURI === newVoiceURI)
+        : currentVoice;
 
-      const logoutIsCloud = isCurrentVoiceElevenLabs
-        ? logoutVoice
-          ? logoutVoice.voiceSource === 'cloud'
-          : null
-        : state.options.isCloud;
+      const newVoiceIsCloud = newVoice?.voiceSource === 'cloud' ? true : null;
 
       return {
         ...state,
@@ -369,17 +365,17 @@ function speechProviderReducer(state = initialState, action) {
         elevenLabsCache: {
           voices: [],
           timestamp: null,
-          ttl: 24 * 60 * 60 * 1000
+          ttl: initialState.elevenLabsCache.ttl
         },
         elevenLabsVoiceSettings: {},
         voices: nonElevenLabsVoices,
         options: {
           ...state.options,
-          voiceURI: logoutVoiceURI,
-          isCloud: logoutIsCloud,
-          elevenLabsStability: 0.5,
-          elevenLabsSimilarity: 0.75,
-          elevenLabsStyle: 0.0
+          voiceURI: newVoiceURI,
+          isCloud: newVoiceIsCloud,
+          elevenLabsStability: initialState.options.elevenLabsStability,
+          elevenLabsSimilarity: initialState.options.elevenLabsSimilarity,
+          elevenLabsStyle: initialState.options.elevenLabsStyle
         }
       };
     }
