@@ -196,71 +196,67 @@ const tts = {
       return [];
     }
   },
-  async fetchCloudVoices() {
+  async getPlatformVoicesAsync() {
+    return new Promise(resolve => {
+      const VOICES_TIMEOUT = 3000;
+
+      const resolveWithVoices = voices => {
+        platformVoices = voices;
+        resolve(voices);
+      };
+
+      const initialVoices = this._getPlatformVoices();
+      if (initialVoices.length > 0) {
+        resolveWithVoices(initialVoices);
+        return;
+      }
+
+      if (isCordova()) {
+        const cordovaVoices = this._getPlatformVoices();
+        resolveWithVoices(cordovaVoices);
+        return;
+      }
+
+      const supportsVoicesChanged = 'onvoiceschanged' in synth;
+      if (!supportsVoicesChanged) {
+        resolveWithVoices(this._getPlatformVoices());
+        return;
+      }
+
+      const timeoutId = setTimeout(() => {
+        synth.removeEventListener('voiceschanged', handleVoicesChanged);
+        resolveWithVoices(this._getPlatformVoices());
+      }, VOICES_TIMEOUT);
+
+      const handleVoicesChanged = () => {
+        clearTimeout(timeoutId);
+        synth.removeEventListener('voiceschanged', handleVoicesChanged);
+
+        const newVoices = this._getPlatformVoices();
+        resolveWithVoices(newVoices);
+      };
+
+      synth.addEventListener('voiceschanged', handleVoicesChanged);
+    });
+  },
+
+  async getVoices() {
     const voicePromises = [
       this.fetchAzureVoices(),
-      this.fetchElevenLabsVoices()
+      this.fetchElevenLabsVoices(),
+      this.getPlatformVoicesAsync()
     ];
 
     const results = await Promise.allSettled(voicePromises);
 
-    return {
-      azureVoices: results[0].status === 'fulfilled' ? results[0].value : [],
-      elevenLabsVoices:
-        results[1].status === 'fulfilled' ? results[1].value : []
-    };
-  },
+    const azureVoices =
+      results[0].status === 'fulfilled' ? results[0].value : [];
+    const elevenLabsVoices =
+      results[1].status === 'fulfilled' ? results[1].value : [];
+    const platformVoices =
+      results[2].status === 'fulfilled' ? results[2].value : [];
 
-  async getVoices() {
-    const { azureVoices, elevenLabsVoices } = await this.fetchCloudVoices();
-
-    const getPlatformVoicesAsync = () => {
-      return new Promise(resolve => {
-        const VOICES_TIMEOUT = 3000;
-
-        const resolveWithVoices = voices => {
-          platformVoices = voices;
-          resolve(voices);
-        };
-
-        const initialVoices = this._getPlatformVoices();
-        if (initialVoices.length > 0) {
-          resolveWithVoices(initialVoices);
-          return;
-        }
-
-        if (isCordova()) {
-          const cordovaVoices = this._getPlatformVoices();
-          resolveWithVoices(cordovaVoices);
-          return;
-        }
-
-        const supportsVoicesChanged = 'onvoiceschanged' in synth;
-        if (!supportsVoicesChanged) {
-          resolveWithVoices(this._getPlatformVoices());
-          return;
-        }
-
-        const timeoutId = setTimeout(() => {
-          synth.removeEventListener('voiceschanged', handleVoicesChanged);
-          resolveWithVoices(this._getPlatformVoices());
-        }, VOICES_TIMEOUT);
-
-        const handleVoicesChanged = () => {
-          clearTimeout(timeoutId);
-          synth.removeEventListener('voiceschanged', handleVoicesChanged);
-
-          const newVoices = this._getPlatformVoices();
-          resolveWithVoices(newVoices);
-        };
-
-        synth.addEventListener('voiceschanged', handleVoicesChanged);
-      });
-    };
-
-    const platformVoicesResult = await getPlatformVoicesAsync();
-
-    return platformVoicesResult.concat(elevenLabsVoices).concat(azureVoices);
+    return platformVoices.concat(elevenLabsVoices).concat(azureVoices);
   },
 
   //Use setTTsEngine only in Android
