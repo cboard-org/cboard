@@ -495,12 +495,6 @@ export class SymbolSearch extends PureComponent {
       this.state.suggestions.length === 0 ? (
         <SymbolNotFound />
       ) : null;
-    const symbolSetOptions = (
-      <FilterBar
-        options={this.state.symbolSets}
-        onChange={this.handleChangeOption}
-      />
-    );
 
     return (
       <div>
@@ -510,7 +504,10 @@ export class SymbolSearch extends PureComponent {
           transition="fade"
           onClose={onClose}
         >
-          {symbolSetOptions}
+          <FilterBar
+            options={this.state.symbolSets}
+            onChange={this.handleChangeOption}
+          />
           {symbolNotFound}
         </FullScreenDialog>
       </div>
