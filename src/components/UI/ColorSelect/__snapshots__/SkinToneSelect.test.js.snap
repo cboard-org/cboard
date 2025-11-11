@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SkinToneSelect tests default renderer 1`] = `
+<SkinToneSelect
+  intl={
+    Object {
+      "formatMessage": [Function],
+    }
+  }
+  onChange={[Function]}
+  selectedColor="#f5e5de"
+  source="arasaac"
+/>
+`;
