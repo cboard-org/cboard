@@ -154,10 +154,8 @@ function TileEditor(props) {
     if (user) {
       try {
         const imageUrl = await API.uploadFile(blob, fileName);
-        // console.log('imagen guardada en servidor', imageUrl);
         return convertImageUrlToCatchable(imageUrl) || imageUrl;
       } catch (error) {
-        //console.log('imagen no guardad en servidor');
         return await blobToBase64(blob);
       }
     } else {
