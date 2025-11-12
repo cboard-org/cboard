@@ -31,7 +31,8 @@ const initialState = {
       isPublicBoardsEnabled: true,
       isAllMyBoardsEnabled: true
     },
-    isAnalyticsTourEnabled: true
+    isAnalyticsTourEnabled: true,
+    isSymbolSearchTourEnabled: true
   },
   displaySettings: {
     uiSize: DISPLAY_SIZE_STANDARD,
@@ -133,7 +134,8 @@ function appReducer(state = initialState, action) {
             isPublicBoardsEnabled: true,
             isAllMyBoardsEnabled: true
           },
-          isAnalyticsTourEnabled: true
+          isAnalyticsTourEnabled: true,
+          isSymbolSearchTourEnabled: true
         }
       };
 
@@ -167,7 +169,9 @@ function appReducer(state = initialState, action) {
     case UPDATE_USER_DATA:
       return {
         ...state,
-        userData: action.userData ? getKeysFromApiUserDataResponse(action.userData) : state.userData
+        userData: action.userData
+          ? getKeysFromApiUserDataResponse(action.userData)
+          : state.userData
       };
     case SET_UNLOGGED_USER_LOCATION:
       return {
