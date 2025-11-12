@@ -4,7 +4,9 @@ import { addBoards } from '../../Board/Board.actions';
 import {
   changeVoice,
   changePitch,
-  changeRate
+  changeRate,
+  changeElevenLabsApiKey,
+  getVoices
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 import {
   disableTour,
@@ -15,6 +17,7 @@ import {
 } from '../../App/App.actions';
 import { getVoiceURI } from '../../../i18n';
 import { isCordova, isElectron } from '../../../cordova-util';
+import tts from '../../../providers/SpeechProvider/tts';
 
 export function loginSuccess(payload) {
   return dispatch => {
@@ -72,7 +75,15 @@ function logoutSuccess() {
 }
 
 export function login({ email, password, activatedData }, type = 'local') {
-  const setAVoice = ({ loginData, dispatch, getState }) => {
+  const setAVoice = async ({ loginData, dispatch, getState }) => {
+    const elevenLabsApiKey = loginData?.settings?.speech?.elevenLabsApiKey;
+
+    if (elevenLabsApiKey) {
+      dispatch(changeElevenLabsApiKey(elevenLabsApiKey));
+      tts.initElevenLabsInstance(elevenLabsApiKey);
+      await dispatch(getVoices());
+    }
+
     const {
       language: { lang: appLang },
       speech: {
@@ -89,15 +100,6 @@ export function login({ email, password, activatedData }, type = 'local') {
         return v.voiceURI;
       });
 
-      //if redux state have a defined voiceUri. Set it By default
-      if (
-        deviceVoiceUri &&
-        deviceVoiceLanguageCode === appLanguageCode &&
-        uris.includes(deviceVoiceUri)
-      ) {
-        return;
-      }
-      //if not Try to use API stored Voice
       if (loginData.settings?.speech) {
         const userVoiceUri = loginData.settings.speech.voiceURI; //ATENTION speech options on DB is under Speech directly. on state is under options
 
@@ -112,7 +114,9 @@ export function login({ email, password, activatedData }, type = 'local') {
           appLanguageCode === userVoiceLanguageCode &&
           uris.includes(userVoiceUri)
         ) {
-          dispatch(changeVoice(userVoiceUri, userVoiceLanguage));
+          if (userVoiceUri !== deviceVoiceUri) {
+            dispatch(changeVoice(userVoiceUri, userVoiceLanguage));
+          }
           if (loginData.settings.speech.pitch) {
             dispatch(changePitch(loginData.settings.speech.pitch));
           }
@@ -121,6 +125,14 @@ export function login({ email, password, activatedData }, type = 'local') {
           }
           return;
         }
+      }
+
+      if (
+        deviceVoiceUri &&
+        deviceVoiceLanguageCode === appLanguageCode &&
+        uris.includes(deviceVoiceUri)
+      ) {
+        return;
       }
 
       const defaultVoiceUri = getVoiceURI(appLang, voices);
@@ -197,7 +209,7 @@ export function login({ email, password, activatedData }, type = 'local') {
         );
       }
       dispatch(loginSuccess(loginData));
-      setAVoice({ loginData, dispatch, getState });
+      await setAVoice({ loginData, dispatch, getState });
     } catch (e) {
       if (e.response != null) {
         return Promise.reject(e.response.data);

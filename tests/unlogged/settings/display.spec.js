@@ -6,62 +6,35 @@ test.describe('Cboard - Display Settings', () => {
   test.beforeEach(async ({ page }) => {
     cboard = createCboard(page);
     await cboard.goto();
-
-    // Navigate to settings and Display tab
     await cboard.navigateToSettings();
     await cboard.clickSettingsTab('Display');
   });
-
   test('should display display settings dialog', async ({ page }) => {
     await cboard.verifyDisplaySettingsUI();
   });
-
   test('should verify output bar visibility states', async ({ page }) => {
-    // Test that we can check both visible and hidden states
     await cboard.verifyOutputBarSettings();
-
-    // Check initial checkbox state
     const isInitiallyChecked = await cboard.hideOutputBarCheckbox.isChecked();
-
-    // Click the checkbox to toggle it
     await cboard.hideOutputBarCheckbox.click();
-
-    // Verify the checkbox state changed
     const isNowChecked = await cboard.hideOutputBarCheckbox.isChecked();
     if (isInitiallyChecked !== isNowChecked) {
       console.log('Output bar checkbox toggle successful');
     }
   });
-
   test('should allow UI size modification', async ({ page }) => {
     await cboard.clickUISize();
-    // This should open dropdown with size options
     await cboard.verifyUISizeOptions(['Standard', 'Large', 'Extra Large']);
   });
-
   test('should change UI size to Extra Large and save', async ({ page }) => {
-    // Open UI Size dropdown
     await cboard.clickUISize();
-
-    // Select Extra Large option
     await cboard.selectUISizeOption('Extra Large');
-
-    // Verify the selection
     await cboard.verifyUISizeSelected('Extra Large');
-
-    // Save the settings
     await cboard.saveDisplaySettings();
-
-    // Navigate back to main board to verify changes
     await cboard.goto();
-
-    // Verify that UI size change has been applied
     await cboard.verifyUIChanged();
   });
-
   test('should allow font family modification', async ({ page }) => {
     await cboard.clickFontFamily();
-    // This should open dropdown with font options
     await cboard.verifyFontFamilyOptions([
       'Chilanka',
       'Hind',
@@ -72,12 +45,8 @@ test.describe('Cboard - Display Settings', () => {
       'Roboto'
     ]);
   });
-
   test('should change font family to Roboto and save', async ({ page }) => {
-    // Open Font Family dropdown
     await cboard.clickFontFamily();
-
-    // Verify all available font options
     await cboard.verifyFontFamilyOptions([
       'Chilanka',
       'Hind',
@@ -87,17 +56,9 @@ test.describe('Cboard - Display Settings', () => {
       'Oswald',
       'Roboto'
     ]);
-
-    // Select Roboto option
     await cboard.selectFontFamilyOption('Roboto');
-
-    // Verify the selection
     await cboard.verifyFontFamilySelected('Roboto');
-
-    // Save the settings
     await cboard.saveDisplaySettings();
-
-    // Navigate back to main board to verify changes
     await cboard.goto();
 
     // Verify that font family change has been applied

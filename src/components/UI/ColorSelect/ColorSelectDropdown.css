@@ -1,0 +1,14 @@
+.colorSelectDropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.MuiFormControl-root.colorSelectDropdown-options {
+  position: absolute;
+  margin-top: 4em;
+  margin-left: -1em;
+}
+
+.closed {
+  display: none;
+}

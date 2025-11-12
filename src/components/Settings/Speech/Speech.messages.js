@@ -44,5 +44,62 @@ export default defineMessages({
   voice: {
     id: 'cboard.components.Settings.Speech.voice',
     defaultMessage: 'Voice'
+  },
+  elevenLabsApiKey: {
+    id: 'cboard.components.Settings.Speech.elevenLabsApiKey',
+    defaultMessage: 'ElevenLabs'
+  },
+  elevenLabsApiKeyDescription: {
+    id: 'cboard.components.Settings.Speech.elevenLabsApiKeyDescription',
+    defaultMessage: 'Enter your ElevenLabs API key'
+  },
+  elevenLabsApiKeyInvalid: {
+    id: 'cboard.components.Settings.Speech.elevenLabsApiKeyInvalid',
+    defaultMessage: 'Invalid API key format'
+  },
+  elevenLabsApiKeyUnauthorized: {
+    id: 'cboard.components.Settings.Speech.elevenLabsApiKeyUnauthorized',
+    defaultMessage: 'API key unauthorized or expired'
+  },
+  elevenLabsTestSuccess: {
+    id: 'cboard.components.Settings.Speech.elevenLabsTestSuccess',
+    defaultMessage: 'API key validated successfully'
+  },
+  elevenLabsTestError: {
+    id: 'cboard.components.Settings.Speech.elevenLabsTestError',
+    defaultMessage: 'Failed to validate API key'
+  },
+  elevenLabsStability: {
+    id: 'cboard.components.Settings.Speech.elevenLabsStability',
+    defaultMessage: 'Stability'
+  },
+  elevenLabsStabilityDescription: {
+    id: 'cboard.components.Settings.Speech.elevenLabsStabilityDescription',
+    defaultMessage: 'Determines how stable the voice is.'
+  },
+  elevenLabsSimilarity: {
+    id: 'cboard.components.Settings.Speech.elevenLabsSimilarity',
+    defaultMessage: 'Similarity'
+  },
+  elevenLabsSimilarityDescription: {
+    id: 'cboard.components.Settings.Speech.elevenLabsSimilarityDescription',
+    defaultMessage: 'Enhances similarity to the original voice.'
+  },
+  elevenLabsStyle: {
+    id: 'cboard.components.Settings.Speech.elevenLabsStyle',
+    defaultMessage: 'Style'
+  },
+  elevenLabsStyleDescription: {
+    id: 'cboard.components.Settings.Speech.elevenLabsStyleDescription',
+    defaultMessage: 'Determines the style exaggeration of the voice.'
+  },
+  resetToDefaults: {
+    id: 'cboard.components.Settings.Speech.resetToDefaults',
+    defaultMessage: 'Reset to Defaults'
+  },
+  elevenLabsApiKeyHelp: {
+    id: 'cboard.components.Settings.Speech.elevenLabsApiKeyHelp',
+    defaultMessage:
+      'Get your API key from {elevenLabsLink} and enter it to enable your voices'
   }
 });

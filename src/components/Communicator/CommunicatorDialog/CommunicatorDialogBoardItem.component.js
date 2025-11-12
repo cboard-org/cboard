@@ -856,6 +856,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     <InfoIcon />
                   </IconButton>
                   <IconButton
+                    disabled={userData && !userData.authToken}
                     label={intl.formatMessage(messages.boardReport)}
                     onClick={this.handleBoardReportOpen.bind(this)}
                   >
