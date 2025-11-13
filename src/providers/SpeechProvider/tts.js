@@ -206,16 +206,12 @@ const tts = {
         resolve(voices);
       };
 
+      const supportsVoicesChanged = 'onvoiceschanged' in synth;
       const initialVoices = this._getPlatformVoices();
-      if (initialVoices.length > 0 || isCordova()) {
+
+      if (initialVoices.length > 0 || isCordova() || !supportsVoicesChanged) {
         platformVoices = initialVoices;
         resolve(initialVoices);
-        return;
-      }
-
-      const supportsVoicesChanged = 'onvoiceschanged' in synth;
-      if (!supportsVoicesChanged) {
-        resolveWithVoices();
         return;
       }
 
