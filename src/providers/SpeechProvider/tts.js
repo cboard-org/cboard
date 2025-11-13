@@ -235,20 +235,22 @@ const tts = {
   },
 
   async getVoices() {
-    const voicePromises = [
+    const [
+      azureResult,
+      elevenLabsResult,
+      platformResult
+    ] = await Promise.allSettled([
       this.fetchAzureVoices(),
       this.fetchElevenLabsVoices(),
       this.getPlatformVoicesAsync()
-    ];
-
-    const results = await Promise.allSettled(voicePromises);
+    ]);
 
     const azureVoices =
-      results[0].status === 'fulfilled' ? results[0].value : [];
+      azureResult.status === 'fulfilled' ? azureResult.value : [];
     const elevenLabsVoices =
-      results[1].status === 'fulfilled' ? results[1].value : [];
+      elevenLabsResult.status === 'fulfilled' ? elevenLabsResult.value : [];
     const platformVoices =
-      results[2].status === 'fulfilled' ? results[2].value : [];
+      platformResult.status === 'fulfilled' ? platformResult.value : [];
 
     return platformVoices.concat(elevenLabsVoices).concat(azureVoices);
   },
