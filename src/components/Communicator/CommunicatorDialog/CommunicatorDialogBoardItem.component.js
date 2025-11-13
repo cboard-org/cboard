@@ -56,7 +56,6 @@ const defaultReportDialogState = {
 
 const getFormattedName = lang => {
   lang = lang || navigator.language;
-  console.log(lang);
   const processLanguage = lang => {
     const locale = lang.slice(0, 2).toLowerCase();
     const formattedLocale = locale === 'sr-ME' ? 'srme' : locale;
@@ -857,6 +856,7 @@ class CommunicatorDialogBoardItem extends React.Component {
                     <InfoIcon />
                   </IconButton>
                   <IconButton
+                    disabled={userData && !userData.authToken}
                     label={intl.formatMessage(messages.boardReport)}
                     onClick={this.handleBoardReportOpen.bind(this)}
                   >

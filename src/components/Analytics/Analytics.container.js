@@ -153,7 +153,7 @@ export class AnalyticsContainer extends Component {
         if (isCordova()) {
           resolve(this.getGaClientIdFromCookie());
         } else if (typeof window.gtag !== 'undefined') {
-          window.gtag('get', 'UA-108091601-1', 'client_id', client_id => {
+          window.gtag('get', 'G-60S79265FY', 'client_id', client_id => {
             resolve(client_id);
           });
         } else {

@@ -3,6 +3,8 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2.1
+orbs:
+  discord: antonioned/discord@0.1.0
 jobs:
   build:
     docker:
@@ -61,40 +63,71 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push cboard/cboard:latest
             docker push cboard/cboard:$TAG
-  deploy:
-    machine: true
+  deploy-qa:
+    machine:
+      image: ubuntu-2204:2024.11.1
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - '70:3a:28:02:d9:74:fd:be:c8:79:f6:2e:9b:f7:21:04'
-      - run: |
-          ssh -t $SSH_USERNAME@$SSH_SERVER 'bash -ic "docker run --rm \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            cboard/cboard-bootstrap \
-            pull && \
-            docker run --rm \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            -e URL \
-            -e SUBDOMAINS \
-            -e VALIDATION \
-            -e EMAIL \
-            -e ONLY_SUBDOMAINS=true \
-            -e PUID=”$(id -u $USER)” \
-            -e PGID=”$(id -g $USER)” \
-            -e AZURE_STORAGE_CONNECTION_STRING \
-            -e SENDGRID_API_KEY \
-            -e JWT_SECRET \
-            -e FACEBOOK_APP_ID \
-            -e FACEBOOK_APP_SECRET \
-            -e FACEBOOK_CALLBACK_URL \
-            -e GOOGLE_APP_ID \
-            -e GOOGLE_APP_SECRET \
-            -e GOOGLE_CALLBACK_URL \
-            cboard/cboard-bootstrap \
-            up -d --no-deps cboard" && exit'
+      - run:
+          name: Deploy Over SSH
+          command: |
+            echo 'cboard-qa06.westus.cloudapp.azure.com \
+            AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK9FTOTcgK0KgvdqdUhPLfvnDhzbViGnvtaXWg1XKgq2LEzgUTaHwyDsV5lZ3NnXimwptzF6GvO3u1ySlR2C19s=' >> ~/.ssh/known_hosts
+            ssh $SSH_USERNAME@$SSH_SERVER 'bash -ic \
+            "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock cboard/cboard-bootstrap pull && \
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock cboard/cboard-bootstrap stop cboard && \
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock cboard/cboard-bootstrap kill cboard && \
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock --env-file /home/sharedFolder/env.qa cboard/cboard-bootstrap up -d --no-deps cboard \
+            " && exit'
+      - discord/status:
+          fail_only: false
+          failure_message: "**${CIRCLE_USERNAME}**'s Cboard deploy to QA: **${CIRCLE_JOB}** failed."
+          webhook: '${DISCORD_STATUS_WEBHOOK}'
+          success_message: '**${CIRCLE_USERNAME}** deployed Cboard to QA!!.'
+  e2e-qa:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.53.0-jammy
+    working_directory: ~/repo
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-
+      # Install and save node_modules to cache
+      - run:
+          name: Install dependencies
+          command: yarn install --cache-folder ~/.cache/yarn
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      # run tests
+      - run:
+          name: Run E2E Tests
+          command: |
+            yarn test:e2e-browserstack
+          when: always
+      - discord/status:
+          fail_only: false
+          failure_message: '**${CIRCLE_USERNAME}** Cboard E2E Tests FAILED: **${CIRCLE_JOB}** failed.'
+          webhook: '${DISCORD_STATUS_WEBHOOK}'
+          success_message: '**${CIRCLE_USERNAME}** Cboard E2E Tests PASSED on QA!!.'
+      # Store test results for CircleCI test insights
+      - store_test_results:
+          path: test-results
+      # Store Playwright HTML report
+      - store_artifacts:
+          path: ./playwright-report
+          destination: playwright-report
+      # Store test results XML files
+      - store_artifacts:
+          path: ./test-results
+          destination: test-results
 workflows:
-  version: 2
-  build_test_image:
+  build_image_deploy_e2e-qa:
     jobs:
       - build:
           context: azure
@@ -102,6 +135,20 @@ workflows:
           context: azure
           requires:
             - build
+          filters:
+            branches:
+              only: master
+      - deploy-qa:
+          context: azure
+          requires:
+            - image
+          filters:
+            branches:
+              only: master
+      - e2e-qa:
+          context: azure
+          requires:
+            - deploy-qa
           filters:
             branches:
               only: master

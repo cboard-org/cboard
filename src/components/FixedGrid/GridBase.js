@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -25,7 +25,12 @@ function GridBase(props) {
 
   const gridClassName = classNames(styles.root, className);
 
-  const grid = utils.sortGrid({ columns, rows, order, items });
+  const grid = useMemo(() => utils.sortGrid({ columns, rows, order, items }), [
+    columns,
+    rows,
+    order,
+    items
+  ]);
 
   let itemIndex = 0;
 

@@ -1,0 +1,1 @@
+export { LostedFolderForLoadBoardAlert } from './LostedFolderForLoadBoardAlert';

@@ -126,17 +126,21 @@ describe('actions', () => {
   });
 
   it('should create an action to REPLACE_ME', () => {
+    const store = mockStore(() => initialState);
     const expectedAction = {
       type: types.PREVIOUS_BOARD
     };
-    expect(actions.previousBoard()).toEqual(expectedAction);
+    store.dispatch(actions.previousBoard());
+    const dispatchedActions = store.getActions();
+    expect(dispatchedActions).toEqual([expectedAction]);
   });
 
   it('should create an action to REPLACE_ME', () => {
-    const expectedAction = {
-      type: types.TO_ROOT_BOARD
-    };
-    expect(actions.toRootBoard()).toEqual(expectedAction);
+    const store = mockStore(() => initialState);
+    const expectedActions = [{ type: types.TO_ROOT_BOARD }];
+    store.dispatch(actions.toRootBoard());
+    const dispatchedActions = store.getActions();
+    expect(dispatchedActions).toEqual(expectedActions);
   });
 
   it('should create an action to REPLACE_ME', () => {
@@ -250,12 +254,38 @@ describe('actions', () => {
     expect(actions.createApiBoardSuccess(board)).toEqual(expectedAction);
   });
   it('should create an action to UPDATE_API_BOARD_SUCCESS', () => {
-    const board = {};
-    const expectedAction = {
-      type: types.UPDATE_API_BOARD_SUCCESS,
-      board
-    };
-    expect(actions.updateApiBoardSuccess(board)).toEqual(expectedAction);
+    const board = { isLocalUpdateNeeded: false, name: 'test' };
+    const store = mockStore(initialState);
+
+    const expectedActions = [
+      {
+        type: types.UPDATE_API_BOARD_SUCCESS,
+        boardData: { name: 'test' }
+      }
+    ];
+
+    store.dispatch(actions.updateApiBoardSuccess(board));
+    const dispatchedActions = store.getActions();
+    expect(dispatchedActions).toEqual(expectedActions);
+  });
+  it('should dispatch UPDATE_BOARD and UPDATE_API_BOARD_SUCCESS when isLocalUpdateNeeded is true', () => {
+    const board = { isLocalUpdateNeeded: true, name: 'test' };
+    const store = mockStore(initialState);
+
+    const expectedActions = [
+      {
+        type: types.UPDATE_BOARD,
+        boardData: { name: 'test' }
+      },
+      {
+        type: types.UPDATE_API_BOARD_SUCCESS,
+        boardData: { name: 'test' }
+      }
+    ];
+
+    store.dispatch(actions.updateApiBoardSuccess(board));
+    const dispatchedActions = store.getActions();
+    expect(dispatchedActions).toEqual(expectedActions);
   });
   it('should create an action to REPLACE_ME', () => {
     const expectedAction = {

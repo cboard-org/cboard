@@ -8,9 +8,16 @@ import {
   CHANGE_VOICE,
   CHANGE_PITCH,
   CHANGE_RATE,
+  CHANGE_ELEVENLABS_API_KEY,
   START_SPEECH,
   END_SPEECH,
-  CANCEL_SPEECH
+  CANCEL_SPEECH,
+  CACHE_ELEVENLABS_VOICES,
+  CLEAR_ELEVENLABS_CACHE,
+  CHANGE_ELEVENLABS_STABILITY,
+  CHANGE_ELEVENLABS_SIMILARITY,
+  CHANGE_ELEVENLABS_STYLE,
+  RESET_ELEVENLABS_SETTINGS
 } from './SpeechProvider.constants';
 
 import {
@@ -163,10 +170,25 @@ export function changeRate(rate) {
   };
 }
 
+export function changeElevenLabsApiKey(elevenLabsApiKey) {
+  return {
+    type: CHANGE_ELEVENLABS_API_KEY,
+    elevenLabsApiKey
+  };
+}
+
 export function getVoices() {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     let voices = [];
     dispatch(requestVoices());
+
+    const { elevenLabsCache } = getState().speech;
+
+    const isCacheValid =
+      elevenLabsCache.timestamp &&
+      elevenLabsCache.voices.length > 0 &&
+      Date.now() - elevenLabsCache.timestamp < elevenLabsCache.ttl;
+
     try {
       const localizeSerbianVoicesNames = (voiceName, voiceLang) => {
         if (voiceLang?.startsWith('sr')) {
@@ -181,18 +203,51 @@ export function getVoices() {
       };
 
       const pvoices = await tts.getVoices();
+
+      const elevenLabsVoices = pvoices.filter(
+        v => v.voiceSource === 'elevenlabs'
+      );
+      const otherVoices = pvoices.filter(v => v.voiceSource !== 'elevenlabs');
+
+      let allVoices = [];
+
+      if (elevenLabsVoices.length > 0) {
+        dispatch(cacheElevenLabsVoices(elevenLabsVoices));
+        allVoices = pvoices;
+      } else if (isCacheValid) {
+        allVoices = [...otherVoices, ...elevenLabsCache.voices];
+      } else if (elevenLabsCache.voices.length > 0) {
+        console.warn('Using expired ElevenLabs cache due to fetch failure');
+        allVoices = [...otherVoices, ...elevenLabsCache.voices];
+      } else {
+        allVoices = pvoices;
+      }
+
       // some TTS engines do return invalid voices, so we filter them
       const regex = new RegExp('^[a-zA-Z]{2,}-$', 'g');
-      const fvoices = pvoices.filter(voice => !regex.test(voice.lang));
+      const fvoices = allVoices.filter(voice => !regex.test(voice.lang));
       voices = fvoices.map(
-        ({ voiceURI, lang, name, Locale, ShortName, DisplayName, Gender }) => {
+        ({
+          voiceURI,
+          lang,
+          name,
+          Locale,
+          ShortName,
+          DisplayName,
+          Gender,
+          voiceSource,
+          voice_id
+        }) => {
           let voice = {};
           if (lang) {
             voice.lang = lang;
           } else if (Locale) {
             voice.lang = Locale;
           }
-          if (voiceURI) {
+          if (voiceSource) {
+            voice.voiceSource = voiceSource;
+            voice.voiceURI = voiceURI;
+          } else if (voiceURI) {
             voice.voiceURI = voiceURI;
             voice.voiceSource = 'local';
           } else if (ShortName) {
@@ -205,9 +260,16 @@ export function getVoices() {
             voice.name = `${DisplayName} (${voice.lang}) - ${Gender}`;
           }
           voice.name = localizeSerbianVoicesNames(voice.name, voice.lang);
+
+          // Include voice_id for ElevenLabs voices
+          if (voice_id) {
+            voice.voice_id = voice_id;
+          }
+
           return voice;
         }
       );
+
       dispatch(receiveVoices(voices));
     } catch (err) {
       console.error(err.message);
@@ -273,6 +335,19 @@ export function speak(text, onend = () => {}) {
   };
 }
 
+export function cacheElevenLabsVoices(voices) {
+  return {
+    type: CACHE_ELEVENLABS_VOICES,
+    voices
+  };
+}
+
+export function clearElevenLabsCache() {
+  return {
+    type: CLEAR_ELEVENLABS_CACHE
+  };
+}
+
 export function setCurrentVoiceSource() {
   return (dispatch, getState) => {
     const { isCloud = null, voiceURI, lang } = getState().speech.options;
@@ -280,5 +355,32 @@ export function setCurrentVoiceSource() {
       dispatch(changeVoice(voiceURI, lang));
       return;
     }
+  };
+}
+
+export function changeElevenLabsStability(stability) {
+  return {
+    type: CHANGE_ELEVENLABS_STABILITY,
+    stability
+  };
+}
+
+export function changeElevenLabsSimilarity(similarity) {
+  return {
+    type: CHANGE_ELEVENLABS_SIMILARITY,
+    similarity
+  };
+}
+
+export function changeElevenLabsStyle(style) {
+  return {
+    type: CHANGE_ELEVENLABS_STYLE,
+    style
+  };
+}
+
+export function resetElevenLabsSettings() {
+  return {
+    type: RESET_ELEVENLABS_SETTINGS
   };
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isCordova } from '../../../cordova-util';
@@ -25,6 +25,10 @@ const propTypes = {
   intl: PropTypes.object
 };
 
+function formatSrc(src) {
+  return isCordova() && src?.startsWith('/') ? `.${src}` : src;
+}
+
 function Symbol(props) {
   const {
     className,
@@ -37,34 +41,65 @@ function Symbol(props) {
     image,
     ...other
   } = props;
-  const [src, setSrc] = useState('');
+
+  const [src, setSrc] = useState(image ? formatSrc(image) : '');
+  const objectUrlRef = useRef(null);
+
+  const fetchArasaacImagefromIndexedDB = useCallback(async id => {
+    if (!id) return null;
+
+    try {
+      const arasaacDB = getArasaacDB();
+      return await arasaacDB.getImageById(id);
+    } catch (error) {
+      console.error('Failed to fetch Arasaac image from Indexed DB:', error);
+      return null;
+    }
+  }, []);
 
   useEffect(
     () => {
+      let cancelled = false;
+
       async function getSrc() {
-        let image = null;
-        if (keyPath) {
-          const arasaacDB = await getArasaacDB();
-          image = await arasaacDB.getImageById(keyPath);
+        const imageFromIndexedDb = await fetchArasaacImagefromIndexedDB(
+          keyPath
+        );
+
+        if (cancelled) return;
+
+        if (imageFromIndexedDb) {
+          const blob = new Blob([imageFromIndexedDb.data], {
+            type: imageFromIndexedDb.type
+          });
+          const url = URL.createObjectURL(blob);
+          setSrc(url);
+
+          if (objectUrlRef.current) {
+            URL.revokeObjectURL(objectUrlRef.current);
+          }
+          objectUrlRef.current = url;
+          return;
         }
 
         if (image) {
-          const blob = new Blob([image.data], { type: image.type });
-          setSrc(URL.createObjectURL(blob));
-        } else if (props.image) {
-          // Cordova path cannot be absolute
-          const image =
-            isCordova() && props.image && props.image.search('/') === 0
-              ? `.${props.image}`
-              : props.image;
-
-          setSrc(image);
+          setSrc(formatSrc(image));
+          return;
         }
-      }
 
+        setSrc('');
+      }
       getSrc();
+
+      return () => {
+        cancelled = true;
+        if (objectUrlRef.current) {
+          URL.revokeObjectURL(objectUrlRef.current);
+          objectUrlRef.current = null;
+        }
+      };
     },
-    [keyPath, setSrc, props.image]
+    [fetchArasaacImagefromIndexedDB, image, keyPath]
   );
 
   const symbolClassName = classNames('Symbol', className);
@@ -104,11 +139,11 @@ function Symbol(props) {
         props.labelpos !== 'Hidden' && (
           <Typography className="Symbol__label">{label}</Typography>
         )}
-      {src && (
-        <div className="Symbol__image-container">
-          <img className="Symbol__image" src={src} alt="" />
-        </div>
-      )}
+
+      <div className="Symbol__image-container">
+        {src && <img className="Symbol__image" src={src} alt="" />}
+      </div>
+
       {props.type !== 'live' &&
         props.labelpos === 'Below' &&
         props.labelpos !== 'Hidden' && (

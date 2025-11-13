@@ -60,3 +60,14 @@
 .Navbar .LoginSignUpButton:focus {
   color: #fff;
 }
+
+.Navbar__group {
+  align-items: center;
+}
+
+@media (max-width: 380px) {
+  .Navbar__group button,
+  .Navbar__group a {
+    padding-inline: 8px;
+  }
+}
