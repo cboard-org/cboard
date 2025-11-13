@@ -200,40 +200,34 @@ const tts = {
     return new Promise(resolve => {
       const VOICES_TIMEOUT = 3000;
 
-      const resolveWithVoices = voices => {
+      const resolveWithVoices = () => {
+        const voices = this._getPlatformVoices();
         platformVoices = voices;
         resolve(voices);
       };
 
       const initialVoices = this._getPlatformVoices();
-      if (initialVoices.length > 0) {
-        resolveWithVoices(initialVoices);
-        return;
-      }
-
-      if (isCordova()) {
-        const cordovaVoices = this._getPlatformVoices();
-        resolveWithVoices(cordovaVoices);
+      if (initialVoices.length > 0 || isCordova()) {
+        platformVoices = initialVoices;
+        resolve(initialVoices);
         return;
       }
 
       const supportsVoicesChanged = 'onvoiceschanged' in synth;
       if (!supportsVoicesChanged) {
-        resolveWithVoices(this._getPlatformVoices());
+        resolveWithVoices();
         return;
       }
 
       const timeoutId = setTimeout(() => {
         synth.removeEventListener('voiceschanged', handleVoicesChanged);
-        resolveWithVoices(this._getPlatformVoices());
+        resolveWithVoices();
       }, VOICES_TIMEOUT);
 
       const handleVoicesChanged = () => {
         clearTimeout(timeoutId);
         synth.removeEventListener('voiceschanged', handleVoicesChanged);
-
-        const newVoices = this._getPlatformVoices();
-        resolveWithVoices(newVoices);
+        resolveWithVoices();
       };
 
       synth.addEventListener('voiceschanged', handleVoicesChanged);
