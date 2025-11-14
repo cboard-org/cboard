@@ -2185,13 +2185,12 @@ export class Cboard {
     const onlineVoice = this.page
       .getByRole('menuitem')
       .filter({ hasText: 'online' })
+      .filter({ hasNotText: 'ElevenLabs' })
       .first();
     await onlineVoice.click();
 
     // Should show online notification
-    await expect(
-      this.page.locator('text=An online voice was set')
-    ).toBeVisible();
+    await expect(this.page.getByText('An online voice was set')).toBeVisible();
   }
 
   async testOnlineVoiceControlsDisabled() {
