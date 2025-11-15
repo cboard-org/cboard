@@ -2281,7 +2281,7 @@ export class Cboard {
     await this.voiceButton.click();
     const localVoice = this.page
       .getByRole('menuitem')
-      .filter({ hasText: 'Microsoft' })
+      .filter({ hasNotText: 'online' })
       .first();
     await localVoice.click();
     await this.page.waitForTimeout(300);
@@ -2295,6 +2295,7 @@ export class Cboard {
     const onlineVoice = this.page
       .getByRole('menuitem')
       .filter({ hasText: 'online' })
+      .filter({ hasNotText: 'ElevenLabs' })
       .first();
     await onlineVoice.click();
     await this.page.waitForTimeout(300);
@@ -2307,7 +2308,8 @@ export class Cboard {
     await this.voiceButton.click();
     const localVoice2 = this.page
       .getByRole('menuitem')
-      .filter({ hasText: 'Microsoft' })
+      .filter({ hasNotText: 'online' })
+      .filter({ hasNotText: 'ElevenLabs' })
       .first();
     await localVoice2.click();
     await this.page.waitForTimeout(300);
@@ -2322,6 +2324,7 @@ export class Cboard {
     const onlineVoice = this.page
       .getByRole('menuitem')
       .filter({ hasText: 'online' })
+      .filter({ hasNotText: 'ElevenLabs' })
       .first();
     await onlineVoice.click();
 
