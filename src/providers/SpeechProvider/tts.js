@@ -150,15 +150,21 @@ const tts = {
 
   // Get voices depending on platform (browser/cordova)
   _getPlatformVoices() {
-    let voices = {};
+    let voices = [];
+  
     try {
-      voices = synth.getVoices();
+      voices = synth.getVoices() || [];
     } catch (err) {
       console.log(err.message);
       synth = window.speechSynthesis;
+      voices = synth.getVoices() || [];
     }
-    // On Cordova, voice results are under `._list`
-    return voices._list || voices;
+  
+    //voices might be { _list: [...] }
+    const list = voices._list || voices;
+  
+    //guaranteed to always return an array
+    return Array.isArray(list) ? list : [];
   },
 
   async getVoices() {
