@@ -218,5 +218,9 @@ export default defineMessages({
   symbols: {
     id: 'cboard.components.Settings.symbols',
     defaultMessage: 'Symbols'
+  },
+  communicationHistory: {
+    id: 'cboard.components.Settings.communicationHistory',
+    defaultMessage: 'Communication Report'
   }
 });
