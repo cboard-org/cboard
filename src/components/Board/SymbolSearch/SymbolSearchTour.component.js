@@ -50,15 +50,29 @@ function SymbolSearchTour({ intl, disableTour, isSymbolSearchTourEnabled }) {
       )
     },
     {
+      target: '#SkinToneOptions',
+      hideCloseButton: true,
+      content: (
+        <div>
+          <h2>
+            <FormattedMessage {...messages.skinToneOptionsTitle} />
+          </h2>
+          <h5>
+            <FormattedMessage {...messages.skinToneOptionsDesc} />
+          </h5>
+        </div>
+      )
+    },
+    {
       target: '#HairColorOptions',
       hideCloseButton: true,
       content: (
         <div>
           <h2>
-            <FormattedMessage {...messages.skinToneAndHairColorOptionsTitle} />
+            <FormattedMessage {...messages.hairColorOptionsTitle} />
           </h2>
           <h5>
-            <FormattedMessage {...messages.skinToneAndHairColorOptionsDesc} />
+            <FormattedMessage {...messages.hairColorOptionsDesc} />
           </h5>
         </div>
       )

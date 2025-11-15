@@ -14,19 +14,19 @@ export default defineMessages({
     defaultMessage: 'Upload an image'
   },
   walkthroughEndTour: {
-    id: 'cboard.components.Settings.walkthroughEndTour',
+    id: 'cboard.components.SymbolSearch.walkthroughEndTour',
     defaultMessage: 'End Tour'
   },
   walkthroughCloseTour: {
-    id: 'cboard.components.Settings.walkthroughCloseTour',
+    id: 'cboard.components.SymbolSearch.walkthroughCloseTour',
     defaultMessage: 'Close Tour'
   },
   walkthroughBack: {
-    id: 'cboard.components.Settings.walkthroughBack',
+    id: 'cboard.components.SymbolSearch.walkthroughBack',
     defaultMessage: 'Back'
   },
   walkthroughNext: {
-    id: 'cboard.components.Settings.walkthroughNext',
+    id: 'cboard.components.SymbolSearch.walkthroughNext',
     defaultMessage: 'Next'
   },
   walkthroughSymbolSearch: {
@@ -38,14 +38,22 @@ export default defineMessages({
     defaultMessage:
       'The symbol search allows you to find symbols from various libraries to use for your board tiles.'
   },
-
-  skinToneAndHairColorOptionsTitle: {
-    id: 'cboard.components.SymbolSearch.skinToneAndHairColorOptionsTitle',
-    defaultMessage: 'Skin tone and hair color options'
+  skinToneOptionsTitle: {
+    id: 'cboard.components.SymbolSearch.skinToneOptionsTitle',
+    defaultMessage: 'Skin tone options'
   },
-  skinToneAndHairColorOptionsDesc: {
-    id: 'cboard.components.SymbolSearch.skinToneAndHairColorOptionsDesc',
+  skinToneOptionsDesc: {
+    id: 'cboard.components.SymbolSearch.skinToneOptionsDesc',
     defaultMessage:
-      'You can customize the skin tone and hair color of symbols to better represent yourself and others. These options currently only apply to ARASAAC symbols.'
+      'You can customize the skin tone symbols to better represent yourself and others. These options currently only apply to ARASAAC symbols.'
+  },
+  hairColorOptionsTitle: {
+    id: 'cboard.components.SymbolSearch.hairColorOptionsTitle',
+    defaultMessage: 'Hair color options'
+  },
+  hairColorOptionsDesc: {
+    id: 'cboard.components.SymbolSearch.hairColorOptionsDesc',
+    defaultMessage:
+      'You can also customize the hair color of symbols. These options currently only apply to ARASAAC symbols.'
   }
 });
