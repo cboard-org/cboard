@@ -2199,6 +2199,7 @@ export class Cboard {
     const onlineVoice = this.page
       .getByRole('menuitem')
       .filter({ hasText: 'online' })
+      .filter({ hasNotText: 'ElevenLabs' })
       .first();
     await onlineVoice.click();
 
@@ -2215,7 +2216,7 @@ export class Cboard {
     await this.voiceButton.click();
     const localVoice = this.page
       .getByRole('menuitem')
-      .filter({ hasText: 'Microsoft' })
+      .filter({ hasNotText: 'online' })
       .first();
     await localVoice.click();
 
@@ -2233,11 +2234,13 @@ export class Cboard {
 
   async testPitchSliderFunctionality() {
     // Get initial value
+    await this.pitchSlider.click();
+    await this.page.keyboard.press('ArrowLeft');
+    await this.page.keyboard.press('ArrowLeft');
     const initialValue = await this.pitchSlider.getAttribute('aria-valuenow');
 
     // Click and use keyboard to change value
     await this.pitchSlider.click();
-    await this.page.keyboard.press('ArrowRight');
     await this.page.keyboard.press('ArrowRight');
 
     // Wait a moment for the change to register
