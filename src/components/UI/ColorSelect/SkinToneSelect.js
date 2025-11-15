@@ -104,7 +104,11 @@ class SkinToneSelect extends React.Component {
     const radioItemStyle = { padding: '2px' };
 
     return (
-      <div className="colorSelectDropdown" ref={this.wrapperRef}>
+      <div
+        id="SkinToneOptions"
+        className="colorSelectDropdown"
+        ref={this.wrapperRef}
+      >
         <Tooltip title={skinToneLabel} aria-label={skinToneLabel}>
           <IconButton
             label={skinToneLabel}

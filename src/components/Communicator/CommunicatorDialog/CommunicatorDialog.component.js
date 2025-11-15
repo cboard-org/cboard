@@ -51,6 +51,7 @@ const CommunicatorDialog = ({
   showNotification,
   dark,
   communicatorTour,
+  isSymbolSearchTourEnabled,
   disableTour
 }) => (
   <FullScreenDialog
@@ -145,6 +146,8 @@ const CommunicatorDialog = ({
                     showNotification={showNotification}
                     activeBoardId={activeBoardId}
                     dark={dark}
+                    isSymbolSearchTourEnabled={isSymbolSearchTourEnabled}
+                    disableTour={disableTour}
                   />
                 ))}
 
@@ -231,6 +234,7 @@ CommunicatorDialog.propTypes = {
   showNotification: PropTypes.func.isRequired,
   dark: PropTypes.bool,
   communicatorTour: PropTypes.object.isRequired,
+  isSymbolSearchTourEnabled: PropTypes.bool,
   disableTour: PropTypes.func.isRequired
 };
 

@@ -19,6 +19,7 @@ import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
 import SymbolNotFound from './SymbolNotFound';
+import SymbolSearchTour from './SymbolSearchTour.component';
 import SkinToneSelect from '../../UI/ColorSelect/SkinToneSelect';
 import HairColorSelect from '../../UI/ColorSelect/HairColorSelect';
 
@@ -427,7 +428,13 @@ export class SymbolSearch extends PureComponent {
   }
 
   render() {
-    const { intl, open, onClose } = this.props;
+    const {
+      disableTour,
+      intl,
+      isSymbolSearchTourEnabled,
+      open,
+      onClose
+    } = this.props;
 
     const clearButton =
       this.state.value.length > 0 ? (
@@ -509,6 +516,13 @@ export class SymbolSearch extends PureComponent {
             onChange={this.handleChangeOption}
           />
           {symbolNotFound}
+          {isSymbolSearchTourEnabled && (
+            <SymbolSearchTour
+              disableTour={disableTour}
+              intl={intl}
+              isSymbolSearchTourEnabled={isSymbolSearchTourEnabled}
+            />
+          )}
         </FullScreenDialog>
       </div>
     );
