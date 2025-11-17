@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import shortid from 'shortid';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -833,11 +833,29 @@ function TileEditor(props) {
 }
 
 TileEditor.propTypes = {
-  intl: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  intl: intlShape.isRequired,
+  /**
+   * If true, TileEditor will be visibile
+   */
   open: PropTypes.bool,
+  /**
+   * Callback fired on TileEditor request to be hidden
+   */
   onClose: PropTypes.func.isRequired,
+  /**
+   * Tiles array to work on
+   */
   editingTiles: PropTypes.array,
+  /**
+   * Callback fired when submitting edited board tiles
+   */
   onEditSubmit: PropTypes.func.isRequired,
+  /**
+   * Callback fired when submitting a new board tile
+   */
   onAddSubmit: PropTypes.func.isRequired,
   boards: PropTypes.array,
   userData: PropTypes.object,
