@@ -609,6 +609,7 @@
   "cboard.components.Settings.Language.ukrainian": "Ukrainian",
   "cboard.components.Settings.Language.vietnamese": "Vietnamese",
   "cboard.components.Settings.Language.chinese": "Chinese",
+  "cboard.components.Settings.Language.lao": "Lao",
   "cboard.components.Settings.Language.ttsEnginesSubheader": "Text to speech engine",
   "cboard.components.Settings.Language.ttsEngines": "Text to speech engine",
   "cboard.components.Settings.Language.ttsEngineError": "WARNING: This text to speech engine does not include any language supported by Cboard! Feel free to contact us and let us know.",

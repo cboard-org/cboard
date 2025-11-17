@@ -26,7 +26,10 @@ import {
   standardizeLanguageCode
 } from '../../i18n';
 import { CHANGE_LANG } from '../LanguageProvider/LanguageProvider.constants';
-import { LOGIN_SUCCESS } from '../../components/Account/Login/Login.constants';
+import {
+  LOGIN_SUCCESS,
+  LOGOUT
+} from '../../components/Account/Login/Login.constants';
 import { DEFAULT_LANG } from '../../components/App/App.constants';
 
 const initialState = {
@@ -335,6 +338,47 @@ function speechProviderReducer(state = initialState, action) {
         },
         elevenLabsVoiceSettings: resetElevenLabsVoiceSettings(state)
       };
+    case LOGOUT: {
+      const nonElevenLabsVoices = state.voices.filter(
+        voice => voice.voiceSource !== ELEVEN_LABS
+      );
+
+      const currentVoice = state.voices.find(
+        v => v.voiceURI === state.options.voiceURI
+      );
+      const isCurrentVoiceElevenLabs =
+        currentVoice?.voiceSource === ELEVEN_LABS;
+
+      const newVoiceURI = isCurrentVoiceElevenLabs
+        ? getVoiceURI(state.options.lang, nonElevenLabsVoices)
+        : state.options.voiceURI;
+
+      const newVoice = isCurrentVoiceElevenLabs
+        ? nonElevenLabsVoices.find(v => v.voiceURI === newVoiceURI)
+        : currentVoice;
+
+      const newVoiceIsCloud = newVoice?.voiceSource === 'cloud' ? true : null;
+
+      return {
+        ...state,
+        elevenLabsApiKey: '',
+        elevenLabsCache: {
+          voices: [],
+          timestamp: null,
+          ttl: initialState.elevenLabsCache.ttl
+        },
+        elevenLabsVoiceSettings: {},
+        voices: nonElevenLabsVoices,
+        options: {
+          ...state.options,
+          voiceURI: newVoiceURI,
+          isCloud: newVoiceIsCloud,
+          elevenLabsStability: initialState.options.elevenLabsStability,
+          elevenLabsSimilarity: initialState.options.elevenLabsSimilarity,
+          elevenLabsStyle: initialState.options.elevenLabsStyle
+        }
+      };
+    }
     default:
       return state;
   }

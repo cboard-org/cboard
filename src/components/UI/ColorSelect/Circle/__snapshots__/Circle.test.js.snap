@@ -6,12 +6,13 @@ exports[`Circle tests default renderer 1`] = `
   width="48"
 >
   <circle
+    color="grey"
     cx="24"
     cy="24"
     fill="transparent"
     r="15"
-    stroke="grey"
-    strokeWidth="1"
+    stroke="currentColor"
+    strokeWidth={1}
   />
 </svg>
 `;
