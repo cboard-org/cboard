@@ -100,6 +100,15 @@ function TileEditor(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [openImageEditor, setOpenImageEditor] = useState(false);
 
+  const resetEditorState = () => {
+    setActiveStep(0);
+    setSelectedBackgroundColor('');
+    setTile(defaultTile);
+    setImageUploadedData([]);
+    setIsEditImageBtnActive(false);
+    setLinkedBoard('');
+  };
+
   const getCurrentlyEditingTile = useCallback(
     () => {
       return tilesToEdit[activeStep];
@@ -203,12 +212,7 @@ function TileEditor(props) {
         onAddSubmit(tileToAdd);
       }
 
-      setActiveStep(0);
-      setSelectedBackgroundColor('');
-      setTile(defaultTile);
-      setImageUploadedData([]);
-      setIsEditImageBtnActive(false);
-      setLinkedBoard('');
+      resetEditorState();
     },
     // Excluding updateTileImgURL() because it's a utility function that doesn't change
     /* eslint-disable react-hooks/exhaustive-deps */
@@ -227,12 +231,7 @@ function TileEditor(props) {
 
   const handleCancel = useCallback(
     () => {
-      setActiveStep(0);
-      setSelectedBackgroundColor('');
-      setTile(defaultTile);
-      setImageUploadedData([]);
-      setIsEditImageBtnActive(false);
-      setLinkedBoard('');
+      resetEditorState();
       onClose();
     },
     [onClose]
@@ -323,13 +322,7 @@ function TileEditor(props) {
     if (type === 'folder' || type === 'board') {
       loadBoard = shortid.generate();
     }
-    let backgroundColor = defaultTileColors.button;
-    if (type === 'board') {
-      backgroundColor = defaultTileColors.board;
-    }
-    if (type === 'folder') {
-      backgroundColor = defaultTileColors.folder;
-    }
+    let backgroundColor = getDefaultColor(type);
     setTile(prevTile => ({
       ...prevTile,
       linkedBoard: false,
@@ -390,17 +383,8 @@ function TileEditor(props) {
     setIsEditImageBtnActive(false);
   };
 
-  const getDefaultColor = () => {
-    if (currentTileProp('type') === 'folder') {
-      return defaultTileColors.folder;
-    }
-    if (currentTileProp('type') === 'button') {
-      return defaultTileColors.button;
-    }
-    if (currentTileProp('type') === 'board') {
-      return defaultTileColors.board;
-    }
-  };
+  const getDefaultColor = (type = currentTileProp('type')) =>
+    defaultTileColors[type];
 
   const getOriginalTileBackground = () => {
     return editingTiles?.[activeStep]?.backgroundColor || getDefaultColor();
@@ -524,12 +508,7 @@ function TileEditor(props) {
           }
         }
       } else {
-        setImageUploadedData([]);
-        setActiveStep(0);
-        setTile(defaultTile);
-        setIsEditImageBtnActive(false);
-        setLinkedBoard('');
-        setSelectedBackgroundColor('');
+        resetEditorState();
       }
     },
     [
