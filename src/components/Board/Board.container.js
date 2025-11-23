@@ -1517,8 +1517,36 @@ export class BoardContainer extends Component {
 
     if (!this.props.board) {
       return (
-        <div className="Board__loading">
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.9)', // Creates the dark overlay
+            zIndex: 9999, // Ensures it's on top of everything
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            color: 'white' // Makes text visible
+          }}
+        >
           <CircularProgress size={60} thickness={5} color="inherit" />
+
+          <h3
+            style={{
+              marginTop: '20px',
+              textAlign: 'center',
+              fontWeight: 'normal'
+            }}
+          >
+            Setting up your personalized boards...
+          </h3>
+          <p style={{ marginTop: '10px', fontSize: '16px', opacity: 0.8 }}>
+            This initial setup happens only once.
+          </p>
         </div>
       );
     }
