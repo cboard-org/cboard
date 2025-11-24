@@ -7,7 +7,7 @@ import { isEqual } from 'lodash';
 import { injectIntl, intlShape } from 'react-intl';
 import isMobile from 'ismobilejs';
 import domtoimage from 'dom-to-image';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { CircularProgress, LinearProgress } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -1524,28 +1524,48 @@ export class BoardContainer extends Component {
             left: 0,
             width: '100%',
             height: '100%',
-            backgroundColor: 'rgba(0, 0, 0, 0.9)', // Creates the dark overlay
-            zIndex: 9999, // Ensures it's on top of everything
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+            zIndex: 9999,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            color: 'white' // Makes text visible
+            color: 'white'
           }}
         >
-          <CircularProgress size={60} thickness={5} color="inherit" />
+          {/* Use two spinners for a more active look */}
+          <CircularProgress
+            size={50}
+            thickness={4}
+            style={{ color: '#4CAF50' }}
+          />
+          <CircularProgress
+            size={60}
+            thickness={5}
+            color="inherit"
+            style={{ position: 'absolute', opacity: 0.2 }}
+          />
 
           <h3
             style={{
               marginTop: '20px',
               textAlign: 'center',
-              fontWeight: 'normal'
+              fontWeight: 'normal',
+              marginBottom: '8px'
             }}
           >
             Setting up your personalized boards...
           </h3>
-          <p style={{ marginTop: '10px', fontSize: '16px', opacity: 0.8 }}>
-            This initial setup happens only once.
+
+          {/* LinearProgress */}
+          <LinearProgress
+            style={{ width: '300px', height: '8px', borderRadius: '4px' }}
+            variant="indeterminate"
+            color="secondary"
+          />
+
+          <p style={{ marginTop: '10px', fontSize: '14px', opacity: 0.7 }}>
+            Please wait, this process runs only once.
           </p>
         </div>
       );
