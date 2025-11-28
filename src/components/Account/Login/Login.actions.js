@@ -204,7 +204,8 @@ export function login({ email, password, activatedData }, type = 'local') {
             isRootBoardTourEnabled: false,
             isUnlockedTourEnabled: false,
             isSettingsTourEnabled: false,
-            isAnalyticsTourEnabled: false
+            isAnalyticsTourEnabled: false,
+            isSymbolSearchTourEnabled: false
           })
         );
       }

@@ -112,7 +112,11 @@ class HairColorSelect extends React.Component {
     const radioItemStyle = { padding: '2px' };
 
     return (
-      <div className="colorSelectDropdown" ref={this.wrapperRef}>
+      <div
+        id="HairColorOptions"
+        className="colorSelectDropdown"
+        ref={this.wrapperRef}
+      >
         <Tooltip title={hairColorLabel} aria-label={hairColorLabel}>
           <IconButton
             label={hairColorLabel}
