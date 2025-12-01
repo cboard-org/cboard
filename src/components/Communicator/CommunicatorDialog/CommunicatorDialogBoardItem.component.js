@@ -1039,6 +1039,9 @@ class CommunicatorDialogBoardItem extends React.Component {
           open={this.state.isSymbolSearchOpen}
           onChange={this.handleSymbolSearchChange}
           onClose={this.handleSymbolSearchClose}
+          disableTour={this.props.disableTour}
+          intl={intl}
+          isSymbolSearchTourEnabled={this.props.isSymbolSearchTourEnabled}
         />
       </div>
     );
@@ -1060,7 +1063,9 @@ CommunicatorDialogBoardItem.propTypes = {
   boardReport: PropTypes.func.isRequired,
   setRootBoard: PropTypes.func.isRequired,
   showNotification: PropTypes.func.isRequired,
-  selectedIds: PropTypes.arrayOf(PropTypes.string)
+  selectedIds: PropTypes.arrayOf(PropTypes.string),
+  isSymbolSearchTourEnabled: PropTypes.bool,
+  disableTour: PropTypes.func
 };
 
 export default CommunicatorDialogBoardItem;
