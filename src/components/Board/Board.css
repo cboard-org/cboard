@@ -16,6 +16,37 @@
   z-index: 1;
 }
 
+.Board__output {
+  transition: height 0.3s ease-in-out, max-height 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.Board__output--expanded {
+  height: 33vh !important;
+  max-height: 35vh !important;
+}
+
+.Board__output-toggle {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100 !important;
+  background-color: #fff !important;
+  border: 1px solid #ccc !important;
+  border-bottom: none !important;
+  border-radius: 12px 12px 0 0 !important;
+  width: 40px !important;
+  height: 20px !important;
+  padding: 0 !important;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.Board__output-toggle:hover {
+  background-color: #f0f0f0 !important;
+}
+
 .hidden {
   display: none;
 }
@@ -58,16 +89,20 @@
   z-index: 4;
   flex: 1;
   background: #fff;
-  direction: ltr; /* for grid */
+  direction: ltr;
+  /* for grid */
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
 .ScrollButtonsOnTheSides {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .ScrollButtonsOnTheSides::-webkit-scrollbar {
   display: none;
@@ -91,4 +126,106 @@
   overflow-y: hidden;
   overflow-x: hidden;
   flex: 1 1;
+}
+
+.Board__output--expanded .SymbolOutput__value {
+  min-width: 20vh !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Board__output--expanded .SymbolOutput__value img,
+.Board__output--expanded .SymbolOutput__value svg {
+  height: 70% !important;
+  width: auto !important;
+  max-width: 100%;
+}
+
+.Board__output--expanded .SymbolOutput__value div,
+.Board__output--expanded .SymbolOutput__value span {
+  font-size: 1.5rem !important;
+  line-height: 1.2;
+  margin-top: 5px;
+}
+
+.Board__output--expanded .SymbolOutput__value__IconButton {
+  top: 5px !important;
+  right: 5px !important;
+  transform: scale(1.5);
+}
+
+.Board__output .SymbolOutput__value {
+  transition: min-width 0.3s ease-in-out;
+}
+
+.Board__output .SymbolOutput__value .Symbol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.Board__output .SymbolOutput__value .Symbol .Symbol__image-container {
+  flex: none;
+  height: 70%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 0;
+  transition: height 0.3s ease-in-out, margin 0.3s ease-in-out;
+}
+
+.Board__output .SymbolOutput__value .Symbol .Symbol__label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  transition: font-size 0.3s ease-in-out, line-height 0.3s ease-in-out;
+}
+
+.Board__output .SymbolOutput__value img,
+.Board__output .SymbolOutput__value svg {
+  transition: height 0.3s ease-in-out;
+}
+
+.Board__output--expanded .SymbolOutput__value {
+  min-width: 25vh !important;
+}
+
+.Board__output--expanded .SymbolOutput__value .Symbol {
+  justify-content: center !important;
+}
+
+.Board__output--expanded .SymbolOutput__value .Symbol .Symbol__image-container {
+  height: 55% !important;
+  margin-bottom: 5px !important;
+}
+
+.Board__output--expanded
+  .SymbolOutput__value
+  .Symbol
+  .Symbol__image-container
+  .Symbol__image {
+  position: relative !important;
+  height: 100% !important;
+  width: auto !important;
+  max-width: 90% !important;
+}
+
+.Board__output--expanded .SymbolOutput__value .Symbol .Symbol__label {
+  font-size: 3vh !important;
+  line-height: 1.1 !important;
+  white-space: normal !important;
+  padding: 0 5px !important;
+}
+
+.Board__output--expanded .SymbolOutput__value__IconButton {
+  top: 5px !important;
+  right: 5px !important;
+  transform: scale(1.5);
+  transition: transform 0.3s ease-in-out;
 }

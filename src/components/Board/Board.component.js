@@ -11,6 +11,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Alert from '@material-ui/lab/Alert';
+import IconButton from '@material-ui/core/IconButton';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 import FixedGrid from '../FixedGrid';
 import Grid from '../Grid';
@@ -124,7 +127,8 @@ export class Board extends Component {
 
     this.state = {
       openTitleDialog: false,
-      titleDialogValue: props.board && props.board.name ? props.board.name : ''
+      titleDialogValue: props.board && props.board.name ? props.board.name : '',
+      isOutputExpanded: false
     };
 
     this.boardContainerRef = React.createRef();
@@ -136,6 +140,12 @@ export class Board extends Component {
       this.props.onScannerActive();
     }
   }
+
+  toggleOutputSize = () => {
+    this.setState(prevState => ({
+      isOutputExpanded: !prevState.isOutputExpanded
+    }));
+  };
 
   handleTileClick = tile => {
     const { onTileClick, isSelecting } = this.props;
@@ -364,10 +374,24 @@ export class Board extends Component {
           <Scannable>
             <div
               className={classNames('Board__output', {
-                hidden: this.props.displaySettings.hideOutputActive
+                hidden: this.props.displaySettings.hideOutputActive,
+                'Board__output--expanded': this.state.isOutputExpanded
               })}
             >
               <OutputContainer />
+
+              <IconButton
+                className="Board__output-toggle"
+                onClick={this.toggleOutputSize}
+                size="small"
+                aria-label={this.state.isOutputExpanded ? 'Collapse' : 'Expand'}
+              >
+                {this.state.isOutputExpanded ? (
+                  <ExpandLessIcon />
+                ) : (
+                  <ExpandMoreIcon />
+                )}
+              </IconButton>
             </div>
           </Scannable>
 
