@@ -18,7 +18,9 @@ class AuthScreen extends Component {
           heading={intl.formatMessage(messages.heading)}
           text={intl.formatMessage(messages.text)}
           onClose={() => {
-            history.action === 'PUSH' ? history.goBack() : history.push('/');
+            history.action === 'PUSH'
+              ? history.goBack()
+              : history.push('/board/root');
           }}
         />
       </div>
