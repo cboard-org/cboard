@@ -15,7 +15,10 @@ import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import FilterBar from '../../UI/FilterBar';
 import Symbol from '../Symbol';
-import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
+import {
+  LABEL_POSITION_BELOW,
+  LABEL_CASE_DEFAULT
+} from '../../Settings/Display/Display.constants';
 import messages from './SymbolSearch.messages';
 import './SymbolSearch.css';
 import SymbolNotFound from './SymbolNotFound';
@@ -384,6 +387,7 @@ export class SymbolSearch extends PureComponent {
           image={suggestion.src}
           keyPath={suggestion.keyPath}
           labelpos={LABEL_POSITION_BELOW}
+          labelCase={LABEL_CASE_DEFAULT}
         />
       </div>
     );
