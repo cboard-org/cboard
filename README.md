@@ -3,6 +3,7 @@
 [![Backers on Open Collective](https://opencollective.com/cboard/backers/badge.svg)](#backers)
 [![Sponsors on Open Collective](https://opencollective.com/cboard/sponsors/badge.svg)](#sponsors)
 [![cboard-org](https://circleci.com/gh/cboard-org/cboard.svg?style=shield)](https://app.circleci.com/pipelines/github/cboard-org/cboard)
+
 # Cboard - AAC Communication Board for browsers
 
 [Cboard](https://app.cboard.io) is an augmentative and alternative communication (AAC) web application, allowing users with speech and language impairments (autism, cerebral palsy) to communicate with symbols and text-to-speech.
@@ -89,10 +90,6 @@ If you need to add or change a secret, make the change to the `.private/local.js
 
 _Note: These keys/secrets are *not* required to run or develop Cboard._ They are used with scripts by some team members.
 
-## About the Cboard community
-
-[![Cauldron dashboard and metrics for the Cboard project community](https://cauldron.io/project/1683/stats.svg)](https://cauldron.io/project/1683 "Cauldron dashboard and metrics for the Cboard project community")
-
 ## Thanks
 
 ### Symbols sources
@@ -105,15 +102,15 @@ _Note: These keys/secrets are *not* required to run or develop Cboard._ They are
 
 ### Translation
 
-<img src="https://support.crowdin.com/assets/logos/crowdin-symbol.png" href="https://crowdin.com/" alt="Crowdin" width="40" height="40">[  Crowdin](https://crowdin.com/) - for providing the localization management platform.
+<img src="https://support.crowdin.com/assets/logos/crowdin-symbol.png" href="https://crowdin.com/" alt="Crowdin" width="40" height="40">[ Crowdin](https://crowdin.com/) - for providing the localization management platform.
 
 ### Testing platform
 
-<img src="https://avatars2.githubusercontent.com/u/1119453?s=200&v=4" href="https://www.browserstack.com/" alt="Browserstack" width="40" height="40">[  Browserstack](https://www.browserstack.com/) - for providing the automation infrastructure for testing.
+<img src="https://avatars2.githubusercontent.com/u/1119453?s=200&v=4" href="https://www.browserstack.com/" alt="Browserstack" width="40" height="40">[ Browserstack](https://www.browserstack.com/) - for providing the automation infrastructure for testing.
 
 ### Development
 
-<img src="./public/images/sponsers/css-tricks.svg" alt="CSS-Tricks" width="120" height="39">[  CSS Tricks](https://css-tricks.com) - for providing feedback and support from the early stage.
+<img src="./public/images/sponsers/css-tricks.svg" alt="CSS-Tricks" width="120" height="39">[ CSS Tricks](https://css-tricks.com) - for providing feedback and support from the early stage.
 
 ## Contributors
 
@@ -141,13 +138,12 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/cboard/sponsor/8/website" target="_blank"><img src="https://opencollective.com/cboard/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/cboard/sponsor/9/website" target="_blank"><img src="https://opencollective.com/cboard/sponsor/9/avatar.svg"></a>
 
-
 ## :memo: Legal & licenses
 
 Copyright © 2017-2024, Assistive Technology LLC & Cboard contributors.
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.
 
-* Code - [GPLv3](https://github.com/cboard-org/cboard/blob/master/LICENSE.txt)
-* Mulberry Symbols - [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-* ARASAAC Symbols - [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+- Code - [GPLv3](https://github.com/cboard-org/cboard/blob/master/LICENSE.txt)
+- Mulberry Symbols - [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+- ARASAAC Symbols - [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)

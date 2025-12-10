@@ -805,6 +805,9 @@ function TileEditor(props) {
           autoFill={autoFill}
           onChange={handleSymbolSearchChange}
           onClose={handleSymbolSearchClose}
+          disableTour={this.props.disableTour}
+          intl={intl}
+          isSymbolSearchTourEnabled={this.props.isSymbolSearchTourEnabled}
         />
       </FullScreenDialog>
     </div>
@@ -839,7 +842,9 @@ TileEditor.propTypes = {
   boards: PropTypes.array,
   userData: PropTypes.object,
   folders: PropTypes.array,
-  onAddApiBoard: PropTypes.func
+  onAddApiBoard: PropTypes.func,
+  isSymbolSearchTourEnabled: PropTypes.bool,
+  disableTour: PropTypes.func
 };
 
 export default injectIntl(TileEditor);

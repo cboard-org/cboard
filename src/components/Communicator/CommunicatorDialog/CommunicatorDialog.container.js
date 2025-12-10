@@ -619,7 +619,8 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
     language,
     activeBoardId: board.activeBoardId,
     dark: displaySettings.darkThemeActive,
-    communicatorTour
+    communicatorTour,
+    isSymbolSearchTourEnabled: app.liveHelp.isSymbolSearchTourEnabled
   };
 };
 
