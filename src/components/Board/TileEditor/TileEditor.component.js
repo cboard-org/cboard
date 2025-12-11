@@ -85,7 +85,9 @@ function TileEditor(props) {
     boards,
     userData,
     folders,
-    onAddApiBoard
+    onAddApiBoard,
+    isSymbolSearchTourEnabled,
+    disableTour
   } = props;
 
   const [activeStep, setActiveStep] = useState(0);
@@ -805,9 +807,9 @@ function TileEditor(props) {
           autoFill={autoFill}
           onChange={handleSymbolSearchChange}
           onClose={handleSymbolSearchClose}
-          disableTour={this.props.disableTour}
+          disableTour={disableTour}
           intl={intl}
-          isSymbolSearchTourEnabled={this.props.isSymbolSearchTourEnabled}
+          isSymbolSearchTourEnabled={isSymbolSearchTourEnabled}
         />
       </FullScreenDialog>
     </div>
