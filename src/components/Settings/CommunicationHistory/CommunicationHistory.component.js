@@ -12,58 +12,58 @@ import FullScreenDialog from '../../UI/FullScreenDialog';
 import ExportDialog from '../../CommunicationHistory/ExportDialog';
 import messages from './CommunicationHistory.messages';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
-    height: '100%'
+    height: '100%',
   },
   section: {
     marginBottom: theme.spacing(3),
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
   },
   sectionTitle: {
     marginBottom: theme.spacing(2),
     display: 'flex',
     alignItems: 'center',
-    gap: theme.spacing(1)
+    gap: theme.spacing(1),
   },
   description: {
     marginBottom: theme.spacing(2),
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
   },
   statsGrid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
     gap: theme.spacing(2),
-    marginBottom: theme.spacing(3)
+    marginBottom: theme.spacing(3),
   },
   statCard: {
     padding: theme.spacing(2),
     textAlign: 'center',
     backgroundColor: theme.palette.background.default,
-    borderRadius: theme.shape.borderRadius
+    borderRadius: theme.shape.borderRadius,
   },
   statValue: {
     fontSize: '2rem',
     fontWeight: 'bold',
-    color: theme.palette.primary.main
+    color: theme.palette.primary.main,
   },
   statLabel: {
     color: theme.palette.text.secondary,
-    marginTop: theme.spacing(0.5)
+    marginTop: theme.spacing(0.5),
   },
   actions: {
     display: 'flex',
     gap: theme.spacing(2),
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
   button: {
-    textTransform: 'none'
+    textTransform: 'none',
   },
   warningText: {
     color: theme.palette.warning.main,
-    marginTop: theme.spacing(2)
-  }
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const CommunicationHistory = ({
@@ -71,7 +71,7 @@ const CommunicationHistory = ({
   communicationHistory,
   clearHistory,
   userData,
-  history
+  history,
 }) => {
   const classes = useStyles();
   const [exportDialogOpen, setExportDialogOpen] = useState(false);
@@ -94,13 +94,14 @@ const CommunicationHistory = ({
     setClearConfirmOpen(false);
   };
 
-  // Calculate statistics
   const totalEntries = communicationHistory.length;
-  const symbolCount = communicationHistory.filter(e => e.type === 'symbol')
-    .length;
-  const phraseCount = communicationHistory.filter(e => e.type === 'phrase')
-    .length;
-  const uniqueDays = new Set(communicationHistory.map(e => e.date)).size;
+  const symbolCount = communicationHistory.filter(
+    (e) => e.type === 'symbol',
+  ).length;
+  const phraseCount = communicationHistory.filter(
+    (e) => e.type === 'phrase',
+  ).length;
+  const uniqueDays = new Set(communicationHistory.map((e) => e.date)).size;
 
   return (
     <FullScreenDialog
@@ -196,7 +197,6 @@ const CommunicationHistory = ({
         onClose={() => setExportDialogOpen(false)}
       />
 
-      {/* Clear Confirmation Dialog */}
       {clearConfirmOpen && (
         <FullScreenDialog
           open={clearConfirmOpen}
@@ -234,7 +234,7 @@ CommunicationHistory.propTypes = {
   communicationHistory: PropTypes.array.isRequired,
   clearHistory: PropTypes.func.isRequired,
   userData: PropTypes.object,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
 };
 
 export default injectIntl(CommunicationHistory);
