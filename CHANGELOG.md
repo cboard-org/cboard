@@ -1,8 +1,5 @@
 # Changelog
 
-- [**feature**] Added optional border for tiles when exporting boards as PDF. Users can now toggle "Show borders around tiles in PDF" in the export settings. [#1954](https://github.com/cboard-org/cboard/issues/1954)
-
-
 ## 1.7.1 (23/12/2020)
 
 #### Bug Fixes:
