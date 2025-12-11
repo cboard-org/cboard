@@ -9,7 +9,7 @@ const COLORS = {
   secondary: '#2196F3',
   text: '#333333',
   lightGray: '#F5F5F5',
-  border: '#DDDDDD'
+  border: '#DDDDDD',
 };
 
 class PDFReportService {
@@ -23,7 +23,7 @@ class PDFReportService {
       entries = [],
       userId = 'Unknown',
       userName = 'User',
-      dateRange = {}
+      dateRange = {},
     } = data;
 
     const docDefinition = {
@@ -38,21 +38,21 @@ class PDFReportService {
         {
           text: 'Communication History',
           style: 'sectionHeader',
-          pageBreak: 'before'
+          pageBreak: 'before',
         },
-        this.createEntriesTable(entries)
+        this.createEntriesTable(entries),
       ],
       styles: this.getStyles(),
       defaultStyle: {
-        font: 'Roboto'
-      }
+        font: 'Roboto',
+      },
     };
 
     return new Promise((resolve, reject) => {
       try {
         const pdfDoc = pdfMake.createPdf(docDefinition);
         pdfDoc.download(
-          `communication_report_${moment().format('YYYY-MM-DD_HHmmss')}.pdf`
+          `communication_report_${moment().format('YYYY-MM-DD_HHmmss')}.pdf`,
         );
         resolve({ success: true });
       } catch (error) {
@@ -68,15 +68,15 @@ class PDFReportService {
           text: 'Cboard Communication Report',
           style: 'headerText',
           alignment: 'left',
-          margin: [40, 20, 0, 0]
+          margin: [40, 20, 0, 0],
         },
         {
           text: `Page ${currentPage} of ${pageCount}`,
           style: 'headerText',
           alignment: 'right',
-          margin: [0, 20, 40, 0]
-        }
-      ]
+          margin: [0, 20, 40, 0],
+        },
+      ],
     });
   }
 
@@ -87,9 +87,9 @@ class PDFReportService {
           text: `Generated on ${moment().format('MMMM DD, YYYY HH:mm')}`,
           style: 'footerText',
           alignment: 'center',
-          margin: [0, 0, 0, 20]
-        }
-      ]
+          margin: [0, 0, 0, 20],
+        },
+      ],
     };
   }
 
@@ -98,7 +98,7 @@ class PDFReportService {
       text: 'Communication History Report',
       style: 'mainTitle',
       alignment: 'center',
-      margin: [0, 0, 0, 30]
+      margin: [0, 0, 0, 30],
     };
   }
 
@@ -117,32 +117,32 @@ class PDFReportService {
         body: [
           [
             { text: 'User Name:', style: 'label' },
-            { text: userName, style: 'value' }
+            { text: userName, style: 'value' },
           ],
           [
             { text: 'User ID:', style: 'label' },
-            { text: userId, style: 'value' }
+            { text: userId, style: 'value' },
           ],
           [
             { text: 'Date Range:', style: 'label' },
-            { text: `${fromDate} - ${toDate}`, style: 'value' }
+            { text: `${fromDate} - ${toDate}`, style: 'value' },
           ],
           [
             { text: 'Total Interactions:', style: 'label' },
-            { text: totalEntries.toString(), style: 'value' }
-          ]
-        ]
+            { text: totalEntries.toString(), style: 'value' },
+          ],
+        ],
       },
       layout: 'noBorders',
-      margin: [0, 0, 0, 30]
+      margin: [0, 0, 0, 30],
     };
   }
 
   createSummarySection(entries) {
-    const symbolCount = entries.filter(e => e.type === 'symbol').length;
-    const phraseCount = entries.filter(e => e.type === 'phrase').length;
-    const clearCount = entries.filter(e => e.type === 'clear').length;
-    const backspaceCount = entries.filter(e => e.type === 'backspace').length;
+    const symbolCount = entries.filter((e) => e.type === 'symbol').length;
+    const phraseCount = entries.filter((e) => e.type === 'phrase').length;
+    const clearCount = entries.filter((e) => e.type === 'clear').length;
+    const backspaceCount = entries.filter((e) => e.type === 'backspace').length;
 
     const frequentWords = this.getFrequentWords(entries);
     const sessionsData = this.getSessionsData(entries);
@@ -151,7 +151,7 @@ class PDFReportService {
       {
         text: 'Summary Statistics',
         style: 'sectionHeader',
-        margin: [0, 0, 0, 15]
+        margin: [0, 0, 0, 15],
       },
       {
         columns: [
@@ -161,18 +161,18 @@ class PDFReportService {
               {
                 text: 'Interaction Types',
                 style: 'subHeader',
-                margin: [0, 0, 0, 10]
+                margin: [0, 0, 0, 10],
               },
               {
                 ul: [
                   `Symbols/Words: ${symbolCount}`,
                   `Phrases: ${phraseCount}`,
                   `Clear Actions: ${clearCount}`,
-                  `Backspace Actions: ${backspaceCount}`
+                  `Backspace Actions: ${backspaceCount}`,
                 ],
-                style: 'summaryList'
-              }
-            ]
+                style: 'summaryList',
+              },
+            ],
           },
           {
             width: '50%',
@@ -180,7 +180,7 @@ class PDFReportService {
               {
                 text: 'Session Information',
                 style: 'subHeader',
-                margin: [0, 0, 0, 10]
+                margin: [0, 0, 0, 10],
               },
               {
                 ul: [
@@ -189,19 +189,19 @@ class PDFReportService {
                     sessionsData.avgInteractions
                   }`,
                   `Most Active Day: ${sessionsData.mostActiveDay}`,
-                  `Peak Hour: ${sessionsData.peakHour}`
+                  `Peak Hour: ${sessionsData.peakHour}`,
                 ],
-                style: 'summaryList'
-              }
-            ]
-          }
+                style: 'summaryList',
+              },
+            ],
+          },
         ],
-        margin: [0, 0, 0, 20]
+        margin: [0, 0, 0, 20],
       },
       {
         text: 'Most Frequently Used Words/Symbols',
         style: 'subHeader',
-        margin: [0, 10, 0, 10]
+        margin: [0, 10, 0, 10],
       },
       {
         table: {
@@ -209,23 +209,23 @@ class PDFReportService {
           body: [
             [
               { text: 'Word/Symbol', style: 'tableHeader' },
-              { text: 'Frequency', style: 'tableHeader' }
+              { text: 'Frequency', style: 'tableHeader' },
             ],
-            ...frequentWords.map(item => [
+            ...frequentWords.map((item) => [
               { text: item.word, style: 'tableCell' },
-              { text: item.count.toString(), style: 'tableCell' }
-            ])
-          ]
+              { text: item.count.toString(), style: 'tableCell' },
+            ]),
+          ],
         },
         layout: this.getTableLayout(),
-        margin: [0, 0, 0, 30]
-      }
+        margin: [0, 0, 0, 30],
+      },
     ];
   }
 
   createEntriesTable(entries) {
     const sortedEntries = [...entries].sort(
-      (a, b) => moment(b.timestamp).valueOf() - moment(a.timestamp).valueOf()
+      (a, b) => moment(b.timestamp).valueOf() - moment(a.timestamp).valueOf(),
     );
 
     const tableBody = [
@@ -233,32 +233,32 @@ class PDFReportService {
         { text: 'Date & Time', style: 'tableHeader' },
         { text: 'Type', style: 'tableHeader' },
         { text: 'Content', style: 'tableHeader' },
-        { text: 'Details', style: 'tableHeader' }
-      ]
+        { text: 'Details', style: 'tableHeader' },
+      ],
     ];
 
-    sortedEntries.forEach(entry => {
+    sortedEntries.forEach((entry) => {
       const row = [
         {
           text: moment(entry.timestamp).format('MMM DD, YYYY HH:mm:ss'),
           style: 'tableCell',
-          fontSize: 9
+          fontSize: 9,
         },
         {
           text: this.formatType(entry.type),
           style: 'tableCell',
-          fontSize: 9
+          fontSize: 9,
         },
         {
           text: this.formatContent(entry),
           style: 'tableCell',
-          fontSize: 9
+          fontSize: 9,
         },
         {
           text: this.formatDetails(entry),
           style: 'tableCell',
-          fontSize: 8
-        }
+          fontSize: 8,
+        },
       ];
       tableBody.push(row);
     });
@@ -267,9 +267,9 @@ class PDFReportService {
       table: {
         headerRows: 1,
         widths: ['22%', '15%', '38%', '25%'],
-        body: tableBody
+        body: tableBody,
       },
-      layout: this.getTableLayout()
+      layout: this.getTableLayout(),
     };
   }
 
@@ -279,14 +279,14 @@ class PDFReportService {
       phrase: 'Phrase',
       pictogram: 'Pictogram',
       clear: 'Clear',
-      backspace: 'Backspace'
+      backspace: 'Backspace',
     };
     return typeMap[type] || type;
   }
 
   formatContent(entry) {
     if (entry.type === 'phrase' && entry.symbols) {
-      return entry.symbols.map(s => s.label || '').join(' ');
+      return entry.symbols.map((s) => s.label || '').join(' ');
     }
     return entry.label || '-';
   }
@@ -316,12 +316,12 @@ class PDFReportService {
   getFrequentWords(entries, limit = 10) {
     const wordCount = {};
 
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.type === 'symbol' && entry.label) {
         const word = entry.label.toLowerCase();
         wordCount[word] = (wordCount[word] || 0) + 1;
       } else if (entry.type === 'phrase' && entry.symbols) {
-        entry.symbols.forEach(symbol => {
+        entry.symbols.forEach((symbol) => {
           if (symbol.label) {
             const word = symbol.label.toLowerCase();
             wordCount[word] = (wordCount[word] || 0) + 1;
@@ -341,7 +341,7 @@ class PDFReportService {
     const dayActivity = {};
     const hourActivity = {};
 
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       const sessionId = entry.sessionId || 'default';
       const day = moment(entry.timestamp).format('dddd');
       const hour = moment(entry.timestamp).hour();
@@ -361,7 +361,7 @@ class PDFReportService {
       'N/A';
 
     const peakHour = Object.entries(hourActivity).sort(
-      ([, a], [, b]) => b - a
+      ([, a], [, b]) => b - a,
     )[0];
     const peakHourFormatted = peakHour
       ? `${peakHour[0]}:00 - ${parseInt(peakHour[0]) + 1}:00`
@@ -371,7 +371,7 @@ class PDFReportService {
       totalSessions,
       avgInteractions,
       mostActiveDay,
-      peakHour: peakHourFormatted
+      peakHour: peakHourFormatted,
     };
   }
 
@@ -386,10 +386,10 @@ class PDFReportService {
       paddingRight: () => 8,
       paddingTop: () => 4,
       paddingBottom: () => 4,
-      fillColor: rowIndex => {
+      fillColor: (rowIndex) => {
         if (rowIndex === 0) return COLORS.primary;
         return rowIndex % 2 === 0 ? COLORS.lightGray : null;
-      }
+      },
     };
   }
 
@@ -398,59 +398,59 @@ class PDFReportService {
       mainTitle: {
         fontSize: 24,
         bold: true,
-        color: COLORS.primary
+        color: COLORS.primary,
       },
       sectionHeader: {
         fontSize: 16,
         bold: true,
         color: COLORS.primary,
-        margin: [0, 15, 0, 10]
+        margin: [0, 15, 0, 10],
       },
       subHeader: {
         fontSize: 13,
         bold: true,
-        color: COLORS.secondary
+        color: COLORS.secondary,
       },
       headerText: {
         fontSize: 10,
-        color: COLORS.text
+        color: COLORS.text,
       },
       footerText: {
         fontSize: 9,
-        color: COLORS.text
+        color: COLORS.text,
       },
       label: {
         fontSize: 11,
         bold: true,
-        color: COLORS.text
+        color: COLORS.text,
       },
       value: {
         fontSize: 11,
-        color: COLORS.text
+        color: COLORS.text,
       },
       tableHeader: {
         bold: true,
         fontSize: 11,
         color: 'white',
-        fillColor: COLORS.primary
+        fillColor: COLORS.primary,
       },
       tableCell: {
         fontSize: 10,
-        color: COLORS.text
+        color: COLORS.text,
       },
       summaryList: {
         fontSize: 11,
         color: COLORS.text,
-        lineHeight: 1.5
+        lineHeight: 1.5,
       },
       infoSection: {
-        margin: [0, 0, 0, 20]
-      }
+        margin: [0, 0, 0, 20],
+      },
     };
   }
 
   async generateImageFromURL(url) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const img = new Image();
       img.crossOrigin = 'anonymous';
       img.onload = () => {
@@ -475,7 +475,7 @@ class PDFReportService {
         resolve({
           image: canvas.toDataURL(),
           width: width,
-          height: height
+          height: height,
         });
       };
       img.onerror = () => {
@@ -486,4 +486,5 @@ class PDFReportService {
   }
 }
 
-export default new PDFReportService();
+const pdfReportService = new PDFReportService();
+export default pdfReportService;
