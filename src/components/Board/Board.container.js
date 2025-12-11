@@ -17,12 +17,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import {
   showNotification,
-  hideNotification
+  hideNotification,
 } from '../Notifications/Notifications.actions';
 import { deactivateScanner } from '../../providers/ScannerProvider/ScannerProvider.actions';
 import {
   speak,
-  cancelSpeech
+  cancelSpeech,
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
 import { getTilesListForNewOrder, moveOrderItem } from '../FixedGrid/utils';
 import {
@@ -47,17 +47,17 @@ import {
   downloadImages,
   createApiBoard,
   upsertApiBoard,
-  changeDefaultBoard
+  changeDefaultBoard,
 } from './Board.actions';
 import {
   trackSymbolSelection,
   trackPhraseSpoken,
   trackClearAction,
-  trackBackspaceAction
+  trackBackspaceAction,
 } from '../CommunicationHistory/CommunicationHistory.actions';
 import {
   addBoardCommunicator,
-  verifyAndUpsertCommunicator
+  verifyAndUpsertCommunicator,
 } from '../Communicator/Communicator.actions';
 import { disableTour } from '../App/App.actions';
 import TileEditor from './TileEditor';
@@ -66,7 +66,7 @@ import Board from './Board.component';
 import API from '../../api';
 import {
   SCANNING_METHOD_AUTOMATIC,
-  SCANNING_METHOD_MANUAL
+  SCANNING_METHOD_MANUAL,
 } from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
@@ -74,7 +74,7 @@ import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 import PremiumFeature from '../PremiumFeature';
 import {
   IS_BROWSING_FROM_APPLE_TOUCH,
-  IS_BROWSING_FROM_SAFARI
+  IS_BROWSING_FROM_SAFARI,
 } from '../../constants';
 import LoadingIcon from '../UI/LoadingIcon';
 import { resolveTileLabel } from '../../helpers';
@@ -103,7 +103,7 @@ export class BoardContainer extends Component {
     board: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
-      tiles: PropTypes.arrayOf(PropTypes.object)
+      tiles: PropTypes.arrayOf(PropTypes.object),
     }),
     /**
      * Board output
@@ -112,8 +112,8 @@ export class BoardContainer extends Component {
       PropTypes.shape({
         label: PropTypes.string,
         image: PropTypes.string,
-        vocalization: PropTypes.string
-      })
+        vocalization: PropTypes.string,
+      }),
     ),
     /**
      * Add boards from API
@@ -190,7 +190,7 @@ export class BoardContainer extends Component {
     isRootBoardTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func,
     isLiveMode: PropTypes.bool,
-    changeDefaultBoard: PropTypes.func
+    changeDefaultBoard: PropTypes.func,
   };
 
   state = {
@@ -208,7 +208,7 @@ export class BoardContainer extends Component {
     copiedTiles: [],
     isScroll: false,
     totalRows: null,
-    isCbuilderBoard: false
+    isCbuilderBoard: false,
   };
   constructor(props) {
     super(props);
@@ -218,8 +218,8 @@ export class BoardContainer extends Component {
   async componentDidMount() {
     const {
       match: {
-        params: { id }
-      }
+        params: { id },
+      },
     } = this.props;
 
     const {
@@ -229,7 +229,7 @@ export class BoardContainer extends Component {
       changeBoard,
       userData,
       history,
-      getApiObjects
+      getApiObjects,
       //downloadImages
     } = this.props;
 
@@ -244,25 +244,25 @@ export class BoardContainer extends Component {
 
     if (id && board && id === board.id) {
       //active board = requested board, use that board
-      boardExists = boards.find(b => b.id === board.id);
+      boardExists = boards.find((b) => b.id === board.id);
     } else if (id && board && id !== board.id) {
       //active board != requested board, use requested if exist otherwise use active
-      boardExists = boards.find(b => b.id === id);
+      boardExists = boards.find((b) => b.id === id);
       if (!boardExists) {
         try {
           const remoteBoard = await this.tryRemoteBoard(id);
           if (remoteBoard) {
             boardExists = remoteBoard;
           } else {
-            boardExists = boards.find(b => b.id === board.id);
+            boardExists = boards.find((b) => b.id === board.id);
           }
         } catch (err) {
-          boardExists = boards.find(b => b.id === board.id);
+          boardExists = boards.find((b) => b.id === board.id);
         }
       }
     } else if (id && !board) {
       //no active board but requested board, use requested
-      boardExists = boards.find(b => b.id === id);
+      boardExists = boards.find((b) => b.id === id);
       if (!boardExists) {
         try {
           boardExists = await this.tryRemoteBoard(id);
@@ -272,17 +272,17 @@ export class BoardContainer extends Component {
       }
     } else if (!id && !!board) {
       //no requested board, use active board
-      boardExists = boards.find(b => b.id === board.id);
+      boardExists = boards.find((b) => b.id === board.id);
     } else {
       //neither requested nor active board, use communicator root board
-      boardExists = boards.find(b => b.id === communicator.rootBoard);
+      boardExists = boards.find((b) => b.id === communicator.rootBoard);
     }
 
     if (!boardExists) {
       // try the root board
-      boardExists = boards.find(b => b.id === communicator.rootBoard);
+      boardExists = boards.find((b) => b.id === communicator.rootBoard);
       if (!boardExists) {
-        boardExists = boards.find(b => b.id !== '');
+        boardExists = boards.find((b) => b.id !== '');
       }
     }
     const boardId = boardExists.id;
@@ -303,10 +303,12 @@ export class BoardContainer extends Component {
         boards,
         changeBoard,
         previousBoard,
-        historyRemoveBoard
+        historyRemoveBoard,
       } = this.props;
 
-      const boardExists = boards.find(b => b.id === nextProps.match.params.id);
+      const boardExists = boards.find(
+        (b) => b.id === nextProps.match.params.id,
+      );
       if (boardExists) {
         // Was a browser back action?
         if (
@@ -338,25 +340,25 @@ export class BoardContainer extends Component {
   }
 
   toggleSelectMode() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       isSelecting: !prevState.isSelecting,
       isSelectAll: false,
-      selectedTileIds: []
+      selectedTileIds: [],
     }));
   }
 
   selectAllTiles() {
     const { board } = this.props;
-    const allTileIds = board.tiles.map(tile => tile.id);
+    const allTileIds = board.tiles.map((tile) => tile.id);
 
     this.setState({
-      selectedTileIds: allTileIds
+      selectedTileIds: allTileIds,
     });
   }
 
   selectTile(tileId) {
     this.setState({
-      selectedTileIds: [...this.state.selectedTileIds, tileId]
+      selectedTileIds: [...this.state.selectedTileIds, tileId],
     });
   }
 
@@ -443,25 +445,25 @@ export class BoardContainer extends Component {
     await audio.play();
   }
 
-  handleEditBoardTitle = name => {
+  handleEditBoardTitle = (name) => {
     const { board, updateBoard } = this.props;
     const titledBoard = {
       ...board,
-      name: name
+      name: name,
     };
     const processedBoard = this.updateIfFeaturedBoard(titledBoard);
     updateBoard(processedBoard);
     this.saveApiBoardOperation(processedBoard);
   };
 
-  saveApiBoardOperation = async board => {
+  saveApiBoardOperation = async (board) => {
     const {
       userData,
       communicator,
       replaceBoard,
       updateApiObjectsNoChild,
       lang,
-      verifyAndUpsertCommunicator
+      verifyAndUpsertCommunicator,
     } = this.props;
 
     var createBoard = false;
@@ -475,14 +477,14 @@ export class BoardContainer extends Component {
           author: userData.name,
           email: userData.email,
           hidden: false,
-          locale: lang
+          locale: lang,
         };
         //check if user has an own communicator
         if (communicator.email !== userData.email) {
           const communicatorData = {
             ...communicator,
             boards: boardData.id === 'root' ? ['root'] : ['root', boardData.id],
-            rootBoard: 'root'
+            rootBoard: 'root',
           };
           verifyAndUpsertCommunicator(communicatorData);
         }
@@ -491,7 +493,7 @@ export class BoardContainer extends Component {
           createBoard = true;
           boardData = {
             ...boardData,
-            isPublic: false
+            isPublic: false,
           };
         } else {
           //update the board
@@ -501,7 +503,7 @@ export class BoardContainer extends Component {
         const boardId = await updateApiObjectsNoChild(
           boardData,
 
-          createBoard
+          createBoard,
         );
         if (createBoard) {
           replaceBoard({ ...boardData }, { ...boardData, id: boardId });
@@ -525,13 +527,13 @@ export class BoardContainer extends Component {
     this.setState({ isFixedBoard: !this.state.isFixedBoard });
     const newBoard = {
       ...board,
-      isFixed: !this.state.isFixedBoard
+      isFixed: !this.state.isFixedBoard,
     };
     if (!board.grid) {
       const defaultGrid = {
         rows: DEFAULT_ROWS_NUMBER,
         columns: DEFAULT_COLUMNS_NUMBER,
-        order: this.getDefaultOrdering(board.tiles)
+        order: this.getDefaultOrdering(board.tiles),
       };
       newBoard.grid = defaultGrid;
     }
@@ -540,7 +542,7 @@ export class BoardContainer extends Component {
     this.saveApiBoardOperation(processedBoard);
   };
 
-  getDefaultOrdering = tiles => {
+  getDefaultOrdering = (tiles) => {
     let order = [];
     let tilesIndex = 0;
     for (var i = 0; i < DEFAULT_ROWS_NUMBER; i++) {
@@ -561,7 +563,7 @@ export class BoardContainer extends Component {
     this.setState({ tileEditorOpen: false });
   };
 
-  handleEditTileEditorSubmit = tiles => {
+  handleEditTileEditorSubmit = (tiles) => {
     const { board, editTiles, userData } = this.props;
     this.updateIfFeaturedBoard(board);
     editTiles(tiles, board.id);
@@ -573,7 +575,7 @@ export class BoardContainer extends Component {
     this.toggleSelectMode();
   };
 
-  handleAddTileEditorSubmit = async tile => {
+  handleAddTileEditorSubmit = async (tile) => {
     const {
       userData,
       createTile,
@@ -581,7 +583,7 @@ export class BoardContainer extends Component {
       createBoard,
       switchBoard,
       addBoardCommunicator,
-      history
+      history,
     } = this.props;
     const boardData = {
       id: tile.loadBoard,
@@ -591,7 +593,7 @@ export class BoardContainer extends Component {
       tiles: [],
       isPublic: false,
       email: userData.email ? userData.email : board.email,
-      author: userData.name ? userData.name : board.author
+      author: userData.name ? userData.name : board.author,
     };
     if (tile.loadBoard && !tile.linkedBoard) {
       createBoard(boardData);
@@ -617,10 +619,10 @@ export class BoardContainer extends Component {
     }
   };
 
-  updateIfFeaturedBoard = board => {
+  updateIfFeaturedBoard = (board) => {
     const { userData, updateBoard, intl, lang } = this.props;
     let boardData = {
-      ...board
+      ...board,
     };
     if (
       'name' in userData &&
@@ -637,14 +639,14 @@ export class BoardContainer extends Component {
         email: userData.email,
         hidden: false,
         isPublic: false,
-        locale: lang
+        locale: lang,
       };
       updateBoard(boardData);
     }
     return boardData;
   };
 
-  nameFromKey = board => {
+  nameFromKey = (board) => {
     let nameFromKey = undefined;
     if (board.nameKey) {
       const nameKeyArray = board.nameKey.split('.');
@@ -657,7 +659,7 @@ export class BoardContainer extends Component {
     this.setState({
       tileEditorOpen: true,
       selectedTileIds: [],
-      isSelecting: false
+      isSelecting: false,
     });
   };
 
@@ -670,14 +672,14 @@ export class BoardContainer extends Component {
         newOrder = resize(
           board.grid.order,
           [newRows, board.grid.columns],
-          null
+          null,
         );
       } else {
         newOrder = this.getDefaultOrdering(board.tiles);
       }
       const tilesForNewOrder = getTilesListForNewOrder({
         tileItems: board.tiles,
-        order: newOrder
+        order: newOrder,
       });
 
       const newBoard = {
@@ -686,8 +688,8 @@ export class BoardContainer extends Component {
         grid: {
           ...board.grid,
           rows: newRows,
-          order: newOrder
-        }
+          order: newOrder,
+        },
       };
       const processedBoard = this.updateIfFeaturedBoard(newBoard);
       updateBoard(processedBoard);
@@ -709,14 +711,14 @@ export class BoardContainer extends Component {
         newOrder = resize(
           board.grid.order,
           [board.grid.rows, newColumns],
-          null
+          null,
         );
       } else {
         newOrder = this.getDefaultOrdering(board.tiles);
       }
       const tilesForNewOrder = getTilesListForNewOrder({
         tileItems: board.tiles,
-        order: newOrder
+        order: newOrder,
       });
       const newBoard = {
         ...board,
@@ -724,8 +726,8 @@ export class BoardContainer extends Component {
         grid: {
           ...board.grid,
           columns: newColumns,
-          order: newOrder
-        }
+          order: newOrder,
+        },
       };
       const processedBoard = this.updateIfFeaturedBoard(newBoard);
       updateBoard(processedBoard);
@@ -744,9 +746,9 @@ export class BoardContainer extends Component {
       return -1;
     });
 
-    const tilesIds = currentLayout.map(gridTile => gridTile.i);
-    const tiles = tilesIds.map(t => {
-      return board.tiles.find(tile => {
+    const tilesIds = currentLayout.map((gridTile) => gridTile.i);
+    const tiles = tilesIds.map((t) => {
+      return board.tiles.find((tile) => {
         if (!tile) {
           return false;
         }
@@ -756,7 +758,7 @@ export class BoardContainer extends Component {
 
     if (navigationSettings.bigScrollButtonsActive) {
       const cols =
-        currentLayout.reduce(function(valorAnterior, item) {
+        currentLayout.reduce(function (valorAnterior, item) {
           if (item.x > valorAnterior) return item.x;
           return valorAnterior;
         }, 0) + 1;
@@ -787,8 +789,8 @@ export class BoardContainer extends Component {
       ...board,
       grid: {
         ...board.grid,
-        order: newOrder
-      }
+        order: newOrder,
+      },
     };
     const processedBoard = this.updateIfFeaturedBoard(newBoard);
     updateBoard(processedBoard);
@@ -800,7 +802,7 @@ export class BoardContainer extends Component {
       isLocked: !state.isLocked,
       isSaving: false,
       isSelecting: false,
-      selectedTileIds: []
+      selectedTileIds: [],
     }));
   };
 
@@ -815,15 +817,15 @@ export class BoardContainer extends Component {
       this.selectAllTiles();
     }
 
-    this.setState(prevState => ({
-      isSelectAll: !prevState.isSelectAll
+    this.setState((prevState) => ({
+      isSelectAll: !prevState.isSelectAll,
     }));
   };
 
-  handleTileClick = clickedTile => {
+  handleTileClick = (clickedTile) => {
     const tile = {
       ...clickedTile,
-      label: resolveTileLabel(clickedTile, this.props.intl)
+      label: resolveTileLabel(clickedTile, this.props.intl),
     };
     if (this.state.isSelecting) {
       this.toggleTileSelect(tile.id);
@@ -842,7 +844,7 @@ export class BoardContainer extends Component {
       isLiveMode,
       trackSymbolSelection,
       userData,
-      board
+      board,
     } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
 
@@ -859,10 +861,10 @@ export class BoardContainer extends Component {
 
     if (tile.loadBoard) {
       const nextBoard =
-        boards.find(b => b.id === tile.loadBoard) ||
+        boards.find((b) => b.id === tile.loadBoard) ||
         // If the board id is invalid, try falling back to a board
         // with the right name.
-        boards.find(b => b.name === tile.label);
+        boards.find((b) => b.name === tile.label);
       if (nextBoard) {
         changeBoard(nextBoard.id);
         this.props.history.push(nextBoard.id);
@@ -873,15 +875,14 @@ export class BoardContainer extends Component {
         showNotification(intl.formatMessage(messages.boardMissed));
       }
     } else {
-      // Track the symbol selection in communication history
       const enhancedTile = {
         ...tile,
-        boardId: board.id
+        boardId: board.id,
       };
       trackSymbolSelection(
         enhancedTile,
         userData?.email || userData?.id || null,
-        this.props.sessionId || null
+        this.props.sessionId || null,
       );
 
       clickSymbol(tile.label);
@@ -895,7 +896,7 @@ export class BoardContainer extends Component {
           image: '',
           label: '',
           labelKey: '',
-          type: 'live'
+          type: 'live',
         };
         changeOutput([...this.props.output, tile, liveTile]);
       } else {
@@ -921,13 +922,13 @@ export class BoardContainer extends Component {
     }
 
     this.setState({
-      selectedTileIds: []
+      selectedTileIds: [],
     });
     showNotification(intl.formatMessage(messages.tilesDeleted));
     this.toggleSelectMode();
   };
 
-  handleLockNotify = countdown => {
+  handleLockNotify = (countdown) => {
     const { intl, showNotification, hideNotification } = this.props;
     const quickUnlockActive = this.props.navigationSettings?.quickUnlockActive;
 
@@ -946,7 +947,7 @@ export class BoardContainer extends Component {
     }
 
     const clicksToUnlock = `${countdown} ${intl.formatMessage(
-      messages.clicksToUnlock
+      messages.clicksToUnlock,
     )}`;
 
     hideNotification();
@@ -960,11 +961,11 @@ export class BoardContainer extends Component {
     const {
       scannerSettings: { strategy },
       showNotification,
-      intl
+      intl,
     } = this.props;
     const messagesKeyMap = {
       [SCANNING_METHOD_MANUAL]: messages.scannerManualStrategy,
-      [SCANNING_METHOD_AUTOMATIC]: messages.scannerAutomaticStrategy
+      [SCANNING_METHOD_AUTOMATIC]: messages.scannerAutomaticStrategy,
     };
     showNotification(intl.formatMessage(messagesKeyMap[strategy]));
 
@@ -980,7 +981,7 @@ export class BoardContainer extends Component {
       const { userData } = this.props;
       try {
         var blob = new Blob([this.convertDataURIToBinary(tile.sound)], {
-          type: 'audio/mp3; codecs=opus'
+          type: 'audio/mp3; codecs=opus',
         });
         const audioUrl = await API.uploadFile(blob, userData.email + '.mp3');
         tile.sound = audioUrl;
@@ -1009,7 +1010,7 @@ export class BoardContainer extends Component {
     tile = null,
     deletedTilesiIds = null,
     editedTiles = null,
-    processedBoard = null
+    processedBoard = null,
   ) => {
     const {
       userData,
@@ -1022,12 +1023,12 @@ export class BoardContainer extends Component {
       replaceBoard,
       updateBoard,
       switchBoard,
-      lang
+      lang,
     } = this.props;
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({
-        isSaving: true
+        isSaving: true,
       });
 
       if (tile && tile.sound && tile.sound.startsWith('data')) {
@@ -1048,16 +1049,16 @@ export class BoardContainer extends Component {
       let uTiles = [];
       if (deletedTilesiIds) {
         uTiles = board.tiles.filter(
-          cTile => !deletedTilesiIds.includes(cTile.id)
+          (cTile) => !deletedTilesiIds.includes(cTile.id),
         );
       }
       if (editedTiles) {
         uTiles = board.tiles.map(
-          cTile => editedTiles.find(s => s.id === cTile.id) || cTile
+          (cTile) => editedTiles.find((s) => s.id === cTile.id) || cTile,
         );
       }
       if (tile && tile.type !== 'board') {
-        uTiles = board.tiles.find(t => t.id === tile.id)
+        uTiles = board.tiles.find((t) => t.id === tile.id)
           ? [...board.tiles]
           : [...board.tiles, tile];
       }
@@ -1077,7 +1078,7 @@ export class BoardContainer extends Component {
             author: userData.name,
             email: userData.email,
             hidden: false,
-            locale: lang
+            locale: lang,
           };
       //check if user has an own communicator
       if (communicator.email !== userData.email) {
@@ -1095,7 +1096,7 @@ export class BoardContainer extends Component {
           author: userData.name,
           email: userData.email,
           locale: lang,
-          caption: tile.image
+          caption: tile.image,
         };
         childBoardData = { ...boardData };
         createChildBoard = true;
@@ -1106,7 +1107,7 @@ export class BoardContainer extends Component {
         createParentBoard = true;
         parentBoardData = {
           ...parentBoardData,
-          isPublic: false
+          isPublic: false,
         };
       } else {
         //update the parent
@@ -1117,46 +1118,46 @@ export class BoardContainer extends Component {
       if (tile && tile.type === 'board') {
         //child becomes parent
         updateApiObjectsNoChild(childBoardData, true)
-          .then(parentBoardId => {
+          .then((parentBoardId) => {
             switchBoard(parentBoardId);
             this.props.history.replace(`/board/${parentBoardId}`, []);
             this.setState({ isSaving: false });
           })
-          .catch(e => {
+          .catch((e) => {
             this.setState({ isSaving: false });
           });
       } else {
         if (!createChildBoard) {
           updateApiObjectsNoChild(parentBoardData, createParentBoard)
-            .then(parentBoardId => {
+            .then((parentBoardId) => {
               if (createParentBoard) {
                 replaceBoard(
                   { ...parentBoardData },
-                  { ...parentBoardData, id: parentBoardId }
+                  { ...parentBoardData, id: parentBoardId },
                 );
               }
               this.historyReplaceBoardId(parentBoardId);
               this.setState({ isSaving: false });
             })
-            .catch(e => {
+            .catch((e) => {
               this.setState({ isSaving: false });
             });
         } else {
           updateApiObjects(childBoardData, parentBoardData, createParentBoard)
-            .then(parentBoardId => {
+            .then((parentBoardId) => {
               if (createParentBoard) {
                 /* Here the parentBoardData is not updated with the values
                 that updatedApiObjects store on the API. Inside the boards are already updated
                 an the value is not replaced because the oldboard Id was replaced on the updateApiObjects inside createApiBoardSuccess */
                 replaceBoard(
                   { ...parentBoardData },
-                  { ...parentBoardData, id: parentBoardId }
+                  { ...parentBoardData, id: parentBoardId },
                 );
               }
               this.historyReplaceBoardId(parentBoardId);
               this.setState({ isSaving: false });
             })
-            .catch(e => {
+            .catch((e) => {
               this.setState({ isSaving: false });
             });
         }
@@ -1191,7 +1192,7 @@ export class BoardContainer extends Component {
     const { intl, showNotification, history, switchBoard } = this.props;
     try {
       this.setState({
-        isSaving: true
+        isSaving: true,
       });
 
       let toCopyBoard = null;
@@ -1208,7 +1209,7 @@ export class BoardContainer extends Component {
       history.replace(`/board/${copiedBoard.id}`, []);
       this.setState({
         copyPublicBoard: false,
-        blockedPrivateBoard: false
+        blockedPrivateBoard: false,
       });
       showNotification(intl.formatMessage(messages.boardCopiedSuccessfully));
     } catch (err) {
@@ -1217,7 +1218,7 @@ export class BoardContainer extends Component {
       this.handleCloseDialog();
     }
     this.setState({
-      isSaving: false
+      isSaving: false,
     });
   };
 
@@ -1230,7 +1231,7 @@ export class BoardContainer extends Component {
       updateApiObjectsNoChild,
       boards,
       intl,
-      verifyAndUpsertCommunicator
+      verifyAndUpsertCommunicator,
     } = this.props;
 
     //prevent shit
@@ -1239,7 +1240,7 @@ export class BoardContainer extends Component {
     }
     if (records) {
       //get the list of next boards in records
-      let nextBoardsRecords = records.map(entry => entry.next);
+      let nextBoardsRecords = records.map((entry) => entry.next);
       if (nextBoardsRecords.includes(board.id)) {
         return null;
       }
@@ -1251,7 +1252,7 @@ export class BoardContainer extends Component {
       id: shortid.generate(),
       hidden: false,
       author: '',
-      email: ''
+      email: '',
     };
     if (!newBoard.name) {
       newBoard.name = newBoard.nameKey
@@ -1262,7 +1263,7 @@ export class BoardContainer extends Component {
       newBoard = {
         ...newBoard,
         author: userData.name,
-        email: userData.email
+        email: userData.email,
       };
     }
     createBoard(newBoard);
@@ -1284,7 +1285,7 @@ export class BoardContainer extends Component {
         const boardId = await updateApiObjectsNoChild(newBoard, true);
         newBoard = {
           ...newBoard,
-          id: boardId
+          id: boardId,
         };
       } catch (err) {
         console.log(err.message);
@@ -1304,7 +1305,7 @@ export class BoardContainer extends Component {
         } catch (err) {
           if (!err.respose || err.response?.status === 404) {
             //look for this board in available boards
-            const localBoard = boards.find(b => b.id === tile.loadBoard);
+            const localBoard = boards.find((b) => b.id === tile.loadBoard);
             if (localBoard) {
               await this.createBoardsRecursively(localBoard, records);
             }
@@ -1318,10 +1319,10 @@ export class BoardContainer extends Component {
   updateBoardReferences(board, newBoard, records) {
     const { boards, updateBoard } = this.props;
     //get the list of prev boards in records, but remove the current board
-    let prevBoardsRecords = records.map(entry => entry.prev);
-    prevBoardsRecords = prevBoardsRecords.filter(id => id !== newBoard.id);
+    let prevBoardsRecords = records.map((entry) => entry.prev);
+    prevBoardsRecords = prevBoardsRecords.filter((id) => id !== newBoard.id);
     //look for reference to the original board id
-    boards.forEach(b => {
+    boards.forEach((b) => {
       b.tiles.forEach((tile, index) => {
         if (
           //general case: tile can contains reference to the board
@@ -1331,7 +1332,7 @@ export class BoardContainer extends Component {
         ) {
           b.tiles.splice(index, 1, {
             ...tile,
-            loadBoard: newBoard.id
+            loadBoard: newBoard.id,
           });
           try {
             updateBoard(b);
@@ -1345,10 +1346,10 @@ export class BoardContainer extends Component {
           tile.loadBoard &&
           prevBoardsRecords.includes(tile.loadBoard)
         ) {
-          const el = records.find(e => e.prev === tile.loadBoard);
+          const el = records.find((e) => e.prev === tile.loadBoard);
           b.tiles.splice(index, 1, {
             ...tile,
-            loadBoard: el.next
+            loadBoard: el.next,
           });
           try {
             updateBoard(b);
@@ -1366,7 +1367,7 @@ export class BoardContainer extends Component {
     this.setState({
       copyPublicBoard: false,
       blockedPrivateBoard: false,
-      isCbuilderBoard: false
+      isCbuilderBoard: false,
     });
   };
 
@@ -1374,7 +1375,7 @@ export class BoardContainer extends Component {
     const { board, updateBoard } = this.props;
     const newBoard = {
       ...board,
-      isPublic: !board.isPublic
+      isPublic: !board.isPublic,
     };
     const processedBoard = this.updateIfFeaturedBoard(newBoard);
     updateBoard(processedBoard);
@@ -1385,7 +1386,7 @@ export class BoardContainer extends Component {
     const { intl, showNotification } = this.props;
     const copiedTiles = this.selectedTiles();
     this.setState({
-      copiedTiles: copiedTiles
+      copiedTiles: copiedTiles,
     });
     showNotification(intl.formatMessage(messages.tilesCopiedSuccessfully));
   };
@@ -1397,7 +1398,7 @@ export class BoardContainer extends Component {
       for await (const tile of this.state.copiedTiles) {
         const newTile = {
           ...tile,
-          id: shortid.generate()
+          id: shortid.generate(),
         };
         if (tile.loadBoard) {
           createTile(newTile, board.id);
@@ -1416,14 +1417,8 @@ export class BoardContainer extends Component {
   };
 
   async pasteBoardsRecursively(folderTile, parentBoardId, firstPastedFolderId) {
-    const {
-      createBoard,
-      userData,
-      updateBoard,
-      createApiBoard,
-      boards,
-      intl
-    } = this.props;
+    const { createBoard, userData, updateBoard, createApiBoard, boards, intl } =
+      this.props;
 
     //prevent shit
     if (!folderTile || !folderTile.loadBoard) {
@@ -1431,12 +1426,12 @@ export class BoardContainer extends Component {
     }
 
     let newBoard = {
-      ...boards.find(b => b.id === folderTile.loadBoard),
+      ...boards.find((b) => b.id === folderTile.loadBoard),
       isPublic: false,
       id: shortid.generate(),
       hidden: false,
       author: '',
-      email: ''
+      email: '',
     };
 
     const tilesWithFatherRemoved = newBoard.tiles?.reduce((newTiles, tile) => {
@@ -1455,7 +1450,7 @@ export class BoardContainer extends Component {
       newBoard = {
         ...newBoard,
         author: userData.name,
-        email: userData.email
+        email: userData.email,
       };
     }
     // Prevent creating a board without the tiles property
@@ -1468,11 +1463,11 @@ export class BoardContainer extends Component {
         console.error(err.message);
       }
     }
-    const parentBoard = boards.find(b => b.id === parentBoardId);
-    const newTiles = parentBoard.tiles.map(tile =>
+    const parentBoard = boards.find((b) => b.id === parentBoardId);
+    const newTiles = parentBoard.tiles.map((tile) =>
       tile && tile.id === folderTile.id
         ? { ...tile, loadBoard: newBoard.id }
-        : tile
+        : tile,
     );
     const boardData = { ...parentBoard, tiles: newTiles };
     updateBoard(boardData);
@@ -1483,7 +1478,7 @@ export class BoardContainer extends Component {
           ...boardData,
           hidden: false,
           author: userData.name,
-          email: userData.email
+          email: userData.email,
         };
         if (!newParentBoard.name) {
           newParentBoard.name = newParentBoard.nameKey
@@ -1500,12 +1495,12 @@ export class BoardContainer extends Component {
     for await (const tile of newBoard.tiles) {
       if (tile && tile.loadBoard && !tile.linkedBoard) {
         //look for this board in available boards
-        const newBoardToCopy = boards.find(b => b.id === tile.loadBoard);
+        const newBoardToCopy = boards.find((b) => b.id === tile.loadBoard);
         if (newBoardToCopy) {
           await this.pasteBoardsRecursively(
             tile,
             newBoard.id,
-            firstPastedFolderId
+            firstPastedFolderId,
           );
         }
       }
@@ -1515,8 +1510,8 @@ export class BoardContainer extends Component {
 
   selectedTiles = () => {
     return this.state.selectedTileIds
-      ? this.state.selectedTileIds.map(selectedTileId => {
-          const tiles = this.props.board.tiles.filter(tile => {
+      ? this.state.selectedTileIds.map((selectedTileId) => {
+          const tiles = this.props.board.tiles.filter((tile) => {
             return tile.id === selectedTileId;
           })[0];
 
@@ -1525,8 +1520,8 @@ export class BoardContainer extends Component {
       : [];
   };
 
-  handleAddApiBoard = async boardId => {
-    if (!this.props.boards.find(board => board.id === boardId)) {
+  handleAddApiBoard = async (boardId) => {
+    if (!this.props.boards.find((board) => board.id === boardId)) {
       try {
         const board = await API.getBoard(boardId);
         this.props.addBoards([board]);
@@ -1543,7 +1538,7 @@ export class BoardContainer extends Component {
       focusTile,
       isPremiumRequiredModalOpen,
       improvedPhrase,
-      speak
+      speak,
     } = this.props;
     const { isCbuilderBoard } = this.state;
 
@@ -1557,8 +1552,8 @@ export class BoardContainer extends Component {
 
     const disableBackButton = navHistory.length === 1;
     const editingTiles = this.state.tileEditorOpen
-      ? this.state.selectedTileIds.map(selectedTileId => {
-          const tiles = board.tiles.filter(tile => {
+      ? this.state.selectedTileIds.map((selectedTileId) => {
+          const tiles = board.tiles.filter((tile) => {
             return tile.id === selectedTileId;
           })[0];
 
@@ -1634,7 +1629,7 @@ export class BoardContainer extends Component {
             {this.props.intl.formatMessage(
               isCbuilderBoard
                 ? messages.importCbuilderBoardTitle
-                : messages.copyPublicBoardTitle
+                : messages.copyPublicBoardTitle,
             )}
           </DialogTitle>
           <DialogContent>
@@ -1642,7 +1637,7 @@ export class BoardContainer extends Component {
               {this.props.intl.formatMessage(
                 isCbuilderBoard
                   ? messages.importCbuilderBoardDesc
-                  : messages.copyPublicBoardDesc
+                  : messages.copyPublicBoardDesc,
               )}
             </DialogContentText>
           </DialogContent>
@@ -1682,7 +1677,7 @@ export class BoardContainer extends Component {
             {this.props.intl.formatMessage(
               isCbuilderBoard
                 ? messages.importCbuilderBoardTitle
-                : messages.blockedPrivateBoardTitle
+                : messages.blockedPrivateBoardTitle,
             )}
           </DialogTitle>
           <DialogContent>
@@ -1690,7 +1685,7 @@ export class BoardContainer extends Component {
               {this.props.intl.formatMessage(
                 isCbuilderBoard
                   ? messages.loginToImport
-                  : messages.blockedPrivateBoardDesc
+                  : messages.blockedPrivateBoardDesc,
               )}
             </DialogContentText>
           </DialogContent>
@@ -1711,10 +1706,10 @@ export class BoardContainer extends Component {
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}
           boards={this.props.boards.filter(
-            board =>
+            (board) =>
               board !== null &&
               board.id !== null &&
-              this.props.communicator.boards.includes(board.id)
+              this.props.communicator.boards.includes(board.id),
           )}
           userData={this.props.userData}
           folders={this.props.boards}
@@ -1732,11 +1727,11 @@ const mapStateToProps = ({
   scanner,
   app: { displaySettings, navigationSettings, userData, isConnected, liveHelp },
   language: { lang },
-  subscription: { premiumRequiredModalState }
+  subscription: { premiumRequiredModalState },
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
-    communicator => communicator.id === activeCommunicatorId
+    (communicator) => communicator.id === activeCommunicatorId,
   );
   const activeBoardId = board.activeBoardId;
   const emptyVoiceAlert =
@@ -1746,7 +1741,7 @@ const mapStateToProps = ({
   const offlineVoiceAlert = !isConnected && speech.options.isCloud;
   return {
     communicator: currentCommunicator,
-    board: board.boards.find(board => board.id === activeBoardId),
+    board: board.boards.find((board) => board.id === activeBoardId),
     boards: board.boards,
     output: board.output,
     isLiveMode: board.isLiveMode,
@@ -1761,7 +1756,7 @@ const mapStateToProps = ({
     isRootBoardTourEnabled: liveHelp.isRootBoardTourEnabled,
     isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
     isPremiumRequiredModalOpen: premiumRequiredModalState?.open,
-    improvedPhrase: board.improvedPhrase
+    improvedPhrase: board.improvedPhrase,
   };
 };
 
@@ -1799,10 +1794,10 @@ const mapDispatchToProps = {
   trackSymbolSelection,
   trackPhraseSpoken,
   trackClearAction,
-  trackBackspaceAction
+  trackBackspaceAction,
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(injectIntl(BoardContainer));
