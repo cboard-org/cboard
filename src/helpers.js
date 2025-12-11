@@ -57,7 +57,13 @@ export const resolveBoardName = ({ name, nameKey }, intl) => {
   return '';
 };
 
-export const resolveTileLabel = ({ label, labelKey }, intl) => {
+export const resolveTileLabel = (tile, intl) => {
+  if (!tile) {
+    return '';
+  }
+
+  const { label, labelKey } = tile;
+
   if (label) return label;
   if (labelKey && intl?.messages?.[labelKey]) {
     return intl.formatMessage({ id: labelKey });
