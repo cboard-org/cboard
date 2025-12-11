@@ -7,70 +7,68 @@ import {
   EXPORT_COMMUNICATION_HISTORY_SUCCESS,
   EXPORT_COMMUNICATION_HISTORY_FAILURE,
   EXPORT_COMMUNICATION_HISTORY_STARTED,
-  COMMUNICATION_ENTRY_TYPES
+  COMMUNICATION_ENTRY_TYPES,
 } from './CommunicationHistory.constants';
 
 export function addCommunicationEntry(entry) {
   const enhancedEntry = {
     ...entry,
-    id: `${Date.now()}_${Math.random()
-      .toString(36)
-      .substr(2, 9)}`,
+    id: `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
     timestamp: moment().toISOString(),
     date: moment().format('YYYY-MM-DD'),
     time: moment().format('HH:mm:ss'),
     userId: entry.userId || null,
-    sessionId: entry.sessionId || null
+    sessionId: entry.sessionId || null,
   };
 
   return {
     type: ADD_COMMUNICATION_ENTRY,
-    entry: enhancedEntry
+    entry: enhancedEntry,
   };
 }
 
 export function clearCommunicationHistory(userId = null) {
   return {
     type: CLEAR_COMMUNICATION_HISTORY,
-    userId
+    userId,
   };
 }
 
 export function loadCommunicationHistory(history) {
   return {
     type: LOAD_COMMUNICATION_HISTORY,
-    history
+    history,
   };
 }
 
 export function deleteCommunicationEntry(entryId) {
   return {
     type: DELETE_COMMUNICATION_ENTRY,
-    entryId
+    entryId,
   };
 }
 
 export function exportCommunicationHistoryStarted() {
   return {
-    type: EXPORT_COMMUNICATION_HISTORY_STARTED
+    type: EXPORT_COMMUNICATION_HISTORY_STARTED,
   };
 }
 
 export function exportCommunicationHistorySuccess() {
   return {
-    type: EXPORT_COMMUNICATION_HISTORY_SUCCESS
+    type: EXPORT_COMMUNICATION_HISTORY_SUCCESS,
   };
 }
 
 export function exportCommunicationHistoryFailure(error) {
   return {
     type: EXPORT_COMMUNICATION_HISTORY_FAILURE,
-    error
+    error,
   };
 }
 
 export function trackSymbolSelection(tile, userId = null, sessionId = null) {
-  return dispatch => {
+  return (dispatch) => {
     const entry = {
       type: COMMUNICATION_ENTRY_TYPES.SYMBOL,
       label: tile.label || tile.labelKey || '',
@@ -82,16 +80,16 @@ export function trackSymbolSelection(tile, userId = null, sessionId = null) {
       metadata: {
         tileId: tile.id,
         boardId: tile.boardId || null,
-        vocalization: tile.vocalization || tile.label || ''
-      }
+        vocalization: tile.vocalization || tile.label || '',
+      },
     };
     dispatch(addCommunicationEntry(entry));
   };
 }
 
 export function trackPhraseSpoken(output, userId = null, sessionId = null) {
-  return dispatch => {
-    const phrase = output.map(symbol => symbol.label || '').join(' ');
+  return (dispatch) => {
+    const phrase = output.map((symbol) => symbol.label || '').join(' ');
     const entry = {
       type: COMMUNICATION_ENTRY_TYPES.PHRASE,
       label: phrase,
@@ -100,32 +98,32 @@ export function trackPhraseSpoken(output, userId = null, sessionId = null) {
       sessionId,
       metadata: {
         symbolCount: output.length,
-        hasImages: output.some(s => s.image)
-      }
+        hasImages: output.some((s) => s.image),
+      },
     };
     dispatch(addCommunicationEntry(entry));
   };
 }
 
 export function trackClearAction(userId = null, sessionId = null) {
-  return dispatch => {
+  return (dispatch) => {
     const entry = {
       type: COMMUNICATION_ENTRY_TYPES.CLEAR,
       label: 'Clear',
       userId,
-      sessionId
+      sessionId,
     };
     dispatch(addCommunicationEntry(entry));
   };
 }
 
 export function trackBackspaceAction(userId = null, sessionId = null) {
-  return dispatch => {
+  return (dispatch) => {
     const entry = {
       type: COMMUNICATION_ENTRY_TYPES.BACKSPACE,
       label: 'Backspace',
       userId,
-      sessionId
+      sessionId,
     };
     dispatch(addCommunicationEntry(entry));
   };

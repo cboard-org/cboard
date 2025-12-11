@@ -17,47 +17,47 @@ import {
   Checkbox,
   Typography,
   CircularProgress,
-  Box
+  Box,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import CloseIcon from '@material-ui/icons/Close';
 import messages from './ExportDialog.messages';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   dialogPaper: {
     minWidth: '500px',
-    maxWidth: '600px'
+    maxWidth: '600px',
   },
   formControl: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
-    width: '100%'
+    width: '100%',
   },
   dateInputs: {
     display: 'flex',
     gap: theme.spacing(2),
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
   },
   exportButton: {
-    marginLeft: theme.spacing(1)
+    marginLeft: theme.spacing(1),
   },
   progressWrapper: {
     display: 'flex',
     alignItems: 'center',
-    gap: theme.spacing(2)
+    gap: theme.spacing(2),
   },
   statsBox: {
     backgroundColor: theme.palette.grey[100],
     padding: theme.spacing(2),
     borderRadius: theme.shape.borderRadius,
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
   },
   statItem: {
     display: 'flex',
     justifyContent: 'space-between',
-    marginBottom: theme.spacing(1)
-  }
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 const ExportDialog = ({
@@ -67,7 +67,7 @@ const ExportDialog = ({
   communicationHistory,
   users,
   intl,
-  isExporting
+  isExporting,
 }) => {
   const classes = useStyles();
   const [dateRange, setDateRange] = useState('all');
@@ -78,7 +78,7 @@ const ExportDialog = ({
   const [includeSummary, setIncludeSummary] = useState(true);
   const [includeMetadata, setIncludeMetadata] = useState(true);
 
-  const handleDateRangeChange = event => {
+  const handleDateRangeChange = (event) => {
     setDateRange(event.target.value);
     if (event.target.value !== 'custom') {
       setCustomStartDate('');
@@ -89,12 +89,10 @@ const ExportDialog = ({
   const getFilteredEntries = () => {
     let filtered = [...communicationHistory];
 
-    // Filter by user
     if (selectedUser !== 'all') {
-      filtered = filtered.filter(entry => entry.userId === selectedUser);
+      filtered = filtered.filter((entry) => entry.userId === selectedUser);
     }
 
-    // Filter by date range
     let startDate = null;
     let endDate = moment().endOf('day');
 
@@ -103,14 +101,10 @@ const ExportDialog = ({
         startDate = moment().startOf('day');
         break;
       case 'week':
-        startDate = moment()
-          .subtract(7, 'days')
-          .startOf('day');
+        startDate = moment().subtract(7, 'days').startOf('day');
         break;
       case 'month':
-        startDate = moment()
-          .subtract(30, 'days')
-          .startOf('day');
+        startDate = moment().subtract(30, 'days').startOf('day');
         break;
       case 'custom':
         if (customStartDate) {
@@ -121,12 +115,11 @@ const ExportDialog = ({
         }
         break;
       default:
-        // 'all' - no date filtering
         break;
     }
 
     if (startDate) {
-      filtered = filtered.filter(entry => {
+      filtered = filtered.filter((entry) => {
         const entryDate = moment(entry.timestamp);
         return (
           entryDate.isSameOrAfter(startDate) &&
@@ -146,29 +139,29 @@ const ExportDialog = ({
       userName:
         selectedUser === 'all'
           ? 'All Users'
-          : users.find(u => u.id === selectedUser)?.name || 'Unknown User',
+          : users.find((u) => u.id === selectedUser)?.name || 'Unknown User',
       dateRange: {
         from: dateRange === 'custom' ? customStartDate : null,
         to: dateRange === 'custom' ? customEndDate : null,
-        type: dateRange
+        type: dateRange,
       },
       options: {
         includeImages,
         includeSummary,
-        includeMetadata
+        includeMetadata,
       },
       metadata: {
         exportDate: moment().toISOString(),
-        totalEntries: filteredEntries.length
-      }
+        totalEntries: filteredEntries.length,
+      },
     };
 
     onExport(exportData);
   };
 
   const filteredEntries = getFilteredEntries();
-  const symbolCount = filteredEntries.filter(e => e.type === 'symbol').length;
-  const phraseCount = filteredEntries.filter(e => e.type === 'phrase').length;
+  const symbolCount = filteredEntries.filter((e) => e.type === 'symbol').length;
+  const phraseCount = filteredEntries.filter((e) => e.type === 'phrase').length;
 
   return (
     <Dialog
@@ -188,14 +181,14 @@ const ExportDialog = ({
           </FormLabel>
           <RadioGroup
             value={selectedUser}
-            onChange={e => setSelectedUser(e.target.value)}
+            onChange={(e) => setSelectedUser(e.target.value)}
           >
             <FormControlLabel
               value="all"
               control={<Radio color="primary" />}
               label={intl.formatMessage(messages.allUsers)}
             />
-            {users.map(user => (
+            {users.map((user) => (
               <FormControlLabel
                 key={user.id}
                 value={user.id}
@@ -244,7 +237,7 @@ const ExportDialog = ({
                 type="date"
                 label={intl.formatMessage(messages.startDate)}
                 value={customStartDate}
-                onChange={e => setCustomStartDate(e.target.value)}
+                onChange={(e) => setCustomStartDate(e.target.value)}
                 InputLabelProps={{ shrink: true }}
                 fullWidth
               />
@@ -252,7 +245,7 @@ const ExportDialog = ({
                 type="date"
                 label={intl.formatMessage(messages.endDate)}
                 value={customEndDate}
-                onChange={e => setCustomEndDate(e.target.value)}
+                onChange={(e) => setCustomEndDate(e.target.value)}
                 InputLabelProps={{ shrink: true }}
                 fullWidth
               />
@@ -268,7 +261,7 @@ const ExportDialog = ({
             control={
               <Checkbox
                 checked={includeImages}
-                onChange={e => setIncludeImages(e.target.checked)}
+                onChange={(e) => setIncludeImages(e.target.checked)}
                 color="primary"
               />
             }
@@ -278,7 +271,7 @@ const ExportDialog = ({
             control={
               <Checkbox
                 checked={includeSummary}
-                onChange={e => setIncludeSummary(e.target.checked)}
+                onChange={(e) => setIncludeSummary(e.target.checked)}
                 color="primary"
               />
             }
@@ -288,7 +281,7 @@ const ExportDialog = ({
             control={
               <Checkbox
                 checked={includeMetadata}
-                onChange={e => setIncludeMetadata(e.target.checked)}
+                onChange={(e) => setIncludeMetadata(e.target.checked)}
                 color="primary"
               />
             }
@@ -362,12 +355,12 @@ ExportDialog.propTypes = {
   communicationHistory: PropTypes.array.isRequired,
   users: PropTypes.array,
   intl: PropTypes.object.isRequired,
-  isExporting: PropTypes.bool
+  isExporting: PropTypes.bool,
 };
 
 ExportDialog.defaultProps = {
   users: [],
-  isExporting: false
+  isExporting: false,
 };
 
 export default injectIntl(ExportDialog);
