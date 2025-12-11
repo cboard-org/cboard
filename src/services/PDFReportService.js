@@ -1,8 +1,12 @@
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from '../vfs_fonts';
 import moment from 'moment';
+import { FONTS } from '../components/Settings/Export/Export.constants';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
+pdfMake.fonts = {
+  Roboto: FONTS['Roboto'],
+};
 
 const COLORS = {
   primary: '#4CAF50',
