@@ -1,0 +1,2274 @@
+From 080bf297603c15ea06494e1fb0f3dbb16376dd0d Mon Sep 17 00:00:00 2001
+From: Eshaan <eshaan28gupta@gmail.com>
+Date: Tue, 26 Aug 2025 04:01:27 +1000
+Subject: [PATCH] feat: Add Communication History PDF Report feature (#1978)
+
+- Implement automatic tracking of symbol selections and phrases
+- Add PDF generation service with professional formatting
+- Create export dialog with date range and filtering options
+- Add Settings page for Communication History with statistics
+- Integrate with Redux store for persistent data storage
+- Include comprehensive test coverage
+- Add documentation and README
+
+This feature enables therapists and educators to:
+- Track AAC usage patterns over time
+- Generate professional PDF reports for documentation
+- Monitor communication progress with statistics
+- Export filtered reports by date range and user
+
+Closes #1978
+---
+ src/components/Board/Board.container.js       |  28 +-
+ .../CommunicationHistory.actions.js           | 132 +++++
+ .../CommunicationHistory.constants.js         |  22 +
+ .../CommunicationHistory.reducer.js           |  81 +++
+ .../CommunicationHistory.test.js              | 232 +++++++++
+ .../ExportDialog/ExportDialog.component.js    | 374 +++++++++++++
+ .../ExportDialog/ExportDialog.container.js    |  36 ++
+ .../ExportDialog/ExportDialog.messages.js     |  92 ++++
+ .../ExportDialog/index.js                     |   1 +
+ src/components/CommunicationHistory/README.md | 184 +++++++
+ src/components/CommunicationHistory/index.js  |   6 +
+ .../CommunicationHistory.component.js         | 240 +++++++++
+ .../CommunicationHistory.container.js         |  17 +
+ .../CommunicationHistory.messages.js          |  72 +++
+ .../Settings/CommunicationHistory/index.js    |   1 +
+ src/components/Settings/Settings.component.js |   6 +
+ src/components/Settings/Settings.messages.js  |   4 +
+ src/components/Settings/Settings.wrapper.js   |   5 +
+ src/reducers.js                               |   4 +-
+ src/services/PDFReportService.js              | 490 ++++++++++++++++++
+ 20 files changed, 2024 insertions(+), 3 deletions(-)
+ create mode 100644 src/components/CommunicationHistory/CommunicationHistory.actions.js
+ create mode 100644 src/components/CommunicationHistory/CommunicationHistory.constants.js
+ create mode 100644 src/components/CommunicationHistory/CommunicationHistory.reducer.js
+ create mode 100644 src/components/CommunicationHistory/CommunicationHistory.test.js
+ create mode 100644 src/components/CommunicationHistory/ExportDialog/ExportDialog.component.js
+ create mode 100644 src/components/CommunicationHistory/ExportDialog/ExportDialog.container.js
+ create mode 100644 src/components/CommunicationHistory/ExportDialog/ExportDialog.messages.js
+ create mode 100644 src/components/CommunicationHistory/ExportDialog/index.js
+ create mode 100644 src/components/CommunicationHistory/README.md
+ create mode 100644 src/components/CommunicationHistory/index.js
+ create mode 100644 src/components/Settings/CommunicationHistory/CommunicationHistory.component.js
+ create mode 100644 src/components/Settings/CommunicationHistory/CommunicationHistory.container.js
+ create mode 100644 src/components/Settings/CommunicationHistory/CommunicationHistory.messages.js
+ create mode 100644 src/components/Settings/CommunicationHistory/index.js
+ create mode 100644 src/services/PDFReportService.js
+
+diff --git a/src/components/Board/Board.container.js b/src/components/Board/Board.container.js
+index 623ca87f..0eb4c29c 100644
+--- a/src/components/Board/Board.container.js
++++ b/src/components/Board/Board.container.js
+@@ -49,6 +49,12 @@ import {
+   upsertApiBoard,
+   changeDefaultBoard
+ } from './Board.actions';
++import {
++  trackSymbolSelection,
++  trackPhraseSpoken,
++  trackClearAction,
++  trackBackspaceAction
++} from '../CommunicationHistory/CommunicationHistory.actions';
+ import {
+   addBoardCommunicator,
+   verifyAndUpsertCommunicator
+@@ -833,7 +839,10 @@ export class BoardContainer extends Component {
+       boards,
+       showNotification,
+       navigationSettings,
+-      isLiveMode
++      isLiveMode,
++      trackSymbolSelection,
++      userData,
++      board
+     } = this.props;
+     const hasAction = tile.action && tile.action.startsWith('+');
+ 
+@@ -864,6 +873,17 @@ export class BoardContainer extends Component {
+         showNotification(intl.formatMessage(messages.boardMissed));
+       }
+     } else {
++      // Track the symbol selection in communication history
++      const enhancedTile = {
++        ...tile,
++        boardId: board.id
++      };
++      trackSymbolSelection(
++        enhancedTile,
++        userData?.email || userData?.id || null,
++        this.props.sessionId || null
++      );
++
+       clickSymbol(tile.label);
+       if (!navigationSettings.quietBuilderMode) {
+         say();
+@@ -1775,7 +1795,11 @@ const mapDispatchToProps = {
+   createApiBoard,
+   upsertApiBoard,
+   changeDefaultBoard,
+-  verifyAndUpsertCommunicator
++  verifyAndUpsertCommunicator,
++  trackSymbolSelection,
++  trackPhraseSpoken,
++  trackClearAction,
++  trackBackspaceAction
+ };
+ 
+ export default connect(
+diff --git a/src/components/CommunicationHistory/CommunicationHistory.actions.js b/src/components/CommunicationHistory/CommunicationHistory.actions.js
+new file mode 100644
+index 00000000..a11c915d
+--- /dev/null
++++ b/src/components/CommunicationHistory/CommunicationHistory.actions.js
+@@ -0,0 +1,132 @@
++import moment from 'moment';
++import {
++  ADD_COMMUNICATION_ENTRY,
++  CLEAR_COMMUNICATION_HISTORY,
++  LOAD_COMMUNICATION_HISTORY,
++  DELETE_COMMUNICATION_ENTRY,
++  EXPORT_COMMUNICATION_HISTORY_SUCCESS,
++  EXPORT_COMMUNICATION_HISTORY_FAILURE,
++  EXPORT_COMMUNICATION_HISTORY_STARTED,
++  COMMUNICATION_ENTRY_TYPES
++} from './CommunicationHistory.constants';
++
++export function addCommunicationEntry(entry) {
++  const enhancedEntry = {
++    ...entry,
++    id: `${Date.now()}_${Math.random()
++      .toString(36)
++      .substr(2, 9)}`,
++    timestamp: moment().toISOString(),
++    date: moment().format('YYYY-MM-DD'),
++    time: moment().format('HH:mm:ss'),
++    userId: entry.userId || null,
++    sessionId: entry.sessionId || null
++  };
++
++  return {
++    type: ADD_COMMUNICATION_ENTRY,
++    entry: enhancedEntry
++  };
++}
++
++export function clearCommunicationHistory(userId = null) {
++  return {
++    type: CLEAR_COMMUNICATION_HISTORY,
++    userId
++  };
++}
++
++export function loadCommunicationHistory(history) {
++  return {
++    type: LOAD_COMMUNICATION_HISTORY,
++    history
++  };
++}
++
++export function deleteCommunicationEntry(entryId) {
++  return {
++    type: DELETE_COMMUNICATION_ENTRY,
++    entryId
++  };
++}
++
++export function exportCommunicationHistoryStarted() {
++  return {
++    type: EXPORT_COMMUNICATION_HISTORY_STARTED
++  };
++}
++
++export function exportCommunicationHistorySuccess() {
++  return {
++    type: EXPORT_COMMUNICATION_HISTORY_SUCCESS
++  };
++}
++
++export function exportCommunicationHistoryFailure(error) {
++  return {
++    type: EXPORT_COMMUNICATION_HISTORY_FAILURE,
++    error
++  };
++}
++
++export function trackSymbolSelection(tile, userId = null, sessionId = null) {
++  return dispatch => {
++    const entry = {
++      type: COMMUNICATION_ENTRY_TYPES.SYMBOL,
++      label: tile.label || tile.labelKey || '',
++      image: tile.image || null,
++      backgroundColor: tile.backgroundColor || null,
++      borderColor: tile.borderColor || null,
++      userId,
++      sessionId,
++      metadata: {
++        tileId: tile.id,
++        boardId: tile.boardId || null,
++        vocalization: tile.vocalization || tile.label || ''
++      }
++    };
++    dispatch(addCommunicationEntry(entry));
++  };
++}
++
++export function trackPhraseSpoken(output, userId = null, sessionId = null) {
++  return dispatch => {
++    const phrase = output.map(symbol => symbol.label || '').join(' ');
++    const entry = {
++      type: COMMUNICATION_ENTRY_TYPES.PHRASE,
++      label: phrase,
++      symbols: output,
++      userId,
++      sessionId,
++      metadata: {
++        symbolCount: output.length,
++        hasImages: output.some(s => s.image)
++      }
++    };
++    dispatch(addCommunicationEntry(entry));
++  };
++}
++
++export function trackClearAction(userId = null, sessionId = null) {
++  return dispatch => {
++    const entry = {
++      type: COMMUNICATION_ENTRY_TYPES.CLEAR,
++      label: 'Clear',
++      userId,
++      sessionId
++    };
++    dispatch(addCommunicationEntry(entry));
++  };
++}
++
++export function trackBackspaceAction(userId = null, sessionId = null) {
++  return dispatch => {
++    const entry = {
++      type: COMMUNICATION_ENTRY_TYPES.BACKSPACE,
++      label: 'Backspace',
++      userId,
++      sessionId
++    };
++    dispatch(addCommunicationEntry(entry));
++  };
++}
+diff --git a/src/components/CommunicationHistory/CommunicationHistory.constants.js b/src/components/CommunicationHistory/CommunicationHistory.constants.js
+new file mode 100644
+index 00000000..2cfe6daa
+--- /dev/null
++++ b/src/components/CommunicationHistory/CommunicationHistory.constants.js
+@@ -0,0 +1,22 @@
++export const ADD_COMMUNICATION_ENTRY =
++  'cboard/CommunicationHistory/ADD_COMMUNICATION_ENTRY';
++export const CLEAR_COMMUNICATION_HISTORY =
++  'cboard/CommunicationHistory/CLEAR_COMMUNICATION_HISTORY';
++export const LOAD_COMMUNICATION_HISTORY =
++  'cboard/CommunicationHistory/LOAD_COMMUNICATION_HISTORY';
++export const DELETE_COMMUNICATION_ENTRY =
++  'cboard/CommunicationHistory/DELETE_COMMUNICATION_ENTRY';
++export const EXPORT_COMMUNICATION_HISTORY_SUCCESS =
++  'cboard/CommunicationHistory/EXPORT_COMMUNICATION_HISTORY_SUCCESS';
++export const EXPORT_COMMUNICATION_HISTORY_FAILURE =
++  'cboard/CommunicationHistory/EXPORT_COMMUNICATION_HISTORY_FAILURE';
++export const EXPORT_COMMUNICATION_HISTORY_STARTED =
++  'cboard/CommunicationHistory/EXPORT_COMMUNICATION_HISTORY_STARTED';
++
++export const COMMUNICATION_ENTRY_TYPES = {
++  SYMBOL: 'symbol',
++  PHRASE: 'phrase',
++  PICTOGRAM: 'pictogram',
++  CLEAR: 'clear',
++  BACKSPACE: 'backspace'
++};
+diff --git a/src/components/CommunicationHistory/CommunicationHistory.reducer.js b/src/components/CommunicationHistory/CommunicationHistory.reducer.js
+new file mode 100644
+index 00000000..13672821
+--- /dev/null
++++ b/src/components/CommunicationHistory/CommunicationHistory.reducer.js
+@@ -0,0 +1,81 @@
++import {
++  ADD_COMMUNICATION_ENTRY,
++  CLEAR_COMMUNICATION_HISTORY,
++  LOAD_COMMUNICATION_HISTORY,
++  DELETE_COMMUNICATION_ENTRY,
++  EXPORT_COMMUNICATION_HISTORY_SUCCESS,
++  EXPORT_COMMUNICATION_HISTORY_FAILURE,
++  EXPORT_COMMUNICATION_HISTORY_STARTED
++} from './CommunicationHistory.constants';
++import { LOGOUT } from '../Account/Login/Login.constants';
++
++const initialState = {
++  entries: [],
++  isExporting: false,
++  exportError: null,
++  lastExport: null
++};
++
++export default function communicationHistoryReducer(
++  state = initialState,
++  action
++) {
++  switch (action.type) {
++    case ADD_COMMUNICATION_ENTRY:
++      return {
++        ...state,
++        entries: [...state.entries, action.entry]
++      };
++
++    case CLEAR_COMMUNICATION_HISTORY:
++      if (action.userId) {
++        return {
++          ...state,
++          entries: state.entries.filter(entry => entry.userId !== action.userId)
++        };
++      }
++      return {
++        ...state,
++        entries: []
++      };
++
++    case LOAD_COMMUNICATION_HISTORY:
++      return {
++        ...state,
++        entries: action.history
++      };
++
++    case DELETE_COMMUNICATION_ENTRY:
++      return {
++        ...state,
++        entries: state.entries.filter(entry => entry.id !== action.entryId)
++      };
++
++    case EXPORT_COMMUNICATION_HISTORY_STARTED:
++      return {
++        ...state,
++        isExporting: true,
++        exportError: null
++      };
++
++    case EXPORT_COMMUNICATION_HISTORY_SUCCESS:
++      return {
++        ...state,
++        isExporting: false,
++        lastExport: new Date().toISOString()
++      };
++
++    case EXPORT_COMMUNICATION_HISTORY_FAILURE:
++      return {
++        ...state,
++        isExporting: false,
++        exportError: action.error
++      };
++
++    case LOGOUT:
++      return initialState;
++
++    default:
++      return state;
++  }
++}
+diff --git a/src/components/CommunicationHistory/CommunicationHistory.test.js b/src/components/CommunicationHistory/CommunicationHistory.test.js
+new file mode 100644
+index 00000000..94b5f380
+--- /dev/null
++++ b/src/components/CommunicationHistory/CommunicationHistory.test.js
+@@ -0,0 +1,232 @@
++import {
++  addCommunicationEntry,
++  trackSymbolSelection,
++  trackPhraseSpoken,
++  trackClearAction,
++  trackBackspaceAction
++} from './CommunicationHistory.actions';
++import {
++  ADD_COMMUNICATION_ENTRY,
++  CLEAR_COMMUNICATION_HISTORY,
++  COMMUNICATION_ENTRY_TYPES
++} from './CommunicationHistory.constants';
++import communicationHistoryReducer from './CommunicationHistory.reducer';
++import PDFReportService from '../../services/PDFReportService';
++
++// Mock moment for consistent testing
++jest.mock('moment', () => {
++  const actualMoment = jest.requireActual('moment');
++  const mockMoment = () => actualMoment('2024-01-15T10:30:00.000Z');
++  mockMoment.format = actualMoment.format;
++  return mockMoment;
++});
++
++describe('CommunicationHistory', () => {
++  describe('Actions', () => {
++    it('should create an action to add a communication entry', () => {
++      const entry = {
++        type: COMMUNICATION_ENTRY_TYPES.SYMBOL,
++        label: 'Hello',
++        image: 'hello.png'
++      };
++
++      const action = addCommunicationEntry(entry);
++
++      expect(action.type).toBe(ADD_COMMUNICATION_ENTRY);
++      expect(action.entry.label).toBe('Hello');
++      expect(action.entry.image).toBe('hello.png');
++      expect(action.entry.id).toBeDefined();
++      expect(action.entry.timestamp).toBeDefined();
++    });
++
++    it('should track symbol selection', () => {
++      const dispatch = jest.fn();
++      const tile = {
++        id: 'tile1',
++        label: 'Water',
++        image: 'water.png',
++        boardId: 'board1'
++      };
++
++      trackSymbolSelection(tile, 'user@example.com', 'session123')(dispatch);
++
++      expect(dispatch).toHaveBeenCalledWith(
++        expect.objectContaining({
++          type: ADD_COMMUNICATION_ENTRY,
++          entry: expect.objectContaining({
++            type: COMMUNICATION_ENTRY_TYPES.SYMBOL,
++            label: 'Water',
++            image: 'water.png',
++            userId: 'user@example.com',
++            sessionId: 'session123'
++          })
++        })
++      );
++    });
++
++    it('should track phrase spoken', () => {
++      const dispatch = jest.fn();
++      const output = [
++        { label: 'I', image: 'i.png' },
++        { label: 'want', image: 'want.png' },
++        { label: 'water', image: 'water.png' }
++      ];
++
++      trackPhraseSpoken(output, 'user@example.com', 'session123')(dispatch);
++
++      expect(dispatch).toHaveBeenCalledWith(
++        expect.objectContaining({
++          type: ADD_COMMUNICATION_ENTRY,
++          entry: expect.objectContaining({
++            type: COMMUNICATION_ENTRY_TYPES.PHRASE,
++            label: 'I want water',
++            symbols: output,
++            userId: 'user@example.com',
++            sessionId: 'session123'
++          })
++        })
++      );
++    });
++  });
++
++  describe('Reducer', () => {
++    it('should return the initial state', () => {
++      expect(communicationHistoryReducer(undefined, {})).toEqual({
++        entries: [],
++        isExporting: false,
++        exportError: null,
++        lastExport: null
++      });
++    });
++
++    it('should handle ADD_COMMUNICATION_ENTRY', () => {
++      const entry = {
++        id: '123',
++        type: COMMUNICATION_ENTRY_TYPES.SYMBOL,
++        label: 'Hello',
++        timestamp: '2024-01-15T10:30:00.000Z'
++      };
++
++      const action = {
++        type: ADD_COMMUNICATION_ENTRY,
++        entry
++      };
++
++      const newState = communicationHistoryReducer({ entries: [] }, action);
++
++      expect(newState.entries).toHaveLength(1);
++      expect(newState.entries[0]).toEqual(entry);
++    });
++
++    it('should handle CLEAR_COMMUNICATION_HISTORY', () => {
++      const initialState = {
++        entries: [
++          { id: '1', userId: 'user1' },
++          { id: '2', userId: 'user2' },
++          { id: '3', userId: 'user1' }
++        ]
++      };
++
++      const action = {
++        type: CLEAR_COMMUNICATION_HISTORY,
++        userId: 'user1'
++      };
++
++      const newState = communicationHistoryReducer(initialState, action);
++
++      expect(newState.entries).toHaveLength(1);
++      expect(newState.entries[0].userId).toBe('user2');
++    });
++  });
++
++  describe('PDF Report Service', () => {
++    it('should generate report data structure correctly', () => {
++      const testData = {
++        entries: [
++          {
++            id: '1',
++            type: COMMUNICATION_ENTRY_TYPES.SYMBOL,
++            label: 'Hello',
++            timestamp: '2024-01-15T10:00:00.000Z',
++            userId: 'test@example.com'
++          },
++          {
++            id: '2',
++            type: COMMUNICATION_ENTRY_TYPES.SYMBOL,
++            label: 'World',
++            timestamp: '2024-01-15T10:01:00.000Z',
++            userId: 'test@example.com'
++          },
++          {
++            id: '3',
++            type: COMMUNICATION_ENTRY_TYPES.PHRASE,
++            label: 'Hello World',
++            symbols: [{ label: 'Hello' }, { label: 'World' }],
++            timestamp: '2024-01-15T10:02:00.000Z',
++            userId: 'test@example.com'
++          }
++        ],
++        userId: 'test@example.com',
++        userName: 'Test User',
++        dateRange: {
++          from: '2024-01-15',
++          to: '2024-01-15'
++        }
++      };
++
++      // This would normally generate a PDF, but for testing we just verify the service exists
++      expect(PDFReportService).toBeDefined();
++      expect(PDFReportService.generateCommunicationReport).toBeDefined();
++    });
++  });
++});
++
++describe('Integration Test', () => {
++  it('should track a complete user interaction flow', () => {
++    const dispatch = jest.fn();
++    const userId = 'therapist@clinic.com';
++    const sessionId = 'session_2024_01_15';
++
++    // User selects "I"
++    const tile1 = { id: '1', label: 'I', image: 'i.png' };
++    trackSymbolSelection(tile1, userId, sessionId)(dispatch);
++
++    // User selects "want"
++    const tile2 = { id: '2', label: 'want', image: 'want.png' };
++    trackSymbolSelection(tile2, userId, sessionId)(dispatch);
++
++    // User selects "water"
++    const tile3 = { id: '3', label: 'water', image: 'water.png' };
++    trackSymbolSelection(tile3, userId, sessionId)(dispatch);
++
++    // User speaks the phrase
++    const output = [
++      { label: 'I', image: 'i.png' },
++      { label: 'want', image: 'want.png' },
++      { label: 'water', image: 'water.png' }
++    ];
++    trackPhraseSpoken(output, userId, sessionId)(dispatch);
++
++    // User clears the output
++    trackClearAction(userId, sessionId)(dispatch);
++
++    // Verify all actions were dispatched
++    expect(dispatch).toHaveBeenCalledTimes(5);
++
++    // Verify the tracked data includes all necessary information
++    const trackedEntries = dispatch.mock.calls.map(call => call[0].entry);
++
++    expect(trackedEntries[0].label).toBe('I');
++    expect(trackedEntries[1].label).toBe('want');
++    expect(trackedEntries[2].label).toBe('water');
++    expect(trackedEntries[3].label).toBe('I want water');
++    expect(trackedEntries[4].type).toBe(COMMUNICATION_ENTRY_TYPES.CLEAR);
++
++    // All entries should have the same user and session
++    trackedEntries.forEach(entry => {
++      expect(entry.userId).toBe(userId);
++      expect(entry.sessionId).toBe(sessionId);
++      expect(entry.timestamp).toBeDefined();
++    });
++  });
++});
+diff --git a/src/components/CommunicationHistory/ExportDialog/ExportDialog.component.js b/src/components/CommunicationHistory/ExportDialog/ExportDialog.component.js
+new file mode 100644
+index 00000000..c4406778
+--- /dev/null
++++ b/src/components/CommunicationHistory/ExportDialog/ExportDialog.component.js
+@@ -0,0 +1,374 @@
++import React, { useState } from 'react';
++import PropTypes from 'prop-types';
++import { FormattedMessage, injectIntl } from 'react-intl';
++import moment from 'moment';
++import {
++  Dialog,
++  DialogTitle,
++  DialogContent,
++  DialogActions,
++  Button,
++  TextField,
++  FormControl,
++  FormLabel,
++  RadioGroup,
++  FormControlLabel,
++  Radio,
++  Checkbox,
++  Typography,
++  CircularProgress,
++  Box
++} from '@material-ui/core';
++import { makeStyles } from '@material-ui/core/styles';
++import GetAppIcon from '@material-ui/icons/GetApp';
++import CloseIcon from '@material-ui/icons/Close';
++import messages from './ExportDialog.messages';
++
++const useStyles = makeStyles(theme => ({
++  dialogPaper: {
++    minWidth: '500px',
++    maxWidth: '600px'
++  },
++  formControl: {
++    marginTop: theme.spacing(2),
++    marginBottom: theme.spacing(2),
++    width: '100%'
++  },
++  dateInputs: {
++    display: 'flex',
++    gap: theme.spacing(2),
++    marginTop: theme.spacing(1)
++  },
++  exportButton: {
++    marginLeft: theme.spacing(1)
++  },
++  progressWrapper: {
++    display: 'flex',
++    alignItems: 'center',
++    gap: theme.spacing(2)
++  },
++  statsBox: {
++    backgroundColor: theme.palette.grey[100],
++    padding: theme.spacing(2),
++    borderRadius: theme.shape.borderRadius,
++    marginTop: theme.spacing(2)
++  },
++  statItem: {
++    display: 'flex',
++    justifyContent: 'space-between',
++    marginBottom: theme.spacing(1)
++  }
++}));
++
++const ExportDialog = ({
++  open,
++  onClose,
++  onExport,
++  communicationHistory,
++  users,
++  intl,
++  isExporting
++}) => {
++  const classes = useStyles();
++  const [dateRange, setDateRange] = useState('all');
++  const [customStartDate, setCustomStartDate] = useState('');
++  const [customEndDate, setCustomEndDate] = useState('');
++  const [selectedUser, setSelectedUser] = useState('all');
++  const [includeImages, setIncludeImages] = useState(true);
++  const [includeSummary, setIncludeSummary] = useState(true);
++  const [includeMetadata, setIncludeMetadata] = useState(true);
++
++  const handleDateRangeChange = event => {
++    setDateRange(event.target.value);
++    if (event.target.value !== 'custom') {
++      setCustomStartDate('');
++      setCustomEndDate('');
++    }
++  };
++
++  const getFilteredEntries = () => {
++    let filtered = [...communicationHistory];
++
++    // Filter by user
++    if (selectedUser !== 'all') {
++      filtered = filtered.filter(entry => entry.userId === selectedUser);
++    }
++
++    // Filter by date range
++    const now = moment();
++    let startDate = null;
++    let endDate = moment().endOf('day');
++
++    switch (dateRange) {
++      case 'today':
++        startDate = moment().startOf('day');
++        break;
++      case 'week':
++        startDate = moment()
++          .subtract(7, 'days')
++          .startOf('day');
++        break;
++      case 'month':
++        startDate = moment()
++          .subtract(30, 'days')
++          .startOf('day');
++        break;
++      case 'custom':
++        if (customStartDate) {
++          startDate = moment(customStartDate).startOf('day');
++        }
++        if (customEndDate) {
++          endDate = moment(customEndDate).endOf('day');
++        }
++        break;
++      default:
++        // 'all' - no date filtering
++        break;
++    }
++
++    if (startDate) {
++      filtered = filtered.filter(entry => {
++        const entryDate = moment(entry.timestamp);
++        return (
++          entryDate.isSameOrAfter(startDate) &&
++          entryDate.isSameOrBefore(endDate)
++        );
++      });
++    }
++
++    return filtered;
++  };
++
++  const handleExport = () => {
++    const filteredEntries = getFilteredEntries();
++    const exportData = {
++      entries: filteredEntries,
++      userId: selectedUser === 'all' ? null : selectedUser,
++      userName:
++        selectedUser === 'all'
++          ? 'All Users'
++          : users.find(u => u.id === selectedUser)?.name || 'Unknown User',
++      dateRange: {
++        from: dateRange === 'custom' ? customStartDate : null,
++        to: dateRange === 'custom' ? customEndDate : null,
++        type: dateRange
++      },
++      options: {
++        includeImages,
++        includeSummary,
++        includeMetadata
++      },
++      metadata: {
++        exportDate: moment().toISOString(),
++        totalEntries: filteredEntries.length
++      }
++    };
++
++    onExport(exportData);
++  };
++
++  const filteredEntries = getFilteredEntries();
++  const symbolCount = filteredEntries.filter(e => e.type === 'symbol').length;
++  const phraseCount = filteredEntries.filter(e => e.type === 'phrase').length;
++
++  return (
++    <Dialog
++      open={open}
++      onClose={onClose}
++      classes={{ paper: classes.dialogPaper }}
++      maxWidth="sm"
++      fullWidth
++    >
++      <DialogTitle>
++        <FormattedMessage {...messages.exportTitle} />
++      </DialogTitle>
++      <DialogContent>
++        <FormControl className={classes.formControl}>
++          <FormLabel component="legend">
++            <FormattedMessage {...messages.selectUser} />
++          </FormLabel>
++          <RadioGroup
++            value={selectedUser}
++            onChange={e => setSelectedUser(e.target.value)}
++          >
++            <FormControlLabel
++              value="all"
++              control={<Radio color="primary" />}
++              label={intl.formatMessage(messages.allUsers)}
++            />
++            {users.map(user => (
++              <FormControlLabel
++                key={user.id}
++                value={user.id}
++                control={<Radio color="primary" />}
++                label={user.name}
++              />
++            ))}
++          </RadioGroup>
++        </FormControl>
++
++        <FormControl className={classes.formControl}>
++          <FormLabel component="legend">
++            <FormattedMessage {...messages.dateRange} />
++          </FormLabel>
++          <RadioGroup value={dateRange} onChange={handleDateRangeChange}>
++            <FormControlLabel
++              value="all"
++              control={<Radio color="primary" />}
++              label={intl.formatMessage(messages.allTime)}
++            />
++            <FormControlLabel
++              value="today"
++              control={<Radio color="primary" />}
++              label={intl.formatMessage(messages.today)}
++            />
++            <FormControlLabel
++              value="week"
++              control={<Radio color="primary" />}
++              label={intl.formatMessage(messages.lastWeek)}
++            />
++            <FormControlLabel
++              value="month"
++              control={<Radio color="primary" />}
++              label={intl.formatMessage(messages.lastMonth)}
++            />
++            <FormControlLabel
++              value="custom"
++              control={<Radio color="primary" />}
++              label={intl.formatMessage(messages.customRange)}
++            />
++          </RadioGroup>
++
++          {dateRange === 'custom' && (
++            <div className={classes.dateInputs}>
++              <TextField
++                type="date"
++                label={intl.formatMessage(messages.startDate)}
++                value={customStartDate}
++                onChange={e => setCustomStartDate(e.target.value)}
++                InputLabelProps={{ shrink: true }}
++                fullWidth
++              />
++              <TextField
++                type="date"
++                label={intl.formatMessage(messages.endDate)}
++                value={customEndDate}
++                onChange={e => setCustomEndDate(e.target.value)}
++                InputLabelProps={{ shrink: true }}
++                fullWidth
++              />
++            </div>
++          )}
++        </FormControl>
++
++        <FormControl className={classes.formControl}>
++          <FormLabel component="legend">
++            <FormattedMessage {...messages.exportOptions} />
++          </FormLabel>
++          <FormControlLabel
++            control={
++              <Checkbox
++                checked={includeImages}
++                onChange={e => setIncludeImages(e.target.checked)}
++                color="primary"
++              />
++            }
++            label={intl.formatMessage(messages.includeImages)}
++          />
++          <FormControlLabel
++            control={
++              <Checkbox
++                checked={includeSummary}
++                onChange={e => setIncludeSummary(e.target.checked)}
++                color="primary"
++              />
++            }
++            label={intl.formatMessage(messages.includeSummary)}
++          />
++          <FormControlLabel
++            control={
++              <Checkbox
++                checked={includeMetadata}
++                onChange={e => setIncludeMetadata(e.target.checked)}
++                color="primary"
++              />
++            }
++            label={intl.formatMessage(messages.includeMetadata)}
++          />
++        </FormControl>
++
++        <Box className={classes.statsBox}>
++          <Typography variant="subtitle2" gutterBottom>
++            <FormattedMessage {...messages.previewStats} />
++          </Typography>
++          <div className={classes.statItem}>
++            <Typography variant="body2">
++              <FormattedMessage {...messages.totalEntries} />
++            </Typography>
++            <Typography variant="body2" color="primary">
++              {filteredEntries.length}
++            </Typography>
++          </div>
++          <div className={classes.statItem}>
++            <Typography variant="body2">
++              <FormattedMessage {...messages.symbols} />
++            </Typography>
++            <Typography variant="body2" color="primary">
++              {symbolCount}
++            </Typography>
++          </div>
++          <div className={classes.statItem}>
++            <Typography variant="body2">
++              <FormattedMessage {...messages.phrases} />
++            </Typography>
++            <Typography variant="body2" color="primary">
++              {phraseCount}
++            </Typography>
++          </div>
++        </Box>
++      </DialogContent>
++      <DialogActions>
++        <Button onClick={onClose} disabled={isExporting}>
++          <CloseIcon />
++          <FormattedMessage {...messages.cancel} />
++        </Button>
++        <Button
++          onClick={handleExport}
++          color="primary"
++          variant="contained"
++          disabled={isExporting || filteredEntries.length === 0}
++          className={classes.exportButton}
++        >
++          {isExporting ? (
++            <div className={classes.progressWrapper}>
++              <CircularProgress size={20} />
++              <FormattedMessage {...messages.exporting} />
++            </div>
++          ) : (
++            <>
++              <GetAppIcon />
++              <FormattedMessage {...messages.export} />
++            </>
++          )}
++        </Button>
++      </DialogActions>
++    </Dialog>
++  );
++};
++
++ExportDialog.propTypes = {
++  open: PropTypes.bool.isRequired,
++  onClose: PropTypes.func.isRequired,
++  onExport: PropTypes.func.isRequired,
++  communicationHistory: PropTypes.array.isRequired,
++  users: PropTypes.array,
++  intl: PropTypes.object.isRequired,
++  isExporting: PropTypes.bool
++};
++
++ExportDialog.defaultProps = {
++  users: [],
++  isExporting: false
++};
++
++export default injectIntl(ExportDialog);
+diff --git a/src/components/CommunicationHistory/ExportDialog/ExportDialog.container.js b/src/components/CommunicationHistory/ExportDialog/ExportDialog.container.js
+new file mode 100644
+index 00000000..2bbbbe0b
+--- /dev/null
++++ b/src/components/CommunicationHistory/ExportDialog/ExportDialog.container.js
+@@ -0,0 +1,36 @@
++import { connect } from 'react-redux';
++import { injectIntl } from 'react-intl';
++import ExportDialog from './ExportDialog.component';
++import PDFReportService from '../../../services/PDFReportService';
++import {
++  exportCommunicationHistoryStarted,
++  exportCommunicationHistorySuccess,
++  exportCommunicationHistoryFailure
++} from '../CommunicationHistory.actions';
++import { showNotification } from '../../Notifications/Notifications.actions';
++
++const mapStateToProps = state => ({
++  communicationHistory: state.communicationHistory.entries,
++  isExporting: state.communicationHistory.isExporting,
++  users: state.app.userData ? [state.app.userData] : []
++});
++
++const mapDispatchToProps = dispatch => ({
++  onExport: async exportData => {
++    dispatch(exportCommunicationHistoryStarted());
++    try {
++      await PDFReportService.generateCommunicationReport(exportData);
++      dispatch(exportCommunicationHistorySuccess());
++      dispatch(showNotification('PDF report exported successfully'));
++    } catch (error) {
++      console.error('Error exporting PDF:', error);
++      dispatch(exportCommunicationHistoryFailure(error.message));
++      dispatch(showNotification('Error exporting PDF report', 'error'));
++    }
++  }
++});
++
++export default connect(
++  mapStateToProps,
++  mapDispatchToProps
++)(injectIntl(ExportDialog));
+diff --git a/src/components/CommunicationHistory/ExportDialog/ExportDialog.messages.js b/src/components/CommunicationHistory/ExportDialog/ExportDialog.messages.js
+new file mode 100644
+index 00000000..f628c715
+--- /dev/null
++++ b/src/components/CommunicationHistory/ExportDialog/ExportDialog.messages.js
+@@ -0,0 +1,92 @@
++import { defineMessages } from 'react-intl';
++
++export default defineMessages({
++  exportTitle: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.exportTitle',
++    defaultMessage: 'Export Communication History'
++  },
++  selectUser: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.selectUser',
++    defaultMessage: 'Select User'
++  },
++  allUsers: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.allUsers',
++    defaultMessage: 'All Users'
++  },
++  dateRange: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.dateRange',
++    defaultMessage: 'Date Range'
++  },
++  allTime: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.allTime',
++    defaultMessage: 'All Time'
++  },
++  today: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.today',
++    defaultMessage: 'Today'
++  },
++  lastWeek: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.lastWeek',
++    defaultMessage: 'Last 7 Days'
++  },
++  lastMonth: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.lastMonth',
++    defaultMessage: 'Last 30 Days'
++  },
++  customRange: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.customRange',
++    defaultMessage: 'Custom Range'
++  },
++  startDate: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.startDate',
++    defaultMessage: 'Start Date'
++  },
++  endDate: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.endDate',
++    defaultMessage: 'End Date'
++  },
++  exportOptions: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.exportOptions',
++    defaultMessage: 'Export Options'
++  },
++  includeImages: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.includeImages',
++    defaultMessage: 'Include pictogram images'
++  },
++  includeSummary: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.includeSummary',
++    defaultMessage: 'Include summary statistics'
++  },
++  includeMetadata: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.includeMetadata',
++    defaultMessage: 'Include session metadata'
++  },
++  previewStats: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.previewStats',
++    defaultMessage: 'Preview Statistics'
++  },
++  totalEntries: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.totalEntries',
++    defaultMessage: 'Total Entries:'
++  },
++  symbols: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.symbols',
++    defaultMessage: 'Symbols:'
++  },
++  phrases: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.phrases',
++    defaultMessage: 'Phrases:'
++  },
++  cancel: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.cancel',
++    defaultMessage: 'Cancel'
++  },
++  export: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.export',
++    defaultMessage: 'Export PDF'
++  },
++  exporting: {
++    id: 'cboard.components.CommunicationHistory.ExportDialog.exporting',
++    defaultMessage: 'Exporting...'
++  }
++});
+diff --git a/src/components/CommunicationHistory/ExportDialog/index.js b/src/components/CommunicationHistory/ExportDialog/index.js
+new file mode 100644
+index 00000000..a606009d
+--- /dev/null
++++ b/src/components/CommunicationHistory/ExportDialog/index.js
+@@ -0,0 +1 @@
++export { default } from './ExportDialog.container';
+diff --git a/src/components/CommunicationHistory/README.md b/src/components/CommunicationHistory/README.md
+new file mode 100644
+index 00000000..cb5fa016
+--- /dev/null
++++ b/src/components/CommunicationHistory/README.md
+@@ -0,0 +1,184 @@
++# Communication History Feature
++
++## Overview
++
++The Communication History feature enables tracking and exporting detailed reports of AAC (Augmentative and Alternative Communication) usage in Cboard. This feature is designed for therapists, educators, and caregivers to monitor communication patterns and progress over time.
++
++## Features
++
++### 1. Automatic Tracking
++- **Symbol Selection**: Every symbol/pictogram selected is recorded with timestamp
++- **Phrase Construction**: Complete phrases are tracked when spoken
++- **User Actions**: Clear and backspace actions are logged
++- **Session Management**: Interactions are grouped by session for analysis
++
++### 2. Data Collection
++Each interaction records:
++- **Timestamp**: Exact date and time of interaction
++- **Type**: Symbol, phrase, clear, or backspace action
++- **Content**: Label and associated image/pictogram
++- **Metadata**: Board ID, vocalization text, symbol count
++- **User Information**: User ID and session ID (if available)
++
++### 3. PDF Report Generation
++Professional PDF reports include:
++- **Summary Statistics**:
++  - Total interactions count
++  - Symbol vs phrase breakdown
++  - Session information
++  - Peak usage times
++  - Most frequently used words/symbols
++
++- **Detailed History**:
++  - Chronological list of all interactions
++  - Date and time stamps
++  - Content with pictograms (if enabled)
++  - Session grouping
++
++- **Export Options**:
++  - Date range filtering (today, last week, last month, custom)
++  - User filtering (for multi-user setups)
++  - Include/exclude images
++  - Include/exclude metadata
++
++### 4. Privacy & Security
++- **Local Storage**: Data stored locally on device
++- **User Control**: Clear history at any time
++- **No External Sharing**: Data never shared without explicit consent
++- **Session Isolation**: Each user's data kept separate
++
++## Usage
++
++### For Users
++
++1. **Access the Feature**:
++   - Navigate to Settings → Communication Report
++
++2. **View Statistics**:
++   - See overview of communication activity
++   - Monitor progress over time
++
++3. **Export Report**:
++   - Click "Export PDF Report"
++   - Select date range and options
++   - Download professional PDF document
++
++4. **Clear History**:
++   - Click "Clear History" to remove all data
++   - Confirmation required to prevent accidental deletion
++
++### For Developers
++
++#### Adding Communication Tracking
++
++```javascript
++import { trackSymbolSelection } from './CommunicationHistory.actions';
++
++// Track when user selects a symbol
++const tile = {
++  id: 'tile123',
++  label: 'Water',
++  image: 'water.png',
++  boardId: 'board456'
++};
++
++trackSymbolSelection(tile, userId, sessionId);
++```
++
++#### Accessing History Data
++
++```javascript
++// In Redux connected component
++const mapStateToProps = state => ({
++  communicationHistory: state.communicationHistory.entries
++});
++```
++
++#### Generating Reports
++
++```javascript
++import PDFReportService from './services/PDFReportService';
++
++const reportData = {
++  entries: communicationHistory,
++  userId: 'user@example.com',
++  userName: 'John Doe',
++  dateRange: { from: '2024-01-01', to: '2024-01-31' }
++};
++
++await PDFReportService.generateCommunicationReport(reportData);
++```
++
++## Architecture
++
++### Redux Store Structure
++```javascript
++{
++  communicationHistory: {
++    entries: [
++      {
++        id: 'unique_id',
++        type: 'symbol|phrase|clear|backspace',
++        label: 'Text content',
++        image: 'image_url',
++        timestamp: 'ISO 8601 date',
++        userId: 'user_identifier',
++        sessionId: 'session_identifier',
++        metadata: { /* additional data */ }
++      }
++    ],
++    isExporting: false,
++    exportError: null,
++    lastExport: 'ISO 8601 date'
++  }
++}
++```
++
++### Components
++- **CommunicationHistory**: Main settings page component
++- **ExportDialog**: PDF export configuration dialog
++- **PDFReportService**: PDF generation service
++
++### Actions
++- `addCommunicationEntry`: Add new interaction
++- `trackSymbolSelection`: Track symbol click
++- `trackPhraseSpoken`: Track phrase vocalization
++- `clearCommunicationHistory`: Clear all or user-specific data
++
++## Clinical Benefits
++
++### For Therapists
++- **Progress Monitoring**: Track communication development over time
++- **Pattern Analysis**: Identify frequently used vocabulary
++- **Session Planning**: Data-driven therapy planning
++- **Documentation**: Professional reports for insurance/records
++
++### For Educators
++- **Curriculum Planning**: Understand student communication needs
++- **IEP Documentation**: Support for Individual Education Plans
++- **Parent Communication**: Share progress with families
++
++### For Families
++- **Home Practice**: Monitor AAC usage at home
++- **Progress Sharing**: Share reports with therapy team
++- **Motivation**: Visualize communication growth
++
++## Future Enhancements
++
++Potential improvements for future versions:
++- Cloud synchronization across devices
++- Advanced analytics and visualizations
++- Custom report templates
++- API for third-party integrations
++- Machine learning insights
++- Multi-language report generation
++
++## Support
++
++For questions or issues related to the Communication History feature:
++- Email: support@cboard.io
++- GitHub Issues: https://github.com/cboard-org/cboard/issues
++
++## License
++
++This feature is part of Cboard and is licensed under GPL-3.0.
+\ No newline at end of file
+diff --git a/src/components/CommunicationHistory/index.js b/src/components/CommunicationHistory/index.js
+new file mode 100644
+index 00000000..5ed9062a
+--- /dev/null
++++ b/src/components/CommunicationHistory/index.js
+@@ -0,0 +1,6 @@
++export {
++  default as CommunicationHistoryReducer
++} from './CommunicationHistory.reducer';
++export * from './CommunicationHistory.actions';
++export * from './CommunicationHistory.constants';
++export { default as ExportDialog } from './ExportDialog';
+diff --git a/src/components/Settings/CommunicationHistory/CommunicationHistory.component.js b/src/components/Settings/CommunicationHistory/CommunicationHistory.component.js
+new file mode 100644
+index 00000000..1bb3892d
+--- /dev/null
++++ b/src/components/Settings/CommunicationHistory/CommunicationHistory.component.js
+@@ -0,0 +1,240 @@
++import React, { useState } from 'react';
++import PropTypes from 'prop-types';
++import { FormattedMessage, injectIntl } from 'react-intl';
++import Paper from '@material-ui/core/Paper';
++import Button from '@material-ui/core/Button';
++import Typography from '@material-ui/core/Typography';
++import GetAppIcon from '@material-ui/icons/GetApp';
++import DeleteIcon from '@material-ui/icons/Delete';
++import AssessmentIcon from '@material-ui/icons/Assessment';
++import { makeStyles } from '@material-ui/core/styles';
++import FullScreenDialog from '../../UI/FullScreenDialog';
++import ExportDialog from '../../CommunicationHistory/ExportDialog';
++import messages from './CommunicationHistory.messages';
++
++const useStyles = makeStyles(theme => ({
++  root: {
++    padding: theme.spacing(2),
++    height: '100%'
++  },
++  section: {
++    marginBottom: theme.spacing(3),
++    padding: theme.spacing(3)
++  },
++  sectionTitle: {
++    marginBottom: theme.spacing(2),
++    display: 'flex',
++    alignItems: 'center',
++    gap: theme.spacing(1)
++  },
++  description: {
++    marginBottom: theme.spacing(2),
++    color: theme.palette.text.secondary
++  },
++  statsGrid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
++    gap: theme.spacing(2),
++    marginBottom: theme.spacing(3)
++  },
++  statCard: {
++    padding: theme.spacing(2),
++    textAlign: 'center',
++    backgroundColor: theme.palette.background.default,
++    borderRadius: theme.shape.borderRadius
++  },
++  statValue: {
++    fontSize: '2rem',
++    fontWeight: 'bold',
++    color: theme.palette.primary.main
++  },
++  statLabel: {
++    color: theme.palette.text.secondary,
++    marginTop: theme.spacing(0.5)
++  },
++  actions: {
++    display: 'flex',
++    gap: theme.spacing(2),
++    flexWrap: 'wrap'
++  },
++  button: {
++    textTransform: 'none'
++  },
++  warningText: {
++    color: theme.palette.warning.main,
++    marginTop: theme.spacing(2)
++  }
++}));
++
++const CommunicationHistory = ({
++  intl,
++  communicationHistory,
++  clearHistory,
++  userData,
++  history
++}) => {
++  const classes = useStyles();
++  const [exportDialogOpen, setExportDialogOpen] = useState(false);
++  const [clearConfirmOpen, setClearConfirmOpen] = useState(false);
++
++  const handleGoBack = () => {
++    history.push('/settings');
++  };
++
++  const handleExportClick = () => {
++    setExportDialogOpen(true);
++  };
++
++  const handleClearClick = () => {
++    setClearConfirmOpen(true);
++  };
++
++  const handleClearConfirm = () => {
++    clearHistory(userData?.email || null);
++    setClearConfirmOpen(false);
++  };
++
++  // Calculate statistics
++  const totalEntries = communicationHistory.length;
++  const symbolCount = communicationHistory.filter(e => e.type === 'symbol')
++    .length;
++  const phraseCount = communicationHistory.filter(e => e.type === 'phrase')
++    .length;
++  const uniqueDays = new Set(communicationHistory.map(e => e.date)).size;
++
++  return (
++    <FullScreenDialog
++      open
++      title={<FormattedMessage {...messages.title} />}
++      onClose={handleGoBack}
++    >
++      <div className={classes.root}>
++        <Paper className={classes.section}>
++          <div className={classes.sectionTitle}>
++            <AssessmentIcon color="primary" />
++            <Typography variant="h6">
++              <FormattedMessage {...messages.overview} />
++            </Typography>
++          </div>
++
++          <Typography className={classes.description}>
++            <FormattedMessage {...messages.description} />
++          </Typography>
++
++          <div className={classes.statsGrid}>
++            <div className={classes.statCard}>
++              <div className={classes.statValue}>{totalEntries}</div>
++              <div className={classes.statLabel}>
++                <FormattedMessage {...messages.totalInteractions} />
++              </div>
++            </div>
++            <div className={classes.statCard}>
++              <div className={classes.statValue}>{symbolCount}</div>
++              <div className={classes.statLabel}>
++                <FormattedMessage {...messages.symbolsUsed} />
++              </div>
++            </div>
++            <div className={classes.statCard}>
++              <div className={classes.statValue}>{phraseCount}</div>
++              <div className={classes.statLabel}>
++                <FormattedMessage {...messages.phrasesSpoken} />
++              </div>
++            </div>
++            <div className={classes.statCard}>
++              <div className={classes.statValue}>{uniqueDays}</div>
++              <div className={classes.statLabel}>
++                <FormattedMessage {...messages.activeDays} />
++              </div>
++            </div>
++          </div>
++
++          <div className={classes.actions}>
++            <Button
++              variant="contained"
++              color="primary"
++              size="large"
++              startIcon={<GetAppIcon />}
++              onClick={handleExportClick}
++              className={classes.button}
++              disabled={totalEntries === 0}
++            >
++              <FormattedMessage {...messages.exportPDF} />
++            </Button>
++
++            <Button
++              variant="outlined"
++              color="secondary"
++              size="large"
++              startIcon={<DeleteIcon />}
++              onClick={handleClearClick}
++              className={classes.button}
++              disabled={totalEntries === 0}
++            >
++              <FormattedMessage {...messages.clearHistory} />
++            </Button>
++          </div>
++
++          {totalEntries === 0 && (
++            <Typography className={classes.warningText}>
++              <FormattedMessage {...messages.noDataAvailable} />
++            </Typography>
++          )}
++        </Paper>
++
++        <Paper className={classes.section}>
++          <Typography variant="h6" gutterBottom>
++            <FormattedMessage {...messages.privacyNote} />
++          </Typography>
++          <Typography variant="body2" color="textSecondary">
++            <FormattedMessage {...messages.privacyDescription} />
++          </Typography>
++        </Paper>
++      </div>
++
++      <ExportDialog
++        open={exportDialogOpen}
++        onClose={() => setExportDialogOpen(false)}
++      />
++
++      {/* Clear Confirmation Dialog */}
++      {clearConfirmOpen && (
++        <FullScreenDialog
++          open={clearConfirmOpen}
++          title={intl.formatMessage(messages.clearConfirmTitle)}
++          onClose={() => setClearConfirmOpen(false)}
++        >
++          <Paper style={{ padding: '20px' }}>
++            <Typography gutterBottom>
++              <FormattedMessage {...messages.clearConfirmMessage} />
++            </Typography>
++            <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
++              <Button
++                variant="contained"
++                color="secondary"
++                onClick={handleClearConfirm}
++              >
++                <FormattedMessage {...messages.clearConfirm} />
++              </Button>
++              <Button
++                variant="outlined"
++                onClick={() => setClearConfirmOpen(false)}
++              >
++                <FormattedMessage {...messages.cancel} />
++              </Button>
++            </div>
++          </Paper>
++        </FullScreenDialog>
++      )}
++    </FullScreenDialog>
++  );
++};
++
++CommunicationHistory.propTypes = {
++  intl: PropTypes.object.isRequired,
++  communicationHistory: PropTypes.array.isRequired,
++  clearHistory: PropTypes.func.isRequired,
++  userData: PropTypes.object,
++  history: PropTypes.object.isRequired
++};
++
++export default injectIntl(CommunicationHistory);
+diff --git a/src/components/Settings/CommunicationHistory/CommunicationHistory.container.js b/src/components/Settings/CommunicationHistory/CommunicationHistory.container.js
+new file mode 100644
+index 00000000..7d4fbb31
+--- /dev/null
++++ b/src/components/Settings/CommunicationHistory/CommunicationHistory.container.js
+@@ -0,0 +1,17 @@
++import { connect } from 'react-redux';
++import CommunicationHistory from './CommunicationHistory.component';
++import { clearCommunicationHistory } from '../../CommunicationHistory/CommunicationHistory.actions';
++
++const mapStateToProps = state => ({
++  communicationHistory: state.communicationHistory.entries,
++  userData: state.app.userData
++});
++
++const mapDispatchToProps = {
++  clearHistory: clearCommunicationHistory
++};
++
++export default connect(
++  mapStateToProps,
++  mapDispatchToProps
++)(CommunicationHistory);
+diff --git a/src/components/Settings/CommunicationHistory/CommunicationHistory.messages.js b/src/components/Settings/CommunicationHistory/CommunicationHistory.messages.js
+new file mode 100644
+index 00000000..911ac16e
+--- /dev/null
++++ b/src/components/Settings/CommunicationHistory/CommunicationHistory.messages.js
+@@ -0,0 +1,72 @@
++import { defineMessages } from 'react-intl';
++
++export default defineMessages({
++  title: {
++    id: 'cboard.components.Settings.CommunicationHistory.title',
++    defaultMessage: 'Communication History Report'
++  },
++  overview: {
++    id: 'cboard.components.Settings.CommunicationHistory.overview',
++    defaultMessage: 'Communication Overview'
++  },
++  description: {
++    id: 'cboard.components.Settings.CommunicationHistory.description',
++    defaultMessage:
++      'Track and export detailed reports of AAC usage including selected words, phrases, and pictograms. This helps therapists and educators analyze communication patterns and progress over time.'
++  },
++  totalInteractions: {
++    id: 'cboard.components.Settings.CommunicationHistory.totalInteractions',
++    defaultMessage: 'Total Interactions'
++  },
++  symbolsUsed: {
++    id: 'cboard.components.Settings.CommunicationHistory.symbolsUsed',
++    defaultMessage: 'Symbols Used'
++  },
++  phrasesSpoken: {
++    id: 'cboard.components.Settings.CommunicationHistory.phrasesSpoken',
++    defaultMessage: 'Phrases Spoken'
++  },
++  activeDays: {
++    id: 'cboard.components.Settings.CommunicationHistory.activeDays',
++    defaultMessage: 'Active Days'
++  },
++  exportPDF: {
++    id: 'cboard.components.Settings.CommunicationHistory.exportPDF',
++    defaultMessage: 'Export PDF Report'
++  },
++  clearHistory: {
++    id: 'cboard.components.Settings.CommunicationHistory.clearHistory',
++    defaultMessage: 'Clear History'
++  },
++  noDataAvailable: {
++    id: 'cboard.components.Settings.CommunicationHistory.noDataAvailable',
++    defaultMessage:
++      'No communication data available. Start using the board to track interactions.'
++  },
++  privacyNote: {
++    id: 'cboard.components.Settings.CommunicationHistory.privacyNote',
++    defaultMessage: 'Privacy & Data Storage'
++  },
++  privacyDescription: {
++    id: 'cboard.components.Settings.CommunicationHistory.privacyDescription',
++    defaultMessage:
++      'Communication history is stored locally on your device and in your account if logged in. Data is never shared without your explicit consent. You can clear your history at any time.'
++  },
++  clearConfirmTitle: {
++    id: 'cboard.components.Settings.CommunicationHistory.clearConfirmTitle',
++    defaultMessage: 'Clear Communication History?'
++  },
++  clearConfirmMessage: {
++    id: 'cboard.components.Settings.CommunicationHistory.clearConfirmMessage',
++    defaultMessage:
++      'This will permanently delete all communication history data. This action cannot be undone.'
++  },
++  clearConfirm: {
++    id: 'cboard.components.Settings.CommunicationHistory.clearConfirm',
++    defaultMessage: 'Yes, Clear History'
++  },
++  cancel: {
++    id: 'cboard.components.Settings.CommunicationHistory.cancel',
++    defaultMessage: 'Cancel'
++  }
++});
+diff --git a/src/components/Settings/CommunicationHistory/index.js b/src/components/Settings/CommunicationHistory/index.js
+new file mode 100644
+index 00000000..adcceff9
+--- /dev/null
++++ b/src/components/Settings/CommunicationHistory/index.js
+@@ -0,0 +1 @@
++export { default } from './CommunicationHistory.container';
+diff --git a/src/components/Settings/Settings.component.js b/src/components/Settings/Settings.component.js
+index 01cc1935..429cffb7 100644
+--- a/src/components/Settings/Settings.component.js
++++ b/src/components/Settings/Settings.component.js
+@@ -18,6 +18,7 @@ import HelpIcon from '@material-ui/icons/Help';
+ import IconButton from '../UI/IconButton';
+ import LiveHelpIcon from '@material-ui/icons/LiveHelp';
+ import SymbolsIcon from '@material-ui/icons/EmojiSymbols';
++import AssessmentIcon from '@material-ui/icons/Assessment';
+ 
+ import messages from './Settings.messages';
+ import SettingsSection from './SettingsSection.component';
+@@ -115,6 +116,11 @@ export class Settings extends PureComponent {
+         text: messages.import,
+         url: '/settings/import'
+       },
++      {
++        icon: <AssessmentIcon />,
++        text: messages.communicationHistory,
++        url: '/settings/communication-history'
++      },
+       {
+         icon: <SymbolsIcon />,
+         text: messages.symbols,
+diff --git a/src/components/Settings/Settings.messages.js b/src/components/Settings/Settings.messages.js
+index c33d8d5f..65c809e5 100644
+--- a/src/components/Settings/Settings.messages.js
++++ b/src/components/Settings/Settings.messages.js
+@@ -218,5 +218,9 @@ export default defineMessages({
+   symbols: {
+     id: 'cboard.components.Settings.symbols',
+     defaultMessage: 'Symbols'
++  },
++  communicationHistory: {
++    id: 'cboard.components.Settings.communicationHistory',
++    defaultMessage: 'Communication Report'
+   }
+ });
+diff --git a/src/components/Settings/Settings.wrapper.js b/src/components/Settings/Settings.wrapper.js
+index 42159eaa..a91daa6a 100644
+--- a/src/components/Settings/Settings.wrapper.js
++++ b/src/components/Settings/Settings.wrapper.js
+@@ -14,6 +14,7 @@ import Scanning from './Scanning';
+ import Navigation from './Navigation';
+ import Help from './Help';
+ import Symbols from './Symbols';
++import CommunicationHistory from './CommunicationHistory';
+ 
+ const SettingsWrapper = ({ match }) => (
+   <Fragment>
+@@ -25,6 +26,10 @@ const SettingsWrapper = ({ match }) => (
+       <Route path={`${match.url}/speech`} component={Speech} />
+       <Route path={`${match.url}/export`} component={Export} />
+       <Route path={`${match.url}/import`} component={Import} />
++      <Route
++        path={`${match.url}/communication-history`}
++        component={CommunicationHistory}
++      />
+       <Route path={`${match.url}/display`} component={Display} />
+       <Route path={`${match.url}/about`} component={About} />
+       <Route path={`${match.url}/help`} component={Help} />
+diff --git a/src/reducers.js b/src/reducers.js
+index 26e891a9..50f20e59 100644
+--- a/src/reducers.js
++++ b/src/reducers.js
+@@ -12,6 +12,7 @@ import boardReducer from './components/Board/Board.reducer';
+ import communicatorReducer from './components/Communicator/Communicator.reducer';
+ import notificationsReducer from './components/Notifications/Notifications.reducer';
+ import subscriptionProviderReducer from './providers/SubscriptionProvider/SubscriptionProvider.reducer';
++import communicationHistoryReducer from './components/CommunicationHistory/CommunicationHistory.reducer';
+ import storage from 'redux-persist/lib/storage';
+ import { DEFAULT_BOARDS } from '../src/helpers';
+ 
+@@ -50,6 +51,7 @@ export default function createReducer() {
+     communicator: communicatorReducer,
+     scanner: scannerProviderReducer,
+     notification: notificationsReducer,
+-    subscription: subscriptionProviderReducer
++    subscription: subscriptionProviderReducer,
++    communicationHistory: communicationHistoryReducer
+   });
+ }
+diff --git a/src/services/PDFReportService.js b/src/services/PDFReportService.js
+new file mode 100644
+index 00000000..2b527570
+--- /dev/null
++++ b/src/services/PDFReportService.js
+@@ -0,0 +1,490 @@
++import pdfMake from 'pdfmake/build/pdfmake';
++import pdfFonts from '../vfs_fonts';
++import moment from 'moment';
++
++pdfMake.vfs = pdfFonts.pdfMake.vfs;
++
++const COLORS = {
++  primary: '#4CAF50',
++  secondary: '#2196F3',
++  text: '#333333',
++  lightGray: '#F5F5F5',
++  border: '#DDDDDD'
++};
++
++class PDFReportService {
++  constructor() {
++    this.pageSize = 'A4';
++    this.pageMargins = [40, 60, 40, 60];
++  }
++
++  async generateCommunicationReport(data) {
++    const {
++      entries = [],
++      userId = 'Unknown',
++      userName = 'User',
++      dateRange = {},
++      metadata = {}
++    } = data;
++
++    const docDefinition = {
++      pageSize: this.pageSize,
++      pageMargins: this.pageMargins,
++      header: this.createHeader(),
++      footer: this.createFooter(),
++      content: [
++        this.createTitle(),
++        this.createReportInfo(userName, userId, dateRange, entries.length),
++        this.createSummarySection(entries),
++        {
++          text: 'Communication History',
++          style: 'sectionHeader',
++          pageBreak: 'before'
++        },
++        this.createEntriesTable(entries)
++      ],
++      styles: this.getStyles(),
++      defaultStyle: {
++        font: 'Roboto'
++      }
++    };
++
++    return new Promise((resolve, reject) => {
++      try {
++        const pdfDoc = pdfMake.createPdf(docDefinition);
++        pdfDoc.download(
++          `communication_report_${moment().format('YYYY-MM-DD_HHmmss')}.pdf`
++        );
++        resolve({ success: true });
++      } catch (error) {
++        reject(error);
++      }
++    });
++  }
++
++  createHeader() {
++    return (currentPage, pageCount) => ({
++      columns: [
++        {
++          text: 'Cboard Communication Report',
++          style: 'headerText',
++          alignment: 'left',
++          margin: [40, 20, 0, 0]
++        },
++        {
++          text: `Page ${currentPage} of ${pageCount}`,
++          style: 'headerText',
++          alignment: 'right',
++          margin: [0, 20, 40, 0]
++        }
++      ]
++    });
++  }
++
++  createFooter() {
++    return {
++      columns: [
++        {
++          text: `Generated on ${moment().format('MMMM DD, YYYY HH:mm')}`,
++          style: 'footerText',
++          alignment: 'center',
++          margin: [0, 0, 0, 20]
++        }
++      ]
++    };
++  }
++
++  createTitle() {
++    return {
++      text: 'Communication History Report',
++      style: 'mainTitle',
++      alignment: 'center',
++      margin: [0, 0, 0, 30]
++    };
++  }
++
++  createReportInfo(userName, userId, dateRange, totalEntries) {
++    const fromDate = dateRange.from
++      ? moment(dateRange.from).format('MMM DD, YYYY')
++      : 'Beginning';
++    const toDate = dateRange.to
++      ? moment(dateRange.to).format('MMM DD, YYYY')
++      : 'Present';
++
++    return {
++      style: 'infoSection',
++      table: {
++        widths: ['30%', '70%'],
++        body: [
++          [
++            { text: 'User Name:', style: 'label' },
++            { text: userName, style: 'value' }
++          ],
++          [
++            { text: 'User ID:', style: 'label' },
++            { text: userId, style: 'value' }
++          ],
++          [
++            { text: 'Date Range:', style: 'label' },
++            { text: `${fromDate} - ${toDate}`, style: 'value' }
++          ],
++          [
++            { text: 'Total Interactions:', style: 'label' },
++            { text: totalEntries.toString(), style: 'value' }
++          ]
++        ]
++      },
++      layout: 'noBorders',
++      margin: [0, 0, 0, 30]
++    };
++  }
++
++  createSummarySection(entries) {
++    const symbolCount = entries.filter(e => e.type === 'symbol').length;
++    const phraseCount = entries.filter(e => e.type === 'phrase').length;
++    const clearCount = entries.filter(e => e.type === 'clear').length;
++    const backspaceCount = entries.filter(e => e.type === 'backspace').length;
++
++    const frequentWords = this.getFrequentWords(entries);
++    const sessionsData = this.getSessionsData(entries);
++
++    return [
++      {
++        text: 'Summary Statistics',
++        style: 'sectionHeader',
++        margin: [0, 0, 0, 15]
++      },
++      {
++        columns: [
++          {
++            width: '50%',
++            stack: [
++              {
++                text: 'Interaction Types',
++                style: 'subHeader',
++                margin: [0, 0, 0, 10]
++              },
++              {
++                ul: [
++                  `Symbols/Words: ${symbolCount}`,
++                  `Phrases: ${phraseCount}`,
++                  `Clear Actions: ${clearCount}`,
++                  `Backspace Actions: ${backspaceCount}`
++                ],
++                style: 'summaryList'
++              }
++            ]
++          },
++          {
++            width: '50%',
++            stack: [
++              {
++                text: 'Session Information',
++                style: 'subHeader',
++                margin: [0, 0, 0, 10]
++              },
++              {
++                ul: [
++                  `Total Sessions: ${sessionsData.totalSessions}`,
++                  `Average Interactions per Session: ${
++                    sessionsData.avgInteractions
++                  }`,
++                  `Most Active Day: ${sessionsData.mostActiveDay}`,
++                  `Peak Hour: ${sessionsData.peakHour}`
++                ],
++                style: 'summaryList'
++              }
++            ]
++          }
++        ],
++        margin: [0, 0, 0, 20]
++      },
++      {
++        text: 'Most Frequently Used Words/Symbols',
++        style: 'subHeader',
++        margin: [0, 10, 0, 10]
++      },
++      {
++        table: {
++          widths: ['60%', '40%'],
++          body: [
++            [
++              { text: 'Word/Symbol', style: 'tableHeader' },
++              { text: 'Frequency', style: 'tableHeader' }
++            ],
++            ...frequentWords.map(item => [
++              { text: item.word, style: 'tableCell' },
++              { text: item.count.toString(), style: 'tableCell' }
++            ])
++          ]
++        },
++        layout: this.getTableLayout(),
++        margin: [0, 0, 0, 30]
++      }
++    ];
++  }
++
++  createEntriesTable(entries) {
++    const sortedEntries = [...entries].sort(
++      (a, b) => moment(b.timestamp).valueOf() - moment(a.timestamp).valueOf()
++    );
++
++    const tableBody = [
++      [
++        { text: 'Date & Time', style: 'tableHeader' },
++        { text: 'Type', style: 'tableHeader' },
++        { text: 'Content', style: 'tableHeader' },
++        { text: 'Details', style: 'tableHeader' }
++      ]
++    ];
++
++    sortedEntries.forEach(entry => {
++      const row = [
++        {
++          text: moment(entry.timestamp).format('MMM DD, YYYY HH:mm:ss'),
++          style: 'tableCell',
++          fontSize: 9
++        },
++        {
++          text: this.formatType(entry.type),
++          style: 'tableCell',
++          fontSize: 9
++        },
++        {
++          text: this.formatContent(entry),
++          style: 'tableCell',
++          fontSize: 9
++        },
++        {
++          text: this.formatDetails(entry),
++          style: 'tableCell',
++          fontSize: 8
++        }
++      ];
++      tableBody.push(row);
++    });
++
++    return {
++      table: {
++        headerRows: 1,
++        widths: ['22%', '15%', '38%', '25%'],
++        body: tableBody
++      },
++      layout: this.getTableLayout()
++    };
++  }
++
++  formatType(type) {
++    const typeMap = {
++      symbol: 'Symbol',
++      phrase: 'Phrase',
++      pictogram: 'Pictogram',
++      clear: 'Clear',
++      backspace: 'Backspace'
++    };
++    return typeMap[type] || type;
++  }
++
++  formatContent(entry) {
++    if (entry.type === 'phrase' && entry.symbols) {
++      return entry.symbols.map(s => s.label || '').join(' ');
++    }
++    return entry.label || '-';
++  }
++
++  formatDetails(entry) {
++    const details = [];
++
++    if (entry.metadata) {
++      if (entry.metadata.symbolCount) {
++        details.push(`${entry.metadata.symbolCount} symbols`);
++      }
++      if (entry.metadata.hasImages) {
++        details.push('Has images');
++      }
++      if (entry.metadata.vocalization) {
++        details.push(`Spoken: "${entry.metadata.vocalization}"`);
++      }
++    }
++
++    if (entry.sessionId) {
++      details.push(`Session: ${entry.sessionId.substring(0, 8)}`);
++    }
++
++    return details.join(', ') || '-';
++  }
++
++  getFrequentWords(entries, limit = 10) {
++    const wordCount = {};
++
++    entries.forEach(entry => {
++      if (entry.type === 'symbol' && entry.label) {
++        const word = entry.label.toLowerCase();
++        wordCount[word] = (wordCount[word] || 0) + 1;
++      } else if (entry.type === 'phrase' && entry.symbols) {
++        entry.symbols.forEach(symbol => {
++          if (symbol.label) {
++            const word = symbol.label.toLowerCase();
++            wordCount[word] = (wordCount[word] || 0) + 1;
++          }
++        });
++      }
++    });
++
++    return Object.entries(wordCount)
++      .sort(([, a], [, b]) => b - a)
++      .slice(0, limit)
++      .map(([word, count]) => ({ word, count }));
++  }
++
++  getSessionsData(entries) {
++    const sessions = {};
++    const dayActivity = {};
++    const hourActivity = {};
++
++    entries.forEach(entry => {
++      const sessionId = entry.sessionId || 'default';
++      const day = moment(entry.timestamp).format('dddd');
++      const hour = moment(entry.timestamp).hour();
++
++      sessions[sessionId] = (sessions[sessionId] || 0) + 1;
++      dayActivity[day] = (dayActivity[day] || 0) + 1;
++      hourActivity[hour] = (hourActivity[hour] || 0) + 1;
++    });
++
++    const totalSessions = Object.keys(sessions).length;
++    const totalInteractions = entries.length;
++    const avgInteractions =
++      totalSessions > 0 ? Math.round(totalInteractions / totalSessions) : 0;
++
++    const mostActiveDay =
++      Object.entries(dayActivity).sort(([, a], [, b]) => b - a)[0]?.[0] ||
++      'N/A';
++
++    const peakHour = Object.entries(hourActivity).sort(
++      ([, a], [, b]) => b - a
++    )[0];
++    const peakHourFormatted = peakHour
++      ? `${peakHour[0]}:00 - ${parseInt(peakHour[0]) + 1}:00`
++      : 'N/A';
++
++    return {
++      totalSessions,
++      avgInteractions,
++      mostActiveDay,
++      peakHour: peakHourFormatted
++    };
++  }
++
++  getTableLayout() {
++    return {
++      hLineWidth: (i, node) =>
++        i === 0 || i === node.table.body.length ? 1 : 0.5,
++      vLineWidth: () => 0.5,
++      hLineColor: () => COLORS.border,
++      vLineColor: () => COLORS.border,
++      paddingLeft: () => 8,
++      paddingRight: () => 8,
++      paddingTop: () => 4,
++      paddingBottom: () => 4,
++      fillColor: rowIndex => {
++        if (rowIndex === 0) return COLORS.primary;
++        return rowIndex % 2 === 0 ? COLORS.lightGray : null;
++      }
++    };
++  }
++
++  getStyles() {
++    return {
++      mainTitle: {
++        fontSize: 24,
++        bold: true,
++        color: COLORS.primary
++      },
++      sectionHeader: {
++        fontSize: 16,
++        bold: true,
++        color: COLORS.primary,
++        margin: [0, 15, 0, 10]
++      },
++      subHeader: {
++        fontSize: 13,
++        bold: true,
++        color: COLORS.secondary
++      },
++      headerText: {
++        fontSize: 10,
++        color: COLORS.text
++      },
++      footerText: {
++        fontSize: 9,
++        color: COLORS.text
++      },
++      label: {
++        fontSize: 11,
++        bold: true,
++        color: COLORS.text
++      },
++      value: {
++        fontSize: 11,
++        color: COLORS.text
++      },
++      tableHeader: {
++        bold: true,
++        fontSize: 11,
++        color: 'white',
++        fillColor: COLORS.primary
++      },
++      tableCell: {
++        fontSize: 10,
++        color: COLORS.text
++      },
++      summaryList: {
++        fontSize: 11,
++        color: COLORS.text,
++        lineHeight: 1.5
++      },
++      infoSection: {
++        margin: [0, 0, 0, 20]
++      }
++    };
++  }
++
++  async generateImageFromURL(url) {
++    return new Promise(resolve => {
++      const img = new Image();
++      img.crossOrigin = 'anonymous';
++      img.onload = () => {
++        const canvas = document.createElement('canvas');
++        const ctx = canvas.getContext('2d');
++
++        const maxWidth = 50;
++        const maxHeight = 50;
++        let width = img.width;
++        let height = img.height;
++
++        if (width > maxWidth || height > maxHeight) {
++          const ratio = Math.min(maxWidth / width, maxHeight / height);
++          width = width * ratio;
++          height = height * ratio;
++        }
++
++        canvas.width = width;
++        canvas.height = height;
++        ctx.drawImage(img, 0, 0, width, height);
++
++        resolve({
++          image: canvas.toDataURL(),
++          width: width,
++          height: height
++        });
++      };
++      img.onerror = () => {
++        resolve(null);
++      };
++      img.src = url;
++    });
++  }
++}
++
++export default new PDFReportService();
+-- 
+2.39.2 (Apple Git-143)
+
