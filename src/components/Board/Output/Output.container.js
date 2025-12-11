@@ -10,14 +10,19 @@ import { isAndroid } from '../../../cordova-util';
 
 import {
   cancelSpeech,
-  speak
+  speak,
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 
 import { changeOutput, clickOutput, changeLiveMode } from '../Board.actions';
+import {
+  trackPhraseSpoken,
+  trackClearAction,
+  trackBackspaceAction,
+} from '../../CommunicationHistory/CommunicationHistory.actions';
 import SymbolOutput from './SymbolOutput';
 
 function translateOutput(output, intl) {
-  const translatedOutput = output.map(value => {
+  const translatedOutput = output.map((value) => {
     let translatedValue = { ...value };
 
     if (value.labelKey && intl.messages[value.labelKey]) {
@@ -47,9 +52,9 @@ export class OutputContainer extends Component {
         /**
          * Label to display
          */
-        label: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
-      })
-    )
+        label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+      }),
+    ),
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -61,7 +66,7 @@ export class OutputContainer extends Component {
   }
 
   state = {
-    translatedOutput: []
+    translatedOutput: [],
   };
 
   componentDidMount() {
@@ -70,7 +75,7 @@ export class OutputContainer extends Component {
   componentWillUnmount() {
     document.removeEventListener(
       'keydown',
-      this.handleRepeatLastSpokenSentence
+      this.handleRepeatLastSpokenSentence,
     );
   }
 
@@ -111,7 +116,7 @@ export class OutputContainer extends Component {
   }
   async speakOutput(text) {
     this.props.clickOutput(text.trim());
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const { cancelSpeech, speak } = this.props;
 
       const onend = () => {
@@ -163,17 +168,23 @@ export class OutputContainer extends Component {
   }
 
   async play(liveText = '') {
+    const { output, trackPhraseSpoken } = this.props;
+
     if (liveText) {
       await this.speakOutput(liveText);
     } else {
+      if (output.length > 0) {
+        trackPhraseSpoken(output);
+      }
+
       const outputFrames = this.groupOutputByType();
 
-      await this.asyncForEach(outputFrames, async frame => {
+      await this.asyncForEach(outputFrames, async (frame) => {
         if (!frame[0]?.sound) {
           const text = frame.reduce(this.outputReducer, '');
           await this.speakOutput(text);
         } else {
-          await new Promise(resolve => {
+          await new Promise((resolve) => {
             this.asyncForEach(frame, async ({ sound }, index) => {
               await this.playAudio(sound);
 
@@ -188,20 +199,22 @@ export class OutputContainer extends Component {
   }
 
   handleBackspaceClick = () => {
-    const { cancelSpeech } = this.props;
+    const { cancelSpeech, trackBackspaceAction } = this.props;
     cancelSpeech();
+    trackBackspaceAction();
     this.popOutput();
   };
 
   handleClearClick = () => {
-    const { cancelSpeech } = this.props;
+    const { cancelSpeech, trackClearAction } = this.props;
     cancelSpeech();
+    trackClearAction();
     this.clearOutput();
   };
 
   handlePhraseToShare = () => {
     if (this.props.output.length) {
-      const labels = this.props.output.map(symbol => symbol.label);
+      const labels = this.props.output.map((symbol) => symbol.label);
       return labels.join(' ');
     }
     return '';
@@ -209,7 +222,7 @@ export class OutputContainer extends Component {
 
   handleCopyClick = async () => {
     const { intl, showNotification } = this.props;
-    const labels = this.props.output.map(symbol => symbol.label);
+    const labels = this.props.output.map((symbol) => symbol.label);
     try {
       if (isAndroid()) {
         await window.cordova.plugins.clipboard.copy(labels.join(' '));
@@ -223,13 +236,13 @@ export class OutputContainer extends Component {
     }
   };
 
-  handleRemoveClick = index => event => {
+  handleRemoveClick = (index) => (event) => {
     const { cancelSpeech } = this.props;
     cancelSpeech();
     this.spliceOutput(index);
   };
 
-  handleRepeatLastSpokenSentence = event => {
+  handleRepeatLastSpokenSentence = (event) => {
     const Z_KEY_CODE = 90;
     const Y_KEY_CODE = 89;
     const { output } = this.props;
@@ -247,14 +260,14 @@ export class OutputContainer extends Component {
       };
 
       const lastSpokenSymbol = output.findLast((element, index) =>
-        isLastSpokenSymbol(element, index)
+        isLastSpokenSymbol(element, index),
       );
       const text = lastSpokenSymbol ? lastSpokenSymbol.label : '';
       this.speakOutput(text);
     }
   };
 
-  handleOutputClick = event => {
+  handleOutputClick = (event) => {
     const targetEl = event.target;
     const targetElLow = targetEl.tagName.toLowerCase();
     if (targetElLow === 'div' || targetElLow === 'p') {
@@ -262,7 +275,7 @@ export class OutputContainer extends Component {
     }
   };
 
-  handleOutputKeyDown = event => {
+  handleOutputKeyDown = (event) => {
     if (event.keyCode === keycode('enter')) {
       const targetEl = event.target;
       if (targetEl.tagName.toLowerCase() === 'div') {
@@ -279,7 +292,7 @@ export class OutputContainer extends Component {
     image: '',
     label: '',
     labelKey: '',
-    type: 'live'
+    type: 'live',
   };
 
   addLiveOutputTile() {
@@ -295,7 +308,7 @@ export class OutputContainer extends Component {
     changeOutput([this.defaultLiveTile]);
   }
 
-  handleSwitchLiveMode = event => {
+  handleSwitchLiveMode = (event) => {
     const { changeLiveMode, isLiveMode } = this.props;
 
     if (!isLiveMode) {
@@ -304,12 +317,12 @@ export class OutputContainer extends Component {
     changeLiveMode();
   };
 
-  handleWriteSymbol = index => event => {
+  handleWriteSymbol = (index) => (event) => {
     const { changeOutput, intl } = this.props;
     const output = [...this.props.output];
     const newEl = {
       ...output[index],
-      label: event.target.value
+      label: event.target.value,
     };
     output.splice(index, 1, newEl);
     changeOutput(output);
@@ -318,12 +331,8 @@ export class OutputContainer extends Component {
   };
 
   render() {
-    const {
-      output,
-      navigationSettings,
-      isLiveMode,
-      increaseOutputButtons
-    } = this.props;
+    const { output, navigationSettings, isLiveMode, increaseOutputButtons } =
+      this.props;
     const tabIndex = output.length ? '0' : '-1';
     return (
       <SymbolOutput
@@ -351,7 +360,7 @@ const mapStateToProps = ({ board, app }) => {
     output: board.output,
     isLiveMode: board.isLiveMode,
     navigationSettings: app.navigationSettings,
-    increaseOutputButtons: app.displaySettings.increaseOutputButtons
+    increaseOutputButtons: app.displaySettings.increaseOutputButtons,
   };
 };
 
@@ -361,10 +370,13 @@ const mapDispatchToProps = {
   clickOutput,
   speak,
   showNotification,
-  changeLiveMode
+  changeLiveMode,
+  trackPhraseSpoken,
+  trackClearAction,
+  trackBackspaceAction,
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(injectIntl(OutputContainer));
