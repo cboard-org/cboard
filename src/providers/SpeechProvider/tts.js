@@ -1,5 +1,5 @@
 import * as azureSdk from 'microsoft-cognitiveservices-speech-sdk';
-import { isAndroid, isCordova } from '../../cordova-util';
+import { isAndroid } from '../../cordova-util';
 import API from '../../api';
 import {
   AZURE_SPEECH_SERVICE_REGION,
@@ -152,7 +152,8 @@ const tts = {
     try {
       const voices = synth.getVoices();
       // On Cordova, voice results are under `._list`
-      return voices._list || voices || [];
+      const voiceList = voices._list || voices;
+      return Array.isArray(voiceList) ? voiceList : [];
     } catch (err) {
       console.error('Error getting platform voices:', err.message);
       synth = window.speechSynthesis;
@@ -209,7 +210,7 @@ const tts = {
       const supportsVoicesChanged = 'onvoiceschanged' in synth;
       const initialVoices = this._getPlatformVoices();
 
-      if (initialVoices.length > 0 || isCordova() || !supportsVoicesChanged) {
+      if (initialVoices.length > 0 || !supportsVoicesChanged) {
         platformVoices = initialVoices;
         resolve(initialVoices);
         return;
@@ -242,11 +243,19 @@ const tts = {
     ]);
 
     const azureVoices =
-      azureResult.status === 'fulfilled' ? azureResult.value : [];
+      azureResult.status === 'fulfilled' && Array.isArray(azureResult.value)
+        ? azureResult.value
+        : [];
     const elevenLabsVoices =
-      elevenLabsResult.status === 'fulfilled' ? elevenLabsResult.value : [];
+      elevenLabsResult.status === 'fulfilled' &&
+      Array.isArray(elevenLabsResult.value)
+        ? elevenLabsResult.value
+        : [];
     const platformVoices =
-      platformResult.status === 'fulfilled' ? platformResult.value : [];
+      platformResult.status === 'fulfilled' &&
+      Array.isArray(platformResult.value)
+        ? platformResult.value
+        : [];
 
     return platformVoices.concat(elevenLabsVoices).concat(azureVoices);
   },
