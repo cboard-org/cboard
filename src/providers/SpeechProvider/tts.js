@@ -271,53 +271,33 @@ const tts = {
     }
 
     console.log('[TTS] Setting engine to:', ttsEngineName);
-
-    const self = this;
-
     return new Promise((resolve, reject) => {
-      let resolved = false;
+      let callbackExecuted = false;
 
-      const timeout = setTimeout(() => {
-        if (!resolved) {
-          resolved = true;
-          synth.removeEventListener('voiceschanged', onVoicesReady);
-          console.error(
-            '[TTS] TIMEOUT: voiceschanged event never fired after 5 seconds'
-          );
-          reject(new Error('Timeout waiting for TTS engine initialization'));
+      const timeoutId = setTimeout(() => {
+        if (!callbackExecuted) {
+          callbackExecuted = true;
+          console.warn('[TTS] setEngine timeout after 7 seconds, rejecting');
+          reject(new Error('TTS engine setup timeout after 7 seconds'));
         }
-      }, 5000);
-
-      const onVoicesReady = () => {
-        if (!resolved) {
-          resolved = true;
-          clearTimeout(timeout);
-          synth.removeEventListener('voiceschanged', onVoicesReady);
-          console.log('[TTS] ✓ voiceschanged event received');
-
-          const voices = self._getPlatformVoices();
-          console.log('[TTS] Voices from event:', voices.length);
-          platformVoices = voices;
-          resolve(voices);
-        }
-      };
-
-      synth.addEventListener('voiceschanged', onVoicesReady);
-      console.log('[TTS] ✓ Added voiceschanged listener');
+      }, 7000);
 
       synth.setEngine(ttsEngineName, function(voicesData) {
+        if (callbackExecuted) return;
+        callbackExecuted = true;
+        clearTimeout(timeoutId);
+
         console.log(
           '[TTS] setEngine callback received, voices:',
           voicesData ? voicesData.length : 0
         );
-        if (!resolved && voicesData && voicesData.length) {
-          resolved = true;
-          clearTimeout(timeout);
-          synth.removeEventListener('voiceschanged', onVoicesReady);
-          console.log('[TTS] ✓ Resolved via callback (faster than event)');
+
+        if (voicesData && voicesData.length) {
           platformVoices = voicesData;
-          resolve(voicesData);
+          return resolve(voicesData);
         }
+
+        return reject(new Error('TTS engine did not return valid voices'));
       });
     });
   },
