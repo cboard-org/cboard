@@ -37,23 +37,27 @@ export class SpeechProvider extends Component {
     }
 
     if (tts.isSupported()) {
-      //if android we have to set the tts engine first
       if (isAndroid()) {
         getTtsEngines();
         getTtsDefaultEngine();
-      }
-      if (ttsEngine && ttsEngine.name) {
-        try {
-          await setTtsEngine(ttsEngine.name);
-        } catch (err) {
-          console.error(err.message);
+
+        if (
+          ttsEngine &&
+          ttsEngine.name &&
+          ttsEngine.name !== tts.getTtsDefaultEngine().name
+        ) {
+          try {
+            await setTtsEngine(ttsEngine.name);
+          } catch (err) {
+            console.error('Error setting TTS engine:', err.message);
+          }
         }
       }
       try {
         const voices = await getVoices();
         await updateLangSpeechStatus(voices);
       } catch (err) {
-        console.error(err.message);
+        console.error('Error getting voices:', err.message);
       }
     }
     setCurrentVoiceSource();
