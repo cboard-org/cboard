@@ -151,6 +151,7 @@ const tts = {
   _getPlatformVoices() {
     try {
       const voices = synth.getVoices();
+      console.log(voices);
       // On Cordova, voice results are under `._list`
       const voiceList = voices._list || voices;
       return Array.isArray(voiceList) ? voiceList : [];
@@ -199,7 +200,7 @@ const tts = {
   },
   async getPlatformVoicesAsync() {
     return new Promise(resolve => {
-      const VOICES_TIMEOUT = 3000;
+      const VOICES_TIMEOUT = 7000;
 
       const resolveWithVoices = () => {
         const voices = this._getPlatformVoices();
@@ -260,32 +261,65 @@ const tts = {
     return platformVoices.concat(elevenLabsVoices).concat(azureVoices);
   },
 
-  //Use setTTsEngine only in Android
   setTtsEngine(ttsEngineName) {
     if (!isAndroid()) {
-      return;
-    } else {
-      //define a race between two promises
-      const timeout = (prom, time) => {
-        let timer;
-        return Promise.race([
-          prom,
-          new Promise((_r, rej) => (timer = setTimeout(rej, time)))
-        ]).finally(() => clearTimeout(timer));
-      };
-      //promise when setting the TTS succeed
-      const ttsResponse = () => {
-        return new Promise((resolve, reject) => {
-          synth.setEngine(ttsEngineName, function(event) {
-            if (event.length) {
-              resolve(event);
-            }
-          });
-        });
-      };
-      // finishes before the timeout
-      return timeout(ttsResponse(), 4000);
+      return Promise.resolve([]);
     }
+
+    if (synth === undefined) {
+      synth = window.speechSynthesis;
+    }
+
+    console.log('[TTS] Setting engine to:', ttsEngineName);
+
+    const self = this;
+
+    return new Promise((resolve, reject) => {
+      let resolved = false;
+
+      const timeout = setTimeout(() => {
+        if (!resolved) {
+          resolved = true;
+          synth.removeEventListener('voiceschanged', onVoicesReady);
+          console.error(
+            '[TTS] TIMEOUT: voiceschanged event never fired after 5 seconds'
+          );
+          reject(new Error('Timeout waiting for TTS engine initialization'));
+        }
+      }, 5000);
+
+      const onVoicesReady = () => {
+        if (!resolved) {
+          resolved = true;
+          clearTimeout(timeout);
+          synth.removeEventListener('voiceschanged', onVoicesReady);
+          console.log('[TTS] ✓ voiceschanged event received');
+
+          const voices = self._getPlatformVoices();
+          console.log('[TTS] Voices from event:', voices.length);
+          platformVoices = voices;
+          resolve(voices);
+        }
+      };
+
+      synth.addEventListener('voiceschanged', onVoicesReady);
+      console.log('[TTS] ✓ Added voiceschanged listener');
+
+      synth.setEngine(ttsEngineName, function(voicesData) {
+        console.log(
+          '[TTS] setEngine callback received, voices:',
+          voicesData ? voicesData.length : 0
+        );
+        if (!resolved && voicesData && voicesData.length) {
+          resolved = true;
+          clearTimeout(timeout);
+          synth.removeEventListener('voiceschanged', onVoicesReady);
+          console.log('[TTS] ✓ Resolved via callback (faster than event)');
+          platformVoices = voicesData;
+          resolve(voicesData);
+        }
+      });
+    });
   },
 
   //Use getTTsEngine only in Android
