@@ -1,5 +1,5 @@
 import * as azureSdk from 'microsoft-cognitiveservices-speech-sdk';
-import { isAndroid, isCordova } from '../../cordova-util';
+import { isAndroid } from '../../cordova-util';
 import API from '../../api';
 import {
   AZURE_SPEECH_SERVICE_REGION,
@@ -152,7 +152,8 @@ const tts = {
     try {
       const voices = synth.getVoices();
       // On Cordova, voice results are under `._list`
-      return voices._list || voices || [];
+      const voiceList = voices._list || voices;
+      return Array.isArray(voiceList) ? voiceList : [];
     } catch (err) {
       console.error('Error getting platform voices:', err.message);
       synth = window.speechSynthesis;
@@ -198,7 +199,7 @@ const tts = {
   },
   async getPlatformVoicesAsync() {
     return new Promise(resolve => {
-      const VOICES_TIMEOUT = 3000;
+      const VOICES_TIMEOUT = 7000;
 
       const resolveWithVoices = () => {
         const voices = this._getPlatformVoices();
@@ -209,7 +210,7 @@ const tts = {
       const supportsVoicesChanged = 'onvoiceschanged' in synth;
       const initialVoices = this._getPlatformVoices();
 
-      if (initialVoices.length > 0 || isCordova() || !supportsVoicesChanged) {
+      if (initialVoices.length > 0 || !supportsVoicesChanged) {
         platformVoices = initialVoices;
         resolve(initialVoices);
         return;
@@ -242,41 +243,61 @@ const tts = {
     ]);
 
     const azureVoices =
-      azureResult.status === 'fulfilled' ? azureResult.value : [];
+      azureResult.status === 'fulfilled' && Array.isArray(azureResult.value)
+        ? azureResult.value
+        : [];
     const elevenLabsVoices =
-      elevenLabsResult.status === 'fulfilled' ? elevenLabsResult.value : [];
+      elevenLabsResult.status === 'fulfilled' &&
+      Array.isArray(elevenLabsResult.value)
+        ? elevenLabsResult.value
+        : [];
     const platformVoices =
-      platformResult.status === 'fulfilled' ? platformResult.value : [];
+      platformResult.status === 'fulfilled' &&
+      Array.isArray(platformResult.value)
+        ? platformResult.value
+        : [];
 
     return platformVoices.concat(elevenLabsVoices).concat(azureVoices);
   },
 
-  //Use setTTsEngine only in Android
   setTtsEngine(ttsEngineName) {
     if (!isAndroid()) {
-      return;
-    } else {
-      //define a race between two promises
-      const timeout = (prom, time) => {
-        let timer;
-        return Promise.race([
-          prom,
-          new Promise((_r, rej) => (timer = setTimeout(rej, time)))
-        ]).finally(() => clearTimeout(timer));
-      };
-      //promise when setting the TTS succeed
-      const ttsResponse = () => {
-        return new Promise((resolve, reject) => {
-          synth.setEngine(ttsEngineName, function(event) {
-            if (event.length) {
-              resolve(event);
-            }
-          });
-        });
-      };
-      // finishes before the timeout
-      return timeout(ttsResponse(), 4000);
+      return Promise.resolve([]);
     }
+
+    if (synth === undefined) {
+      synth = window.speechSynthesis;
+    }
+
+    console.log('[TTS] Setting engine to:', ttsEngineName);
+    return new Promise((resolve, reject) => {
+      let callbackExecuted = false;
+
+      const timeoutId = setTimeout(() => {
+        if (!callbackExecuted) {
+          callbackExecuted = true;
+          console.warn('[TTS] setEngine timeout after 7 seconds, rejecting');
+          reject(new Error('TTS engine setup timeout after 7 seconds'));
+        }
+      }, 7000);
+
+      synth.setEngine(ttsEngineName, function(voicesData) {
+        if (callbackExecuted) return;
+        callbackExecuted = true;
+        clearTimeout(timeoutId);
+
+        console.log(
+          '[TTS] setEngine callback received, voices:',
+          voicesData ? voicesData.length : 0
+        );
+
+        if (voicesData && voicesData.length) {
+          return resolve(voicesData);
+        }
+
+        return reject(new Error('TTS engine did not return valid voices'));
+      });
+    });
   },
 
   //Use getTTsEngine only in Android
