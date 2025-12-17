@@ -41,10 +41,14 @@ export class SpeechProvider extends Component {
         getTtsEngines();
         getTtsDefaultEngine();
 
+        const defaultEngine = tts.getTtsDefaultEngine();
+
         if (
           ttsEngine &&
           ttsEngine.name &&
-          ttsEngine.name !== tts.getTtsDefaultEngine().name
+          defaultEngine &&
+          defaultEngine.name &&
+          ttsEngine.name !== defaultEngine.name
         ) {
           try {
             await setTtsEngine(ttsEngine.name);
