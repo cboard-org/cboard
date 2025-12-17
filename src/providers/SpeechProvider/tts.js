@@ -151,7 +151,6 @@ const tts = {
   _getPlatformVoices() {
     try {
       const voices = synth.getVoices();
-      console.log(voices);
       // On Cordova, voice results are under `._list`
       const voiceList = voices._list || voices;
       return Array.isArray(voiceList) ? voiceList : [];
@@ -293,7 +292,6 @@ const tts = {
         );
 
         if (voicesData && voicesData.length) {
-          platformVoices = voicesData;
           return resolve(voicesData);
         }
 
