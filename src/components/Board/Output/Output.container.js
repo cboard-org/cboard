@@ -16,18 +16,6 @@ import {
 import { changeOutput, clickOutput, changeLiveMode } from '../Board.actions';
 import SymbolOutput from './SymbolOutput';
 
-function translateOutput(output, intl) {
-  const translatedOutput = output.map(value => {
-    let translatedValue = { ...value };
-
-    if (value.labelKey && intl.messages[value.labelKey]) {
-      translatedValue.label = intl.formatMessage({ id: value.labelKey });
-    }
-    return translatedValue;
-  });
-  return translatedOutput;
-}
-
 export class OutputContainer extends Component {
   static propTypes = {
     /**
@@ -53,15 +41,14 @@ export class OutputContainer extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    if (props.output.length !== state.translatedOutput.length) {
-      const translatedOutput = translateOutput(props.output, props.intl);
-      return { translatedOutput };
+    if (props.output.length !== state.output.length) {
+      return { output: props.output };
     }
     return null;
   }
 
   state = {
-    translatedOutput: []
+    output: [],
   };
 
   componentDidMount() {
@@ -126,7 +113,7 @@ export class OutputContainer extends Component {
   groupOutputByType() {
     const outputFrames = [[]];
 
-    this.state.translatedOutput.forEach((value, index, arr) => {
+    this.state.output.forEach((value, index, arr) => {
       const prevValue = index ? arr[index - 1] : arr[0];
       let frame;
 
@@ -285,12 +272,12 @@ export class OutputContainer extends Component {
   addLiveOutputTile() {
     const { changeOutput } = this.props;
     this.defaultLiveTile.id = shortid.generate();
-    changeOutput([...this.state.translatedOutput, this.defaultLiveTile]);
+    changeOutput([...this.state.output, this.defaultLiveTile]);
   }
 
   addLiveOutputTileClearOutput() {
     const { changeOutput } = this.props;
-    this.setState({ translatedOutput: [] });
+    this.setState({ output: [] });
     this.defaultLiveTile.id = shortid.generate();
     changeOutput([this.defaultLiveTile]);
   }
@@ -305,7 +292,7 @@ export class OutputContainer extends Component {
   };
 
   handleWriteSymbol = index => event => {
-    const { changeOutput, intl } = this.props;
+    const { changeOutput } = this.props;
     const output = [...this.props.output];
     const newEl = {
       ...output[index],
@@ -313,8 +300,7 @@ export class OutputContainer extends Component {
     };
     output.splice(index, 1, newEl);
     changeOutput(output);
-    const translated = translateOutput(output, intl);
-    this.setState({ translatedOutput: translated });
+    this.setState({ output });
   };
 
   render() {
@@ -334,7 +320,7 @@ export class OutputContainer extends Component {
         onClick={isLiveMode ? undefined : this.handleOutputClick}
         onKeyDown={this.handleOutputKeyDown}
         onSwitchLiveMode={this.handleSwitchLiveMode}
-        symbols={this.state.translatedOutput}
+        symbols={this.state.output}
         isLiveMode={isLiveMode}
         tabIndex={tabIndex}
         navigationSettings={navigationSettings}
