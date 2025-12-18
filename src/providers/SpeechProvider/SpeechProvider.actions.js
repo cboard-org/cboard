@@ -84,6 +84,7 @@ export function setTtsEngine(selectedTtsEngineName) {
         throw new Error('TTS engine does not have a language.');
       }
     } catch (err) {
+      console.error('Error setting TTS engine:', err.message);
       throw new Error('TTS engine selection error on setTtsEngine');
     }
   };
