@@ -1623,7 +1623,7 @@ export class BoardContainer extends Component {
             >
               {this.props.intl.formatMessage(messages.boardCopyCancel)}
             </Button>
-            <PremiumFeature>
+            {isCbuilderBoard ? (
               <Button
                 onClick={this.handleCopyRemoteBoard}
                 color="primary"
@@ -1636,7 +1636,22 @@ export class BoardContainer extends Component {
                   this.props.intl.formatMessage(messages.boardCopyAccept)
                 )}
               </Button>
-            </PremiumFeature>
+            ) : (
+              <PremiumFeature>
+                <Button
+                  onClick={this.handleCopyRemoteBoard}
+                  color="primary"
+                  variant="contained"
+                  disabled={this.state.isSaving}
+                >
+                  {this.state.isSaving ? (
+                    <LoadingIcon />
+                  ) : (
+                    this.props.intl.formatMessage(messages.boardCopyAccept)
+                  )}
+                </Button>
+              </PremiumFeature>
+            )}
           </DialogActions>
         </Dialog>
         <Dialog
