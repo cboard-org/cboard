@@ -14,6 +14,7 @@ import Scanning from './Scanning';
 import Navigation from './Navigation';
 import Help from './Help';
 import Symbols from './Symbols';
+import CommunicationHistory from './CommunicationHistory';
 
 const SettingsWrapper = ({ match }) => (
   <Fragment>
@@ -25,6 +26,10 @@ const SettingsWrapper = ({ match }) => (
       <Route path={`${match.url}/speech`} component={Speech} />
       <Route path={`${match.url}/export`} component={Export} />
       <Route path={`${match.url}/import`} component={Import} />
+      <Route
+        path={`${match.url}/communication-history`}
+        component={CommunicationHistory}
+      />
       <Route path={`${match.url}/display`} component={Display} />
       <Route path={`${match.url}/about`} component={About} />
       <Route path={`${match.url}/help`} component={Help} />
