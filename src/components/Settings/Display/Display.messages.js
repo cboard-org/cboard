@@ -95,5 +95,13 @@ export default defineMessages({
     id: 'cboard.components.Settings.Display.darkThemeSecondary',
     defaultMessage:
       'The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.'
+  },
+  expandedOutput: {
+    id: 'display.expandedOutput',
+    defaultMessage: 'Expand Output Bar'
+  },
+  expandedOutputSecondary: {
+    id: 'display.expandedOutputSecondary',
+    defaultMessage: 'Increase the height of the output bar'
   }
 });

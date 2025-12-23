@@ -48,6 +48,12 @@ class Display extends React.Component {
     };
   }
 
+  toggleExpandedOutput = () => {
+    this.setState({
+      expandedOutputActive: !this.state.expandedOutputActive
+    });
+  };
+
   toggleHideOutput = () => {
     this.setState({
       hideOutputActive: !this.state.hideOutputActive
@@ -272,6 +278,24 @@ class Display extends React.Component {
                 <Switch
                   checked={this.state.darkThemeActive}
                   onChange={this.toggleDarkTheme}
+                  value="active"
+                  color="secondary"
+                />
+              </ListItemSecondaryAction>
+            </ListItem>
+            <Divider />
+            <ListItem>
+              <ListItemText
+                className="Display__ListItemText"
+                primary={<FormattedMessage {...messages.expandedOutput} />}
+                secondary={
+                  <FormattedMessage {...messages.expandedOutputSecondary} />
+                }
+              />
+              <ListItemSecondaryAction>
+                <Switch
+                  checked={this.state.expandedOutputActive ? true : false}
+                  onChange={this.toggleExpandedOutput}
                   value="active"
                   color="secondary"
                 />

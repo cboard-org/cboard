@@ -99,10 +99,10 @@ exports[`Display tests default renderer 1`] = `
               onChange={[Function]}
               style={
                 Object {
-                  "fontFamily": "Roboto,Helvetica,Arial,sans-serif",
+                  "fontFamily": "Montserrat,sans-serif",
                 }
               }
-              value="Roboto"
+              value="Montserrat"
             >
               <WithStyles(ForwardRef(MenuItem))
                 style={
@@ -133,6 +133,16 @@ exports[`Display tests default renderer 1`] = `
                 value="Indie Flower"
               >
                 Indie Flower
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                style={
+                  Object {
+                    "fontFamily": "Montserrat,sans-serif",
+                  }
+                }
+                value="Montserrat"
+              >
+                Montserrat
               </WithStyles(ForwardRef(MenuItem))>
               <WithStyles(ForwardRef(MenuItem))
                 style={
@@ -329,6 +339,30 @@ exports[`Display tests default renderer 1`] = `
           className="Display__Options"
         >
           <WithStyles(ForwardRef(Switch))
+            color="secondary"
+            onChange={[Function]}
+            value="active"
+          />
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <WithStyles(ForwardRef(ListItemSecondaryAction))>
+          <WithStyles(ForwardRef(Switch))
+            checked={false}
             color="secondary"
             onChange={[Function]}
             value="active"
