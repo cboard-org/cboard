@@ -444,6 +444,8 @@
   "cboard.components.Settings.Display.labelPositionSecondary": "Whether labels on tiles should be visible, or positioned above or below",
   "cboard.components.Settings.Display.outputHide": "Hide the output bar",
   "cboard.components.Settings.Display.outputHideSecondary": "Hides the white bar on the top where you build a sentence.",
+  "cboard.components.Settings.Display.expandedOutput": "Expand Output Bar",
+  "cboard.components.Settings.Display.expandedOutputSecondary": "Increase the height of the sentence bar",
   "cboard.components.Settings.Scanning.scanning": "Scanning",
   "cboard.components.Settings.Scanning.enable": "Enable",
   "cboard.components.Settings.Scanning.enableSecondary": "Start scanning boards immediately",
