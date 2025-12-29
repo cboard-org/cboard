@@ -54,6 +54,7 @@ import {
   verifyAndUpsertCommunicator
 } from '../Communicator/Communicator.actions';
 import { disableTour } from '../App/App.actions';
+import { showPremiumRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
@@ -784,12 +785,24 @@ export class BoardContainer extends Component {
   };
 
   handleLockClick = () => {
+    const { isLocked } = this.state;
+    const {
+      showPremiumRequired,
+      isInFreeCountry,
+      isSubscribed,
+      isOnTrialPeriod
+    } = this.props;
+
     this.setState((state, props) => ({
       isLocked: !state.isLocked,
       isSaving: false,
       isSelecting: false,
       selectedTileIds: []
     }));
+
+    if (isLocked && !isInFreeCountry && !isSubscribed && !isOnTrialPeriod) {
+      showPremiumRequired({ isUnlockMessage: true });
+    }
   };
 
   handleSelectClick = () => {
@@ -1718,7 +1731,12 @@ const mapStateToProps = ({
   scanner,
   app: { displaySettings, navigationSettings, userData, isConnected, liveHelp },
   language: { lang },
-  subscription: { premiumRequiredModalState }
+  subscription: {
+    premiumRequiredModalState,
+    isInFreeCountry,
+    isSubscribed,
+    isOnTrialPeriod
+  }
 }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
@@ -1748,7 +1766,10 @@ const mapStateToProps = ({
     isSymbolSearchTourEnabled: liveHelp.isSymbolSearchTourEnabled,
     isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
     isPremiumRequiredModalOpen: premiumRequiredModalState?.open,
-    improvedPhrase: board.improvedPhrase
+    improvedPhrase: board.improvedPhrase,
+    isInFreeCountry,
+    isSubscribed,
+    isOnTrialPeriod
   };
 };
 
@@ -1782,7 +1803,8 @@ const mapDispatchToProps = {
   createApiBoard,
   upsertApiBoard,
   changeDefaultBoard,
-  verifyAndUpsertCommunicator
+  verifyAndUpsertCommunicator,
+  showPremiumRequired
 };
 
 export default connect(
