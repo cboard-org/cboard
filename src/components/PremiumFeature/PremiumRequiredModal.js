@@ -20,15 +20,25 @@ function PremiumRequiredModal({
   hidePremiumRequired,
   premiumRequiredModalState
 }) {
-  const { open, showTryPeriodFinishedMessages } = premiumRequiredModalState;
+  const {
+    open,
+    showTryPeriodFinishedMessages,
+    isUnlockMessage
+  } = premiumRequiredModalState;
 
   const dialogText = {
-    tittle: showTryPeriodFinishedMessages ? (
+    tittle: isUnlockMessage ? (
+      <FormattedMessage {...messages.unlockBoardTittle} />
+    ) : showTryPeriodFinishedMessages ? (
       <FormattedMessage {...messages.tryPeriodFinishTittle} />
     ) : (
       <FormattedMessage {...messages.featureBlockedTittle} />
     ),
-    body: <FormattedMessage {...messages.featureBlockedText} />
+    body: isUnlockMessage ? (
+      <FormattedMessage {...messages.unlockBoardText} />
+    ) : (
+      <FormattedMessage {...messages.featureBlockedText} />
+    )
   };
 
   return (
