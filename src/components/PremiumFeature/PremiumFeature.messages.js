@@ -17,5 +17,14 @@ export default defineMessages({
   upgradeNow: {
     id: 'cboard.components.PremiumFeature.upgradeNow',
     defaultMessage: 'Upgrade now'
+  },
+  unlockBoardTittle: {
+    id: 'cboard.components.PremiumFeature.unlockBoardTittle',
+    defaultMessage: 'Support Cboard'
+  },
+  unlockBoardText: {
+    id: 'cboard.components.PremiumFeature.unlockBoardText',
+    defaultMessage:
+      'Consider subscribing to support Cboard development and unlock premium features like public boards, online voices, advanced editing tools, and more!'
   }
 });
