@@ -27,8 +27,7 @@ const initialState = {
   isOnTrialPeriod: true,
   premiumRequiredModalState: {
     open: false,
-    showTryPeriodFinishedMessages: false,
-    isUnlockMessage: false
+    showTryPeriodFinishedMessages: false
   },
   loginRequiredModalState: {
     open: false
@@ -90,8 +89,7 @@ function subscriptionProviderReducer(state = initialState, action) {
         ...state,
         premiumRequiredModalState: {
           open: true,
-          showTryPeriodFinishedMessages: action.showTryPeriodFinishedMessages,
-          isUnlockMessage: action.isUnlockMessage
+          showTryPeriodFinishedMessages: action.showTryPeriodFinishedMessages
         }
       };
     case HIDE_PREMIUM_REQUIRED:
@@ -100,8 +98,7 @@ function subscriptionProviderReducer(state = initialState, action) {
         premiumRequiredModalState: {
           open: false,
           showTryPeriodFinishedMessages:
-            state.premiumRequiredModalState.showTryPeriodFinishedMessages,
-          isUnlockMessage: state.premiumRequiredModalState.isUnlockMessage
+            state.premiumRequiredModalState.showTryPeriodFinishedMessages
         }
       };
 
