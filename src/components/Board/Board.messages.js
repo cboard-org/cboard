@@ -232,5 +232,10 @@ export default defineMessages({
     id: 'cboard.components.Board.loginToImport',
     defaultMessage:
       'To import a CBuilder board, you must be logged in with the same account that was used to create the board.'
+  },
+  subscribeToSupport: {
+    id: 'cboard.components.Board.subscribeToSupport',
+    defaultMessage:
+      'Consider subscribing to support Cboard and unlock premium features!'
   }
 });
