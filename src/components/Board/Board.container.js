@@ -55,6 +55,7 @@ import {
 } from '../Communicator/Communicator.actions';
 import { disableTour } from '../App/App.actions';
 import { showPremiumRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
+import { isSubscriptionRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.selectors';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
@@ -785,29 +786,18 @@ export class BoardContainer extends Component {
   };
 
   handleLockClick = () => {
-    const { isLocked } = this.state;
-    const {
-      showPremiumRequired,
-      isInFreeCountry,
-      isSubscribed,
-      isOnTrialPeriod
-    } = this.props;
+    const { showPremiumRequired, isSubscriptionRequired } = this.props;
 
     this.setState(
-      {
-        isLocked: !isLocked,
+      prevState => ({
+        isLocked: !prevState.isLocked,
         isSaving: false,
         isSelecting: false,
         selectedTileIds: []
-      },
+      }),
       () => {
-        if (
-          !this.state.isLocked &&
-          !isInFreeCountry &&
-          !isSubscribed &&
-          !isOnTrialPeriod
-        ) {
-          showPremiumRequired({ isUnlockMessage: true });
+        if (!this.state.isLocked && isSubscriptionRequired) {
+          showPremiumRequired({ showTryPeriodFinishedMessages: true });
         }
       }
     );
@@ -1732,20 +1722,22 @@ export class BoardContainer extends Component {
   }
 }
 
-const mapStateToProps = ({
-  board,
-  communicator,
-  speech,
-  scanner,
-  app: { displaySettings, navigationSettings, userData, isConnected, liveHelp },
-  language: { lang },
-  subscription: {
-    premiumRequiredModalState,
-    isInFreeCountry,
-    isSubscribed,
-    isOnTrialPeriod
-  }
-}) => {
+const mapStateToProps = state => {
+  const {
+    board,
+    communicator,
+    speech,
+    scanner,
+    app: {
+      displaySettings,
+      navigationSettings,
+      userData,
+      isConnected,
+      liveHelp
+    },
+    language: { lang },
+    subscription: { premiumRequiredModalState }
+  } = state;
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
     communicator => communicator.id === activeCommunicatorId
@@ -1775,9 +1767,7 @@ const mapStateToProps = ({
     isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
     isPremiumRequiredModalOpen: premiumRequiredModalState?.open,
     improvedPhrase: board.improvedPhrase,
-    isInFreeCountry,
-    isSubscribed,
-    isOnTrialPeriod
+    isSubscriptionRequired: isSubscriptionRequired(state)
   };
 };
 
