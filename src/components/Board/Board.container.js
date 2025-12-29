@@ -793,16 +793,24 @@ export class BoardContainer extends Component {
       isOnTrialPeriod
     } = this.props;
 
-    this.setState((state, props) => ({
-      isLocked: !state.isLocked,
-      isSaving: false,
-      isSelecting: false,
-      selectedTileIds: []
-    }));
-
-    if (isLocked && !isInFreeCountry && !isSubscribed && !isOnTrialPeriod) {
-      showPremiumRequired({ isUnlockMessage: true });
-    }
+    this.setState(
+      {
+        isLocked: !isLocked,
+        isSaving: false,
+        isSelecting: false,
+        selectedTileIds: []
+      },
+      () => {
+        if (
+          !this.state.isLocked &&
+          !isInFreeCountry &&
+          !isSubscribed &&
+          !isOnTrialPeriod
+        ) {
+          showPremiumRequired({ isUnlockMessage: true });
+        }
+      }
+    );
   };
 
   handleSelectClick = () => {
