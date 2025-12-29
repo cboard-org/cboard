@@ -18,6 +18,7 @@ import HelpIcon from '@material-ui/icons/Help';
 import IconButton from '../UI/IconButton';
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 import SymbolsIcon from '@material-ui/icons/EmojiSymbols';
+import AssessmentIcon from '@material-ui/icons/Assessment';
 
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
@@ -114,6 +115,11 @@ export class Settings extends PureComponent {
         icon: <CloudDownloadIcon />,
         text: messages.import,
         url: '/settings/import'
+      },
+      {
+        icon: <AssessmentIcon />,
+        text: messages.communicationHistory,
+        url: '/settings/communication-history'
       },
       {
         icon: <SymbolsIcon />,
