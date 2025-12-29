@@ -382,11 +382,15 @@ export function updateSubscriptionError(payload) {
 }
 
 export function showPremiumRequired(
-  { showTryPeriodFinishedMessages } = { showTryPeriodFinishedMessages: false }
+  { showTryPeriodFinishedMessages, isUnlockMessage } = {
+    showTryPeriodFinishedMessages: false,
+    isUnlockMessage: false
+  }
 ) {
   return {
     type: SHOW_PREMIUM_REQUIRED,
-    showTryPeriodFinishedMessages
+    showTryPeriodFinishedMessages,
+    isUnlockMessage
   };
 }
 
