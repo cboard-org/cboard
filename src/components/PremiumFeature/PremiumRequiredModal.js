@@ -24,9 +24,9 @@ function PremiumRequiredModal({
 
   const dialogText = {
     title: showTryPeriodFinishedMessages ? (
-      <FormattedMessage {...messages.tryPeriodFinishTitle} />
+      <FormattedMessage {...messages.tryPeriodFinishTittle} />
     ) : (
-      <FormattedMessage {...messages.featureBlockedTitle} />
+      <FormattedMessage {...messages.featureBlockedTittle} />
     ),
     body: <FormattedMessage {...messages.unlockBoardText} />
   };
