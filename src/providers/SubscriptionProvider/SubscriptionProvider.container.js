@@ -11,7 +11,6 @@ import {
   updateSubscription,
   updatePlans,
   updateIsOnTrialPeriod,
-  showPremiumRequired,
   updateSubscriptionError
 } from './SubscriptionProvider.actions';
 import {
@@ -31,24 +30,19 @@ export class SubscriptionProvider extends Component {
 
   async componentDidMount() {
     const {
-      isLogged,
       updateIsSubscribed,
       updateIsOnTrialPeriod,
       updateIsInFreeCountry,
-      showPremiumRequired,
       updatePlans
     } = this.props;
 
     const requestOrigin =
       'Function: componentDidMount - Component: SubscriptionProvider';
-    const isSubscribed = await updateIsSubscribed(requestOrigin);
-    const isInFreeCountry = updateIsInFreeCountry();
-    const isOnTrialPeriod = updateIsOnTrialPeriod();
+    await updateIsSubscribed(requestOrigin);
+    updateIsInFreeCountry();
+    updateIsOnTrialPeriod();
     await updatePlans();
     if (isAndroid() || isIOS()) this.configInAppPurchasePlugin();
-    if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
-      showPremiumRequired({ showTryPeriodFinishedMessages: true });
-    }
   }
 
   componentDidUpdate = async prevProps => {
@@ -61,12 +55,9 @@ export class SubscriptionProvider extends Component {
     if (prevProps.isLogged !== isLogged) {
       const requestOrigin =
         'Function: componentDidUpdate - Component: SubscriptionProvider';
-      const isSubscribed = await updateIsSubscribed(requestOrigin);
-      const isInFreeCountry = updateIsInFreeCountry();
-      const isOnTrialPeriod = updateIsOnTrialPeriod();
-      if (!isInFreeCountry && !isOnTrialPeriod && !isSubscribed && isLogged) {
-        showPremiumRequired({ showTryPeriodFinishedMessages: true });
-      }
+      await updateIsSubscribed(requestOrigin);
+      updateIsInFreeCountry();
+      updateIsOnTrialPeriod();
     }
   };
 
@@ -250,8 +241,7 @@ const mapDispatchToProps = {
   updateSubscriptionError,
   updatePlans,
   updateIsInFreeCountry,
-  updateIsOnTrialPeriod,
-  showPremiumRequired
+  updateIsOnTrialPeriod
 };
 
 export default connect(

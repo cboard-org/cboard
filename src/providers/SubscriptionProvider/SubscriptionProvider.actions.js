@@ -382,7 +382,9 @@ export function updateSubscriptionError(payload) {
 }
 
 export function showPremiumRequired(
-  { showTryPeriodFinishedMessages } = { showTryPeriodFinishedMessages: false }
+  { showTryPeriodFinishedMessages } = {
+    showTryPeriodFinishedMessages: false
+  }
 ) {
   return {
     type: SHOW_PREMIUM_REQUIRED,
