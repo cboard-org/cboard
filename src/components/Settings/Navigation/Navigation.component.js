@@ -92,6 +92,18 @@ class Navigation extends React.Component {
       improvePhraseActive: !this.state.improvePhraseActive
     });
   };
+  toggleTileCooldown = () => {
+    this.setState(prev => ({
+      tileCooldownEnabled: !this.state.tileCooldownEnabled
+    }));
+  };
+
+  setTileCooldownSeconds = event => {
+    const seconds = Number(event.target.value);
+    this.setState({
+      tileCooldownMs: seconds * 1000
+    });
+  };
 
   onSubmit = () => {
     const { isLiveMode, changeLiveMode } = this.props;
@@ -264,6 +276,48 @@ class Navigation extends React.Component {
                   />
                 </ListItemSecondaryAction>
               </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText
+                  className="Navigation__ListItemText"
+                  primary={<FormattedMessage {...messages.tileCooldown} />}
+                  secondary={
+                    <FormattedMessage {...messages.tileCooldownSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.tileCooldownEnabled}
+                    onChange={this.toggleTileCooldown}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+
+              {this.state.tileCooldownEnabled && (
+                <ListItem>
+                  <ListItemText
+                    className="Navigation__ListItemText"
+                    primary={
+                      <FormattedMessage {...messages.tileCooldownDuration} />
+                    }
+                    secondary={null}
+                  />
+                  <ListItemSecondaryAction className="Display__Options">
+                    <Select
+                      value={this.state.tileCooldownMs / 1000}
+                      onChange={this.setTileCooldownSeconds}
+                    >
+                      <MenuItem value={1}>1 second</MenuItem>
+                      <MenuItem value={2}>2 seconds</MenuItem>
+                      <MenuItem value={3}>3 seconds</MenuItem>
+                      <MenuItem value={4}>4 seconds</MenuItem>
+                      <MenuItem value={5}>5 seconds</MenuItem>
+                    </Select>
+                  </ListItemSecondaryAction>
+                </ListItem>
+              )}
               <Divider />
               <ListItem>
                 <ListItemText
