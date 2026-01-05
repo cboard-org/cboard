@@ -22,6 +22,7 @@ import { isLogged } from '../../components/App/App.selectors';
 import { isAndroid, isIOS } from '../../cordova-util';
 import { formatTitle } from '../../components/Settings/Subscribe/Subscribe.helpers';
 import { updateNavigationSettings } from '../../components/App/App.actions';
+import { IS_PRODUCTION } from '../../constants';
 
 export function updateIsInFreeCountry() {
   return (dispatch, getState) => {
@@ -29,7 +30,9 @@ export function updateIsInFreeCountry() {
     const locationCode = isLogged(state)
       ? state.app.userData?.location?.countryCode
       : state.app.unloggedUserLocation?.countryCode;
-    const isInFreeCountry = !REQUIRING_PREMIUM_COUNTRIES.includes(locationCode);
+    const isInFreeCountry = locationCode
+      ? !REQUIRING_PREMIUM_COUNTRIES.includes(locationCode)
+      : !IS_PRODUCTION;
     dispatch(
       updateSubscription({
         isInFreeCountry
