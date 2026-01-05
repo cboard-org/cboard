@@ -222,6 +222,10 @@ export class Board extends Component {
             onFocus={() => {
               this.handleTileFocus(tile.id);
             }}
+            tileCooldownEnabled={
+              this.props.navigationSettings.tileCooldownEnabled
+            }
+            tileCooldownMs={this.props.navigationSettings.tileCooldownMs}
           >
             <Symbol
               image={tile.image}
@@ -270,6 +274,8 @@ export class Board extends Component {
         onFocus={() => {
           this.handleTileFocus(tile.id);
         }}
+        tileCooldownEnabled={this.props.navigationSettings.tileCooldownEnabled}
+        tileCooldownMs={this.props.navigationSettings.tileCooldownMs}
         id={tile.id}
       >
         <Symbol

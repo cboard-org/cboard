@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Scannable } from 'react-scannable';
@@ -19,6 +19,11 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
+   *  cooldown between tile selections
+   */
+  tileCooldownEnabled: PropTypes.bool,
+  tileCooldownMs: PropTypes.number,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -33,7 +38,7 @@ const propTypes = {
   id: PropTypes.string
 };
 
-const defaultProps = {};
+const defaultProps = { tileCooldownEnabled: false, tileCooldownMs: 2000 };
 
 const Tile = props => {
   const {
@@ -43,8 +48,41 @@ const Tile = props => {
     className: classNameProp,
     variant,
     id,
+    tileCooldownEnabled,
+    tileCooldownMs,
+    onClick, //  intercept
     ...other
   } = props;
+
+  const lastSelectRef = useRef(0);
+
+  const allowSelect = () => {
+    if (!tileCooldownEnabled) return true;
+
+    const now = Date.now();
+    if (now - lastSelectRef.current < tileCooldownMs) {
+      return false;
+    }
+
+    lastSelectRef.current = now;
+    return true;
+  };
+
+  const handleClick = e => {
+    if (!allowSelect()) return;
+    onClick?.(e);
+  };
+
+  const onSelect = (event, scannable, scanner) => {
+    if (!allowSelect()) return;
+
+    if (folder) {
+      scanner.reset();
+    }
+
+    // IMPORTANT: trigger the same action as click
+    onClick?.(event);
+  };
 
   const folder = variant === 'folder';
   const className = classNames('Tile', classNameProp, {
@@ -65,15 +103,15 @@ const Tile = props => {
     tileShapeStyles.backgroundColor = backgroundColor;
   }
 
-  const onSelect = (event, scannable, scanner) => {
-    if (folder) {
-      scanner.reset();
-    }
-  };
-
   return (
-    <Scannable onSelect={onSelect} id={'scannable'}>
-      <button className={className} type="button" key={id} {...other}>
+    <Scannable onSelect={onSelect} id="scannable">
+      <button
+        className={className}
+        type="button"
+        key={id}
+        onClick={handleClick}
+        {...other}
+      >
         <div className={tileShapeClassName} style={tileShapeStyles} />
         {children}
       </button>
