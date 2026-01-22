@@ -38,7 +38,8 @@ import {
   DOWNLOAD_IMAGE_SUCCESS,
   DOWNLOAD_IMAGE_FAILURE,
   UNMARK_SHOULD_CREATE_API_BOARD,
-  SHORT_ID_MAX_LENGTH
+  SHORT_ID_MAX_LENGTH,
+  SYNC_BOARDS
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -58,18 +59,6 @@ const initialState = {
   isLiveMode: false,
   improvedPhrase: ''
 };
-
-function reconcileBoards(localBoard, remoteBoard) {
-  if (localBoard.lastEdited && remoteBoard.lastEdited) {
-    if (moment(localBoard.lastEdited).isSameOrAfter(remoteBoard.lastEdited)) {
-      return localBoard;
-    }
-    if (moment(localBoard.lastEdited).isBefore(remoteBoard.lastEdited)) {
-      return remoteBoard;
-    }
-  }
-  return localBoard;
-}
 
 function resolveLastEdited(oldBoard, newBoard) {
   const oldDate = oldBoard?.lastEdited ? moment(oldBoard.lastEdited) : null;
@@ -395,25 +384,9 @@ function boardReducer(state = initialState, action) {
         isFetching: true
       };
     case GET_API_MY_BOARDS_SUCCESS:
-      let flag = false;
-      const myBoards = [...state.boards];
-      for (let i = 0; i < action.boards.data.length; i++) {
-        for (let j = 0; j < myBoards.length; j++) {
-          if (myBoards[j].id === action.boards.data[i].id) {
-            myBoards[j] = reconcileBoards(myBoards[j], action.boards.data[i]);
-            flag = true;
-            break;
-          }
-        }
-        if (!flag) {
-          myBoards.push(action.boards.data[i]);
-        }
-        flag = false;
-      }
       return {
         ...state,
-        isFetching: false,
-        boards: myBoards
+        isFetching: false
       };
     case GET_API_MY_BOARDS_FAILURE:
       return {
@@ -464,6 +437,11 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         improvedPhrase: action.improvedPhrase
+      };
+    case SYNC_BOARDS:
+      return {
+        ...state,
+        boards: action.boards
       };
     default:
       return state;

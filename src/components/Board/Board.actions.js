@@ -1,5 +1,7 @@
 import isUrl from 'is-url';
 
+import moment from 'moment';
+
 import {
   IMPORT_BOARDS,
   ADD_BOARDS,
@@ -40,7 +42,8 @@ import {
   DOWNLOAD_IMAGE_SUCCESS,
   DOWNLOAD_IMAGE_FAILURE,
   UNMARK_SHOULD_CREATE_API_BOARD,
-  SHORT_ID_MAX_LENGTH
+  SHORT_ID_MAX_LENGTH,
+  SYNC_BOARDS
 } from './Board.constants';
 
 import API from '../../api';
@@ -524,19 +527,73 @@ export function downloadImageFailure(message) {
 }
 
 export function getApiMyBoards() {
-  return dispatch => {
+  return async dispatch => {
     dispatch(getApiMyBoardsStarted());
-    return API.getMyBoards({
-      limit: BOARDS_PAGE_LIMIT
-    })
-      .then(res => {
-        dispatch(getApiMyBoardsSuccess(res));
-        return res;
-      })
-      .catch(err => {
-        dispatch(getApiMyBoardsFailure(err.message));
-        throw new Error(err.message);
-      });
+    try {
+      const res = await API.getMyBoards({ limit: BOARDS_PAGE_LIMIT });
+      dispatch(getApiMyBoardsSuccess(res));
+      if (res?.data && res.data.length) {
+        try {
+          await dispatch(syncBoards(res.data));
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      return res;
+    } catch (err) {
+      dispatch(getApiMyBoardsFailure(err.message));
+      throw new Error(err.message);
+    }
+  };
+}
+
+export function syncBoards(remoteBoards) {
+  const reconcileBoards = (local, remote) => {
+    if (local.lastEdited && remote.lastEdited) {
+      if (moment(local.lastEdited).isAfter(remote.lastEdited)) {
+        return local;
+      }
+      if (moment(local.lastEdited).isBefore(remote.lastEdited)) {
+        return remote;
+      }
+    }
+    return local;
+  };
+
+  return async (dispatch, getState) => {
+    const localBoards = getState().board.boards;
+    const updatedBoards = [...localBoards];
+
+    for (const remote of remoteBoards) {
+      const localIndex = localBoards.findIndex(local => local.id === remote.id);
+
+      if (localIndex === -1) {
+        updatedBoards.push(remote);
+        continue;
+      }
+
+      const reconciled = reconcileBoards(localBoards[localIndex], remote);
+      const localIsNewer =
+        reconciled === localBoards[localIndex] &&
+        localBoards[localIndex].lastEdited !== remote.lastEdited;
+
+      if (!localIsNewer) {
+        updatedBoards[localIndex] = reconciled;
+        continue;
+      }
+
+      try {
+        const res = await dispatch(updateApiBoard(localBoards[localIndex]));
+        updatedBoards[localIndex] = res;
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    dispatch({
+      type: SYNC_BOARDS,
+      boards: updatedBoards
+    });
   };
 }
 
@@ -611,7 +668,6 @@ export function deleteApiBoard(boardId) {
  */
 export function getApiObjects() {
   return dispatch => {
-    //get boards
     return dispatch(getApiMyBoards())
       .then(res => {
         return dispatch(getApiMyCommunicators())

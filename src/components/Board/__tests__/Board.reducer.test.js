@@ -31,7 +31,8 @@ import {
   DELETE_API_BOARD_STARTED,
   GET_API_MY_BOARDS_SUCCESS,
   GET_API_MY_BOARDS_FAILURE,
-  GET_API_MY_BOARDS_STARTED
+  GET_API_MY_BOARDS_STARTED,
+  SYNC_BOARDS
 } from '../Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../../Account/Login/Login.constants';
 
@@ -203,9 +204,10 @@ describe('reducer', () => {
       type: GET_API_MY_BOARDS_SUCCESS,
       boards: { data: [mockBoard, mockBoard] }
     };
+    // GET_API_MY_BOARDS_SUCCESS now only updates isFetching
+    // Board reconciliation is handled by syncBoards action
     expect(boardReducer(initialState, getApiMyBoardsSuccess)).toEqual({
       ...initialState,
-      boards: [...initialState.boards, mockBoard],
       isFetching: false
     });
   });
@@ -552,6 +554,16 @@ describe('reducer', () => {
       boards: [mockBoard]
     };
     expect(boardReducer(initialState, importdBoards)).toEqual({
+      ...initialState,
+      boards: [mockBoard]
+    });
+  });
+  it('should handle syncBoards', () => {
+    const syncBoards = {
+      type: SYNC_BOARDS,
+      boards: [mockBoard]
+    };
+    expect(boardReducer(initialState, syncBoards)).toEqual({
       ...initialState,
       boards: [mockBoard]
     });
