@@ -590,6 +590,33 @@ export function syncBoards(remoteBoards) {
       }
     }
 
+    const remoteIds = new Set(remoteBoards.map(b => b.id));
+    const defaultBoardIds = new Set([
+      ...DEFAULT_BOARDS.advanced.map(b => b.id),
+      ...DEFAULT_BOARDS.picSeePal.map(b => b.id)
+    ]);
+    const localOnlyBoards = localBoards.filter(
+      local =>
+        local.id.length < SHORT_ID_MAX_LENGTH &&
+        !remoteIds.has(local.id) &&
+        !defaultBoardIds.has(local.id)
+    );
+
+    await Promise.all(
+      localOnlyBoards.map(async local => {
+        try {
+          const created = await dispatch(createApiBoard(local, local.id));
+          const idx = updatedBoards.findIndex(b => b.id === local.id);
+          if (idx !== -1) {
+            updatedBoards[idx] = { ...updatedBoards[idx], id: created.id };
+          }
+          dispatch(replaceBoardCommunicator(local.id, created.id));
+        } catch (e) {
+          console.error('Failed to create board on API:', e);
+        }
+      })
+    );
+
     dispatch({
       type: SYNC_BOARDS,
       boards: updatedBoards
