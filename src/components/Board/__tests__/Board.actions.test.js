@@ -593,32 +593,28 @@ describe('mergeBoards', () => {
   });
 });
 
-describe('getLocalOnlyBoards', () => {
-  it('should return boards that exist locally but not remotely', () => {
-    const localBoards = [{ id: 'short123' }, { id: 'remote1234567890123456' }];
+describe('getModifiedLocalBoards', () => {
+  it('should return modified boards that exist locally but not remotely', () => {
+    const localBoards = [
+      { id: 'short123', lastEdited: '2023-01-01' },
+      { id: 'remote1234567890123456', lastEdited: '2023-01-01' }
+    ];
     const remoteIds = new Set(['remote1234567890123456']);
-    const defaultBoardIds = new Set([]);
 
-    const result = actions.getLocalOnlyBoards(
-      localBoards,
-      remoteIds,
-      defaultBoardIds
-    );
+    const result = actions.getModifiedLocalBoards(localBoards, remoteIds);
 
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('short123');
   });
 
-  it('should exclude default boards', () => {
-    const localBoards = [{ id: 'short123' }, { id: 'defaultBoard' }];
+  it('should exclude boards without lastEdited (unmodified default boards)', () => {
+    const localBoards = [
+      { id: 'short123', lastEdited: '2023-01-01' },
+      { id: 'defaultBoard' } // no lastEdited - unmodified default board
+    ];
     const remoteIds = new Set([]);
-    const defaultBoardIds = new Set(['defaultBoard']);
 
-    const result = actions.getLocalOnlyBoards(
-      localBoards,
-      remoteIds,
-      defaultBoardIds
-    );
+    const result = actions.getModifiedLocalBoards(localBoards, remoteIds);
 
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('short123');
@@ -626,17 +622,12 @@ describe('getLocalOnlyBoards', () => {
 
   it('should exclude boards with long ids', () => {
     const localBoards = [
-      { id: 'short123' },
-      { id: '12345678901234567890' } // longer than SHORT_ID_MAX_LENGTH (14)
+      { id: 'short123', lastEdited: '2023-01-01' },
+      { id: '12345678901234567890', lastEdited: '2023-01-01' } // longer than SHORT_ID_MAX_LENGTH (14)
     ];
     const remoteIds = new Set([]);
-    const defaultBoardIds = new Set([]);
 
-    const result = actions.getLocalOnlyBoards(
-      localBoards,
-      remoteIds,
-      defaultBoardIds
-    );
+    const result = actions.getModifiedLocalBoards(localBoards, remoteIds);
 
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('short123');

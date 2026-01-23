@@ -597,14 +597,15 @@ export function mergeBoards(
 }
 
 /**
- * Identify boards that exist locally but not on remote.
+ * Identify modified local boards that don't exist on remote.
+ * Only includes boards with lastEdited (i.e., user-modified or created).
  */
-export function getLocalOnlyBoards(localBoards, remoteIds, defaultBoardIds) {
+export function getModifiedLocalBoards(localBoards, remoteIds) {
   return localBoards.filter(
     local =>
       local.id.length < SHORT_ID_MAX_LENGTH &&
       !remoteIds.has(local.id) &&
-      !defaultBoardIds.has(local.id)
+      local.lastEdited
   );
 }
 
@@ -651,24 +652,19 @@ export function mergeRemoteBoards(remoteBoards) {
 }
 
 /**
- * Phase 2: Upload local-only boards to API.
+ * Phase 2: Upload modified local-only boards to API.
  */
 export function uploadLocalOnlyBoards(remoteBoards) {
   return async (dispatch, getState) => {
     const currentBoards = getState().board.boards;
     const remoteIds = new Set(remoteBoards.map(b => b.id));
-    const defaultBoardIds = new Set([
-      ...DEFAULT_BOARDS.advanced.map(b => b.id),
-      ...DEFAULT_BOARDS.picSeePal.map(b => b.id)
-    ]);
 
-    const localOnlyBoards = getLocalOnlyBoards(
+    const modifiedLocalBoards = getModifiedLocalBoards(
       currentBoards,
-      remoteIds,
-      defaultBoardIds
+      remoteIds
     );
 
-    for (const local of localOnlyBoards) {
+    for (const local of modifiedLocalBoards) {
       try {
         await dispatch(updateApiObjectsNoChild(local, true));
       } catch (e) {
