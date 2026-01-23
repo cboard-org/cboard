@@ -39,7 +39,9 @@ import {
   DOWNLOAD_IMAGE_FAILURE,
   UNMARK_SHOULD_CREATE_API_BOARD,
   SHORT_ID_MAX_LENGTH,
-  SYNC_BOARDS
+  SYNC_BOARDS_STARTED,
+  SYNC_BOARDS_SUCCESS,
+  SYNC_BOARDS_FAILURE
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -57,7 +59,9 @@ const initialState = {
   images: [],
   isFixed: false,
   isLiveMode: false,
-  improvedPhrase: ''
+  improvedPhrase: '',
+  isSyncing: false,
+  syncError: null
 };
 
 function resolveLastEdited(oldBoard, newBoard) {
@@ -438,10 +442,24 @@ function boardReducer(state = initialState, action) {
         ...state,
         improvedPhrase: action.improvedPhrase
       };
-    case SYNC_BOARDS:
+    case SYNC_BOARDS_STARTED:
       return {
         ...state,
-        boards: action.boards
+        isSyncing: true,
+        syncError: null
+      };
+    case SYNC_BOARDS_SUCCESS:
+      return {
+        ...state,
+        boards: action.boards,
+        isSyncing: false,
+        syncError: null
+      };
+    case SYNC_BOARDS_FAILURE:
+      return {
+        ...state,
+        isSyncing: false,
+        syncError: action.error
       };
     default:
       return state;

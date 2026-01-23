@@ -472,3 +472,173 @@ describe('actions', () => {
       });
   });
 });
+
+describe('syncBoardsStarted', () => {
+  it('should create an action to SYNC_BOARDS_STARTED', () => {
+    const expectedAction = {
+      type: types.SYNC_BOARDS_STARTED
+    };
+    expect(actions.syncBoardsStarted()).toEqual(expectedAction);
+  });
+});
+
+describe('syncBoardsSuccess', () => {
+  it('should create an action to SYNC_BOARDS_SUCCESS', () => {
+    const boards = [{ id: '123' }];
+    const expectedAction = {
+      type: types.SYNC_BOARDS_SUCCESS,
+      boards
+    };
+    expect(actions.syncBoardsSuccess(boards)).toEqual(expectedAction);
+  });
+});
+
+describe('syncBoardsFailure', () => {
+  it('should create an action to SYNC_BOARDS_FAILURE with error message', () => {
+    const error = new Error('Network error');
+    const expectedAction = {
+      type: types.SYNC_BOARDS_FAILURE,
+      error: 'Network error'
+    };
+    expect(actions.syncBoardsFailure(error)).toEqual(expectedAction);
+  });
+
+  it('should create an action to SYNC_BOARDS_FAILURE with string error', () => {
+    const error = 'Network error';
+    const expectedAction = {
+      type: types.SYNC_BOARDS_FAILURE,
+      error: 'Network error'
+    };
+    expect(actions.syncBoardsFailure(error)).toEqual(expectedAction);
+  });
+});
+
+describe('reconcileBoardsByTimestamp', () => {
+  it('should return local board when local is newer', () => {
+    const local = { id: '1', lastEdited: '2024-01-02T00:00:00Z' };
+    const remote = { id: '1', lastEdited: '2024-01-01T00:00:00Z' };
+    expect(actions.reconcileBoardsByTimestamp(local, remote)).toBe(local);
+  });
+
+  it('should return remote board when remote is newer', () => {
+    const local = { id: '1', lastEdited: '2024-01-01T00:00:00Z' };
+    const remote = { id: '1', lastEdited: '2024-01-02T00:00:00Z' };
+    expect(actions.reconcileBoardsByTimestamp(local, remote)).toBe(remote);
+  });
+
+  it('should return local board when timestamps are equal', () => {
+    const local = { id: '1', lastEdited: '2024-01-01T00:00:00Z' };
+    const remote = { id: '1', lastEdited: '2024-01-01T00:00:00Z' };
+    expect(actions.reconcileBoardsByTimestamp(local, remote)).toBe(local);
+  });
+
+  it('should return local board when local has no lastEdited', () => {
+    const local = { id: '1' };
+    const remote = { id: '1', lastEdited: '2024-01-01T00:00:00Z' };
+    expect(actions.reconcileBoardsByTimestamp(local, remote)).toBe(local);
+  });
+
+  it('should return local board when remote has no lastEdited', () => {
+    const local = { id: '1', lastEdited: '2024-01-01T00:00:00Z' };
+    const remote = { id: '1' };
+    expect(actions.reconcileBoardsByTimestamp(local, remote)).toBe(local);
+  });
+});
+
+describe('mergeBoards', () => {
+  it('should add new remote boards to local', () => {
+    const localBoards = [{ id: '1', name: 'Local Board' }];
+    const remoteBoards = [{ id: '2', name: 'Remote Board' }];
+    const result = actions.mergeBoards(localBoards, remoteBoards);
+
+    expect(result.mergedBoards).toHaveLength(2);
+    expect(result.mergedBoards).toContainEqual({
+      id: '1',
+      name: 'Local Board'
+    });
+    expect(result.mergedBoards).toContainEqual({
+      id: '2',
+      name: 'Remote Board'
+    });
+    expect(result.localNewerBoards).toHaveLength(0);
+  });
+
+  it('should reconcile boards with same id using timestamp', () => {
+    const localBoards = [
+      { id: '1', name: 'Local', lastEdited: '2024-01-01T00:00:00Z' }
+    ];
+    const remoteBoards = [
+      { id: '1', name: 'Remote', lastEdited: '2024-01-02T00:00:00Z' }
+    ];
+    const result = actions.mergeBoards(localBoards, remoteBoards);
+
+    expect(result.mergedBoards).toHaveLength(1);
+    expect(result.mergedBoards[0].name).toBe('Remote');
+    expect(result.localNewerBoards).toHaveLength(0);
+  });
+
+  it('should identify local-newer boards', () => {
+    const localBoards = [
+      { id: '1', name: 'Local', lastEdited: '2024-01-02T00:00:00Z' }
+    ];
+    const remoteBoards = [
+      { id: '1', name: 'Remote', lastEdited: '2024-01-01T00:00:00Z' }
+    ];
+    const result = actions.mergeBoards(localBoards, remoteBoards);
+
+    expect(result.mergedBoards).toHaveLength(1);
+    expect(result.mergedBoards[0].name).toBe('Local');
+    expect(result.localNewerBoards).toHaveLength(1);
+    expect(result.localNewerBoards[0].name).toBe('Local');
+  });
+});
+
+describe('getLocalOnlyBoards', () => {
+  it('should return boards that exist locally but not remotely', () => {
+    const localBoards = [{ id: 'short123' }, { id: 'remote1234567890123456' }];
+    const remoteIds = new Set(['remote1234567890123456']);
+    const defaultBoardIds = new Set([]);
+
+    const result = actions.getLocalOnlyBoards(
+      localBoards,
+      remoteIds,
+      defaultBoardIds
+    );
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('short123');
+  });
+
+  it('should exclude default boards', () => {
+    const localBoards = [{ id: 'short123' }, { id: 'defaultBoard' }];
+    const remoteIds = new Set([]);
+    const defaultBoardIds = new Set(['defaultBoard']);
+
+    const result = actions.getLocalOnlyBoards(
+      localBoards,
+      remoteIds,
+      defaultBoardIds
+    );
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('short123');
+  });
+
+  it('should exclude boards with long ids', () => {
+    const localBoards = [
+      { id: 'short123' },
+      { id: '12345678901234567890' } // longer than SHORT_ID_MAX_LENGTH (14)
+    ];
+    const remoteIds = new Set([]);
+    const defaultBoardIds = new Set([]);
+
+    const result = actions.getLocalOnlyBoards(
+      localBoards,
+      remoteIds,
+      defaultBoardIds
+    );
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('short123');
+  });
+});

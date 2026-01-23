@@ -32,7 +32,9 @@ import {
   GET_API_MY_BOARDS_SUCCESS,
   GET_API_MY_BOARDS_FAILURE,
   GET_API_MY_BOARDS_STARTED,
-  SYNC_BOARDS
+  SYNC_BOARDS_STARTED,
+  SYNC_BOARDS_SUCCESS,
+  SYNC_BOARDS_FAILURE
 } from '../Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../../Account/Login/Login.constants';
 
@@ -54,7 +56,9 @@ const initialState = {
   isFixed: false,
   images: [],
   isLiveMode: false,
-  improvedPhrase: ''
+  improvedPhrase: '',
+  isSyncing: false,
+  syncError: null
 };
 
 describe('reducer', () => {
@@ -558,14 +562,41 @@ describe('reducer', () => {
       boards: [mockBoard]
     });
   });
-  it('should handle syncBoards', () => {
-    const syncBoards = {
-      type: SYNC_BOARDS,
+  it('should handle syncBoardsStarted', () => {
+    const syncBoardsStarted = {
+      type: SYNC_BOARDS_STARTED
+    };
+    expect(boardReducer(initialState, syncBoardsStarted)).toEqual({
+      ...initialState,
+      isSyncing: true,
+      syncError: null
+    });
+  });
+  it('should handle syncBoardsSuccess', () => {
+    const syncBoardsSuccess = {
+      type: SYNC_BOARDS_SUCCESS,
       boards: [mockBoard]
     };
-    expect(boardReducer(initialState, syncBoards)).toEqual({
+    expect(
+      boardReducer({ ...initialState, isSyncing: true }, syncBoardsSuccess)
+    ).toEqual({
       ...initialState,
-      boards: [mockBoard]
+      boards: [mockBoard],
+      isSyncing: false,
+      syncError: null
+    });
+  });
+  it('should handle syncBoardsFailure', () => {
+    const syncBoardsFailure = {
+      type: SYNC_BOARDS_FAILURE,
+      error: 'Network error'
+    };
+    expect(
+      boardReducer({ ...initialState, isSyncing: true }, syncBoardsFailure)
+    ).toEqual({
+      ...initialState,
+      isSyncing: false,
+      syncError: 'Network error'
     });
   });
 });

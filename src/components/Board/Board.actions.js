@@ -43,7 +43,9 @@ import {
   DOWNLOAD_IMAGE_FAILURE,
   UNMARK_SHOULD_CREATE_API_BOARD,
   SHORT_ID_MAX_LENGTH,
-  SYNC_BOARDS
+  SYNC_BOARDS_STARTED,
+  SYNC_BOARDS_SUCCESS,
+  SYNC_BOARDS_FAILURE
 } from './Board.constants';
 
 import API from '../../api';
@@ -547,65 +549,123 @@ export function getApiMyBoards() {
   };
 }
 
-export function syncBoards(remoteBoards) {
-  const reconcileBoards = (local, remote) => {
-    if (local.lastEdited && remote.lastEdited) {
-      if (moment(local.lastEdited).isAfter(remote.lastEdited)) {
-        return local;
-      }
-      if (moment(local.lastEdited).isBefore(remote.lastEdited)) {
-        return remote;
-      }
-    }
-    return local;
-  };
+/**
+ * Reconcile two board versions by lastEdited timestamp.
+ * Returns the "winning" version.
+ */
+export function reconcileBoardsByTimestamp(local, remote) {
+  if (local.lastEdited && remote.lastEdited) {
+    if (moment(local.lastEdited).isAfter(remote.lastEdited)) return local;
+    if (moment(local.lastEdited).isBefore(remote.lastEdited)) return remote;
+  }
+  return local;
+}
 
+/**
+ * Merge remote boards into local boards array.
+ * Returns { mergedBoards, localNewerBoards }
+ */
+export function mergeBoards(
+  localBoards,
+  remoteBoards,
+  reconcileFn = reconcileBoardsByTimestamp
+) {
+  const merged = [...localBoards];
+  const localNewer = [];
+
+  for (const remote of remoteBoards) {
+    const localIndex = localBoards.findIndex(local => local.id === remote.id);
+
+    if (localIndex === -1) {
+      merged.push(remote);
+      continue;
+    }
+
+    const reconciled = reconcileFn(localBoards[localIndex], remote);
+    const isLocalNewer =
+      reconciled === localBoards[localIndex] &&
+      localBoards[localIndex].lastEdited !== remote.lastEdited;
+
+    if (isLocalNewer) {
+      localNewer.push(localBoards[localIndex]);
+    } else {
+      merged[localIndex] = reconciled;
+    }
+  }
+
+  return { mergedBoards: merged, localNewerBoards: localNewer };
+}
+
+/**
+ * Identify boards that exist locally but not on remote.
+ */
+export function getLocalOnlyBoards(localBoards, remoteIds, defaultBoardIds) {
+  return localBoards.filter(
+    local =>
+      local.id.length < SHORT_ID_MAX_LENGTH &&
+      !remoteIds.has(local.id) &&
+      !defaultBoardIds.has(local.id)
+  );
+}
+
+// Action creators for sync status
+export function syncBoardsStarted() {
+  return { type: SYNC_BOARDS_STARTED };
+}
+
+export function syncBoardsSuccess(boards) {
+  return { type: SYNC_BOARDS_SUCCESS, boards };
+}
+
+export function syncBoardsFailure(error) {
+  return { type: SYNC_BOARDS_FAILURE, error: error.message || error };
+}
+
+/**
+ * Phase 1: Merge remote boards into local state.
+ * Also pushes local-newer boards to API.
+ */
+export function mergeRemoteBoards(remoteBoards) {
   return async (dispatch, getState) => {
     const localBoards = getState().board.boards;
-    const updatedBoards = [...localBoards];
+    const { mergedBoards, localNewerBoards } = mergeBoards(
+      localBoards,
+      remoteBoards
+    );
 
-    for (const remote of remoteBoards) {
-      const localIndex = localBoards.findIndex(local => local.id === remote.id);
-
-      if (localIndex === -1) {
-        updatedBoards.push(remote);
-        continue;
-      }
-
-      const reconciled = reconcileBoards(localBoards[localIndex], remote);
-      const localIsNewer =
-        reconciled === localBoards[localIndex] &&
-        localBoards[localIndex].lastEdited !== remote.lastEdited;
-
-      if (!localIsNewer) {
-        updatedBoards[localIndex] = reconciled;
-        continue;
-      }
-
+    // Push local-newer boards to API
+    for (const board of localNewerBoards) {
       try {
-        const res = await dispatch(updateApiBoard(localBoards[localIndex]));
-        updatedBoards[localIndex] = res;
+        const res = await dispatch(updateApiBoard(board));
+        const idx = mergedBoards.findIndex(b => b.id === board.id);
+        if (idx !== -1) mergedBoards[idx] = res;
       } catch (e) {
-        console.error(e);
+        console.error('Failed to push local board to API:', e);
+        throw e;
       }
     }
 
-    dispatch({
-      type: SYNC_BOARDS,
-      boards: updatedBoards
-    });
+    dispatch(syncBoardsSuccess(mergedBoards));
+    return mergedBoards;
+  };
+}
 
+/**
+ * Phase 2: Upload local-only boards to API.
+ */
+export function uploadLocalOnlyBoards(remoteBoards) {
+  return async (dispatch, getState) => {
+    const currentBoards = getState().board.boards;
     const remoteIds = new Set(remoteBoards.map(b => b.id));
     const defaultBoardIds = new Set([
       ...DEFAULT_BOARDS.advanced.map(b => b.id),
       ...DEFAULT_BOARDS.picSeePal.map(b => b.id)
     ]);
 
-    const localOnlyBoards = updatedBoards.filter(
-      local =>
-        local.id.length < SHORT_ID_MAX_LENGTH &&
-        !remoteIds.has(local.id) &&
-        !defaultBoardIds.has(local.id)
+    const localOnlyBoards = getLocalOnlyBoards(
+      currentBoards,
+      remoteIds,
+      defaultBoardIds
     );
 
     for (const local of localOnlyBoards) {
@@ -614,6 +674,30 @@ export function syncBoards(remoteBoards) {
       } catch (e) {
         console.error('Failed to create board on API:', e);
       }
+    }
+  };
+}
+
+/**
+ * Synchronize local boards with remote boards.
+ * Phase 1: Merge remote boards (and push local-newer to API)
+ * Phase 2: Upload local-only boards to API
+ */
+export function syncBoards(remoteBoards) {
+  return async dispatch => {
+    dispatch(syncBoardsStarted());
+
+    try {
+      // Phase 1: Merge remote boards into state
+      await dispatch(mergeRemoteBoards(remoteBoards));
+
+      // Phase 2: Upload local-only boards
+      await dispatch(uploadLocalOnlyBoards(remoteBoards));
+
+      return { success: true };
+    } catch (error) {
+      dispatch(syncBoardsFailure(error));
+      return { success: false, error };
     }
   };
 }
