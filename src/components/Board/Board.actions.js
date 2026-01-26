@@ -45,7 +45,8 @@ import {
   SHORT_ID_MAX_LENGTH,
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
-  SYNC_BOARDS_FAILURE
+  SYNC_BOARDS_FAILURE,
+  UPDATE_BOARDS_AFTER_RECONCILE
 } from './Board.constants';
 
 import API from '../../api';
@@ -614,12 +615,16 @@ export function syncBoardsStarted() {
   return { type: SYNC_BOARDS_STARTED };
 }
 
-export function syncBoardsSuccess(boards) {
-  return { type: SYNC_BOARDS_SUCCESS, boards };
+export function syncBoardsSuccess() {
+  return { type: SYNC_BOARDS_SUCCESS };
 }
 
 export function syncBoardsFailure(error) {
   return { type: SYNC_BOARDS_FAILURE, error: error.message || error };
+}
+
+export function updateBoardsAfterReconcile(boards) {
+  return { type: UPDATE_BOARDS_AFTER_RECONCILE, boards };
 }
 
 /**
@@ -646,7 +651,7 @@ export function mergeRemoteBoards(remoteBoards) {
       }
     }
 
-    dispatch(syncBoardsSuccess(mergedBoards));
+    dispatch(updateBoardsAfterReconcile(mergedBoards));
     return mergedBoards;
   };
 }
