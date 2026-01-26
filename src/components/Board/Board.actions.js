@@ -598,14 +598,14 @@ export function mergeBoards(
 
 /**
  * Identify modified local boards that don't exist on remote.
- * Only includes boards with lastEdited (i.e., user-modified or created).
+ * Only includes boards with short IDs and matching user email.
  */
-export function getModifiedLocalBoards(localBoards, remoteIds) {
+export function getModifiedLocalBoards(localBoards, remoteIds, userEmail) {
   return localBoards.filter(
     local =>
       local.id.length < SHORT_ID_MAX_LENGTH &&
       !remoteIds.has(local.id) &&
-      local.lastEdited
+      local.email === userEmail
   );
 }
 
@@ -658,10 +658,12 @@ export function uploadLocalOnlyBoards(remoteBoards) {
   return async (dispatch, getState) => {
     const currentBoards = getState().board.boards;
     const remoteIds = new Set(remoteBoards.map(b => b.id));
+    const userEmail = getState().app.userData.email;
 
     const modifiedLocalBoards = getModifiedLocalBoards(
       currentBoards,
-      remoteIds
+      remoteIds,
+      userEmail
     );
 
     for (const local of modifiedLocalBoards) {
