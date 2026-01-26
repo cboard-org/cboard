@@ -595,39 +595,54 @@ describe('mergeBoards', () => {
 
 describe('getModifiedLocalBoards', () => {
   it('should return modified boards that exist locally but not remotely', () => {
+    const userEmail = 'user@example.com';
     const localBoards = [
-      { id: 'short123', lastEdited: '2023-01-01' },
-      { id: 'remote1234567890123456', lastEdited: '2023-01-01' }
+      { id: 'short123', email: 'user@example.com' },
+      { id: 'remote1234567890123456', email: 'user@example.com' }
     ];
     const remoteIds = new Set(['remote1234567890123456']);
 
-    const result = actions.getModifiedLocalBoards(localBoards, remoteIds);
+    const result = actions.getModifiedLocalBoards(
+      localBoards,
+      remoteIds,
+      userEmail
+    );
 
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('short123');
   });
 
-  it('should exclude boards without lastEdited (unmodified default boards)', () => {
+  it('should exclude boards with different user email', () => {
+    const userEmail = 'user@example.com';
     const localBoards = [
-      { id: 'short123', lastEdited: '2023-01-01' },
-      { id: 'defaultBoard' } // no lastEdited - unmodified default board
+      { id: 'short123', email: 'user@example.com' },
+      { id: 'otherBoard', email: 'other@example.com' } // different email - should be excluded
     ];
     const remoteIds = new Set([]);
 
-    const result = actions.getModifiedLocalBoards(localBoards, remoteIds);
+    const result = actions.getModifiedLocalBoards(
+      localBoards,
+      remoteIds,
+      userEmail
+    );
 
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('short123');
   });
 
   it('should exclude boards with long ids', () => {
+    const userEmail = 'user@example.com';
     const localBoards = [
-      { id: 'short123', lastEdited: '2023-01-01' },
-      { id: '12345678901234567890', lastEdited: '2023-01-01' } // longer than SHORT_ID_MAX_LENGTH (14)
+      { id: 'short123', email: 'user@example.com' },
+      { id: '12345678901234567890', email: 'user@example.com' } // longer than SHORT_ID_MAX_LENGTH (14)
     ];
     const remoteIds = new Set([]);
 
-    const result = actions.getModifiedLocalBoards(localBoards, remoteIds);
+    const result = actions.getModifiedLocalBoards(
+      localBoards,
+      remoteIds,
+      userEmail
+    );
 
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('short123');
