@@ -484,12 +484,10 @@ describe('syncBoardsStarted', () => {
 
 describe('syncBoardsSuccess', () => {
   it('should create an action to SYNC_BOARDS_SUCCESS', () => {
-    const boards = [{ id: '123' }];
     const expectedAction = {
-      type: types.SYNC_BOARDS_SUCCESS,
-      boards
+      type: types.SYNC_BOARDS_SUCCESS
     };
-    expect(actions.syncBoardsSuccess(boards)).toEqual(expectedAction);
+    expect(actions.syncBoardsSuccess()).toEqual(expectedAction);
   });
 });
 
@@ -545,11 +543,11 @@ describe('reconcileBoardsByTimestamp', () => {
   });
 });
 
-describe('mergeBoards', () => {
+describe('reconcileAndMergeBoards', () => {
   it('should add new remote boards to local', () => {
     const localBoards = [{ id: '1', name: 'Local Board' }];
     const remoteBoards = [{ id: '2', name: 'Remote Board' }];
-    const result = actions.mergeBoards(localBoards, remoteBoards);
+    const result = actions.reconcileAndMergeBoards(localBoards, remoteBoards);
 
     expect(result.mergedBoards).toHaveLength(2);
     expect(result.mergedBoards).toContainEqual({
@@ -570,7 +568,7 @@ describe('mergeBoards', () => {
     const remoteBoards = [
       { id: '1', name: 'Remote', lastEdited: '2024-01-02T00:00:00Z' }
     ];
-    const result = actions.mergeBoards(localBoards, remoteBoards);
+    const result = actions.reconcileAndMergeBoards(localBoards, remoteBoards);
 
     expect(result.mergedBoards).toHaveLength(1);
     expect(result.mergedBoards[0].name).toBe('Remote');
@@ -584,7 +582,7 @@ describe('mergeBoards', () => {
     const remoteBoards = [
       { id: '1', name: 'Remote', lastEdited: '2024-01-01T00:00:00Z' }
     ];
-    const result = actions.mergeBoards(localBoards, remoteBoards);
+    const result = actions.reconcileAndMergeBoards(localBoards, remoteBoards);
 
     expect(result.mergedBoards).toHaveLength(1);
     expect(result.mergedBoards[0].name).toBe('Local');
@@ -594,7 +592,7 @@ describe('mergeBoards', () => {
 });
 
 describe('getModifiedLocalBoards', () => {
-  it('should return modified boards that exist locally but not remotely', () => {
+  it('should return local-only boards that exist locally but not remotely', () => {
     const userEmail = 'user@example.com';
     const localBoards = [
       { id: 'short123', email: 'user@example.com' },
@@ -646,5 +644,16 @@ describe('getModifiedLocalBoards', () => {
 
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('short123');
+  });
+});
+
+describe('updateBoardsAfterReconcile', () => {
+  it('should create an action to UPDATE_BOARDS_AFTER_RECONCILE', () => {
+    const boards = [{ id: '123' }];
+    const expectedAction = {
+      type: types.UPDATE_BOARDS_AFTER_RECONCILE,
+      boards
+    };
+    expect(actions.updateBoardsAfterReconcile(boards)).toEqual(expectedAction);
   });
 });
