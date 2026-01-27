@@ -574,14 +574,12 @@ describe('reducer', () => {
   });
   it('should handle syncBoardsSuccess', () => {
     const syncBoardsSuccess = {
-      type: SYNC_BOARDS_SUCCESS,
-      boards: [mockBoard]
+      type: SYNC_BOARDS_SUCCESS
     };
     expect(
       boardReducer({ ...initialState, isSyncing: true }, syncBoardsSuccess)
     ).toEqual({
       ...initialState,
-      boards: [mockBoard],
       isSyncing: false,
       syncError: null
     });

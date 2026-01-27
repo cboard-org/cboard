@@ -45,7 +45,8 @@ import {
   SHORT_ID_MAX_LENGTH,
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
-  SYNC_BOARDS_FAILURE
+  SYNC_BOARDS_FAILURE,
+  UPDATE_BOARDS_AFTER_RECONCILE
 } from './Board.constants';
 
 import API from '../../api';
@@ -562,10 +563,11 @@ export function reconcileBoardsByTimestamp(local, remote) {
 }
 
 /**
- * Merge remote boards into local boards array.
+ * Reconcile and merge remote boards into local boards array.
+ * Uses timestamp-based conflict resolution to determine which version wins.
  * Returns { mergedBoards, localNewerBoards }
  */
-export function mergeBoards(
+export function reconcileAndMergeBoards(
   localBoards,
   remoteBoards,
   reconcileFn = reconcileBoardsByTimestamp
@@ -614,22 +616,27 @@ export function syncBoardsStarted() {
   return { type: SYNC_BOARDS_STARTED };
 }
 
-export function syncBoardsSuccess(boards) {
-  return { type: SYNC_BOARDS_SUCCESS, boards };
+export function syncBoardsSuccess() {
+  return { type: SYNC_BOARDS_SUCCESS };
 }
 
 export function syncBoardsFailure(error) {
   return { type: SYNC_BOARDS_FAILURE, error: error.message || error };
 }
 
+export function updateBoardsAfterReconcile(boards) {
+  return { type: UPDATE_BOARDS_AFTER_RECONCILE, boards };
+}
+
 /**
- * Phase 1: Merge remote boards into local state.
- * Also pushes local-newer boards to API.
+ * Phase 1: Reconcile remote boards with local state.
+ * Merges boards using timestamp-based conflict resolution and
+ * pushes local-newer boards back to the API.
  */
-export function mergeRemoteBoards(remoteBoards) {
+export function reconcileBoardsWithApi(remoteBoards) {
   return async (dispatch, getState) => {
     const localBoards = getState().board.boards;
-    const { mergedBoards, localNewerBoards } = mergeBoards(
+    const { mergedBoards, localNewerBoards } = reconcileAndMergeBoards(
       localBoards,
       remoteBoards
     );
@@ -646,15 +653,16 @@ export function mergeRemoteBoards(remoteBoards) {
       }
     }
 
-    dispatch(syncBoardsSuccess(mergedBoards));
+    dispatch(updateBoardsAfterReconcile(mergedBoards));
     return mergedBoards;
   };
 }
 
 /**
- * Phase 2: Upload modified local-only boards to API.
+ * Phase 2: Create modified local-only boards on the API.
+ * Finds boards that were modified only locally (short ID, not on remote) and creates them.
  */
-export function uploadLocalOnlyBoards(remoteBoards) {
+export function createLocalOnlyModifiedBoardsOnApi(remoteBoards) {
   return async (dispatch, getState) => {
     const currentBoards = getState().board.boards;
     const remoteIds = new Set(remoteBoards.map(b => b.id));
@@ -678,19 +686,21 @@ export function uploadLocalOnlyBoards(remoteBoards) {
 
 /**
  * Synchronize local boards with remote boards.
- * Phase 1: Merge remote boards (and push local-newer to API)
- * Phase 2: Upload local-only boards to API
+ * Phase 1: Reconcile boards with API (merge + push local-newer)
+ * Phase 2: Create modified local-only boards on API
  */
 export function syncBoards(remoteBoards) {
   return async dispatch => {
     dispatch(syncBoardsStarted());
 
     try {
-      // Phase 1: Merge remote boards into state
-      await dispatch(mergeRemoteBoards(remoteBoards));
+      // Phase 1: Reconcile boards with API (updates state)
+      await dispatch(reconcileBoardsWithApi(remoteBoards));
 
-      // Phase 2: Upload local-only boards
-      await dispatch(uploadLocalOnlyBoards(remoteBoards));
+      // Phase 2: Create modified local-only boards on API
+      await dispatch(createLocalOnlyModifiedBoardsOnApi(remoteBoards));
+
+      dispatch(syncBoardsSuccess());
 
       return { success: true };
     } catch (error) {
