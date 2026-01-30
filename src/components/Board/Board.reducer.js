@@ -41,8 +41,7 @@ import {
   SHORT_ID_MAX_LENGTH,
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
-  SYNC_BOARDS_FAILURE,
-  UPDATE_BOARDS_AFTER_RECONCILE
+  SYNC_BOARDS_FAILURE
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -448,11 +447,6 @@ function boardReducer(state = initialState, action) {
         ...state,
         isSyncing: true,
         syncError: null
-      };
-    case UPDATE_BOARDS_AFTER_RECONCILE:
-      return {
-        ...state,
-        boards: action.boards
       };
     case SYNC_BOARDS_SUCCESS:
       return {

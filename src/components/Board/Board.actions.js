@@ -45,8 +45,7 @@ import {
   SHORT_ID_MAX_LENGTH,
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
-  SYNC_BOARDS_FAILURE,
-  UPDATE_BOARDS_AFTER_RECONCILE
+  SYNC_BOARDS_FAILURE
 } from './Board.constants';
 
 import API from '../../api';
@@ -563,23 +562,24 @@ export function reconcileBoardsByTimestamp(local, remote) {
 }
 
 /**
- * Reconcile and merge remote boards into local boards array.
+ * Reconcile and merge local and remote boards.
  * Uses timestamp-based conflict resolution to determine which version wins.
- * Returns { mergedBoards, localNewerBoards }
+ * Returns { boardsToAdd, localNewerBoards, remoteNewerBoards }.
  */
 export function reconcileAndMergeBoards(
   localBoards,
   remoteBoards,
   reconcileFn = reconcileBoardsByTimestamp
 ) {
-  const merged = [...localBoards];
   const localNewer = [];
+  const remoteBoardsToAdd = [];
+  const remoteNewer = [];
 
   for (const remote of remoteBoards) {
     const localIndex = localBoards.findIndex(local => local.id === remote.id);
 
     if (localIndex === -1) {
-      merged.push(remote);
+      remoteBoardsToAdd.push(remote);
       continue;
     }
 
@@ -588,14 +588,21 @@ export function reconcileAndMergeBoards(
       reconciled === localBoards[localIndex] &&
       localBoards[localIndex].lastEdited !== remote.lastEdited;
 
+    const isRemoteNewer = reconciled === remote;
+
     if (isLocalNewer) {
       localNewer.push(localBoards[localIndex]);
-    } else {
-      merged[localIndex] = reconciled;
+    }
+    if (isRemoteNewer) {
+      remoteNewer.push(remote);
     }
   }
 
-  return { mergedBoards: merged, localNewerBoards: localNewer };
+  return {
+    boardsToAdd: remoteBoardsToAdd,
+    localNewerBoards: localNewer,
+    remoteNewerBoards: remoteNewer
+  };
 }
 
 /**
@@ -624,10 +631,6 @@ export function syncBoardsFailure(error) {
   return { type: SYNC_BOARDS_FAILURE, error: error.message || error };
 }
 
-export function updateBoardsAfterReconcile(boards) {
-  return { type: UPDATE_BOARDS_AFTER_RECONCILE, boards };
-}
-
 /**
  * Phase 1: Reconcile remote boards with local state.
  * Merges boards using timestamp-based conflict resolution and
@@ -636,25 +639,29 @@ export function updateBoardsAfterReconcile(boards) {
 export function reconcileBoardsWithApi(remoteBoards) {
   return async (dispatch, getState) => {
     const localBoards = getState().board.boards;
-    const { mergedBoards, localNewerBoards } = reconcileAndMergeBoards(
-      localBoards,
-      remoteBoards
-    );
+    const {
+      remoteBoardsToAdd,
+      localNewerBoards,
+      remoteNewerBoards
+    } = reconcileAndMergeBoards(localBoards, remoteBoards);
 
     // Push local-newer boards to API
     for (const board of localNewerBoards) {
       try {
-        const res = await dispatch(updateApiBoard(board));
-        const idx = mergedBoards.findIndex(b => b.id === board.id);
-        if (idx !== -1) mergedBoards[idx] = res;
+        await dispatch(updateApiBoard(board));
       } catch (e) {
         console.error('Failed to push local board to API:', e);
         throw e;
       }
     }
 
-    dispatch(updateBoardsAfterReconcile(mergedBoards));
-    return mergedBoards;
+    if (remoteBoardsToAdd.length > 0) {
+      dispatch(addBoards(remoteBoardsToAdd));
+    }
+
+    for (const board of remoteNewerBoards) {
+      dispatch(updateBoard(board));
+    }
   };
 }
 
