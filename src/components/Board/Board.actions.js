@@ -564,17 +564,26 @@ export function reconcileBoardsByTimestamp(local, remote) {
 /**
  * Classify boards into categories based on timestamp comparison.
  * Uses timestamp-based conflict resolution to determine which version wins.
- * @returns {{ newRemoteBoards, localNewerBoards, remoteNewerBoards }}
+ * Also identifies boards created locally that don't exist on the server.
+ * @param {Array} localBoards - Boards from local state
+ * @param {Array} remoteBoards - Boards from the server
+ * @param {string} userEmail - Current user's email (for identifying locally created boards)
+ * @param {Function} reconcileFn - Function to reconcile conflicts (default: reconcileBoardsByTimestamp)
+ * @returns {{ newRemoteBoards, localNewerBoards, remoteNewerBoards, localCreatedBoards }}
  */
 export function classifyBoardsByTimestamp(
   localBoards,
   remoteBoards,
+  userEmail,
   reconcileFn = reconcileBoardsByTimestamp
 ) {
+  const remoteIds = new Set(remoteBoards.map(b => b.id));
   const localNewer = [];
   const newRemote = [];
   const remoteNewer = [];
+  const localCreated = [];
 
+  // Classify remote boards
   for (const remote of remoteBoards) {
     const localIndex = localBoards.findIndex(local => local.id === remote.id);
 
@@ -598,10 +607,22 @@ export function classifyBoardsByTimestamp(
     }
   }
 
+  // Identify boards created locally that don't exist on the server
+  for (const local of localBoards) {
+    if (
+      local.id.length < SHORT_ID_MAX_LENGTH &&
+      !remoteIds.has(local.id) &&
+      local.email === userEmail
+    ) {
+      localCreated.push(local);
+    }
+  }
+
   return {
     newRemoteBoards: newRemote,
+    remoteNewerBoards: remoteNewer,
     localNewerBoards: localNewer,
-    remoteNewerBoards: remoteNewer
+    localCreatedBoards: localCreated
   };
 }
 
@@ -649,11 +670,11 @@ export function applyRemoteChangesToState(newRemoteBoards, remoteNewerBoards) {
 /**
  * PUSH: Upload local changes to the API.
  * - Updates existing boards that are newer locally (updateApiBoard)
- * - Creates local-only boards on the server (updateApiObjectsNoChild - handles ID updates)
+ * - Creates locally-created boards on the server (updateApiObjectsNoChild - handles ID updates)
  */
-export function pushLocalChangesToApi(localNewerBoards, localOnlyBoards) {
+export function pushLocalChangesToApi(localNewerBoards, localCreatedBoards) {
   return async dispatch => {
-    // Section 1: Update existing boards that are newer locally
+    // Update existing boards that are newer locally
     for (const board of localNewerBoards) {
       try {
         await dispatch(updateApiBoard(board));
@@ -663,12 +684,8 @@ export function pushLocalChangesToApi(localNewerBoards, localOnlyBoards) {
       }
     }
 
-    // Section 2: Create local-only boards on the server
-    // Uses updateApiObjectsNoChild which handles:
-    // - Creating board and getting new server ID
-    // - Updating communicator references if ID changes
-    // - Updating rootBoard if necessary
-    for (const board of localOnlyBoards) {
+    // Create locally-created boards on the server
+    for (const board of localCreatedBoards) {
       try {
         await dispatch(updateApiObjectsNoChild(board, true));
       } catch (e) {
@@ -690,25 +707,22 @@ export function syncBoards(remoteBoards) {
     try {
       const localBoards = getState().board.boards;
       const userEmail = getState().app.userData.email;
-      const remoteIds = new Set(remoteBoards.map(b => b.id));
 
       // 1. Classify all boards BEFORE modifying state (avoid race conditions)
       const {
         newRemoteBoards,
         localNewerBoards,
-        remoteNewerBoards
-      } = classifyBoardsByTimestamp(localBoards, remoteBoards);
-      const localOnlyBoards = getModifiedLocalBoards(
-        localBoards,
-        remoteIds,
-        userEmail
-      );
+        remoteNewerBoards,
+        localCreatedBoards
+      } = classifyBoardsByTimestamp(localBoards, remoteBoards, userEmail);
 
       // 2. PULL: Apply remote changes to local state
       dispatch(applyRemoteChangesToState(newRemoteBoards, remoteNewerBoards));
 
       // 3. PUSH: Upload local changes to API
-      await dispatch(pushLocalChangesToApi(localNewerBoards, localOnlyBoards));
+      await dispatch(
+        pushLocalChangesToApi(localNewerBoards, localCreatedBoards)
+      );
 
       dispatch(syncBoardsSuccess());
       return { success: true };

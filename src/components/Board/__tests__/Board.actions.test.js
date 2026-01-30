@@ -544,10 +544,16 @@ describe('reconcileBoardsByTimestamp', () => {
 });
 
 describe('classifyBoardsByTimestamp', () => {
+  const userEmail = 'user@example.com';
+
   it('should classify new remote boards', () => {
     const localBoards = [{ id: '1', name: 'Local Board' }];
     const remoteBoards = [{ id: '2', name: 'Remote Board' }];
-    const result = actions.classifyBoardsByTimestamp(localBoards, remoteBoards);
+    const result = actions.classifyBoardsByTimestamp(
+      localBoards,
+      remoteBoards,
+      userEmail
+    );
 
     expect(result.newRemoteBoards).toHaveLength(1);
     expect(result.newRemoteBoards).toContainEqual({
@@ -556,6 +562,7 @@ describe('classifyBoardsByTimestamp', () => {
     });
     expect(result.localNewerBoards).toHaveLength(0);
     expect(result.remoteNewerBoards).toHaveLength(0);
+    expect(result.localCreatedBoards).toHaveLength(0);
   });
 
   it('should classify remote-newer boards when remote has newer timestamp', () => {
@@ -565,12 +572,17 @@ describe('classifyBoardsByTimestamp', () => {
     const remoteBoards = [
       { id: '1', name: 'Remote', lastEdited: '2024-01-02T00:00:00Z' }
     ];
-    const result = actions.classifyBoardsByTimestamp(localBoards, remoteBoards);
+    const result = actions.classifyBoardsByTimestamp(
+      localBoards,
+      remoteBoards,
+      userEmail
+    );
 
     expect(result.newRemoteBoards).toHaveLength(0);
     expect(result.localNewerBoards).toHaveLength(0);
     expect(result.remoteNewerBoards).toHaveLength(1);
     expect(result.remoteNewerBoards[0].name).toBe('Remote');
+    expect(result.localCreatedBoards).toHaveLength(0);
   });
 
   it('should classify local-newer boards when local has newer timestamp', () => {
@@ -580,12 +592,49 @@ describe('classifyBoardsByTimestamp', () => {
     const remoteBoards = [
       { id: '1', name: 'Remote', lastEdited: '2024-01-01T00:00:00Z' }
     ];
-    const result = actions.classifyBoardsByTimestamp(localBoards, remoteBoards);
+    const result = actions.classifyBoardsByTimestamp(
+      localBoards,
+      remoteBoards,
+      userEmail
+    );
 
     expect(result.newRemoteBoards).toHaveLength(0);
     expect(result.localNewerBoards).toHaveLength(1);
     expect(result.localNewerBoards[0].name).toBe('Local');
     expect(result.remoteNewerBoards).toHaveLength(0);
+    expect(result.localCreatedBoards).toHaveLength(0);
+  });
+
+  it('should classify locally created boards (short ID, no remote, matching email)', () => {
+    const localBoards = [
+      { id: 'short1', name: 'Local Created', email: userEmail },
+      { id: 'remote1234567890123456', name: 'Remote Board', email: userEmail }
+    ];
+    const remoteBoards = [
+      { id: 'remote1234567890123456', name: 'Remote Board' }
+    ];
+    const result = actions.classifyBoardsByTimestamp(
+      localBoards,
+      remoteBoards,
+      userEmail
+    );
+
+    expect(result.localCreatedBoards).toHaveLength(1);
+    expect(result.localCreatedBoards[0].id).toBe('short1');
+  });
+
+  it('should exclude locally created boards with different email', () => {
+    const localBoards = [
+      { id: 'short1', name: 'Other User Board', email: 'other@example.com' }
+    ];
+    const remoteBoards = [];
+    const result = actions.classifyBoardsByTimestamp(
+      localBoards,
+      remoteBoards,
+      userEmail
+    );
+
+    expect(result.localCreatedBoards).toHaveLength(0);
   });
 });
 
