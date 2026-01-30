@@ -626,19 +626,6 @@ export function classifyBoardsByTimestamp(
   };
 }
 
-/**
- * Identify modified local boards that don't exist on remote.
- * Only includes boards with short IDs and matching user email.
- */
-export function getModifiedLocalBoards(localBoards, remoteIds, userEmail) {
-  return localBoards.filter(
-    local =>
-      local.id.length < SHORT_ID_MAX_LENGTH &&
-      !remoteIds.has(local.id) &&
-      local.email === userEmail
-  );
-}
-
 // Action creators for sync status
 export function syncBoardsStarted() {
   return { type: SYNC_BOARDS_STARTED };
