@@ -543,51 +543,49 @@ describe('reconcileBoardsByTimestamp', () => {
   });
 });
 
-describe('reconcileAndMergeBoards', () => {
-  it('should add new remote boards to local', () => {
+describe('classifyBoardsByTimestamp', () => {
+  it('should classify new remote boards', () => {
     const localBoards = [{ id: '1', name: 'Local Board' }];
     const remoteBoards = [{ id: '2', name: 'Remote Board' }];
-    const result = actions.reconcileAndMergeBoards(localBoards, remoteBoards);
+    const result = actions.classifyBoardsByTimestamp(localBoards, remoteBoards);
 
-    expect(result.mergedBoards).toHaveLength(2);
-    expect(result.mergedBoards).toContainEqual({
-      id: '1',
-      name: 'Local Board'
-    });
-    expect(result.mergedBoards).toContainEqual({
+    expect(result.newRemoteBoards).toHaveLength(1);
+    expect(result.newRemoteBoards).toContainEqual({
       id: '2',
       name: 'Remote Board'
     });
     expect(result.localNewerBoards).toHaveLength(0);
+    expect(result.remoteNewerBoards).toHaveLength(0);
   });
 
-  it('should reconcile boards with same id using timestamp', () => {
+  it('should classify remote-newer boards when remote has newer timestamp', () => {
     const localBoards = [
       { id: '1', name: 'Local', lastEdited: '2024-01-01T00:00:00Z' }
     ];
     const remoteBoards = [
       { id: '1', name: 'Remote', lastEdited: '2024-01-02T00:00:00Z' }
     ];
-    const result = actions.reconcileAndMergeBoards(localBoards, remoteBoards);
+    const result = actions.classifyBoardsByTimestamp(localBoards, remoteBoards);
 
-    expect(result.mergedBoards).toHaveLength(1);
-    expect(result.mergedBoards[0].name).toBe('Remote');
+    expect(result.newRemoteBoards).toHaveLength(0);
     expect(result.localNewerBoards).toHaveLength(0);
+    expect(result.remoteNewerBoards).toHaveLength(1);
+    expect(result.remoteNewerBoards[0].name).toBe('Remote');
   });
 
-  it('should identify local-newer boards', () => {
+  it('should classify local-newer boards when local has newer timestamp', () => {
     const localBoards = [
       { id: '1', name: 'Local', lastEdited: '2024-01-02T00:00:00Z' }
     ];
     const remoteBoards = [
       { id: '1', name: 'Remote', lastEdited: '2024-01-01T00:00:00Z' }
     ];
-    const result = actions.reconcileAndMergeBoards(localBoards, remoteBoards);
+    const result = actions.classifyBoardsByTimestamp(localBoards, remoteBoards);
 
-    expect(result.mergedBoards).toHaveLength(1);
-    expect(result.mergedBoards[0].name).toBe('Local');
+    expect(result.newRemoteBoards).toHaveLength(0);
     expect(result.localNewerBoards).toHaveLength(1);
     expect(result.localNewerBoards[0].name).toBe('Local');
+    expect(result.remoteNewerBoards).toHaveLength(0);
   });
 });
 
@@ -644,16 +642,5 @@ describe('getModifiedLocalBoards', () => {
 
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('short123');
-  });
-});
-
-describe('updateBoardsAfterReconcile', () => {
-  it('should create an action to UPDATE_BOARDS_AFTER_RECONCILE', () => {
-    const boards = [{ id: '123' }];
-    const expectedAction = {
-      type: types.UPDATE_BOARDS_AFTER_RECONCILE,
-      boards
-    };
-    expect(actions.updateBoardsAfterReconcile(boards)).toEqual(expectedAction);
   });
 });

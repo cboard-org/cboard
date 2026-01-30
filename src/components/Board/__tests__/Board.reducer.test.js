@@ -218,7 +218,7 @@ describe('reducer', () => {
   it('should handle updateApiBoardSuccess', () => {
     const updateApiBoardSuccess = {
       type: UPDATE_API_BOARD_SUCCESS,
-      board: mockBoard
+      boardData: mockBoard
     };
     expect(boardReducer(initialState, updateApiBoardSuccess)).toEqual({
       ...initialState,
