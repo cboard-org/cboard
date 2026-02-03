@@ -89,13 +89,24 @@ describe('actions', () => {
     expect(actions.createBoard(boardData)).toEqual(expectedAction);
   });
 
-  it('should create an action to REPLACE_ME', () => {
+  it('should create an action to UPDATE_BOARD with fromRemote default false', () => {
     const boardData = {};
     const expectedAction = {
       type: types.UPDATE_BOARD,
-      boardData
+      boardData,
+      fromRemote: false
     };
     expect(actions.updateBoard(boardData)).toEqual(expectedAction);
+  });
+
+  it('should create an action to UPDATE_BOARD with fromRemote true', () => {
+    const boardData = {};
+    const expectedAction = {
+      type: types.UPDATE_BOARD,
+      boardData,
+      fromRemote: true
+    };
+    expect(actions.updateBoard(boardData, true)).toEqual(expectedAction);
   });
 
   it('should create an action to REPLACE_ME', () => {
@@ -511,58 +522,18 @@ describe('syncBoardsFailure', () => {
   });
 });
 
-describe('reconcileBoardsByTimestamp', () => {
-  it('should return local board when local is newer', () => {
-    const local = { id: '1', lastEdited: '2024-01-02T00:00:00Z' };
-    const remote = { id: '1', lastEdited: '2024-01-01T00:00:00Z' };
-    expect(actions.reconcileBoardsByTimestamp(local, remote)).toBe(local);
-  });
-
-  it('should return remote board when remote is newer', () => {
-    const local = { id: '1', lastEdited: '2024-01-01T00:00:00Z' };
-    const remote = { id: '1', lastEdited: '2024-01-02T00:00:00Z' };
-    expect(actions.reconcileBoardsByTimestamp(local, remote)).toBe(remote);
-  });
-
-  it('should return local board when timestamps are equal', () => {
-    const local = { id: '1', lastEdited: '2024-01-01T00:00:00Z' };
-    const remote = { id: '1', lastEdited: '2024-01-01T00:00:00Z' };
-    expect(actions.reconcileBoardsByTimestamp(local, remote)).toBe(local);
-  });
-
-  it('should return local board when local has no lastEdited', () => {
-    const local = { id: '1' };
-    const remote = { id: '1', lastEdited: '2024-01-01T00:00:00Z' };
-    expect(actions.reconcileBoardsByTimestamp(local, remote)).toBe(local);
-  });
-
-  it('should return local board when remote has no lastEdited', () => {
-    const local = { id: '1', lastEdited: '2024-01-01T00:00:00Z' };
-    const remote = { id: '1' };
-    expect(actions.reconcileBoardsByTimestamp(local, remote)).toBe(local);
-  });
-});
-
-describe('classifyBoardsByTimestamp', () => {
-  const userEmail = 'user@example.com';
-
+describe('classifyRemoteBoards', () => {
   it('should classify new remote boards', () => {
     const localBoards = [{ id: '1', name: 'Local Board' }];
     const remoteBoards = [{ id: '2', name: 'Remote Board' }];
-    const result = actions.classifyBoardsByTimestamp(
-      localBoards,
-      remoteBoards,
-      userEmail
-    );
+    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
 
     expect(result.newRemoteBoards).toHaveLength(1);
     expect(result.newRemoteBoards).toContainEqual({
       id: '2',
       name: 'Remote Board'
     });
-    expect(result.localNewerBoards).toHaveLength(0);
     expect(result.remoteNewerBoards).toHaveLength(0);
-    expect(result.localCreatedBoards).toHaveLength(0);
   });
 
   it('should classify remote-newer boards when remote has newer timestamp', () => {
@@ -572,124 +543,123 @@ describe('classifyBoardsByTimestamp', () => {
     const remoteBoards = [
       { id: '1', name: 'Remote', lastEdited: '2024-01-02T00:00:00Z' }
     ];
-    const result = actions.classifyBoardsByTimestamp(
-      localBoards,
-      remoteBoards,
-      userEmail
-    );
+    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
 
     expect(result.newRemoteBoards).toHaveLength(0);
-    expect(result.localNewerBoards).toHaveLength(0);
     expect(result.remoteNewerBoards).toHaveLength(1);
     expect(result.remoteNewerBoards[0].name).toBe('Remote');
-    expect(result.localCreatedBoards).toHaveLength(0);
   });
 
-  it('should classify local-newer boards when local has newer timestamp', () => {
+  it('should not classify as remote-newer when local has newer timestamp', () => {
     const localBoards = [
       { id: '1', name: 'Local', lastEdited: '2024-01-02T00:00:00Z' }
     ];
     const remoteBoards = [
       { id: '1', name: 'Remote', lastEdited: '2024-01-01T00:00:00Z' }
     ];
-    const result = actions.classifyBoardsByTimestamp(
-      localBoards,
-      remoteBoards,
-      userEmail
-    );
+    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
 
     expect(result.newRemoteBoards).toHaveLength(0);
-    expect(result.localNewerBoards).toHaveLength(1);
-    expect(result.localNewerBoards[0].name).toBe('Local');
     expect(result.remoteNewerBoards).toHaveLength(0);
-    expect(result.localCreatedBoards).toHaveLength(0);
   });
 
-  it('should classify locally created boards (short ID, no remote, matching email)', () => {
+  it('should not classify as remote-newer when timestamps are equal', () => {
     const localBoards = [
-      { id: 'short1', name: 'Local Created', email: userEmail },
-      { id: 'remote1234567890123456', name: 'Remote Board', email: userEmail }
+      { id: '1', name: 'Local', lastEdited: '2024-01-01T00:00:00Z' }
     ];
     const remoteBoards = [
-      { id: 'remote1234567890123456', name: 'Remote Board' }
+      { id: '1', name: 'Remote', lastEdited: '2024-01-01T00:00:00Z' }
     ];
-    const result = actions.classifyBoardsByTimestamp(
-      localBoards,
-      remoteBoards,
-      userEmail
-    );
+    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
 
-    expect(result.localCreatedBoards).toHaveLength(1);
-    expect(result.localCreatedBoards[0].id).toBe('short1');
+    expect(result.newRemoteBoards).toHaveLength(0);
+    expect(result.remoteNewerBoards).toHaveLength(0);
   });
 
-  it('should exclude locally created boards with different email', () => {
-    const localBoards = [
-      { id: 'short1', name: 'Other User Board', email: 'other@example.com' }
-    ];
+  it('should handle empty remote boards', () => {
+    const localBoards = [{ id: '1', name: 'Local Board' }];
     const remoteBoards = [];
-    const result = actions.classifyBoardsByTimestamp(
-      localBoards,
-      remoteBoards,
-      userEmail
-    );
+    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
 
-    expect(result.localCreatedBoards).toHaveLength(0);
+    expect(result.newRemoteBoards).toHaveLength(0);
+    expect(result.remoteNewerBoards).toHaveLength(0);
+  });
+
+  it('should handle empty local boards', () => {
+    const localBoards = [];
+    const remoteBoards = [{ id: '1', name: 'Remote Board' }];
+    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+
+    expect(result.newRemoteBoards).toHaveLength(1);
+    expect(result.remoteNewerBoards).toHaveLength(0);
   });
 });
 
-describe('getModifiedLocalBoards', () => {
-  it('should return local-only boards that exist locally but not remotely', () => {
-    const userEmail = 'user@example.com';
-    const localBoards = [
-      { id: 'short123', email: 'user@example.com' },
-      { id: 'remote1234567890123456', email: 'user@example.com' }
-    ];
-    const remoteIds = new Set(['remote1234567890123456']);
+describe('pushLocalChangesToApi', () => {
+  it('should push boards with syncStatus: PENDING', async () => {
+    const boardWithPendingSync = {
+      ...mockBoard,
+      id: '12345678901234567890', // long ID - existing board
+      syncStatus: types.SYNC_STATUS.PENDING
+    };
+    const boardWithSyncedStatus = {
+      ...mockBoard,
+      id: '12345678901234567891',
+      syncStatus: types.SYNC_STATUS.SYNCED
+    };
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: [boardWithPendingSync, boardWithSyncedStatus]
+      }
+    });
 
-    const result = actions.getModifiedLocalBoards(
-      localBoards,
-      remoteIds,
-      userEmail
-    );
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
+    const actionTypes = storeWithBoards.getActions().map(a => a.type);
 
-    expect(result).toHaveLength(1);
-    expect(result[0].id).toBe('short123');
+    // Should only dispatch for boardWithPendingSync
+    expect(actionTypes).toContain(types.UPDATE_API_BOARD_STARTED);
   });
 
-  it('should exclude boards with different user email', () => {
-    const userEmail = 'user@example.com';
-    const localBoards = [
-      { id: 'short123', email: 'user@example.com' },
-      { id: 'otherBoard', email: 'other@example.com' } // different email - should be excluded
-    ];
-    const remoteIds = new Set([]);
+  it('should use updateApiObjectsNoChild for short ID boards', async () => {
+    const localCreatedBoard = {
+      ...mockBoard,
+      id: 'short123', // short ID - locally created
+      syncStatus: types.SYNC_STATUS.PENDING
+    };
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: [localCreatedBoard]
+      }
+    });
 
-    const result = actions.getModifiedLocalBoards(
-      localBoards,
-      remoteIds,
-      userEmail
-    );
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
+    const actionTypes = storeWithBoards.getActions().map(a => a.type);
 
-    expect(result).toHaveLength(1);
-    expect(result[0].id).toBe('short123');
+    // Should dispatch CREATE_API_BOARD_STARTED for short ID boards
+    expect(actionTypes).toContain(types.CREATE_API_BOARD_STARTED);
   });
 
-  it('should exclude boards with long ids', () => {
-    const userEmail = 'user@example.com';
-    const localBoards = [
-      { id: 'short123', email: 'user@example.com' },
-      { id: '12345678901234567890', email: 'user@example.com' } // longer than SHORT_ID_MAX_LENGTH (14)
-    ];
-    const remoteIds = new Set([]);
+  it('should not push any boards when none have syncStatus: PENDING', async () => {
+    const boardWithSyncedStatus = {
+      ...mockBoard,
+      syncStatus: types.SYNC_STATUS.SYNCED
+    };
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: [boardWithSyncedStatus]
+      }
+    });
 
-    const result = actions.getModifiedLocalBoards(
-      localBoards,
-      remoteIds,
-      userEmail
-    );
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
+    const actionTypes = storeWithBoards.getActions().map(a => a.type);
 
-    expect(result).toHaveLength(1);
-    expect(result[0].id).toBe('short123');
+    expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
+    expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
   });
 });

@@ -34,7 +34,8 @@ import {
   GET_API_MY_BOARDS_STARTED,
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
-  SYNC_BOARDS_FAILURE
+  SYNC_BOARDS_FAILURE,
+  SYNC_STATUS
 } from '../Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../../Account/Login/Login.constants';
 
@@ -186,7 +187,9 @@ describe('reducer', () => {
       boards: [
         ...initialState.boards,
         {
-          ...mockBoard
+          ...mockBoard,
+          lastEdited: mockBoard.lastEdited,
+          syncStatus: SYNC_STATUS.SYNCED
         }
       ],
       isFetching: false
@@ -595,6 +598,97 @@ describe('reducer', () => {
       ...initialState,
       isSyncing: false,
       syncError: 'Network error'
+    });
+  });
+
+  describe('syncStatus flag', () => {
+    it('should set syncStatus: PENDING on CREATE_BOARD', () => {
+      const createBoard = {
+        type: CREATE_BOARD,
+        boardData: { id: 'new-board', name: 'New Board', tiles: [] }
+      };
+      const result = boardReducer(initialState, createBoard);
+      const createdBoard = result.boards.find(b => b.id === 'new-board');
+      expect(createdBoard.syncStatus).toBe(SYNC_STATUS.PENDING);
+    });
+
+    it('should set syncStatus: PENDING on UPDATE_BOARD when fromRemote is false', () => {
+      const stateWithBoard = {
+        ...initialState,
+        boards: [
+          ...initialState.boards,
+          { ...mockBoard, syncStatus: SYNC_STATUS.SYNCED }
+        ]
+      };
+      const updateBoard = {
+        type: UPDATE_BOARD,
+        boardData: { ...mockBoard, name: 'Updated Name' },
+        fromRemote: false
+      };
+      const result = boardReducer(stateWithBoard, updateBoard);
+      const updatedBoard = result.boards.find(b => b.id === mockBoard.id);
+      expect(updatedBoard.syncStatus).toBe(SYNC_STATUS.PENDING);
+    });
+
+    it('should set syncStatus: SYNCED on UPDATE_BOARD when fromRemote is true', () => {
+      const stateWithBoard = {
+        ...initialState,
+        boards: [
+          ...initialState.boards,
+          { ...mockBoard, syncStatus: SYNC_STATUS.PENDING }
+        ]
+      };
+      const updateBoard = {
+        type: UPDATE_BOARD,
+        boardData: { ...mockBoard, name: 'Remote Update' },
+        fromRemote: true
+      };
+      const result = boardReducer(stateWithBoard, updateBoard);
+      const updatedBoard = result.boards.find(b => b.id === mockBoard.id);
+      expect(updatedBoard.syncStatus).toBe(SYNC_STATUS.SYNCED);
+    });
+
+    it('should set syncStatus: SYNCED on CREATE_API_BOARD_SUCCESS', () => {
+      const boardWithShortId = {
+        ...mockBoard,
+        id: 'short123',
+        syncStatus: SYNC_STATUS.PENDING
+      };
+      const stateWithBoard = {
+        ...initialState,
+        boards: [...initialState.boards, boardWithShortId]
+      };
+      const createApiBoardSuccess = {
+        type: CREATE_API_BOARD_SUCCESS,
+        board: {
+          ...mockBoard,
+          id: 'long-api-id-12345678',
+          lastEdited: '2024-01-01'
+        },
+        boardId: 'short123'
+      };
+      const result = boardReducer(stateWithBoard, createApiBoardSuccess);
+      const syncedBoard = result.boards.find(
+        b => b.id === 'long-api-id-12345678'
+      );
+      expect(syncedBoard.syncStatus).toBe(SYNC_STATUS.SYNCED);
+    });
+
+    it('should set syncStatus: SYNCED on UPDATE_API_BOARD_SUCCESS', () => {
+      const stateWithBoard = {
+        ...initialState,
+        boards: [
+          ...initialState.boards,
+          { ...mockBoard, syncStatus: SYNC_STATUS.PENDING }
+        ]
+      };
+      const updateApiBoardSuccess = {
+        type: UPDATE_API_BOARD_SUCCESS,
+        boardData: { ...mockBoard, lastEdited: '2024-01-01' }
+      };
+      const result = boardReducer(stateWithBoard, updateApiBoardSuccess);
+      const syncedBoard = result.boards.find(b => b.id === mockBoard.id);
+      expect(syncedBoard.syncStatus).toBe(SYNC_STATUS.SYNCED);
     });
   });
 });

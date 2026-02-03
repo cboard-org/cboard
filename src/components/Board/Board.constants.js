@@ -47,3 +47,8 @@ export const SYNC_BOARDS_FAILURE = 'cboard/Board/SYNC_BOARDS_FAILURE';
 export const DEFAULT_ROWS_NUMBER = 5;
 export const DEFAULT_COLUMNS_NUMBER = 5;
 export const SHORT_ID_MAX_LENGTH = 14;
+
+export const SYNC_STATUS = {
+  SYNCED: 'synced',
+  PENDING: 'pending'
+};

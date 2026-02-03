@@ -41,7 +41,8 @@ import {
   SHORT_ID_MAX_LENGTH,
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
-  SYNC_BOARDS_FAILURE
+  SYNC_BOARDS_FAILURE,
+  SYNC_STATUS
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -157,7 +158,10 @@ function boardReducer(state = initialState, action) {
       if (index !== -1) {
         const nextBoard = {
           ...action.boardData,
-          lastEdited: resolveLastEdited(oldBoard, action.boardData)
+          lastEdited: resolveLastEdited(oldBoard, action.boardData),
+          syncStatus: action.fromRemote
+            ? SYNC_STATUS.SYNCED
+            : SYNC_STATUS.PENDING
         };
         updateBoards.splice(index, 1, nextBoard);
         return {
@@ -245,7 +249,8 @@ function boardReducer(state = initialState, action) {
       const nextBoards = [...state.boards];
       nextBoards.push({
         ...action.boardData,
-        lastEdited: moment().format()
+        lastEdited: moment().format(),
+        syncStatus: SYNC_STATUS.PENDING
       });
       return {
         ...state,
@@ -361,7 +366,8 @@ function boardReducer(state = initialState, action) {
             ? {
                 ...board,
                 id: action.board.id,
-                lastEdited: action.board.lastEdited
+                lastEdited: action.board.lastEdited,
+                syncStatus: SYNC_STATUS.SYNCED
               }
             : board
         )
@@ -382,7 +388,11 @@ function boardReducer(state = initialState, action) {
         isFetching: false,
         boards: state.boards.map(board =>
           board.id === action.boardData.id
-            ? { ...board, lastEdited: action.boardData.lastEdited }
+            ? {
+                ...board,
+                lastEdited: action.boardData.lastEdited,
+                syncStatus: SYNC_STATUS.SYNCED
+              }
             : board
         )
       };
