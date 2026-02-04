@@ -257,10 +257,18 @@ function boardReducer(state = initialState, action) {
         boards: nextBoards
       };
     case DELETE_BOARD:
+      const boardIdsToDelete = Array.isArray(action.boardId)
+        ? action.boardId
+        : [action.boardId];
       return {
         ...state,
-        boards: state.boards.filter(
-          board => action.boardId.indexOf(board.id) === -1
+        boards: state.boards.map(board =>
+          boardIdsToDelete.includes(board.id)
+            ? { ...board, isDeleted: true, syncStatus: SYNC_STATUS.PENDING }
+            : board
+        ),
+        navHistory: state.navHistory.filter(
+          id => !boardIdsToDelete.includes(id)
         )
       };
 

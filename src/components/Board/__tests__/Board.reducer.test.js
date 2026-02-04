@@ -433,20 +433,23 @@ describe('reducer', () => {
       ]
     });
   });
-  it('should handle deleteBoard', () => {
+  it('should handle deleteBoard (soft delete)', () => {
     const deleteBoard = {
       type: DELETE_BOARD,
       boardId: '123'
     };
-    expect(
-      boardReducer(
-        {
-          ...initialState,
-          boards: [...initialState.boards, mockBoard]
-        },
-        deleteBoard
-      )
-    ).toEqual(initialState);
+    const result = boardReducer(
+      {
+        ...initialState,
+        boards: [...initialState.boards, mockBoard],
+        navHistory: ['123', '456']
+      },
+      deleteBoard
+    );
+    const deletedBoard = result.boards.find(b => b.id === '123');
+    expect(deletedBoard.isDeleted).toBe(true);
+    expect(deletedBoard.syncStatus).toBe(SYNC_STATUS.PENDING);
+    expect(result.navHistory).toEqual(['456']);
   });
   it('should handle switchBoard', () => {
     const switchBoard = {

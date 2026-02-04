@@ -534,6 +534,7 @@ describe('classifyRemoteBoards', () => {
       name: 'Remote Board'
     });
     expect(result.remoteNewerBoards).toHaveLength(0);
+    expect(result.remoteDeletedBoardIds).toHaveLength(0);
   });
 
   it('should classify remote-newer boards when remote has newer timestamp', () => {
@@ -592,6 +593,37 @@ describe('classifyRemoteBoards', () => {
 
     expect(result.newRemoteBoards).toHaveLength(1);
     expect(result.remoteNewerBoards).toHaveLength(0);
+  });
+
+  it('should identify boards deleted on server (remoteDeletedBoardIds)', () => {
+    const localBoards = [
+      { id: '12345678901234567890', name: 'Server Board' } // long ID = server board
+    ];
+    const remoteBoards = []; // board not in remote = deleted on server
+    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+
+    expect(result.remoteDeletedBoardIds).toHaveLength(1);
+    expect(result.remoteDeletedBoardIds).toContain('12345678901234567890');
+  });
+
+  it('should not classify short ID boards as deleted on server', () => {
+    const localBoards = [
+      { id: 'short123', name: 'Local Board' } // short ID = local only board
+    ];
+    const remoteBoards = [];
+    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+
+    expect(result.remoteDeletedBoardIds).toHaveLength(0);
+  });
+
+  it('should not classify locally deleted boards as deleted on server', () => {
+    const localBoards = [
+      { id: '12345678901234567890', name: 'Board', isDeleted: true }
+    ];
+    const remoteBoards = [];
+    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+
+    expect(result.remoteDeletedBoardIds).toHaveLength(0);
   });
 });
 
@@ -661,5 +693,50 @@ describe('pushLocalChangesToApi', () => {
 
     expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
     expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
+  });
+
+  it('should not push boards with isDeleted: true', async () => {
+    const deletedBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      syncStatus: types.SYNC_STATUS.PENDING,
+      isDeleted: true
+    };
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: [deletedBoard]
+      }
+    });
+
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
+    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+
+    // Should dispatch DELETE_API_BOARD_STARTED instead of UPDATE
+    expect(actionTypes).toContain(types.DELETE_API_BOARD_STARTED);
+    expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
+  });
+
+  it('should hard delete local-only boards with isDeleted: true without API call', async () => {
+    const deletedLocalBoard = {
+      ...mockBoard,
+      id: 'short123', // short ID = local only
+      isDeleted: true
+    };
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: [deletedLocalBoard]
+      }
+    });
+
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
+    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+
+    // Should dispatch DELETE_API_BOARD_SUCCESS directly (hard delete)
+    expect(actionTypes).toContain(types.DELETE_API_BOARD_SUCCESS);
+    expect(actionTypes).not.toContain(types.DELETE_API_BOARD_STARTED);
   });
 });
