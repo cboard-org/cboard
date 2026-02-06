@@ -81,10 +81,8 @@ class CommunicatorContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (
-  { board, communicator, app: { userData, displaySettings } },
-  ownProps
-) => {
+const mapStateToProps = ({ board, communicator, app }, ownProps) => {
+  const { userData, displaySettings } = app;
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
     communicator => communicator.id === activeCommunicatorId
