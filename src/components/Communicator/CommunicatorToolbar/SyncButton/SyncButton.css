@@ -1,0 +1,21 @@
+.SyncButton {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 4px;
+  border: none;
+  background: none;
+}
+
+.SyncButton__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-right: 8px;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.SyncButton__spinner {
+  color: inherit;
+}
