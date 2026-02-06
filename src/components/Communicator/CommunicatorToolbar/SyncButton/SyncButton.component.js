@@ -15,6 +15,16 @@ import messages from './SyncButton.messages';
 import { SYNCED_DISPLAY_DURATION, DISPLAY_STATE } from './SyncButton.constants';
 import './SyncButton.css';
 
+const { SYNCED, PENDING, SYNCING } = SYNC_STATUS;
+const {
+  OFFLINE,
+  WORKING_OFFLINE,
+  SAVING,
+  SYNCED: DISPLAY_SYNCED,
+  PENDING: DISPLAY_PENDING,
+  SYNC
+} = DISPLAY_STATE;
+
 const SyncButton = ({
   intl,
   isOnline,
@@ -27,19 +37,16 @@ const SyncButton = ({
   const prevSyncStatusRef = useRef(null);
 
   const getSyncStatus = () => {
-    if (isSyncing || isFetching) return SYNC_STATUS.SYNCING;
-    if (hasPendingBoards) return SYNC_STATUS.PENDING;
-    return SYNC_STATUS.SYNCED;
+    if (isSyncing || isFetching) return SYNCING;
+    if (hasPendingBoards) return PENDING;
+    return SYNCED;
   };
 
   const syncStatus = getSyncStatus();
 
   useEffect(
     () => {
-      if (
-        prevSyncStatusRef.current === SYNC_STATUS.SYNCING &&
-        syncStatus === SYNC_STATUS.SYNCED
-      ) {
+      if (prevSyncStatusRef.current === SYNCING && syncStatus === SYNCED) {
         setShowSynced(true);
         const timer = setTimeout(() => {
           setShowSynced(false);
@@ -53,38 +60,36 @@ const SyncButton = ({
 
   const getDisplayState = () => {
     if (!isOnline) {
-      return syncStatus === SYNC_STATUS.PENDING
-        ? DISPLAY_STATE.WORKING_OFFLINE
-        : DISPLAY_STATE.OFFLINE;
+      return syncStatus === PENDING ? WORKING_OFFLINE : OFFLINE;
     }
-    if (syncStatus === SYNC_STATUS.SYNCING) return DISPLAY_STATE.SAVING;
-    if (syncStatus === SYNC_STATUS.PENDING) return DISPLAY_STATE.PENDING;
-    if (showSynced) return DISPLAY_STATE.SYNCED;
-    return DISPLAY_STATE.SYNC;
+    if (syncStatus === SYNCING) return SAVING;
+    if (syncStatus === PENDING) return PENDING;
+    if (showSynced) return DISPLAY_SYNCED;
+    return SYNC;
   };
 
   const displayState = getDisplayState();
-  const isSyncDisabled = syncStatus === SYNC_STATUS.SYNCING;
+  const isSyncDisabled = syncStatus === SYNCING;
   const baseClassName = classNames('SyncButton', `SyncButton--${displayState}`);
 
   const getAriaLabel = () => {
     switch (displayState) {
-      case DISPLAY_STATE.OFFLINE:
+      case OFFLINE:
         return intl.formatMessage(messages.offline);
-      case DISPLAY_STATE.WORKING_OFFLINE:
+      case WORKING_OFFLINE:
         return intl.formatMessage(messages.workingOffline);
-      case DISPLAY_STATE.SAVING:
+      case SAVING:
         return intl.formatMessage(messages.saving);
-      case DISPLAY_STATE.SYNCED:
+      case DISPLAY_SYNCED:
         return intl.formatMessage(messages.synced);
-      case DISPLAY_STATE.PENDING:
-      case DISPLAY_STATE.SYNC:
+      case DISPLAY_PENDING:
+      case SYNC:
       default:
         return intl.formatMessage(messages.sync);
     }
   };
 
-  if (displayState === DISPLAY_STATE.OFFLINE) {
+  if (displayState === OFFLINE) {
     return (
       <Button
         className={baseClassName}
@@ -99,7 +104,7 @@ const SyncButton = ({
     );
   }
 
-  if (displayState === DISPLAY_STATE.WORKING_OFFLINE) {
+  if (displayState === WORKING_OFFLINE) {
     return (
       <Button
         className={baseClassName}
@@ -114,7 +119,7 @@ const SyncButton = ({
     );
   }
 
-  if (displayState === DISPLAY_STATE.SAVING) {
+  if (displayState === SAVING) {
     return (
       <IconButton
         className={baseClassName}
@@ -133,7 +138,7 @@ const SyncButton = ({
     );
   }
 
-  if (displayState === DISPLAY_STATE.SYNCED) {
+  if (displayState === SYNCED) {
     return (
       <IconButton
         className={baseClassName}
