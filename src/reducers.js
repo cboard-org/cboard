@@ -77,7 +77,7 @@ const createMigratingStorage = (oldStorage, newStorage) => ({
 
   /**
    * Removes a value from storage.
-   * Called by redux-persist when purging state (e.g., logout).
+   * Called by redux-persist when purging state.
    */
   async removeItem(key) {
     return await newStorage.removeItem(key);
