@@ -221,6 +221,7 @@ class CommunicatorToolbar extends React.Component {
 CommunicatorToolbar.defaultProps = {
   className: '',
   boards: [],
+  isSelecting: false,
   switchBoard: () => {},
   showNotification: () => {},
   openCommunicatorDialog: () => {},
