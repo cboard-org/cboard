@@ -132,10 +132,9 @@ const SyncButton = ({
         color="inherit"
       >
         <CircularProgress
-          size={24}
+          size={21}
           thickness={7}
           className="SyncButton__spinner"
-          color="inherit"
         />
       </IconButton>
     );
