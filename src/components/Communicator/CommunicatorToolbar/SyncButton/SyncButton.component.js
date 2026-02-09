@@ -30,6 +30,7 @@ const SyncButton = ({
   isOnline,
   isSyncing,
   isFetching,
+  isSaving,
   hasPendingBoards,
   onSyncClick
 }) => {
@@ -37,7 +38,7 @@ const SyncButton = ({
   const prevSyncStatusRef = useRef(null);
 
   const getSyncStatus = () => {
-    if (isSyncing || isFetching) return SYNCING;
+    if (isSyncing || isFetching || isSaving) return SYNCING;
     if (hasPendingBoards) return PENDING;
     return SYNCED;
   };
@@ -169,6 +170,7 @@ SyncButton.propTypes = {
   isOnline: PropTypes.bool,
   isSyncing: PropTypes.bool,
   isFetching: PropTypes.bool,
+  isSaving: PropTypes.bool,
   hasPendingBoards: PropTypes.bool,
   onSyncClick: PropTypes.func
 };
@@ -177,6 +179,7 @@ SyncButton.defaultProps = {
   isOnline: true,
   isSyncing: false,
   isFetching: false,
+  isSaving: false,
   hasPendingBoards: false,
   onSyncClick: () => {}
 };
