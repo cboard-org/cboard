@@ -1,10 +1,9 @@
-export const SYNCED_DISPLAY_DURATION = 3000;
+export const SYNCED_DISPLAY_DURATION = 7000;
 
 export const DISPLAY_STATE = {
   OFFLINE: 'offline',
-  WORKING_OFFLINE: 'workingOffline',
+  SAVED_LOCALLY: 'savedLocally',
   SAVING: 'saving',
   SYNCED: 'synced',
-  PENDING: 'pending',
   SYNC: 'sync'
 };
