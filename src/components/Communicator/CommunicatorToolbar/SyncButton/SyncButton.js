@@ -14,7 +14,7 @@ import green from '@material-ui/core/colors/green';
 import amber from '@material-ui/core/colors/amber';
 import { SYNC_STATUS } from '../../../Board/Board.constants';
 import { hasPendingSyncBoards } from '../../../Board/Board.selectors';
-import { getApiMyBoards } from '../../../Board/Board.actions';
+import { getApiObjects } from '../../../Board/Board.actions';
 import messages from './SyncButton.messages';
 import { SYNCED_DISPLAY_DURATION, DISPLAY_STATE } from './SyncButton.constants';
 import './SyncButton.css';
@@ -194,7 +194,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = {
-  onSyncClick: getApiMyBoards
+  onSyncClick: getApiObjects
 };
 
 export default connect(
