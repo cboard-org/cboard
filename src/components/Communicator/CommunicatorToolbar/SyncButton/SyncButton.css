@@ -7,12 +7,18 @@
   background: none;
 }
 
+.SyncButton .MuiButton-label {
+  display: flex;
+  align-items: center;
+}
+
 .SyncButton__label {
   font-size: 0.75rem;
   text-transform: uppercase;
   margin-right: 8px;
   white-space: nowrap;
   letter-spacing: 0.5px;
+  line-height: 1;
 }
 
 .SyncButton .SyncButton__spinner {
