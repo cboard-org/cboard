@@ -12,9 +12,9 @@
 .CommunicatorToolbar button {
   color: #fff;
 }
-  .CommunicatorToolbar button icon {
-    margin-left: 0;
-  }
+.CommunicatorToolbar button icon {
+  margin-left: 0;
+}
 
 .CommunicatorToolbar__menu {
   text-transform: capitalize;
@@ -55,6 +55,7 @@
 .CommunicatorToolbar__group--end {
   order: 2;
   justify-content: flex-end;
+  height: 100%;
 }
 
 .CommunicatorToolbar__menuitem {
