@@ -5,9 +5,9 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorToolbar.SyncButton.offline',
     defaultMessage: 'Offline'
   },
-  workingOffline: {
-    id: 'cboard.components.CommunicatorToolbar.SyncButton.workingOffline',
-    defaultMessage: 'Working Offline'
+  savedLocally: {
+    id: 'cboard.components.CommunicatorToolbar.SyncButton.savedLocally',
+    defaultMessage: 'Saved Locally'
   },
   saving: {
     id: 'cboard.components.CommunicatorToolbar.SyncButton.saving',
