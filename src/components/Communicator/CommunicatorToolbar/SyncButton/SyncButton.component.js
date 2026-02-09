@@ -7,7 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import CloudDoneIcon from '@material-ui/icons/CloudDone';
 import CloudOffIcon from '@material-ui/icons/CloudOff';
 import SyncIcon from '@material-ui/icons/Sync';
-import OfflinePinIcon from '@material-ui/icons/OfflinePin';
+import SyncProblemIcon from '@material-ui/icons/SyncProblem';
 import green from '@material-ui/core/colors/green';
 import amber from '@material-ui/core/colors/amber';
 import { SYNC_STATUS } from '../../../Board/Board.constants';
@@ -18,10 +18,9 @@ import './SyncButton.css';
 const { SYNCED, PENDING, SYNCING } = SYNC_STATUS;
 const {
   OFFLINE,
-  WORKING_OFFLINE,
+  SAVED_LOCALLY,
   SAVING,
   SYNCED: DISPLAY_SYNCED,
-  PENDING: DISPLAY_PENDING,
   SYNC
 } = DISPLAY_STATE;
 
@@ -60,11 +59,9 @@ const SyncButton = ({
   );
 
   const getDisplayState = () => {
-    if (!isOnline) {
-      return syncStatus === PENDING ? WORKING_OFFLINE : OFFLINE;
-    }
+    if (syncStatus === PENDING) return SAVED_LOCALLY;
+    if (!isOnline) return OFFLINE;
     if (syncStatus === SYNCING) return SAVING;
-    if (syncStatus === PENDING) return PENDING;
     if (showSynced) return DISPLAY_SYNCED;
     return SYNC;
   };
@@ -77,13 +74,12 @@ const SyncButton = ({
     switch (displayState) {
       case OFFLINE:
         return intl.formatMessage(messages.offline);
-      case WORKING_OFFLINE:
-        return intl.formatMessage(messages.workingOffline);
+      case SAVED_LOCALLY:
+        return intl.formatMessage(messages.savedLocally);
       case SAVING:
         return intl.formatMessage(messages.saving);
       case DISPLAY_SYNCED:
         return intl.formatMessage(messages.synced);
-      case DISPLAY_PENDING:
       case SYNC:
       default:
         return intl.formatMessage(messages.sync);
@@ -105,17 +101,19 @@ const SyncButton = ({
     );
   }
 
-  if (displayState === WORKING_OFFLINE) {
+  if (displayState === SAVED_LOCALLY) {
     return (
       <Button
         className={baseClassName}
         aria-label={getAriaLabel()}
+        disabled={isSyncDisabled}
+        onClick={onSyncClick}
         style={{ color: amber[500] }}
       >
         <span className="SyncButton__label">
-          {intl.formatMessage(messages.workingOffline)}
+          {intl.formatMessage(messages.savedLocally)}
         </span>
-        <OfflinePinIcon className="SyncButton__icon" />
+        <SyncProblemIcon className="SyncButton__icon" />
       </Button>
     );
   }
