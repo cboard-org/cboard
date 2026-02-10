@@ -881,4 +881,170 @@ describe('syncBoards', () => {
 
     expect(result).toEqual({ success: true });
   });
+
+  it('should update local boards when remote is newer (PULL)', async () => {
+    const localBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      lastEdited: '2024-01-01T00:00:00Z'
+    };
+    const store = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [localBoard] }
+    });
+    const remoteBoards = [
+      { ...localBoard, name: 'Updated', lastEdited: '2024-01-02T00:00:00Z' }
+    ];
+
+    await store.dispatch(actions.syncBoards(remoteBoards));
+    const updateActions = store
+      .getActions()
+      .filter(a => a.type === types.UPDATE_BOARD);
+
+    expect(updateActions).toHaveLength(1);
+  });
+
+  it('should handle boards deleted on server with 404 (PULL)', async () => {
+    const API = require('../../../api/api').default;
+    API.getBoard = jest.fn().mockRejectedValue({
+      response: { status: 404 }
+    });
+
+    const localBoard = {
+      ...mockBoard,
+      id: '12345678901234567890'
+    };
+    const store = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [localBoard] }
+    });
+    // Board not in remote list → classified as potentially deleted
+    const remoteBoards = [];
+
+    await store.dispatch(actions.syncBoards(remoteBoards));
+    const dispatchedActions = store.getActions();
+
+    expect(dispatchedActions).toContainEqual({
+      type: types.DELETE_API_BOARD_SUCCESS,
+      board: { id: '12345678901234567890' }
+    });
+  });
+
+  it('should update board when server still has it despite not being in remote list (PULL)', async () => {
+    const API = require('../../../api/api').default;
+    const serverBoard = {
+      id: '12345678901234567890',
+      name: 'Still on server'
+    };
+    API.getBoard = jest.fn().mockResolvedValue(serverBoard);
+
+    const localBoard = { ...mockBoard, id: '12345678901234567890' };
+    const store = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [localBoard] }
+    });
+
+    await store.dispatch(actions.syncBoards([]));
+    const updateActions = store
+      .getActions()
+      .filter(a => a.type === types.UPDATE_BOARD);
+
+    expect(updateActions).toHaveLength(1);
+  });
+
+  it('should push locally modified boards with syncStatus: PENDING (PUSH)', async () => {
+    const pendingBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      syncStatus: types.SYNC_STATUS.PENDING
+    };
+    const store = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [pendingBoard] }
+    });
+
+    await store.dispatch(actions.syncBoards([pendingBoard]));
+    const actionTypes = store.getActions().map(a => a.type);
+
+    expect(actionTypes).toContain(types.UPDATE_API_BOARD_STARTED);
+  });
+
+  it('should create server boards for short ID pending boards (PUSH)', async () => {
+    const localBoard = {
+      ...mockBoard,
+      id: 'short123',
+      syncStatus: types.SYNC_STATUS.PENDING
+    };
+    const store = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [localBoard] }
+    });
+
+    await store.dispatch(actions.syncBoards([]));
+    const actionTypes = store.getActions().map(a => a.type);
+
+    expect(actionTypes).toContain(types.CREATE_API_BOARD_STARTED);
+  });
+
+  it('should delete locally deleted boards from server (PUSH)', async () => {
+    const deletedBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      isDeleted: true
+    };
+    const store = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [deletedBoard] }
+    });
+
+    await store.dispatch(actions.syncBoards([deletedBoard]));
+    const actionTypes = store.getActions().map(a => a.type);
+
+    expect(actionTypes).toContain(types.DELETE_API_BOARD_STARTED);
+  });
+
+  it('should dispatch syncBoardsFailure and return failure on error', async () => {
+    // Create a store with a getter that throws on second access
+    let accessCount = 0;
+    const failingStore = mockStore({
+      ...initialState,
+      board: {
+        get boards() {
+          accessCount++;
+          if (accessCount > 1) throw new Error('Sync failed');
+          return [mockBoard];
+        }
+      }
+    });
+
+    const result = await failingStore.dispatch(actions.syncBoards(null));
+    const actionTypes = failingStore.getActions().map(a => a.type);
+
+    expect(actionTypes).toContain(types.SYNC_BOARDS_FAILURE);
+    expect(result.success).toBe(false);
+  });
+
+  it('should execute PULL before PUSH in correct order', async () => {
+    const pendingBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      syncStatus: types.SYNC_STATUS.PENDING
+    };
+    const newRemoteBoard = { id: 'new-remote-board', name: 'From Server' };
+    const store = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [pendingBoard] }
+    });
+
+    await store.dispatch(actions.syncBoards([newRemoteBoard]));
+    const actionTypes = store.getActions().map(a => a.type);
+
+    const addBoardsIndex = actionTypes.indexOf(types.ADD_BOARDS);
+    const pushIndex = actionTypes.indexOf(types.UPDATE_API_BOARD_STARTED);
+
+    // PULL (ADD_BOARDS) should happen before PUSH (UPDATE_API_BOARD_STARTED)
+    expect(addBoardsIndex).toBeGreaterThan(-1);
+    expect(pushIndex).toBeGreaterThan(-1);
+    expect(addBoardsIndex).toBeLessThan(pushIndex);
+  });
 });
