@@ -134,7 +134,9 @@ function boardReducer(state = initialState, action) {
     case ADD_BOARDS:
       return {
         ...state,
-        boards: state.boards.concat(action.boards)
+        boards: state.boards.concat(
+          action.boards.map(b => ({ ...b, syncStatus: SYNC_STATUS.SYNCED }))
+        )
       };
     case CHANGE_BOARD:
       const taBoards = [...state.boards];
