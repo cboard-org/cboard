@@ -528,13 +528,13 @@ describe('classifyRemoteBoards', () => {
     const remoteBoards = [{ id: '2', name: 'Remote Board' }];
     const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
 
-    expect(result.newRemoteBoards).toHaveLength(1);
-    expect(result.newRemoteBoards).toContainEqual({
+    expect(result.boardsToAdd).toHaveLength(1);
+    expect(result.boardsToAdd).toContainEqual({
       id: '2',
       name: 'Remote Board'
     });
-    expect(result.remoteNewerBoards).toHaveLength(0);
-    expect(result.remoteDeletedBoardIds).toHaveLength(0);
+    expect(result.boardsToUpdate).toHaveLength(0);
+    expect(result.boardIdsToDelete).toHaveLength(0);
   });
 
   it('should classify remote-newer boards when remote has newer timestamp', () => {
@@ -546,9 +546,9 @@ describe('classifyRemoteBoards', () => {
     ];
     const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
 
-    expect(result.newRemoteBoards).toHaveLength(0);
-    expect(result.remoteNewerBoards).toHaveLength(1);
-    expect(result.remoteNewerBoards[0].name).toBe('Remote');
+    expect(result.boardsToAdd).toHaveLength(0);
+    expect(result.boardsToUpdate).toHaveLength(1);
+    expect(result.boardsToUpdate[0].name).toBe('Remote');
   });
 
   it('should not classify as remote-newer when local has newer timestamp', () => {
@@ -560,8 +560,8 @@ describe('classifyRemoteBoards', () => {
     ];
     const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
 
-    expect(result.newRemoteBoards).toHaveLength(0);
-    expect(result.remoteNewerBoards).toHaveLength(0);
+    expect(result.boardsToAdd).toHaveLength(0);
+    expect(result.boardsToUpdate).toHaveLength(0);
   });
 
   it('should not classify as remote-newer when timestamps are equal', () => {
@@ -573,8 +573,8 @@ describe('classifyRemoteBoards', () => {
     ];
     const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
 
-    expect(result.newRemoteBoards).toHaveLength(0);
-    expect(result.remoteNewerBoards).toHaveLength(0);
+    expect(result.boardsToAdd).toHaveLength(0);
+    expect(result.boardsToUpdate).toHaveLength(0);
   });
 
   it('should handle empty remote boards', () => {
@@ -582,8 +582,8 @@ describe('classifyRemoteBoards', () => {
     const remoteBoards = [];
     const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
 
-    expect(result.newRemoteBoards).toHaveLength(0);
-    expect(result.remoteNewerBoards).toHaveLength(0);
+    expect(result.boardsToAdd).toHaveLength(0);
+    expect(result.boardsToUpdate).toHaveLength(0);
   });
 
   it('should handle empty local boards', () => {
@@ -591,19 +591,19 @@ describe('classifyRemoteBoards', () => {
     const remoteBoards = [{ id: '1', name: 'Remote Board' }];
     const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
 
-    expect(result.newRemoteBoards).toHaveLength(1);
-    expect(result.remoteNewerBoards).toHaveLength(0);
+    expect(result.boardsToAdd).toHaveLength(1);
+    expect(result.boardsToUpdate).toHaveLength(0);
   });
 
-  it('should identify boards deleted on server (remoteDeletedBoardIds)', () => {
+  it('should identify boards deleted on server (boardIdsToDelete)', () => {
     const localBoards = [
       { id: '12345678901234567890', name: 'Server Board' } // long ID = server board
     ];
     const remoteBoards = []; // board not in remote = deleted on server
     const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
 
-    expect(result.remoteDeletedBoardIds).toHaveLength(1);
-    expect(result.remoteDeletedBoardIds).toContain('12345678901234567890');
+    expect(result.boardIdsToDelete).toHaveLength(1);
+    expect(result.boardIdsToDelete).toContain('12345678901234567890');
   });
 
   it('should not classify short ID boards as deleted on server', () => {
@@ -613,7 +613,7 @@ describe('classifyRemoteBoards', () => {
     const remoteBoards = [];
     const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
 
-    expect(result.remoteDeletedBoardIds).toHaveLength(0);
+    expect(result.boardIdsToDelete).toHaveLength(0);
   });
 
   it('should not classify locally deleted boards as deleted on server', () => {
@@ -623,7 +623,7 @@ describe('classifyRemoteBoards', () => {
     const remoteBoards = [];
     const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
 
-    expect(result.remoteDeletedBoardIds).toHaveLength(0);
+    expect(result.boardIdsToDelete).toHaveLength(0);
   });
 });
 
@@ -738,5 +738,147 @@ describe('pushLocalChangesToApi', () => {
     // Should dispatch DELETE_API_BOARD_SUCCESS directly (hard delete)
     expect(actionTypes).toContain(types.DELETE_API_BOARD_SUCCESS);
     expect(actionTypes).not.toContain(types.DELETE_API_BOARD_STARTED);
+  });
+});
+
+describe('applyRemoteChangesToState', () => {
+  it('should dispatch addBoards for new remote boards', async () => {
+    const store = mockStore(initialState);
+    const boardsToAdd = [
+      { id: 'new-board-1', name: 'New Board' },
+      { id: 'new-board-2', name: 'Another New Board' }
+    ];
+
+    await store.dispatch(
+      actions.applyRemoteChangesToState({
+        boardsToAdd,
+        boardsToUpdate: [],
+        boardIdsToDelete: []
+      })
+    );
+    const dispatchedActions = store.getActions();
+
+    expect(dispatchedActions).toContainEqual({
+      type: types.ADD_BOARDS,
+      boards: boardsToAdd
+    });
+  });
+
+  it('should dispatch updateBoard for each board to update', async () => {
+    const store = mockStore(initialState);
+    const boardsToUpdate = [
+      { id: '1', name: 'Updated Board 1' },
+      { id: '2', name: 'Updated Board 2' }
+    ];
+
+    await store.dispatch(
+      actions.applyRemoteChangesToState({
+        boardsToAdd: [],
+        boardsToUpdate,
+        boardIdsToDelete: []
+      })
+    );
+    const dispatchedActions = store.getActions();
+    const updateActions = dispatchedActions.filter(
+      a => a.type === types.UPDATE_BOARD
+    );
+
+    expect(updateActions).toHaveLength(2);
+  });
+
+  it('should not dispatch addBoards when boardsToAdd is empty', async () => {
+    const store = mockStore(initialState);
+
+    await store.dispatch(
+      actions.applyRemoteChangesToState({
+        boardsToAdd: [],
+        boardsToUpdate: [],
+        boardIdsToDelete: []
+      })
+    );
+    const actionTypes = store.getActions().map(a => a.type);
+
+    expect(actionTypes).not.toContain(types.ADD_BOARDS);
+  });
+
+  it('should dispatch deleteApiBoardSuccess for boards confirmed deleted (404)', async () => {
+    const API = require('../../../api/api').default;
+    const boardId = '12345678901234567890';
+    API.getBoard = jest.fn().mockRejectedValue({
+      response: { status: 404 }
+    });
+
+    const store = mockStore(initialState);
+
+    await store.dispatch(
+      actions.applyRemoteChangesToState({
+        boardsToAdd: [],
+        boardsToUpdate: [],
+        boardIdsToDelete: [boardId]
+      })
+    );
+    const dispatchedActions = store.getActions();
+
+    expect(dispatchedActions).toContainEqual({
+      type: types.DELETE_API_BOARD_SUCCESS,
+      board: { id: boardId }
+    });
+  });
+
+  it('should dispatch updateBoard when board still exists on server', async () => {
+    const API = require('../../../api/api').default;
+    const boardId = '12345678901234567890';
+    const serverBoard = { id: boardId, name: 'Server Board' };
+    API.getBoard = jest.fn().mockResolvedValue(serverBoard);
+
+    const store = mockStore(initialState);
+
+    await store.dispatch(
+      actions.applyRemoteChangesToState({
+        boardsToAdd: [],
+        boardsToUpdate: [],
+        boardIdsToDelete: [boardId]
+      })
+    );
+    const updateActions = store
+      .getActions()
+      .filter(a => a.type === types.UPDATE_BOARD);
+
+    expect(updateActions).toHaveLength(1);
+  });
+});
+
+describe('syncBoards', () => {
+  it('should dispatch syncBoardsStarted and syncBoardsSuccess on success', async () => {
+    const store = mockStore(initialState);
+    const remoteBoards = [];
+
+    await store.dispatch(actions.syncBoards(remoteBoards));
+    const actionTypes = store.getActions().map(a => a.type);
+
+    expect(actionTypes[0]).toBe(types.SYNC_BOARDS_STARTED);
+    expect(actionTypes).toContain(types.SYNC_BOARDS_SUCCESS);
+    expect(actionTypes).not.toContain(types.SYNC_BOARDS_FAILURE);
+  });
+
+  it('should apply remote changes and push local changes', async () => {
+    const remoteBoard = { id: 'new-remote-board', name: 'From Server' };
+    const store = mockStore(initialState);
+
+    await store.dispatch(actions.syncBoards([remoteBoard]));
+    const actionTypes = store.getActions().map(a => a.type);
+
+    // PULL: should add the new remote board
+    expect(actionTypes).toContain(types.ADD_BOARDS);
+    // Should complete sync
+    expect(actionTypes).toContain(types.SYNC_BOARDS_SUCCESS);
+  });
+
+  it('should return success: true on successful sync', async () => {
+    const store = mockStore(initialState);
+
+    const result = await store.dispatch(actions.syncBoards([]));
+
+    expect(result).toEqual({ success: true });
   });
 });
