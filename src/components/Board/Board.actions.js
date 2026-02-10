@@ -556,12 +556,12 @@ export function getApiMyBoards() {
  * Identifies boards that are new from the server or have newer versions on the server.
  * @param {Array} localBoards - Boards from local state
  * @param {Array} remoteBoards - Boards from the server
- * @returns {{ newRemoteBoards, remoteNewerBoards }}
+ * @returns {{ boardsToAdd, boardsToUpdate, boardIdsToDelete }}
  */
 export function classifyRemoteBoards(localBoards, remoteBoards) {
-  const newRemote = [];
-  const remoteNewer = [];
-  const remoteDeleted = [];
+  const boardsToAdd = [];
+  const boardsToUpdate = [];
+  const boardIdsToDelete = [];
 
   const remoteBoardIds = new Set(remoteBoards.map(b => b.id));
 
@@ -569,12 +569,12 @@ export function classifyRemoteBoards(localBoards, remoteBoards) {
     const local = localBoards.find(b => b.id === remote.id);
 
     if (!local) {
-      newRemote.push(remote);
+      boardsToAdd.push(remote);
       continue;
     }
 
     if (moment(remote.lastEdited).isAfter(local.lastEdited)) {
-      remoteNewer.push(remote);
+      boardsToUpdate.push(remote);
     }
   }
 
@@ -585,14 +585,14 @@ export function classifyRemoteBoards(localBoards, remoteBoards) {
     const notLocallyDeleted = !local.isDeleted;
 
     if (hasServerId && notInRemote && notLocallyDeleted) {
-      remoteDeleted.push(local.id);
+      boardIdsToDelete.push(local.id);
     }
   }
 
   return {
-    newRemoteBoards: newRemote,
-    remoteNewerBoards: remoteNewer,
-    remoteDeletedBoardIds: remoteDeleted
+    boardsToAdd,
+    boardsToUpdate,
+    boardIdsToDelete
   };
 }
 
@@ -613,29 +613,28 @@ export function syncBoardsFailure(error) {
  * PULL: Apply remote changes to local Redux state.
  * Adds new remote boards and updates boards where remote is newer.
  */
-export function applyRemoteChangesToState(
-  newRemoteBoards,
-  remoteNewerBoards,
-  remoteDeletedBoardIds = []
-) {
+export function applyRemoteChangesToState({
+  boardsToAdd,
+  boardsToUpdate,
+  boardIdsToDelete = []
+}) {
   return async dispatch => {
-    if (newRemoteBoards.length > 0) {
-      dispatch(addBoards(newRemoteBoards));
+    if (boardsToAdd.length > 0) {
+      dispatch(addBoards(boardsToAdd));
     }
-    for (const board of remoteNewerBoards) {
+    for (const board of boardsToUpdate) {
       const fromRemote = true; //sets syncStatus to SYNCED
       dispatch(updateBoard(board, fromRemote));
     }
-    // Remove boards that were deleted on server
-    for (const boardId of remoteDeletedBoardIds) {
+    // Verify boards that appear deleted on server
+    for (const boardId of boardIdsToDelete) {
       try {
         const res = await API.getBoard(boardId);
         if (res) {
-          // Board exists on server, but is newer than local → update local state
-          //dispatch(updateBoard(res, true));
+          dispatch(updateBoard(res, true));
         }
       } catch (e) {
-        if (e.status === 404) {
+        if (e.response?.status === 404) {
           dispatch(deleteApiBoardSuccess({ id: boardId }));
           continue;
         }
@@ -682,7 +681,7 @@ export function pushLocalChangesToApi() {
           await dispatch(deleteApiBoard(board.id));
           // DELETE_API_BOARD_SUCCESS handles hard delete
         } catch (e) {
-          if (e.status === 404) {
+          if (e.response?.status === 404) {
             dispatch(deleteApiBoardSuccess({ id: board.id }));
             continue;
           }
@@ -710,18 +709,18 @@ export function syncBoards(remoteBoards) {
 
       // 1. Classify boards for PULL (remote changes + remote deletions)
       const {
-        newRemoteBoards,
-        remoteNewerBoards,
-        remoteDeletedBoardIds
+        boardsToAdd,
+        boardsToUpdate,
+        boardIdsToDelete
       } = classifyRemoteBoards(localBoards, remoteBoards);
 
       // 2. PULL: Apply remote changes to local state (includes remote deletions)
       await dispatch(
-        applyRemoteChangesToState(
-          newRemoteBoards,
-          remoteNewerBoards,
-          remoteDeletedBoardIds
-        )
+        applyRemoteChangesToState({
+          boardsToAdd,
+          boardsToUpdate,
+          boardIdsToDelete
+        })
       );
 
       // 3. PUSH: Upload local changes + delete locally deleted boards from server
