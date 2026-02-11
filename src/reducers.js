@@ -29,7 +29,7 @@ localForage.config({
  * @param {Object} newStorage - The new storage engine (localForage/IndexedDB)
  * @returns {Object} A storage engine compatible with redux-persist
  */
-const createMigratingStorage = (oldStorage, newStorage) => ({
+export const createMigratingStorage = (oldStorage, newStorage) => ({
   /**
    * Retrieves a value from storage, migrating from old to new if necessary.
    * Called by redux-persist on app initialization.
