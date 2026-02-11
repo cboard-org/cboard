@@ -68,6 +68,10 @@ export const createMigratingStorage = (oldStorage, newStorage) => ({
           });
           await oldStorage.removeItem(key);
           console.log(`Cboard: Cleaned up ${key} from localStorage`);
+          appInsights.trackEvent({
+            name: 'StorageMigration_Cleanup',
+            properties: { key }
+          });
         } catch (writeErr) {
           console.warn('Cboard: Migration write failed', writeErr);
           appInsights.trackException({
