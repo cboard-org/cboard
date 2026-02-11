@@ -24,3 +24,9 @@
 .SyncButton .SyncButton__spinner {
   color: #fff;
 }
+
+@media (max-width: 599px) {
+  .SyncButton__label {
+    display: none;
+  }
+}
