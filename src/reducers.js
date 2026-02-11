@@ -6,6 +6,7 @@ import {
 
 import localForage from 'localforage';
 import localStorage from 'redux-persist/lib/storage';
+import { appInsights } from './appInsights';
 
 import appReducer from './components/App/App.reducer';
 import languageProviderReducer from './providers/LanguageProvider/LanguageProvider.reducer';
@@ -42,6 +43,10 @@ export const createMigratingStorage = (oldStorage, newStorage) => ({
       }
     } catch (err) {
       console.warn('Cboard: IndexedDB read failed', err);
+      appInsights.trackException({
+        exception: err,
+        properties: { key, step: 'indexeddb_read' }
+      });
     }
 
     try {
@@ -50,18 +55,34 @@ export const createMigratingStorage = (oldStorage, newStorage) => ({
         console.log(
           `Cboard: Migrating ${key} from localStorage to IndexedDB...`
         );
+        appInsights.trackEvent({
+          name: 'StorageMigration_Started',
+          properties: { key }
+        });
         try {
           await newStorage.setItem(key, oldValue);
           console.log(`Cboard: Successfully migrated ${key}`);
+          appInsights.trackEvent({
+            name: 'StorageMigration_Success',
+            properties: { key }
+          });
           await oldStorage.removeItem(key);
           console.log(`Cboard: Cleaned up ${key} from localStorage`);
         } catch (writeErr) {
           console.warn('Cboard: Migration write failed', writeErr);
+          appInsights.trackException({
+            exception: writeErr,
+            properties: { key, step: 'migration_write' }
+          });
         }
         return oldValue;
       }
     } catch (err) {
       console.warn('Cboard: localStorage read failed', err);
+      appInsights.trackException({
+        exception: err,
+        properties: { key, step: 'localstorage_read' }
+      });
     }
 
     return null;
