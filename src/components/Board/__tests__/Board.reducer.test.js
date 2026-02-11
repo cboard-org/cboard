@@ -548,14 +548,43 @@ describe('reducer', () => {
       activeBoardId: '123'
     });
   });
-  it('should handle addBoards', () => {
+  it('should handle addBoards defaulting syncStatus to SYNCED', () => {
     const addBoards = {
       type: ADD_BOARDS,
-      boards: mockBoard
+      boards: [mockBoard]
     };
     expect(boardReducer(initialState, addBoards)).toEqual({
       ...initialState,
-      boards: [...initialState.boards, mockBoard]
+      boards: [
+        ...initialState.boards,
+        { ...mockBoard, syncStatus: SYNC_STATUS.SYNCED }
+      ]
+    });
+  });
+  it('should handle addBoards preserving syncStatus PENDING', () => {
+    const addBoards = {
+      type: ADD_BOARDS,
+      boards: [{ ...mockBoard, syncStatus: SYNC_STATUS.PENDING }]
+    };
+    expect(boardReducer(initialState, addBoards)).toEqual({
+      ...initialState,
+      boards: [
+        ...initialState.boards,
+        { ...mockBoard, syncStatus: SYNC_STATUS.PENDING }
+      ]
+    });
+  });
+  it('should handle addBoards preserving syncStatus SYNCED', () => {
+    const addBoards = {
+      type: ADD_BOARDS,
+      boards: [{ ...mockBoard, syncStatus: SYNC_STATUS.SYNCED }]
+    };
+    expect(boardReducer(initialState, addBoards)).toEqual({
+      ...initialState,
+      boards: [
+        ...initialState.boards,
+        { ...mockBoard, syncStatus: SYNC_STATUS.SYNCED }
+      ]
     });
   });
   it('should handle importdBoards', () => {
