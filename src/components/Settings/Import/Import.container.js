@@ -104,7 +104,11 @@ export class ImportContainer extends PureComponent {
             return response;
           } catch (err) {
             console.log(err.message);
-            return this.prepareLocalBoard(board);
+            const localBoard = this.prepareLocalBoard(boardToCreate);
+            if (board.id) {
+              localBoard.prevId = board.id;
+            }
+            return localBoard;
           }
         })
       );
