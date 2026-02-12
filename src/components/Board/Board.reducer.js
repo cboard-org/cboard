@@ -135,10 +135,14 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         boards: state.boards.concat(
-          action.boards.map(b => ({
-            ...b,
-            syncStatus: b.syncStatus || SYNC_STATUS.SYNCED
-          }))
+          action.boards
+            .filter(
+              b => b != null && b.id && !state.boards.find(sb => sb.id === b.id)
+            )
+            .map(b => ({
+              ...b,
+              syncStatus: b.syncStatus || SYNC_STATUS.SYNCED
+            }))
         )
       };
     case CHANGE_BOARD:
