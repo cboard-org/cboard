@@ -536,7 +536,7 @@ export function getApiMyBoards() {
     try {
       const res = await API.getMyBoards({ limit: BOARDS_PAGE_LIMIT });
       dispatch(getApiMyBoardsSuccess(res));
-      if (res?.data && res.data.length) {
+      if (res?.data && Array.isArray(res.data)) {
         try {
           await dispatch(syncBoards(res.data));
         } catch (e) {
