@@ -69,7 +69,7 @@ function resolveLastEdited(oldBoard, newBoard) {
   const oldDate = oldBoard?.lastEdited ? moment(oldBoard.lastEdited) : null;
   const newDate = newBoard?.lastEdited ? moment(newBoard.lastEdited) : null;
 
-  if (newDate && (!oldDate || oldDate.isBefore(newDate))) {
+  if (newDate && (!oldDate || oldDate.isSameOrBefore(newDate))) {
     return newDate.format();
   }
   return moment().format();

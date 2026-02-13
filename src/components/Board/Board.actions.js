@@ -646,36 +646,61 @@ export function applyRemoteChangesToState({
 
 /**
  * PUSH: Upload local changes to the API.
- * Pushes all boards with syncStatus: PENDING, plus legacy boards (no syncStatus)
+ * Pushes all boards with syncStatus: PENDING, plus untracked boards (no syncStatus)
  * that are newer than their remote version or don't exist on the server.
  * - Short ID boards (locally created) → updateApiObjectsNoChild (creates on server)
  * - Long ID boards (existing) → updateApiBoard (updates on server)
  */
 export function pushLocalChangesToApi(remoteBoards = []) {
   return async (dispatch, getState) => {
-    const { boards } = getState().board;
-    const remoteBoardMap = new Map(remoteBoards.map(b => [b.id, b]));
-
-    // Boards explicitly marked PENDING by the sync system
-    const pendingBoards = boards.filter(
-      b => b.syncStatus === SYNC_STATUS.PENDING && !b.isDeleted
-    );
-
-    // Legacy boards (no syncStatus) that belong to the current user
-    // and are newer than their remote version, or don't exist on the server yet.
     const userEmail = getState().app?.userData?.email;
-    const legacyBoards = boards.filter(b => {
-      if (b.syncStatus || b.isDeleted) return false;
+
+    const { boards } = getState().board;
+
+    // Boards explicitly marked PENDING by the sync system.
+    // Only push boards that belong to the current user.
+    const pendingBoards = boards.filter(b => {
+      if (b.syncStatus !== SYNC_STATUS.PENDING || b.isDeleted) return false;
       if (b.email && b.email !== userEmail) return false;
-      const remote = remoteBoardMap.get(b.id);
-      if (!remote) return true; // not on server, push it
-      return moment(b.lastEdited).isAfter(remote.lastEdited);
+      return true;
     });
 
-    const boardsToSync = [...pendingBoards, ...legacyBoards];
+    // Untracked boards (no syncStatus) that belong to the current user.
+    const untrackedBoards = boards.filter(b => {
+      if (b.syncStatus || b.isDeleted) return false;
+      if (b.email && b.email !== userEmail) return false;
+      return true;
+    });
+
+    const untrackedBoardsToSync = [];
+    const remoteBoardMap = new Map(remoteBoards.map(b => [b.id, b]));
+
+    for (const board of untrackedBoards) {
+      const remote = remoteBoardMap.get(board.id);
+      if (!remote) {
+        // Not on server — needs push
+        untrackedBoardsToSync.push(board);
+      } else if (moment(board.lastEdited).isAfter(remote.lastEdited)) {
+        // Local is newer — needs push
+        untrackedBoardsToSync.push(board);
+      } else {
+        // Graduate to SYNCED without pushing
+        dispatch(
+          updateBoard(
+            {
+              ...board,
+              syncStatus: SYNC_STATUS.SYNCED
+            },
+            true
+          )
+        );
+      }
+    }
+
+    const boardsToSync = [...pendingBoards, ...untrackedBoardsToSync];
 
     // Only delete boards explicitly marked via the sync system.
-    // Skip legacy boards (no syncStatus) to avoid unexpected deletions.
+    // Skip untracked boards (no syncStatus) to avoid unexpected deletions.
     const boardsToDelete = boards.filter(
       b => b.isDeleted === true && b.syncStatus != null
     );
