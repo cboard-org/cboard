@@ -16,7 +16,14 @@ import {
   updateUnloggedUserLocation,
   updateConnectivity
 } from '../App/App.actions';
-import { isCordova, isElectron } from '../../cordova-util';
+import { getApiObjects } from '../Board/Board.actions';
+import {
+  isCordova,
+  isElectron,
+  onCvaResume,
+  cleanUpCvaOnResume
+} from '../../cordova-util';
+
 export class AppContainer extends Component {
   static propTypes = {
     /**
@@ -43,7 +50,11 @@ export class AppContainer extends Component {
     /**
      * User Id
      */
-    userId: PropTypes.string
+    userId: PropTypes.string,
+    /**
+     * Get API objects (boards and communicators)
+     */
+    getApiObjects: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -93,9 +104,12 @@ export class AppContainer extends Component {
     initGoogleAnalytics();
 
     const configureConnectionStatus = () => {
-      const { updateConnectivity } = this.props;
+      const { updateConnectivity, isLogged } = this.props;
       const setAsOnline = () => {
         updateConnectivity({ isConnected: true });
+        if (isLogged) {
+          console.log('Sync dispatched - Connection restored');
+        }
       };
 
       const setAsOffline = () => {
@@ -121,6 +135,33 @@ export class AppContainer extends Component {
     };
 
     configureConnectionStatus();
+
+    this.handleDataRefresh = () => {
+      const { isLogged } = this.props;
+      if (isLogged) {
+        console.log('Sync dispatched');
+      }
+    };
+
+    this.handleWebVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        this.handleDataRefresh();
+      }
+    };
+
+    onCvaResume(this.handleDataRefresh); // Cordova resume
+    document.addEventListener(
+      'visibilitychange',
+      this.handleWebVisibilityChange
+    );
+  }
+
+  componentWillUnmount() {
+    cleanUpCvaOnResume(this.handleDataRefresh);
+    document.removeEventListener(
+      'visibilitychange',
+      this.handleWebVisibilityChange
+    );
   }
 
   handleNewContentAvailable = () => {
@@ -185,7 +226,8 @@ const mapDispatchToProps = {
   updateUserDataFromAPI,
   updateLoggedUserLocation,
   updateUnloggedUserLocation,
-  updateConnectivity
+  updateConnectivity,
+  getApiObjects
 };
 
 export default connect(
