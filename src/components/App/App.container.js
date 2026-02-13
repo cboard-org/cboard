@@ -57,6 +57,11 @@ export class AppContainer extends Component {
     getApiObjects: PropTypes.func.isRequired
   };
 
+  constructor(props) {
+    super(props);
+    this.syncDebounceTimer = null;
+  }
+
   componentDidMount() {
     const localizeUser = () => {
       const {
@@ -104,12 +109,10 @@ export class AppContainer extends Component {
     initGoogleAnalytics();
 
     const configureConnectionStatus = () => {
-      const { updateConnectivity, isLogged } = this.props;
+      const { updateConnectivity } = this.props;
       const setAsOnline = () => {
         updateConnectivity({ isConnected: true });
-        if (isLogged) {
-          console.log('Sync dispatched - Connection restored');
-        }
+        this.handleDataRefresh('Connection restored');
       };
 
       const setAsOffline = () => {
@@ -136,20 +139,36 @@ export class AppContainer extends Component {
 
     configureConnectionStatus();
 
-    this.handleDataRefresh = () => {
+    this.handleDataRefresh = (source = 'Unknown') => {
       const { isLogged } = this.props;
-      if (isLogged) {
-        console.log('Sync dispatched');
+
+      if (!isLogged) {
+        return;
       }
+
+      if (!window.navigator.onLine) {
+        console.log('Sync skipped - Device is offline');
+        return;
+      }
+
+      if (this.syncDebounceTimer) {
+        clearTimeout(this.syncDebounceTimer);
+      }
+
+      this.syncDebounceTimer = setTimeout(() => {
+        console.log(`Sync dispatched - ${source}`);
+        // TODO: Replace with actual API call
+        // this.props.getApiObjects();
+      }, 2000);
     };
 
     this.handleWebVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
-        this.handleDataRefresh();
+        this.handleDataRefresh('Tab focused');
       }
     };
 
-    onCvaResume(this.handleDataRefresh); // Cordova resume
+    onCvaResume(() => this.handleDataRefresh('App resumed'));
     document.addEventListener(
       'visibilitychange',
       this.handleWebVisibilityChange
@@ -157,7 +176,11 @@ export class AppContainer extends Component {
   }
 
   componentWillUnmount() {
-    cleanUpCvaOnResume(this.handleDataRefresh);
+    if (this.syncDebounceTimer) {
+      clearTimeout(this.syncDebounceTimer);
+    }
+
+    cleanUpCvaOnResume(() => this.handleDataRefresh('App resumed'));
     document.removeEventListener(
       'visibilitychange',
       this.handleWebVisibilityChange
