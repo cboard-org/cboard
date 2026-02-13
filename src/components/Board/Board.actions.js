@@ -661,14 +661,14 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     // Only push boards that belong to the current user.
     const pendingBoards = boards.filter(b => {
       if (b.syncStatus !== SYNC_STATUS.PENDING || b.isDeleted) return false;
-      if (b.email && b.email !== userEmail) return false;
+      if (b.email !== userEmail) return false;
       return true;
     });
 
     // Untracked boards (no syncStatus) that belong to the current user.
     const untrackedBoards = boards.filter(b => {
       if (b.syncStatus || b.isDeleted) return false;
-      if (b.email && b.email !== userEmail) return false;
+      if (b.email !== userEmail) return false;
       return true;
     });
 
