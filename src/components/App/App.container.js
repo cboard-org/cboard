@@ -60,6 +60,8 @@ export class AppContainer extends Component {
   constructor(props) {
     super(props);
     this.syncDebounceTimer = null;
+    this.handleOnline = null;
+    this.handleOffline = null;
   }
 
   componentDidMount() {
@@ -110,27 +112,27 @@ export class AppContainer extends Component {
 
     const configureConnectionStatus = () => {
       const { updateConnectivity } = this.props;
-      const setAsOnline = () => {
+
+      this.handleOffline = () => {
+        updateConnectivity({ isConnected: false });
+      };
+
+      this.handleOnline = () => {
         updateConnectivity({ isConnected: true });
         this.handleDataRefresh('Connection restored');
       };
 
-      const setAsOffline = () => {
-        updateConnectivity({ isConnected: false });
-      };
-
       const addConnectionEventListeners = () => {
-        window.addEventListener('offline', setAsOffline);
-        window.addEventListener('online', setAsOnline);
+        window.addEventListener('offline', this.handleOffline);
+        window.addEventListener('online', this.handleOnline);
       };
 
       const setCurrentConnectionStatus = () => {
         if (!navigator.onLine) {
-          setAsOffline();
+          this.handleOffline();
           return;
         }
-        setAsOnline();
-        return;
+        updateConnectivity({ isConnected: true });
       };
 
       setCurrentConnectionStatus();
@@ -185,6 +187,13 @@ export class AppContainer extends Component {
       'visibilitychange',
       this.handleWebVisibilityChange
     );
+
+    if (this.handleOnline) {
+      window.removeEventListener('online', this.handleOnline);
+    }
+    if (this.handleOffline) {
+      window.removeEventListener('offline', this.handleOffline);
+    }
   }
 
   handleNewContentAvailable = () => {
