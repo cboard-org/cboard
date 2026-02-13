@@ -114,10 +114,16 @@ export class AppContainer extends Component {
       const { updateConnectivity } = this.props;
 
       this.handleOffline = () => {
+        if (navigator.onLine) {
+          return;
+        }
         updateConnectivity({ isConnected: false });
       };
 
       this.handleOnline = () => {
+        if (!navigator.onLine) {
+          return;
+        }
         updateConnectivity({ isConnected: true });
         this.handleDataRefresh('Connection restored');
       };
