@@ -204,6 +204,8 @@
   "cboard.components.Board.ImageEditor.cancelCrop": "Cancel crop",
   "cboard.components.Board.ImageEditor.zoomIn": "Zoom in",
   "cboard.components.Board.ImageEditor.zoomOut": "Zoom out",
+  "cboard.components.Board.FooterEditToolbar.rows": "Rows",
+  "cboard.components.Board.FooterEditToolbar.columns": "Columns",
   "cboard.components.BoardShare.title": "Share your board",
   "cboard.components.BoardShare.close": "Close",
   "cboard.components.BoardShare.publishBoard": "Publish Board",
