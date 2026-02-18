@@ -22,18 +22,18 @@ import {
   PICSEEPAL_IMAGES_WIDTH,
   PDF_IMAGES_WIDTH,
   SMALL_FONT_SIZE,
-  LARGE_FONT_SIZE
+  LARGE_FONT_SIZE,
 } from './Export.constants';
 import {
   LABEL_POSITION_ABOVE,
-  LABEL_POSITION_BELOW
+  LABEL_POSITION_BELOW,
 } from '../Display/Display.constants';
 import {
   isAndroid,
   isCordova,
   isIOS,
   requestCvaWritePermissions,
-  writeCvaFile
+  writeCvaFile,
 } from '../../../cordova-util';
 import { getStore } from '../../../store';
 import * as _ from 'lodash';
@@ -46,15 +46,15 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 const imageElement = new Image();
 
 function toSnakeCase(str) {
-  const value = str.replace(/([A-Z])/g, $1 => '_' + $1.toLowerCase());
+  const value = str.replace(/([A-Z])/g, ($1) => '_' + $1.toLowerCase());
   return value.startsWith('_') ? value.slice(1) : value;
 }
 
 function getOBFButtonProps(tile = {}, intl) {
   const button = {};
 
-  const tileExtProps = CBOARD_EXT_PROPERTIES.filter(key => !!tile[key]);
-  tileExtProps.forEach(key => {
+  const tileExtProps = CBOARD_EXT_PROPERTIES.filter((key) => !!tile[key]);
+  tileExtProps.forEach((key) => {
     const keyWithPrefix = `${CBOARD_EXT_PREFIX}${toSnakeCase(key)}`;
     button[keyWithPrefix] = tile[key];
   });
@@ -96,7 +96,7 @@ function getBase64Image(base64Str = '') {
   return {
     ab,
     data: base64Str,
-    content_type: contentType
+    content_type: contentType,
   };
 }
 
@@ -105,22 +105,22 @@ export async function getDataUri(url) {
     const result = await axios({
       method: 'get',
       url,
-      responseType: 'arraybuffer'
+      responseType: 'arraybuffer',
     });
 
     // Convert the array buffer to a Base64-encoded string.
     const encodedImage = btoa(
       new Uint8Array(result.data).reduce(
         (data, byte) => data + String.fromCharCode(byte),
-        ''
-      )
+        '',
+      ),
     );
     const contentType = result.headers['content-type'];
 
     return {
       ab: result.data,
       content_type: contentType,
-      data: `data:${contentType};base64,${encodedImage}`
+      data: `data:${contentType};base64,${encodedImage}`,
     };
   } catch (e) {
     console.error(`Failed to get image at ${url}.`, e);
@@ -162,7 +162,7 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
 
         const button = {
           id: tile.id,
-          ...getOBFButtonProps(tile, intl)
+          ...getOBFButtonProps(tile, intl),
         };
 
         if (tile.image && tile.image.length) {
@@ -180,7 +180,7 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
             const components = [
               'custom',
               board.name || board.nameKey,
-              tile.label || tile.labelKey || tile.id
+              tile.label || tile.labelKey || tile.id,
             ];
             const extension = mime.extension(imageResponse['content_type']);
             return `/${_.join(components, '/')}.${extension}`;
@@ -189,10 +189,10 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
           const path = image.startsWith('data:')
             ? getCustomImagePath()
             : isCordova()
-            ? ''
-            : image.startsWith('/')
-            ? image
-            : `/${image}`;
+              ? ''
+              : image.startsWith('/')
+                ? image
+                : `/${image}`;
 
           if (imageResponse) {
             const imageID = new mongoose.Types.ObjectId().toString();
@@ -206,7 +206,7 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
               data: embed ? imageResponse.data : undefined,
               content_type: imageResponse['content_type'],
               width: 300,
-              height: 300
+              height: 300,
             };
           }
         }
@@ -217,13 +217,13 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
             name: loadBoardData.nameKey
               ? intl.formatMessage({ id: loadBoardData.nameKey })
               : '',
-            path: `boards/${tile.loadBoard}.obf`
+            path: `boards/${tile.loadBoard}.obf`,
           };
         }
 
         return button;
       }
-    })
+    }),
   );
 
   if (grid.length >= 1) {
@@ -246,17 +246,17 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
       grid: {
         rows: grid.length,
         columns: CBOARD_COLUMNS,
-        order: grid
+        order: grid,
       },
       description_html: board.nameKey
         ? intl.formatMessage({ id: board.nameKey })
-        : ''
+        : '',
     };
 
     const boardExtProps = CBOARD_EXT_PROPERTIES.filter(
-      key => typeof board[key] !== 'undefined'
+      (key) => typeof board[key] !== 'undefined',
     );
-    boardExtProps.forEach(key => {
+    boardExtProps.forEach((key) => {
       const keyWithPrefix = `${CBOARD_EXT_PREFIX}${toSnakeCase(key)}`;
       obf[keyWithPrefix] = board[key];
     });
@@ -272,14 +272,14 @@ function getPDFTileData(tile, intl) {
   return {
     label: label.length ? intl.formatMessage({ id: label }) : label,
     image: tile.image || '',
-    backgroundColor: tile.backgroundColor || ''
+    backgroundColor: tile.backgroundColor || '',
   };
 }
 
 async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
   return new Promise((resolve, reject) => {
     imageElement.crossOrigin = 'Anonymous';
-    imageElement.onload = function() {
+    imageElement.onload = function () {
       const canvas = document.createElement('CANVAS');
       const ctx = canvas.getContext('2d');
       const backgroundColor =
@@ -312,7 +312,7 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
         0,
         0,
         this.naturalWidth * widthFix,
-        this.naturalHeight * heightFix
+        this.naturalHeight * heightFix,
       );
 
       if (borderColor) {
@@ -323,7 +323,7 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
       const dataURL = canvas.toDataURL(outputFormat);
       resolve(dataURL);
     };
-    imageElement.onerror = function() {
+    imageElement.onerror = function () {
       reject(new Error('Getting remote image failed'));
     };
     // Cordova path cannot be absolute
@@ -346,25 +346,25 @@ async function toDataURL(url, styles = {}, outputFormat = 'image/jpeg') {
 
 pdfMake.tableLayouts = {
   pdfGridLayout: {
-    hLineWidth: function(i, node) {
+    hLineWidth: function (i, node) {
       return PDF_BORDER_WIDTH;
     },
-    vLineWidth: function(i) {
+    vLineWidth: function (i) {
       return PDF_BORDER_WIDTH;
     },
-    hLineColor: function(i) {
+    hLineColor: function (i) {
       return '#ffffff';
     },
-    vLineColor: function(i) {
+    vLineColor: function (i) {
       return '#ffffff';
     },
-    paddingLeft: function(i) {
+    paddingLeft: function (i) {
       return 0;
     },
-    paddingRight: function(i, node) {
+    paddingRight: function (i, node) {
       return 0;
-    }
-  }
+    },
+  },
 };
 
 function getCellWidths(columns, picsee = false) {
@@ -379,15 +379,15 @@ async function generatePDFBoard(
   intl,
   breakPage = true,
   picsee = false,
-  labelFontSize
+  labelFontSize,
+  showTileBorders = false,
 ) {
   const header = {
     absolutePosition: { x: 0, y: 5 },
     text: board.name || '',
     alignment: 'center',
-    fontSize: 8
+    fontSize: 8,
   };
-
   const columns =
     board.isFixed && board.grid ? board.grid.columns : CBOARD_COLUMNS;
   const rows = board.isFixed && board.grid ? board.grid.rows : CBOARD_ROWS;
@@ -397,9 +397,9 @@ async function generatePDFBoard(
   const table = {
     table: {
       widths: cellWidths,
-      body: [{}]
+      body: [{}],
     },
-    layout: 'pdfGridLayout'
+    layout: 'pdfGridLayout',
   };
 
   if (breakPage) {
@@ -417,7 +417,8 @@ async function generatePDFBoard(
         columns,
         intl,
         picsee,
-        labelFontSize
+        labelFontSize,
+        showTileBorders,
       )
     : await generateNonFixedBoard(
         board,
@@ -425,7 +426,8 @@ async function generatePDFBoard(
         columns,
         intl,
         picsee,
-        labelFontSize
+        labelFontSize,
+        showTileBorders,
       );
 
   const lastGridRowDiff = columns - grid[grid.length - 2].length; // labels row
@@ -457,7 +459,8 @@ async function generateFixedBoard(
   columns,
   intl,
   picsee = false,
-  labelFontSize
+  labelFontSize,
+  showTileBorders = false,
 ) {
   let currentRow = 0;
   let cont = 0;
@@ -466,7 +469,7 @@ async function generateFixedBoard(
     label: '',
     labelKey: '',
     image: '',
-    backgroundColor: '#d9d9d9'
+    backgroundColor: '#d9d9d9',
   };
 
   const itemsPerPage = rows * columns;
@@ -479,7 +482,7 @@ async function generateFixedBoard(
       columns,
       rows,
       order: board.grid.order,
-      items
+      items,
     });
     for (let rowIndex = 0; rowIndex < order.length; rowIndex++) {
       for (
@@ -488,7 +491,7 @@ async function generateFixedBoard(
         columnIndex++
       ) {
         const tileId = order[rowIndex][columnIndex];
-        let tile = board.tiles.find(tile => tile.id === tileId);
+        let tile = board.tiles.find((tile) => tile.id === tileId);
         if (tile === undefined) {
           tile = defaultTile;
         }
@@ -514,7 +517,8 @@ async function generateFixedBoard(
           currentRow,
           pageBreak,
           picsee,
-          labelFontSize
+          labelFontSize,
+          showTileBorders,
         );
         cont++;
       }
@@ -529,7 +533,8 @@ async function generateNonFixedBoard(
   columns,
   intl,
   picsee = false,
-  labelFontSize
+  labelFontSize,
+  showTileBorders = false,
 ) {
   // Do a grid with 2n rows
   const grid = new Array(Math.ceil(board.tiles.length / columns) * 2);
@@ -560,7 +565,8 @@ async function generateNonFixedBoard(
       currentRow,
       pageBreak,
       picsee,
-      labelFontSize
+      labelFontSize,
+      showTileBorders,
     );
   }, Promise.resolve());
   return grid;
@@ -575,7 +581,8 @@ const addTileToGrid = async (
   currentRow,
   pageBreak = false,
   picsee = false,
-  labelFontSize
+  labelFontSize,
+  showTileBorders = false,
 ) => {
   const { label, image } = getPDFTileData(tile, intl);
   const fixedRow = currentRow * 2;
@@ -602,13 +609,13 @@ const addTileToGrid = async (
     }
   }
 
-  const rgbToHex = rgbBackgroundColor => {
+  const rgbToHex = (rgbBackgroundColor) => {
     return (
       '#' +
       rgbBackgroundColor
         .slice(4, -1)
         .split(',')
-        .map(x => (+x).toString(16).padStart(2, 0))
+        .map((x) => (+x).toString(16).padStart(2, 0))
         .join('')
     );
   };
@@ -627,7 +634,12 @@ const addTileToGrid = async (
     alignment: 'center',
     width: '100',
     fillColor: hexBackgroundColor,
-    border: PDF_GRID_BORDER[labelPosition].imageData
+    border: showTileBorders
+      ? [true, true, true, true]
+      : PDF_GRID_BORDER[labelPosition].imageData,
+    borderColor: showTileBorders
+      ? ['black', 'black', 'black', 'black']
+      : undefined,
   };
 
   const labelData = {
@@ -635,7 +647,12 @@ const addTileToGrid = async (
     alignment: 'center',
     fontSize: labelFontSize,
     fillColor: hexBackgroundColor,
-    border: PDF_GRID_BORDER[labelPosition].labelData
+    border: showTileBorders
+      ? [true, true, true, true]
+      : PDF_GRID_BORDER[labelPosition].labelData,
+    borderColor: showTileBorders
+      ? ['black', 'black', 'black', 'black']
+      : undefined,
   };
 
   const IMG_WIDTH = picsee ? PICSEEPAL_IMAGES_WIDTH : PDF_IMAGES_WIDTH;
@@ -690,7 +707,7 @@ const addTileToGrid = async (
 const getDisplaySettings = () => {
   const store = getStore();
   const {
-    app: { displaySettings }
+    app: { displaySettings },
   } = store.getState();
 
   return displaySettings;
@@ -718,10 +735,10 @@ export async function openboardExportAdapter(boardOrBoards, intl) {
 
 export async function openboardExportOneAdapter(board, intl) {
   const { obf } = await boardToOBF({ [board.id]: board }, board, intl, {
-    embed: true
+    embed: true,
   });
   const content = new Blob([JSON.stringify(obf, null, 2)], {
-    type: 'application/json'
+    type: 'application/json',
   });
 
   if (content) {
@@ -751,7 +768,7 @@ export async function openboardExportManyAdapter(boards = [], intl) {
     const board = boards[i];
     const boardMapFilename = `boards/${board.id}.obf`;
     const { obf, images } = await boardToOBF(boardsMap, board, intl, {
-      embed: false
+      embed: false,
     });
 
     if (!obf) {
@@ -761,7 +778,7 @@ export async function openboardExportManyAdapter(boards = [], intl) {
     zip.file(boardMapFilename, JSON.stringify(obf, null, 2));
 
     const imagesKeys = Object.keys(images);
-    imagesKeys.forEach(key => {
+    imagesKeys.forEach((key) => {
       const image = images[key];
       const imageFilename = `images/${image.path}`;
       zip.file(imageFilename, image.ab);
@@ -780,13 +797,13 @@ export async function openboardExportManyAdapter(boards = [], intl) {
     root,
     paths: {
       boards: boardsForManifest,
-      images: imagesMap
-    }
+      images: imagesMap,
+    },
   };
 
   zip.file('manifest.json', JSON.stringify(manifest, null, 2));
 
-  zip.generateAsync(CBOARD_ZIP_OPTIONS).then(content => {
+  zip.generateAsync(CBOARD_ZIP_OPTIONS).then((content) => {
     if (content) {
       let prefix = getDatetimePrefix();
       if (boards.length === 1) {
@@ -823,7 +840,7 @@ export async function openboardExportManyAdapter(boards = [], intl) {
  * @returns {Array<Object>} The board and its subfolders.
  */
 function getNestedBoards(allBoards, rootBoardId) {
-  const boardsMap = _.fromPairs(_.map(allBoards, b => [b.id, b]));
+  const boardsMap = _.fromPairs(_.map(allBoards, (b) => [b.id, b]));
 
   const unseen = [rootBoardId];
   const nestedBoardIds = [rootBoardId];
@@ -831,7 +848,7 @@ function getNestedBoards(allBoards, rootBoardId) {
   while (!_.isEmpty(unseen)) {
     const curr = unseen.pop();
     const tiles = _.get(boardsMap[curr], 'tiles');
-    _.forEach(tiles, tile => {
+    _.forEach(tiles, (tile) => {
       const id = tile.loadBoard;
       // The second check is necessary to handle cycles (for example,
       // A -> B -> A).
@@ -842,14 +859,14 @@ function getNestedBoards(allBoards, rootBoardId) {
     });
   }
 
-  return _.map(nestedBoardIds, id => boardsMap[id]);
+  return _.map(nestedBoardIds, (id) => boardsMap[id]);
 }
 
 export async function cboardExportAdapter(allBoards = [], board) {
   const boards = board ? getNestedBoards(allBoards, board.id) : allBoards;
 
   const jsonData = new Blob([JSON.stringify(boards)], {
-    type: 'text/json;charset=utf-8;'
+    type: 'text/json;charset=utf-8;',
   });
 
   if (jsonData) {
@@ -862,7 +879,7 @@ export async function cboardExportAdapter(allBoards = [], board) {
     if (isAndroid() || isIOS()) {
       requestCvaWritePermissions();
       const name = 'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.cboard.filename;
-      writeCvaFile(name, jsonData).catch(error => {
+      writeCvaFile(name, jsonData).catch((error) => {
         console.error(error);
       });
     }
@@ -871,7 +888,7 @@ export async function cboardExportAdapter(allBoards = [], board) {
     if (navigator.msSaveBlob) {
       navigator.msSaveBlob(
         jsonData,
-        prefix + EXPORT_CONFIG_BY_TYPE.cboard.filename
+        prefix + EXPORT_CONFIG_BY_TYPE.cboard.filename,
       );
     } else {
       // In FF link must be added to DOM to be clicked
@@ -879,7 +896,7 @@ export async function cboardExportAdapter(allBoards = [], board) {
       link.href = window.URL.createObjectURL(jsonData);
       link.setAttribute(
         'download',
-        prefix + EXPORT_CONFIG_BY_TYPE.cboard.filename
+        prefix + EXPORT_CONFIG_BY_TYPE.cboard.filename,
       );
       document.body.appendChild(link);
       link.click();
@@ -892,7 +909,8 @@ export async function pdfExportAdapter(
   boards = [],
   labelFontSize,
   intl,
-  picsee = false
+  picsee = false,
+  showTileBorders = false,
 ) {
   const font = definePDFfont(intl);
   const docDefinition = {
@@ -901,11 +919,11 @@ export async function pdfExportAdapter(
     pageMargins: [20, 20],
     content: [],
     defaultStyle: {
-      font: font
-    }
+      font: font,
+    },
   };
   if (picsee) {
-    docDefinition.background = function() {
+    docDefinition.background = function () {
       return {
         stack: [
           {
@@ -914,9 +932,9 @@ export async function pdfExportAdapter(
               {
                 text: '\nPicseePal compatible PDF',
                 fontSize: 18,
-                alignment: 'center'
-              }
-            ]
+                alignment: 'center',
+              },
+            ],
           },
           {
             absolutePosition: { x: 0, y: 48 },
@@ -929,7 +947,7 @@ export async function pdfExportAdapter(
                 w: 567,
                 h: 374.22,
                 r: 5,
-                lineColor: 'black'
+                lineColor: 'black',
               },
               {
                 // dashed line rectangle to cut
@@ -940,25 +958,25 @@ export async function pdfExportAdapter(
                 h: 447,
                 r: 55,
                 dash: { length: 5 },
-                lineColor: 'black'
-              }
-            ]
+                lineColor: 'black',
+              },
+            ],
           },
           {
             absolutePosition: {
               x: 0,
-              y: 500
+              y: 500,
             },
             text: [
               {
                 text: `\nPlease print on A4 / US Letter paper at 100% scale.
                           Cut along dashed line before inserting into PicseePal device.`,
                 fontSize: 15,
-                alignment: 'center'
-              }
-            ]
-          }
-        ]
+                alignment: 'center',
+              },
+            ],
+          },
+        ],
       };
     };
 
@@ -973,7 +991,8 @@ export async function pdfExportAdapter(
       intl,
       breakPage,
       picsee,
-      labelFontSize
+      labelFontSize,
+      showTileBorders,
     );
     return prevContent.concat(boardPDFData);
   }, Promise.resolve([]));
@@ -990,8 +1009,8 @@ export async function pdfExportAdapter(
     }
     if (isAndroid() || isIOS()) {
       requestCvaWritePermissions();
-      const getBuffer = callback => {
-        pdfObj.getBuffer(buffer => {
+      const getBuffer = (callback) => {
+        pdfObj.getBuffer((buffer) => {
           var blob = new Blob([buffer], { type: 'application/pdf' });
           const name =
             'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.pdf.filename;
@@ -1002,7 +1021,7 @@ export async function pdfExportAdapter(
       await generatePDF(getBuffer);
     } else {
       // On a browser simply use download!
-      const dowloadPDF = callback =>
+      const dowloadPDF = (callback) =>
         pdfObj.download(prefix + EXPORT_CONFIG_BY_TYPE.pdf.filename, callback);
       await generatePDF(dowloadPDF);
     }
@@ -1070,7 +1089,7 @@ function definePDFfont(intl) {
 const exportHelpers = {
   openboardExportAdapter,
   cboardExportAdapter,
-  pdfExportAdapter
+  pdfExportAdapter,
 };
 
 export default exportHelpers;

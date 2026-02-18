@@ -14,6 +14,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Divider from '@material-ui/core/Divider';
 
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Export.messages';
 
@@ -22,7 +25,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import {
   LARGE_FONT_SIZE,
   MEDIUM_FONT_SIZE,
-  SMALL_FONT_SIZE
+  SMALL_FONT_SIZE,
 } from './Export.constants';
 
 const propTypes = {
@@ -35,7 +38,7 @@ const propTypes = {
    */
   onClose: PropTypes.func,
   boards: PropTypes.array.isRequired,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 };
 
 class Export extends React.Component {
@@ -49,7 +52,8 @@ class Export extends React.Component {
       singleBoard: '',
       loadingSingle: false,
       loadingAll: false,
-      boardError: false
+      boardError: false,
+      showTileBorders: false,
     };
   }
 
@@ -61,69 +65,76 @@ class Export extends React.Component {
     this.setState({ exportMenu: null });
   }
 
-  handleBoardChange = event => {
+  handleBoardChange = (event) => {
     this.setState({
       boardError: false,
-      singleBoard: event.target.value
+      singleBoard: event.target.value,
     });
   };
 
-  handleSizeChange = event => {
+  handleTileBordersChange = (event) => {
     this.setState({
-      boardError: false,
-      labelFontSize: event.target.value
+      showTileBorders: event.target.checked,
     });
   };
 
-  handleAllBoardChange = event => {
+  handleSizeChange = (event) => {
+    this.setState({
+      boardError: false,
+      labelFontSize: event.target.value,
+    });
+  };
+
+  handleAllBoardChange = (event) => {
     const doneCallback = () => {
       this.setState({
-        loadingAll: false
+        loadingAll: false,
       });
     };
 
     this.setState(
       {
         loadingAll: true,
-        exportAllBoard: event.target.value
+        exportAllBoard: event.target.value,
       },
       () => {
         this.props.onExportClick(
           this.state.exportAllBoard,
           '',
           this.state.labelFontSize,
-          doneCallback
+          doneCallback,
         );
-      }
+      },
     );
   };
 
-  handleSingleBoardChange = event => {
+  handleSingleBoardChange = (event) => {
     if (!this.state.singleBoard) {
       this.setState({
-        boardError: true
+        boardError: true,
       });
       return;
     }
     const doneCallback = () => {
       this.setState({
-        loadingSingle: false
+        loadingSingle: false,
       });
     };
 
     this.setState(
       {
         loadingSingle: true,
-        exportSingleBoard: event.target.value
+        exportSingleBoard: event.target.value,
       },
       () => {
         this.props.onExportClick(
           this.state.exportSingleBoard,
           this.state.singleBoard,
           this.state.labelFontSize,
-          doneCallback
+          doneCallback,
+          this.state.showTileBorders,
         );
-      }
+      },
     );
   };
 
@@ -163,7 +174,7 @@ class Export extends React.Component {
                           >
                             OpenBoard
                           </Link>
-                        )
+                        ),
                       }}
                     />
                   }
@@ -196,16 +207,16 @@ class Export extends React.Component {
                             onChange={this.handleBoardChange}
                           >
                             {boards.map(
-                              board =>
+                              (board) =>
                                 !board.hidden && (
                                   <MenuItem key={board.id} value={board}>
                                     {board.name ||
                                       (board.nameKey &&
                                         intl.formatMessage({
-                                          id: board.nameKey
+                                          id: board.nameKey,
                                         }))}
                                   </MenuItem>
-                                )
+                                ),
                             )}
                           </Select>
                         </FormControl>
@@ -262,7 +273,7 @@ class Export extends React.Component {
                           >
                             OpenBoard
                           </Link>
-                        )
+                        ),
                       }}
                     />
                   }
@@ -357,6 +368,18 @@ class Export extends React.Component {
                     </FormControl>
                   </div>
                 </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={this.state.showTileBorders}
+                      onChange={this.handleTileBordersChange}
+                      color="primary"
+                    />
+                  }
+                  label={intl.formatMessage(messages.showTileBorders)}
+                />
               </ListItem>
             </List>
           </Paper>
