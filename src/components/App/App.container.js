@@ -176,7 +176,8 @@ export class AppContainer extends Component {
       }
     };
 
-    onCvaResume(() => this.handleDataRefresh('App resumed'));
+    this.handleCvaResume = () => this.handleDataRefresh('App resumed');
+    onCvaResume(this.handleCvaResume);
     document.addEventListener(
       'visibilitychange',
       this.handleWebVisibilityChange
@@ -188,7 +189,7 @@ export class AppContainer extends Component {
       clearTimeout(this.syncDebounceTimer);
     }
 
-    cleanUpCvaOnResume(() => this.handleDataRefresh('App resumed'));
+    cleanUpCvaOnResume(this.handleCvaResume);
     document.removeEventListener(
       'visibilitychange',
       this.handleWebVisibilityChange
