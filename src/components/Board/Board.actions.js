@@ -653,6 +653,7 @@ export function applyRemoteChangesToState({
  */
 export function pushLocalChangesToApi(remoteBoards = []) {
   return async (dispatch, getState) => {
+    const userEmail = getState().app?.userData?.email;
     const { boards, activeBoardId } = getState().board;
 
     // Boards explicitly marked PENDING by the sync system.
