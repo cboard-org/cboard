@@ -651,7 +651,7 @@ export function applyRemoteChangesToState({
  */
 export function pushLocalChangesToApi() {
   return async (dispatch, getState) => {
-    const { boards } = getState().board;
+    const { boards, activeBoardId } = getState().board;
 
     // Separate boards to sync vs boards to delete
     const boardsToSync = boards.filter(
@@ -663,7 +663,13 @@ export function pushLocalChangesToApi() {
     for (const board of boardsToSync) {
       try {
         if (board.id.length < SHORT_ID_MAX_LENGTH) {
-          await dispatch(updateApiObjectsNoChild(board, true));
+          const newBoardId = await dispatch(
+            updateApiObjectsNoChild(board, true)
+          );
+          dispatch(replaceBoard(board, { ...board, id: newBoardId }));
+          if (activeBoardId === board.id) {
+            replaceHistoryWithActiveBoardId(getState);
+          }
         } else {
           await dispatch(updateApiBoard(board));
         }
