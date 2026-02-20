@@ -159,7 +159,7 @@ export class AppContainer extends Component {
         return;
       }
 
-      const THROTTLE_MS = 2000;
+      const THROTTLE_MS = 1000 * 60 * 2;
       const now = Date.now();
       if (this.lastSyncTime && now - this.lastSyncTime < THROTTLE_MS) {
         console.log(`Sync skipped - throttled (${source})`);
