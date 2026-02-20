@@ -654,8 +654,7 @@ export function applyRemoteChangesToState({
 export function pushLocalChangesToApi(remoteBoards = []) {
   return async (dispatch, getState) => {
     const userEmail = getState().app?.userData?.email;
-
-    const { boards } = getState().board;
+    const { boards, activeBoardId } = getState().board;
 
     // Boards explicitly marked PENDING by the sync system.
     // Only push boards that belong to the current user.
@@ -709,7 +708,13 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     for (const board of boardsToSync) {
       try {
         if (board.id.length < SHORT_ID_MAX_LENGTH) {
-          await dispatch(updateApiObjectsNoChild(board, true));
+          const newBoardId = await dispatch(
+            updateApiObjectsNoChild(board, true)
+          );
+          dispatch(replaceBoard(board, { ...board, id: newBoardId }));
+          if (activeBoardId === board.id) {
+            replaceHistoryWithActiveBoardId(getState);
+          }
         } else {
           await dispatch(updateApiBoard(board));
         }
