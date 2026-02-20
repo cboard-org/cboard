@@ -59,7 +59,7 @@ export class AppContainer extends Component {
 
   constructor(props) {
     super(props);
-    this.syncDebounceTimer = null;
+    this.lastSyncTime = null;
     this.handleOnline = null;
     this.handleOffline = null;
   }
@@ -159,15 +159,16 @@ export class AppContainer extends Component {
         return;
       }
 
-      if (this.syncDebounceTimer) {
-        clearTimeout(this.syncDebounceTimer);
+      const THROTTLE_MS = 2000;
+      const now = Date.now();
+      if (this.lastSyncTime && now - this.lastSyncTime < THROTTLE_MS) {
+        console.log(`Sync skipped - throttled (${source})`);
+        return;
       }
-
-      this.syncDebounceTimer = setTimeout(() => {
-        console.log(`Sync dispatched - ${source}`);
-        // TODO: Replace with actual API call
-        // this.props.getApiObjects();
-      }, 2000);
+      this.lastSyncTime = now;
+      console.log(`Sync dispatched - ${source}`);
+      // TODO: Replace with actual API call
+      // this.props.getApiObjects();
     };
 
     this.handleWebVisibilityChange = () => {
@@ -185,10 +186,6 @@ export class AppContainer extends Component {
   }
 
   componentWillUnmount() {
-    if (this.syncDebounceTimer) {
-      clearTimeout(this.syncDebounceTimer);
-    }
-
     cleanUpCvaOnResume(this.handleCvaResume);
     document.removeEventListener(
       'visibilitychange',
