@@ -597,7 +597,11 @@ describe('classifyRemoteBoards', () => {
 
   it('should identify boards deleted on server (boardIdsToDelete)', () => {
     const localBoards = [
-      { id: '12345678901234567890', name: 'Server Board' } // long ID = server board
+      {
+        id: '12345678901234567890',
+        name: 'Server Board',
+        syncStatus: types.SYNC_STATUS.SYNCED
+      }
     ];
     const remoteBoards = []; // board not in remote = deleted on server
     const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
@@ -609,6 +613,16 @@ describe('classifyRemoteBoards', () => {
   it('should not classify short ID boards as deleted on server', () => {
     const localBoards = [
       { id: 'short123', name: 'Local Board' } // short ID = local only board
+    ];
+    const remoteBoards = [];
+    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+
+    expect(result.boardIdsToDelete).toHaveLength(0);
+  });
+
+  it('should not classify untracked boards (no syncStatus) as deleted on server', () => {
+    const localBoards = [
+      { id: '12345678901234567890', name: 'Untracked Board' } // no syncStatus
     ];
     const remoteBoards = [];
     const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
@@ -722,7 +736,8 @@ describe('pushLocalChangesToApi', () => {
     const deletedLocalBoard = {
       ...mockBoard,
       id: 'short123', // short ID = local only
-      isDeleted: true
+      isDeleted: true,
+      syncStatus: types.SYNC_STATUS.PENDING
     };
     const storeWithBoards = mockStore({
       ...initialState,
@@ -738,6 +753,196 @@ describe('pushLocalChangesToApi', () => {
     // Should dispatch DELETE_API_BOARD_SUCCESS directly (hard delete)
     expect(actionTypes).toContain(types.DELETE_API_BOARD_SUCCESS);
     expect(actionTypes).not.toContain(types.DELETE_API_BOARD_STARTED);
+  });
+
+  it('should push untracked board that is newer than remote version', async () => {
+    const untrackedBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      email: 'asd@qwe.com',
+      lastEdited: '2025-06-01T00:00:00.000Z'
+      // no syncStatus
+    };
+    const remoteBoards = [
+      { id: '12345678901234567890', lastEdited: '2025-01-01T00:00:00.000Z' }
+    ];
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [untrackedBoard] }
+    });
+
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi(remoteBoards));
+    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+
+    expect(actionTypes).toContain(types.UPDATE_API_BOARD_STARTED);
+  });
+
+  it('should graduate untracked board to SYNCED when older than remote version', async () => {
+    const untrackedBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      email: 'asd@qwe.com',
+      lastEdited: '2025-01-01T00:00:00.000Z'
+      // no syncStatus
+    };
+    const remoteBoards = [
+      { id: '12345678901234567890', lastEdited: '2025-06-01T00:00:00.000Z' }
+    ];
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [untrackedBoard] }
+    });
+
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi(remoteBoards));
+    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+
+    // Should not push to API
+    expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
+    expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
+
+    // Should graduate to SYNCED via updateBoard with fromRemote=true
+    expect(actionTypes).toContain(types.UPDATE_BOARD);
+    const updateAction = storeWithBoards
+      .getActions()
+      .find(a => a.type === types.UPDATE_BOARD);
+    expect(updateAction.boardData.syncStatus).toBe(types.SYNC_STATUS.SYNCED);
+  });
+
+  it('should push untracked board that does not exist on server', async () => {
+    const untrackedBoard = {
+      ...mockBoard,
+      id: 'short123', // short ID = local only
+      email: 'asd@qwe.com'
+      // no syncStatus
+    };
+    const remoteBoards = []; // not on server
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [untrackedBoard] }
+    });
+
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi(remoteBoards));
+    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+
+    expect(actionTypes).toContain(types.CREATE_API_BOARD_STARTED);
+  });
+
+  it('should not push untracked board belonging to a different user', async () => {
+    const untrackedBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      email: 'other@user.com',
+      lastEdited: '2025-06-01T00:00:00.000Z'
+      // no syncStatus
+    };
+    const remoteBoards = [
+      { id: '12345678901234567890', lastEdited: '2025-01-01T00:00:00.000Z' }
+    ];
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [untrackedBoard] }
+    });
+
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi(remoteBoards));
+    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+
+    expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
+    expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
+  });
+
+  it('should not delete untracked board with isDeleted but no syncStatus', async () => {
+    const untrackedDeletedBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      isDeleted: true
+      // no syncStatus
+    };
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [untrackedDeletedBoard] }
+    });
+
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
+    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+
+    expect(actionTypes).not.toContain(types.DELETE_API_BOARD_STARTED);
+    expect(actionTypes).not.toContain(types.DELETE_API_BOARD_SUCCESS);
+  });
+
+  it('should return early when no user email is available', async () => {
+    const pendingBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      syncStatus: types.SYNC_STATUS.PENDING
+    };
+    const storeWithBoards = mockStore({
+      ...initialState,
+      app: { ...initialState.app, userData: {} },
+      board: { ...initialState.board, boards: [pendingBoard] }
+    });
+
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
+    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+
+    expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
+    expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
+  });
+
+  it('should not push PENDING boards owned by a different user', async () => {
+    const otherUserBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      email: 'other@user.com',
+      syncStatus: types.SYNC_STATUS.PENDING
+    };
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [otherUserBoard] }
+    });
+
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
+    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+
+    expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
+    expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
+  });
+
+  it('should not push PENDING default boards (support@cboard.io)', async () => {
+    const defaultBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      email: 'support@cboard.io',
+      syncStatus: types.SYNC_STATUS.PENDING
+    };
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [defaultBoard] }
+    });
+
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
+    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+
+    expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
+    expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
+  });
+
+  it('should not push PENDING boards with empty email (created while logged out)', async () => {
+    const offlineBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      email: '',
+      syncStatus: types.SYNC_STATUS.PENDING
+    };
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: { ...initialState.board, boards: [offlineBoard] }
+    });
+
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
+    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+
+    expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
+    expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
   });
 });
 
@@ -886,7 +1091,8 @@ describe('syncBoards', () => {
     const localBoard = {
       ...mockBoard,
       id: '12345678901234567890',
-      lastEdited: '2024-01-01T00:00:00Z'
+      lastEdited: '2024-01-01T00:00:00Z',
+      syncStatus: types.SYNC_STATUS.SYNCED
     };
     const store = mockStore({
       ...initialState,
@@ -912,7 +1118,8 @@ describe('syncBoards', () => {
 
     const localBoard = {
       ...mockBoard,
-      id: '12345678901234567890'
+      id: '12345678901234567890',
+      syncStatus: types.SYNC_STATUS.SYNCED
     };
     const store = mockStore({
       ...initialState,
@@ -938,7 +1145,11 @@ describe('syncBoards', () => {
     };
     API.getBoard = jest.fn().mockResolvedValue(serverBoard);
 
-    const localBoard = { ...mockBoard, id: '12345678901234567890' };
+    const localBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      syncStatus: types.SYNC_STATUS.SYNCED
+    };
     const store = mockStore({
       ...initialState,
       board: { ...initialState.board, boards: [localBoard] }
@@ -990,7 +1201,8 @@ describe('syncBoards', () => {
     const deletedBoard = {
       ...mockBoard,
       id: '12345678901234567890',
-      isDeleted: true
+      isDeleted: true,
+      syncStatus: types.SYNC_STATUS.PENDING
     };
     const store = mockStore({
       ...initialState,
