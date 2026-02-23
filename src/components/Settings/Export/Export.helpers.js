@@ -26,7 +26,10 @@ import {
 } from './Export.constants';
 import {
   LABEL_POSITION_ABOVE,
-  LABEL_POSITION_BELOW
+  LABEL_POSITION_BELOW,
+  LABEL_CASE_LOWER,
+  LABEL_CASE_DEFAULT,
+  LABEL_CASE_UPPER
 } from '../Display/Display.constants';
 import {
   isAndroid,
@@ -630,8 +633,20 @@ const addTileToGrid = async (
     border: PDF_GRID_BORDER[labelPosition].imageData
   };
 
+  const labelCase = getDisplaySettings().labelCase || LABEL_CASE_DEFAULT;
+
+  let labelRender = label;
+
+  if (labelCase === LABEL_CASE_LOWER) {
+    labelRender = label.toLowerCase();
+  } else if (labelCase === LABEL_CASE_UPPER) {
+    labelRender = label.toUpperCase();
+  } else {
+    labelRender = label;
+  }
+
   const labelData = {
-    text: label,
+    text: labelRender,
     alignment: 'center',
     fontSize: labelFontSize,
     fillColor: hexBackgroundColor,
