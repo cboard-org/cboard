@@ -7,7 +7,7 @@ import { isEqual } from 'lodash';
 import { injectIntl, intlShape } from 'react-intl';
 import isMobile from 'ismobilejs';
 import domtoimage from 'dom-to-image';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { CircularProgress, LinearProgress } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -209,6 +209,16 @@ export class BoardContainer extends Component {
   constructor(props) {
     super(props);
     this.boardRef = React.createRef();
+    this.state = {
+      isGettingApiObjects: false, // (Existing state)
+      isFixedBoard: false, // (Existing state)
+      loadingMessage: 'Setting up your personalized boards...',
+      showRetryPrompt: false
+    };
+
+    // NEW TIMERS: Store timers on the instance so we can clear them
+    this.messageTimer = null;
+    this.timeoutTimer = null;
   }
 
   async componentDidMount() {
@@ -290,6 +300,50 @@ export class BoardContainer extends Component {
     this.setState({ isFixedBoard: !!boardExists.isFixed });
 
     // if (isAndroid()) downloadImages();
+
+    // NEW CALL: Start the timers after all initial mounting logic is finished
+    this.startLoadingTimers();
+  }
+
+  handleRetry = () => {
+    // IMPORTANT: Replace 'getApiObjects()' with the actual function
+    // that triggers the board setup/load (the one used in componentDidMount).
+    if (this.props.getApiObjects) {
+      this.props.getApiObjects();
+    }
+
+    // Reset the state to restart the loading appearance
+    this.setState({
+      loadingMessage: 'Setting up your personalized boards...',
+      showRetryPrompt: false
+    });
+
+    // Clear old timers and restart new ones
+    clearTimeout(this.messageTimer);
+    clearTimeout(this.timeoutTimer);
+    this.startLoadingTimers();
+  };
+
+  startLoadingTimers = () => {
+    // 1. Start the progressive messages timer (5 seconds)
+    this.messageTimer = setTimeout(() => {
+      this.setState({
+        loadingMessage: 'Almost there! Finalizing symbol dependencies...'
+      });
+    }, 5000);
+
+    // 2. Start the 30-second timeout timer for error prompt
+    this.timeoutTimer = setTimeout(() => {
+      if (!this.props.board) {
+        this.setState({ showRetryPrompt: true });
+      }
+    }, 30000);
+  };
+
+  componentWillUnmount() {
+    // CRITICAL: Clear all timers when the component is destroyed
+    clearTimeout(this.messageTimer);
+    clearTimeout(this.timeoutTimer);
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -330,6 +384,11 @@ export class BoardContainer extends Component {
     const { board } = this.props;
     if (board && prevProps.board && board.isFixed !== prevProps.board.isFixed) {
       this.setState({ isFixedBoard: board.isFixed });
+    }
+
+    if (!prevProps.board && board) {
+      clearTimeout(this.messageTimer);
+      clearTimeout(this.timeoutTimer);
     }
   }
 
@@ -1527,10 +1586,77 @@ export class BoardContainer extends Component {
     } = this.props;
     const { isCbuilderBoard } = this.state;
 
-    if (!this.props.board) {
+    if (!this.props.board || this.state.isGettingApiObjects) {
+      // RENDER THE ENHANCED, DYNAMIC LOADING SCREEN
       return (
-        <div className="Board__loading">
-          <CircularProgress size={60} thickness={5} color="inherit" />
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+            zIndex: 9999,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            color: 'white'
+          }}
+        >
+          {/* Spinners */}
+          <CircularProgress
+            size={50}
+            thickness={4}
+            style={{ color: '#4CAF50' }}
+          />
+          <CircularProgress
+            size={60}
+            thickness={5}
+            color="inherit"
+            style={{ position: 'absolute', opacity: 0.2 }}
+          />
+
+          {/* DYNAMIC LOADING MESSAGE FROM STATE */}
+          <h3
+            style={{
+              marginTop: '20px',
+              textAlign: 'center',
+              fontWeight: 'normal',
+              marginBottom: '8px'
+            }}
+          >
+            {this.state.loadingMessage}
+          </h3>
+
+          {/* Linear Progress Bar (Indeterminate) */}
+          <LinearProgress
+            style={{ width: '300px', height: '8px', borderRadius: '4px' }}
+            variant="indeterminate"
+            color="secondary"
+          />
+
+          {/* CONDITIONAL TIME-BASED ERROR/RETRY PROMPT */}
+          {this.state.showRetryPrompt && (
+            <div style={{ marginTop: '30px', textAlign: 'center' }}>
+              <p style={{ color: '#FFEB3B', marginBottom: '15px' }}>
+                Setup is taking longer than usual. Please check your connection
+                or contact support.
+              </p>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.handleRetry}
+              >
+                Try Again
+              </Button>
+            </div>
+          )}
+
+          <p style={{ marginTop: '10px', fontSize: '14px', opacity: 0.7 }}>
+            Please wait, this initial process runs only once.
+          </p>
         </div>
       );
     }
