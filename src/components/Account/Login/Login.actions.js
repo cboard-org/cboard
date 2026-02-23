@@ -185,17 +185,16 @@ export function login({ email, password, activatedData }, type = 'local') {
         id => localBoardsIds.indexOf(id) < 0
       );
 
-      const apiBoards = await Promise.all(
-        apiBoardsIds
-          .map(async id => {
-            let board = null;
-            try {
-              board = await API.getBoard(id);
-            } catch (e) {}
-            return board;
-          })
-          .filter(b => b !== null)
+      const results = await Promise.all(
+        apiBoardsIds.map(async id => {
+          try {
+            return await API.getBoard(id);
+          } catch (e) {
+            return null;
+          }
+        })
       );
+      const apiBoards = results.filter(b => b !== null);
 
       dispatch(addBoards(apiBoards));
       if (type === 'local') {
@@ -212,6 +211,7 @@ export function login({ email, password, activatedData }, type = 'local') {
       dispatch(loginSuccess(loginData));
       await setAVoice({ loginData, dispatch, getState });
     } catch (e) {
+      console.log(e);
       if (e.response != null) {
         return Promise.reject(e.response.data);
       }
