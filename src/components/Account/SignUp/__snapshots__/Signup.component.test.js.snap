@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignUp tests default renderer 1`] = `ShallowWrapper {}`;
+exports[`SignUp tests default renderer 1`] = `ReactWrapper {}`;
