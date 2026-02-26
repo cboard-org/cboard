@@ -188,5 +188,14 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "resolutions": {
+    "@babel/core": "7.22.21",
+    "@babel/traverse": "7.22.21",
+    "@babel/types": "7.22.21",
+    "@babel/template": "7.22.21",
+    "@babel/parser": "7.22.21",
+    "@babel/generator": "7.22.15",
+    "@babel/helpers": "7.22.15"
+  }
 }
