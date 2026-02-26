@@ -54,7 +54,9 @@ const initialState = {
     vocalizeFolders: false,
     quietBuilderMode: false,
     liveMode: false,
-    improvePhraseActive: false
+    improvePhraseActive: false,
+    tileCooldownEnabled: false,
+    tileCooldownMs: 2000
   },
   symbolsSettings: {
     arasaacActive: false
