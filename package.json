@@ -52,7 +52,7 @@
     "localforage": "1.10.0",
     "lodash": "^4.17.21",
     "mathjs": "7.6.0",
-    "microsoft-cognitiveservices-speech-sdk": "^1.43.0",
+    "microsoft-cognitiveservices-speech-sdk": "^1.48.0",
     "mime-types": "^2.1.35",
     "moment": "2.29.4",
     "mongoose": "^8.19.2",
@@ -98,7 +98,7 @@
     "@types/mime-types": "^2.1.1",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
     "babel-plugin-transform-import-meta": "^2.2.1",
-    "browserstack-node-sdk": "^1.36.5",
+    "browserstack-node-sdk": "^1.49.12",
     "decompress-zip": "^0.3.1",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "3.3.5",
@@ -131,7 +131,8 @@
       "node_modules/(?!idb|microsoft-cognitiveservices-speech-sdk)"
     ],
     "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js"
+      "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js",
+      "^undici$": "<rootDir>/__mocks__/undici.js"
     },
     "collectCoverageFrom": [
       "src/**/*.js",
