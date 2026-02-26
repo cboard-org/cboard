@@ -131,7 +131,8 @@
       "node_modules/(?!idb|microsoft-cognitiveservices-speech-sdk)"
     ],
     "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js"
+      "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js",
+      "^undici$": "<rootDir>/__mocks__/undici.js"
     },
     "collectCoverageFrom": [
       "src/**/*.js",
