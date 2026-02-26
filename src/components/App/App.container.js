@@ -16,7 +16,14 @@ import {
   updateUnloggedUserLocation,
   updateConnectivity
 } from '../App/App.actions';
-import { isCordova, isElectron } from '../../cordova-util';
+import { getApiObjects } from '../Board/Board.actions';
+import {
+  isCordova,
+  isElectron,
+  onCvaResume,
+  cleanUpCvaOnResume
+} from '../../cordova-util';
+
 export class AppContainer extends Component {
   static propTypes = {
     /**
@@ -43,8 +50,19 @@ export class AppContainer extends Component {
     /**
      * User Id
      */
-    userId: PropTypes.string
+    userId: PropTypes.string,
+    /**
+     * Get API objects (boards and communicators)
+     */
+    getApiObjects: PropTypes.func.isRequired
   };
+
+  constructor(props) {
+    super(props);
+    this.lastSyncTime = null;
+    this.handleOnline = null;
+    this.handleOffline = null;
+  }
 
   componentDidMount() {
     const localizeUser = () => {
@@ -94,26 +112,33 @@ export class AppContainer extends Component {
 
     const configureConnectionStatus = () => {
       const { updateConnectivity } = this.props;
-      const setAsOnline = () => {
-        updateConnectivity({ isConnected: true });
-      };
 
-      const setAsOffline = () => {
+      this.handleOffline = () => {
+        if (navigator.onLine) {
+          return;
+        }
         updateConnectivity({ isConnected: false });
       };
 
+      this.handleOnline = () => {
+        if (!navigator.onLine) {
+          return;
+        }
+        updateConnectivity({ isConnected: true });
+        this.handleDataRefresh('Connection restored');
+      };
+
       const addConnectionEventListeners = () => {
-        window.addEventListener('offline', setAsOffline);
-        window.addEventListener('online', setAsOnline);
+        window.addEventListener('offline', this.handleOffline);
+        window.addEventListener('online', this.handleOnline);
       };
 
       const setCurrentConnectionStatus = () => {
         if (!navigator.onLine) {
-          setAsOffline();
+          this.handleOffline();
           return;
         }
-        setAsOnline();
-        return;
+        updateConnectivity({ isConnected: true });
       };
 
       setCurrentConnectionStatus();
@@ -121,6 +146,58 @@ export class AppContainer extends Component {
     };
 
     configureConnectionStatus();
+
+    this.handleDataRefresh = (source = 'Unknown') => {
+      const { isLogged } = this.props;
+
+      if (!isLogged) {
+        return;
+      }
+
+      if (!window.navigator.onLine) {
+        console.log('Sync skipped - Device is offline');
+        return;
+      }
+
+      const THROTTLE_MS = 1000 * 60 * 2;
+      const now = Date.now();
+      if (this.lastSyncTime && now - this.lastSyncTime < THROTTLE_MS) {
+        console.log(`Sync skipped - throttled (${source})`);
+        return;
+      }
+      this.lastSyncTime = now;
+      console.log(`Sync dispatched - ${source}`);
+      // TODO: Replace with actual API call
+      // this.props.getApiObjects();
+    };
+
+    this.handleWebVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        this.handleDataRefresh('Tab focused');
+      }
+    };
+
+    this.handleCvaResume = () => this.handleDataRefresh('App resumed');
+    onCvaResume(this.handleCvaResume);
+    document.addEventListener(
+      'visibilitychange',
+      this.handleWebVisibilityChange
+    );
+  }
+
+  componentWillUnmount() {
+    cleanUpCvaOnResume(this.handleCvaResume);
+    document.removeEventListener(
+      'visibilitychange',
+      this.handleWebVisibilityChange
+    );
+
+    if (this.handleOnline) {
+      window.removeEventListener('online', this.handleOnline);
+    }
+    if (this.handleOffline) {
+      window.removeEventListener('offline', this.handleOffline);
+    }
   }
 
   handleNewContentAvailable = () => {
@@ -185,7 +262,8 @@ const mapDispatchToProps = {
   updateUserDataFromAPI,
   updateLoggedUserLocation,
   updateUnloggedUserLocation,
-  updateConnectivity
+  updateConnectivity,
+  getApiObjects
 };
 
 export default connect(
