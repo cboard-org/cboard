@@ -374,7 +374,10 @@ describe('reducer', () => {
       )
     ).toEqual({
       ...initialState,
-      boards: [...initialState.boards, mockBoard]
+      boards: [
+        ...initialState.boards,
+        { ...mockBoard, syncStatus: SYNC_STATUS.PENDING }
+      ]
     });
   });
   it('should handle createTile', () => {
@@ -403,7 +406,8 @@ describe('reducer', () => {
               loadBoard: '123'
             },
             { id: '456' }
-          ]
+          ],
+          syncStatus: SYNC_STATUS.PENDING
         }
       ]
     });
@@ -428,7 +432,8 @@ describe('reducer', () => {
         ...initialState.boards,
         {
           ...mockBoard,
-          tiles: []
+          tiles: [],
+          syncStatus: SYNC_STATUS.PENDING
         }
       ]
     });
