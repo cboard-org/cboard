@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Minimal undici mock for Jest tests.
  * Prevents undici from initializing real HTTP machinery (MessagePort,
