@@ -1121,7 +1121,17 @@ export class Cboard {
   }
 
   async clickUnlockButton() {
-    await this.buttons.unlock.click();
+    try {
+      const button = this.buttons.unlock.first();
+      if (await button.isVisible({ timeout: 1000 })) {
+        await button.click();
+      }
+    } catch {
+      this.page
+        .locator('button:has-text("Unlock")')
+        .first()
+        .click();
+    }
   }
 
   async clickLock() {
