@@ -19,6 +19,7 @@ import messages from './CommunicatorToolbar.messages';
 import './CommunicatorToolbar.css';
 import { isCordova } from '../../../cordova-util';
 import DefaultBoardSelector from './DefaultBoardSelector';
+import SyncButton from './SyncButton';
 
 class CommunicatorToolbar extends React.Component {
   constructor(props) {
@@ -206,6 +207,9 @@ class CommunicatorToolbar extends React.Component {
               </Button>
             </div>
           )}
+          {this.props.isLoggedIn && (
+            <SyncButton isSaving={this.props.isSaving} />
+          )}
           <DefaultBoardSelector
             isDarkMode={isDark}
             changeDefaultBoard={changeDefaultBoard}
@@ -220,6 +224,7 @@ CommunicatorToolbar.defaultProps = {
   className: '',
   boards: [],
   isSelecting: false,
+  isSaving: false,
   switchBoard: () => {},
   showNotification: () => {},
   openCommunicatorDialog: () => {},
@@ -232,12 +237,14 @@ CommunicatorToolbar.propTypes = {
   boards: PropTypes.array,
   currentCommunicator: PropTypes.object,
   isSelecting: PropTypes.bool,
+  isSaving: PropTypes.bool,
   showNotification: PropTypes.func,
   switchBoard: PropTypes.func,
   openCommunicatorDialog: PropTypes.func,
   editCommunicatorTitle: PropTypes.func,
   isDark: PropTypes.bool,
-  changeDefaultBoard: PropTypes.func
+  changeDefaultBoard: PropTypes.func,
+  isLoggedIn: PropTypes.bool
 };
 
 export default CommunicatorToolbar;

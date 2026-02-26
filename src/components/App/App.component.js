@@ -10,6 +10,7 @@ import OAuthLogin from '../Account/OAuthLogin';
 import AuthScreen, { RedirectIfLogged } from '../AuthScreen';
 import BoardContainer from '../Board';
 import PremiumRequiredModal from '../PremiumFeature/PremiumRequiredModal';
+import OfflineNotificationModal from '../OfflineNotification';
 import Notifications from '../Notifications';
 import NotFound from '../NotFound';
 import Settings from '../Settings';
@@ -92,6 +93,7 @@ export class App extends Component {
         </Switch>
         <PremiumRequiredModal />
         <LoginRequiredModal />
+        <OfflineNotificationModal />
       </div>
     );
   }
