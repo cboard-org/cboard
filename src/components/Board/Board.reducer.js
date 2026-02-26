@@ -38,7 +38,11 @@ import {
   DOWNLOAD_IMAGE_SUCCESS,
   DOWNLOAD_IMAGE_FAILURE,
   UNMARK_SHOULD_CREATE_API_BOARD,
-  SHORT_ID_MAX_LENGTH
+  SHORT_ID_MAX_LENGTH,
+  SYNC_BOARDS_STARTED,
+  SYNC_BOARDS_SUCCESS,
+  SYNC_BOARDS_FAILURE,
+  SYNC_STATUS
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -56,26 +60,16 @@ const initialState = {
   images: [],
   isFixed: false,
   isLiveMode: false,
-  improvedPhrase: ''
+  improvedPhrase: '',
+  isSyncing: false,
+  syncError: null
 };
-
-function reconcileBoards(localBoard, remoteBoard) {
-  if (localBoard.lastEdited && remoteBoard.lastEdited) {
-    if (moment(localBoard.lastEdited).isSameOrAfter(remoteBoard.lastEdited)) {
-      return localBoard;
-    }
-    if (moment(localBoard.lastEdited).isBefore(remoteBoard.lastEdited)) {
-      return remoteBoard;
-    }
-  }
-  return localBoard;
-}
 
 function resolveLastEdited(oldBoard, newBoard) {
   const oldDate = oldBoard?.lastEdited ? moment(oldBoard.lastEdited) : null;
   const newDate = newBoard?.lastEdited ? moment(newBoard.lastEdited) : null;
 
-  if (newDate && (!oldDate || oldDate.isBefore(newDate))) {
+  if (newDate && (!oldDate || oldDate.isSameOrBefore(newDate))) {
     return newDate.format();
   }
   return moment().format();
@@ -140,7 +134,16 @@ function boardReducer(state = initialState, action) {
     case ADD_BOARDS:
       return {
         ...state,
-        boards: state.boards.concat(action.boards)
+        boards: state.boards.concat(
+          action.boards
+            .filter(
+              b => b != null && b.id && !state.boards.find(sb => sb.id === b.id)
+            )
+            .map(b => ({
+              ...b,
+              syncStatus: b.syncStatus || SYNC_STATUS.SYNCED
+            }))
+        )
       };
     case CHANGE_BOARD:
       const taBoards = [...state.boards];
@@ -164,7 +167,10 @@ function boardReducer(state = initialState, action) {
       if (index !== -1) {
         const nextBoard = {
           ...action.boardData,
-          lastEdited: resolveLastEdited(oldBoard, action.boardData)
+          lastEdited: resolveLastEdited(oldBoard, action.boardData),
+          syncStatus: action.fromRemote
+            ? SYNC_STATUS.SYNCED
+            : SYNC_STATUS.PENDING
         };
         updateBoards.splice(index, 1, nextBoard);
         return {
@@ -252,17 +258,26 @@ function boardReducer(state = initialState, action) {
       const nextBoards = [...state.boards];
       nextBoards.push({
         ...action.boardData,
-        lastEdited: moment().format()
+        lastEdited: moment().format(),
+        syncStatus: SYNC_STATUS.PENDING
       });
       return {
         ...state,
         boards: nextBoards
       };
     case DELETE_BOARD:
+      const boardIdsToDelete = Array.isArray(action.boardId)
+        ? action.boardId
+        : [action.boardId];
       return {
         ...state,
-        boards: state.boards.filter(
-          board => action.boardId.indexOf(board.id) === -1
+        boards: state.boards.map(board =>
+          boardIdsToDelete.includes(board.id)
+            ? { ...board, isDeleted: true, syncStatus: SYNC_STATUS.PENDING }
+            : board
+        ),
+        navHistory: state.navHistory.filter(
+          id => !boardIdsToDelete.includes(id)
         )
       };
 
@@ -365,7 +380,12 @@ function boardReducer(state = initialState, action) {
         isFetching: false,
         boards: creadBoards.map(board =>
           board.id === action.boardId
-            ? { ...board, id: action.board.id }
+            ? {
+                ...board,
+                id: action.board.id,
+                lastEdited: action.board.lastEdited,
+                syncStatus: SYNC_STATUS.SYNCED
+              }
             : board
         )
       };
@@ -382,7 +402,16 @@ function boardReducer(state = initialState, action) {
     case UPDATE_API_BOARD_SUCCESS:
       return {
         ...state,
-        isFetching: false
+        isFetching: false,
+        boards: state.boards.map(board =>
+          board.id === action.boardData.id
+            ? {
+                ...board,
+                lastEdited: action.boardData.lastEdited,
+                syncStatus: SYNC_STATUS.SYNCED
+              }
+            : board
+        )
       };
     case UPDATE_API_BOARD_FAILURE:
       return {
@@ -395,25 +424,9 @@ function boardReducer(state = initialState, action) {
         isFetching: true
       };
     case GET_API_MY_BOARDS_SUCCESS:
-      let flag = false;
-      const myBoards = [...state.boards];
-      for (let i = 0; i < action.boards.data.length; i++) {
-        for (let j = 0; j < myBoards.length; j++) {
-          if (myBoards[j].id === action.boards.data[i].id) {
-            myBoards[j] = reconcileBoards(myBoards[j], action.boards.data[i]);
-            flag = true;
-            break;
-          }
-        }
-        if (!flag) {
-          myBoards.push(action.boards.data[i]);
-        }
-        flag = false;
-      }
       return {
         ...state,
-        isFetching: false,
-        boards: myBoards
+        isFetching: false
       };
     case GET_API_MY_BOARDS_FAILURE:
       return {
@@ -464,6 +477,24 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         improvedPhrase: action.improvedPhrase
+      };
+    case SYNC_BOARDS_STARTED:
+      return {
+        ...state,
+        isSyncing: true,
+        syncError: null
+      };
+    case SYNC_BOARDS_SUCCESS:
+      return {
+        ...state,
+        isSyncing: false,
+        syncError: null
+      };
+    case SYNC_BOARDS_FAILURE:
+      return {
+        ...state,
+        isSyncing: false,
+        syncError: action.error
       };
     default:
       return state;
