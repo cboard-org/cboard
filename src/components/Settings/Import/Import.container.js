@@ -5,6 +5,7 @@ import { injectIntl, intlShape } from 'react-intl';
 import shortid from 'shortid';
 
 import { addBoards, changeBoard } from '../../Board/Board.actions';
+import { SYNC_STATUS } from '../../Board/Board.constants';
 import {
   upsertApiCommunicator,
   verifyAndUpsertCommunicator
@@ -56,7 +57,12 @@ export class ImportContainer extends PureComponent {
 
         let boardToBeUpdated = board;
         if (shouldUpdate && updated) {
-          boardToBeUpdated = await API.updateBoard(boardToBeUpdated);
+          try {
+            boardToBeUpdated = await API.updateBoard(boardToBeUpdated);
+          } catch (err) {
+            console.log(err.message);
+            boardToBeUpdated.syncStatus = SYNC_STATUS.PENDING;
+          }
         }
 
         return boardToBeUpdated;
@@ -94,20 +100,22 @@ export class ImportContainer extends PureComponent {
             if (board.id) {
               response.prevId = board.id;
             }
+            response.syncStatus = SYNC_STATUS.SYNCED;
             return response;
           } catch (err) {
             console.log(err.message);
-            return board;
+            const localBoard = this.prepareLocalBoard(boardToCreate);
+            if (board.id) {
+              localBoard.prevId = board.id;
+            }
+            return localBoard;
           }
         })
       );
     } else {
-      boardsResponse.forEach(board => {
-        if (board.id) {
-          board.prevId = board.id;
-        }
-        board.id = shortid.generate();
-      });
+      boardsResponse = boardsResponse.map(board =>
+        this.prepareLocalBoard(board)
+      );
     }
 
     boardsResponse = await this.updateLoadBoardsIds(
@@ -118,6 +126,16 @@ export class ImportContainer extends PureComponent {
     this.props.addBoards(boardsResponse);
     await this.addBoardsToCommunicator(boardsResponse);
     this.props.switchBoard(boardsResponse[0].id);
+  }
+
+  prepareLocalBoard(board) {
+    const boardWithNewId = { ...board };
+    if (boardWithNewId.id) {
+      boardWithNewId.prevId = boardWithNewId.id;
+    }
+    boardWithNewId.id = shortid.generate();
+    boardWithNewId.syncStatus = SYNC_STATUS.PENDING;
+    return boardWithNewId;
   }
 
   async addBoardsToCommunicator(boards) {
