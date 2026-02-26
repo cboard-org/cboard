@@ -53,6 +53,7 @@ import API from '../../api';
 
 import {
   replaceBoardCommunicator,
+  addBoardCommunicator,
   upsertCommunicator,
   getApiMyCommunicators,
   editCommunicator,
@@ -648,21 +649,48 @@ export function applyRemoteChangesToState({
  * PUSH: Upload local changes to the API.
  * Pushes all boards with syncStatus: PENDING, plus untracked boards (no syncStatus)
  * that are newer than their remote version or don't exist on the server.
+ * - Core boards (support@cboard.io) with PENDING → transformed to user's boards, then synced
  * - Short ID boards (locally created) → updateApiObjectsNoChild (creates on server)
  * - Long ID boards (existing) → updateApiBoard (updates on server)
  */
 export function pushLocalChangesToApi(remoteBoards = []) {
   return async (dispatch, getState) => {
     const userEmail = getState().app?.userData?.email;
+    const userName = getState().app?.userData?.name || '';
     const { boards, activeBoardId } = getState().board;
 
     // Boards explicitly marked PENDING by the sync system.
-    // Only push boards that belong to the current user.
-    const pendingBoards = boards.filter(b => {
-      if (b.syncStatus !== SYNC_STATUS.PENDING || b.isDeleted) return false;
-      if (b.email !== userEmail) return false;
-      return true;
-    });
+    const pendingBoards = [];
+    for (const b of boards) {
+      if (b.syncStatus !== SYNC_STATUS.PENDING || b.isDeleted) continue;
+      if (!userEmail) continue;
+
+      if (!b.email || b.email === 'support@cboard.io') {
+        const extractName = () => {
+          if (b.name) return b.name;
+          if (b.nameKey) {
+            const splitedNameKey = b.nameKey.split('.');
+            return splitedNameKey[splitedNameKey.length - 1];
+          }
+          return 'Untitled Board';
+        };
+
+        const transformedBoard = {
+          ...b,
+          email: userEmail,
+          author: b.author || userName || userEmail,
+          name: extractName(),
+          isPublic: false
+        };
+        dispatch(updateBoard(transformedBoard, true));
+        pendingBoards.push(transformedBoard);
+        continue;
+      }
+      if (b.email === userEmail) {
+        pendingBoards.push(b);
+        continue;
+      }
+    }
 
     // Untracked boards (no syncStatus) that belong to the current user.
     const untrackedBoards = boards.filter(b => {
@@ -708,10 +736,9 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     for (const board of boardsToSync) {
       try {
         if (board.id.length < SHORT_ID_MAX_LENGTH) {
-          const newBoardId = await dispatch(
-            updateApiObjectsNoChild(board, true)
-          );
-          dispatch(replaceBoard(board, { ...board, id: newBoardId }));
+          // Add board to communicator first so replaceBoardCommunicator can find it
+          dispatch(addBoardCommunicator(board.id));
+          await dispatch(updateApiObjectsNoChild(board, true));
           if (activeBoardId === board.id) {
             replaceHistoryWithActiveBoardId(getState);
           }
