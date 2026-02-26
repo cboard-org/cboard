@@ -88,7 +88,7 @@
     "redux-thunk": "^2.4.2",
     "shortid": "^2.2.16",
     "source-map-explorer": "^2.5.3",
-    "swiper": "^6.8.4",
+    "swiper": "^12.1.2",
     "yup": "^0.32.11"
   },
   "devDependencies": {
