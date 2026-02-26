@@ -52,7 +52,7 @@
     "localforage": "1.10.0",
     "lodash": "^4.17.21",
     "mathjs": "7.6.0",
-    "microsoft-cognitiveservices-speech-sdk": "^1.43.0",
+    "microsoft-cognitiveservices-speech-sdk": "^1.48.0",
     "mime-types": "^2.1.35",
     "moment": "2.29.4",
     "mongoose": "^8.19.2",
