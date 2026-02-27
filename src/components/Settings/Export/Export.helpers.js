@@ -143,21 +143,24 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
   if (!board.tiles || board.tiles.length < 1) {
     return { obf: null, images: null };
   }
+  const columns =
+    board.isFixed && board.grid ? board.grid.columns : CBOARD_COLUMNS;
 
   const images = {};
   const fetchedImages = {};
-  const grid = new Array(Math.ceil(board.tiles.length / CBOARD_COLUMNS));
+  const grid = board.isFixed
+    ? board.grid.order
+    : new Array(Math.ceil(board.tiles.length / columns));
   let currentRow = 0;
   const buttons = await Promise.all(
     board.tiles.map(async (tile, i) => {
       currentRow =
-        i >= (currentRow + 1) * CBOARD_COLUMNS ? currentRow + 1 : currentRow;
+        i >= (currentRow + 1) * columns ? currentRow + 1 : currentRow;
 
       if (tile) {
-        if (grid[currentRow]) {
+        if (!board.isFixed) {
+          grid[currentRow] = grid[currentRow] || [];
           grid[currentRow].push(tile.id);
-        } else {
-          grid[currentRow] = [tile.id];
         }
 
         const button = {
@@ -227,7 +230,7 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
   );
 
   if (grid.length >= 1) {
-    const lastGridRowDiff = CBOARD_COLUMNS - grid[grid.length - 1].length;
+    const lastGridRowDiff = columns - grid[grid.length - 1].length;
     if (lastGridRowDiff > 0) {
       const emptyButtons = new Array(lastGridRowDiff).map(() => null);
       grid[grid.length - 1] = grid[grid.length - 1].concat(emptyButtons);
@@ -245,7 +248,7 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
       sounds: [],
       grid: {
         rows: grid.length,
-        columns: CBOARD_COLUMNS,
+        columns: columns,
         order: grid
       },
       description_html: board.nameKey
