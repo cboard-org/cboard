@@ -907,8 +907,8 @@ describe('pushLocalChangesToApi', () => {
     expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
   });
 
-  it('should transform and push PENDING core boards (support@cboard.io)', async () => {
-    const coreBoard = {
+  it('should transform and push PENDING default boards (support@cboard.io)', async () => {
+    const defaultBoard = {
       ...mockBoard,
       id: '12345678901234567890',
       email: 'support@cboard.io',
@@ -916,7 +916,7 @@ describe('pushLocalChangesToApi', () => {
     };
     const storeWithBoards = mockStore({
       ...initialState,
-      board: { ...initialState.board, boards: [coreBoard] }
+      board: { ...initialState.board, boards: [defaultBoard] }
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
