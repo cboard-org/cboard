@@ -110,7 +110,8 @@ export class Board extends Component {
       uiSize: 'Standard',
       labelPosition: 'Below',
       shareShowActive: false,
-      hideOutputActive: false
+      hideOutputActive: false,
+      expandedOutputActive: false
     },
     navigationSettings: {},
     scannerSettings: { active: false, delay: 2000, strategy: 'automatic' },
@@ -364,7 +365,9 @@ export class Board extends Component {
           <Scannable>
             <div
               className={classNames('Board__output', {
-                hidden: this.props.displaySettings.hideOutputActive
+                hidden: this.props.displaySettings.hideOutputActive,
+                'Board__output--expanded': this.props.displaySettings
+                  .expandedOutputActive // <--- ADD THIS LINE
               })}
             >
               <OutputContainer />
