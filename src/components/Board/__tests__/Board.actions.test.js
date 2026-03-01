@@ -907,7 +907,7 @@ describe('pushLocalChangesToApi', () => {
     expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
   });
 
-  it('should not push PENDING default boards (support@cboard.io)', async () => {
+  it('should transform and push PENDING default boards (support@cboard.io)', async () => {
     const defaultBoard = {
       ...mockBoard,
       id: '12345678901234567890',
@@ -920,13 +920,20 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const allActions = storeWithBoards.getActions();
+    const actionTypes = allActions.map(a => a.type);
 
-    expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
-    expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
+    // Should transform the board (update local state with user's email)
+    expect(actionTypes).toContain(types.UPDATE_BOARD);
+    const updateAction = allActions.find(a => a.type === types.UPDATE_BOARD);
+    expect(updateAction.boardData.email).toBe('asd@qwe.com');
+    expect(updateAction.boardData.isPublic).toBe(false);
+
+    // Should push to API (long ID = update, not create)
+    expect(actionTypes).toContain(types.UPDATE_API_BOARD_STARTED);
   });
 
-  it('should not push PENDING boards with empty email (created while logged out)', async () => {
+  it('should transform and push PENDING boards with empty email (created while logged out)', async () => {
     const offlineBoard = {
       ...mockBoard,
       id: '12345678901234567890',
@@ -939,10 +946,16 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const allActions = storeWithBoards.getActions();
+    const actionTypes = allActions.map(a => a.type);
 
-    expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
-    expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
+    // Should transform the board (update local state with user's email)
+    expect(actionTypes).toContain(types.UPDATE_BOARD);
+    const updateAction = allActions.find(a => a.type === types.UPDATE_BOARD);
+    expect(updateAction.boardData.email).toBe('asd@qwe.com');
+
+    // Should push to API
+    expect(actionTypes).toContain(types.UPDATE_API_BOARD_STARTED);
   });
 });
 

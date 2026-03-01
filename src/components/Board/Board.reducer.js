@@ -80,21 +80,24 @@ function tileReducer(board, action) {
     case CREATE_TILE:
       return {
         ...board,
-        tiles: [...board.tiles, { ...action.tile }]
+        tiles: [...board.tiles, { ...action.tile }],
         /* some times when a tile folder is created here the last tile change loadBoard to a long Id with no reason
       action tile before this copy has a short ID*/
+        syncStatus: SYNC_STATUS.PENDING
       };
     case DELETE_TILES:
       return {
         ...board,
-        tiles: board.tiles.filter(tile => action.tiles.indexOf(tile.id) === -1)
+        tiles: board.tiles.filter(tile => action.tiles.indexOf(tile.id) === -1),
+        syncStatus: SYNC_STATUS.PENDING
       };
     case EDIT_TILES:
       return {
         ...board,
         tiles: board.tiles.map(
           tile => action.tiles.find(s => s.id === tile.id) || tile
-        )
+        ),
+        syncStatus: SYNC_STATUS.PENDING
       };
     default:
       return board;
