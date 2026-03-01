@@ -229,22 +229,11 @@ export class BoardContainer extends Component {
       //downloadImages
     } = this.props;
 
+    // Loggedin user?
     if ('name' in userData && 'email' in userData && window.navigator.onLine) {
-      if (id) {
-        const urlBoard = boards.find(b => b.id === id);
-        if (urlBoard) {
-          changeBoard(id);
-        }
-      }
-
+      //synchronize communicator and boards with API
       this.setState({ isGettingApiObjects: true });
-      try {
-        await getApiObjects();
-      } catch (err) {
-        console.error('Error syncing boards:', err);
-      }
-      this.setState({ isGettingApiObjects: false });
-      return;
+      getApiObjects().then(() => this.setState({ isGettingApiObjects: false }));
     }
 
     let boardExists = null;
@@ -337,23 +326,8 @@ export class BoardContainer extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const {
-      board,
-      history,
-      match: {
-        params: { id }
-      }
-    } = this.props;
-    const { isGettingApiObjects } = this.state;
-
-    if (prevState.isGettingApiObjects && !isGettingApiObjects && board) {
-      if (id !== board.id) {
-        history.replace(`board/${board.id}`);
-      }
-      this.setState({ isFixedBoard: !!board.isFixed });
-    }
-
+  componentDidUpdate(prevProps) {
+    const { board } = this.props;
     if (board && prevProps.board && board.isFixed !== prevProps.board.isFixed) {
       this.setState({ isFixedBoard: board.isFixed });
     }
