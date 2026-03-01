@@ -378,27 +378,19 @@ function boardReducer(state = initialState, action) {
         );
         if (!boardIsAlreadyCreatedOnDb) board.shouldCreateBoard = true;
       });
-      const newBoardId = action.board.id;
-      const oldBoardId = action.boardId;
-      const updatedNavHistory = state.navHistory.map(id =>
-        id === oldBoardId ? newBoardId : id
-      );
       return {
         ...state,
         isFetching: false,
         boards: creadBoards.map(board =>
-          board.id === oldBoardId
+          board.id === action.boardId
             ? {
                 ...board,
-                id: newBoardId,
+                id: action.board.id,
                 lastEdited: action.board.lastEdited,
                 syncStatus: SYNC_STATUS.SYNCED
               }
             : board
-        ),
-        activeBoardId:
-          state.activeBoardId === oldBoardId ? newBoardId : state.activeBoardId,
-        navHistory: updatedNavHistory
+        )
       };
     case CREATE_API_BOARD_FAILURE:
       return {
