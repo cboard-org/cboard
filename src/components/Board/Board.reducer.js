@@ -151,8 +151,9 @@ function boardReducer(state = initialState, action) {
         boards: action.boards
       };
     case ADD_BOARDS: {
+      const existingIds = new Set(state.boards.map(b => b.id));
       const newBoards = action.boards.filter(
-        b => b != null && b.id && !state.boards.find(sb => sb.id === b.id)
+        b => b != null && b.id && !existingIds.has(b.id)
       );
       const addedSyncMeta = newBoards.reduce((acc, b) => {
         acc[b.id] = {
