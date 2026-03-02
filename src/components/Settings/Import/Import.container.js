@@ -10,6 +10,7 @@ import {
   markBoardDirty
 } from '../../Board/Board.actions';
 import { isLocalBoard } from '../../Board/Board.utils';
+import { getVisibleBoards } from '../../Board/Board.selectors';
 import {
   upsertApiCommunicator,
   verifyAndUpsertCommunicator
@@ -237,7 +238,7 @@ export class ImportContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ board, communicator, app }) => {
+export const mapStateToProps = ({ board, communicator, app }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
     communicator => communicator.id === activeCommunicatorId
@@ -246,7 +247,7 @@ const mapStateToProps = ({ board, communicator, app }) => {
   const { userData } = app;
 
   return {
-    boards: board.boards,
+    boards: getVisibleBoards({ board }),
     currentCommunicator,
     communicators: communicator.communicators,
     userData

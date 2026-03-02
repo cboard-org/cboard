@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 
 import { showNotification } from '../../Notifications/Notifications.actions';
+import { getVisibleBoards } from '../../Board/Board.selectors';
 import Export from './Export.component';
 import { EXPORT_CONFIG_BY_TYPE } from './Export.constants';
 import messages from './Export.messages';
@@ -119,8 +120,8 @@ export class ExportContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  boards: state.board.boards,
+export const mapStateToProps = state => ({
+  boards: getVisibleBoards(state),
   activeBoardId: state.board.activeBoardId
 });
 
