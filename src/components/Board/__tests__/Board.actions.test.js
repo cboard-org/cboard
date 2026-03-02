@@ -1,5 +1,6 @@
 import * as actions from '../Board.actions';
 import * as types from '../Board.constants';
+import { classifyRemoteBoards } from '../Board.utils';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import defaultBoards from '../../../api/boards.json';
@@ -528,7 +529,7 @@ describe('classifyRemoteBoards', () => {
   it('should classify new remote boards', () => {
     const localBoards = [{ id: '1', name: 'Local Board' }];
     const remoteBoards = [{ id: '2', name: 'Remote Board' }];
-    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+    const result = classifyRemoteBoards(localBoards, remoteBoards);
 
     expect(result.boardsToAdd).toHaveLength(1);
     expect(result.boardsToAdd).toContainEqual({
@@ -546,7 +547,7 @@ describe('classifyRemoteBoards', () => {
     const remoteBoards = [
       { id: '1', name: 'Remote', lastEdited: '2024-01-02T00:00:00Z' }
     ];
-    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+    const result = classifyRemoteBoards(localBoards, remoteBoards);
 
     expect(result.boardsToAdd).toHaveLength(0);
     expect(result.boardsToUpdate).toHaveLength(1);
@@ -560,7 +561,7 @@ describe('classifyRemoteBoards', () => {
     const remoteBoards = [
       { id: '1', name: 'Remote', lastEdited: '2024-01-01T00:00:00Z' }
     ];
-    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+    const result = classifyRemoteBoards(localBoards, remoteBoards);
 
     expect(result.boardsToAdd).toHaveLength(0);
     expect(result.boardsToUpdate).toHaveLength(0);
@@ -573,7 +574,7 @@ describe('classifyRemoteBoards', () => {
     const remoteBoards = [
       { id: '1', name: 'Remote', lastEdited: '2024-01-01T00:00:00Z' }
     ];
-    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+    const result = classifyRemoteBoards(localBoards, remoteBoards);
 
     expect(result.boardsToAdd).toHaveLength(0);
     expect(result.boardsToUpdate).toHaveLength(0);
@@ -582,7 +583,7 @@ describe('classifyRemoteBoards', () => {
   it('should handle empty remote boards', () => {
     const localBoards = [{ id: '1', name: 'Local Board' }];
     const remoteBoards = [];
-    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+    const result = classifyRemoteBoards(localBoards, remoteBoards);
 
     expect(result.boardsToAdd).toHaveLength(0);
     expect(result.boardsToUpdate).toHaveLength(0);
@@ -591,7 +592,7 @@ describe('classifyRemoteBoards', () => {
   it('should handle empty local boards', () => {
     const localBoards = [];
     const remoteBoards = [{ id: '1', name: 'Remote Board' }];
-    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+    const result = classifyRemoteBoards(localBoards, remoteBoards);
 
     expect(result.boardsToAdd).toHaveLength(1);
     expect(result.boardsToUpdate).toHaveLength(0);
@@ -603,11 +604,7 @@ describe('classifyRemoteBoards', () => {
       '12345678901234567890': { status: types.SYNC_STATUS.SYNCED }
     };
     const remoteBoards = []; // board not in remote = deleted on server
-    const result = actions.classifyRemoteBoards(
-      localBoards,
-      remoteBoards,
-      syncMeta
-    );
+    const result = classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
 
     expect(result.boardIdsToDelete).toHaveLength(1);
     expect(result.boardIdsToDelete).toContain('12345678901234567890');
@@ -618,7 +615,7 @@ describe('classifyRemoteBoards', () => {
       { id: 'short123', name: 'Local Board' } // short ID = local only board
     ];
     const remoteBoards = [];
-    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+    const result = classifyRemoteBoards(localBoards, remoteBoards);
 
     expect(result.boardIdsToDelete).toHaveLength(0);
   });
@@ -628,7 +625,7 @@ describe('classifyRemoteBoards', () => {
       { id: '12345678901234567890', name: 'Untracked Board' } // no syncStatus
     ];
     const remoteBoards = [];
-    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+    const result = classifyRemoteBoards(localBoards, remoteBoards);
 
     expect(result.boardIdsToDelete).toHaveLength(0);
   });
@@ -642,11 +639,7 @@ describe('classifyRemoteBoards', () => {
       }
     };
     const remoteBoards = [];
-    const result = actions.classifyRemoteBoards(
-      localBoards,
-      remoteBoards,
-      syncMeta
-    );
+    const result = classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
 
     expect(result.boardIdsToDelete).toHaveLength(0);
   });
