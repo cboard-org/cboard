@@ -2,7 +2,8 @@ import {
   getPendingSyncBoards,
   hasPendingSyncBoards,
   getPendingSyncBoardsCount,
-  getDeletedBoardIds
+  getDeletedBoardIds,
+  getVisibleBoards
 } from '../Board.selectors';
 import { SYNC_STATUS } from '../Board.constants';
 
@@ -119,6 +120,54 @@ describe('Board selectors', () => {
       });
 
       expect(getDeletedBoardIds(state)).toHaveLength(0);
+    });
+  });
+
+  describe('getVisibleBoards', () => {
+    it('should return all boards when none are marked deleted', () => {
+      const state = createState([{ id: '1' }, { id: '2' }], {
+        '1': { status: SYNC_STATUS.SYNCED, isDeleted: false },
+        '2': { status: SYNC_STATUS.SYNCED }
+      });
+
+      const result = getVisibleBoards(state);
+
+      expect(result).toHaveLength(2);
+    });
+
+    it('should filter out boards with isDeleted: true in syncMeta', () => {
+      const state = createState([{ id: '1' }, { id: '2' }, { id: '3' }], {
+        '1': { status: SYNC_STATUS.SYNCED },
+        '2': { status: SYNC_STATUS.PENDING, isDeleted: true },
+        '3': { status: SYNC_STATUS.SYNCED }
+      });
+
+      const result = getVisibleBoards(state);
+
+      expect(result).toHaveLength(2);
+      expect(result.map(b => b.id)).toEqual(['1', '3']);
+    });
+
+    it('should include boards with no syncMeta entry (untracked boards are visible)', () => {
+      const state = createState([{ id: '1' }, { id: '2' }], {
+        '1': { status: SYNC_STATUS.SYNCED }
+        // '2' has no syncMeta entry
+      });
+
+      const result = getVisibleBoards(state);
+
+      expect(result).toHaveLength(2);
+    });
+
+    it('should return empty array when all boards are soft-deleted', () => {
+      const state = createState([{ id: '1' }, { id: '2' }], {
+        '1': { status: SYNC_STATUS.PENDING, isDeleted: true },
+        '2': { status: SYNC_STATUS.PENDING, isDeleted: true }
+      });
+
+      const result = getVisibleBoards(state);
+
+      expect(result).toHaveLength(0);
     });
   });
 });

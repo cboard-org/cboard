@@ -39,3 +39,13 @@ export const getDeletedBoardIds = state =>
   Object.entries(state.board.syncMeta)
     .filter(([, m]) => m.isDeleted)
     .map(([id]) => id);
+
+/**
+ * Get all boards that are not soft-deleted.
+ * DELETE_BOARD keeps the board in state.boards (for queued deletion at sync time)
+ * but marks syncMeta[id].isDeleted = true. This selector filters them for UI use.
+ * @param {Object} state - Redux state
+ * @returns {Array} Boards not marked as deleted
+ */
+export const getVisibleBoards = state =>
+  state.board.boards.filter(b => !state.board.syncMeta[b.id]?.isDeleted);
