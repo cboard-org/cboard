@@ -564,9 +564,10 @@ export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
   const boardIdsToDelete = [];
 
   const remoteBoardIds = new Set(remoteBoards.map(b => b.id));
+  const localBoardMap = new Map(localBoards.map(b => [b.id, b]));
 
   for (const remote of remoteBoards) {
-    const local = localBoards.find(b => b.id === remote.id);
+    const local = localBoardMap.get(remote.id);
 
     if (!local) {
       boardsToAdd.push(remote);
@@ -627,20 +628,21 @@ export function applyRemoteChangesToState({
       const fromRemote = true; //sets syncStatus to SYNCED
       dispatch(updateBoard(board, fromRemote));
     }
-    // Verify boards that appear deleted on server
-    for (const boardId of boardIdsToDelete) {
-      try {
-        const res = await API.getBoard(boardId);
-        if (res) {
-          dispatch(updateBoard(res, true));
+    // Verify boards that appear deleted on server (concurrent)
+    await Promise.all(
+      boardIdsToDelete.map(async boardId => {
+        try {
+          const res = await API.getBoard(boardId);
+          if (res) {
+            dispatch(updateBoard(res, true));
+          }
+        } catch (e) {
+          if (e.response?.status === 404) {
+            dispatch(deleteApiBoardSuccess({ id: boardId }));
+          }
         }
-      } catch (e) {
-        if (e.response?.status === 404) {
-          dispatch(deleteApiBoardSuccess({ id: boardId }));
-          continue;
-        }
-      }
-    }
+      })
+    );
   };
 }
 
