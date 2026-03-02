@@ -50,6 +50,7 @@ const mockBoard = {
 const [...boards] = [...DEFAULT_BOARDS.advanced, ...DEFAULT_BOARDS.picSeePal];
 const initialState = {
   boards,
+  syncMeta: {},
   output: [],
   activeBoardId: null,
   navHistory: [],
@@ -188,10 +189,12 @@ describe('reducer', () => {
         ...initialState.boards,
         {
           ...mockBoard,
-          lastEdited: mockBoard.lastEdited,
-          syncStatus: SYNC_STATUS.SYNCED
+          lastEdited: mockBoard.lastEdited
         }
       ],
+      syncMeta: {
+        [mockBoard.id]: { status: SYNC_STATUS.SYNCED, isDeleted: false }
+      },
       isFetching: false
     });
   });
@@ -203,6 +206,7 @@ describe('reducer', () => {
     expect(boardReducer(initialState, deleteApiBoardSuccess)).toEqual({
       ...initialState,
       boards: [...initialState.boards.filter(board => board.id !== '123')],
+      syncMeta: {},
       isFetching: false
     });
   });
@@ -225,6 +229,7 @@ describe('reducer', () => {
     };
     expect(boardReducer(initialState, updateApiBoardSuccess)).toEqual({
       ...initialState,
+      syncMeta: { [mockBoard.id]: { status: SYNC_STATUS.SYNCED } },
       isFetching: false
     });
   });
@@ -447,8 +452,11 @@ describe('reducer', () => {
       deleteBoard
     );
     const deletedBoard = result.boards.find(b => b.id === '123');
-    expect(deletedBoard.isDeleted).toBe(true);
-    expect(deletedBoard.syncStatus).toBe(SYNC_STATUS.PENDING);
+    expect(deletedBoard).toEqual(mockBoard);
+    expect(result.syncMeta['123']).toEqual({
+      status: SYNC_STATUS.PENDING,
+      isDeleted: true
+    });
     expect(result.navHistory).toEqual(['456']);
   });
   it('should handle switchBoard', () => {
@@ -548,44 +556,42 @@ describe('reducer', () => {
       activeBoardId: '123'
     });
   });
-  it('should handle addBoards defaulting syncStatus to SYNCED', () => {
+  it('should handle addBoards setting syncMeta status to SYNCED', () => {
     const addBoards = {
       type: ADD_BOARDS,
       boards: [mockBoard]
     };
-    expect(boardReducer(initialState, addBoards)).toEqual({
-      ...initialState,
-      boards: [
-        ...initialState.boards,
-        { ...mockBoard, syncStatus: SYNC_STATUS.SYNCED }
-      ]
+    const result = boardReducer(initialState, addBoards);
+    expect(result.boards).toContainEqual(mockBoard);
+    expect(result.syncMeta[mockBoard.id]).toEqual({
+      status: SYNC_STATUS.SYNCED
     });
   });
-  it('should handle addBoards preserving syncStatus PENDING', () => {
+  it('should handle addBoards always setting syncMeta status to SYNCED regardless of board data', () => {
     const addBoards = {
       type: ADD_BOARDS,
       boards: [{ ...mockBoard, syncStatus: SYNC_STATUS.PENDING }]
     };
-    expect(boardReducer(initialState, addBoards)).toEqual({
-      ...initialState,
-      boards: [
-        ...initialState.boards,
-        { ...mockBoard, syncStatus: SYNC_STATUS.PENDING }
-      ]
+    const result = boardReducer(initialState, addBoards);
+    expect(result.syncMeta[mockBoard.id]).toEqual({
+      status: SYNC_STATUS.SYNCED
     });
   });
-  it('should handle addBoards preserving syncStatus SYNCED', () => {
+  it('should handle addBoards preserving existing syncMeta fields when setting SYNCED', () => {
+    const stateWithMeta = {
+      ...initialState,
+      syncMeta: {
+        [mockBoard.id]: { status: SYNC_STATUS.PENDING, isDeleted: false }
+      }
+    };
     const addBoards = {
       type: ADD_BOARDS,
-      boards: [{ ...mockBoard, syncStatus: SYNC_STATUS.SYNCED }]
+      boards: [mockBoard]
     };
-    expect(boardReducer(initialState, addBoards)).toEqual({
-      ...initialState,
-      boards: [
-        ...initialState.boards,
-        { ...mockBoard, syncStatus: SYNC_STATUS.SYNCED }
-      ]
-    });
+    // Board is already in state.boards (via initialState.boards filtered check)
+    // Since mockBoard.id is not in initialState.boards (default boards), it gets added
+    const result = boardReducer(stateWithMeta, addBoards);
+    expect(result.syncMeta[mockBoard.id].status).toBe(SYNC_STATUS.SYNCED);
   });
   it('should handle importdBoards', () => {
     const importdBoards = {
@@ -633,24 +639,25 @@ describe('reducer', () => {
     });
   });
 
-  describe('syncStatus flag', () => {
-    it('should set syncStatus: PENDING on CREATE_BOARD', () => {
+  describe('syncMeta tracking', () => {
+    it('should set syncMeta PENDING on CREATE_BOARD', () => {
       const createBoard = {
         type: CREATE_BOARD,
         boardData: { id: 'new-board', name: 'New Board', tiles: [] }
       };
       const result = boardReducer(initialState, createBoard);
+      expect(result.syncMeta['new-board']).toEqual({
+        status: SYNC_STATUS.PENDING,
+        isDeleted: false
+      });
       const createdBoard = result.boards.find(b => b.id === 'new-board');
-      expect(createdBoard.syncStatus).toBe(SYNC_STATUS.PENDING);
+      expect(createdBoard.syncStatus).toBeUndefined();
     });
 
-    it('should set syncStatus: PENDING on UPDATE_BOARD when fromRemote is false', () => {
+    it('should set syncMeta PENDING on UPDATE_BOARD when fromRemote is false', () => {
       const stateWithBoard = {
         ...initialState,
-        boards: [
-          ...initialState.boards,
-          { ...mockBoard, syncStatus: SYNC_STATUS.SYNCED }
-        ]
+        boards: [...initialState.boards, mockBoard]
       };
       const updateBoard = {
         type: UPDATE_BOARD,
@@ -658,17 +665,15 @@ describe('reducer', () => {
         fromRemote: false
       };
       const result = boardReducer(stateWithBoard, updateBoard);
+      expect(result.syncMeta[mockBoard.id].status).toBe(SYNC_STATUS.PENDING);
       const updatedBoard = result.boards.find(b => b.id === mockBoard.id);
-      expect(updatedBoard.syncStatus).toBe(SYNC_STATUS.PENDING);
+      expect(updatedBoard.syncStatus).toBeUndefined();
     });
 
-    it('should set syncStatus: SYNCED on UPDATE_BOARD when fromRemote is true', () => {
+    it('should set syncMeta SYNCED on UPDATE_BOARD when fromRemote is true', () => {
       const stateWithBoard = {
         ...initialState,
-        boards: [
-          ...initialState.boards,
-          { ...mockBoard, syncStatus: SYNC_STATUS.PENDING }
-        ]
+        boards: [...initialState.boards, mockBoard]
       };
       const updateBoard = {
         type: UPDATE_BOARD,
@@ -676,16 +681,11 @@ describe('reducer', () => {
         fromRemote: true
       };
       const result = boardReducer(stateWithBoard, updateBoard);
-      const updatedBoard = result.boards.find(b => b.id === mockBoard.id);
-      expect(updatedBoard.syncStatus).toBe(SYNC_STATUS.SYNCED);
+      expect(result.syncMeta[mockBoard.id].status).toBe(SYNC_STATUS.SYNCED);
     });
 
-    it('should set syncStatus: SYNCED on CREATE_API_BOARD_SUCCESS', () => {
-      const boardWithShortId = {
-        ...mockBoard,
-        id: 'short123',
-        syncStatus: SYNC_STATUS.PENDING
-      };
+    it('should set syncMeta SYNCED on CREATE_API_BOARD_SUCCESS', () => {
+      const boardWithShortId = { ...mockBoard, id: 'short123' };
       const stateWithBoard = {
         ...initialState,
         boards: [...initialState.boards, boardWithShortId]
@@ -700,27 +700,94 @@ describe('reducer', () => {
         boardId: 'short123'
       };
       const result = boardReducer(stateWithBoard, createApiBoardSuccess);
+      expect(result.syncMeta['long-api-id-12345678']).toEqual({
+        status: SYNC_STATUS.SYNCED,
+        isDeleted: false
+      });
+      expect(result.syncMeta['short123']).toBeUndefined();
       const syncedBoard = result.boards.find(
         b => b.id === 'long-api-id-12345678'
       );
-      expect(syncedBoard.syncStatus).toBe(SYNC_STATUS.SYNCED);
+      expect(syncedBoard.syncStatus).toBeUndefined();
     });
 
-    it('should set syncStatus: SYNCED on UPDATE_API_BOARD_SUCCESS', () => {
+    it('should set syncMeta SYNCED on UPDATE_API_BOARD_SUCCESS', () => {
       const stateWithBoard = {
         ...initialState,
-        boards: [
-          ...initialState.boards,
-          { ...mockBoard, syncStatus: SYNC_STATUS.PENDING }
-        ]
+        boards: [...initialState.boards, mockBoard]
       };
       const updateApiBoardSuccess = {
         type: UPDATE_API_BOARD_SUCCESS,
         boardData: { ...mockBoard, lastEdited: '2024-01-01' }
       };
       const result = boardReducer(stateWithBoard, updateApiBoardSuccess);
+      expect(result.syncMeta[mockBoard.id].status).toBe(SYNC_STATUS.SYNCED);
       const syncedBoard = result.boards.find(b => b.id === mockBoard.id);
-      expect(syncedBoard.syncStatus).toBe(SYNC_STATUS.SYNCED);
+      expect(syncedBoard.syncStatus).toBeUndefined();
+    });
+
+    it('should set syncMeta PENDING + isDeleted on DELETE_BOARD', () => {
+      const stateWithBoard = {
+        ...initialState,
+        boards: [...initialState.boards, mockBoard]
+      };
+      const deleteBoard = { type: DELETE_BOARD, boardId: mockBoard.id };
+      const result = boardReducer(stateWithBoard, deleteBoard);
+      expect(result.syncMeta[mockBoard.id]).toEqual({
+        status: SYNC_STATUS.PENDING,
+        isDeleted: true
+      });
+      const board = result.boards.find(b => b.id === mockBoard.id);
+      expect(board.isDeleted).toBeUndefined();
+    });
+
+    it('should set syncMeta PENDING + update lastEdited on MARK_BOARD_DIRTY', () => {
+      const stateWithBoard = {
+        ...initialState,
+        boards: [...initialState.boards, mockBoard]
+      };
+      const markDirty = { type: types.MARK_BOARD_DIRTY, boardId: mockBoard.id };
+      const result = boardReducer(stateWithBoard, markDirty);
+      expect(result.syncMeta[mockBoard.id].status).toBe(SYNC_STATUS.PENDING);
+      const dirtyBoard = result.boards.find(b => b.id === mockBoard.id);
+      expect(dirtyBoard.lastEdited).toBeDefined();
+      expect(dirtyBoard.syncStatus).toBeUndefined();
+    });
+
+    it('should remove syncMeta entry on DELETE_API_BOARD_SUCCESS', () => {
+      const stateWithMeta = {
+        ...initialState,
+        boards: [...initialState.boards, mockBoard],
+        syncMeta: {
+          [mockBoard.id]: { status: SYNC_STATUS.PENDING, isDeleted: true }
+        }
+      };
+      const deleteSuccess = {
+        type: DELETE_API_BOARD_SUCCESS,
+        board: mockBoard
+      };
+      const result = boardReducer(stateWithMeta, deleteSuccess);
+      expect(result.syncMeta[mockBoard.id]).toBeUndefined();
+    });
+
+    it('should migrate syncMeta entry on REPLACE_BOARD', () => {
+      const stateWithMeta = {
+        ...initialState,
+        boards: [...initialState.boards, mockBoard],
+        syncMeta: { [mockBoard.id]: { status: SYNC_STATUS.PENDING } }
+      };
+      const replaceBoard = {
+        type: REPLACE_BOARD,
+        payload: {
+          prev: mockBoard,
+          current: { ...mockBoard, id: 'new-id-456' }
+        }
+      };
+      const result = boardReducer(stateWithMeta, replaceBoard);
+      expect(result.syncMeta['new-id-456']).toEqual({
+        status: SYNC_STATUS.PENDING
+      });
+      expect(result.syncMeta[mockBoard.id]).toBeUndefined();
     });
   });
 });

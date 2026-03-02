@@ -1,22 +1,23 @@
 import {
   getPendingSyncBoards,
   hasPendingSyncBoards,
-  getPendingSyncBoardsCount
+  getPendingSyncBoardsCount,
+  getDeletedBoardIds
 } from '../Board.selectors';
 import { SYNC_STATUS } from '../Board.constants';
 
 describe('Board selectors', () => {
-  const createState = boards => ({
-    board: { boards }
+  const createState = (boards, syncMeta = {}) => ({
+    board: { boards, syncMeta }
   });
 
   describe('getPendingSyncBoards', () => {
-    it('should return boards with syncStatus: PENDING', () => {
-      const state = createState([
-        { id: '1', syncStatus: SYNC_STATUS.PENDING },
-        { id: '2', syncStatus: SYNC_STATUS.SYNCED },
-        { id: '3', syncStatus: SYNC_STATUS.PENDING }
-      ]);
+    it('should return boards with syncMeta status PENDING', () => {
+      const state = createState([{ id: '1' }, { id: '2' }, { id: '3' }], {
+        '1': { status: SYNC_STATUS.PENDING },
+        '2': { status: SYNC_STATUS.SYNCED },
+        '3': { status: SYNC_STATUS.PENDING }
+      });
 
       const result = getPendingSyncBoards(state);
 
@@ -25,21 +26,20 @@ describe('Board selectors', () => {
     });
 
     it('should return empty array when no boards need sync', () => {
-      const state = createState([
-        { id: '1', syncStatus: SYNC_STATUS.SYNCED },
-        { id: '2', syncStatus: SYNC_STATUS.SYNCED }
-      ]);
+      const state = createState([{ id: '1' }, { id: '2' }], {
+        '1': { status: SYNC_STATUS.SYNCED },
+        '2': { status: SYNC_STATUS.SYNCED }
+      });
 
       const result = getPendingSyncBoards(state);
 
       expect(result).toHaveLength(0);
     });
 
-    it('should treat undefined syncStatus as not pending', () => {
-      const state = createState([
-        { id: '1' }, // no syncStatus property
-        { id: '2', syncStatus: SYNC_STATUS.PENDING }
-      ]);
+    it('should treat boards without syncMeta entry as not pending', () => {
+      const state = createState([{ id: '1' }, { id: '2' }], {
+        '2': { status: SYNC_STATUS.PENDING }
+      });
 
       const result = getPendingSyncBoards(state);
 
@@ -50,19 +50,19 @@ describe('Board selectors', () => {
 
   describe('hasPendingSyncBoards', () => {
     it('should return true when at least one board needs sync', () => {
-      const state = createState([
-        { id: '1', syncStatus: SYNC_STATUS.SYNCED },
-        { id: '2', syncStatus: SYNC_STATUS.PENDING }
-      ]);
+      const state = createState([{ id: '1' }, { id: '2' }], {
+        '1': { status: SYNC_STATUS.SYNCED },
+        '2': { status: SYNC_STATUS.PENDING }
+      });
 
       expect(hasPendingSyncBoards(state)).toBe(true);
     });
 
     it('should return false when no boards need sync', () => {
-      const state = createState([
-        { id: '1', syncStatus: SYNC_STATUS.SYNCED },
-        { id: '2', syncStatus: SYNC_STATUS.SYNCED }
-      ]);
+      const state = createState([{ id: '1' }, { id: '2' }], {
+        '1': { status: SYNC_STATUS.SYNCED },
+        '2': { status: SYNC_STATUS.SYNCED }
+      });
 
       expect(hasPendingSyncBoards(state)).toBe(false);
     });
@@ -76,20 +76,49 @@ describe('Board selectors', () => {
 
   describe('getPendingSyncBoardsCount', () => {
     it('should return count of boards needing sync', () => {
-      const state = createState([
-        { id: '1', syncStatus: SYNC_STATUS.PENDING },
-        { id: '2', syncStatus: SYNC_STATUS.SYNCED },
-        { id: '3', syncStatus: SYNC_STATUS.PENDING },
-        { id: '4', syncStatus: SYNC_STATUS.PENDING }
-      ]);
+      const state = createState(
+        [{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }],
+        {
+          '1': { status: SYNC_STATUS.PENDING },
+          '2': { status: SYNC_STATUS.SYNCED },
+          '3': { status: SYNC_STATUS.PENDING },
+          '4': { status: SYNC_STATUS.PENDING }
+        }
+      );
 
       expect(getPendingSyncBoardsCount(state)).toBe(3);
     });
 
     it('should return 0 when no boards need sync', () => {
-      const state = createState([{ id: '1', syncStatus: SYNC_STATUS.SYNCED }]);
+      const state = createState([{ id: '1' }], {
+        '1': { status: SYNC_STATUS.SYNCED }
+      });
 
       expect(getPendingSyncBoardsCount(state)).toBe(0);
+    });
+  });
+
+  describe('getDeletedBoardIds', () => {
+    it('should return IDs of boards marked as deleted in syncMeta', () => {
+      const state = createState([{ id: '1' }, { id: '2' }, { id: '3' }], {
+        '1': { status: SYNC_STATUS.PENDING, isDeleted: true },
+        '2': { status: SYNC_STATUS.SYNCED, isDeleted: false },
+        '3': { status: SYNC_STATUS.PENDING, isDeleted: true }
+      });
+
+      const result = getDeletedBoardIds(state);
+
+      expect(result).toHaveLength(2);
+      expect(result).toContain('1');
+      expect(result).toContain('3');
+    });
+
+    it('should return empty array when no boards are deleted', () => {
+      const state = createState([{ id: '1' }], {
+        '1': { status: SYNC_STATUS.SYNCED }
+      });
+
+      expect(getDeletedBoardIds(state)).toHaveLength(0);
     });
   });
 });

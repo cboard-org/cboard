@@ -52,3 +52,5 @@ export const SYNC_STATUS = {
   SYNCED: 'synced',
   PENDING: 'pending'
 };
+
+export const MARK_BOARD_DIRTY = 'cboard/Board/MARK_BOARD_DIRTY';

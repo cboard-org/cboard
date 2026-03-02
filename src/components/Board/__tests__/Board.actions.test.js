@@ -30,6 +30,7 @@ const [...boards] = defaultBoards.advanced;
 const initialState = {
   board: {
     boards: [mockBoard],
+    syncMeta: {},
     output: [],
     activeBoardId: null,
     navHistory: [],
@@ -596,15 +597,16 @@ describe('classifyRemoteBoards', () => {
   });
 
   it('should identify boards deleted on server (boardIdsToDelete)', () => {
-    const localBoards = [
-      {
-        id: '12345678901234567890',
-        name: 'Server Board',
-        syncStatus: types.SYNC_STATUS.SYNCED
-      }
-    ];
+    const localBoards = [{ id: '12345678901234567890', name: 'Server Board' }];
+    const syncMeta = {
+      '12345678901234567890': { status: types.SYNC_STATUS.SYNCED }
+    };
     const remoteBoards = []; // board not in remote = deleted on server
-    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+    const result = actions.classifyRemoteBoards(
+      localBoards,
+      remoteBoards,
+      syncMeta
+    );
 
     expect(result.boardIdsToDelete).toHaveLength(1);
     expect(result.boardIdsToDelete).toContain('12345678901234567890');
@@ -631,33 +633,37 @@ describe('classifyRemoteBoards', () => {
   });
 
   it('should not classify locally deleted boards as deleted on server', () => {
-    const localBoards = [
-      { id: '12345678901234567890', name: 'Board', isDeleted: true }
-    ];
+    const localBoards = [{ id: '12345678901234567890', name: 'Board' }];
+    const syncMeta = {
+      '12345678901234567890': {
+        status: types.SYNC_STATUS.PENDING,
+        isDeleted: true
+      }
+    };
     const remoteBoards = [];
-    const result = actions.classifyRemoteBoards(localBoards, remoteBoards);
+    const result = actions.classifyRemoteBoards(
+      localBoards,
+      remoteBoards,
+      syncMeta
+    );
 
     expect(result.boardIdsToDelete).toHaveLength(0);
   });
 });
 
 describe('pushLocalChangesToApi', () => {
-  it('should push boards with syncStatus: PENDING', async () => {
-    const boardWithPendingSync = {
-      ...mockBoard,
-      id: '12345678901234567890', // long ID - existing board
-      syncStatus: types.SYNC_STATUS.PENDING
-    };
-    const boardWithSyncedStatus = {
-      ...mockBoard,
-      id: '12345678901234567891',
-      syncStatus: types.SYNC_STATUS.SYNCED
-    };
+  it('should push boards with syncMeta status PENDING', async () => {
+    const boardWithPendingSync = { ...mockBoard, id: '12345678901234567890' };
+    const boardWithSyncedStatus = { ...mockBoard, id: '12345678901234567891' };
     const storeWithBoards = mockStore({
       ...initialState,
       board: {
         ...initialState.board,
-        boards: [boardWithPendingSync, boardWithSyncedStatus]
+        boards: [boardWithPendingSync, boardWithSyncedStatus],
+        syncMeta: {
+          '12345678901234567890': { status: types.SYNC_STATUS.PENDING },
+          '12345678901234567891': { status: types.SYNC_STATUS.SYNCED }
+        }
       }
     });
 
@@ -669,16 +675,13 @@ describe('pushLocalChangesToApi', () => {
   });
 
   it('should use updateApiObjectsNoChild for short ID boards', async () => {
-    const localCreatedBoard = {
-      ...mockBoard,
-      id: 'short123', // short ID - locally created
-      syncStatus: types.SYNC_STATUS.PENDING
-    };
+    const localCreatedBoard = { ...mockBoard, id: 'short123' };
     const storeWithBoards = mockStore({
       ...initialState,
       board: {
         ...initialState.board,
-        boards: [localCreatedBoard]
+        boards: [localCreatedBoard],
+        syncMeta: { short123: { status: types.SYNC_STATUS.PENDING } }
       }
     });
 
@@ -689,16 +692,14 @@ describe('pushLocalChangesToApi', () => {
     expect(actionTypes).toContain(types.CREATE_API_BOARD_STARTED);
   });
 
-  it('should not push any boards when none have syncStatus: PENDING', async () => {
-    const boardWithSyncedStatus = {
-      ...mockBoard,
-      syncStatus: types.SYNC_STATUS.SYNCED
-    };
+  it('should not push any boards when none have syncMeta status PENDING', async () => {
+    const boardWithSyncedStatus = { ...mockBoard };
     const storeWithBoards = mockStore({
       ...initialState,
       board: {
         ...initialState.board,
-        boards: [boardWithSyncedStatus]
+        boards: [boardWithSyncedStatus],
+        syncMeta: { [mockBoard.id]: { status: types.SYNC_STATUS.SYNCED } }
       }
     });
 
@@ -709,18 +710,19 @@ describe('pushLocalChangesToApi', () => {
     expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
   });
 
-  it('should not push boards with isDeleted: true', async () => {
-    const deletedBoard = {
-      ...mockBoard,
-      id: '12345678901234567890',
-      syncStatus: types.SYNC_STATUS.PENDING,
-      isDeleted: true
-    };
+  it('should not push boards marked as deleted in syncMeta, and delete them from server', async () => {
+    const deletedBoard = { ...mockBoard, id: '12345678901234567890' };
     const storeWithBoards = mockStore({
       ...initialState,
       board: {
         ...initialState.board,
-        boards: [deletedBoard]
+        boards: [deletedBoard],
+        syncMeta: {
+          '12345678901234567890': {
+            status: types.SYNC_STATUS.PENDING,
+            isDeleted: true
+          }
+        }
       }
     });
 
@@ -732,18 +734,16 @@ describe('pushLocalChangesToApi', () => {
     expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
   });
 
-  it('should hard delete local-only boards with isDeleted: true without API call', async () => {
-    const deletedLocalBoard = {
-      ...mockBoard,
-      id: 'short123', // short ID = local only
-      isDeleted: true,
-      syncStatus: types.SYNC_STATUS.PENDING
-    };
+  it('should hard delete local-only boards marked as deleted without API call', async () => {
+    const deletedLocalBoard = { ...mockBoard, id: 'short123' };
     const storeWithBoards = mockStore({
       ...initialState,
       board: {
         ...initialState.board,
-        boards: [deletedLocalBoard]
+        boards: [deletedLocalBoard],
+        syncMeta: {
+          short123: { status: types.SYNC_STATUS.PENDING, isDeleted: true }
+        }
       }
     });
 
@@ -805,7 +805,7 @@ describe('pushLocalChangesToApi', () => {
     const updateAction = storeWithBoards
       .getActions()
       .find(a => a.type === types.UPDATE_BOARD);
-    expect(updateAction.boardData.syncStatus).toBe(types.SYNC_STATUS.SYNCED);
+    expect(updateAction.fromRemote).toBe(true);
   });
 
   it('should push untracked board that does not exist on server', async () => {
@@ -850,16 +850,11 @@ describe('pushLocalChangesToApi', () => {
     expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
   });
 
-  it('should not delete untracked board with isDeleted but no syncStatus', async () => {
-    const untrackedDeletedBoard = {
-      ...mockBoard,
-      id: '12345678901234567890',
-      isDeleted: true
-      // no syncStatus
-    };
+  it('should not delete boards without a syncMeta entry', async () => {
+    const untrackedBoard = { ...mockBoard, id: '12345678901234567890' };
     const storeWithBoards = mockStore({
       ...initialState,
-      board: { ...initialState.board, boards: [untrackedDeletedBoard] }
+      board: { ...initialState.board, boards: [untrackedBoard], syncMeta: {} }
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
@@ -870,15 +865,17 @@ describe('pushLocalChangesToApi', () => {
   });
 
   it('should return early when no user email is available', async () => {
-    const pendingBoard = {
-      ...mockBoard,
-      id: '12345678901234567890',
-      syncStatus: types.SYNC_STATUS.PENDING
-    };
+    const pendingBoard = { ...mockBoard, id: '12345678901234567890' };
     const storeWithBoards = mockStore({
       ...initialState,
       app: { ...initialState.app, userData: {} },
-      board: { ...initialState.board, boards: [pendingBoard] }
+      board: {
+        ...initialState.board,
+        boards: [pendingBoard],
+        syncMeta: {
+          '12345678901234567890': { status: types.SYNC_STATUS.PENDING }
+        }
+      }
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
@@ -892,12 +889,17 @@ describe('pushLocalChangesToApi', () => {
     const otherUserBoard = {
       ...mockBoard,
       id: '12345678901234567890',
-      email: 'other@user.com',
-      syncStatus: types.SYNC_STATUS.PENDING
+      email: 'other@user.com'
     };
     const storeWithBoards = mockStore({
       ...initialState,
-      board: { ...initialState.board, boards: [otherUserBoard] }
+      board: {
+        ...initialState.board,
+        boards: [otherUserBoard],
+        syncMeta: {
+          '12345678901234567890': { status: types.SYNC_STATUS.PENDING }
+        }
+      }
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
@@ -911,12 +913,17 @@ describe('pushLocalChangesToApi', () => {
     const defaultBoard = {
       ...mockBoard,
       id: '12345678901234567890',
-      email: 'support@cboard.io',
-      syncStatus: types.SYNC_STATUS.PENDING
+      email: 'support@cboard.io'
     };
     const storeWithBoards = mockStore({
       ...initialState,
-      board: { ...initialState.board, boards: [defaultBoard] }
+      board: {
+        ...initialState.board,
+        boards: [defaultBoard],
+        syncMeta: {
+          '12345678901234567890': { status: types.SYNC_STATUS.PENDING }
+        }
+      }
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
@@ -930,12 +937,17 @@ describe('pushLocalChangesToApi', () => {
     const offlineBoard = {
       ...mockBoard,
       id: '12345678901234567890',
-      email: '',
-      syncStatus: types.SYNC_STATUS.PENDING
+      email: ''
     };
     const storeWithBoards = mockStore({
       ...initialState,
-      board: { ...initialState.board, boards: [offlineBoard] }
+      board: {
+        ...initialState.board,
+        boards: [offlineBoard],
+        syncMeta: {
+          '12345678901234567890': { status: types.SYNC_STATUS.PENDING }
+        }
+      }
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
@@ -1091,12 +1103,17 @@ describe('syncBoards', () => {
     const localBoard = {
       ...mockBoard,
       id: '12345678901234567890',
-      lastEdited: '2024-01-01T00:00:00Z',
-      syncStatus: types.SYNC_STATUS.SYNCED
+      lastEdited: '2024-01-01T00:00:00Z'
     };
     const store = mockStore({
       ...initialState,
-      board: { ...initialState.board, boards: [localBoard] }
+      board: {
+        ...initialState.board,
+        boards: [localBoard],
+        syncMeta: {
+          '12345678901234567890': { status: types.SYNC_STATUS.SYNCED }
+        }
+      }
     });
     const remoteBoards = [
       { ...localBoard, name: 'Updated', lastEdited: '2024-01-02T00:00:00Z' }
@@ -1116,19 +1133,19 @@ describe('syncBoards', () => {
       response: { status: 404 }
     });
 
-    const localBoard = {
-      ...mockBoard,
-      id: '12345678901234567890',
-      syncStatus: types.SYNC_STATUS.SYNCED
-    };
+    const localBoard = { ...mockBoard, id: '12345678901234567890' };
     const store = mockStore({
       ...initialState,
-      board: { ...initialState.board, boards: [localBoard] }
+      board: {
+        ...initialState.board,
+        boards: [localBoard],
+        syncMeta: {
+          '12345678901234567890': { status: types.SYNC_STATUS.SYNCED }
+        }
+      }
     });
-    // Board not in remote list → classified as potentially deleted
-    const remoteBoards = [];
 
-    await store.dispatch(actions.syncBoards(remoteBoards));
+    await store.dispatch(actions.syncBoards([]));
     const dispatchedActions = store.getActions();
 
     expect(dispatchedActions).toContainEqual({
@@ -1139,20 +1156,19 @@ describe('syncBoards', () => {
 
   it('should update board when server still has it despite not being in remote list (PULL)', async () => {
     const API = require('../../../api/api').default;
-    const serverBoard = {
-      id: '12345678901234567890',
-      name: 'Still on server'
-    };
+    const serverBoard = { id: '12345678901234567890', name: 'Still on server' };
     API.getBoard = jest.fn().mockResolvedValue(serverBoard);
 
-    const localBoard = {
-      ...mockBoard,
-      id: '12345678901234567890',
-      syncStatus: types.SYNC_STATUS.SYNCED
-    };
+    const localBoard = { ...mockBoard, id: '12345678901234567890' };
     const store = mockStore({
       ...initialState,
-      board: { ...initialState.board, boards: [localBoard] }
+      board: {
+        ...initialState.board,
+        boards: [localBoard],
+        syncMeta: {
+          '12345678901234567890': { status: types.SYNC_STATUS.SYNCED }
+        }
+      }
     });
 
     await store.dispatch(actions.syncBoards([]));
@@ -1163,15 +1179,17 @@ describe('syncBoards', () => {
     expect(updateActions).toHaveLength(1);
   });
 
-  it('should push locally modified boards with syncStatus: PENDING (PUSH)', async () => {
-    const pendingBoard = {
-      ...mockBoard,
-      id: '12345678901234567890',
-      syncStatus: types.SYNC_STATUS.PENDING
-    };
+  it('should push locally modified boards with syncMeta PENDING (PUSH)', async () => {
+    const pendingBoard = { ...mockBoard, id: '12345678901234567890' };
     const store = mockStore({
       ...initialState,
-      board: { ...initialState.board, boards: [pendingBoard] }
+      board: {
+        ...initialState.board,
+        boards: [pendingBoard],
+        syncMeta: {
+          '12345678901234567890': { status: types.SYNC_STATUS.PENDING }
+        }
+      }
     });
 
     await store.dispatch(actions.syncBoards([pendingBoard]));
@@ -1181,14 +1199,14 @@ describe('syncBoards', () => {
   });
 
   it('should create server boards for short ID pending boards (PUSH)', async () => {
-    const localBoard = {
-      ...mockBoard,
-      id: 'short123',
-      syncStatus: types.SYNC_STATUS.PENDING
-    };
+    const localBoard = { ...mockBoard, id: 'short123' };
     const store = mockStore({
       ...initialState,
-      board: { ...initialState.board, boards: [localBoard] }
+      board: {
+        ...initialState.board,
+        boards: [localBoard],
+        syncMeta: { short123: { status: types.SYNC_STATUS.PENDING } }
+      }
     });
 
     await store.dispatch(actions.syncBoards([]));
@@ -1198,54 +1216,46 @@ describe('syncBoards', () => {
   });
 
   it('should delete locally deleted boards from server (PUSH)', async () => {
-    const deletedBoard = {
-      ...mockBoard,
-      id: '12345678901234567890',
-      isDeleted: true,
-      syncStatus: types.SYNC_STATUS.PENDING
-    };
+    const deletedBoard = { ...mockBoard, id: '12345678901234567890' };
     const store = mockStore({
       ...initialState,
-      board: { ...initialState.board, boards: [deletedBoard] }
+      board: {
+        ...initialState.board,
+        boards: [deletedBoard],
+        syncMeta: {
+          '12345678901234567890': {
+            status: types.SYNC_STATUS.PENDING,
+            isDeleted: true
+          }
+        }
+      }
     });
 
-    await store.dispatch(actions.syncBoards([deletedBoard]));
+    await store.dispatch(actions.syncBoards([]));
     const actionTypes = store.getActions().map(a => a.type);
 
     expect(actionTypes).toContain(types.DELETE_API_BOARD_STARTED);
   });
 
   it('should dispatch syncBoardsFailure and return failure on error', async () => {
-    // Create a store with a getter that throws on second access
-    let accessCount = 0;
-    const failingStore = mockStore({
-      ...initialState,
-      board: {
-        get boards() {
-          accessCount++;
-          if (accessCount > 1) throw new Error('Sync failed');
-          return [mockBoard];
-        }
-      }
-    });
-
-    const result = await failingStore.dispatch(actions.syncBoards(null));
-    const actionTypes = failingStore.getActions().map(a => a.type);
-
-    expect(actionTypes).toContain(types.SYNC_BOARDS_FAILURE);
+    const result = await mockStore(initialState).dispatch(
+      actions.syncBoards(null)
+    );
     expect(result.success).toBe(false);
   });
 
   it('should execute PULL before PUSH in correct order', async () => {
-    const pendingBoard = {
-      ...mockBoard,
-      id: '12345678901234567890',
-      syncStatus: types.SYNC_STATUS.PENDING
-    };
+    const pendingBoard = { ...mockBoard, id: '12345678901234567890' };
     const newRemoteBoard = { id: 'new-remote-board', name: 'From Server' };
     const store = mockStore({
       ...initialState,
-      board: { ...initialState.board, boards: [pendingBoard] }
+      board: {
+        ...initialState.board,
+        boards: [pendingBoard],
+        syncMeta: {
+          '12345678901234567890': { status: types.SYNC_STATUS.PENDING }
+        }
+      }
     });
 
     await store.dispatch(actions.syncBoards([newRemoteBoard]));

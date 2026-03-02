@@ -42,7 +42,6 @@ import {
   DOWNLOAD_IMAGE_SUCCESS,
   DOWNLOAD_IMAGE_FAILURE,
   UNMARK_SHOULD_CREATE_API_BOARD,
-  SHORT_ID_MAX_LENGTH,
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
@@ -50,6 +49,7 @@ import {
 } from './Board.constants';
 
 import API from '../../api';
+import { isLocalBoard, isServerBoard } from './Board.utils';
 
 import {
   replaceBoardCommunicator,
@@ -558,7 +558,7 @@ export function getApiMyBoards() {
  * @param {Array} remoteBoards - Boards from the server
  * @returns {{ boardsToAdd, boardsToUpdate, boardIdsToDelete }}
  */
-export function classifyRemoteBoards(localBoards, remoteBoards) {
+export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
   const boardsToAdd = [];
   const boardsToUpdate = [];
   const boardIdsToDelete = [];
@@ -580,10 +580,10 @@ export function classifyRemoteBoards(localBoards, remoteBoards) {
 
   // Identify boards deleted on server
   for (const local of localBoards) {
-    const hasServerId = local.id.length >= SHORT_ID_MAX_LENGTH;
+    const hasServerId = isServerBoard(local);
     const notInRemote = !remoteBoardIds.has(local.id);
-    const notLocallyDeleted = !local.isDeleted;
-    const localHasSyncStatus = local.syncStatus != null;
+    const notLocallyDeleted = !syncMeta[local.id]?.isDeleted;
+    const localHasSyncStatus = syncMeta[local.id] != null;
 
     if (hasServerId && notInRemote && notLocallyDeleted && localHasSyncStatus) {
       boardIdsToDelete.push(local.id);
@@ -654,19 +654,20 @@ export function applyRemoteChangesToState({
 export function pushLocalChangesToApi(remoteBoards = []) {
   return async (dispatch, getState) => {
     const userEmail = getState().app?.userData?.email;
-    const { boards, activeBoardId } = getState().board;
+    const { boards, activeBoardId, syncMeta } = getState().board;
 
     // Boards explicitly marked PENDING by the sync system.
     // Only push boards that belong to the current user.
     const pendingBoards = boards.filter(b => {
-      if (b.syncStatus !== SYNC_STATUS.PENDING || b.isDeleted) return false;
+      const meta = syncMeta[b.id];
+      if (meta?.status !== SYNC_STATUS.PENDING || meta?.isDeleted) return false;
       if (b.email !== userEmail) return false;
       return true;
     });
 
-    // Untracked boards (no syncStatus) that belong to the current user.
+    // Untracked boards (no syncMeta entry) that belong to the current user.
     const untrackedBoards = boards.filter(b => {
-      if (b.syncStatus || b.isDeleted) return false;
+      if (syncMeta[b.id]) return false;
       if (b.email !== userEmail) return false;
       return true;
     });
@@ -684,30 +685,22 @@ export function pushLocalChangesToApi(remoteBoards = []) {
         untrackedBoardsToSync.push(board);
       } else {
         // Graduate to SYNCED without pushing
-        dispatch(
-          updateBoard(
-            {
-              ...board,
-              syncStatus: SYNC_STATUS.SYNCED
-            },
-            true
-          )
-        );
+        dispatch(updateBoard(board, true));
       }
     }
 
     const boardsToSync = [...pendingBoards, ...untrackedBoardsToSync];
 
     // Only delete boards explicitly marked via the sync system.
-    // Skip untracked boards (no syncStatus) to avoid unexpected deletions.
+    // Skip untracked boards (no syncMeta) to avoid unexpected deletions.
     const boardsToDelete = boards.filter(
-      b => b.isDeleted === true && b.syncStatus != null
+      b => syncMeta[b.id]?.isDeleted === true
     );
 
     // PUSH: Create/update boards
     for (const board of boardsToSync) {
       try {
-        if (board.id.length < SHORT_ID_MAX_LENGTH) {
+        if (isLocalBoard(board)) {
           const newBoardId = await dispatch(
             updateApiObjectsNoChild(board, true)
           );
@@ -725,7 +718,7 @@ export function pushLocalChangesToApi(remoteBoards = []) {
 
     // PUSH: Delete boards from server
     for (const board of boardsToDelete) {
-      if (board.id.length >= SHORT_ID_MAX_LENGTH) {
+      if (isServerBoard(board)) {
         // Board with server ID: delete from server
 
         try {
@@ -756,14 +749,14 @@ export function syncBoards(remoteBoards) {
     dispatch(syncBoardsStarted());
 
     try {
-      const localBoards = getState().board.boards;
+      const { boards: localBoards, syncMeta } = getState().board;
 
       // 1. Classify boards for PULL (remote changes + remote deletions)
       const {
         boardsToAdd,
         boardsToUpdate,
         boardIdsToDelete
-      } = classifyRemoteBoards(localBoards, remoteBoards);
+      } = classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
 
       // 2. PULL: Apply remote changes to local state (includes remote deletions)
       await dispatch(
@@ -823,7 +816,7 @@ export function updateApiBoard(boardData) {
 
 export function upsertApiBoard(boardData) {
   return dispatch => {
-    if (boardData.id.length < 14) {
+    if (isLocalBoard(boardData)) {
       return dispatch(createApiBoard(boardData, boardData.id))
         .then(res => {
           return res;
@@ -1011,7 +1004,7 @@ export function updateApiMarkedBoards() {
       if (!boardsIds.includes(board.id)) return;
 
       if (
-        board.id.length > 14 &&
+        isServerBoard(board) &&
         board.hasOwnProperty('email') &&
         board.email === getState().app.userData.email &&
         board.hasOwnProperty('markToUpdate') &&
@@ -1024,7 +1017,7 @@ export function updateApiMarkedBoards() {
           throw new Error(e.message);
         }
       }
-      if (board.id.length < SHORT_ID_MAX_LENGTH && board.shouldCreateBoard) {
+      if (isLocalBoard(board) && board.shouldCreateBoard) {
         const state = getState();
 
         // TODO - translate name using intl in a redux action

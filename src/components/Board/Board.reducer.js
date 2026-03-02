@@ -1,6 +1,7 @@
 import moment from 'moment';
 
 import { DEFAULT_BOARDS, deepCopy } from '../../helpers';
+import { isLocalBoard, isServerBoard } from './Board.utils';
 
 import {
   IMPORT_BOARDS,
@@ -38,11 +39,11 @@ import {
   DOWNLOAD_IMAGE_SUCCESS,
   DOWNLOAD_IMAGE_FAILURE,
   UNMARK_SHOULD_CREATE_API_BOARD,
-  SHORT_ID_MAX_LENGTH,
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
-  SYNC_STATUS
+  SYNC_STATUS,
+  MARK_BOARD_DIRTY
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -53,6 +54,7 @@ const initialBoardsState = [
 
 const initialState = {
   boards: deepCopy(initialBoardsState),
+  syncMeta: {},
   output: [],
   activeBoardId: null,
   navHistory: [],
@@ -64,6 +66,19 @@ const initialState = {
   isSyncing: false,
   syncError: null
 };
+
+function setSyncMeta(syncMeta, boardId, patch) {
+  return {
+    ...syncMeta,
+    [boardId]: { ...(syncMeta[boardId] || {}), ...patch }
+  };
+}
+
+function removeSyncMeta(syncMeta, boardId) {
+  const next = { ...syncMeta };
+  delete next[boardId];
+  return next;
+}
 
 function resolveLastEdited(oldBoard, newBoard) {
   const oldDate = oldBoard?.lastEdited ? moment(oldBoard.lastEdited) : null;
@@ -124,27 +139,34 @@ function boardReducer(state = initialState, action) {
       };
 
     case LOGOUT:
-      return { ...initialState, boards: deepCopy(initialBoardsState) };
+      return {
+        ...initialState,
+        boards: deepCopy(initialBoardsState),
+        syncMeta: {}
+      };
 
     case IMPORT_BOARDS:
       return {
         ...state,
         boards: action.boards
       };
-    case ADD_BOARDS:
+    case ADD_BOARDS: {
+      const newBoards = action.boards.filter(
+        b => b != null && b.id && !state.boards.find(sb => sb.id === b.id)
+      );
+      const addedSyncMeta = newBoards.reduce((acc, b) => {
+        acc[b.id] = {
+          ...(state.syncMeta[b.id] || {}),
+          status: SYNC_STATUS.SYNCED
+        };
+        return acc;
+      }, {});
       return {
         ...state,
-        boards: state.boards.concat(
-          action.boards
-            .filter(
-              b => b != null && b.id && !state.boards.find(sb => sb.id === b.id)
-            )
-            .map(b => ({
-              ...b,
-              syncStatus: b.syncStatus || SYNC_STATUS.SYNCED
-            }))
-        )
+        boards: state.boards.concat(newBoards),
+        syncMeta: { ...state.syncMeta, ...addedSyncMeta }
       };
+    }
     case CHANGE_BOARD:
       const taBoards = [...state.boards];
       const taBoard = taBoards.find(item => item.id === action.boardId);
@@ -158,7 +180,7 @@ function boardReducer(state = initialState, action) {
         activeBoardId: action.boardId,
         isFixed: fixed
       };
-    case UPDATE_BOARD:
+    case UPDATE_BOARD: {
       const updateBoards = [...state.boards];
       const oldBoard = updateBoards.find(
         item => item.id === action.boardData.id
@@ -167,25 +189,27 @@ function boardReducer(state = initialState, action) {
       if (index !== -1) {
         const nextBoard = {
           ...action.boardData,
-          lastEdited: resolveLastEdited(oldBoard, action.boardData),
-          syncStatus: action.fromRemote
-            ? SYNC_STATUS.SYNCED
-            : SYNC_STATUS.PENDING
+          lastEdited: resolveLastEdited(oldBoard, action.boardData)
         };
         updateBoards.splice(index, 1, nextBoard);
         return {
           ...state,
-          boards: updateBoards
+          boards: updateBoards,
+          syncMeta: setSyncMeta(state.syncMeta, action.boardData.id, {
+            status: action.fromRemote ? SYNC_STATUS.SYNCED : SYNC_STATUS.PENDING
+          })
         };
       }
       return {
         ...state
       };
+    }
 
-    case REPLACE_BOARD:
+    case REPLACE_BOARD: {
       const nH = [...state.navHistory];
       const { prev, current } = action.payload;
       let boards = [...state.boards];
+      let syncMeta = state.syncMeta;
 
       if (prev.id !== current.id) {
         const boardIndex = boards.findIndex(b => b.id === prev.id);
@@ -198,6 +222,10 @@ function boardReducer(state = initialState, action) {
         if (nhIndex >= 0) {
           nH[nhIndex] = current.id;
         }
+        if (syncMeta[prev.id]) {
+          syncMeta = { ...syncMeta, [current.id]: syncMeta[prev.id] };
+          syncMeta = removeSyncMeta(syncMeta, prev.id);
+        }
       } else {
         const boardIndex = boards.findIndex(b => b.id === current.id);
         if (boardIndex >= 0) {
@@ -208,10 +236,12 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         boards,
+        syncMeta,
         navHistory: nH,
         activeBoardId:
           state.activeBoardId === prev.id ? current.id : state.activeBoardId
       };
+    }
 
     case SWITCH_BOARD:
       return {
@@ -254,32 +284,39 @@ function boardReducer(state = initialState, action) {
         ...state,
         navHistory: dnavHistory
       };
-    case CREATE_BOARD:
+    case CREATE_BOARD: {
       const nextBoards = [...state.boards];
-      nextBoards.push({
-        ...action.boardData,
-        lastEdited: moment().format(),
-        syncStatus: SYNC_STATUS.PENDING
-      });
+      const newBoard = { ...action.boardData, lastEdited: moment().format() };
+      nextBoards.push(newBoard);
       return {
         ...state,
-        boards: nextBoards
+        boards: nextBoards,
+        syncMeta: setSyncMeta(state.syncMeta, action.boardData.id, {
+          status: SYNC_STATUS.PENDING,
+          isDeleted: false
+        })
       };
-    case DELETE_BOARD:
+    }
+    case DELETE_BOARD: {
       const boardIdsToDelete = Array.isArray(action.boardId)
         ? action.boardId
         : [action.boardId];
+      const deletedSyncMeta = boardIdsToDelete.reduce(
+        (acc, id) =>
+          setSyncMeta(acc, id, {
+            status: SYNC_STATUS.PENDING,
+            isDeleted: true
+          }),
+        state.syncMeta
+      );
       return {
         ...state,
-        boards: state.boards.map(board =>
-          boardIdsToDelete.includes(board.id)
-            ? { ...board, isDeleted: true, syncStatus: SYNC_STATUS.PENDING }
-            : board
-        ),
+        syncMeta: deletedSyncMeta,
         navHistory: state.navHistory.filter(
           id => !boardIdsToDelete.includes(id)
         )
       };
+    }
 
     case CREATE_TILE:
       return {
@@ -301,6 +338,18 @@ function boardReducer(state = initialState, action) {
         boards: state.boards.map(board =>
           board.id !== action.boardId ? board : tileReducer(board, action)
         )
+      };
+    case MARK_BOARD_DIRTY:
+      return {
+        ...state,
+        boards: state.boards.map(board =>
+          board.id !== action.boardId
+            ? board
+            : { ...board, lastEdited: moment().format() }
+        ),
+        syncMeta: setSyncMeta(state.syncMeta, action.boardId, {
+          status: SYNC_STATUS.PENDING
+        })
       };
     case FOCUS_TILE:
       return {
@@ -350,7 +399,7 @@ function boardReducer(state = initialState, action) {
             if (tiles[j] != null && tiles[j].loadBoard === action.boardId) {
               creadBoards[i].tiles[j].loadBoard = action.board.id;
               if (
-                creadBoards[i].id.length > 14 &&
+                isServerBoard(creadBoards[i]) &&
                 creadBoards[i].hasOwnProperty('email')
               ) {
                 creadBoards[i].markToUpdate = true;
@@ -358,8 +407,7 @@ function boardReducer(state = initialState, action) {
                 tilesToUpdateIds.push(tileUpdatedId);
               }
 
-              const shouldCreateBoard =
-                creadBoards[i].id.length < SHORT_ID_MAX_LENGTH;
+              const shouldCreateBoard = isLocalBoard(creadBoards[i]);
               if (shouldCreateBoard) {
                 boardsToMarkForCreation.push(creadBoards[i]);
               }
@@ -375,6 +423,7 @@ function boardReducer(state = initialState, action) {
         );
         if (!boardIsAlreadyCreatedOnDb) board.shouldCreateBoard = true;
       });
+      const newSyncMeta = removeSyncMeta(state.syncMeta, action.boardId);
       return {
         ...state,
         isFetching: false,
@@ -383,11 +432,14 @@ function boardReducer(state = initialState, action) {
             ? {
                 ...board,
                 id: action.board.id,
-                lastEdited: action.board.lastEdited,
-                syncStatus: SYNC_STATUS.SYNCED
+                lastEdited: action.board.lastEdited
               }
             : board
-        )
+        ),
+        syncMeta: setSyncMeta(newSyncMeta, action.board.id, {
+          status: SYNC_STATUS.SYNCED,
+          isDeleted: false
+        })
       };
     case CREATE_API_BOARD_FAILURE:
       return {
@@ -405,13 +457,12 @@ function boardReducer(state = initialState, action) {
         isFetching: false,
         boards: state.boards.map(board =>
           board.id === action.boardData.id
-            ? {
-                ...board,
-                lastEdited: action.boardData.lastEdited,
-                syncStatus: SYNC_STATUS.SYNCED
-              }
+            ? { ...board, lastEdited: action.boardData.lastEdited }
             : board
-        )
+        ),
+        syncMeta: setSyncMeta(state.syncMeta, action.boardData.id, {
+          status: SYNC_STATUS.SYNCED
+        })
       };
     case UPDATE_API_BOARD_FAILURE:
       return {
@@ -442,7 +493,8 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        boards: state.boards.filter(board => board.id !== action.board.id)
+        boards: state.boards.filter(board => board.id !== action.board.id),
+        syncMeta: removeSyncMeta(state.syncMeta, action.board.id)
       };
     case DELETE_API_BOARD_FAILURE:
       return {
