@@ -3,11 +3,12 @@ import thunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
 import googleAnalytics from './analytics';
 import createReducer from './reducers';
+import { syncTrackingMiddleware } from './middleware/syncTracking';
 
 let store;
 
 export default function configureStore(initialState = {}) {
-  const middlewares = [thunk, googleAnalytics];
+  const middlewares = [thunk, syncTrackingMiddleware, googleAnalytics];
   const enhancers = [applyMiddleware(...middlewares)];
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose

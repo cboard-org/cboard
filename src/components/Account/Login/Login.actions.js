@@ -211,7 +211,7 @@ export function login({ email, password, activatedData }, type = 'local') {
       dispatch(loginSuccess(loginData));
       await setAVoice({ loginData, dispatch, getState });
     } catch (e) {
-      console.log(e);
+      console.error(e);
       if (e.response != null) {
         return Promise.reject(e.response.data);
       }
