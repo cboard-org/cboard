@@ -189,6 +189,7 @@ describe('reducer', () => {
         ...initialState.boards,
         {
           ...mockBoard,
+          tiles: [{ id: '1234', loadBoard: '123' }],
           lastEdited: mockBoard.lastEdited
         }
       ],
@@ -379,7 +380,10 @@ describe('reducer', () => {
       )
     ).toEqual({
       ...initialState,
-      boards: [...initialState.boards, mockBoard]
+      boards: [
+        ...initialState.boards,
+        { ...mockBoard, tiles: [{ id: '1234', loadBoard: '123' }] }
+      ]
     });
   });
   it('should handle createTile', () => {
@@ -405,7 +409,7 @@ describe('reducer', () => {
           tiles: [
             {
               id: '1234',
-              loadBoard: '123'
+              loadBoard: '456456456456456456456'
             },
             { id: '456' }
           ]

@@ -117,8 +117,6 @@ function tileReducer(board, action) {
 }
 
 function boardReducer(state = initialState, action) {
-  //fix to prevent for null board
-  state.boards = state.boards.filter(board => board !== null);
   switch (action.type) {
     case LOGIN_SUCCESS:
       let activeBoardId = state.activeBoardId;
@@ -389,59 +387,76 @@ function boardReducer(state = initialState, action) {
         ...state,
         isLiveMode: !state.isLiveMode
       };
-    case CREATE_API_BOARD_SUCCESS:
-      const creadBoards = [...state.boards];
+    case CREATE_API_BOARD_SUCCESS: {
       const tilesToUpdateIds = [];
       const boardsToMarkForCreation = [];
-      for (let i = 0; i < creadBoards.length; i++) {
-        let tiles = creadBoards[i].tiles;
-        if (tiles) {
-          for (let j = 0; j < tiles.length; j++) {
-            if (tiles[j] != null && tiles[j].loadBoard === action.boardId) {
-              creadBoards[i].tiles[j].loadBoard = action.board.id;
-              if (
-                isServerBoard(creadBoards[i]) &&
-                creadBoards[i].hasOwnProperty('email')
-              ) {
-                creadBoards[i].markToUpdate = true;
-                const tileUpdatedId = creadBoards[i].tiles[j].id;
-                tilesToUpdateIds.push(tileUpdatedId);
-              }
 
-              const shouldCreateBoard = isLocalBoard(creadBoards[i]);
-              if (shouldCreateBoard) {
-                boardsToMarkForCreation.push(creadBoards[i]);
-              }
+      for (const board of state.boards) {
+        if (!board.tiles) continue;
+        for (const tile of board.tiles) {
+          if (tile != null && tile.loadBoard === action.boardId) {
+            if (isServerBoard(board) && board.hasOwnProperty('email')) {
+              tilesToUpdateIds.push(tile.id);
+            }
+            if (isLocalBoard(board)) {
+              boardsToMarkForCreation.push(board.id);
             }
           }
         }
       }
-      boardsToMarkForCreation.forEach(board => {
-        //if the tile id is already in a api board, we don't need to create it
-        const boardTileIds = board.tiles.map(tile => tile.id);
-        const boardIsAlreadyCreatedOnDb = boardTileIds.some(tileId =>
-          tilesToUpdateIds.includes(tileId)
+
+      // Pass 2: immutably produce new boards
+      const updatedBoards = state.boards.map(board => {
+        const tileNeedsUpdate = board.tiles?.some(
+          t => t != null && t.loadBoard === action.boardId
         );
-        if (!boardIsAlreadyCreatedOnDb) board.shouldCreateBoard = true;
+
+        let newBoard = board;
+
+        if (tileNeedsUpdate) {
+          const newTiles = board.tiles.map(tile =>
+            tile != null && tile.loadBoard === action.boardId
+              ? { ...tile, loadBoard: action.board.id }
+              : tile
+          );
+          newBoard = { ...board, tiles: newTiles };
+          if (isServerBoard(board) && board.hasOwnProperty('email')) {
+            newBoard = { ...newBoard, markToUpdate: true };
+          }
+        }
+
+        if (board.id === action.boardId) {
+          newBoard = {
+            ...newBoard,
+            id: action.board.id,
+            lastEdited: action.board.lastEdited
+          };
+        }
+
+        return newBoard;
       });
+
+      // Pass 3: apply shouldCreateBoard where needed
+      const finalBoards = updatedBoards.map(board => {
+        if (!boardsToMarkForCreation.includes(board.id)) return board;
+        const boardTileIds = board.tiles?.map(t => t.id) ?? [];
+        const alreadyOnDb = boardTileIds.some(id =>
+          tilesToUpdateIds.includes(id)
+        );
+        return alreadyOnDb ? board : { ...board, shouldCreateBoard: true };
+      });
+
       const newSyncMeta = removeSyncMeta(state.syncMeta, action.boardId);
       return {
         ...state,
         isFetching: false,
-        boards: creadBoards.map(board =>
-          board.id === action.boardId
-            ? {
-                ...board,
-                id: action.board.id,
-                lastEdited: action.board.lastEdited
-              }
-            : board
-        ),
+        boards: finalBoards,
         syncMeta: setSyncMeta(newSyncMeta, action.board.id, {
           status: SYNC_STATUS.SYNCED,
           isDeleted: false
         })
       };
+    }
     case CREATE_API_BOARD_FAILURE:
       return {
         ...state,
