@@ -194,7 +194,7 @@ describe('reducer', () => {
         }
       ],
       syncMeta: {
-        [mockBoard.id]: { status: SYNC_STATUS.SYNCED, isDeleted: false }
+        [mockBoard.id]: { status: SYNC_STATUS.SYNCED }
       },
       isFetching: false
     });
@@ -651,8 +651,7 @@ describe('reducer', () => {
       };
       const result = boardReducer(initialState, createBoard);
       expect(result.syncMeta['new-board']).toEqual({
-        status: SYNC_STATUS.PENDING,
-        isDeleted: false
+        status: SYNC_STATUS.PENDING
       });
       const createdBoard = result.boards.find(b => b.id === 'new-board');
       expect(createdBoard.syncStatus).toBeUndefined();
@@ -705,8 +704,7 @@ describe('reducer', () => {
       };
       const result = boardReducer(stateWithBoard, createApiBoardSuccess);
       expect(result.syncMeta['long-api-id-12345678']).toEqual({
-        status: SYNC_STATUS.SYNCED,
-        isDeleted: false
+        status: SYNC_STATUS.SYNCED
       });
       expect(result.syncMeta['short123']).toBeUndefined();
       const syncedBoard = result.boards.find(

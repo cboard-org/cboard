@@ -637,6 +637,8 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     const userName = getState().app?.userData?.name || '';
     const { boards, activeBoardId, syncMeta } = getState().board;
 
+    if (!userEmail) return;
+
     // Track boards transformed from default/offline boards - these need CREATE, not UPDATE.
     const transformedBoardIds = new Set();
 
@@ -669,7 +671,6 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     for (const b of boards) {
       const meta = syncMeta[b.id];
       if (meta?.status !== SYNC_STATUS.PENDING || meta?.isDeleted) continue;
-      if (!userEmail) continue;
 
       if (!b.email || b.email === 'support@cboard.io') {
         pendingBoards.push(transformBoard(b));
@@ -685,7 +686,6 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     // or were created offline (empty email).
     const untrackedBoards = boards.filter(b => {
       if (syncMeta[b.id]) return false;
-      if (!userEmail) return false;
       if (b.email === userEmail || !b.email) {
         return true;
       }
