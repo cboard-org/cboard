@@ -4,7 +4,6 @@ import { DEFAULT_BOARDS, deepCopy } from '../../helpers';
 import { isLocalBoard, isServerBoard } from './Board.utils';
 
 import {
-  IMPORT_BOARDS,
   ADD_BOARDS,
   CHANGE_BOARD,
   SWITCH_BOARD,
@@ -143,11 +142,6 @@ function boardReducer(state = initialState, action) {
         syncMeta: {}
       };
 
-    case IMPORT_BOARDS:
-      return {
-        ...state,
-        boards: action.boards
-      };
     case ADD_BOARDS: {
       const existingIds = new Set(state.boards.map(b => b.id));
       const newBoards = action.boards.filter(

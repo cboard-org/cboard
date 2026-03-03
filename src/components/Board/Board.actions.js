@@ -3,7 +3,6 @@ import isUrl from 'is-url';
 import moment from 'moment';
 
 import {
-  IMPORT_BOARDS,
   ADD_BOARDS,
   CHANGE_BOARD,
   SWITCH_BOARD,
@@ -72,13 +71,6 @@ import history from './../../history';
 import { improvePhraseAbortController } from '../../api/api';
 
 const BOARDS_PAGE_LIMIT = 500;
-
-export function importBoards(boards) {
-  return {
-    type: IMPORT_BOARDS,
-    boards
-  };
-}
 
 export function addBoards(boards) {
   return {

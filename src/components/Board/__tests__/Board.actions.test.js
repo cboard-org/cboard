@@ -52,15 +52,6 @@ const initialState = {
 };
 
 describe('actions', () => {
-  it('should create an action to import boards', () => {
-    const boards = {};
-    const expectedAction = {
-      type: types.IMPORT_BOARDS,
-      boards
-    };
-    expect(actions.importBoards(boards)).toEqual(expectedAction);
-  });
-
   it('should create an action to add boards', () => {
     const boards = {};
     const expectedAction = {

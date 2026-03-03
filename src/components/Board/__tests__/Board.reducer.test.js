@@ -3,7 +3,6 @@ import * as types from '../Board.constants';
 import boardReducer from '../Board.reducer';
 import { DEFAULT_BOARDS } from '../../../helpers';
 import {
-  IMPORT_BOARDS,
   ADD_BOARDS,
   CHANGE_BOARD,
   SWITCH_BOARD,
@@ -596,16 +595,6 @@ describe('reducer', () => {
     // Since mockBoard.id is not in initialState.boards (default boards), it gets added
     const result = boardReducer(stateWithMeta, addBoards);
     expect(result.syncMeta[mockBoard.id].status).toBe(SYNC_STATUS.SYNCED);
-  });
-  it('should handle importdBoards', () => {
-    const importdBoards = {
-      type: IMPORT_BOARDS,
-      boards: [mockBoard]
-    };
-    expect(boardReducer(initialState, importdBoards)).toEqual({
-      ...initialState,
-      boards: [mockBoard]
-    });
   });
   it('should handle syncBoardsStarted', () => {
     const syncBoardsStarted = {
