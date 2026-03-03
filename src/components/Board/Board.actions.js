@@ -58,6 +58,7 @@ import {
 
 import {
   replaceBoardCommunicator,
+  addBoardCommunicator,
   upsertCommunicator,
   getApiMyCommunicators,
   editCommunicator,
@@ -625,41 +626,89 @@ export function applyRemoteChangesToState({
  * PUSH: Upload local changes to the API.
  * Pushes all boards with syncStatus: PENDING, plus untracked boards (no syncStatus)
  * that are newer than their remote version or don't exist on the server.
+ * - Default boards (support@cboard.io) → transformed to user's boards, then CREATED on server
+ * - Offline boards (empty email) → transformed to user's boards, then CREATED on server
  * - Short ID boards (locally created) → updateApiObjectsNoChild (creates on server)
- * - Long ID boards (existing) → updateApiBoard (updates on server)
+ * - Long ID boards (user's existing) → updateApiBoard (updates on server)
  */
 export function pushLocalChangesToApi(remoteBoards = []) {
   return async (dispatch, getState) => {
     const userEmail = getState().app?.userData?.email;
+    const userName = getState().app?.userData?.name || '';
     const { boards, activeBoardId, syncMeta } = getState().board;
 
-    // Boards explicitly marked PENDING by the sync system.
-    // Only push boards that belong to the current user.
-    const pendingBoards = boards.filter(b => {
-      const meta = syncMeta[b.id];
-      if (meta?.status !== SYNC_STATUS.PENDING || meta?.isDeleted) return false;
-      if (b.email !== userEmail) return false;
-      return true;
-    });
+    // Track boards transformed from default/offline boards - these need CREATE, not UPDATE.
+    const transformedBoardIds = new Set();
 
-    // Untracked boards (no syncMeta entry) that belong to the current user.
+    // Helper to extract board name
+    const extractName = board => {
+      if (board.name) return board.name;
+      if (board.nameKey) {
+        const splitedNameKey = board.nameKey.split('.');
+        return splitedNameKey[splitedNameKey.length - 1];
+      }
+      return 'Untitled Board';
+    };
+
+    // Helper to transform default/offline boards to belong to the current user
+    const transformBoard = board => {
+      const transformedBoard = {
+        ...board,
+        email: userEmail,
+        author: board.author || userName || userEmail,
+        name: extractName(board),
+        isPublic: false
+      };
+      dispatch(updateBoard(transformedBoard, true));
+      transformedBoardIds.add(board.id);
+      return transformedBoard;
+    };
+
+    // Boards explicitly marked PENDING by the sync system.
+    const pendingBoards = [];
+    for (const b of boards) {
+      const meta = syncMeta[b.id];
+      if (meta?.status !== SYNC_STATUS.PENDING || meta?.isDeleted) continue;
+      if (!userEmail) continue;
+
+      if (!b.email || b.email === 'support@cboard.io') {
+        pendingBoards.push(transformBoard(b));
+        continue;
+      }
+      if (b.email === userEmail) {
+        pendingBoards.push(b);
+        continue;
+      }
+    }
+
+    // Untracked boards (no syncMeta entry) that belong to the current user
+    // or were created offline (empty email).
     const untrackedBoards = boards.filter(b => {
       if (syncMeta[b.id]) return false;
-      if (b.email !== userEmail) return false;
-      return true;
+      if (!userEmail) return false;
+      if (b.email === userEmail || !b.email) {
+        return true;
+      }
+      return false;
     });
 
     const untrackedBoardsToSync = [];
     const remoteBoardMap = new Map(remoteBoards.map(b => [b.id, b]));
 
+    // Helper to transform board if needed
+    const transformBoardIfNeeded = board => {
+      if (!board.email || board.email === 'support@cboard.io') {
+        return transformBoard(board);
+      }
+      return board;
+    };
+
     for (const board of untrackedBoards) {
       const remote = remoteBoardMap.get(board.id);
       if (!remote) {
-        // Not on server — needs push
-        untrackedBoardsToSync.push(board);
+        untrackedBoardsToSync.push(transformBoardIfNeeded(board));
       } else if (moment(board.lastEdited).isAfter(remote.lastEdited)) {
-        // Local is newer — needs push
-        untrackedBoardsToSync.push(board);
+        untrackedBoardsToSync.push(transformBoardIfNeeded(board));
       } else {
         // Graduate to SYNCED without pushing
         dispatch(updateBoard(board, true));
@@ -677,7 +726,8 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     // PUSH: Create/update boards
     for (const board of boardsToSync) {
       try {
-        if (isLocalBoard(board)) {
+        if (isLocalBoard(board) || transformedBoardIds.has(board.id)) {
+          dispatch(addBoardCommunicator(board.id));
           const newBoardId = await dispatch(
             updateApiObjectsNoChild(board, true)
           );
