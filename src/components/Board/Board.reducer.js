@@ -291,8 +291,7 @@ function boardReducer(state = initialState, action) {
         ...state,
         boards: nextBoards,
         syncMeta: setSyncMeta(state.syncMeta, action.boardData.id, {
-          status: SYNC_STATUS.PENDING,
-          isDeleted: false
+          status: SYNC_STATUS.PENDING
         })
       };
     }
@@ -452,8 +451,7 @@ function boardReducer(state = initialState, action) {
         isFetching: false,
         boards: finalBoards,
         syncMeta: setSyncMeta(newSyncMeta, action.board.id, {
-          status: SYNC_STATUS.SYNCED,
-          isDeleted: false
+          status: SYNC_STATUS.SYNCED
         })
       };
     }
