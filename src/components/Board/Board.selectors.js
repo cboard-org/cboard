@@ -16,7 +16,7 @@ export const getPendingSyncBoards = state =>
  * @returns {boolean} True if any board needs sync
  */
 export const hasPendingSyncBoards = state =>
-  Object.values(state.board.syncMeta).some(
+  Object.values(state.board.syncMeta ?? {}).some(
     m => m.status === SYNC_STATUS.PENDING
   );
 
@@ -26,7 +26,7 @@ export const hasPendingSyncBoards = state =>
  * @returns {number} Number of boards needing sync
  */
 export const getPendingSyncBoardsCount = state =>
-  Object.values(state.board.syncMeta).filter(
+  Object.values(state.board.syncMeta ?? {}).filter(
     m => m.status === SYNC_STATUS.PENDING
   ).length;
 
@@ -36,7 +36,7 @@ export const getPendingSyncBoardsCount = state =>
  * @returns {Array} Board IDs marked as deleted
  */
 export const getDeletedBoardIds = state =>
-  Object.entries(state.board.syncMeta)
+  Object.entries(state.board.syncMeta ?? {})
     .filter(([, m]) => m.isDeleted)
     .map(([id]) => id);
 
