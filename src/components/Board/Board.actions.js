@@ -632,7 +632,7 @@ export function pushLocalChangesToApi(remoteBoards = []) {
   return async (dispatch, getState) => {
     const userEmail = getState().app?.userData?.email;
     const { boards, activeBoardId, syncMeta } = getState().board;
-
+    if (!userEmail) return;
     // Boards explicitly marked PENDING by the sync system.
     // Only push boards that belong to the current user.
     const pendingBoards = boards.filter(b => {
