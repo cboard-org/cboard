@@ -1751,8 +1751,6 @@ export const mapStateToProps = state => {
   const offlineVoiceAlert = !isConnected && speech.options.isCloud;
   return {
     communicator: currentCommunicator,
-    // Note: getVisibleBoards() filtering logic is tested in Board.selectors.test.js
-    // Container-specific behavior (active board lookup) is tested in Board.container.test.js
     board: getVisibleBoards(state).find(board => board.id === activeBoardId),
     boards: getVisibleBoards(state),
     output: board.output,
