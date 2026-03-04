@@ -60,6 +60,8 @@ import {
   verifyAndUpsertCommunicator
 } from '../Communicator/Communicator.actions';
 import { disableTour } from '../App/App.actions';
+import { showPremiumRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
+import { isSubscriptionRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.selectors';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
@@ -188,6 +190,7 @@ export class BoardContainer extends Component {
     downloadImages: PropTypes.func,
     lang: PropTypes.string,
     isRootBoardTourEnabled: PropTypes.bool,
+    isSymbolSearchTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func,
     isLiveMode: PropTypes.bool,
     changeDefaultBoard: PropTypes.func,
@@ -206,7 +209,6 @@ export class BoardContainer extends Component {
     tileEditorOpen: false,
     isGettingApiObjects: false,
     copyPublicBoard: false,
-    isVariantBoard: false,
     blockedPrivateBoard: false,
     isFixedBoard: false,
     copiedTiles: [],
@@ -384,19 +386,13 @@ export class BoardContainer extends Component {
 
     const queryParams = new URLSearchParams(location.search);
     const isCbuilderBoard = queryParams.get('cbuilder');
-    const isVariantBoard = queryParams.get('variant');
-    this.setState({ isCbuilderBoard, isVariantBoard });
+    this.setState({ isCbuilderBoard });
 
     try {
       const remoteBoard = isCbuilderBoard
         ? await API.getCbuilderBoard(boardId)
         : await API.getBoard(boardId);
 
-      if (isVariantBoard) {
-        //this.setState({ copyVariantBoard: remoteBoard });
-        this.handleCopyRemoteBoard(remoteBoard);
-        return null;
-      }
       //if requested board is from the user just add it
       if (
         'name' in userData &&
@@ -800,12 +796,21 @@ export class BoardContainer extends Component {
   };
 
   handleLockClick = () => {
-    this.setState((state, props) => ({
-      isLocked: !state.isLocked,
-      isSaving: false,
-      isSelecting: false,
-      selectedTileIds: []
-    }));
+    const { showPremiumRequired, isSubscriptionRequired } = this.props;
+
+    this.setState(
+      prevState => ({
+        isLocked: !prevState.isLocked,
+        isSaving: false,
+        isSelecting: false,
+        selectedTileIds: []
+      }),
+      () => {
+        if (!this.state.isLocked && isSubscriptionRequired) {
+          showPremiumRequired({ showTryPeriodFinishedMessages: true });
+        }
+      }
+    );
   };
 
   handleSelectClick = () => {
@@ -1195,20 +1200,15 @@ export class BoardContainer extends Component {
     }
   };
 
-  handleCopyRemoteBoard = async (variantBoard = false) => {
+  handleCopyRemoteBoard = async () => {
     const { intl, showNotification, history, switchBoard } = this.props;
     try {
       this.setState({
         isSaving: true
       });
-
-      let toCopyBoard = null;
-      if (variantBoard) {
-        toCopyBoard = variantBoard;
-      } else {
-        toCopyBoard = this.state.copyPublicBoard;
-      }
-      const copiedBoard = await this.createBoardsRecursively(toCopyBoard);
+      const copiedBoard = await this.createBoardsRecursively(
+        this.state.copyPublicBoard
+      );
       if (!copiedBoard?.id) {
         throw new Error('Board not copied correctly');
       }
@@ -1589,6 +1589,7 @@ export class BoardContainer extends Component {
           isSelectAll={this.state.isSelectAll}
           isFixedBoard={this.state.isFixedBoard}
           isRootBoardTourEnabled={this.props.isRootBoardTourEnabled}
+          isSymbolSearchTourEnabled={this.props.isSymbolSearchTourEnabled}
           isUnlockedTourEnabled={this.props.isUnlockedTourEnabled}
           //updateBoard={this.handleUpdateBoard}
           onAddClick={this.handleAddClick}
@@ -1628,7 +1629,6 @@ export class BoardContainer extends Component {
           changeDefaultBoard={this.props.changeDefaultBoard}
           improvedPhrase={improvedPhrase}
           speak={speak}
-          isVariantBoard={this.state.isVariantBoard}
         />
         <Dialog
           open={!!this.state.copyPublicBoard && !isPremiumRequiredModalOpen}
@@ -1662,7 +1662,7 @@ export class BoardContainer extends Component {
             >
               {this.props.intl.formatMessage(messages.boardCopyCancel)}
             </Button>
-            <PremiumFeature>
+            {isCbuilderBoard ? (
               <Button
                 onClick={this.handleCopyRemoteBoard}
                 color="primary"
@@ -1675,7 +1675,22 @@ export class BoardContainer extends Component {
                   this.props.intl.formatMessage(messages.boardCopyAccept)
                 )}
               </Button>
-            </PremiumFeature>
+            ) : (
+              <PremiumFeature>
+                <Button
+                  onClick={this.handleCopyRemoteBoard}
+                  color="primary"
+                  variant="contained"
+                  disabled={this.state.isSaving}
+                >
+                  {this.state.isSaving ? (
+                    <LoadingIcon />
+                  ) : (
+                    this.props.intl.formatMessage(messages.boardCopyAccept)
+                  )}
+                </Button>
+              </PremiumFeature>
+            )}
           </DialogActions>
         </Dialog>
         <Dialog
@@ -1727,21 +1742,30 @@ export class BoardContainer extends Component {
           userData={this.props.userData}
           folders={this.props.boards}
           onAddApiBoard={this.handleAddApiBoard}
+          isSymbolSearchTourEnabled={this.props.isSymbolSearchTourEnabled}
+          disableTour={this.props.disableTour}
         />
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = ({
-  board,
-  communicator,
-  speech,
-  scanner,
-  app: { displaySettings, navigationSettings, userData, isConnected, liveHelp },
-  language: { lang },
-  subscription: { premiumRequiredModalState }
-}) => {
+const mapStateToProps = state => {
+  const {
+    board,
+    communicator,
+    speech,
+    scanner,
+    app: {
+      displaySettings,
+      navigationSettings,
+      userData,
+      isConnected,
+      liveHelp
+    },
+    language: { lang },
+    subscription: { premiumRequiredModalState }
+  } = state;
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
     communicator => communicator.id === activeCommunicatorId
@@ -1767,9 +1791,11 @@ const mapStateToProps = ({
     lang,
     offlineVoiceAlert,
     isRootBoardTourEnabled: liveHelp.isRootBoardTourEnabled,
+    isSymbolSearchTourEnabled: liveHelp.isSymbolSearchTourEnabled,
     isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
     isPremiumRequiredModalOpen: premiumRequiredModalState?.open,
-    improvedPhrase: board.improvedPhrase
+    improvedPhrase: board.improvedPhrase,
+    isSubscriptionRequired: isSubscriptionRequired(state)
   };
 };
 
@@ -1807,7 +1833,8 @@ const mapDispatchToProps = {
   trackSymbolSelection,
   trackPhraseSpoken,
   trackClearAction,
-  trackBackspaceAction
+  trackBackspaceAction,
+  showPremiumRequired
 };
 
 export default connect(

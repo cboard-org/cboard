@@ -56,7 +56,7 @@ export function Login({
 
   const isButtonDisabled = isLogging || !!loginStatus.success;
 
-  const { dialogStyle, dialogContentStyle } = dialogWithKeyboardStyle;
+  const { dialogStyle, dialogContentStyle } = dialogWithKeyboardStyle ?? {};
 
   return (
     <Dialog

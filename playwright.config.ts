@@ -12,6 +12,19 @@ import { defineConfig, devices } from '@playwright/test';
  * 
  * @see https://playwright.dev/docs/test-configuration
  */
+
+// Test credentials configuration
+export const testCredentials = {
+  elevenLabsApiKey: process.env.ELEVENLABS_API_KEY || 'sk_0000000000000000000',
+  email: process.env.TEST_USER_EMAIL || 'anything@cboard.io',
+  password: process.env.TEST_USER_PASSWORD || 'lote10mza126',
+};
+
+// Set environment variables for backward compatibility
+process.env.TEST_USER_EMAIL = testCredentials.email;
+process.env.TEST_USER_PASSWORD = testCredentials.password;
+process.env.ELEVENLABS_API_KEY = testCredentials.elevenLabsApiKey;
+
 const config = defineConfig({
   /* Balanced timeout settings */
   expect: {

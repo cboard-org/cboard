@@ -36,6 +36,7 @@ export const APP_LANGS = [
   'ja-JP',
   'km-KH',
   'ko-KR',
+  'lo-LA',
   'mk-MK',
   'ml-IN',
   'nb-NO',
@@ -62,7 +63,8 @@ export const APP_LANGS = [
   'uk-UA',
   'vi-VN',
   'zh-CN',
-  'zu-ZA' // for crowdin contextual translation
+  'zu-ZA'
+  // for crowdin contextual translation
 ];
 
 export const USER_DATA_PROPERTIES = [

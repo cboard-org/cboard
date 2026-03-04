@@ -12,8 +12,7 @@ const propTypes = {
   isRootBoardTourEnabled: PropTypes.bool,
   isUnlockedTourEnabled: PropTypes.bool,
   isLocked: PropTypes.bool,
-  disableTour: PropTypes.func.isRequired,
-  isVariantBoard: PropTypes.bool
+  disableTour: PropTypes.func.isRequired
 };
 
 const joyRideStyles = {
@@ -49,8 +48,7 @@ function BoardTour({
   isLocked,
   disableTour,
   intl,
-  onDefaultBoardOptionClick,
-  isVariantBoard
+  onDefaultBoardOptionClick
 }) {
   const unlockedHelpSteps = [
     {
@@ -113,17 +111,13 @@ function BoardTour({
           <h2>
             <FormattedMessage {...messages.walkthroughWelcome} />
           </h2>
-          {!isVariantBoard && (
-            <p>
-              <FormattedMessage {...messages.walkthroughChooseABoard} />
-            </p>
-          )}
-          {!isVariantBoard && (
-            <DefaultBoardsGallery
-              intl={intl}
-              onOptionClick={onDefaultBoardOptionClick}
-            />
-          )}
+          <p>
+            <FormattedMessage {...messages.walkthroughChooseABoard} />
+          </p>
+          <DefaultBoardsGallery
+            intl={intl}
+            onOptionClick={onDefaultBoardOptionClick}
+          />
         </>
       )
     },
@@ -133,10 +127,9 @@ function BoardTour({
       content: <FormattedMessage {...messages.walkthroughUnlock} />
     }
   ];
-
   return (
     <div>
-      {isLocked && isRootBoardTourEnabled && !isVariantBoard && (
+      {isLocked && isRootBoardTourEnabled && (
         <Joyride
           callback={data => {
             const { status } = data;

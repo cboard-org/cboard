@@ -29,5 +29,10 @@ module.exports = {
   },
   babel: {
     plugins: ['babel-plugin-transform-import-meta']
+  },
+  jest: {
+    configure: {
+      setupFiles: ['<rootDir>/src/setupPolyfills.js']
+    }
   }
 };

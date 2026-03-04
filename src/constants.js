@@ -28,6 +28,7 @@ export const AZURE_VOICES_BASE_PATH_API =
 
 // AdSense constants
 export const NODE_ENV = process.env.NODE_ENV;
+export const IS_PRODUCTION = NODE_ENV === 'production';
 const HOSTNAME = window.location.hostname;
 export const ADSENSE_ON_PRODUCTION =
   HOSTNAME === 'app.cboard.io' && NODE_ENV === 'production';
@@ -57,3 +58,7 @@ export const PAYPAL_CLIENT_ID =
 export const GOOGLE_FIREBASE_WEB_CLIENT_ID =
   process.env.REACT_APP_GOOGLE_FIREBASE_WEB_CLIENT_ID ||
   '772840497386-4m51j455n7aqi54uhfm7ub6p645or2ed.apps.googleusercontent.com';
+
+// ElevenLabs related constants
+export const ELEVENLABS_API_BASE_URL = 'https://api.elevenlabs.io';
+export const ELEVENLABS_DEFAULT_TIMEOUT = 10000;
