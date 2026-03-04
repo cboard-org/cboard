@@ -51,5 +51,6 @@ export const SHORT_ID_MAX_LENGTH = 14;
 
 export const SYNC_STATUS = {
   SYNCED: 'synced',
-  PENDING: 'pending'
+  PENDING: 'pending',
+  SYNCING: 'syncing'
 };
