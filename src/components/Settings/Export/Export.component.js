@@ -14,6 +14,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Divider from '@material-ui/core/Divider';
 
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Export.messages';
 
@@ -49,7 +52,8 @@ class Export extends React.Component {
       singleBoard: '',
       loadingSingle: false,
       loadingAll: false,
-      boardError: false
+      boardError: false,
+      showTileBorders: false
     };
   }
 
@@ -65,6 +69,12 @@ class Export extends React.Component {
     this.setState({
       boardError: false,
       singleBoard: event.target.value
+    });
+  };
+
+  handleTileBordersChange = event => {
+    this.setState({
+      showTileBorders: event.target.checked
     });
   };
 
@@ -92,7 +102,8 @@ class Export extends React.Component {
           this.state.exportAllBoard,
           '',
           this.state.labelFontSize,
-          doneCallback
+          doneCallback,
+          this.state.showTileBorders
         );
       }
     );
@@ -121,7 +132,8 @@ class Export extends React.Component {
           this.state.exportSingleBoard,
           this.state.singleBoard,
           this.state.labelFontSize,
-          doneCallback
+          doneCallback,
+          this.state.showTileBorders
         );
       }
     );
@@ -357,6 +369,18 @@ class Export extends React.Component {
                     </FormControl>
                   </div>
                 </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={this.state.showTileBorders}
+                      onChange={this.handleTileBordersChange}
+                      color="primary"
+                    />
+                  }
+                  label={intl.formatMessage(messages.showTileBorders)}
+                />
               </ListItem>
             </List>
           </Paper>
