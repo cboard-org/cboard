@@ -15,6 +15,22 @@ export const isLocalBoard = board => board.id.length < SHORT_ID_MAX_LENGTH;
 export const isServerBoard = board => board.id.length >= SHORT_ID_MAX_LENGTH;
 
 /**
+ * Extract board name from board object.
+ * Falls back to parsing nameKey if name is not set.
+ * @param {Object} board - Board object
+ * @returns {string} Board name
+ */
+export const extractBoardName = board => {
+  if (board.name) return board.name;
+  if (board.nameKey) {
+    const splitedNameKey = board.nameKey.split('.');
+    const NAMEKEY_LAST_INDEX = splitedNameKey.length - 1;
+    return splitedNameKey[NAMEKEY_LAST_INDEX];
+  }
+  return 'Untitled Board';
+};
+
+/**
  * Classify remote boards for PULL operation.
  * Identifies boards that are new from the server or have newer versions on the server.
  * @param {Array} localBoards - Boards from local state
