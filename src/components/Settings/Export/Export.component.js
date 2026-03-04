@@ -25,7 +25,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import {
   LARGE_FONT_SIZE,
   MEDIUM_FONT_SIZE,
-  SMALL_FONT_SIZE,
+  SMALL_FONT_SIZE
 } from './Export.constants';
 
 const propTypes = {
@@ -38,7 +38,7 @@ const propTypes = {
    */
   onClose: PropTypes.func,
   boards: PropTypes.array.isRequired,
-  intl: intlShape.isRequired,
+  intl: intlShape.isRequired
 };
 
 class Export extends React.Component {
@@ -53,7 +53,7 @@ class Export extends React.Component {
       loadingSingle: false,
       loadingAll: false,
       boardError: false,
-      showTileBorders: false,
+      showTileBorders: false
     };
   }
 
@@ -65,37 +65,37 @@ class Export extends React.Component {
     this.setState({ exportMenu: null });
   }
 
-  handleBoardChange = (event) => {
+  handleBoardChange = event => {
     this.setState({
       boardError: false,
-      singleBoard: event.target.value,
+      singleBoard: event.target.value
     });
   };
 
-  handleTileBordersChange = (event) => {
+  handleTileBordersChange = event => {
     this.setState({
-      showTileBorders: event.target.checked,
+      showTileBorders: event.target.checked
     });
   };
 
-  handleSizeChange = (event) => {
+  handleSizeChange = event => {
     this.setState({
       boardError: false,
-      labelFontSize: event.target.value,
+      labelFontSize: event.target.value
     });
   };
 
-  handleAllBoardChange = (event) => {
+  handleAllBoardChange = event => {
     const doneCallback = () => {
       this.setState({
-        loadingAll: false,
+        loadingAll: false
       });
     };
 
     this.setState(
       {
         loadingAll: true,
-        exportAllBoard: event.target.value,
+        exportAllBoard: event.target.value
       },
       () => {
         this.props.onExportClick(
@@ -103,28 +103,29 @@ class Export extends React.Component {
           '',
           this.state.labelFontSize,
           doneCallback,
+          this.state.showTileBorders
         );
-      },
+      }
     );
   };
 
-  handleSingleBoardChange = (event) => {
+  handleSingleBoardChange = event => {
     if (!this.state.singleBoard) {
       this.setState({
-        boardError: true,
+        boardError: true
       });
       return;
     }
     const doneCallback = () => {
       this.setState({
-        loadingSingle: false,
+        loadingSingle: false
       });
     };
 
     this.setState(
       {
         loadingSingle: true,
-        exportSingleBoard: event.target.value,
+        exportSingleBoard: event.target.value
       },
       () => {
         this.props.onExportClick(
@@ -132,9 +133,9 @@ class Export extends React.Component {
           this.state.singleBoard,
           this.state.labelFontSize,
           doneCallback,
-          this.state.showTileBorders,
+          this.state.showTileBorders
         );
-      },
+      }
     );
   };
 
@@ -174,7 +175,7 @@ class Export extends React.Component {
                           >
                             OpenBoard
                           </Link>
-                        ),
+                        )
                       }}
                     />
                   }
@@ -207,16 +208,16 @@ class Export extends React.Component {
                             onChange={this.handleBoardChange}
                           >
                             {boards.map(
-                              (board) =>
+                              board =>
                                 !board.hidden && (
                                   <MenuItem key={board.id} value={board}>
                                     {board.name ||
                                       (board.nameKey &&
                                         intl.formatMessage({
-                                          id: board.nameKey,
+                                          id: board.nameKey
                                         }))}
                                   </MenuItem>
-                                ),
+                                )
                             )}
                           </Select>
                         </FormControl>
@@ -273,7 +274,7 @@ class Export extends React.Component {
                           >
                             OpenBoard
                           </Link>
-                        ),
+                        )
                       }}
                     />
                   }
