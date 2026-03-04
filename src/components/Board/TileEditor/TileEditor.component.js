@@ -46,7 +46,7 @@ import PremiumFeature from '../../PremiumFeature';
 import LoadBoardEditor from './LoadBoardEditor/LoadBoardEditor';
 import { Typography } from '@material-ui/core';
 import { LostedFolderForLoadBoardAlert } from './LostedFolderForLoadBoardAlert';
-import { SHORT_ID_MAX_LENGTH } from '../Board.constants';
+import { isLocalBoard } from '../Board.utils';
 const NONE_VALUE = 'none';
 export class TileEditor extends Component {
   static propTypes = {
@@ -542,7 +542,7 @@ export class TileEditor extends Component {
 
     const loadBoardName =
       loadBoardData && resolveBoardName(loadBoardData, intl);
-    const isLocalLoadBoard = loadBoard?.length < SHORT_ID_MAX_LENGTH;
+    const isLocalLoadBoard = loadBoard && isLocalBoard({ id: loadBoard });
 
     return (
       <div className="TileEditor">
