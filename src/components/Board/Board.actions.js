@@ -53,7 +53,8 @@ import API from '../../api';
 import {
   isLocalBoard,
   isServerBoard,
-  classifyRemoteBoards
+  classifyRemoteBoards,
+  extractBoardName
 } from './Board.utils';
 
 import {
@@ -642,23 +643,13 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     // Track boards transformed from default/offline boards - these need CREATE, not UPDATE.
     const transformedBoardIds = new Set();
 
-    // Helper to extract board name
-    const extractName = board => {
-      if (board.name) return board.name;
-      if (board.nameKey) {
-        const splitedNameKey = board.nameKey.split('.');
-        return splitedNameKey[splitedNameKey.length - 1];
-      }
-      return 'Untitled Board';
-    };
-
     // Helper to transform default/offline boards to belong to the current user
     const transformBoard = board => {
       const transformedBoard = {
         ...board,
         email: userEmail,
         author: board.author || userName || userEmail,
-        name: extractName(board),
+        name: extractBoardName(board),
         isPublic: false
       };
       dispatch(updateBoard(transformedBoard, true));
@@ -1055,12 +1046,7 @@ export function updateApiMarkedBoards() {
 
         // TODO - translate name using intl in a redux action
         //name: intl.formatMessage({ id: allBoards[i].nameKey })
-        const extractName = () => {
-          const splitedNameKey = board.nameKey.split('.');
-          const NAMEKEY_LAST_INDEX = splitedNameKey.length - 1;
-          return splitedNameKey[NAMEKEY_LAST_INDEX];
-        };
-        const name = board.name ?? extractName();
+        const name = extractBoardName(board);
         let boardData = {
           ...board,
           author: state.app.userData.name,
