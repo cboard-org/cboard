@@ -598,6 +598,8 @@ export const mapStateToProps = (
     communicator => communicator.id === activeCommunicatorId
   );
 
+  // Note: getVisibleBoards() filtering logic is tested in Board.selectors.test.js
+  // Container-specific communicatorBoards filtering is tested in CommunicatorDialog.container.test.js
   const visibleBoards = getVisibleBoards({ board });
   const communicatorBoards = visibleBoards.filter(
     board => currentCommunicator.boards.indexOf(board.id) >= 0
