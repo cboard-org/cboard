@@ -57,9 +57,12 @@ export class ExportContainer extends PureComponent {
             currentBoard,
             labelFontSize,
             intl,
-            true
+            true,
+            showTileBorders
           );
         }
+      } else if (type === 'openboard' && !singleBoard) {
+        await EXPORT_HELPERS.openboardExportAdapter(boards, intl);
       } else if (type !== 'pdf' && !singleBoard) {
         await EXPORT_HELPERS[exportConfig.callback](
           boards,
