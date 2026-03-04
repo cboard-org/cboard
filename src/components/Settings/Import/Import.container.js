@@ -4,8 +4,13 @@ import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 import shortid from 'shortid';
 
-import { addBoards, changeBoard } from '../../Board/Board.actions';
-import { SYNC_STATUS } from '../../Board/Board.constants';
+import {
+  addBoards,
+  changeBoard,
+  markBoardDirty
+} from '../../Board/Board.actions';
+import { isLocalBoard } from '../../Board/Board.utils';
+import { getVisibleBoards } from '../../Board/Board.selectors';
 import {
   upsertApiCommunicator,
   verifyAndUpsertCommunicator
@@ -60,8 +65,7 @@ export class ImportContainer extends PureComponent {
           try {
             boardToBeUpdated = await API.updateBoard(boardToBeUpdated);
           } catch (err) {
-            console.log(err.message);
-            boardToBeUpdated.syncStatus = SYNC_STATUS.PENDING;
+            console.error(err.message);
           }
         }
 
@@ -100,10 +104,9 @@ export class ImportContainer extends PureComponent {
             if (board.id) {
               response.prevId = board.id;
             }
-            response.syncStatus = SYNC_STATUS.SYNCED;
             return response;
           } catch (err) {
-            console.log(err.message);
+            console.error(err.message);
             const localBoard = this.prepareLocalBoard(boardToCreate);
             if (board.id) {
               localBoard.prevId = board.id;
@@ -124,6 +127,9 @@ export class ImportContainer extends PureComponent {
     );
 
     this.props.addBoards(boardsResponse);
+    boardsResponse
+      .filter(board => isLocalBoard(board))
+      .forEach(board => this.props.markBoardDirty(board.id));
     await this.addBoardsToCommunicator(boardsResponse);
     this.props.switchBoard(boardsResponse[0].id);
   }
@@ -134,7 +140,6 @@ export class ImportContainer extends PureComponent {
       boardWithNewId.prevId = boardWithNewId.id;
     }
     boardWithNewId.id = shortid.generate();
-    boardWithNewId.syncStatus = SYNC_STATUS.PENDING;
     return boardWithNewId;
   }
 
@@ -233,7 +238,7 @@ export class ImportContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ board, communicator, app }) => {
+export const mapStateToProps = ({ board, communicator, app }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
     communicator => communicator.id === activeCommunicatorId
@@ -242,7 +247,7 @@ const mapStateToProps = ({ board, communicator, app }) => {
   const { userData } = app;
 
   return {
-    boards: board.boards,
+    boards: getVisibleBoards({ board }),
     currentCommunicator,
     communicators: communicator.communicators,
     userData
@@ -255,7 +260,8 @@ const mapDispatchToProps = {
   switchBoard,
   showNotification,
   verifyAndUpsertCommunicator,
-  upsertApiCommunicator
+  upsertApiCommunicator,
+  markBoardDirty
 };
 
 export default connect(
