@@ -54,7 +54,7 @@ import {
   isLocalBoard,
   isServerBoard,
   classifyRemoteBoards,
-  extractBoardName
+  transformBoardForUser
 } from './Board.utils';
 
 import {
@@ -636,6 +636,7 @@ export function pushLocalChangesToApi(remoteBoards = []) {
   return async (dispatch, getState) => {
     const userEmail = getState().app?.userData?.email;
     const userName = getState().app?.userData?.name || '';
+    const locale = getState().language?.lang;
     const { boards, activeBoardId, syncMeta } = getState().board;
 
     if (!userEmail) return;
@@ -645,13 +646,12 @@ export function pushLocalChangesToApi(remoteBoards = []) {
 
     // Helper to transform default/offline boards to belong to the current user
     const transformBoard = board => {
-      const transformedBoard = {
-        ...board,
-        email: userEmail,
-        author: board.author || userName || userEmail,
-        name: extractBoardName(board),
-        isPublic: false
-      };
+      const transformedBoard = transformBoardForUser(
+        board,
+        userEmail,
+        userName,
+        locale
+      );
       dispatch(updateBoard(transformedBoard, true));
       transformedBoardIds.add(board.id);
       return transformedBoard;
@@ -1043,18 +1043,16 @@ export function updateApiMarkedBoards() {
       }
       if (isLocalBoard(board) && board.shouldCreateBoard) {
         const state = getState();
+        const userEmail = state.app.userData.email;
+        const userName = state.app.userData.name;
+        const locale = state.language?.lang;
 
-        // TODO - translate name using intl in a redux action
-        //name: intl.formatMessage({ id: allBoards[i].nameKey })
-        const name = extractBoardName(board);
-        let boardData = {
-          ...board,
-          author: state.app.userData.name,
-          email: state.app.userData.email,
-          hidden: false,
-          locale: state.lang,
-          name
-        };
+        let boardData = transformBoardForUser(
+          board,
+          userEmail,
+          userName,
+          locale
+        );
         delete boardData.shouldCreateBoard;
         dispatch(unmarkShouldCreateBoard(boardData.id));
 
