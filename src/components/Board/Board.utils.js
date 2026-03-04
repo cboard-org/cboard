@@ -20,7 +20,7 @@ export const isServerBoard = board => board.id.length >= SHORT_ID_MAX_LENGTH;
  * @param {Object} board - Board object
  * @returns {string} Board name
  */
-export const extractBoardName = board => {
+const extractBoardName = board => {
   if (board.name) return board.name;
   if (board.nameKey) {
     const splitedNameKey = board.nameKey.split('.');
@@ -29,6 +29,25 @@ export const extractBoardName = board => {
   }
   return 'Untitled Board';
 };
+
+/**
+ * Transform a board to belong to the current user.
+ * Used when syncing default boards (support@cboard.io) or offline-created boards.
+ * @param {Object} board - Board object to transform
+ * @param {string} userEmail - User's email address
+ * @param {string} userName - User's display name
+ * @param {string} locale - User's locale/language code
+ * @returns {Object} Transformed board object
+ */
+export const transformBoardForUser = (board, userEmail, userName, locale) => ({
+  ...board,
+  email: userEmail,
+  author: board.author || userName || userEmail,
+  name: extractBoardName(board),
+  isPublic: false,
+  locale: locale,
+  hidden: false
+});
 
 /**
  * Classify remote boards for PULL operation.
