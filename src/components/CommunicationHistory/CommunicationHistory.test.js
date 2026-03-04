@@ -3,11 +3,12 @@ import {
   trackSymbolSelection,
   trackPhraseSpoken,
   trackClearAction,
+  trackBackspaceAction
 } from './CommunicationHistory.actions';
 import {
   ADD_COMMUNICATION_ENTRY,
   CLEAR_COMMUNICATION_HISTORY,
-  COMMUNICATION_ENTRY_TYPES,
+  COMMUNICATION_ENTRY_TYPES
 } from './CommunicationHistory.constants';
 import communicationHistoryReducer from './CommunicationHistory.reducer';
 import PDFReportService from '../../services/PDFReportService';
@@ -25,7 +26,7 @@ describe('CommunicationHistory', () => {
       const entry = {
         type: COMMUNICATION_ENTRY_TYPES.SYMBOL,
         label: 'Hello',
-        image: 'hello.png',
+        image: 'hello.png'
       };
 
       const action = addCommunicationEntry(entry);
@@ -43,7 +44,7 @@ describe('CommunicationHistory', () => {
         id: 'tile1',
         label: 'Water',
         image: 'water.png',
-        boardId: 'board1',
+        boardId: 'board1'
       };
 
       trackSymbolSelection(tile, 'user@example.com', 'session123')(dispatch);
@@ -56,9 +57,9 @@ describe('CommunicationHistory', () => {
             label: 'Water',
             image: 'water.png',
             userId: 'user@example.com',
-            sessionId: 'session123',
-          }),
-        }),
+            sessionId: 'session123'
+          })
+        })
       );
     });
 
@@ -67,7 +68,7 @@ describe('CommunicationHistory', () => {
       const output = [
         { label: 'I', image: 'i.png' },
         { label: 'want', image: 'want.png' },
-        { label: 'water', image: 'water.png' },
+        { label: 'water', image: 'water.png' }
       ];
 
       trackPhraseSpoken(output, 'user@example.com', 'session123')(dispatch);
@@ -80,9 +81,27 @@ describe('CommunicationHistory', () => {
             label: 'I want water',
             symbols: output,
             userId: 'user@example.com',
-            sessionId: 'session123',
-          }),
-        }),
+            sessionId: 'session123'
+          })
+        })
+      );
+    });
+
+    it('should track backspace action', () => {
+      const dispatch = jest.fn();
+
+      trackBackspaceAction('user@example.com', 'session123')(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: ADD_COMMUNICATION_ENTRY,
+          entry: expect.objectContaining({
+            type: COMMUNICATION_ENTRY_TYPES.BACKSPACE,
+            label: 'Backspace',
+            userId: 'user@example.com',
+            sessionId: 'session123'
+          })
+        })
       );
     });
   });
@@ -93,7 +112,7 @@ describe('CommunicationHistory', () => {
         entries: [],
         isExporting: false,
         exportError: null,
-        lastExport: null,
+        lastExport: null
       });
     });
 
@@ -102,12 +121,12 @@ describe('CommunicationHistory', () => {
         id: '123',
         type: COMMUNICATION_ENTRY_TYPES.SYMBOL,
         label: 'Hello',
-        timestamp: '2024-01-15T10:30:00.000Z',
+        timestamp: '2024-01-15T10:30:00.000Z'
       };
 
       const action = {
         type: ADD_COMMUNICATION_ENTRY,
-        entry,
+        entry
       };
 
       const newState = communicationHistoryReducer({ entries: [] }, action);
@@ -121,13 +140,13 @@ describe('CommunicationHistory', () => {
         entries: [
           { id: '1', userId: 'user1' },
           { id: '2', userId: 'user2' },
-          { id: '3', userId: 'user1' },
-        ],
+          { id: '3', userId: 'user1' }
+        ]
       };
 
       const action = {
         type: CLEAR_COMMUNICATION_HISTORY,
-        userId: 'user1',
+        userId: 'user1'
       };
 
       const newState = communicationHistoryReducer(initialState, action);
@@ -142,7 +161,7 @@ describe('CommunicationHistory', () => {
       expect(PDFReportService).toBeDefined();
       expect(PDFReportService.generateCommunicationReport).toBeDefined();
       expect(typeof PDFReportService.generateCommunicationReport).toBe(
-        'function',
+        'function'
       );
     });
   });
@@ -166,7 +185,7 @@ describe('Integration Test', () => {
     const output = [
       { label: 'I', image: 'i.png' },
       { label: 'want', image: 'want.png' },
-      { label: 'water', image: 'water.png' },
+      { label: 'water', image: 'water.png' }
     ];
     trackPhraseSpoken(output, userId, sessionId)(dispatch);
 
@@ -174,7 +193,7 @@ describe('Integration Test', () => {
 
     expect(dispatch).toHaveBeenCalledTimes(5);
 
-    const trackedEntries = dispatch.mock.calls.map((call) => call[0].entry);
+    const trackedEntries = dispatch.mock.calls.map(call => call[0].entry);
 
     expect(trackedEntries[0].label).toBe('I');
     expect(trackedEntries[1].label).toBe('want');
@@ -182,7 +201,7 @@ describe('Integration Test', () => {
     expect(trackedEntries[3].label).toBe('I want water');
     expect(trackedEntries[4].type).toBe(COMMUNICATION_ENTRY_TYPES.CLEAR);
 
-    trackedEntries.forEach((entry) => {
+    trackedEntries.forEach(entry => {
       expect(entry.userId).toBe(userId);
       expect(entry.sessionId).toBe(sessionId);
       expect(entry.timestamp).toBeDefined();
