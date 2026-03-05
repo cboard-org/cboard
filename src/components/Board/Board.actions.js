@@ -718,7 +718,21 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     for (const board of boardsToSync) {
       try {
         if (isLocalBoard(board) || transformedBoardIds.has(board.id)) {
-          dispatch(addBoardCommunicator(board.id));
+          const state = getState();
+          const activeCommunicatorBoards =
+            state &&
+            state.communicator &&
+            state.communicator.active &&
+            Array.isArray(state.communicator.active.boards)
+              ? state.communicator.active.boards
+              : null;
+
+          if (
+            !activeCommunicatorBoards ||
+            !activeCommunicatorBoards.includes(board.id)
+          ) {
+            dispatch(addBoardCommunicator(board.id));
+          }
           const newBoardId = await dispatch(
             updateApiObjectsNoChild(board, true)
           );
