@@ -652,6 +652,7 @@ export function pushLocalChangesToApi(remoteBoards = []) {
         userName,
         locale
       );
+      // Do not mark as coming from remote yet; keep it pending until CREATE succeeds.
       dispatch(updateBoard(transformedBoard, false));
       transformedBoardIds.add(board.id);
       return transformedBoard;
@@ -677,7 +678,11 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     // or were created unlogged (support@cboard.io as default).
     const untrackedBoards = boards.filter(b => {
       if (syncMeta[b.id]) return false;
-      if (b.email === userEmail || !b.email) {
+      if (
+        b.email === userEmail ||
+        !b.email ||
+        b.email === 'support@cboard.io'
+      ) {
         return true;
       }
       return false;
