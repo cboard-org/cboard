@@ -52,11 +52,13 @@ import API from '../../api';
 import {
   isLocalBoard,
   isServerBoard,
-  classifyRemoteBoards
+  classifyRemoteBoards,
+  transformBoardForUser
 } from './Board.utils';
 
 import {
   replaceBoardCommunicator,
+  addBoardCommunicator,
   upsertCommunicator,
   getApiMyCommunicators,
   editCommunicator,
@@ -617,41 +619,84 @@ export function applyRemoteChangesToState({
  * PUSH: Upload local changes to the API.
  * Pushes all boards with syncStatus: PENDING, plus untracked boards (no syncStatus)
  * that are newer than their remote version or don't exist on the server.
+ * - Default boards (support@cboard.io) → transformed to user's boards, then CREATED on server
+ * - Unlogged boards (support@cboard.io as default) → transformed to user's boards, then CREATED on server
  * - Short ID boards (locally created) → updateApiObjectsNoChild (creates on server)
- * - Long ID boards (existing) → updateApiBoard (updates on server)
+ * - Long ID boards (user's existing) → updateApiBoard (updates on server)
  */
 export function pushLocalChangesToApi(remoteBoards = []) {
   return async (dispatch, getState) => {
     const userEmail = getState().app?.userData?.email;
+    const userName = getState().app?.userData?.name || '';
+    const locale = getState().language?.lang;
     const { boards, activeBoardId, syncMeta } = getState().board;
-    if (!userEmail) return;
-    // Boards explicitly marked PENDING by the sync system.
-    // Only push boards that belong to the current user.
-    const pendingBoards = boards.filter(b => {
-      const meta = syncMeta[b.id];
-      if (meta?.status !== SYNC_STATUS.PENDING || meta?.isDeleted) return false;
-      if (b.email !== userEmail) return false;
-      return true;
-    });
 
-    // Untracked boards (no syncMeta entry) that belong to the current user.
+    if (!userEmail) return;
+
+    // Track boards transformed from default/offline boards - these need CREATE, not UPDATE.
+    const transformedBoardIds = new Set();
+
+    // Helper to transform default/offline boards to belong to the current user
+    const transformBoard = board => {
+      const transformedBoard = transformBoardForUser(
+        board,
+        userEmail,
+        userName,
+        locale
+      );
+      // Do not mark as coming from remote yet; keep it pending until CREATE succeeds.
+      dispatch(updateBoard(transformedBoard, false));
+      transformedBoardIds.add(board.id);
+      return transformedBoard;
+    };
+
+    // Boards explicitly marked PENDING by the sync system.
+    const pendingBoards = [];
+    for (const b of boards) {
+      const meta = syncMeta[b.id];
+      if (meta?.status !== SYNC_STATUS.PENDING || meta?.isDeleted) continue;
+
+      if (!b.email || b.email === 'support@cboard.io') {
+        pendingBoards.push(transformBoard(b));
+        continue;
+      }
+      if (b.email === userEmail) {
+        pendingBoards.push(b);
+        continue;
+      }
+    }
+
+    // Untracked boards (no syncMeta entry) that belong to the current user
+    // or were created unlogged (support@cboard.io as default).
     const untrackedBoards = boards.filter(b => {
       if (syncMeta[b.id]) return false;
-      if (b.email !== userEmail) return false;
-      return true;
+      if (
+        b.email === userEmail ||
+        !b.email ||
+        b.email === 'support@cboard.io'
+      ) {
+        return true;
+      }
+      return false;
     });
 
     const untrackedBoardsToSync = [];
     const remoteBoardMap = new Map(remoteBoards.map(b => [b.id, b]));
 
+    // Helper to transform board if needed
+    const transformBoardIfNeeded = board => {
+      if (!board.email || board.email === 'support@cboard.io') {
+        return transformBoard(board);
+      }
+      return board;
+    };
+
     for (const board of untrackedBoards) {
       const remote = remoteBoardMap.get(board.id);
       if (!remote) {
-        // Not on server — needs push
-        untrackedBoardsToSync.push(board);
+        untrackedBoardsToSync.push(transformBoardIfNeeded(board));
       } else if (moment(board.lastEdited).isAfter(remote.lastEdited)) {
-        // Local is newer — needs push
-        untrackedBoardsToSync.push(board);
+        untrackedBoardsToSync.push(transformBoardIfNeeded(board));
       } else {
         // Graduate to SYNCED without pushing
         dispatch(updateBoard(board, true));
@@ -669,7 +714,22 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     // PUSH: Create/update boards
     for (const board of boardsToSync) {
       try {
-        if (isLocalBoard(board)) {
+        if (isLocalBoard(board) || transformedBoardIds.has(board.id)) {
+          const state = getState();
+          const activeCommunicatorBoards =
+            state &&
+            state.communicator &&
+            state.communicator.active &&
+            Array.isArray(state.communicator.active.boards)
+              ? state.communicator.active.boards
+              : null;
+
+          if (
+            !activeCommunicatorBoards ||
+            !activeCommunicatorBoards.includes(board.id)
+          ) {
+            dispatch(addBoardCommunicator(board.id));
+          }
           const newBoardId = await dispatch(
             updateApiObjectsNoChild(board, true)
           );
@@ -994,23 +1054,16 @@ export function updateApiMarkedBoards() {
       }
       if (isLocalBoard(board) && board.shouldCreateBoard) {
         const state = getState();
+        const userEmail = state.app.userData.email;
+        const userName = state.app.userData.name;
+        const locale = state.language?.lang;
 
-        // TODO - translate name using intl in a redux action
-        //name: intl.formatMessage({ id: allBoards[i].nameKey })
-        const extractName = () => {
-          const splitedNameKey = board.nameKey.split('.');
-          const NAMEKEY_LAST_INDEX = splitedNameKey.length - 1;
-          return splitedNameKey[NAMEKEY_LAST_INDEX];
-        };
-        const name = board.name ?? extractName();
-        let boardData = {
-          ...board,
-          author: state.app.userData.name,
-          email: state.app.userData.email,
-          hidden: false,
-          locale: state.lang,
-          name
-        };
+        let boardData = transformBoardForUser(
+          board,
+          userEmail,
+          userName,
+          locale
+        );
         delete boardData.shouldCreateBoard;
         dispatch(unmarkShouldCreateBoard(boardData.id));
 

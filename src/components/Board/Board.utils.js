@@ -15,6 +15,41 @@ export const isLocalBoard = board => board.id.length < SHORT_ID_MAX_LENGTH;
 export const isServerBoard = board => board.id.length >= SHORT_ID_MAX_LENGTH;
 
 /**
+ * Extract board name from board object.
+ * Falls back to parsing nameKey if name is not set.
+ * @param {Object} board - Board object
+ * @returns {string} Board name
+ */
+const extractBoardName = board => {
+  if (board.name) return board.name;
+  if (board.nameKey) {
+    const splitNameKeyParts = board.nameKey.split('.');
+    const NAMEKEY_LAST_INDEX = splitNameKeyParts.length - 1;
+    return splitNameKeyParts[NAMEKEY_LAST_INDEX];
+  }
+  return '';
+};
+
+/**
+ * Transform a board to belong to the current user.
+ * Used when syncing default boards (support@cboard.io) or offline-created boards.
+ * @param {Object} board - Board object to transform
+ * @param {string} userEmail - User's email address
+ * @param {string} userName - User's display name
+ * @param {string} locale - User's locale/language code
+ * @returns {Object} Transformed board object
+ */
+export const transformBoardForUser = (board, userEmail, userName, locale) => ({
+  ...board,
+  email: userEmail,
+  author: userName || userEmail,
+  name: extractBoardName(board),
+  isPublic: false,
+  locale: locale,
+  hidden: false
+});
+
+/**
  * Classify remote boards for PULL operation.
  * Identifies boards that are new from the server or have newer versions on the server.
  * @param {Array} localBoards - Boards from local state
