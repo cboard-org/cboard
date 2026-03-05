@@ -27,7 +27,7 @@ const extractBoardName = board => {
     const NAMEKEY_LAST_INDEX = splitNameKeyParts.length - 1;
     return splitNameKeyParts[NAMEKEY_LAST_INDEX];
   }
-  return 'Untitled Board';
+  return '';
 };
 
 /**
@@ -42,7 +42,7 @@ const extractBoardName = board => {
 export const transformBoardForUser = (board, userEmail, userName, locale) => ({
   ...board,
   email: userEmail,
-  author: board.author || userName || userEmail,
+  author: userName || userEmail,
   name: extractBoardName(board),
   isPublic: false,
   locale: locale,
