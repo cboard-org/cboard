@@ -13,6 +13,7 @@ import {
 } from '../Communicator.actions';
 import { deleteBoard, deleteApiBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
+import { getVisibleBoards } from '../../Board/Board.selectors';
 import {
   addBoards,
   replaceBoard,
@@ -588,18 +589,22 @@ class CommunicatorDialogContainer extends React.Component {
   }
 }
 
-const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
+export const mapStateToProps = (
+  { board, communicator, language, app },
+  ownProps
+) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
     communicator => communicator.id === activeCommunicatorId
   );
 
-  const communicatorBoards = board.boards.filter(
+  const visibleBoards = getVisibleBoards({ board });
+  const communicatorBoards = visibleBoards.filter(
     board => currentCommunicator.boards.indexOf(board.id) >= 0
   );
 
   const { userData, displaySettings } = app;
-  const cboardBoards = board.boards.filter(
+  const cboardBoards = visibleBoards.filter(
     board => board.email === 'support@cboard.io'
   );
   const communicatorTour = app.liveHelp.communicatorTour || {
@@ -614,7 +619,7 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
     currentCommunicator,
     communicatorBoards,
     cboardBoards,
-    availableBoards: board.boards,
+    availableBoards: visibleBoards,
     userData,
     language,
     activeBoardId: board.activeBoardId,

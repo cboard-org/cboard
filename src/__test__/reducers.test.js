@@ -1,4 +1,7 @@
-import createReducer, { createMigratingStorage } from '../reducers';
+import createReducer, {
+  createMigratingStorage,
+  boardMigrations
+} from '../reducers';
 
 describe('reducers', () => {
   it('should create Reducer', () => {
@@ -104,6 +107,47 @@ describe('createMigratingStorage', () => {
 
       expect(newStorage.removeItem).toHaveBeenCalledWith('persist:root');
       expect(oldStorage.removeItem).not.toHaveBeenCalled();
+    });
+  });
+});
+
+describe('boardMigrations', () => {
+  describe('migration 1 – syncMeta default', () => {
+    it('defaults syncMeta to {} when missing from persisted state', () => {
+      const state = {
+        board: {
+          boards: [{ id: 'board-1' }]
+        }
+      };
+
+      const result = boardMigrations[1](state);
+
+      expect(result.board.syncMeta).toEqual({});
+      expect(result.board.boards).toEqual([{ id: 'board-1' }]);
+    });
+
+    it('preserves existing syncMeta when present', () => {
+      const existingSyncMeta = {
+        'board-1': { status: 'PENDING', isDeleted: false }
+      };
+      const state = {
+        board: {
+          boards: [{ id: 'board-1' }],
+          syncMeta: existingSyncMeta
+        }
+      };
+
+      const result = boardMigrations[1](state);
+
+      expect(result.board.syncMeta).toEqual(existingSyncMeta);
+    });
+
+    it('defaults syncMeta to {} when board state is undefined', () => {
+      const state = {};
+
+      const result = boardMigrations[1](state);
+
+      expect(result.board.syncMeta).toEqual({});
     });
   });
 });
