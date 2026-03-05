@@ -23,9 +23,9 @@ export const isServerBoard = board => board.id.length >= SHORT_ID_MAX_LENGTH;
 const extractBoardName = board => {
   if (board.name) return board.name;
   if (board.nameKey) {
-    const splitedNameKey = board.nameKey.split('.');
-    const NAMEKEY_LAST_INDEX = splitedNameKey.length - 1;
-    return splitedNameKey[NAMEKEY_LAST_INDEX];
+    const splitNameKeyParts = board.nameKey.split('.');
+    const NAMEKEY_LAST_INDEX = splitNameKeyParts.length - 1;
+    return splitNameKeyParts[NAMEKEY_LAST_INDEX];
   }
   return 'Untitled Board';
 };
