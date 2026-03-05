@@ -41,8 +41,7 @@ import {
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
-  SYNC_STATUS,
-  MARK_BOARD_DIRTY
+  SYNC_STATUS
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -150,7 +149,7 @@ function boardReducer(state = initialState, action) {
       const addedSyncMeta = newBoards.reduce((acc, b) => {
         acc[b.id] = {
           ...(state.syncMeta[b.id] || {}),
-          status: SYNC_STATUS.SYNCED
+          status: isLocalBoard(b) ? SYNC_STATUS.PENDING : SYNC_STATUS.SYNCED
         };
         return acc;
       }, {});
@@ -311,33 +310,14 @@ function boardReducer(state = initialState, action) {
     }
 
     case CREATE_TILE:
-      return {
-        ...state,
-        boards: state.boards.map(board =>
-          board.id !== action.boardId ? board : tileReducer(board, action)
-        )
-      };
     case DELETE_TILES:
-      return {
-        ...state,
-        boards: state.boards.map(board =>
-          board.id !== action.boardId ? board : tileReducer(board, action)
-        )
-      };
     case EDIT_TILES:
-      return {
-        ...state,
-        boards: state.boards.map(board =>
-          board.id !== action.boardId ? board : tileReducer(board, action)
-        )
-      };
-    case MARK_BOARD_DIRTY:
       return {
         ...state,
         boards: state.boards.map(board =>
           board.id !== action.boardId
             ? board
-            : { ...board, lastEdited: moment().format() }
+            : { ...tileReducer(board, action), lastEdited: moment().format() }
         ),
         syncMeta: setSyncMeta(state.syncMeta, action.boardId, {
           status: SYNC_STATUS.PENDING

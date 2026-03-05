@@ -43,8 +43,6 @@ export const DOWNLOAD_IMAGE_FAILURE = 'cboard/Board/DOWNLOAD_IMAGE_FAILURE';
 export const SYNC_BOARDS_STARTED = 'cboard/Board/SYNC_BOARDS_STARTED';
 export const SYNC_BOARDS_SUCCESS = 'cboard/Board/SYNC_BOARDS_SUCCESS';
 export const SYNC_BOARDS_FAILURE = 'cboard/Board/SYNC_BOARDS_FAILURE';
-export const MARK_BOARD_DIRTY = 'cboard/Board/MARK_BOARD_DIRTY';
-
 export const DEFAULT_ROWS_NUMBER = 5;
 export const DEFAULT_COLUMNS_NUMBER = 5;
 export const SHORT_ID_MAX_LENGTH = 14;
