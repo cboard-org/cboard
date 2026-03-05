@@ -674,7 +674,7 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     }
 
     // Untracked boards (no syncMeta entry) that belong to the current user
-    // or were created offline (empty email).
+    // or were created unlogged (support@cboard.io as default).
     const untrackedBoards = boards.filter(b => {
       if (syncMeta[b.id]) return false;
       if (b.email === userEmail || !b.email) {
