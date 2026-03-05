@@ -628,7 +628,7 @@ export function applyRemoteChangesToState({
  * Pushes all boards with syncStatus: PENDING, plus untracked boards (no syncStatus)
  * that are newer than their remote version or don't exist on the server.
  * - Default boards (support@cboard.io) → transformed to user's boards, then CREATED on server
- * - Offline boards (empty email) → transformed to user's boards, then CREATED on server
+ * - Unlogged boards (support@cboard.io as default) → transformed to user's boards, then CREATED on server
  * - Short ID boards (locally created) → updateApiObjectsNoChild (creates on server)
  * - Long ID boards (user's existing) → updateApiBoard (updates on server)
  */
@@ -652,7 +652,7 @@ export function pushLocalChangesToApi(remoteBoards = []) {
         userName,
         locale
       );
-      dispatch(updateBoard(transformedBoard, true));
+      dispatch(updateBoard(transformedBoard, false));
       transformedBoardIds.add(board.id);
       return transformedBoard;
     };
