@@ -4,6 +4,8 @@
   display: flex;
   background: #fff;
   color: rgba(0, 0, 0, 0.54);
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .is-dark .SymbolOutput {

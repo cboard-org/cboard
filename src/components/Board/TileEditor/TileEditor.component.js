@@ -32,6 +32,8 @@ import ColorSelect from '../../UI/ColorSelect';
 import VoiceRecorder from '../../VoiceRecorder';
 import './TileEditor.css';
 import EditIcon from '@material-ui/icons/Edit';
+import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 import ImageEditor from '../ImageEditor';
 
 import API from '../../../api';
@@ -356,6 +358,34 @@ export class TileEditor extends Component {
   handleSoundChange = sound => {
     this.updateTileProperty('sound', sound);
   };
+
+  handleInflectionOptionAdd = () => {
+    const currentOptions = this.currentTileProp('inflectionOptions') || [];
+    const newOption = {
+      id: shortid.generate(),
+      shorthandLabel: '',
+      outputLabel: '',
+      vocalization: ''
+    };
+    this.updateTileProperty('inflectionOptions', [
+      ...currentOptions,
+      newOption
+    ]);
+  };
+
+  handleInflectionOptionUpdate = (index, field, value) => {
+    const currentOptions = this.currentTileProp('inflectionOptions') || [];
+    const updatedOptions = currentOptions.map((option, i) =>
+      i === index ? { ...option, [field]: value } : option
+    );
+    this.updateTileProperty('inflectionOptions', updatedOptions);
+  };
+
+  handleInflectionOptionRemove = index => {
+    const currentOptions = this.currentTileProp('inflectionOptions') || [];
+    const updatedOptions = currentOptions.filter((_, i) => i !== index);
+    this.updateTileProperty('inflectionOptions', updatedOptions);
+  };
   handleTypeChange = (event, type) => {
     let loadBoard = '';
     if (type === 'folder' || type === 'board') {
@@ -647,6 +677,178 @@ export class TileEditor extends Component {
                       onChange={this.handleVocalizationChange}
                       fullWidth
                     />
+                    {this.currentTileProp('type') !== 'board' &&
+                      this.currentTileProp('type') !== 'folder' && (
+                        <div style={{ marginTop: '16px' }}>
+                          <FormLabel>
+                            {intl.formatMessage({
+                              id:
+                                'cboard.components.TileEditor.inflectionOptions',
+                              defaultMessage: 'Suffix and Tense Options'
+                            })}
+                          </FormLabel>
+                          {(
+                            this.currentTileProp('inflectionOptions') || []
+                          ).map((option, index) => (
+                            <Paper
+                              key={option.id || `option-${index}`}
+                              style={{
+                                padding: '16px',
+                                marginTop: '8px',
+                                marginBottom: '8px'
+                              }}
+                            >
+                              <div
+                                style={{
+                                  display: 'flex',
+                                  justifyContent: 'space-between',
+                                  alignItems: 'flex-start',
+                                  marginBottom: '8px'
+                                }}
+                              >
+                                <Typography variant="subtitle2">
+                                  {intl.formatMessage({
+                                    id:
+                                      'cboard.components.TileEditor.inflectionOption',
+                                    defaultMessage: 'Option'
+                                  })}{' '}
+                                  {index + 1}
+                                </Typography>
+                                <IconButton
+                                  onClick={() =>
+                                    this.handleInflectionOptionRemove(index)
+                                  }
+                                  size="small"
+                                >
+                                  <DeleteIcon />
+                                </IconButton>
+                              </div>
+                              <TextField
+                                label={intl.formatMessage({
+                                  id:
+                                    'cboard.components.TileEditor.shorthandLabel',
+                                  defaultMessage:
+                                    'Shorthand Label (e.g., -ing, -ed)'
+                                })}
+                                value={option.shorthandLabel || ''}
+                                onChange={e =>
+                                  this.handleInflectionOptionUpdate(
+                                    index,
+                                    'shorthandLabel',
+                                    e.target.value
+                                  )
+                                }
+                                required
+                                fullWidth
+                                style={{ marginBottom: '8px' }}
+                              />
+                              <TextField
+                                label={intl.formatMessage({
+                                  id:
+                                    'cboard.components.TileEditor.outputLabel',
+                                  defaultMessage: 'Output Label (e.g., Going)'
+                                })}
+                                value={option.outputLabel || ''}
+                                onChange={e =>
+                                  this.handleInflectionOptionUpdate(
+                                    index,
+                                    'outputLabel',
+                                    e.target.value
+                                  )
+                                }
+                                required
+                                error={
+                                  !option.outputLabel ||
+                                  option.outputLabel.trim() === ''
+                                }
+                                helperText={
+                                  !option.outputLabel ||
+                                  option.outputLabel.trim() === ''
+                                    ? intl.formatMessage({
+                                        id:
+                                          'cboard.components.TileEditor.outputLabelRequired',
+                                        defaultMessage:
+                                          'Output Label is required'
+                                      })
+                                    : ''
+                                }
+                                fullWidth
+                                style={{ marginBottom: '8px' }}
+                              />
+                              <TextField
+                                label={intl.formatMessage({
+                                  id:
+                                    'cboard.components.TileEditor.vocalization',
+                                  defaultMessage: 'Vocalization (e.g., Going)'
+                                })}
+                                value={option.vocalization || ''}
+                                onChange={e =>
+                                  this.handleInflectionOptionUpdate(
+                                    index,
+                                    'vocalization',
+                                    e.target.value
+                                  )
+                                }
+                                required
+                                error={
+                                  !option.vocalization ||
+                                  option.vocalization.trim() === ''
+                                }
+                                helperText={
+                                  !option.vocalization ||
+                                  option.vocalization.trim() === ''
+                                    ? intl.formatMessage({
+                                        id:
+                                          'cboard.components.TileEditor.vocalizationRequired',
+                                        defaultMessage:
+                                          'Vocalization is required'
+                                      })
+                                    : ''
+                                }
+                                fullWidth
+                                style={{ marginBottom: '8px' }}
+                              />
+                              <FormLabel style={{ marginTop: '8px' }}>
+                                {intl.formatMessage({
+                                  id:
+                                    'cboard.components.TileEditor.voiceRecorder',
+                                  defaultMessage: 'Voice Recorder'
+                                })}
+                              </FormLabel>
+                              <PremiumFeature>
+                                <VoiceRecorder
+                                  src={option.sound || ''}
+                                  onChange={sound =>
+                                    this.handleInflectionOptionUpdate(
+                                      index,
+                                      'sound',
+                                      sound
+                                    )
+                                  }
+                                />
+                              </PremiumFeature>
+                            </Paper>
+                          ))}
+                          <Button
+                            variant="outlined"
+                            startIcon={<AddIcon />}
+                            onClick={this.handleInflectionOptionAdd}
+                            style={{
+                              marginTop: '5px',
+                              marginBottom: '0',
+                              marginLeft: '10px',
+                              backgroundColor: '#3f51b5',
+                              color: 'white'
+                            }}
+                          >
+                            {intl.formatMessage({
+                              id:
+                                'cboard.components.TileEditor.addInflectionOption',
+                              defaultMessage: 'Add Inflection Option'
+                            })}
+                          </Button>
+                        </div>
+                      )}
                     {!this.editingTile() && (
                       <div className="TileEditor__radiogroup">
                         <FormControl fullWidth>
