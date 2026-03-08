@@ -1,0 +1,103 @@
+{
+  "$schema": "https://fundingjson.org/schema/v1.1.0.json",
+  "version": "v1.1.0",
+  "entity": {
+    "type": "organisation",
+    "role": "owner",
+    "name": "Cboard Contributors & Assistive Communication LLC",
+    "email": "support@cboard.io",
+    "phone": "1 205-922-6861",
+    "description": "Cboard is developed and maintained by a community of contributors along with Assistive Communication LLC. We are committed to creating accessible augmentative and alternative communication (AAC) solutions for individuals with speech and language impairments, including those with autism and cerebral palsy. Our mission is to break down communication barriers worldwide through free and open-source technology.",
+    "webpageUrl": {
+      "url": "https://www.cboard.io",
+      "wellKnown": ""
+    }
+  },
+  "projects": [
+    {
+      "guid": "cboard",
+      "name": "Cboard - AAC Communication Board",
+      "description": "Cboard is an augmentative and alternative communication (AAC) web application that helps users with speech and language impairments (autism, cerebral palsy) communicate using symbols and text-to-speech. It's a progressive web app available in 40 languages with thousands of symbols from popular AAC symbol libraries. Cboard is recognized as a Digital Public Good and works with UNICEF on the 'For every child, a voice' project to provide communication tools to children worldwide.",
+      "webpageUrl": {
+        "url": "https://www.cboard.io",
+        "wellKnown": ""
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/cboard-org/cboard",
+        "wellKnown": ""
+      },
+      "licenses": ["spdx:GPL-3.0-only"],
+      "tags": [
+        "aac",
+        "accessibility",
+        "communication",
+        "autism",
+        "cerebral-palsy",
+        "text-to-speech",
+        "progressive-web-app",
+        "assistive-technology",
+        "healthcare",
+        "education"
+      ]
+    }
+  ],
+  "funding": {
+    "channels": [
+      {
+        "guid": "opencollective",
+        "type": "payment-provider",
+        "address": "https://opencollective.com/cboard",
+        "description": "Support Cboard through Open Collective with one-time or recurring contributions. Open Collective provides transparent funding management where you can see how funds are used."
+      }
+    ],
+    "plans": [
+      {
+        "guid": "backer-monthly",
+        "status": "active",
+        "name": "Monthly Backer",
+        "description": "Become a monthly backer and help us cover ongoing costs for hosting, infrastructure, and development. Your contribution helps us maintain and improve Cboard for users worldwide.",
+        "amount": 4,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": ["opencollective"]
+      },
+      {
+        "guid": "sponsor",
+        "status": "active",
+        "name": "Project Sponsor",
+        "description": "Become a sponsor and your logo will be featured on our GitHub repository and website. Sponsorship helps us dedicate more resources to feature development, accessibility improvements, and expanding language support.",
+        "amount": 45,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": ["opencollective"]
+      },
+      {
+        "guid": "one-time-donation",
+        "status": "active",
+        "name": "One-time Contribution",
+        "description": "Make a one-time contribution to support Cboard's mission of making communication accessible to everyone. Every contribution helps us reach more users who need AAC tools.",
+        "amount": 0,
+        "currency": "USD",
+        "frequency": "one-time",
+        "channels": ["opencollective"]
+      },
+      {
+        "guid": "one-time-donation",
+        "status": "active",
+        "name": "Voice cloning program contribution",
+        "description": "Make a one-time contribution to support Cboard's voice cloning program. Every contribution helps us reach more users who need AAC tools.",
+        "amount": 50,
+        "currency": "USD",
+        "frequency": "one-time",
+        "channels": ["opencollective"]
+      }
+    ],
+    "history": [
+      {
+        "year": 2017,
+        "currency": "USD",
+        "description": ""
+      }
+    ]
+  }
+}
