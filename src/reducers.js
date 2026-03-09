@@ -111,7 +111,7 @@ export const createMigratingStorage = (oldStorage, newStorage) => ({
 
 const migratingStorage = createMigratingStorage(localStorage, localForage);
 
-const boardMigrations = {
+export const boardMigrations = {
   0: state => {
     return {
       ...state,
@@ -120,14 +120,21 @@ const boardMigrations = {
         boards: [...state.board.boards, ...DEFAULT_BOARDS.picSeePal]
       }
     };
-  }
+  },
+  1: state => ({
+    ...state,
+    board: {
+      ...state.board,
+      syncMeta: state.board?.syncMeta ?? {}
+    }
+  })
 };
 
 const config = {
   key: 'root',
   storage: migratingStorage,
   blacklist: ['language'],
-  version: 0,
+  version: 1,
   migrate: createMigrate(boardMigrations, { debug: false })
 };
 

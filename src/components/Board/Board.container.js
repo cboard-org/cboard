@@ -67,6 +67,7 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
+import { getVisibleBoards } from './Board.selectors';
 import PremiumFeature from '../PremiumFeature';
 import {
   IS_BROWSING_FROM_APPLE_TOUCH,
@@ -1722,7 +1723,7 @@ export class BoardContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
   const {
     board,
     communicator,
@@ -1750,8 +1751,8 @@ const mapStateToProps = state => {
   const offlineVoiceAlert = !isConnected && speech.options.isCloud;
   return {
     communicator: currentCommunicator,
-    board: board.boards.find(board => board.id === activeBoardId),
-    boards: board.boards,
+    board: getVisibleBoards(state).find(board => board.id === activeBoardId),
+    boards: getVisibleBoards(state),
     output: board.output,
     isLiveMode: board.isLiveMode,
     scannerSettings: scanner,
