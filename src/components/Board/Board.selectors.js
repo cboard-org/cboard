@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect';
 import { SYNC_STATUS } from './Board.constants';
 
+const EMPTY_SYNC_META = {};
 const getBoards = state => state.board.boards;
-const getSyncMeta = state => state.board.syncMeta ?? {};
+const getSyncMeta = state => state.board.syncMeta ?? EMPTY_SYNC_META;
 
 /**
  * Get all boards that need to be synced with the server
