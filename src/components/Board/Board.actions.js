@@ -44,8 +44,7 @@ import {
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
-  SYNC_STATUS,
-  MARK_BOARD_DIRTY
+  SYNC_STATUS
 } from './Board.constants';
 
 import API from '../../api';
@@ -305,10 +304,6 @@ export function unmarkBoard(boardId) {
     type: UNMARK_BOARD,
     boardId
   };
-}
-
-export function markBoardDirty(boardId) {
-  return { type: MARK_BOARD_DIRTY, boardId };
 }
 
 export function createTile(tile, boardId) {
