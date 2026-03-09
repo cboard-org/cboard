@@ -170,4 +170,115 @@ describe('Board selectors', () => {
       expect(result).toHaveLength(0);
     });
   });
+
+  describe('memoization', () => {
+    describe('getPendingSyncBoards', () => {
+      it('should return the same array reference on repeated calls with the same state', () => {
+        const state = createState([{ id: '1' }, { id: '2' }], {
+          '1': { status: SYNC_STATUS.PENDING },
+          '2': { status: SYNC_STATUS.SYNCED }
+        });
+
+        const result1 = getPendingSyncBoards(state);
+        const result2 = getPendingSyncBoards(state);
+
+        expect(result1).toBe(result2);
+      });
+
+      it('should return a new array reference when boards change', () => {
+        const syncMeta = { '1': { status: SYNC_STATUS.PENDING } };
+        const state1 = createState([{ id: '1' }], syncMeta);
+        const state2 = createState([{ id: '1' }, { id: '2' }], syncMeta);
+
+        const result1 = getPendingSyncBoards(state1);
+        const result2 = getPendingSyncBoards(state2);
+
+        expect(result1).not.toBe(result2);
+      });
+
+      it('should return a new array reference when syncMeta changes', () => {
+        const boards = [{ id: '1' }, { id: '2' }];
+        const state1 = createState(boards, {
+          '1': { status: SYNC_STATUS.PENDING },
+          '2': { status: SYNC_STATUS.SYNCED }
+        });
+        const state2 = createState(boards, {
+          '1': { status: SYNC_STATUS.SYNCED },
+          '2': { status: SYNC_STATUS.PENDING }
+        });
+
+        const result1 = getPendingSyncBoards(state1);
+        const result2 = getPendingSyncBoards(state2);
+
+        expect(result1).not.toBe(result2);
+      });
+    });
+
+    describe('getVisibleBoards', () => {
+      it('should return the same array reference on repeated calls with the same state', () => {
+        const state = createState([{ id: '1' }, { id: '2' }], {
+          '1': { isDeleted: false },
+          '2': { isDeleted: true }
+        });
+
+        const result1 = getVisibleBoards(state);
+        const result2 = getVisibleBoards(state);
+
+        expect(result1).toBe(result2);
+      });
+
+      it('should return a new array reference when boards change', () => {
+        const syncMeta = { '1': { isDeleted: false } };
+        const state1 = createState([{ id: '1' }], syncMeta);
+        const state2 = createState([{ id: '1' }, { id: '2' }], syncMeta);
+
+        const result1 = getVisibleBoards(state1);
+        const result2 = getVisibleBoards(state2);
+
+        expect(result1).not.toBe(result2);
+      });
+
+      it('should return a new array reference when syncMeta changes', () => {
+        const boards = [{ id: '1' }, { id: '2' }];
+        const state1 = createState(boards, { '1': { isDeleted: false } });
+        const state2 = createState(boards, {
+          '1': { isDeleted: false },
+          '2': { isDeleted: true }
+        });
+
+        const result1 = getVisibleBoards(state1);
+        const result2 = getVisibleBoards(state2);
+
+        expect(result1).not.toBe(result2);
+      });
+    });
+
+    describe('getDeletedBoardIds', () => {
+      it('should return the same array reference on repeated calls with the same state', () => {
+        const state = createState([{ id: '1' }, { id: '2' }], {
+          '1': { isDeleted: true },
+          '2': { isDeleted: false }
+        });
+
+        const result1 = getDeletedBoardIds(state);
+        const result2 = getDeletedBoardIds(state);
+
+        expect(result1).toBe(result2);
+      });
+
+      it('should return a new array reference when syncMeta changes', () => {
+        const boards = [{ id: '1' }, { id: '2' }];
+        const state1 = createState(boards, { '1': { isDeleted: true } });
+        const state2 = createState(boards, {
+          '1': { isDeleted: true },
+          '2': { isDeleted: true }
+        });
+
+        const result1 = getDeletedBoardIds(state1);
+        const result2 = getDeletedBoardIds(state2);
+
+        expect(result1).not.toBe(result2);
+      });
+    });
+  });
 });
