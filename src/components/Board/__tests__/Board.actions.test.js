@@ -894,7 +894,7 @@ describe('pushLocalChangesToApi', () => {
     expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
   });
 
-  it('should not push PENDING default boards (support@cboard.io)', async () => {
+  it('should transform and push PENDING default boards (support@cboard.io)', async () => {
     const defaultBoard = {
       ...mockBoard,
       id: '12345678901234567890',
@@ -912,13 +912,20 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const allActions = storeWithBoards.getActions();
+    const actionTypes = allActions.map(a => a.type);
 
-    expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
-    expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
+    // Should transform the board (update local state with user's email)
+    expect(actionTypes).toContain(types.UPDATE_BOARD);
+    const updateAction = allActions.find(a => a.type === types.UPDATE_BOARD);
+    expect(updateAction.boardData.email).toBe('asd@qwe.com');
+    expect(updateAction.boardData.isPublic).toBe(false);
+
+    // Should CREATE on API (transformed boards are created, not updated)
+    expect(actionTypes).toContain(types.CREATE_API_BOARD_STARTED);
   });
 
-  it('should not push PENDING boards with empty email (created while logged out)', async () => {
+  it('should transform and push PENDING boards with empty email (created while logged out)', async () => {
     const offlineBoard = {
       ...mockBoard,
       id: '12345678901234567890',
@@ -936,10 +943,73 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const allActions = storeWithBoards.getActions();
+    const actionTypes = allActions.map(a => a.type);
 
-    expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
-    expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
+    // Should transform the board (update local state with user's email)
+    expect(actionTypes).toContain(types.UPDATE_BOARD);
+    const updateAction = allActions.find(a => a.type === types.UPDATE_BOARD);
+    expect(updateAction.boardData.email).toBe('asd@qwe.com');
+
+    // Should CREATE on API (transformed boards are created, not updated)
+    expect(actionTypes).toContain(types.CREATE_API_BOARD_STARTED);
+  });
+
+  it('should transform and push untracked boards with empty email (created while logged out, no syncMeta)', async () => {
+    const offlineBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      email: ''
+    };
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: [offlineBoard],
+        syncMeta: {} // No syncMeta entry - this is an untracked board
+      }
+    });
+
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
+    const allActions = storeWithBoards.getActions();
+    const actionTypes = allActions.map(a => a.type);
+
+    // Should transform the board (update local state with user's email)
+    expect(actionTypes).toContain(types.UPDATE_BOARD);
+    const updateAction = allActions.find(a => a.type === types.UPDATE_BOARD);
+    expect(updateAction.boardData.email).toBe('asd@qwe.com');
+
+    // Should CREATE on API (transformed boards are created, not updated)
+    expect(actionTypes).toContain(types.CREATE_API_BOARD_STARTED);
+  });
+
+  it('should sync and transform untracked default boards (support@cboard.io) without syncMeta', async () => {
+    // Default boards without syncMeta should be transformed to user's boards and synced
+    const defaultBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      email: 'support@cboard.io'
+    };
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: [defaultBoard],
+        syncMeta: {} // No syncMeta entry - this is an untracked board
+      }
+    });
+
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
+    const allActions = storeWithBoards.getActions();
+    const actionTypes = allActions.map(a => a.type);
+
+    // Should transform the board (update local state with user's email)
+    expect(actionTypes).toContain(types.UPDATE_BOARD);
+    const updateAction = allActions.find(a => a.type === types.UPDATE_BOARD);
+    expect(updateAction.boardData.email).toBe('asd@qwe.com');
+
+    // Should CREATE on API (transformed boards are created, not updated)
+    expect(actionTypes).toContain(types.CREATE_API_BOARD_STARTED);
   });
 });
 
