@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CloudDoneIcon from '@material-ui/icons/CloudDone';
 import CloudOffIcon from '@material-ui/icons/CloudOff';
+import OfflinePinIcon from '@material-ui/icons/OfflinePin';
 import SyncProblemIcon from '@material-ui/icons/SyncProblem';
 import green from '@material-ui/core/colors/green';
 import amber from '@material-ui/core/colors/amber';
@@ -21,6 +22,7 @@ import './SyncButton.css';
 const { SYNCED, PENDING, SYNCING } = SYNC_STATUS;
 const {
   OFFLINE,
+  WORKING_OFFLINE,
   SAVED_LOCALLY,
   SAVING,
   SYNCED: DISPLAY_SYNCED
@@ -44,9 +46,10 @@ const SyncButton = ({
   const syncStatus = getSyncStatus();
 
   const getDisplayState = () => {
-    if (syncStatus === PENDING) return SAVED_LOCALLY;
+    if (!isOnline && hasPendingBoards) return WORKING_OFFLINE;
     if (!isOnline) return OFFLINE;
     if (syncStatus === SYNCING) return SAVING;
+    if (syncStatus === PENDING) return SAVED_LOCALLY;
     return DISPLAY_SYNCED;
   };
 
@@ -58,6 +61,8 @@ const SyncButton = ({
     switch (displayState) {
       case OFFLINE:
         return intl.formatMessage(messages.offline);
+      case WORKING_OFFLINE:
+        return intl.formatMessage(messages.workingOffline);
       case SAVED_LOCALLY:
         return intl.formatMessage(messages.savedLocally);
       case SAVING:
@@ -79,6 +84,21 @@ const SyncButton = ({
           {intl.formatMessage(messages.offline)}
         </span>
         <CloudOffIcon className="SyncButton__icon" />
+      </Button>
+    );
+  }
+
+  if (displayState === WORKING_OFFLINE) {
+    return (
+      <Button
+        className={baseClassName}
+        aria-label={getAriaLabel()}
+        style={{ color: amber[500] }}
+      >
+        <span className="SyncButton__label">
+          {intl.formatMessage(messages.workingOffline)}
+        </span>
+        <OfflinePinIcon className="SyncButton__icon" />
       </Button>
     );
   }
