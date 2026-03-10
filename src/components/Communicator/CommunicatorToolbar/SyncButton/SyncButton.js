@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
@@ -8,7 +8,6 @@ import IconButton from '@material-ui/core/IconButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CloudDoneIcon from '@material-ui/icons/CloudDone';
 import CloudOffIcon from '@material-ui/icons/CloudOff';
-import SyncIcon from '@material-ui/icons/Sync';
 import SyncProblemIcon from '@material-ui/icons/SyncProblem';
 import green from '@material-ui/core/colors/green';
 import amber from '@material-ui/core/colors/amber';
@@ -16,7 +15,7 @@ import { SYNC_STATUS } from '../../../Board/Board.constants';
 import { hasPendingSyncBoards } from '../../../Board/Board.selectors';
 import { getApiObjects } from '../../../Board/Board.actions';
 import messages from './SyncButton.messages';
-import { SYNCED_DISPLAY_DURATION, DISPLAY_STATE } from './SyncButton.constants';
+import { DISPLAY_STATE } from './SyncButton.constants';
 import './SyncButton.css';
 
 const { SYNCED, PENDING, SYNCING } = SYNC_STATUS;
@@ -24,8 +23,7 @@ const {
   OFFLINE,
   SAVED_LOCALLY,
   SAVING,
-  SYNCED: DISPLAY_SYNCED,
-  SYNC
+  SYNCED: DISPLAY_SYNCED
 } = DISPLAY_STATE;
 
 const SyncButton = ({
@@ -37,9 +35,6 @@ const SyncButton = ({
   hasPendingBoards,
   onSyncClick
 }) => {
-  const [showSynced, setShowSynced] = useState(false);
-  const prevSyncStatusRef = useRef(null);
-
   const getSyncStatus = () => {
     if (isSyncing || isFetching || isSaving) return SYNCING;
     if (hasPendingBoards) return PENDING;
@@ -48,26 +43,11 @@ const SyncButton = ({
 
   const syncStatus = getSyncStatus();
 
-  useEffect(
-    () => {
-      if (prevSyncStatusRef.current === SYNCING && syncStatus === SYNCED) {
-        setShowSynced(true);
-        const timer = setTimeout(() => {
-          setShowSynced(false);
-        }, SYNCED_DISPLAY_DURATION);
-        return () => clearTimeout(timer);
-      }
-      prevSyncStatusRef.current = syncStatus;
-    },
-    [syncStatus]
-  );
-
   const getDisplayState = () => {
     if (syncStatus === PENDING) return SAVED_LOCALLY;
     if (!isOnline) return OFFLINE;
     if (syncStatus === SYNCING) return SAVING;
-    if (showSynced) return DISPLAY_SYNCED;
-    return SYNC;
+    return DISPLAY_SYNCED;
   };
 
   const displayState = getDisplayState();
@@ -83,10 +63,8 @@ const SyncButton = ({
       case SAVING:
         return intl.formatMessage(messages.saving);
       case DISPLAY_SYNCED:
-        return intl.formatMessage(messages.synced);
-      case SYNC:
       default:
-        return intl.formatMessage(messages.sync);
+        return intl.formatMessage(messages.synced);
     }
   };
 
@@ -140,28 +118,14 @@ const SyncButton = ({
     );
   }
 
-  if (displayState === SYNCED) {
-    return (
-      <IconButton
-        className={baseClassName}
-        aria-label={getAriaLabel()}
-        onClick={onSyncClick}
-        style={{ color: green[500] }}
-      >
-        <CloudDoneIcon className="SyncButton__icon" />
-      </IconButton>
-    );
-  }
-
   return (
     <IconButton
       className={baseClassName}
       aria-label={getAriaLabel()}
-      disabled={isSyncDisabled}
-      onClick={onSyncClick}
-      color="inherit"
+      style={{ color: green[500] }}
+      disableRipple
     >
-      <SyncIcon className="SyncButton__icon" />
+      <CloudDoneIcon className="SyncButton__icon" />
     </IconButton>
   );
 };
