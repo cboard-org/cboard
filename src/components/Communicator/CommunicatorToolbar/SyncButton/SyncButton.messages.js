@@ -16,9 +16,5 @@ export default defineMessages({
   synced: {
     id: 'cboard.components.CommunicatorToolbar.SyncButton.synced',
     defaultMessage: 'Synced'
-  },
-  sync: {
-    id: 'cboard.components.CommunicatorToolbar.SyncButton.sync',
-    defaultMessage: 'Sync'
   }
 });
