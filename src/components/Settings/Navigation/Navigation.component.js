@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
@@ -8,6 +8,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Divider from '@material-ui/core/Divider';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Navigation.messages';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -27,7 +32,8 @@ const propTypes = {
   updateNavigationSettings: PropTypes.func.isRequired,
   navigationSettings: PropTypes.object.isRequired,
   isLiveMode: PropTypes.bool,
-  changeLiveMode: PropTypes.func.isRequired
+  changeLiveMode: PropTypes.func.isRequired,
+  intl: intlShape.isRequired
 };
 
 class Navigation extends React.Component {
@@ -35,9 +41,16 @@ class Navigation extends React.Component {
     super(props);
 
     this.state = {
-      ...props.navigationSettings
+      ...props.navigationSettings,
+      pinCodeVisible: false
     };
   }
+
+  togglePinCodeVisibility = () => {
+    this.setState(prevState => ({
+      pinCodeVisible: !prevState.pinCodeVisible
+    }));
+  };
 
   toggleCABackButton = () => {
     this.setState({
@@ -55,6 +68,17 @@ class Navigation extends React.Component {
     this.setState({
       quickUnlockActive: !this.state.quickUnlockActive
     });
+  };
+
+  togglePinLock = () => {
+    this.setState(prevState => ({
+      pinLockEnabled: !prevState.pinLockEnabled
+    }));
+  };
+
+  handlePinCodeChange = event => {
+    const value = event.target.value.replace(/\D/g, '').slice(0, 4);
+    this.setState({ pinCode: value });
   };
 
   toggleShareShow = () => {
@@ -98,7 +122,8 @@ class Navigation extends React.Component {
     if (!this.state.liveMode && isLiveMode) {
       changeLiveMode();
     }
-    this.props.updateNavigationSettings(this.state);
+    const { pinCodeVisible, ...navigationSettings } = this.state;
+    this.props.updateNavigationSettings(navigationSettings);
   };
 
   onNavigationSettingsChange(navigationSetting, event) {
@@ -265,6 +290,88 @@ class Navigation extends React.Component {
                 </ListItemSecondaryAction>
               </ListItem>
               <Divider />
+              <ListItem disabled={this.state.quickUnlockActive}>
+                <ListItemText
+                  className="Navigation__ListItemText"
+                  primary={<FormattedMessage {...messages.pinLock} />}
+                  secondary={
+                    <FormattedMessage {...messages.pinLockSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    disabled={this.state.quickUnlockActive}
+                    checked={this.state.pinLockEnabled || false}
+                    onChange={this.togglePinLock}
+                    value="active"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem
+                disabled={
+                  !this.state.pinLockEnabled || this.state.quickUnlockActive
+                }
+              >
+                <ListItemText
+                  className="Navigation__ListItemText"
+                  primary={<FormattedMessage {...messages.pinCodeLabel} />}
+                />
+                <ListItemSecondaryAction>
+                  <TextField
+                    disabled={
+                      !this.state.pinLockEnabled || this.state.quickUnlockActive
+                    }
+                    type={this.state.pinCodeVisible ? 'text' : 'password'}
+                    inputProps={{
+                      maxLength: 4,
+                      pattern: '[0-9]*',
+                      inputMode: 'numeric',
+                      style: { textAlign: 'center', width: '80px' }
+                    }}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle pin visibility"
+                            onClick={this.togglePinCodeVisibility}
+                            edge="end"
+                            size="small"
+                            disabled={
+                              !this.state.pinLockEnabled ||
+                              this.state.quickUnlockActive
+                            }
+                          >
+                            {this.state.pinCodeVisible ? (
+                              <Visibility fontSize="small" />
+                            ) : (
+                              <VisibilityOff fontSize="small" />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      )
+                    }}
+                    value={this.state.pinCode || ''}
+                    onChange={this.handlePinCodeChange}
+                    error={
+                      this.state.pinLockEnabled &&
+                      this.state.pinCode?.length > 0 &&
+                      this.state.pinCode?.length < 4
+                    }
+                    helperText={
+                      this.state.pinLockEnabled &&
+                      this.state.pinCode?.length > 0 &&
+                      this.state.pinCode?.length < 4 ? (
+                        <FormattedMessage {...messages.pinCodeError} />
+                      ) : (
+                        ''
+                      )
+                    }
+                    placeholder="****"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Divider />
               <ListItem>
                 <ListItemText
                   className="Navigation__ListItemText"
@@ -354,4 +461,4 @@ class Navigation extends React.Component {
 
 Navigation.propTypes = propTypes;
 
-export default Navigation;
+export default injectIntl(Navigation);
