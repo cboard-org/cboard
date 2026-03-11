@@ -49,7 +49,9 @@ describe('reducer', () => {
         removeOutputActive: false,
         vocalizeFolders: false,
         quietBuilderMode: false,
-        improvePhraseActive: false
+        improvePhraseActive: false,
+        pinLockEnabled: false,
+        pinCode: ''
       },
       symbolsSettings: {
         arasaacActive: false
@@ -80,7 +82,9 @@ describe('reducer', () => {
         removeOutputActive: false,
         vocalizeFolders: false,
         quietBuilderMode: false,
-        improvePhraseActive: false
+        improvePhraseActive: false,
+        pinLockEnabled: false,
+        pinCode: ''
       },
       userData: uData
     };
