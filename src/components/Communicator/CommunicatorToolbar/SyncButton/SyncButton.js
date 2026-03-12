@@ -169,11 +169,11 @@ SyncButton.defaultProps = {
   onSyncClick: () => {}
 };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   isOnline: state.app.isConnected,
   isSyncing: state.board.isSyncing,
   isFetching: state.board.isFetching,
-  isSaving: ownProps.isSaving || false,
+  isSaving: state.board.isSaving,
   hasPendingBoards: hasPendingSyncBoards(state)
 });
 
