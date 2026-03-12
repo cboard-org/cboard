@@ -45,7 +45,8 @@ import {
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
   SYNC_STATUS,
-  MARK_BOARD_DIRTY
+  MARK_BOARD_DIRTY,
+  SET_IS_SAVING
 } from './Board.constants';
 
 import API from '../../api';
@@ -309,6 +310,10 @@ export function unmarkBoard(boardId) {
 
 export function markBoardDirty(boardId) {
   return { type: MARK_BOARD_DIRTY, boardId };
+}
+
+export function setIsSaving(isSaving) {
+  return { type: SET_IS_SAVING, isSaving };
 }
 
 export function createTile(tile, boardId) {
