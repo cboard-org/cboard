@@ -207,9 +207,7 @@ class CommunicatorToolbar extends React.Component {
               </Button>
             </div>
           )}
-          {this.props.isLoggedIn && (
-            <SyncButton isSaving={this.props.isSaving} />
-          )}
+          {this.props.isLoggedIn && <SyncButton />}
           <DefaultBoardSelector
             isDarkMode={isDark}
             changeDefaultBoard={changeDefaultBoard}
@@ -224,7 +222,6 @@ CommunicatorToolbar.defaultProps = {
   className: '',
   boards: [],
   isSelecting: false,
-  isSaving: false,
   switchBoard: () => {},
   showNotification: () => {},
   openCommunicatorDialog: () => {},
@@ -237,7 +234,6 @@ CommunicatorToolbar.propTypes = {
   boards: PropTypes.array,
   currentCommunicator: PropTypes.object,
   isSelecting: PropTypes.bool,
-  isSaving: PropTypes.bool,
   showNotification: PropTypes.func,
   switchBoard: PropTypes.func,
   openCommunicatorDialog: PropTypes.func,
