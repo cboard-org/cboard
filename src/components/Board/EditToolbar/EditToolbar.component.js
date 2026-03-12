@@ -4,7 +4,6 @@ import { injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
 import Switch from '@material-ui/core/Switch';
 import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Checkbox from '@material-ui/core/Checkbox';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DashboardIcon from '@material-ui/icons/Dashboard';
@@ -175,14 +174,6 @@ function EditToolbar({
               label={intl.formatMessage(messages.fixedBoard)}
             />
           </Fragment>
-        )}
-
-        {isSaving && (
-          <CircularProgress
-            size={24}
-            className="EditToolbar__Spinner"
-            thickness={7}
-          />
         )}
       </div>
       <div className="EditToolbar__group EditToolbar__group--end">
