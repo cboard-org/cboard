@@ -19,6 +19,13 @@
   white-space: nowrap;
   letter-spacing: 0.5px;
   line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.SyncButton__icon {
+  display: flex;
+  align-items: center;
 }
 
 .SyncButton .SyncButton__spinner {
