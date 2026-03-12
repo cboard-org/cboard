@@ -414,7 +414,6 @@ export class Board extends Component {
           <CommunicatorToolbar
             className="Board__communicator-toolbar"
             isSelecting={isSelecting || isSaving}
-            isSaving={isSaving}
           />
 
           <EditToolbar
