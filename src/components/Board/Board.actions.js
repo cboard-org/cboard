@@ -45,7 +45,6 @@ import {
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
   SYNC_STATUS,
-  MARK_BOARD_DIRTY,
   SET_IS_SAVING
 } from './Board.constants';
 
@@ -306,10 +305,6 @@ export function unmarkBoard(boardId) {
     type: UNMARK_BOARD,
     boardId
   };
-}
-
-export function markBoardDirty(boardId) {
-  return { type: MARK_BOARD_DIRTY, boardId };
 }
 
 export function setIsSaving(isSaving) {

@@ -4,12 +4,7 @@ import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 import shortid from 'shortid';
 
-import {
-  addBoards,
-  changeBoard,
-  markBoardDirty
-} from '../../Board/Board.actions';
-import { isLocalBoard } from '../../Board/Board.utils';
+import { addBoards, changeBoard } from '../../Board/Board.actions';
 import { getVisibleBoards } from '../../Board/Board.selectors';
 import {
   upsertApiCommunicator,
@@ -127,9 +122,6 @@ export class ImportContainer extends PureComponent {
     );
 
     this.props.addBoards(boardsResponse);
-    boardsResponse
-      .filter(board => isLocalBoard(board))
-      .forEach(board => this.props.markBoardDirty(board.id));
     await this.addBoardsToCommunicator(boardsResponse);
     this.props.switchBoard(boardsResponse[0].id);
   }
@@ -260,8 +252,7 @@ const mapDispatchToProps = {
   switchBoard,
   showNotification,
   verifyAndUpsertCommunicator,
-  upsertApiCommunicator,
-  markBoardDirty
+  upsertApiCommunicator
 };
 
 export default connect(

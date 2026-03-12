@@ -86,6 +86,7 @@
     "redux-beacon": "^2.0.3",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.4.2",
+    "reselect": "5.1.1",
     "shortid": "^2.2.16",
     "source-map-explorer": "^2.5.3",
     "swiper": "^6.8.4",
