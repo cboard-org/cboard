@@ -46,15 +46,15 @@ import {
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
   SYNC_STATUS,
-  MARK_BOARD_DIRTY,
-  DEFAULT_BOARD_EMAIL
+  MARK_BOARD_DIRTY
 } from './Board.constants';
 
 import API from '../../api';
 import {
   isLocalBoard,
   isServerBoard,
-  isDefaultBoard,
+  hasDefaultOrNoEmail,
+  isUnloggedCreatedBoard,
   classifyRemoteBoards,
   transformBoardForUser
 } from './Board.utils';
@@ -648,6 +648,7 @@ export function pushLocalChangesToApi(remoteBoards = []) {
 
     // Helper to transform default/offline boards to belong to the current user
     const transformBoard = board => {
+      if (!hasDefaultOrNoEmail(board)) return board;
       const transformedBoard = transformBoardForUser(
         board,
         userEmail,
@@ -665,12 +666,8 @@ export function pushLocalChangesToApi(remoteBoards = []) {
       const meta = syncMeta[b.id];
       if (meta?.status !== SYNC_STATUS.PENDING || meta?.isDeleted) continue;
 
-      if (!b.email || b.email === DEFAULT_BOARD_EMAIL) {
+      if (hasDefaultOrNoEmail(b) || b.email === userEmail) {
         pendingBoards.push(transformBoard(b));
-        continue;
-      }
-      if (b.email === userEmail) {
-        pendingBoards.push(b);
         continue;
       }
     }
@@ -679,36 +676,20 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     // or were created when the user was unlogged (empty email) or have the default email.
     // Known default boards (unmodified, no syncMeta) are excluded — only boards
     // explicitly dirtied (PENDING syncMeta) are handled in the pendingBoards loop above.
-    const untrackedBoards = boards.filter(b => {
-      if (syncMeta[b.id]) return false;
-      if (isDefaultBoard(b)) return false;
-      if (
-        b.email === userEmail ||
-        !b.email ||
-        b.email === DEFAULT_BOARD_EMAIL
-      ) {
-        return true;
-      }
-      return false;
-    });
+    const untrackedBoards = boards.filter(
+      b =>
+        !syncMeta[b.id] && (b.email === userEmail || isUnloggedCreatedBoard(b))
+    );
 
     const untrackedBoardsToSync = [];
     const remoteBoardMap = new Map(remoteBoards.map(b => [b.id, b]));
 
-    // Helper to transform board if needed
-    const transformBoardIfNeeded = board => {
-      if (!board.email || board.email === DEFAULT_BOARD_EMAIL) {
-        return transformBoard(board);
-      }
-      return board;
-    };
-
     for (const board of untrackedBoards) {
       const remote = remoteBoardMap.get(board.id);
       if (!remote) {
-        untrackedBoardsToSync.push(transformBoardIfNeeded(board));
+        untrackedBoardsToSync.push(transformBoard(board));
       } else if (moment(board.lastEdited).isAfter(remote.lastEdited)) {
-        untrackedBoardsToSync.push(transformBoardIfNeeded(board));
+        untrackedBoardsToSync.push(transformBoard(board));
       } else {
         // Graduate to SYNCED without pushing
         dispatch(updateBoard(board, true));

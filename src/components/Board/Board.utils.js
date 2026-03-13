@@ -26,6 +26,12 @@ export const isDefaultBoard = board =>
 export const isLocalBoard = board => board.id.length < SHORT_ID_MAX_LENGTH;
 export const isServerBoard = board => board.id.length >= SHORT_ID_MAX_LENGTH;
 
+export const hasDefaultOrNoEmail = board =>
+  !board.email || board.email === DEFAULT_BOARD_EMAIL;
+
+export const isUnloggedCreatedBoard = board =>
+  !isDefaultBoard(board) && hasDefaultOrNoEmail(board);
+
 /**
  * Extract board name from board object.
  * Falls back to parsing nameKey if name is not set.
