@@ -46,13 +46,15 @@ import {
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
   SYNC_STATUS,
-  MARK_BOARD_DIRTY
+  MARK_BOARD_DIRTY,
+  DEFAULT_BOARD_EMAIL
 } from './Board.constants';
 
 import API from '../../api';
 import {
   isLocalBoard,
   isServerBoard,
+  isDefaultBoard,
   classifyRemoteBoards,
   transformBoardForUser
 } from './Board.utils';
@@ -627,8 +629,8 @@ export function applyRemoteChangesToState({
  * PUSH: Upload local changes to the API.
  * Pushes all boards with syncStatus: PENDING, plus untracked boards (no syncStatus)
  * that are newer than their remote version or don't exist on the server.
- * - Default boards (support@cboard.io) → transformed to user's boards, then CREATED on server
- * - Unlogged boards (support@cboard.io as default) → transformed to user's boards, then CREATED on server
+ * - Modified default boards (support@cboard.io) → transformed to user's boards, then CREATED on server
+ * - Unlogged created boards (support@cboard.io as default) → transformed to user's boards, then CREATED on server
  * - Short ID boards (locally created) → updateApiObjectsNoChild (creates on server)
  * - Long ID boards (user's existing) → updateApiBoard (updates on server)
  */
@@ -652,7 +654,6 @@ export function pushLocalChangesToApi(remoteBoards = []) {
         userName,
         locale
       );
-      // Do not mark as coming from remote yet; keep it pending until CREATE succeeds.
       dispatch(updateBoard(transformedBoard, false));
       transformedBoardIds.add(board.id);
       return transformedBoard;
@@ -664,7 +665,7 @@ export function pushLocalChangesToApi(remoteBoards = []) {
       const meta = syncMeta[b.id];
       if (meta?.status !== SYNC_STATUS.PENDING || meta?.isDeleted) continue;
 
-      if (!b.email || b.email === 'support@cboard.io') {
+      if (!b.email || b.email === DEFAULT_BOARD_EMAIL) {
         pendingBoards.push(transformBoard(b));
         continue;
       }
@@ -675,13 +676,16 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     }
 
     // Untracked boards (no syncMeta entry) that belong to the current user
-    // or were created unlogged (support@cboard.io as default).
+    // or were created when the user was unlogged (empty email) or have the default email.
+    // Known default boards (unmodified, no syncMeta) are excluded — only boards
+    // explicitly dirtied (PENDING syncMeta) are handled in the pendingBoards loop above.
     const untrackedBoards = boards.filter(b => {
       if (syncMeta[b.id]) return false;
+      if (isDefaultBoard(b)) return false;
       if (
         b.email === userEmail ||
         !b.email ||
-        b.email === 'support@cboard.io'
+        b.email === DEFAULT_BOARD_EMAIL
       ) {
         return true;
       }
@@ -693,7 +697,7 @@ export function pushLocalChangesToApi(remoteBoards = []) {
 
     // Helper to transform board if needed
     const transformBoardIfNeeded = board => {
-      if (!board.email || board.email === 'support@cboard.io') {
+      if (!board.email || board.email === DEFAULT_BOARD_EMAIL) {
         return transformBoard(board);
       }
       return board;

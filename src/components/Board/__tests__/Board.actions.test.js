@@ -992,11 +992,11 @@ describe('pushLocalChangesToApi', () => {
     expect(actionTypes).toContain(types.CREATE_API_BOARD_STARTED);
   });
 
-  it('should sync and transform untracked default boards (support@cboard.io) without syncMeta', async () => {
-    // Default boards without syncMeta should be transformed to user's boards and synced
+  it('should skip untracked known default boards (known defaults without syncMeta)', async () => {
+    // Known default boards without syncMeta should NOT be synced — they are unmodified
     const defaultBoard = {
       ...mockBoard,
-      id: '12345678901234567890',
+      id: 'root', // a known default board ID
       email: 'support@cboard.io'
     };
     const storeWithBoards = mockStore({
@@ -1004,6 +1004,32 @@ describe('pushLocalChangesToApi', () => {
       board: {
         ...initialState.board,
         boards: [defaultBoard],
+        syncMeta: {} // No syncMeta entry - this is an untracked board
+      }
+    });
+
+    await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
+    const allActions = storeWithBoards.getActions();
+    const actionTypes = allActions.map(a => a.type);
+
+    // Should NOT transform or sync the board
+    expect(actionTypes).not.toContain(types.UPDATE_BOARD);
+    expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
+  });
+
+  it('should sync and transform untracked boards with support@cboard.io but unknown ID (user-created while unlogged)', async () => {
+    // Boards with support@cboard.io email but not a known default board ID
+    // were created by the user while logged out — they should be synced
+    const userCreatedBoard = {
+      ...mockBoard,
+      id: '12345678901234567890', // not a known default board ID
+      email: 'support@cboard.io'
+    };
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: [userCreatedBoard],
         syncMeta: {} // No syncMeta entry - this is an untracked board
       }
     });

@@ -1,5 +1,6 @@
 import moment from 'moment';
-import { SHORT_ID_MAX_LENGTH } from './Board.constants';
+import { SHORT_ID_MAX_LENGTH, DEFAULT_BOARD_EMAIL } from './Board.constants';
+import { DEFAULT_BOARDS } from '../../helpers';
 
 /**
  * Returns true if the board was created locally (not yet synced to server).
@@ -11,6 +12,17 @@ import { SHORT_ID_MAX_LENGTH } from './Board.constants';
  * ID that happens to be >= SHORT_ID_MAX_LENGTH chars, but shortid output is
  * typically 7-12 chars so this is safe in practice.
  */
+const DEFAULT_BOARD_IDS = new Set(
+  [...DEFAULT_BOARDS.advanced, ...DEFAULT_BOARDS.picSeePal].map(b => b.id)
+);
+
+/**
+ * Returns true if the board is a known default board (shipped with the app)
+ * that still belongs to the default email.
+ */
+export const isDefaultBoard = board =>
+  DEFAULT_BOARD_IDS.has(board.id) && board.email === DEFAULT_BOARD_EMAIL;
+
 export const isLocalBoard = board => board.id.length < SHORT_ID_MAX_LENGTH;
 export const isServerBoard = board => board.id.length >= SHORT_ID_MAX_LENGTH;
 
@@ -32,7 +44,7 @@ const extractBoardName = board => {
 
 /**
  * Transform a board to belong to the current user.
- * Used when syncing default boards (support@cboard.io) or offline-created boards.
+ * Used when syncing default boards (DEFAULT_BOARD_EMAIL) or offline-created boards.
  * @param {Object} board - Board object to transform
  * @param {string} userEmail - User's email address
  * @param {string} userName - User's display name
