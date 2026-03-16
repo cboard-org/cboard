@@ -681,7 +681,7 @@ function classifyBoardsForPush({
       continue;
 
     const remote = remoteBoardMap.get(b.id);
-    if (remote && !moment(b.lastEdited).isAfter(remote.lastEdited)) {
+    if (remote && moment(b.lastEdited).isSameOrBefore(remote.lastEdited)) {
       // Graduate to SYNCED without pushing
       dispatch(updateBoard(b, true));
       continue;
