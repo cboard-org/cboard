@@ -626,6 +626,85 @@ export function applyRemoteChangesToState({
 }
 
 /**
+ * Classify boards into those needing sync (create/update) and those needing deletion.
+ * Transforms default/offline boards to belong to the current user and dispatches
+ * updateBoard for each transformation.
+ *
+ * Returns boardId + needsCreate tuples (not board objects) so the push loop
+ * can re-read fresh state before each API call.
+ */
+function classifyBoardsForPush({
+  boards,
+  syncMeta,
+  userEmail,
+  userName,
+  locale,
+  remoteBoards,
+  dispatch
+}) {
+  const boardsToSync = [];
+  const boardsToDelete = [];
+
+  // Helper to transform default/offline boards to belong to the current user
+  const transformAndTrack = board => {
+    if (!hasDefaultOrNoEmail(board)) return false;
+    const transformedBoard = transformBoardForUser(
+      board,
+      userEmail,
+      userName,
+      locale
+    );
+    dispatch(updateBoard(transformedBoard, false));
+    return true;
+  };
+
+  // Boards explicitly marked PENDING by the sync system.
+  for (const b of boards) {
+    const meta = syncMeta[b.id];
+    if (meta?.status !== SYNC_STATUS.PENDING || meta?.isDeleted) continue;
+
+    if (hasDefaultOrNoEmail(b) || b.email === userEmail) {
+      const wasTransformed = transformAndTrack(b);
+      boardsToSync.push({
+        boardId: b.id,
+        needsCreate: wasTransformed || isLocalBoard(b)
+      });
+    }
+  }
+
+  // Untracked boards (no syncMeta entry) that belong to the current user
+  // or were created when the user was unlogged (empty email) or have the default email.
+  const remoteBoardMap = new Map(remoteBoards.map(b => [b.id, b]));
+
+  for (const b of boards) {
+    if (syncMeta[b.id] || (b.email !== userEmail && !isUnloggedCreatedBoard(b)))
+      continue;
+
+    const remote = remoteBoardMap.get(b.id);
+    if (remote && !moment(b.lastEdited).isAfter(remote.lastEdited)) {
+      // Graduate to SYNCED without pushing
+      dispatch(updateBoard(b, true));
+      continue;
+    }
+
+    const wasTransformed = transformAndTrack(b);
+    boardsToSync.push({
+      boardId: b.id,
+      needsCreate: wasTransformed || isLocalBoard(b)
+    });
+  }
+
+  // Only delete boards explicitly marked via the sync system.
+  for (const b of boards) {
+    if (syncMeta[b.id]?.isDeleted === true) {
+      boardsToDelete.push(b);
+    }
+  }
+
+  return { boardsToSync, boardsToDelete };
+}
+
+/**
  * PUSH: Upload local changes to the API.
  * Pushes all boards with syncStatus: PENDING, plus untracked boards (no syncStatus)
  * that are newer than their remote version or don't exist on the server.
@@ -637,97 +716,46 @@ export function applyRemoteChangesToState({
 export function pushLocalChangesToApi(remoteBoards = []) {
   return async (dispatch, getState) => {
     const userEmail = getState().app?.userData?.email;
-    const userName = getState().app?.userData?.name || '';
-    const locale = getState().language?.lang;
-    const { boards, activeBoardId, syncMeta } = getState().board;
-
     if (!userEmail) return;
 
-    // Track boards transformed from default/offline boards - these need CREATE, not UPDATE.
-    const transformedBoardIds = new Set();
+    const userName = getState().app?.userData?.name || '';
+    const locale = getState().language?.lang;
+    const {
+      boards,
+      activeBoardId: activeBoardIdBeforePush,
+      syncMeta
+    } = getState().board;
 
-    // Helper to transform default/offline boards to belong to the current user
-    const transformBoard = board => {
-      if (!hasDefaultOrNoEmail(board)) return board;
-      const transformedBoard = transformBoardForUser(
-        board,
-        userEmail,
-        userName,
-        locale
-      );
-      dispatch(updateBoard(transformedBoard, false));
-      transformedBoardIds.add(board.id);
-      return transformedBoard;
-    };
-
-    // Boards explicitly marked PENDING by the sync system.
-    const pendingBoards = [];
-    for (const b of boards) {
-      const meta = syncMeta[b.id];
-      if (meta?.status !== SYNC_STATUS.PENDING || meta?.isDeleted) continue;
-
-      if (hasDefaultOrNoEmail(b) || b.email === userEmail) {
-        pendingBoards.push(transformBoard(b));
-        continue;
-      }
-    }
-
-    // Untracked boards (no syncMeta entry) that belong to the current user
-    // or were created when the user was unlogged (empty email) or have the default email.
-    // Known default boards (unmodified, no syncMeta) are excluded — only boards
-    // explicitly dirtied (PENDING syncMeta) are handled in the pendingBoards loop above.
-    const untrackedBoards = boards.filter(
-      b =>
-        !syncMeta[b.id] && (b.email === userEmail || isUnloggedCreatedBoard(b))
-    );
-
-    const untrackedBoardsToSync = [];
-    const remoteBoardMap = new Map(remoteBoards.map(b => [b.id, b]));
-
-    for (const board of untrackedBoards) {
-      const remote = remoteBoardMap.get(board.id);
-      if (!remote) {
-        untrackedBoardsToSync.push(transformBoard(board));
-      } else if (moment(board.lastEdited).isAfter(remote.lastEdited)) {
-        untrackedBoardsToSync.push(transformBoard(board));
-      } else {
-        // Graduate to SYNCED without pushing
-        dispatch(updateBoard(board, true));
-      }
-    }
-
-    const boardsToSync = [...pendingBoards, ...untrackedBoardsToSync];
-
-    // Only delete boards explicitly marked via the sync system.
-    // Skip untracked boards (no syncMeta) to avoid unexpected deletions.
-    const boardsToDelete = boards.filter(
-      b => syncMeta[b.id]?.isDeleted === true
-    );
+    const { boardsToSync, boardsToDelete } = classifyBoardsForPush({
+      boards,
+      syncMeta,
+      userEmail,
+      userName,
+      locale,
+      remoteBoards,
+      dispatch
+    });
 
     // PUSH: Create/update boards
-    for (const board of boardsToSync) {
-      try {
-        if (isLocalBoard(board) || transformedBoardIds.has(board.id)) {
-          const state = getState();
-          const activeCommunicatorBoards =
-            state &&
-            state.communicator &&
-            state.communicator.active &&
-            Array.isArray(state.communicator.active.boards)
-              ? state.communicator.active.boards
-              : null;
+    for (const { boardId, needsCreate } of boardsToSync) {
+      // Re-read board from current state to avoid stale references
+      // (prior iterations may have mutated state via CREATE_API_BOARD_SUCCESS)
+      const board = getState().board.boards.find(b => b.id === boardId);
+      if (!board) continue;
 
-          if (
-            !activeCommunicatorBoards ||
-            !activeCommunicatorBoards.includes(board.id)
-          ) {
+      try {
+        if (needsCreate) {
+          const activeCommunicatorBoards =
+            getState().communicator?.active?.boards ?? [];
+
+          if (!activeCommunicatorBoards.includes(board.id)) {
             dispatch(addBoardCommunicator(board.id));
           }
           const newBoardId = await dispatch(
             updateApiObjectsNoChild(board, true)
           );
           dispatch(replaceBoard(board, { ...board, id: newBoardId }));
-          if (activeBoardId === board.id) {
+          if (activeBoardIdBeforePush === board.id) {
             replaceHistoryWithActiveBoardId(getState);
           }
         } else {
@@ -740,23 +768,21 @@ export function pushLocalChangesToApi(remoteBoards = []) {
 
     // PUSH: Delete boards from server
     for (const board of boardsToDelete) {
-      if (isServerBoard(board)) {
-        // Board with server ID: delete from server
-
-        try {
-          await dispatch(deleteApiBoard(board.id));
-          // DELETE_API_BOARD_SUCCESS handles hard delete
-        } catch (e) {
-          if (e.response?.status === 404) {
-            dispatch(deleteApiBoardSuccess({ id: board.id }));
-            continue;
-          }
-
-          console.error('Failed to delete board from API:', board.id, e);
-        }
-      } else {
+      if (!isServerBoard(board)) {
         // Local board without server ID: just hard delete locally
         dispatch(deleteApiBoardSuccess({ id: board.id }));
+        continue;
+      }
+
+      try {
+        await dispatch(deleteApiBoard(board.id));
+        // DELETE_API_BOARD_SUCCESS handles hard delete
+      } catch (e) {
+        if (e.response?.status === 404) {
+          dispatch(deleteApiBoardSuccess({ id: board.id }));
+          continue;
+        }
+        console.error('Failed to delete board from API:', board.id, e);
       }
     }
   };
