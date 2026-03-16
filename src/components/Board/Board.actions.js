@@ -51,11 +51,15 @@ import API from '../../api';
 import {
   isLocalBoard,
   isServerBoard,
-  classifyRemoteBoards
+  hasDefaultOrNoEmail,
+  isUnloggedCreatedBoard,
+  classifyRemoteBoards,
+  transformBoardForUser
 } from './Board.utils';
 
 import {
   replaceBoardCommunicator,
+  addBoardCommunicator,
   upsertCommunicator,
   getApiMyCommunicators,
   editCommunicator,
@@ -609,67 +613,136 @@ export function applyRemoteChangesToState({
 }
 
 /**
+ * Classify boards into those needing sync (create/update) and those needing deletion.
+ * Transforms default/offline boards to belong to the current user and dispatches
+ * updateBoard for each transformation.
+ *
+ * Returns boardId + needsCreate tuples (not board objects) so the push loop
+ * can re-read fresh state before each API call.
+ */
+function classifyBoardsForPush({
+  boards,
+  syncMeta,
+  userEmail,
+  userName,
+  locale,
+  remoteBoards,
+  dispatch
+}) {
+  const boardsToSync = [];
+  const boardsToDelete = [];
+
+  // Helper to transform default/offline boards to belong to the current user
+  const transformAndTrack = board => {
+    if (!hasDefaultOrNoEmail(board)) return false;
+    const transformedBoard = transformBoardForUser(
+      board,
+      userEmail,
+      userName,
+      locale
+    );
+    dispatch(updateBoard(transformedBoard, false));
+    return true;
+  };
+
+  // Boards explicitly marked PENDING by the sync system.
+  for (const b of boards) {
+    const meta = syncMeta[b.id];
+    if (meta?.status !== SYNC_STATUS.PENDING || meta?.isDeleted) continue;
+
+    if (hasDefaultOrNoEmail(b) || b.email === userEmail) {
+      const wasTransformed = transformAndTrack(b);
+      boardsToSync.push({
+        boardId: b.id,
+        needsCreate: wasTransformed || isLocalBoard(b)
+      });
+    }
+  }
+
+  // Untracked boards (no syncMeta entry) that belong to the current user
+  // or were created when the user was unlogged (empty email) or have the default email.
+  const remoteBoardMap = new Map(remoteBoards.map(b => [b.id, b]));
+
+  for (const b of boards) {
+    if (syncMeta[b.id] || (b.email !== userEmail && !isUnloggedCreatedBoard(b)))
+      continue;
+
+    const remote = remoteBoardMap.get(b.id);
+    if (remote && moment(b.lastEdited).isSameOrBefore(remote.lastEdited)) {
+      // Graduate to SYNCED without pushing
+      dispatch(updateBoard(b, true));
+      continue;
+    }
+
+    const wasTransformed = transformAndTrack(b);
+    boardsToSync.push({
+      boardId: b.id,
+      needsCreate: wasTransformed || isLocalBoard(b)
+    });
+  }
+
+  // Only delete boards explicitly marked via the sync system.
+  for (const b of boards) {
+    if (syncMeta[b.id]?.isDeleted === true) {
+      boardsToDelete.push(b);
+    }
+  }
+
+  return { boardsToSync, boardsToDelete };
+}
+
+/**
  * PUSH: Upload local changes to the API.
  * Pushes all boards with syncStatus: PENDING, plus untracked boards (no syncStatus)
  * that are newer than their remote version or don't exist on the server.
+ * - Modified default boards (support@cboard.io) → transformed to user's boards, then CREATED on server
+ * - Unlogged created boards (support@cboard.io as default) → transformed to user's boards, then CREATED on server
  * - Short ID boards (locally created) → updateApiObjectsNoChild (creates on server)
- * - Long ID boards (existing) → updateApiBoard (updates on server)
+ * - Long ID boards (user's existing) → updateApiBoard (updates on server)
  */
 export function pushLocalChangesToApi(remoteBoards = []) {
   return async (dispatch, getState) => {
     const userEmail = getState().app?.userData?.email;
-    const { boards, activeBoardId, syncMeta } = getState().board;
     if (!userEmail) return;
-    // Boards explicitly marked PENDING by the sync system.
-    // Only push boards that belong to the current user.
-    const pendingBoards = boards.filter(b => {
-      const meta = syncMeta[b.id];
-      if (meta?.status !== SYNC_STATUS.PENDING || meta?.isDeleted) return false;
-      if (b.email !== userEmail) return false;
-      return true;
+
+    const userName = getState().app?.userData?.name || '';
+    const locale = getState().language?.lang;
+    const {
+      boards,
+      activeBoardId: activeBoardIdBeforePush,
+      syncMeta
+    } = getState().board;
+
+    const { boardsToSync, boardsToDelete } = classifyBoardsForPush({
+      boards,
+      syncMeta,
+      userEmail,
+      userName,
+      locale,
+      remoteBoards,
+      dispatch
     });
-
-    // Untracked boards (no syncMeta entry) that belong to the current user.
-    const untrackedBoards = boards.filter(b => {
-      if (syncMeta[b.id]) return false;
-      if (b.email !== userEmail) return false;
-      return true;
-    });
-
-    const untrackedBoardsToSync = [];
-    const remoteBoardMap = new Map(remoteBoards.map(b => [b.id, b]));
-
-    for (const board of untrackedBoards) {
-      const remote = remoteBoardMap.get(board.id);
-      if (!remote) {
-        // Not on server — needs push
-        untrackedBoardsToSync.push(board);
-      } else if (moment(board.lastEdited).isAfter(remote.lastEdited)) {
-        // Local is newer — needs push
-        untrackedBoardsToSync.push(board);
-      } else {
-        // Graduate to SYNCED without pushing
-        dispatch(updateBoard(board, true));
-      }
-    }
-
-    const boardsToSync = [...pendingBoards, ...untrackedBoardsToSync];
-
-    // Only delete boards explicitly marked via the sync system.
-    // Skip untracked boards (no syncMeta) to avoid unexpected deletions.
-    const boardsToDelete = boards.filter(
-      b => syncMeta[b.id]?.isDeleted === true
-    );
 
     // PUSH: Create/update boards
-    for (const board of boardsToSync) {
+    for (const { boardId, needsCreate } of boardsToSync) {
+      // Re-read board from current state to avoid stale references
+      // (prior iterations may have mutated state via CREATE_API_BOARD_SUCCESS)
+      const board = getState().board.boards.find(b => b.id === boardId);
+      if (!board) continue;
+
       try {
-        if (isLocalBoard(board)) {
+        if (needsCreate) {
+          const activeCommunicatorBoards =
+            getState().communicator?.active?.boards ?? [];
+
+          if (!activeCommunicatorBoards.includes(board.id)) {
+            dispatch(addBoardCommunicator(board.id));
+          }
           const newBoardId = await dispatch(
             updateApiObjectsNoChild(board, true)
           );
           dispatch(replaceBoard(board, { ...board, id: newBoardId }));
-          if (activeBoardId === board.id) {
+          if (activeBoardIdBeforePush === board.id) {
             replaceHistoryWithActiveBoardId(getState);
           }
         } else {
@@ -682,23 +755,21 @@ export function pushLocalChangesToApi(remoteBoards = []) {
 
     // PUSH: Delete boards from server
     for (const board of boardsToDelete) {
-      if (isServerBoard(board)) {
-        // Board with server ID: delete from server
-
-        try {
-          await dispatch(deleteApiBoard(board.id));
-          // DELETE_API_BOARD_SUCCESS handles hard delete
-        } catch (e) {
-          if (e.response?.status === 404) {
-            dispatch(deleteApiBoardSuccess({ id: board.id }));
-            continue;
-          }
-
-          console.error('Failed to delete board from API:', board.id, e);
-        }
-      } else {
+      if (!isServerBoard(board)) {
         // Local board without server ID: just hard delete locally
         dispatch(deleteApiBoardSuccess({ id: board.id }));
+        continue;
+      }
+
+      try {
+        await dispatch(deleteApiBoard(board.id));
+        // DELETE_API_BOARD_SUCCESS handles hard delete
+      } catch (e) {
+        if (e.response?.status === 404) {
+          dispatch(deleteApiBoardSuccess({ id: board.id }));
+          continue;
+        }
+        console.error('Failed to delete board from API:', board.id, e);
       }
     }
   };
@@ -989,23 +1060,16 @@ export function updateApiMarkedBoards() {
       }
       if (isLocalBoard(board) && board.shouldCreateBoard) {
         const state = getState();
+        const userEmail = state.app.userData.email;
+        const userName = state.app.userData.name;
+        const locale = state.language?.lang;
 
-        // TODO - translate name using intl in a redux action
-        //name: intl.formatMessage({ id: allBoards[i].nameKey })
-        const extractName = () => {
-          const splitedNameKey = board.nameKey.split('.');
-          const NAMEKEY_LAST_INDEX = splitedNameKey.length - 1;
-          return splitedNameKey[NAMEKEY_LAST_INDEX];
-        };
-        const name = board.name ?? extractName();
-        let boardData = {
-          ...board,
-          author: state.app.userData.name,
-          email: state.app.userData.email,
-          hidden: false,
-          locale: state.lang,
-          name
-        };
+        let boardData = transformBoardForUser(
+          board,
+          userEmail,
+          userName,
+          locale
+        );
         delete boardData.shouldCreateBoard;
         dispatch(unmarkShouldCreateBoard(boardData.id));
 

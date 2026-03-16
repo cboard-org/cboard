@@ -51,3 +51,5 @@ export const SYNC_STATUS = {
   SYNCED: 'synced',
   PENDING: 'pending'
 };
+
+export const DEFAULT_BOARD_EMAIL = 'support@cboard.io';
