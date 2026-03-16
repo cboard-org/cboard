@@ -53,6 +53,4 @@ export const SYNC_STATUS = {
   PENDING: 'pending'
 };
 
-export const MARK_BOARD_DIRTY = 'cboard/Board/MARK_BOARD_DIRTY';
-
 export const DEFAULT_BOARD_EMAIL = 'support@cboard.io';
