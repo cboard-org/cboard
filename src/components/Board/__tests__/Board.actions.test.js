@@ -52,15 +52,6 @@ const initialState = {
 };
 
 describe('actions', () => {
-  it('should create an action to import boards', () => {
-    const boards = {};
-    const expectedAction = {
-      type: types.IMPORT_BOARDS,
-      boards
-    };
-    expect(actions.importBoards(boards)).toEqual(expectedAction);
-  });
-
   it('should create an action to add boards', () => {
     const boards = {};
     const expectedAction = {
@@ -687,13 +678,13 @@ describe('pushLocalChangesToApi', () => {
   });
 
   it('should not push any boards when none have syncMeta status PENDING', async () => {
-    const boardWithSyncedStatus = { ...mockBoard };
+    const board = { ...mockBoard };
     const storeWithBoards = mockStore({
       ...initialState,
       board: {
         ...initialState.board,
-        boards: [boardWithSyncedStatus],
-        syncMeta: { [mockBoard.id]: { status: types.SYNC_STATUS.SYNCED } }
+        boards: [board],
+        syncMeta: { [board.id]: { status: types.SYNC_STATUS.SYNCED } }
       }
     });
 

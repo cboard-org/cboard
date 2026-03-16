@@ -3,7 +3,6 @@ import isUrl from 'is-url';
 import moment from 'moment';
 
 import {
-  IMPORT_BOARDS,
   ADD_BOARDS,
   CHANGE_BOARD,
   SWITCH_BOARD,
@@ -45,8 +44,7 @@ import {
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
-  SYNC_STATUS,
-  MARK_BOARD_DIRTY
+  SYNC_STATUS
 } from './Board.constants';
 
 import API from '../../api';
@@ -76,13 +74,6 @@ import history from './../../history';
 import { improvePhraseAbortController } from '../../api/api';
 
 const BOARDS_PAGE_LIMIT = 500;
-
-export function importBoards(boards) {
-  return {
-    type: IMPORT_BOARDS,
-    boards
-  };
-}
 
 export function addBoards(boards) {
   return {
@@ -317,10 +308,6 @@ export function unmarkBoard(boardId) {
     type: UNMARK_BOARD,
     boardId
   };
-}
-
-export function markBoardDirty(boardId) {
-  return { type: MARK_BOARD_DIRTY, boardId };
 }
 
 export function createTile(tile, boardId) {
