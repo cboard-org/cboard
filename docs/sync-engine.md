@@ -6,7 +6,6 @@ covering every function in the pipeline, state transitions, side effects, and
 edge cases.
 
 > **Audience:** project maintainers, collaborators, and AI models.
-> **Source branch:** `revert-2113-revert-2097-sync-boards-action` (PR #2114)
 
 ---
 
@@ -32,22 +31,22 @@ edge cases.
 
 ## 1. Glossary
 
-| Term | Definition |
-|------|-----------|
-| **syncMeta** | A Redux state object (`state.board.syncMeta`) that maps each board ID to its sync metadata: `{ status, isDeleted? }`. It is the single source of truth for whether a board needs syncing. |
-| **PENDING** | `syncMeta` status indicating the board has local changes not yet pushed to the server. Any local edit (board update, tile create/edit/delete) sets this status. |
-| **SYNCED** | `syncMeta` status indicating the board's local state matches the server. Set after successful API create/update or when pulling a remote board. |
-| **isDeleted** | Boolean flag on a `syncMeta` entry. When `true`, the board is marked for deletion on the server during the next PUSH phase. The board data remains in Redux until the API deletion succeeds. |
-| **Untracked board** | A board that has **no** `syncMeta` entry at all. These are boards that existed before the sync engine was introduced. Pass 2 of `classifyBoardsForPush` handles their onboarding into the sync system. |
-| **Graduation** | The process of assigning a `syncMeta` entry (with status `SYNCED`) to an untracked board without pushing it to the server. This happens when the local version is the same or older than the remote version. |
-| **Transformation** | Converting a default/offline board to belong to the current user by replacing its email, author, locale, and visibility fields. Performed by `transformBoardForUser()`. |
-| **Local board** | A board whose ID was generated locally (short ID, < 14 characters). It has never been persisted to the server. |
-| **Server board** | A board whose ID is a server-assigned MongoDB ObjectId (>= 14 characters). It exists (or existed) on the API. |
-| **Default board** | A board shipped with the app (known ID set + `support@cboard.io` email). These are templates that get transformed into user-owned boards on first sync. |
-| **needsCreate** | A flag returned by `classifyBoardsForPush` indicating whether the board must be **created** on the server (POST) vs **updated** (PUT). True for local boards and transformed default boards. |
-| **Communicator** | The top-level container that holds references to all boards a user has access to, including the `rootBoard` and `activeBoardId`. |
-| **markToUpdate** | A board-level flag set by the `CREATE_API_BOARD_SUCCESS` reducer when a tile's `loadBoard` reference changes due to an ID swap. Signals `updateApiMarkedBoards()` to push the board. |
-| **shouldCreateBoard** | A board-level flag set by `CREATE_API_BOARD_SUCCESS` for local boards that reference the newly-created board but aren't on the server themselves yet. Signals `updateApiMarkedBoards()` to create them. |
+| Term                  | Definition                                                                                                                                                                                                   |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **syncMeta**          | A Redux state object (`state.board.syncMeta`) that maps each board ID to its sync metadata: `{ status, isDeleted? }`. It is the single source of truth for whether a board needs syncing.                    |
+| **PENDING**           | `syncMeta` status indicating the board has local changes not yet pushed to the server. Any local edit (board update, tile create/edit/delete) sets this status.                                              |
+| **SYNCED**            | `syncMeta` status indicating the board's local state matches the server. Set after successful API create/update or when pulling a remote board.                                                              |
+| **isDeleted**         | Boolean flag on a `syncMeta` entry. When `true`, the board is marked for deletion on the server during the next PUSH phase. The board data remains in Redux until the API deletion succeeds.                 |
+| **Untracked board**   | A board that has **no** `syncMeta` entry at all. These are boards that existed before the sync engine was introduced. Pass 2 of `classifyBoardsForPush` handles their onboarding into the sync system.       |
+| **Graduation**        | The process of assigning a `syncMeta` entry (with status `SYNCED`) to an untracked board without pushing it to the server. This happens when the local version is the same or older than the remote version. |
+| **Transformation**    | Converting a default/offline board to belong to the current user by replacing its email, author, locale, and visibility fields. Performed by `transformBoardForUser()`.                                      |
+| **Local board**       | A board whose ID was generated locally (short ID, < 14 characters). It has never been persisted to the server.                                                                                               |
+| **Server board**      | A board whose ID is a server-assigned MongoDB ObjectId (>= 14 characters). It exists (or existed) on the API.                                                                                                |
+| **Default board**     | A board shipped with the app (known ID set + `support@cboard.io` email). These are templates that get transformed into user-owned boards on first sync.                                                      |
+| **needsCreate**       | A flag returned by `classifyBoardsForPush` indicating whether the board must be **created** on the server (POST) vs **updated** (PUT). True for local boards and transformed default boards.                 |
+| **Communicator**      | The top-level container that holds references to all boards a user has access to, including the `rootBoard` and `activeBoardId`.                                                                             |
+| **markToUpdate**      | A board-level flag set by the `CREATE_API_BOARD_SUCCESS` reducer when a tile's `loadBoard` reference changes due to an ID swap. Signals `updateApiMarkedBoards()` to push the board.                         |
+| **shouldCreateBoard** | A board-level flag set by `CREATE_API_BOARD_SUCCESS` for local boards that reference the newly-created board but aren't on the server themselves yet. Signals `updateApiMarkedBoards()` to create them.      |
 
 ---
 
@@ -75,6 +74,7 @@ Server (API)                          Local (Redux)
 ```
 
 **Why PULL first?** Applying remote changes before pushing ensures that:
+
 - The PUSH phase sees the most up-to-date state (post-PULL).
 - Classification during PULL uses the pre-PULL snapshot, avoiding contamination from boards that PULL just added.
 - Conflicts are resolved with a last-write-wins strategy based on `lastEdited` timestamps.
@@ -146,10 +146,10 @@ await dispatch(pushLocalChangesToApi(remoteBoards));
 
 Compares the server snapshot against local state and returns three lists:
 
-| Output | Condition | Description |
-|--------|-----------|-------------|
-| `boardsToAdd` | Remote board ID not found in local boards | New board from server — never seen locally. |
-| `boardsToUpdate` | `moment(remote.lastEdited).isAfter(local.lastEdited)` | Server has a newer version. Remote wins (last-write-wins). |
+| Output             | Condition                                                                                                                                | Description                                                                        |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `boardsToAdd`      | Remote board ID not found in local boards                                                                                                | New board from server — never seen locally.                                        |
+| `boardsToUpdate`   | `moment(remote.lastEdited).isAfter(local.lastEdited)`                                                                                    | Server has a newer version. Remote wins (last-write-wins).                         |
 | `boardIdsToDelete` | Local board has a server ID (`>= 14 chars`) AND is not in the remote set AND is not locally marked as deleted AND has a `syncMeta` entry | Board appears to have been deleted on the server. Requires verification (see 5.2). |
 
 **Why `boardIdsToDelete` requires `localHasSyncStatus`:** Only boards that the sync system is already tracking are candidates for server-side deletion detection. Untracked boards (no `syncMeta` entry) are excluded to prevent false deletions of pre-existing boards that haven't been onboarded yet.
@@ -161,15 +161,19 @@ Compares the server snapshot against local state and returns three lists:
 Applies the classified changes to Redux state:
 
 **Additions:**
+
 ```
 dispatch(addBoards(boardsToAdd))
 ```
+
 The `ADD_BOARDS` reducer assigns `SYNCED` status to server boards and `PENDING` to local boards.
 
 **Updates:**
+
 ```
 dispatch(updateBoard(board, fromRemote=true))
 ```
+
 The `fromRemote=true` flag causes the reducer to set syncMeta status to `SYNCED`.
 
 **Deletions — Verification Protocol:**
@@ -195,6 +199,7 @@ For each boardId in boardIdsToDelete:
 ```
 
 This verification prevents data loss when:
+
 - The API's paginated response omits a board (pagination edge case).
 - A concurrent edit occurred between fetching the board list and processing deletions.
 
@@ -333,11 +338,11 @@ For each untracked board belonging to the user:
 
 #### Graduation vs Push
 
-| Scenario | Action | API Call? | Resulting syncMeta |
-|----------|--------|-----------|-------------------|
-| Remote exists and is same/newer | Graduate | No | `{ status: SYNCED }` |
-| Remote exists but local is newer | Push | Yes (create or update) | `{ status: SYNCED }` after success |
-| No remote version | Push | Yes (create) | `{ status: SYNCED }` after success |
+| Scenario                         | Action   | API Call?              | Resulting syncMeta                 |
+| -------------------------------- | -------- | ---------------------- | ---------------------------------- |
+| Remote exists and is same/newer  | Graduate | No                     | `{ status: SYNCED }`               |
+| Remote exists but local is newer | Push     | Yes (create or update) | `{ status: SYNCED }` after success |
+| No remote version                | Push     | Yes (create)           | `{ status: SYNCED }` after success |
 
 #### Why Graduation Matters
 
@@ -348,7 +353,7 @@ Graduation is a performance optimization and correctness guarantee. Without it, 
 If an untracked board has a default email (`support@cboard.io`) or no email at all, it is **transformed** before pushing:
 
 ```javascript
-transformBoardForUser(board, userEmail, userName, locale)
+transformBoardForUser(board, userEmail, userName, locale);
 // Sets: email → userEmail, author → userName, isPublic → false,
 //        locale → user's locale, hidden → false
 ```
@@ -358,6 +363,7 @@ This claims ownership of default/offline boards so they appear in the user's per
 #### Post-Onboarding
 
 After Pass 2 completes, every board that was untracked either:
+
 - Has been **graduated** (now has `syncMeta` with `SYNCED` status), or
 - Has been **queued for push** (will get `SYNCED` status after the API call succeeds).
 
@@ -373,9 +379,9 @@ This function creates or updates a single board on the server and handles **all 
 
 ### Parameters
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `parentBoard` | Object | The board to create or update. |
+| Parameter           | Type    | Description                                                       |
+| ------------------- | ------- | ----------------------------------------------------------------- |
+| `parentBoard`       | Object  | The board to create or update.                                    |
 | `createParentBoard` | Boolean | `true` → POST (create), `false` → PUT (update). Default: `false`. |
 
 ### Execution Flow
@@ -413,14 +419,14 @@ updateApiObjectsNoChild(board, createParentBoard)
 
 ### Side Effects Inventory
 
-| # | Side Effect | Trigger | Description |
-|---|-------------|---------|-------------|
-| 1 | **Board created/updated on API** | Always | The primary API call (POST or PUT). |
-| 2 | **Communicator board list updated** | ID changed | `replaceBoardCommunicator` swaps old → new ID in the communicator's `boards` array. |
-| 3 | **Home board reference updated** | ID changed | `replaceDefaultHomeBoardIfIsNescesary` ensures the default home board setting points to the new ID. |
-| 4 | **Communicator root/active board updated** | Board was root board | If the created board was the communicator's root board, both `rootBoard` and `activeBoardId` are updated to the new server ID. |
-| 5 | **Communicator persisted to API** | Always | `upsertApiCommunicator` pushes the communicator state to the server regardless of whether it changed. |
-| 6 | **Marked boards cascade** | Always | `updateApiMarkedBoards()` processes any boards flagged during the `CREATE_API_BOARD_SUCCESS` reducer (see 8.1). |
+| #   | Side Effect                                | Trigger              | Description                                                                                                                    |
+| --- | ------------------------------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | **Board created/updated on API**           | Always               | The primary API call (POST or PUT).                                                                                            |
+| 2   | **Communicator board list updated**        | ID changed           | `replaceBoardCommunicator` swaps old → new ID in the communicator's `boards` array.                                            |
+| 3   | **Home board reference updated**           | ID changed           | `replaceDefaultHomeBoardIfIsNescesary` ensures the default home board setting points to the new ID.                            |
+| 4   | **Communicator root/active board updated** | Board was root board | If the created board was the communicator's root board, both `rootBoard` and `activeBoardId` are updated to the new server ID. |
+| 5   | **Communicator persisted to API**          | Always               | `upsertApiCommunicator` pushes the communicator state to the server regardless of whether it changed.                          |
+| 6   | **Marked boards cascade**                  | Always               | `updateApiMarkedBoards()` processes any boards flagged during the `CREATE_API_BOARD_SUCCESS` reducer (see 8.1).                |
 
 ### 8.1 The `CREATE_API_BOARD_SUCCESS` Reducer Cascade
 
@@ -503,14 +509,14 @@ Is board.id in DEFAULT_BOARD_IDS set AND email === "support@cboard.io"?
 
 **File:** `src/components/Board/Board.utils.js`
 
-| Function | Logic | Used By |
-|----------|-------|---------|
-| `isLocalBoard(board)` | `board.id.length < 14` | Push classification, reducer, marked boards |
-| `isServerBoard(board)` | `board.id.length >= 14` | Pull classification, delete logic, marked boards |
-| `isDefaultBoard(board)` | ID in known set AND default email | Unlogged board detection |
-| `hasDefaultOrNoEmail(board)` | `!email \|\| email === "support@cboard.io"` | Transform decision |
-| `isUnloggedCreatedBoard(board)` | `!isDefaultBoard && hasDefaultOrNoEmail` | Pass 2 classification |
-| `transformBoardForUser(board, email, name, locale)` | Sets email, author, name, isPublic, locale, hidden | Onboarding default/offline boards |
+| Function                                            | Logic                                              | Used By                                          |
+| --------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------ |
+| `isLocalBoard(board)`                               | `board.id.length < 14`                             | Push classification, reducer, marked boards      |
+| `isServerBoard(board)`                              | `board.id.length >= 14`                            | Pull classification, delete logic, marked boards |
+| `isDefaultBoard(board)`                             | ID in known set AND default email                  | Unlogged board detection                         |
+| `hasDefaultOrNoEmail(board)`                        | `!email \|\| email === "support@cboard.io"`        | Transform decision                               |
+| `isUnloggedCreatedBoard(board)`                     | `!isDefaultBoard && hasDefaultOrNoEmail`           | Pass 2 classification                            |
+| `transformBoardForUser(board, email, name, locale)` | Sets email, author, name, isPublic, locale, hidden | Onboarding default/offline boards                |
 
 ### `transformBoardForUser` Output
 
@@ -558,20 +564,20 @@ state.board = {
 
 The `syncMeta` object tracks each board's sync status. Here's how every reducer action affects it:
 
-| Action | syncMeta Effect | Trigger |
-|--------|----------------|---------|
-| `ADD_BOARDS` | `[id]: { status: isLocalBoard ? PENDING : SYNCED }` | Pull adds remote boards, or boards added programmatically |
-| `CREATE_BOARD` | `[id]: { status: PENDING }` | User creates a new board |
-| `UPDATE_BOARD` | `[id]: { status: fromRemote ? SYNCED : PENDING }` | Local edit (PENDING) or remote pull (SYNCED) |
-| `DELETE_BOARD` | `[id]: { status: PENDING, isDeleted: true }` | User deletes a board (soft delete) |
-| `CREATE_TILE` | `[boardId]: { status: PENDING }` | Tile added to board |
-| `DELETE_TILES` | `[boardId]: { status: PENDING }` | Tiles removed from board |
-| `EDIT_TILES` | `[boardId]: { status: PENDING }` | Tiles modified on board |
-| `CREATE_API_BOARD_SUCCESS` | Remove `[oldId]`, set `[newId]: { status: SYNCED }` | Board successfully created on server |
-| `UPDATE_API_BOARD_SUCCESS` | `[id]: { status: SYNCED }` | Board successfully updated on server |
-| `DELETE_API_BOARD_SUCCESS` | Remove `[id]` entirely | Board removed from server (hard delete) |
-| `REPLACE_BOARD` | Migrate `[prevId]` → `[currentId]` | Board ID swapped (local → server) |
-| `LOGOUT` | Reset to `{}` | User logs out |
+| Action                     | syncMeta Effect                                     | Trigger                                                   |
+| -------------------------- | --------------------------------------------------- | --------------------------------------------------------- |
+| `ADD_BOARDS`               | `[id]: { status: isLocalBoard ? PENDING : SYNCED }` | Pull adds remote boards, or boards added programmatically |
+| `CREATE_BOARD`             | `[id]: { status: PENDING }`                         | User creates a new board                                  |
+| `UPDATE_BOARD`             | `[id]: { status: fromRemote ? SYNCED : PENDING }`   | Local edit (PENDING) or remote pull (SYNCED)              |
+| `DELETE_BOARD`             | `[id]: { status: PENDING, isDeleted: true }`        | User deletes a board (soft delete)                        |
+| `CREATE_TILE`              | `[boardId]: { status: PENDING }`                    | Tile added to board                                       |
+| `DELETE_TILES`             | `[boardId]: { status: PENDING }`                    | Tiles removed from board                                  |
+| `EDIT_TILES`               | `[boardId]: { status: PENDING }`                    | Tiles modified on board                                   |
+| `CREATE_API_BOARD_SUCCESS` | Remove `[oldId]`, set `[newId]: { status: SYNCED }` | Board successfully created on server                      |
+| `UPDATE_API_BOARD_SUCCESS` | `[id]: { status: SYNCED }`                          | Board successfully updated on server                      |
+| `DELETE_API_BOARD_SUCCESS` | Remove `[id]` entirely                              | Board removed from server (hard delete)                   |
+| `REPLACE_BOARD`            | Migrate `[prevId]` → `[currentId]`                  | Board ID swapped (local → server)                         |
+| `LOGOUT`                   | Reset to `{}`                                       | User logs out                                             |
 
 ### 10.3 State Transitions Diagram
 
@@ -642,15 +648,15 @@ Use this as the contract between the engine and the presentation layer.
 
 ### Available State Signals
 
-| State | Source | Value |
-|-------|--------|-------|
-| Sync in progress | `state.board.isSyncing` | `true` while `syncBoards()` is running |
-| Sync error | `state.board.syncError` | Error message string, or `null` |
-| Board pending | `state.board.syncMeta[id]?.status` | `'pending'` — has unsaved local changes |
-| Board synced | `state.board.syncMeta[id]?.status` | `'synced'` — matches server |
-| Board pending delete | `state.board.syncMeta[id]?.isDeleted` | `true` — queued for server deletion |
-| Board untracked | `state.board.syncMeta[id]` | `undefined` — not yet onboarded |
-| API call active | `state.board.isFetching` | `true` during individual API calls |
+| State                | Source                                | Value                                   |
+| -------------------- | ------------------------------------- | --------------------------------------- |
+| Sync in progress     | `state.board.isSyncing`               | `true` while `syncBoards()` is running  |
+| Sync error           | `state.board.syncError`               | Error message string, or `null`         |
+| Board pending        | `state.board.syncMeta[id]?.status`    | `'pending'` — has unsaved local changes |
+| Board synced         | `state.board.syncMeta[id]?.status`    | `'synced'` — matches server             |
+| Board pending delete | `state.board.syncMeta[id]?.isDeleted` | `true` — queued for server deletion     |
+| Board untracked      | `state.board.syncMeta[id]`            | `undefined` — not yet onboarded         |
+| API call active      | `state.board.isFetching`              | `true` during individual API calls      |
 
 ### Suggested UI Mapping
 
@@ -666,7 +672,7 @@ Fill in as UI is implemented. Example mapping:
 | No indicator | syncMeta[activeBoard] === undefined (untracked) |
 -->
 
-*To be defined when the sync status UI is implemented.*
+_To be defined when the sync status UI is implemented._
 
 ---
 
@@ -730,37 +736,37 @@ USER ACTION (edit board / create tile / delete board)
 
 ### Error Recovery
 
-| Scenario | Handling | Location |
-|----------|----------|----------|
-| `syncBoards()` throws | Catches error, dispatches `SYNC_BOARDS_FAILURE`, returns `{ success: false }` | `Board.actions.js:816-819` |
-| Individual board push fails | `console.error`, continues to next board. Failed board remains `PENDING` for next sync. | `Board.actions.js:751-753` |
-| Board delete fails with non-404 | `console.error`, continues. Board remains marked `isDeleted` for next sync. | `Board.actions.js:772-773` |
-| Board delete fails with 404 | Treated as success — board already gone from server. Dispatches `deleteApiBoardSuccess`. | `Board.actions.js:768-771` |
-| Deletion verification returns 404 | Confirmed deleted — hard delete locally. | `Board.actions.js:600-601` |
-| Deletion verification returns board | Board still exists — update locally instead of deleting. | `Board.actions.js:597` |
-| 403 from any API call | Axios interceptor triggers automatic logout. | Global API config |
-| No `userEmail` in state | `pushLocalChangesToApi` returns immediately — no push occurs. | `Board.actions.js:706` |
+| Scenario                            | Handling                                                                                 | Location                   |
+| ----------------------------------- | ---------------------------------------------------------------------------------------- | -------------------------- |
+| `syncBoards()` throws               | Catches error, dispatches `SYNC_BOARDS_FAILURE`, returns `{ success: false }`            | `Board.actions.js:816-819` |
+| Individual board push fails         | `console.error`, continues to next board. Failed board remains `PENDING` for next sync.  | `Board.actions.js:751-753` |
+| Board delete fails with non-404     | `console.error`, continues. Board remains marked `isDeleted` for next sync.              | `Board.actions.js:772-773` |
+| Board delete fails with 404         | Treated as success — board already gone from server. Dispatches `deleteApiBoardSuccess`. | `Board.actions.js:768-771` |
+| Deletion verification returns 404   | Confirmed deleted — hard delete locally.                                                 | `Board.actions.js:600-601` |
+| Deletion verification returns board | Board still exists — update locally instead of deleting.                                 | `Board.actions.js:597`     |
+| 403 from any API call               | Axios interceptor triggers automatic logout.                                             | Global API config          |
+| No `userEmail` in state             | `pushLocalChangesToApi` returns immediately — no push occurs.                            | `Board.actions.js:706`     |
 
 ### Known Edge Cases
 
-| Edge Case | Impact | Mitigation |
-|-----------|--------|------------|
-| **ID-length heuristic** | A locally-generated ID that happens to be >= 14 chars would be misclassified as a server board. | `shortid` output is typically 7-12 chars, making collision extremely unlikely. |
-| **`moment.js` timestamp precision** | Two edits within the same second could have identical `lastEdited` values, causing `isAfter` to return false. | `isSameOrBefore` in graduation uses inclusive comparison. Last-write-wins is acceptable for the conflict resolution model. |
-| **Concurrent edit during deletion verification** | User edits a board while `applyRemoteChangesToState` is verifying its deletion. | Pre/post fetch `syncMeta` comparison detects the SYNCED→PENDING transition and skips the overwrite. |
-| **`updateApiObjectsNoChild` recursive cascade** | `updateApiMarkedBoards` → `updateApiObjectsNoChild` → `updateApiMarkedBoards` can recurse for deeply nested board hierarchies. | Recursion terminates naturally when no more boards are marked. Assumes finite board hierarchy depth. |
-| **Stale board references in push loop** | A prior iteration's API call may change board IDs in state via `CREATE_API_BOARD_SUCCESS`. | The push loop re-reads each board from `getState()` before every API call. |
-| **Communicator always persisted** | `upsertApiCommunicator` is called even when the communicator didn't change. | No functional impact, but causes unnecessary API calls. |
+| Edge Case                                        | Impact                                                                                                                         | Mitigation                                                                                                                 |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| **ID-length heuristic**                          | A locally-generated ID that happens to be >= 14 chars would be misclassified as a server board.                                | `shortid` output is typically 7-12 chars, making collision extremely unlikely.                                             |
+| **`moment.js` timestamp precision**              | Two edits within the same second could have identical `lastEdited` values, causing `isAfter` to return false.                  | `isSameOrBefore` in graduation uses inclusive comparison. Last-write-wins is acceptable for the conflict resolution model. |
+| **Concurrent edit during deletion verification** | User edits a board while `applyRemoteChangesToState` is verifying its deletion.                                                | Pre/post fetch `syncMeta` comparison detects the SYNCED→PENDING transition and skips the overwrite.                        |
+| **`updateApiObjectsNoChild` recursive cascade**  | `updateApiMarkedBoards` → `updateApiObjectsNoChild` → `updateApiMarkedBoards` can recurse for deeply nested board hierarchies. | Recursion terminates naturally when no more boards are marked. Assumes finite board hierarchy depth.                       |
+| **Stale board references in push loop**          | A prior iteration's API call may change board IDs in state via `CREATE_API_BOARD_SUCCESS`.                                     | The push loop re-reads each board from `getState()` before every API call.                                                 |
+| **Communicator always persisted**                | `upsertApiCommunicator` is called even when the communicator didn't change.                                                    | No functional impact, but causes unnecessary API calls.                                                                    |
 
 ---
 
 ## 15. File Reference Table
 
-| Component | Path | Key Lines |
-|-----------|------|-----------|
-| **Actions (sync engine)** | `src/components/Board/Board.actions.js` | `syncBoards` (782), `applyRemoteChangesToState` (568), `classifyBoardsForPush` (623), `pushLocalChangesToApi` (703), `updateApiObjectsNoChild` (992), `updateApiMarkedBoards` (1040), `getApiMyBoards` (530) |
-| **Utilities** | `src/components/Board/Board.utils.js` | `classifyRemoteBoards` (78), `isLocalBoard` (26), `isServerBoard` (27), `transformBoardForUser` (60), `isUnloggedCreatedBoard` (32), `hasDefaultOrNoEmail` (29), `isDefaultBoard` (23) |
-| **Reducer** | `src/components/Board/Board.reducer.js` | `syncMeta` handling throughout, `CREATE_API_BOARD_SUCCESS` cascade (363), `SYNC_BOARDS_*` (521-537) |
-| **Constants** | `src/components/Board/Board.constants.js` | `SYNC_STATUS` (50), `SHORT_ID_MAX_LENGTH` (48), `DEFAULT_BOARD_EMAIL` (55) |
-| **API** | `src/api/api.js` | `getMyBoards`, `getBoard`, `createBoard`, `updateBoard`, `deleteBoard` |
-| **Container** | `src/components/Board/Board.container.js` | `getApiObjects` dispatch on mount |
+| Component                 | Path                                      | Key Lines                                                                                                                                                                                                    |
+| ------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Actions (sync engine)** | `src/components/Board/Board.actions.js`   | `syncBoards` (782), `applyRemoteChangesToState` (568), `classifyBoardsForPush` (623), `pushLocalChangesToApi` (703), `updateApiObjectsNoChild` (992), `updateApiMarkedBoards` (1040), `getApiMyBoards` (530) |
+| **Utilities**             | `src/components/Board/Board.utils.js`     | `classifyRemoteBoards` (78), `isLocalBoard` (26), `isServerBoard` (27), `transformBoardForUser` (60), `isUnloggedCreatedBoard` (32), `hasDefaultOrNoEmail` (29), `isDefaultBoard` (23)                       |
+| **Reducer**               | `src/components/Board/Board.reducer.js`   | `syncMeta` handling throughout, `CREATE_API_BOARD_SUCCESS` cascade (363), `SYNC_BOARDS_*` (521-537)                                                                                                          |
+| **Constants**             | `src/components/Board/Board.constants.js` | `SYNC_STATUS` (50), `SHORT_ID_MAX_LENGTH` (48), `DEFAULT_BOARD_EMAIL` (55)                                                                                                                                   |
+| **API**                   | `src/api/api.js`                          | `getMyBoards`, `getBoard`, `createBoard`, `updateBoard`, `deleteBoard`                                                                                                                                       |
+| **Container**             | `src/components/Board/Board.container.js` | `getApiObjects` dispatch on mount                                                                                                                                                                            |
