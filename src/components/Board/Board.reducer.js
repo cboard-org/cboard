@@ -41,7 +41,8 @@ import {
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
-  SYNC_STATUS
+  SYNC_STATUS,
+  SET_IS_SAVING
 } from './Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../Account/Login/Login.constants';
 
@@ -57,6 +58,7 @@ const initialState = {
   activeBoardId: null,
   navHistory: [],
   isFetching: false,
+  isSaving: false,
   images: [],
   isFixed: false,
   isLiveMode: false,
@@ -535,6 +537,11 @@ function boardReducer(state = initialState, action) {
         ...state,
         isSyncing: false,
         syncError: action.error
+      };
+    case SET_IS_SAVING:
+      return {
+        ...state,
+        isSaving: action.isSaving
       };
     default:
       return state;

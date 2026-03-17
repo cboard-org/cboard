@@ -47,7 +47,8 @@ import {
   downloadImages,
   createApiBoard,
   upsertApiBoard,
-  changeDefaultBoard
+  changeDefaultBoard,
+  setIsSaving
 } from './Board.actions';
 import {
   addBoardCommunicator,
@@ -459,6 +460,7 @@ export class BoardContainer extends Component {
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({ isSaving: true });
+      this.props.setIsSaving(true);
       try {
         //prepare board
         let boardData = {
@@ -502,6 +504,7 @@ export class BoardContainer extends Component {
         console.log(err.message);
       } finally {
         this.setState({ isSaving: false });
+        this.props.setIsSaving(false);
       }
     }
   };
@@ -787,7 +790,11 @@ export class BoardContainer extends Component {
   };
 
   handleLockClick = () => {
-    const { showPremiumRequired, isSubscriptionRequired } = this.props;
+    const {
+      showPremiumRequired,
+      isSubscriptionRequired,
+      setIsSaving
+    } = this.props;
 
     this.setState(
       prevState => ({
@@ -797,6 +804,7 @@ export class BoardContainer extends Component {
         selectedTileIds: []
       }),
       () => {
+        setIsSaving(false);
         if (!this.state.isLocked && isSubscriptionRequired) {
           showPremiumRequired({ showTryPeriodFinishedMessages: true });
         }
@@ -1015,6 +1023,7 @@ export class BoardContainer extends Component {
       this.setState({
         isSaving: true
       });
+      this.props.setIsSaving(true);
 
       if (tile && tile.sound && tile.sound.startsWith('data')) {
         tile = await this.uploadTileSound(tile);
@@ -1107,9 +1116,11 @@ export class BoardContainer extends Component {
             switchBoard(parentBoardId);
             this.props.history.replace(`/board/${parentBoardId}`, []);
             this.setState({ isSaving: false });
+            this.props.setIsSaving(false);
           })
           .catch(e => {
             this.setState({ isSaving: false });
+            this.props.setIsSaving(false);
           });
       } else {
         if (!createChildBoard) {
@@ -1123,9 +1134,11 @@ export class BoardContainer extends Component {
               }
               this.historyReplaceBoardId(parentBoardId);
               this.setState({ isSaving: false });
+              this.props.setIsSaving(false);
             })
             .catch(e => {
               this.setState({ isSaving: false });
+              this.props.setIsSaving(false);
             });
         } else {
           updateApiObjects(childBoardData, parentBoardData, createParentBoard)
@@ -1141,9 +1154,11 @@ export class BoardContainer extends Component {
               }
               this.historyReplaceBoardId(parentBoardId);
               this.setState({ isSaving: false });
+              this.props.setIsSaving(false);
             })
             .catch(e => {
               this.setState({ isSaving: false });
+              this.props.setIsSaving(false);
             });
         }
       }
@@ -1174,11 +1189,18 @@ export class BoardContainer extends Component {
   };
 
   handleCopyRemoteBoard = async () => {
-    const { intl, showNotification, history, switchBoard } = this.props;
+    const {
+      intl,
+      showNotification,
+      history,
+      switchBoard,
+      setIsSaving
+    } = this.props;
     try {
       this.setState({
         isSaving: true
       });
+      setIsSaving(true);
       const copiedBoard = await this.createBoardsRecursively(
         this.state.copyPublicBoard
       );
@@ -1200,6 +1222,7 @@ export class BoardContainer extends Component {
     this.setState({
       isSaving: false
     });
+    setIsSaving(false);
   };
 
   async createBoardsRecursively(board, records) {
@@ -1372,9 +1395,16 @@ export class BoardContainer extends Component {
   };
 
   handlePasteTiles = async () => {
-    const { board, intl, createTile, showNotification } = this.props;
+    const {
+      board,
+      intl,
+      createTile,
+      showNotification,
+      setIsSaving
+    } = this.props;
     try {
       this.setState({ isSaving: true });
+      setIsSaving(true);
       for await (const tile of this.state.copiedTiles) {
         const newTile = {
           ...tile,
@@ -1393,6 +1423,7 @@ export class BoardContainer extends Component {
       console.error(err.message);
     } finally {
       this.setState({ isSaving: false });
+      setIsSaving(false);
     }
   };
 
@@ -1803,7 +1834,8 @@ const mapDispatchToProps = {
   upsertApiBoard,
   changeDefaultBoard,
   verifyAndUpsertCommunicator,
-  showPremiumRequired
+  showPremiumRequired,
+  setIsSaving
 };
 
 export default connect(
