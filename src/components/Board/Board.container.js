@@ -43,7 +43,6 @@ import {
   historyRemoveBoard,
   updateApiObjects,
   updateApiObjectsNoChild,
-  getApiObjects,
   downloadImages,
   createApiBoard,
   upsertApiBoard,
@@ -199,7 +198,6 @@ export class BoardContainer extends Component {
     isSelecting: false,
     isLocked: true,
     tileEditorOpen: false,
-    isGettingApiObjects: false,
     copyPublicBoard: false,
     blockedPrivateBoard: false,
     isFixedBoard: false,
@@ -225,18 +223,9 @@ export class BoardContainer extends Component {
       boards,
       communicator,
       changeBoard,
-      userData,
-      history,
-      getApiObjects
+      history
       //downloadImages
     } = this.props;
-
-    // Loggedin user?
-    if ('name' in userData && 'email' in userData && window.navigator.onLine) {
-      //synchronize communicator and boards with API
-      this.setState({ isGettingApiObjects: true });
-      getApiObjects().then(() => this.setState({ isGettingApiObjects: false }));
-    }
 
     let boardExists = null;
 
@@ -1827,7 +1816,6 @@ const mapDispatchToProps = {
   addBoardCommunicator,
   updateApiObjects,
   updateApiObjectsNoChild,
-  getApiObjects,
   downloadImages,
   disableTour,
   createApiBoard,

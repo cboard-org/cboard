@@ -153,8 +153,7 @@ export class AppContainer extends Component {
     }
     this.lastSyncTime = now;
     console.log(`Sync dispatched - ${source}`);
-    // TODO: Replace with actual API call
-    // this.props.getApiObjects();
+    this.props.getApiObjects();
   };
 
   handleOffline = () => {
