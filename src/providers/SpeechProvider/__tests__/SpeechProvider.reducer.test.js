@@ -6,7 +6,8 @@ import {
   CHANGE_RATE,
   CHANGE_VOLUME,
   START_SPEECH,
-  END_SPEECH
+  END_SPEECH,
+  CHANGE_ELEVENLABS_API_KEY
 } from '../SpeechProvider.constants';
 
 import { CHANGE_LANG } from '../../LanguageProvider/LanguageProvider.constants';
@@ -28,14 +29,19 @@ describe('reducer', () => {
         isCloud: null,
         pitch: 1.0,
         rate: 1.0,
-        volume: 1
+        volume: 1,
+        elevenLabsStability: 0.5,
+        elevenLabsSimilarity: 0.75,
+        elevenLabsStyle: 0.0
       },
       isSpeaking: false,
       elevenLabsCache: {
         voices: [],
         timestamp: null,
         ttl: 24 * 60 * 60 * 1000
-      }
+      },
+      elevenLabsApiKey: '',
+      elevenLabsVoiceSettings: {}
     };
     mockApSpeechProvider = {
       isSpeaking: true,
@@ -181,5 +187,17 @@ describe('reducer', () => {
       voices: mockApSpeechProvider.voices,
       langs: ['en-GB', 'es-ES']
     });
+  });
+  it('should handle changeElevenLabsApiKey', () => {
+    const changeElevenLabsApiKey = {
+      type: CHANGE_ELEVENLABS_API_KEY,
+      elevenLabsApiKey: 'sk-test-key'
+    };
+    expect(speechProviderReducer(initialState, changeElevenLabsApiKey)).toEqual(
+      {
+        ...initialState,
+        elevenLabsApiKey: 'sk-test-key'
+      }
+    );
   });
 });
