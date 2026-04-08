@@ -4,6 +4,10 @@
  * This module provides functionality to search the Cboard Symbol library
  * hosted at cbuilder.cboard.io via the production API.
  *
+ * The API is public (no API key required) and access is restricted by
+ * CORS origin validation on the server side — only requests from
+ * app.cboard.io (production) and localhost (development) are allowed.
+ *
  * @module cboard-symbols
  */
 
@@ -13,7 +17,6 @@ const CBOARD_SYMBOLS_API_BASE =
     ? 'http://localhost:3000/api/cboard-symbols'
     : 'https://cbuilder.cboard.io/api/cboard-symbols');
 
-const API_KEY = process.env.REACT_APP_CBOARD_SYMBOLS_API_KEY;
 const API_TIMEOUT = 10000; // 10 seconds
 
 /**
@@ -54,14 +57,6 @@ export async function searchCboardSymbols(locale, searchText) {
     return [];
   }
 
-  // Check API key is configured
-  if (!API_KEY) {
-    console.warn(
-      'Cboard Symbols API key not configured. Set REACT_APP_CBOARD_SYMBOLS_API_KEY in .env'
-    );
-    return [];
-  }
-
   // Convert locale to 2-letter language code (e.g., "en-US" → "en")
   const languageCode = locale.slice(0, 2).toLowerCase();
 
@@ -77,10 +72,6 @@ export async function searchCboardSymbols(locale, searchText) {
     const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT);
 
     const response = await fetch(url, {
-      headers: {
-        'X-API-Key': API_KEY,
-        'Content-Type': 'application/json'
-      },
       signal: controller.signal
     });
 
@@ -88,9 +79,7 @@ export async function searchCboardSymbols(locale, searchText) {
 
     // Handle different response statuses
     if (!response.ok) {
-      if (response.status === 401) {
-        console.error('Cboard Symbols API: Unauthorized - check API key');
-      } else if (response.status === 404) {
+      if (response.status === 404) {
         console.warn(`Cboard Symbols API: No results for "${searchText}"`);
       } else {
         console.warn(`Cboard Symbols API returned status ${response.status}`);
@@ -122,20 +111,6 @@ export async function searchCboardSymbols(locale, searchText) {
 }
 
 /**
- * Get a pictogram by ID
- *
- * @param {string} pictogramId - The pictogram _id
- * @param {string} locale - Locale code
- * @returns {Promise<Object|null>} Pictogram object or null if not found
- */
-export async function getCboardSymbolById(pictogramId, locale) {
-  // This could be implemented if the API supports fetching by ID
-  // For now, not implemented as the search API is the primary use case
-  console.warn('getCboardSymbolById not yet implemented');
-  return null;
-}
-
-/**
  * Map ARASAAC skin tone to Cboard Symbols skin tone
  *
  * @param {string} arasaacSkin - ARASAAC skin tone value
@@ -148,15 +123,14 @@ export function mapArasaacToCboardSkinTone(arasaacSkin) {
     mulatto: 'skin_medium',
     asian: 'skin_medium_light',
     aztec: 'skin_medium_dark',
-    // Default fallback
     default: 'skin_emoji'
   };
 
   return skinToneMap[arasaacSkin] || skinToneMap['default'];
 }
+
 const cboardSymbolsApi = {
   searchCboardSymbols,
-  getCboardSymbolById,
   mapArasaacToCboardSkinTone
 };
 
