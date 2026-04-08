@@ -111,7 +111,6 @@ export async function searchCboardSymbols(locale, searchText) {
     if (error.name === 'AbortError') {
       console.error('Cboard Symbols API request timeout');
     } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
-      console.log('error', error);
       console.error(
         'Cboard Symbols API network error - check internet connection'
       );
