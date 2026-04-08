@@ -55,5 +55,13 @@ export default defineMessages({
     id: 'cboard.components.SymbolSearch.hairColorOptionsDesc',
     defaultMessage:
       'You can also customize the hair color of symbols. These options currently only apply to ARASAAC symbols.'
+  },
+  cboardSymbols: {
+    id: 'cboard.components.SymbolSearch.cboardSymbols',
+    defaultMessage: 'Cboard Symbols'
+  },
+  inclusivityOptions: {
+    id: 'cboard.components.SymbolSearch.inclusivityOptions',
+    defaultMessage: 'Inclusivity (ARASAAC & Cboard)'
   }
 });

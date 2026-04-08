@@ -15,6 +15,13 @@ jest.mock('./SymbolSearch.messages', () => {
   };
 });
 
+jest.mock('../../../api/cboard-symbols', () => ({
+  searchCboardSymbols: jest.fn(),
+  mapArasaacToCboardSkinTone: jest.fn()
+}));
+
+jest.mock('../../../api/mulberry-symbols.json', () => ({ default: [] }));
+
 describe('SymbolSearch tests', () => {
   const props = {
     intl: {
@@ -26,6 +33,11 @@ describe('SymbolSearch tests', () => {
     onChange: jest.fn(),
     onClose: jest.fn()
   };
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('default renderer', () => {
     const wrapper = shallow(<SymbolSearch {...props} />);
     expect(wrapper).toMatchSnapshot();
