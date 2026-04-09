@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import shortid from 'shortid';
@@ -47,214 +47,110 @@ import LoadBoardEditor from './LoadBoardEditor/LoadBoardEditor';
 import { Typography } from '@material-ui/core';
 import { LostedFolderForLoadBoardAlert } from './LostedFolderForLoadBoardAlert';
 import { SHORT_ID_MAX_LENGTH } from '../Board.constants';
+
 const NONE_VALUE = 'none';
-export class TileEditor extends Component {
-  static propTypes = {
-    /**
-     * @ignore
-     */
-    intl: intlShape.isRequired,
-    /**
-     * If true, TileEditor will be visibile
-     */
-    open: PropTypes.bool,
-    /**
-     * Callback fired on TileEditor request to be hidden
-     */
-    onClose: PropTypes.func.isRequired,
-    /**
-     * Tiles array to work on
-     */
-    editingTiles: PropTypes.array,
-    /**
-     * Callback fired when submitting edited board tiles
-     */
-    onEditSubmit: PropTypes.func.isRequired,
-    /**
-     * Callback fired when submitting a new board tile
-     */
-    onAddSubmit: PropTypes.func.isRequired,
-    boards: PropTypes.array,
-    userData: PropTypes.object,
-    folders: PropTypes.array,
-    onAddApiBoard: PropTypes.func,
-    isSymbolSearchTourEnabled: PropTypes.bool,
-    disableTour: PropTypes.func
+
+const defaultTileColors = {
+  folder: '#bbdefb',
+  button: '#fff176',
+  board: '#999999'
+};
+const defaultTile = {
+  label: '',
+  labelKey: '',
+  vocalization: '',
+  image: '',
+  loadBoard: '',
+  sound: '',
+  type: 'button',
+  backgroundColor: defaultTileColors.button,
+  linkedBoard: false
+};
+
+const defaultImageUploadedData = {
+  isUploaded: false,
+  fileName: '',
+  blobHQ: null,
+  blob: null
+};
+
+function TileEditor(props) {
+  const {
+    intl,
+    open,
+    onClose,
+    editingTiles = [],
+    onEditSubmit,
+    onAddSubmit,
+    boards,
+    userData,
+    folders,
+    onAddApiBoard,
+    isSymbolSearchTourEnabled,
+    disableTour
+  } = props;
+
+  const [activeStep, setActiveStep] = useState(0);
+  const [tilesToEdit, setTilesToEdit] = useState(editingTiles);
+  const [isSymbolSearchOpen, setIsSymbolSearchOpen] = useState(false);
+  const [autoFill, setAutoFill] = useState('');
+  const [selectedBackgroundColor, setSelectedBackgroundColor] = useState('');
+  const [tile, setTile] = useState(defaultTile);
+  const [linkedBoard, setLinkedBoard] = useState('');
+  const [imageUploadedData, setImageUploadedData] = useState([]);
+  const [isEditImageBtnActive, setIsEditImageBtnActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [openImageEditor, setOpenImageEditor] = useState(false);
+
+  const resetEditorState = () => {
+    setActiveStep(0);
+    setSelectedBackgroundColor('');
+    setTile(defaultTile);
+    setImageUploadedData([]);
+    setIsEditImageBtnActive(false);
+    setLinkedBoard('');
   };
 
-  static defaultProps = {
-    editingTiles: [],
-    openImageEditor: false
-  };
+  const getCurrentlyEditingTile = useCallback(
+    () => {
+      return tilesToEdit[activeStep];
+    },
+    [tilesToEdit, activeStep]
+  );
 
-  constructor(props) {
-    super(props);
+  const currentTileProp = useCallback(
+    prop => {
+      const currentTile = getCurrentlyEditingTile();
+      return currentTile ? currentTile[prop] : tile[prop];
+    },
+    [getCurrentlyEditingTile, tile]
+  );
 
-    this.defaultTileColors = {
-      folder: '#bbdefb',
-      button: '#fff176',
-      board: '#999999'
-    };
-
-    this.defaultTile = {
-      label: '',
-      labelKey: '',
-      vocalization: '',
-      image: '',
-      loadBoard: '',
-      sound: '',
-      type: 'button',
-      backgroundColor: this.defaultTileColors.button,
-      linkedBoard: false
-    };
-
-    this.state = {
-      activeStep: 0,
-      editingTiles: props.editingTiles,
-      isSymbolSearchOpen: false,
-      autoFill: '',
-      selectedBackgroundColor: '',
-      tile: this.defaultTile,
-      linkedBoard: '',
-      imageUploadedData: [],
-      isEditImageBtnActive: false,
-      isLoading: false
-    };
-
-    this.defaultimageUploadedData = {
-      isUploaded: false,
-      fileName: '',
-      blobHQ: null,
-      blob: null
-    };
-  }
-
-  UNSAFE_componentWillReceiveProps(props) {
-    this.updateTileProperty('id', shortid.generate()); // todo not here
-    this.setState({ editingTiles: props.editingTiles });
-  }
-  componentDidUpdate(prevProps) {
-    if (this.props.open !== prevProps.open && this.props.open) {
-      if (this.editingTile()) this.setLinkedBoard();
-      if (isAndroid()) requestCvaPermissions();
-    }
-  }
-
-  editingTile() {
-    return this.state.editingTiles[this.state.activeStep];
-  }
-
-  currentTileProp(prop) {
-    const currentTile = this.editingTile();
-    return currentTile ? currentTile[prop] : this.state.tile[prop];
-  }
-
-  updateEditingTile(id, property, value) {
-    return state => {
-      const editingTiles = state.editingTiles.map(b =>
-        b.id === id ? { ...b, ...{ [property]: value } } : b
+  const updateEditingTile = useCallback((id, property, value) => {
+    setTilesToEdit(prevState => {
+      const updatedTilesToEdit = prevState.map(b =>
+        b.id === id ? { ...b, [property]: value } : b
       );
-      return { ...state, editingTiles };
-    };
-  }
-
-  updateNewTile(property, value) {
-    return state => {
-      const tile = { ...state.tile, [property]: value };
-      return { ...state, tile };
-    };
-  }
-
-  updateTileProperty(property, value) {
-    if (this.editingTile()) {
-      this.setState(
-        this.updateEditingTile(this.editingTile().id, property, value)
-      );
-    } else {
-      this.setState(this.updateNewTile(property, value));
-    }
-  }
-
-  handleSubmit = async () => {
-    const { onEditSubmit, onAddSubmit } = this.props;
-    if (this.editingTile()) {
-      const { imageUploadedData } = this.state;
-      if (imageUploadedData.length) {
-        let tilesToAdd = JSON.parse(JSON.stringify(this.state.editingTiles));
-        await Promise.all(
-          imageUploadedData.map(async (obj, index) => {
-            if (obj.isUploaded) {
-              tilesToAdd[index].image = await this.updateTileImgURL(
-                obj.blob,
-                obj.fileName
-              );
-            }
-          })
-        );
-        onEditSubmit(tilesToAdd);
-      } else {
-        onEditSubmit(this.state.editingTiles);
-      }
-    } else {
-      const tileToAdd = this.state.tile;
-      const imageUploadedData = this.state.imageUploadedData[
-        this.state.activeStep
-      ];
-      if (imageUploadedData && imageUploadedData.isUploaded) {
-        tileToAdd.image = await this.updateTileImgURL(
-          imageUploadedData.blob,
-          imageUploadedData.fileName
-        );
-      }
-
-      const selectedBackgroundColor = this.state.selectedBackgroundColor;
-      if (selectedBackgroundColor) {
-        tileToAdd.backgroundColor = selectedBackgroundColor;
-      }
-      onAddSubmit(tileToAdd);
-    }
-
-    this.setState({
-      activeStep: 0,
-      selectedBackgroundColor: '',
-      tile: this.defaultTile,
-      imageUploadedData: [],
-      isEditImageBtnActive: false,
-      linkedBoard: ''
+      return updatedTilesToEdit;
     });
-  };
+  }, []);
 
-  updateTileImgURL = async (blob, fileName) => {
-    const { userData } = this.props;
-    const user = userData.email ? userData : null;
-    if (user) {
-      // this.setState({
-      //   loading: true
-      // });
-      try {
-        const imageUrl = await API.uploadFile(blob, fileName);
-        // console.log('imagen guardada en servidor', imageUrl);
-        return convertImageUrlToCatchable(imageUrl) || imageUrl;
-      } catch (error) {
-        //console.log('imagen no guardad en servidor');
-        return await this.blobToBase64(blob);
-      }
-      // } finally {
-      //   this.setState({
-      //     loading: false
-      //   });
-    } else {
-      if (isAndroid()) {
-        const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
-        const fEntry = await writeCvaFile(filePath, blob);
-        return fEntry.nativeURL;
+  const updateNewTile = useCallback((property, value) => {
+    return setTile(prevState => ({ ...prevState, [property]: value }));
+  }, []);
+
+  const updateTileProperty = useCallback(
+    (property, value) => {
+      if (getCurrentlyEditingTile()) {
+        updateEditingTile(getCurrentlyEditingTile().id, property, value);
       } else {
-        return await this.blobToBase64(blob);
+        updateNewTile(property, value);
       }
-    }
-  };
+    },
+    [getCurrentlyEditingTile, updateEditingTile, updateNewTile]
+  );
 
-  blobToBase64 = async blob => {
+  const blobToBase64 = async blob => {
     return new Promise(resolve => {
       const reader = new FileReader();
       reader.onload = () => {
@@ -264,535 +160,693 @@ export class TileEditor extends Component {
     });
   };
 
-  handleCancel = () => {
-    const { onClose } = this.props;
-    this.setState({
-      activeStep: 0,
-      selectedBackgroundColor: '',
-      tile: this.defaultTile,
-      imageUploadedData: [],
-      isEditImageBtnActive: false,
-      linkedBoard: ''
-    });
-    onClose();
-  };
-
-  createimageUploadedDataArray() {
-    if (this.editingTile()) {
-      let imageUploadedDataArray = new Array(this.state.editingTiles.length);
-      imageUploadedDataArray.fill(this.defaultimageUploadedData);
-      this.setState({ imageUploadedData: imageUploadedDataArray });
+  const updateTileImgURL = async (blob, fileName) => {
+    const user = userData.email ? userData : null;
+    if (user) {
+      try {
+        const imageUrl = await API.uploadFile(blob, fileName);
+        return convertImageUrlToCatchable(imageUrl) || imageUrl;
+      } catch (error) {
+        return await blobToBase64(blob);
+      }
     } else {
-      this.setState({
-        imageUploadedData: new Array(this.defaultimageUploadedData)
-      });
-    }
-  }
-
-  handleInputImageChange = (blob, fileName, blobHQ) => {
-    if (!this.state.imageUploadedData.length) {
-      this.createimageUploadedDataArray();
-    }
-    this.setimageUploadedData(true, fileName, blobHQ, blob);
-    this.setState({ isEditImageBtnActive: true });
-    const image = URL.createObjectURL(blob);
-    this.updateTileProperty('image', image);
-  };
-
-  handleLoadingStateChange = isLoading => {
-    this.setState({ isLoading: isLoading });
-  };
-
-  setimageUploadedData = (isUploaded, fileName, blobHQ = null, blob = null) => {
-    const { activeStep } = this.state;
-    let imageUploadedData = this.state.imageUploadedData.map((item, indx) => {
-      if (indx === activeStep) {
-        return {
-          ...item,
-          isUploaded: isUploaded,
-          fileName: fileName,
-          blobHQ: blobHQ,
-          blob: blob
-        };
+      if (isAndroid()) {
+        const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
+        const fEntry = await writeCvaFile(filePath, blob);
+        return fEntry.nativeURL;
       } else {
-        return item;
+        return await blobToBase64(blob);
       }
-    });
-    this.setState({ imageUploadedData: imageUploadedData });
-  };
-
-  handleSymbolSearchChange = ({ image, labelKey, label, keyPath }) => {
-    return new Promise(resolve => {
-      this.updateTileProperty('labelKey', labelKey);
-      this.updateTileProperty('label', label);
-      this.updateTileProperty('image', image);
-      if (keyPath) this.updateTileProperty('keyPath', keyPath);
-      if (this.state.imageUploadedData.length) {
-        this.setimageUploadedData(false, '');
-      }
-      resolve();
-    });
-  };
-
-  handleSymbolSearchClose = event => {
-    const { imageUploadedData } = this.state;
-    this.setState({ isSymbolSearchOpen: false });
-    if (
-      imageUploadedData.length &&
-      imageUploadedData[this.state.activeStep].isUploaded
-    ) {
-      this.setState({ isEditImageBtnActive: true });
     }
   };
 
-  handleLabelChange = event => {
-    this.updateTileProperty('label', event.target.value);
-    this.updateTileProperty('labelKey', '');
+  const handleSubmit = useCallback(
+    async () => {
+      if (getCurrentlyEditingTile()) {
+        if (imageUploadedData.length) {
+          let tilesToAdd = JSON.parse(JSON.stringify(tilesToEdit));
+          await Promise.all(
+            imageUploadedData.map(async (obj, index) => {
+              if (obj.isUploaded) {
+                tilesToAdd[index].image = await updateTileImgURL(
+                  obj.blob,
+                  obj.fileName
+                );
+              }
+            })
+          );
+          onEditSubmit(tilesToAdd);
+        } else {
+          onEditSubmit(tilesToEdit);
+        }
+      } else {
+        const tileToAdd = { ...tile };
+        const currentImageUploadedData = imageUploadedData[activeStep];
+        if (currentImageUploadedData && currentImageUploadedData.isUploaded) {
+          tileToAdd.image = await updateTileImgURL(
+            currentImageUploadedData.blob,
+            currentImageUploadedData.fileName
+          );
+        }
+        if (selectedBackgroundColor) {
+          tileToAdd.backgroundColor = selectedBackgroundColor;
+        }
+        onAddSubmit(tileToAdd);
+      }
+
+      resetEditorState();
+    },
+    // Excluding updateTileImgURL() because it's a utility function that doesn't change
+    /* eslint-disable react-hooks/exhaustive-deps */
+    [
+      getCurrentlyEditingTile,
+      imageUploadedData,
+      tilesToEdit,
+      onEditSubmit,
+      tile,
+      activeStep,
+      selectedBackgroundColor,
+      onAddSubmit
+    ]
+    /* eslint-enable react-hooks/exhaustive-deps */
+  );
+
+  const handleCancel = useCallback(
+    () => {
+      resetEditorState();
+      onClose();
+    },
+    [onClose]
+  );
+
+  const updateImageUploadedData = useCallback(
+    (isUploaded, fileName, blobHQ = null, blob = null) => {
+      setImageUploadedData(prevState => {
+        return prevState.map((item, index) => {
+          if (index === activeStep) {
+            return {
+              ...item,
+              isUploaded,
+              fileName,
+              blobHQ,
+              blob
+            };
+          } else {
+            return item;
+          }
+        });
+      });
+    },
+    [activeStep]
+  );
+
+  const handleInputImageChange = useCallback(
+    (blob, fileName, blobHQ) => {
+      updateImageUploadedData(true, fileName, blobHQ, blob);
+      setIsEditImageBtnActive(true);
+      const image = URL.createObjectURL(blob);
+      updateTileProperty('image', image);
+    },
+    [updateImageUploadedData, updateTileProperty]
+  );
+
+  const handleLoadingStateChange = useCallback(isLoading => {
+    setIsLoading(isLoading);
+  }, []);
+
+  const handleSymbolSearchChange = useCallback(
+    ({ image, labelKey, label, keyPath }) => {
+      return new Promise(resolve => {
+        updateTileProperty('labelKey', labelKey);
+        updateTileProperty('label', label);
+        updateTileProperty('image', image);
+        if (keyPath) updateTileProperty('keyPath', keyPath);
+        if (imageUploadedData.length) {
+          updateImageUploadedData(false, '');
+        }
+        resolve();
+      });
+    },
+    [updateTileProperty, updateImageUploadedData, imageUploadedData.length]
+  );
+
+  const handleSymbolSearchClose = useCallback(
+    () => {
+      setIsSymbolSearchOpen(false);
+      if (imageUploadedData[activeStep]?.isUploaded) {
+        setIsEditImageBtnActive(true);
+      }
+    },
+    [imageUploadedData, activeStep]
+  );
+
+  const handleLabelChange = useCallback(
+    event => {
+      updateTileProperty('label', event.target.value);
+      updateTileProperty('labelKey', '');
+    },
+    [updateTileProperty]
+  );
+
+  const handleVocalizationChange = event => {
+    updateTileProperty('vocalization', event.target.value);
   };
 
-  handleVocalizationChange = event => {
-    this.updateTileProperty('vocalization', event.target.value);
-  };
-  handleSoundChange = sound => {
-    this.updateTileProperty('sound', sound);
-  };
-  handleTypeChange = (event, type) => {
+  const handleSoundChange = useCallback(
+    sound => {
+      updateTileProperty('sound', sound);
+    },
+    [updateTileProperty]
+  );
+
+  const handleTypeChange = (event, type) => {
     let loadBoard = '';
     if (type === 'folder' || type === 'board') {
       loadBoard = shortid.generate();
     }
-    let backgroundColor = this.defaultTileColors.button;
-    if (type === 'board') {
-      backgroundColor = this.defaultTileColors.board;
-    }
-    if (type === 'folder') {
-      backgroundColor = this.defaultTileColors.folder;
-    }
-    const tile = {
-      ...this.state.tile,
+    let backgroundColor = getDefaultColor(type);
+    setTile(prevTile => ({
+      ...prevTile,
       linkedBoard: false,
       backgroundColor,
       loadBoard,
       type
-    };
-    this.setState({
-      tile,
-      linkedBoard: '',
-      selectedBackgroundColor: backgroundColor
-    });
+    }));
+    setLinkedBoard('');
+    setSelectedBackgroundColor(backgroundColor);
   };
 
-  handleBack = event => {
-    this.setState({ activeStep: this.state.activeStep - 1 }, () => {
-      this.setLinkedBoard();
-    });
-    this.setState({ selectedBackgroundColor: '' });
-    this.setState({ isEditImageBtnActive: false });
+  const setLinkedBoardState = useCallback(
+    updatedLoadBoardId => {
+      const loadBoard =
+        updatedLoadBoardId ??
+        (currentTileProp('linkedBoard') || getCurrentlyEditingTile()
+          ? currentTileProp('loadBoard')
+          : null);
+      const foundBoard = boards.find(board => board.id === loadBoard);
+      setLinkedBoard(foundBoard ?? NONE_VALUE);
+    },
+    [boards, currentTileProp, getCurrentlyEditingTile]
+  );
+
+  // In class components, `this.setState` takes a second parameter that is a callback
+  // that is called after the state has been updated. Functional components don't support this,
+  // but we can use useRef paired with useEffect to track if the state change was triggered by a
+  // navigation action (back or next button click).
+  const isNavigationAction = useRef(false);
+
+  const handleBack = useCallback(() => {
+    isNavigationAction.current = true;
+    setActiveStep(prevState => prevState - 1);
+    setSelectedBackgroundColor('');
+    setIsEditImageBtnActive(false);
+  }, []);
+
+  const handleNext = useCallback(() => {
+    isNavigationAction.current = true;
+    setActiveStep(prevState => prevState + 1);
+    setSelectedBackgroundColor('');
+    setIsEditImageBtnActive(false);
+  }, []);
+
+  useEffect(
+    () => {
+      if (isNavigationAction.current) {
+        setLinkedBoardState();
+        isNavigationAction.current = false;
+      }
+    },
+    [activeStep, setLinkedBoardState]
+  );
+
+  const handleSearchClick = (event, currentLabel) => {
+    setIsSymbolSearchOpen(true);
+    setAutoFill(currentLabel || '');
+    setIsEditImageBtnActive(false);
   };
 
-  handleNext = async event => {
-    this.setState({ activeStep: this.state.activeStep + 1 }, () => {
-      this.setLinkedBoard();
-    });
-    this.setState({ selectedBackgroundColor: '' });
-    this.setState({ isEditImageBtnActive: false });
+  const getDefaultColor = (type = currentTileProp('type')) =>
+    defaultTileColors[type];
+
+  const getOriginalTileBackground = () => {
+    return editingTiles?.[activeStep]?.backgroundColor || getDefaultColor();
   };
 
-  handleSearchClick = (event, currentLabel) => {
-    this.setState({ isSymbolSearchOpen: true, autoFill: currentLabel || '' });
-    this.setState({ isEditImageBtnActive: false });
+  const handleColorChange = useCallback(
+    event => {
+      const color = event?.target?.value || '';
+      setSelectedBackgroundColor(color);
+
+      const backgroundColor =
+        color ||
+        (editingTiles.length ? getOriginalTileBackground() : getDefaultColor());
+
+      updateTileProperty('backgroundColor', backgroundColor);
+    },
+    // Don't need getOriginalTileBackground or getDefaultColor because they are pure functions
+    // and are not passed as props.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [editingTiles.length, updateTileProperty]
+  );
+
+  const handleBoardsChange = useCallback(
+    event => {
+      const board = event ? event.target.value : '';
+      setLinkedBoard(board);
+      if (board && board !== NONE_VALUE) {
+        updateTileProperty('linkedBoard', true);
+        updateTileProperty('loadBoard', board.id);
+      } else {
+        updateTileProperty('linkedBoard', false);
+        updateTileProperty('loadBoard', shortid.generate());
+      }
+    },
+    [updateTileProperty]
+  );
+
+  const handleLoadBoardChange = useCallback(
+    ({ boardId }) => {
+      if (boardId) {
+        onAddApiBoard(boardId);
+        updateTileProperty('loadBoard', boardId);
+        setLinkedBoardState(boardId);
+      }
+    },
+    [onAddApiBoard, updateTileProperty, setLinkedBoardState]
+  );
+
+  const handleOnClickImageEditor = () => {
+    setOpenImageEditor(true);
   };
 
-  getOriginalTileBackground() {
-    const { editingTiles } = this.props;
-    const { activeStep } = this.state;
-
-    return (
-      editingTiles?.[activeStep]?.backgroundColor || this.getDefaultColor()
-    );
-  }
-
-  handleColorChange = event => {
-    const color = event?.target?.value || '';
-
-    this.setState({ selectedBackgroundColor: color });
-
-    const backgroundColor =
-      color ||
-      (this.props.editingTiles.length
-        ? this.getOriginalTileBackground()
-        : this.getDefaultColor());
-
-    this.updateTileProperty('backgroundColor', backgroundColor);
+  const onImageEditorClose = () => {
+    setOpenImageEditor(false);
   };
 
-  getDefaultColor = () => {
-    if (this.currentTileProp('type') === 'folder') {
-      return this.defaultTileColors.folder;
-    }
-    if (this.currentTileProp('type') === 'button') {
-      return this.defaultTileColors.button;
-    }
-    if (this.currentTileProp('type') === 'board') {
-      return this.defaultTileColors.board;
-    }
-  };
+  const onImageEditorDone = useCallback(
+    blob => {
+      setImageUploadedData(prevState => {
+        const newArray = [...prevState];
+        if (newArray[activeStep]) {
+          newArray[activeStep].blob = blob;
+        }
+        return newArray;
+      });
+      const image = URL.createObjectURL(blob);
+      updateTileProperty('image', image);
+    },
+    [activeStep, updateTileProperty]
+  );
 
-  handleBoardsChange = event => {
-    const board = event ? event.target.value : '';
-    this.setState({ linkedBoard: board });
-    if (board && board !== NONE_VALUE) {
-      this.updateTileProperty('linkedBoard', true);
-      this.updateTileProperty('loadBoard', board.id);
-    } else {
-      this.updateTileProperty('linkedBoard', false);
-      this.updateTileProperty('loadBoard', shortid.generate());
-    }
-  };
+  // This useEffect is for parity with the previous UNSAFE_componentWillReceiveProps behavior.
+  useEffect(
+    () => {
+      setTilesToEdit(editingTiles);
+      if (!getCurrentlyEditingTile()) {
+        updateTileProperty('id', shortid.generate());
+      }
+    },
+    // The dependency array should not include the functions invoked in the useEffect, as they
+    // would re-run this effect on every change to tilesToEdit, reseting any local state updates.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [editingTiles]
+  );
 
-  handleLoadBoardChange = ({ boardId }) => {
-    if (boardId) {
-      this.props.onAddApiBoard(boardId);
-      this.updateTileProperty('loadBoard', boardId);
-      this.setLinkedBoard(boardId);
-    }
-  };
+  // The following pairing of useRef and useEffect is for parity with the previous
+  // componentDidUpdate behavior.
+  const prevOpen = useRef(open);
 
-  handleOnClickImageEditor = () => {
-    this.setState({ openImageEditor: true });
-  };
-  onImageEditorClose = () => {
-    this.setState({ openImageEditor: false });
-  };
-  onImageEditorDone = blob => {
-    this.setState(prevState => {
-      const newArray = [...prevState.imageUploadedData];
-      newArray[this.state.activeStep].blob = blob;
-      return { imageUploadedData: newArray };
-    });
-    const image = URL.createObjectURL(blob);
-    this.updateTileProperty('image', image);
-  };
+  useEffect(
+    () => {
+      if (open && !prevOpen.current) {
+        if (getCurrentlyEditingTile()) {
+          setLinkedBoardState();
+        }
+        if (isAndroid()) {
+          requestCvaPermissions();
+        }
+      }
+      prevOpen.current = open;
+    },
+    [open, getCurrentlyEditingTile, setLinkedBoardState]
+  );
 
-  setLinkedBoard = updatedLoadBoardId => {
-    const loadBoard =
-      updatedLoadBoardId ??
-      (this.currentTileProp('linkedBoard') || this.editingTile()
-        ? this.currentTileProp('loadBoard')
-        : null);
-    const linkedBoard =
-      this.props.boards.find(board => board.id === loadBoard) || NONE_VALUE;
-    this.setState({ linkedBoard: linkedBoard });
-  };
-
-  render() {
-    const { open, intl, boards, folders } = this.props;
-    const currentLabel = this.currentTileProp('labelKey')
-      ? intl.formatMessage({ id: this.currentTileProp('labelKey') })
-      : this.currentTileProp('label');
-    const buttons = (
-      <IconButton
-        label={intl.formatMessage(messages.symbolSearch)}
-        onClick={e => this.handleSearchClick(e, currentLabel)}
-      >
-        <SearchIcon />
-      </IconButton>
-    );
-
-    const selectBoardElement = (
-      <div style={{ marginTop: '16px' }}>
-        <FormControl fullWidth>
-          <InputLabel id="boards-input-label">
-            {intl.formatMessage(messages.existingBoards)}
-          </InputLabel>
-          <Select
-            labelId="boards-select-label"
-            id="boards-select"
-            autoWidth={true}
-            value={this.state.linkedBoard}
-            onChange={this.handleBoardsChange}
-          >
-            {!this.editingTile() && (
-              <MenuItem value={NONE_VALUE}>
-                <em>{intl.formatMessage(messages.none)}</em>
-              </MenuItem>
-            )}
-            {boards.map(
-              board =>
-                !board.hidden && (
-                  <MenuItem key={board.id} value={board}>
-                    {board.name}
-                  </MenuItem>
-                )
-            )}
-          </Select>
-        </FormControl>
-      </div>
-    );
-    const tileInView = this.editingTile()
-      ? this.editingTile()
-      : this.state.tile;
-
-    const loadBoard = this.currentTileProp('loadBoard');
-    const haveLoadBoard = loadBoard?.length > 0;
-
-    const loadBoardData = haveLoadBoard
-      ? folders?.find(({ id }) => id === loadBoard)
-      : null;
-
-    const loadBoardName =
-      loadBoardData && resolveBoardName(loadBoardData, intl);
-    const isLocalLoadBoard = loadBoard?.length < SHORT_ID_MAX_LENGTH;
-
-    return (
-      <div className="TileEditor">
-        <FullScreenDialog
-          disableSubmit={!currentLabel}
-          buttons={buttons}
-          open={open}
-          title={
-            <FormattedMessage
-              {...(this.editingTile()
-                ? messages.editTile
-                : messages.createTile)}
-            />
+  // This effect runs when TileEditor opens or closes
+  // Open: Initialize imageUploadedData state based on the number of tiles to edit
+  // Close: reset all states to their defaults
+  useEffect(
+    () => {
+      if (open) {
+        if (getCurrentlyEditingTile()) {
+          if (imageUploadedData.length !== tilesToEdit.length) {
+            const initialArray = new Array(tilesToEdit.length).fill(
+              defaultImageUploadedData
+            );
+            setImageUploadedData(initialArray);
           }
-          onClose={this.handleCancel}
-          onSubmit={this.handleSubmit}
+        } else {
+          if (imageUploadedData.length === 0) {
+            setImageUploadedData([defaultImageUploadedData]);
+          }
+        }
+      } else {
+        resetEditorState();
+      }
+    },
+    [
+      open,
+      getCurrentlyEditingTile,
+      tilesToEdit.length,
+      imageUploadedData.length
+    ]
+  );
+
+  const currentLabel = currentTileProp('labelKey')
+    ? intl.formatMessage({ id: currentTileProp('labelKey') })
+    : currentTileProp('label');
+  const buttons = (
+    <IconButton
+      label={intl.formatMessage(messages.symbolSearch)}
+      onClick={e => handleSearchClick(e, currentLabel)}
+    >
+      <SearchIcon />
+    </IconButton>
+  );
+
+  const selectBoardElement = (
+    <div style={{ marginTop: '16px' }}>
+      <FormControl fullWidth>
+        <InputLabel id="boards-input-label">
+          {intl.formatMessage(messages.existingBoards)}
+        </InputLabel>
+        <Select
+          labelId="boards-select-label"
+          id="boards-select"
+          autoWidth={true}
+          value={linkedBoard}
+          onChange={handleBoardsChange}
         >
-          <Paper>
-            <FullScreenDialogContent className="TileEditor__container">
-              <div className="TileEditor__row">
-                <div className="TileEditor__main-info">
-                  <div className="TileEditor__picto-fields">
-                    <div className="TileEditor__preview">
-                      <Tile
-                        backgroundColor={
-                          this.state.selectedBackgroundColor ||
-                          tileInView.backgroundColor
-                        }
-                        variant={
-                          Boolean(tileInView.loadBoard) ? 'folder' : 'button'
-                        }
-                      >
-                        {this.state.isLoading ? (
-                          <CircularProgress />
-                        ) : (
-                          <Symbol
-                            image={tileInView.image}
-                            label={currentLabel}
-                            keyPath={tileInView.keyPath}
-                          />
-                        )}
-                      </Tile>
-                    </div>
-                    {this.state.isEditImageBtnActive && (
-                      <React.Fragment>
-                        <ImageEditor
-                          intl={intl}
-                          open={this.state.openImageEditor}
-                          onImageEditorClose={this.onImageEditorClose}
-                          onImageEditorDone={this.onImageEditorDone}
-                          image={URL.createObjectURL(
-                            this.state.imageUploadedData[this.state.activeStep]
-                              .blobHQ
-                          )}
-                        />
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          startIcon={<EditIcon />}
-                          onClick={this.handleOnClickImageEditor}
-                          style={{ marginBottom: '6px' }}
-                        >
-                          {intl.formatMessage(messages.editImage)}
-                        </Button>
-                      </React.Fragment>
-                    )}
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      startIcon={<SearchIcon />}
-                      onClick={e => this.handleSearchClick(e, currentLabel)}
-                    >
-                      {intl.formatMessage(messages.symbols)}
-                    </Button>
-                    <div className="TileEditor__input-image">
-                      <InputImage
-                        onChange={this.handleInputImageChange}
-                        setIsLoadingImage={this.handleLoadingStateChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="TileEditor__form-fields">
-                    <TextField
-                      id="label"
-                      label={
-                        this.currentTileProp('type') === 'board'
-                          ? intl.formatMessage(messages.boardName)
-                          : intl.formatMessage(messages.label)
+          {!getCurrentlyEditingTile() && (
+            <MenuItem value={NONE_VALUE}>
+              <em>{intl.formatMessage(messages.none)}</em>
+            </MenuItem>
+          )}
+          {boards.map(
+            board =>
+              !board.hidden && (
+                <MenuItem key={board.id} value={board}>
+                  {board.name}
+                </MenuItem>
+              )
+          )}
+        </Select>
+      </FormControl>
+    </div>
+  );
+  const tileInView = getCurrentlyEditingTile()
+    ? getCurrentlyEditingTile()
+    : tile;
+
+  const loadBoard = currentTileProp('loadBoard');
+  const haveLoadBoard = loadBoard?.length > 0;
+
+  const loadBoardData = haveLoadBoard
+    ? folders?.find(({ id }) => id === loadBoard)
+    : null;
+
+  const loadBoardName = loadBoardData && resolveBoardName(loadBoardData, intl);
+  const isLocalLoadBoard = loadBoard?.length < SHORT_ID_MAX_LENGTH;
+
+  return (
+    <div className="TileEditor">
+      <FullScreenDialog
+        disableSubmit={!currentLabel}
+        buttons={buttons}
+        open={open}
+        title={
+          <FormattedMessage
+            {...(getCurrentlyEditingTile()
+              ? messages.editTile
+              : messages.createTile)}
+          />
+        }
+        onClose={handleCancel}
+        onSubmit={handleSubmit}
+      >
+        <Paper>
+          <FullScreenDialogContent className="TileEditor__container">
+            <div className="TileEditor__row">
+              <div className="TileEditor__main-info">
+                <div className="TileEditor__picto-fields">
+                  <div className="TileEditor__preview">
+                    <Tile
+                      backgroundColor={
+                        selectedBackgroundColor || tileInView.backgroundColor
                       }
-                      value={currentLabel}
-                      onChange={this.handleLabelChange}
-                      fullWidth
-                      required
-                    />
-
-                    <TextField
-                      multiline
-                      id="vocalization"
-                      disabled={this.currentTileProp('type') === 'board'}
-                      label={intl.formatMessage(messages.vocalization)}
-                      value={this.currentTileProp('vocalization') || ''}
-                      onChange={this.handleVocalizationChange}
-                      fullWidth
-                    />
-                    {!this.editingTile() && (
-                      <div className="TileEditor__radiogroup">
-                        <FormControl fullWidth>
-                          <FormLabel>
-                            {intl.formatMessage(messages.type)}
-                          </FormLabel>
-                          <RadioGroup
-                            row={true}
-                            aria-label={intl.formatMessage(messages.type)}
-                            name="type"
-                            value={this.currentTileProp('type')}
-                            onChange={this.handleTypeChange}
-                          >
-                            <FormControlLabel
-                              value="button"
-                              control={<Radio />}
-                              label={intl.formatMessage(messages.button)}
-                            />
-                            <FormControlLabel
-                              className="TileEditor__radiogroup__formcontrollabel"
-                              value="folder"
-                              control={<Radio />}
-                              label={intl.formatMessage(messages.folder)}
-                            />
-                            <FormControlLabel
-                              className="TileEditor__radiogroup__formcontrollabel"
-                              value="board"
-                              control={<Radio />}
-                              label={intl.formatMessage(messages.board)}
-                            />
-                          </RadioGroup>
-                        </FormControl>
-                      </div>
-                    )}
-                    {this.currentTileProp('type') === 'folder' &&
-                      selectBoardElement}
-
-                    {haveLoadBoard &&
-                      !isLocalLoadBoard &&
-                      !isCordova() &&
-                      this.editingTile() && (
-                        <>
-                          <FormLabel
-                            id="boards-input-label"
-                            style={{ marginTop: '16px' }}
-                          >
-                            {intl.formatMessage(messages.loadFolderBoard)}
-                          </FormLabel>
-                          <div className="TileEditor__loadBoard_section">
-                            {loadBoardName ? (
-                              this.state.linkedBoard === NONE_VALUE && (
-                                <Typography variant="body1">
-                                  {loadBoardName}
-                                </Typography>
-                              )
-                            ) : (
-                              <LostedFolderForLoadBoardAlert intl={intl} />
-                            )}
-                            <LoadBoardEditor
-                              intl={intl}
-                              onLoadBoardChange={this.handleLoadBoardChange}
-                              isLostedFolder={loadBoardName === undefined}
-                            />
-                          </div>
-                        </>
+                      variant={
+                        Boolean(tileInView.loadBoard) ? 'folder' : 'button'
+                      }
+                    >
+                      {isLoading ? (
+                        <CircularProgress />
+                      ) : (
+                        <Symbol
+                          image={tileInView.image}
+                          label={currentLabel}
+                          keyPath={tileInView.keyPath}
+                        />
                       )}
+                    </Tile>
+                  </div>
+                  {isEditImageBtnActive && (
+                    <>
+                      <ImageEditor
+                        intl={intl}
+                        open={openImageEditor}
+                        onImageEditorClose={onImageEditorClose}
+                        onImageEditorDone={onImageEditorDone}
+                        image={URL.createObjectURL(
+                          imageUploadedData[activeStep].blobHQ
+                        )}
+                      />
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        startIcon={<EditIcon />}
+                        onClick={handleOnClickImageEditor}
+                        style={{ marginBottom: '6px' }}
+                      >
+                        {intl.formatMessage(messages.editImage)}
+                      </Button>
+                    </>
+                  )}
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<SearchIcon />}
+                    onClick={e => handleSearchClick(e, currentLabel)}
+                  >
+                    {intl.formatMessage(messages.symbols)}
+                  </Button>
+                  <div className="TileEditor__input-image">
+                    <InputImage
+                      onChange={handleInputImageChange}
+                      setIsLoadingImage={handleLoadingStateChange}
+                    />
                   </div>
                 </div>
-              </div>
-              <div className="TileEditor__row">
                 <div className="TileEditor__form-fields">
-                  <div className="TileEditor__colorselect">
-                    <ColorSelect
-                      selectedColor={
-                        this.state.selectedBackgroundColor ||
-                        tileInView.backgroundColor
-                      }
-                      onChange={this.handleColorChange}
-                      defaultColor={
-                        this.editingTile()
-                          ? this.getOriginalTileBackground()
-                          : this.getDefaultColor()
-                      }
-                    />
-                  </div>
-                  {this.currentTileProp('type') !== 'board' && (
-                    <div className="TileEditor__voicerecorder">
-                      <FormLabel>
-                        {intl.formatMessage(messages.voiceRecorder)}
-                      </FormLabel>
-                      <PremiumFeature>
-                        <VoiceRecorder
-                          src={this.currentTileProp('sound')}
-                          onChange={this.handleSoundChange}
-                        />
-                      </PremiumFeature>
+                  <TextField
+                    id="label"
+                    label={
+                      currentTileProp('type') === 'board'
+                        ? intl.formatMessage(messages.boardName)
+                        : intl.formatMessage(messages.label)
+                    }
+                    value={currentLabel}
+                    onChange={handleLabelChange}
+                    fullWidth
+                    required
+                  />
+
+                  <TextField
+                    multiline
+                    id="vocalization"
+                    disabled={currentTileProp('type') === 'board'}
+                    label={intl.formatMessage(messages.vocalization)}
+                    value={currentTileProp('vocalization') || ''}
+                    onChange={handleVocalizationChange}
+                    fullWidth
+                  />
+                  {!getCurrentlyEditingTile() && (
+                    <div className="TileEditor__radiogroup">
+                      <FormControl fullWidth>
+                        <FormLabel>
+                          {intl.formatMessage(messages.type)}
+                        </FormLabel>
+                        <RadioGroup
+                          row={true}
+                          aria-label={intl.formatMessage(messages.type)}
+                          name="type"
+                          value={currentTileProp('type')}
+                          onChange={handleTypeChange}
+                        >
+                          <FormControlLabel
+                            value="button"
+                            control={<Radio />}
+                            label={intl.formatMessage(messages.button)}
+                          />
+                          <FormControlLabel
+                            className="TileEditor__radiogroup__formcontrollabel"
+                            value="folder"
+                            control={<Radio />}
+                            label={intl.formatMessage(messages.folder)}
+                          />
+                          <FormControlLabel
+                            className="TileEditor__radiogroup__formcontrollabel"
+                            value="board"
+                            control={<Radio />}
+                            label={intl.formatMessage(messages.board)}
+                          />
+                        </RadioGroup>
+                      </FormControl>
                     </div>
                   )}
+                  {currentTileProp('type') === 'folder' && selectBoardElement}
+
+                  {haveLoadBoard &&
+                    !isLocalLoadBoard &&
+                    !isCordova() &&
+                    getCurrentlyEditingTile() && (
+                      <>
+                        <FormLabel
+                          id="boards-input-label"
+                          style={{ marginTop: '16px' }}
+                        >
+                          {intl.formatMessage(messages.loadFolderBoard)}
+                        </FormLabel>
+                        <div className="TileEditor__loadBoard_section">
+                          {loadBoardName ? (
+                            linkedBoard === NONE_VALUE && (
+                              <Typography variant="body1">
+                                {loadBoardName}
+                              </Typography>
+                            )
+                          ) : (
+                            <LostedFolderForLoadBoardAlert intl={intl} />
+                          )}
+                          <LoadBoardEditor
+                            intl={intl}
+                            onLoadBoardChange={handleLoadBoardChange}
+                            isLostedFolder={loadBoardName === undefined}
+                          />
+                        </div>
+                      </>
+                    )}
                 </div>
               </div>
-            </FullScreenDialogContent>
-
-            {this.state.editingTiles.length > 1 && (
-              <MobileStepper
-                variant="progress"
-                steps={this.state.editingTiles.length}
-                position="static"
-                activeStep={this.state.activeStep}
-                nextButton={
-                  <Button
-                    onClick={this.handleNext}
-                    disabled={
-                      this.state.activeStep ===
-                      this.state.editingTiles.length - 1
+            </div>
+            <div className="TileEditor__row">
+              <div className="TileEditor__form-fields">
+                <div className="TileEditor__colorselect">
+                  <ColorSelect
+                    selectedColor={
+                      selectedBackgroundColor || tileInView.backgroundColor
                     }
-                  >
-                    {intl.formatMessage(messages.next)}{' '}
-                    <KeyboardArrowRightIcon />
-                  </Button>
-                }
-                backButton={
-                  <Button
-                    onClick={this.handleBack}
-                    disabled={this.state.activeStep === 0}
-                  >
-                    <KeyboardArrowLeftIcon />
-                    {intl.formatMessage(messages.back)}
-                  </Button>
-                }
-              />
-            )}
-          </Paper>
+                    onChange={handleColorChange}
+                    defaultColor={
+                      getCurrentlyEditingTile()
+                        ? getOriginalTileBackground()
+                        : getDefaultColor()
+                    }
+                  />
+                </div>
+                {currentTileProp('type') !== 'board' && (
+                  <div className="TileEditor__voicerecorder">
+                    <FormLabel>
+                      {intl.formatMessage(messages.voiceRecorder)}
+                    </FormLabel>
+                    <PremiumFeature>
+                      <VoiceRecorder
+                        src={currentTileProp('sound')}
+                        onChange={handleSoundChange}
+                      />
+                    </PremiumFeature>
+                  </div>
+                )}
+              </div>
+            </div>
+          </FullScreenDialogContent>
 
-          <SymbolSearch
-            open={this.state.isSymbolSearchOpen}
-            autoFill={this.state.autoFill}
-            onChange={this.handleSymbolSearchChange}
-            onClose={this.handleSymbolSearchClose}
-            disableTour={this.props.disableTour}
-            intl={intl}
-            isSymbolSearchTourEnabled={this.props.isSymbolSearchTourEnabled}
-          />
-        </FullScreenDialog>
-      </div>
-    );
-  }
+          {tilesToEdit.length > 1 && (
+            <MobileStepper
+              variant="progress"
+              steps={tilesToEdit.length}
+              position="static"
+              activeStep={activeStep}
+              nextButton={
+                <Button
+                  onClick={handleNext}
+                  disabled={activeStep === tilesToEdit.length - 1}
+                >
+                  {intl.formatMessage(messages.next)} <KeyboardArrowRightIcon />
+                </Button>
+              }
+              backButton={
+                <Button onClick={handleBack} disabled={activeStep === 0}>
+                  <KeyboardArrowLeftIcon />
+                  {intl.formatMessage(messages.back)}
+                </Button>
+              }
+            />
+          )}
+        </Paper>
+
+        <SymbolSearch
+          open={isSymbolSearchOpen}
+          autoFill={autoFill}
+          onChange={handleSymbolSearchChange}
+          onClose={handleSymbolSearchClose}
+          disableTour={disableTour}
+          intl={intl}
+          isSymbolSearchTourEnabled={isSymbolSearchTourEnabled}
+        />
+      </FullScreenDialog>
+    </div>
+  );
 }
+
+TileEditor.propTypes = {
+  /**
+   * @ignore
+   */
+  intl: intlShape.isRequired,
+  /**
+   * If true, TileEditor will be visibile
+   */
+  open: PropTypes.bool,
+  /**
+   * Callback fired on TileEditor request to be hidden
+   */
+  onClose: PropTypes.func.isRequired,
+  /**
+   * Tiles array to work on
+   */
+  editingTiles: PropTypes.array,
+  /**
+   * Callback fired when submitting edited board tiles
+   */
+  onEditSubmit: PropTypes.func.isRequired,
+  /**
+   * Callback fired when submitting a new board tile
+   */
+  onAddSubmit: PropTypes.func.isRequired,
+  boards: PropTypes.array,
+  userData: PropTypes.object,
+  folders: PropTypes.array,
+  onAddApiBoard: PropTypes.func,
+  isSymbolSearchTourEnabled: PropTypes.bool,
+  disableTour: PropTypes.func
+};
 
 export default injectIntl(TileEditor);
