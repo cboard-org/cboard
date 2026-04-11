@@ -238,7 +238,10 @@ class Export extends React.Component {
                   </div>
                 </ListItemSecondaryAction>
               </ListItem>
-              <Divider />
+            </List>
+          </Paper>
+          <Paper className="Export__section">
+            <List>
               <ListItem>
                 <ListItemText
                   className="Export__ListItemText"
