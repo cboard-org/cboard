@@ -25,6 +25,9 @@ import {
   SMALL_FONT_SIZE
 } from './Export.constants';
 
+import Button from '@material-ui/core/Button';
+import GetAppIcon from '@material-ui/icons/GetApp';
+
 const propTypes = {
   /**
    * Callback fired when clicking the export Cboard button
@@ -75,56 +78,41 @@ class Export extends React.Component {
     });
   };
 
-  handleAllBoardChange = event => {
-    const doneCallback = () => {
-      this.setState({
-        loadingAll: false
-      });
-    };
-
-    this.setState(
-      {
-        loadingAll: true,
-        exportAllBoard: event.target.value
-      },
-      () => {
-        this.props.onExportClick(
-          this.state.exportAllBoard,
-          '',
-          this.state.labelFontSize,
-          doneCallback
-        );
-      }
-    );
+  handleSingleBoardChange = event => {
+    this.setState({ exportSingleBoard: event.target.value });
   };
 
-  handleSingleBoardChange = event => {
-    if (!this.state.singleBoard) {
-      this.setState({
-        boardError: true
-      });
+  handleAllBoardChange = event => {
+    this.setState({ exportAllBoard: event.target.value });
+  };
+
+  handleAllExport = () => {
+    if (!this.state.exportAllBoard) return;
+    const doneCallback = () => this.setState({ loadingAll: false });
+    this.setState({ loadingAll: true }, () => {
+      this.props.onExportClick(
+        this.state.exportAllBoard,
+        '',
+        this.state.labelFontSize,
+        doneCallback
+      );
+    });
+  };
+
+  handleSingleExport = () => {
+    if (!this.state.singleBoard || !this.state.exportSingleBoard) {
+      this.setState({ boardError: true });
       return;
     }
-    const doneCallback = () => {
-      this.setState({
-        loadingSingle: false
-      });
-    };
-
-    this.setState(
-      {
-        loadingSingle: true,
-        exportSingleBoard: event.target.value
-      },
-      () => {
-        this.props.onExportClick(
-          this.state.exportSingleBoard,
-          this.state.singleBoard,
-          this.state.labelFontSize,
-          doneCallback
-        );
-      }
-    );
+    const doneCallback = () => this.setState({ loadingSingle: false });
+    this.setState({ loadingSingle: true }, () => {
+      this.props.onExportClick(
+        this.state.exportSingleBoard,
+        this.state.singleBoard,
+        this.state.labelFontSize,
+        doneCallback
+      );
+    });
   };
 
   render() {
@@ -170,14 +158,13 @@ class Export extends React.Component {
                 />
                 <ListItemSecondaryAction>
                   <div className="Export__SelectContainer">
-                    {this.state.loadingSingle && (
+                    {this.state.loadingSingle ? (
                       <CircularProgress
                         size={25}
                         className="Export__SelectContainer--spinner"
                         thickness={7}
                       />
-                    )}
-                    {!this.state.loadingSingle && (
+                    ) : (
                       <div className="Export__SelectContainer">
                         <FormControl
                           className="Export__SelectContainer__Select"
@@ -233,6 +220,18 @@ class Export extends React.Component {
                             </MenuItem>
                           </Select>
                         </FormControl>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={this.handleSingleExport}
+                          disabled={
+                            !this.state.singleBoard ||
+                            !this.state.exportSingleBoard
+                          }
+                          startIcon={<GetAppIcon />}
+                        >
+                          <FormattedMessage {...messages.export} />
+                        </Button>
                       </div>
                     )}
                   </div>
@@ -272,35 +271,47 @@ class Export extends React.Component {
                 />
                 <ListItemSecondaryAction>
                   <div className="Export__SelectContainer">
-                    {this.state.loadingAll && (
+                    {this.state.loadingAll ? (
                       <CircularProgress
                         size={25}
                         className="Export__SelectContainer--spinner"
                         thickness={7}
                       />
-                    )}
-                    {!this.state.loadingAll && (
-                      <FormControl
-                        className="Export__SelectContainer__Select"
-                        variant="standard"
-                        disabled={this.state.loadingAll}
-                      >
-                        <InputLabel id="export-all-select-label">
-                          {intl.formatMessage(messages.export)}
-                        </InputLabel>
-                        <Select
-                          labelId="export-all-select-label"
-                          id="export-all-select"
-                          autoWidth={false}
-                          value={this.state.exportAllBoard}
-                          onChange={this.handleAllBoardChange}
+                    ) : (
+                      <div className="Export__SelectContainer">
+                        <FormControl
+                          className="Export__SelectContainer__Select"
+                          variant="standard"
+                          disabled={this.state.loadingAll}
                         >
-                          <MenuItem value="cboard">Cboard</MenuItem>
-                          <MenuItem value="openboard">OpenBoard</MenuItem>
-                          <MenuItem value="pdf">PDF</MenuItem>
-                          <MenuItem value="picsee_pdf">PicseePal PDF</MenuItem>
-                        </Select>
-                      </FormControl>
+                          <InputLabel id="export-all-select-label">
+                            {intl.formatMessage(messages.export)}
+                          </InputLabel>
+                          <Select
+                            labelId="export-all-select-label"
+                            id="export-all-select"
+                            autoWidth={false}
+                            value={this.state.exportAllBoard}
+                            onChange={this.handleAllBoardChange}
+                          >
+                            <MenuItem value="cboard">Cboard</MenuItem>
+                            <MenuItem value="openboard">OpenBoard</MenuItem>
+                            <MenuItem value="pdf">PDF</MenuItem>
+                            <MenuItem value="picsee_pdf">
+                              PicseePal PDF
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={this.handleAllExport}
+                          disabled={!this.state.exportAllBoard}
+                          startIcon={<GetAppIcon />}
+                        >
+                          <FormattedMessage {...messages.export} />
+                        </Button>
+                      </div>
                     )}
                   </div>
                 </ListItemSecondaryAction>
