@@ -12,7 +12,6 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import Divider from '@material-ui/core/Divider';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Export.messages';
@@ -226,7 +225,8 @@ class Export extends React.Component {
                           onClick={this.handleSingleExport}
                           disabled={
                             !this.state.singleBoard ||
-                            !this.state.exportSingleBoard
+                            !this.state.exportSingleBoard ||
+                            this.state.loadingSingle
                           }
                           startIcon={<GetAppIcon />}
                         >
@@ -306,7 +306,9 @@ class Export extends React.Component {
                           variant="contained"
                           color="primary"
                           onClick={this.handleAllExport}
-                          disabled={!this.state.exportAllBoard}
+                          disabled={
+                            !this.state.exportAllBoard || this.state.loadingAll
+                          }
                           startIcon={<GetAppIcon />}
                         >
                           <FormattedMessage {...messages.export} />
