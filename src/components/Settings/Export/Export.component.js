@@ -12,6 +12,8 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import Button from '@material-ui/core/Button';
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Export.messages';
@@ -23,9 +25,6 @@ import {
   MEDIUM_FONT_SIZE,
   SMALL_FONT_SIZE
 } from './Export.constants';
-
-import Button from '@material-ui/core/Button';
-import GetAppIcon from '@material-ui/icons/GetApp';
 
 const propTypes = {
   /**
@@ -339,13 +338,6 @@ class Export extends React.Component {
                 />
                 <ListItemSecondaryAction>
                   <div className="Export__SelectContainer">
-                    {this.state.loadingAll && (
-                      <CircularProgress
-                        size={25}
-                        className="Export__SelectContainer--spinner"
-                        thickness={7}
-                      />
-                    )}
                     <FormControl
                       className="Export__SelectContainer__Select"
                       variant="standard"
