@@ -9,6 +9,7 @@ import { isFirstVisit, isLogged } from './App.selectors';
 import messages from './App.messages';
 import App from './App.component';
 import { DISPLAY_SIZE_STANDARD } from '../Settings/Display/Display.constants';
+import { hasPendingSyncBoards } from '../Board/Board.selectors';
 
 import {
   updateUserDataFromAPI,
@@ -133,8 +134,13 @@ export class AppContainer extends Component {
     window.removeEventListener('offline', this.handleOffline);
   }
 
+  isSyncRecentlyExecuted = () => {
+    const THROTTLE_MS = 1000 * 60 * 2;
+    return this.lastSyncTime && Date.now() - this.lastSyncTime < THROTTLE_MS;
+  };
+
   handleDataRefresh = (source = 'Unknown') => {
-    const { isLogged } = this.props;
+    const { isLogged, hasPendingSyncBoards } = this.props;
 
     if (!isLogged) {
       return;
@@ -145,13 +151,12 @@ export class AppContainer extends Component {
       return;
     }
 
-    const THROTTLE_MS = 1000 * 60 * 2;
-    const now = Date.now();
-    if (this.lastSyncTime && now - this.lastSyncTime < THROTTLE_MS) {
+    if (this.isSyncRecentlyExecuted() && !hasPendingSyncBoards) {
       console.log(`Sync skipped - throttled (${source})`);
       return;
     }
-    this.lastSyncTime = now;
+
+    this.lastSyncTime = Date.now();
     console.log(`Sync dispatched - ${source}`);
     this.props.getApiObjects();
   };
@@ -233,7 +238,8 @@ const mapStateToProps = state => ({
   lang: state.language.lang,
   displaySettings: state.app.displaySettings,
   isDownloadingLang: state.language.downloadingLang.isdownloading,
-  userId: state.app.userData.id
+  userId: state.app.userData.id,
+  hasPendingSyncBoards: hasPendingSyncBoards(state)
 });
 
 const mapDispatchToProps = {
