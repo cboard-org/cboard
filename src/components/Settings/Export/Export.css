@@ -1,7 +1,7 @@
 .Export__SelectContainer {
   display: grid;
   position: relative;
-  grid-gap: 5px;
+  grid-gap: 8px;
 }
 
 .Export__SelectContainer__Select {
@@ -24,7 +24,9 @@
 }
 
 .Export__section {
+  margin-top: 8px;
   margin-bottom: 8px;
+  padding: 4px 0;
 }
 
 .Export__List .MuiListSubheader-root {
