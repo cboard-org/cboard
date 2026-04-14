@@ -737,12 +737,6 @@ export function pushLocalChangesToApi(remoteBoards = []) {
 
       try {
         if (needsCreate) {
-          const activeCommunicatorBoards =
-            getState().communicator?.active?.boards ?? [];
-
-          if (!activeCommunicatorBoards.includes(board.id)) {
-            dispatch(addBoardCommunicator(board.id));
-          }
           const newBoardId = await dispatch(
             updateApiObjectsNoChild(board, true)
           );
