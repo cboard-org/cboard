@@ -9,6 +9,7 @@ import { isFirstVisit, isLogged } from './App.selectors';
 import messages from './App.messages';
 import App from './App.component';
 import { DISPLAY_SIZE_STANDARD } from '../Settings/Display/Display.constants';
+import { hasPendingSyncBoards } from '../Board/Board.selectors';
 
 import {
   updateUserDataFromAPI,
@@ -16,7 +17,14 @@ import {
   updateUnloggedUserLocation,
   updateConnectivity
 } from '../App/App.actions';
-import { isCordova, isElectron } from '../../cordova-util';
+import { getApiObjects } from '../Board/Board.actions';
+import {
+  isCordova,
+  isElectron,
+  onCvaResume,
+  cleanUpCvaOnResume
+} from '../../cordova-util';
+
 export class AppContainer extends Component {
   static propTypes = {
     /**
@@ -43,8 +51,14 @@ export class AppContainer extends Component {
     /**
      * User Id
      */
-    userId: PropTypes.string
+    userId: PropTypes.string,
+    /**
+     * Get API objects (boards and communicators)
+     */
+    getApiObjects: PropTypes.func.isRequired
   };
+
+  lastSyncTime = null;
 
   componentDidMount() {
     const localizeUser = () => {
@@ -92,36 +106,83 @@ export class AppContainer extends Component {
 
     initGoogleAnalytics();
 
-    const configureConnectionStatus = () => {
-      const { updateConnectivity } = this.props;
-      const setAsOnline = () => {
-        updateConnectivity({ isConnected: true });
-      };
+    // Set initial connection status and register event listeners
+    if (!navigator.onLine) {
+      this.handleOffline();
+    } else {
+      this.props.updateConnectivity({ isConnected: true });
+    }
+    window.addEventListener('offline', this.handleOffline);
+    window.addEventListener('online', this.handleOnline);
 
-      const setAsOffline = () => {
-        updateConnectivity({ isConnected: false });
-      };
+    onCvaResume(this.handleCvaResume);
+    document.addEventListener(
+      'visibilitychange',
+      this.handleWebVisibilityChange
+    );
 
-      const addConnectionEventListeners = () => {
-        window.addEventListener('offline', setAsOffline);
-        window.addEventListener('online', setAsOnline);
-      };
-
-      const setCurrentConnectionStatus = () => {
-        if (!navigator.onLine) {
-          setAsOffline();
-          return;
-        }
-        setAsOnline();
-        return;
-      };
-
-      setCurrentConnectionStatus();
-      addConnectionEventListeners();
-    };
-
-    configureConnectionStatus();
+    this.handleDataRefresh('App started');
   }
+
+  componentWillUnmount() {
+    cleanUpCvaOnResume(this.handleCvaResume);
+    document.removeEventListener(
+      'visibilitychange',
+      this.handleWebVisibilityChange
+    );
+    window.removeEventListener('online', this.handleOnline);
+    window.removeEventListener('offline', this.handleOffline);
+  }
+
+  isSyncRecentlyExecuted = () => {
+    const THROTTLE_MS = 1000 * 60 * 2;
+    return this.lastSyncTime && Date.now() - this.lastSyncTime < THROTTLE_MS;
+  };
+
+  handleDataRefresh = (source = 'Unknown') => {
+    const { isLogged, hasPendingSyncBoards } = this.props;
+
+    if (!isLogged) {
+      return;
+    }
+
+    if (!window.navigator.onLine) {
+      console.log('Sync skipped - Device is offline');
+      return;
+    }
+
+    if (this.isSyncRecentlyExecuted() && !hasPendingSyncBoards) {
+      console.log(`Sync skipped - throttled (${source})`);
+      return;
+    }
+
+    this.lastSyncTime = Date.now();
+    console.log(`Sync dispatched - ${source}`);
+    this.props.getApiObjects();
+  };
+
+  handleOffline = () => {
+    if (navigator.onLine) {
+      return;
+    }
+    this.props.updateConnectivity({ isConnected: false });
+  };
+
+  handleOnline = () => {
+    if (!navigator.onLine) {
+      return;
+    }
+    this.props.updateConnectivity({ isConnected: true });
+    this.handleDataRefresh('Connection restored');
+  };
+
+  handleWebVisibilityChange = () => {
+    if (document.visibilityState === 'visible') {
+      this.handleDataRefresh('Tab focused');
+    }
+  };
+
+  handleCvaResume = () => this.handleDataRefresh('App resumed');
 
   handleNewContentAvailable = () => {
     const { intl, showNotification } = this.props;
@@ -177,7 +238,8 @@ const mapStateToProps = state => ({
   lang: state.language.lang,
   displaySettings: state.app.displaySettings,
   isDownloadingLang: state.language.downloadingLang.isdownloading,
-  userId: state.app.userData.id
+  userId: state.app.userData.id,
+  hasPendingSyncBoards: hasPendingSyncBoards(state)
 });
 
 const mapDispatchToProps = {
@@ -185,7 +247,8 @@ const mapDispatchToProps = {
   updateUserDataFromAPI,
   updateLoggedUserLocation,
   updateUnloggedUserLocation,
-  updateConnectivity
+  updateConnectivity,
+  getApiObjects
 };
 
 export default connect(
