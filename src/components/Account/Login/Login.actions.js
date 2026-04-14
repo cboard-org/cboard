@@ -160,7 +160,10 @@ export function login({ email, password, activatedData }, type = 'local') {
       const loginData = activatedData
         ? activatedData
         : await API[apiMethod](email, password);
-      const { communicator, board } = getState();
+
+      const apiBoards = loginData.boards || [];
+
+      const { communicator } = getState();
 
       const activeCommunicatorId = communicator.activeCommunicatorId;
       let currentCommunicator = communicator.communicators.find(
@@ -173,30 +176,9 @@ export function login({ email, password, activatedData }, type = 'local') {
         currentCommunicator =
           loginData.communicators[lastRemoteSavedCommunicatorIndex]; //use the latest communicator
       }
-
-      const localBoardsIds = [];
-      board.boards.forEach(board => {
-        if (currentCommunicator.boards.indexOf(board.id) >= 0) {
-          localBoardsIds.push(board.id);
-        }
-      });
-
-      const apiBoardsIds = currentCommunicator.boards.filter(
-        id => localBoardsIds.indexOf(id) < 0
-      );
-
-      const results = await Promise.all(
-        apiBoardsIds.map(async id => {
-          try {
-            return await API.getBoard(id);
-          } catch (e) {
-            return null;
-          }
-        })
-      );
-      const apiBoards = results.filter(b => b !== null);
-
-      dispatch(addBoards(apiBoards));
+      if (apiBoards.length && currentCommunicator) {
+        dispatch(addBoards(apiBoards));
+      }
       if (type === 'local') {
         dispatch(
           disableTour({
