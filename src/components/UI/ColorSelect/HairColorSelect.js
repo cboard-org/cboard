@@ -52,7 +52,8 @@ const propTypes = {
   source: PropTypes.string.isRequired,
   intl: intlShape.isRequired,
   onChange: PropTypes.func.isRequired,
-  selectedColor: PropTypes.string.isRequired
+  selectedColor: PropTypes.string.isRequired,
+  disabled: PropTypes.bool
 };
 
 class HairColorSelect extends React.Component {
@@ -98,13 +99,14 @@ class HairColorSelect extends React.Component {
   };
 
   toggleOpen() {
+    if (this.props.disabled) return;
     this.setState({
       open: !this.state.open
     });
   }
 
   render() {
-    const { intl, selectedColor, iconColor } = this.props;
+    const { intl, selectedColor, iconColor, disabled } = this.props;
     const hairColorLabel = `${this.state.sourceName} ${intl.formatMessage(
       messages.hairColor
     )}`;
@@ -122,6 +124,7 @@ class HairColorSelect extends React.Component {
             label={hairColorLabel}
             onClick={() => this.toggleOpen()}
             style={{ color: iconColor ? iconColor : 'inherit' }}
+            disabled={disabled}
           >
             <Face />
           </IconButton>

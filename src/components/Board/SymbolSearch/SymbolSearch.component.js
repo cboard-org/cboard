@@ -119,6 +119,13 @@ export class SymbolSearch extends PureComponent {
     );
   }
 
+  get isHairColorDisabled() {
+    const isArasaacEnabled = this.state.symbolSets.some(
+      opt => opt.id === SymbolSets.arasaac && opt.enabled
+    );
+    return !isArasaacEnabled;
+  }
+
   translateSymbols(symbols = []) {
     return symbols.map(symbol => {
       const translatedId = this.props.intl
@@ -556,6 +563,7 @@ export class SymbolSearch extends PureComponent {
       <HairColorSelect
         selectedColor={this.state.hair}
         onChange={this.handleHairColorChange}
+        disabled={this.isHairColorDisabled}
       />
     ) : null;
     const autoSuggest = (

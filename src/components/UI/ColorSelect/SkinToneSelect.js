@@ -97,9 +97,7 @@ class SkinToneSelect extends React.Component {
 
   render() {
     const { intl, selectedColor, iconColor } = this.props;
-    const skinToneLabel = `${this.state.sourceName} ${intl.formatMessage(
-      messages.skinTone
-    )}`;
+    const skinToneLabel = intl.formatMessage(messages.skinTone);
     const radioGroupStyle = { flexDirection: 'column' };
     const radioItemStyle = { padding: '2px' };
 
