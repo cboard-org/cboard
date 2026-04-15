@@ -483,26 +483,38 @@ export class SymbolSearch extends PureComponent {
       }
       return option;
     });
-    this.setState({
-      symbolSets: newSymbolSets
-    });
-    this.getSuggestions(this.state.value);
+    this.setState(
+      {
+        symbolSets: newSymbolSets
+      },
+      () => {
+        this.getSuggestions(this.state.value);
+      }
+    );
   };
 
   handleSkinToneChange = event => {
     const newSkin = event ? event.target.value : defaultSkin;
-    this.setState({
-      skin: newSkin
-    });
-    this.getSuggestions(this.state.value);
+    this.setState(
+      {
+        skin: newSkin
+      },
+      () => {
+        this.getSuggestions(this.state.value);
+      }
+    );
   };
 
   handleHairColorChange = event => {
     const newHair = event ? event.target.value : defaultHair;
-    this.setState({
-      hair: newHair
-    });
-    this.getSuggestions(this.state.value);
+    this.setState(
+      {
+        hair: newHair
+      },
+      () => {
+        this.getSuggestions(this.state.value);
+      }
+    );
   };
 
   handleClearSuggest() {
