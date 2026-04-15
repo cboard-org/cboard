@@ -191,12 +191,12 @@ describe('reducer', () => {
   it('should handle changeElevenLabsApiKey', () => {
     const changeElevenLabsApiKey = {
       type: CHANGE_ELEVENLABS_API_KEY,
-      elevenLabsApiKey: 'sk-test-key'
+      elevenLabsApiKey: 'test-api-key'
     };
     expect(speechProviderReducer(initialState, changeElevenLabsApiKey)).toEqual(
       {
         ...initialState,
-        elevenLabsApiKey: 'sk-test-key'
+        elevenLabsApiKey: 'test-api-key'
       }
     );
   });

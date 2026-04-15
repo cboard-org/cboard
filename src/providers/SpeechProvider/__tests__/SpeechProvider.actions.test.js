@@ -148,7 +148,7 @@ describe('actions', () => {
     store.dispatch(actions.speak('aaa', onend(dispatch)));
   });
   it('should create an action to change ElevenLabs API key', () => {
-    const elevenLabsApiKey = 'sk-test-key';
+    const elevenLabsApiKey = 'test-api-key';
     const expectedAction = {
       type: types.CHANGE_ELEVENLABS_API_KEY,
       elevenLabsApiKey
