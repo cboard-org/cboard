@@ -45,7 +45,7 @@ export default defineMessages({
   skinToneOptionsDesc: {
     id: 'cboard.components.SymbolSearch.skinToneOptionsDesc',
     defaultMessage:
-      'You can customize the skin tone symbols to better represent yourself and others. These options currently only apply to ARASAAC symbols.'
+      'You can customize the skin tone symbols to better represent yourself and others. These options currently only apply to Cboard Symbols and ARASAAC symbols.'
   },
   hairColorOptionsTitle: {
     id: 'cboard.components.SymbolSearch.hairColorOptionsTitle',
