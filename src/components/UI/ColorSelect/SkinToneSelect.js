@@ -38,13 +38,16 @@ const skinToneSources = new Map([
     ]
   ]
 ]);
-const sourcesNames = new Map([['arasaac', 'ARASAAC']]);
 
 const propTypes = {
-  source: PropTypes.string.isRequired,
+  source: PropTypes.string,
   intl: intlShape.isRequired,
   onChange: PropTypes.func.isRequired,
   selectedColor: PropTypes.string.isRequired
+};
+
+const defaultProps = {
+  source: 'arasaac'
 };
 
 class SkinToneSelect extends React.Component {
@@ -55,9 +58,6 @@ class SkinToneSelect extends React.Component {
     this.handleClickOutside = this.handleClickOutside.bind(this);
     this.state = {
       open: false,
-      sourceName: sourcesNames.has(props.source)
-        ? sourcesNames.get(props.source)
-        : sourcesNames.get('arasaac'),
       skinToneMenu: skinToneSources.has(props.source)
         ? skinToneSources.get(props.source)
         : skinToneSources.get('arasaac')
@@ -151,4 +151,5 @@ class SkinToneSelect extends React.Component {
 }
 
 SkinToneSelect.propTypes = propTypes;
+SkinToneSelect.defaultProps = defaultProps;
 export default injectIntl(SkinToneSelect);

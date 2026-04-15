@@ -486,7 +486,7 @@ export class SymbolSearch extends PureComponent {
   handleChangeOption = opt => {
     const newSymbolSets = this.state.symbolSets.map(option => {
       if (option.id === opt.id) {
-        option.enabled = !option.enabled;
+        return { ...option, enabled: !option.enabled };
       }
       return option;
     });

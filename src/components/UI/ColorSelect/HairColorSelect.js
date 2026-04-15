@@ -49,11 +49,15 @@ const hairColorSources = new Map([
 const sourcesNames = new Map([['arasaac', 'ARASAAC']]);
 
 const propTypes = {
-  source: PropTypes.string.isRequired,
+  source: PropTypes.string,
   intl: intlShape.isRequired,
   onChange: PropTypes.func.isRequired,
   selectedColor: PropTypes.string.isRequired,
   disabled: PropTypes.bool
+};
+
+const defaultProps = {
+  source: 'arasaac'
 };
 
 class HairColorSelect extends React.Component {
@@ -164,4 +168,5 @@ class HairColorSelect extends React.Component {
 }
 
 HairColorSelect.propTypes = propTypes;
+HairColorSelect.defaultProps = defaultProps;
 export default injectIntl(HairColorSelect);
