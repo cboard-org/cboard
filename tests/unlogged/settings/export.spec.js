@@ -65,6 +65,38 @@ test.describe('Cboard - Export Settings', () => {
     // Note: Specific options depend on implementation
   });
 
+  test('should show single board export action button disabled by default', async ({
+    page
+  }) => {
+    // Export button requires both a board and a format to be selected
+    await cboard.verifySingleExportButtonDisabled();
+  });
+
+  test('should show all boards export action button disabled by default', async ({
+    page
+  }) => {
+    // Export button requires a format to be selected
+    await cboard.verifyAllBoardsExportButtonDisabled();
+  });
+
+  test('should enable single board export button after board and format selection', async ({
+    page
+  }) => {
+    // Single export requires both a board AND a format
+    await cboard.selectSingleBoardFormat('Cboard');
+    // Still disabled — board not selected yet
+    await cboard.verifySingleExportButtonDisabled();
+    await cboard.selectSingleBoard('Cboard Classic Home');
+    await cboard.verifySingleExportButtonEnabled();
+  });
+
+  test('should enable all boards export button after format selection', async ({
+    page
+  }) => {
+    await cboard.selectAllBoardsFormat('Cboard');
+    await cboard.verifyAllBoardsExportButtonEnabled();
+  });
+
   test('should allow PDF font size modification', async ({ page }) => {
     await cboard.clickPdfFontSize();
 
