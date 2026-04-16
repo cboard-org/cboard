@@ -20,5 +20,9 @@ export default defineMessages({
   unlock: {
     id: 'cboard.components.PinDialog.unlock',
     defaultMessage: 'Unlock'
+  },
+  togglePinVisibility: {
+    id: 'cboard.components.PinDialog.togglePinVisibility',
+    defaultMessage: 'Toggle PIN visibility'
   }
 });
