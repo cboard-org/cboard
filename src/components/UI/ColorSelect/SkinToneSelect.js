@@ -43,11 +43,13 @@ const propTypes = {
   source: PropTypes.string,
   intl: intlShape.isRequired,
   onChange: PropTypes.func.isRequired,
-  selectedColor: PropTypes.string.isRequired
+  selectedColor: PropTypes.string.isRequired,
+  disabled: PropTypes.bool
 };
 
 const defaultProps = {
-  source: 'arasaac'
+  source: 'arasaac',
+  disabled: false
 };
 
 class SkinToneSelect extends React.Component {
@@ -90,13 +92,14 @@ class SkinToneSelect extends React.Component {
   };
 
   toggleOpen() {
+    if (this.props.disabled) return;
     this.setState({
       open: !this.state.open
     });
   }
 
   render() {
-    const { intl, selectedColor, iconColor } = this.props;
+    const { intl, selectedColor, iconColor, disabled } = this.props;
     const skinToneLabel = intl.formatMessage(messages.skinTone);
     const radioGroupStyle = { flexDirection: 'column' };
     const radioItemStyle = { padding: '2px' };
@@ -112,6 +115,7 @@ class SkinToneSelect extends React.Component {
             label={skinToneLabel}
             onClick={() => this.toggleOpen()}
             style={{ color: iconColor ? iconColor : 'inherit' }}
+            disabled={disabled}
           >
             <PanTool />
           </IconButton>

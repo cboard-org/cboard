@@ -42,6 +42,11 @@ export default defineMessages({
     id: 'cboard.components.SymbolSearch.skinToneOptionsTitle',
     defaultMessage: 'Skin tone options'
   },
+  skinToneOptionsDisabled: {
+    id: 'cboard.components.SymbolSearch.skinToneOptionsDisabled',
+    defaultMessage:
+      'Skin tone options are only available for ARASAAC and Cboard Symbols'
+  },
   skinToneOptionsDesc: {
     id: 'cboard.components.SymbolSearch.skinToneOptionsDesc',
     defaultMessage:
@@ -50,6 +55,10 @@ export default defineMessages({
   hairColorOptionsTitle: {
     id: 'cboard.components.SymbolSearch.hairColorOptionsTitle',
     defaultMessage: 'Hair color options'
+  },
+  hairColorOptionsDisabled: {
+    id: 'cboard.components.SymbolSearch.hairColorOptionsDisabled',
+    defaultMessage: 'Hair color options are only available for ARASAAC symbols'
   },
   hairColorOptionsDesc: {
     id: 'cboard.components.SymbolSearch.hairColorOptionsDesc',

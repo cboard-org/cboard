@@ -111,12 +111,14 @@ export class SymbolSearch extends PureComponent {
     return null;
   }
 
-  get showInclusivityOptions() {
-    return this.state.symbolSets.some(
-      opt =>
-        (opt.id === SymbolSets.arasaac || opt.id === SymbolSets.cboard) &&
-        opt.enabled
+  get isSkinToneDisabled() {
+    const isArasaacEnabled = this.state.symbolSets.some(
+      opt => opt.id === SymbolSets.arasaac && opt.enabled
     );
+    const isCboardEnabled = this.state.symbolSets.some(
+      opt => opt.id === SymbolSets.cboard && opt.enabled
+    );
+    return !isArasaacEnabled && !isCboardEnabled;
   }
 
   get isHairColorDisabled() {
@@ -553,25 +555,52 @@ export class SymbolSearch extends PureComponent {
           </Tooltip>
         </div>
       ) : null;
-    const skinOptions = this.showInclusivityOptions ? (
-      <SkinToneSelect
-        selectedColor={this.state.skin}
-        onChange={this.handleSkinToneChange}
-      />
-    ) : null;
-    const hairOptions = this.showInclusivityOptions ? (
-      <HairColorSelect
-        selectedColor={this.state.hair}
-        onChange={this.handleHairColorChange}
-        disabled={this.isHairColorDisabled}
-      />
-    ) : null;
-    const autoSuggest = (
-      <div
-        className={`react-autosuggest__container ${
-          this.showInclusivityOptions ? 'more-options' : ''
-        }`}
+    const skinOptions = (
+      <Tooltip
+        title={
+          this.isSkinToneDisabled
+            ? intl.formatMessage(messages.skinToneOptionsDisabled)
+            : intl.formatMessage(messages.skinToneOptionsTitle)
+        }
+        aria-label={
+          this.isSkinToneDisabled
+            ? intl.formatMessage(messages.skinToneOptionsDisabled)
+            : intl.formatMessage(messages.skinToneOptionsTitle)
+        }
       >
+        <span>
+          <SkinToneSelect
+            selectedColor={this.state.skin}
+            onChange={this.handleSkinToneChange}
+            disabled={this.isSkinToneDisabled}
+          />
+        </span>
+      </Tooltip>
+    );
+    const hairOptions = (
+      <Tooltip
+        title={
+          this.isHairColorDisabled
+            ? intl.formatMessage(messages.hairColorOptionsDisabled)
+            : intl.formatMessage(messages.hairColorOptionsTitle)
+        }
+        aria-label={
+          this.isHairColorDisabled
+            ? intl.formatMessage(messages.hairColorOptionsDisabled)
+            : intl.formatMessage(messages.hairColorOptionsTitle)
+        }
+      >
+        <span>
+          <HairColorSelect
+            selectedColor={this.state.hair}
+            onChange={this.handleHairColorChange}
+            disabled={this.isHairColorDisabled}
+          />
+        </span>
+      </Tooltip>
+    );
+    const autoSuggest = (
+      <div className="react-autosuggest__container more-options">
         <Autosuggest
           aria-label="Search auto-suggest"
           alwaysRenderSuggestions={true}
