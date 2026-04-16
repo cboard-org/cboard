@@ -793,17 +793,15 @@ export class BoardContainer extends Component {
     const { showPremiumRequired, isSubscriptionRequired } = this.props;
     const { pinLockEnabled, pinCode } = this.props.navigationSettings || {};
 
-    if (
-      pinLockEnabled &&
-      pinCode &&
-      pinCode.length === 4 &&
-      this.state.isLocked
-    ) {
+    const hasValidPinCode =
+      typeof pinCode === 'string' && /^\d{4}$/.test(pinCode);
+
+    if (pinLockEnabled && this.state.isLocked) {
       if (!this.state.pinDialogOpen) {
         this.setState({
           pinDialogOpen: true,
           pinAttempt: '',
-          pinError: false
+          pinError: !hasValidPinCode
         });
       }
       return;
