@@ -111,12 +111,21 @@ export class SymbolSearch extends PureComponent {
     return null;
   }
 
-  get showInclusivityOptions() {
-    return this.state.symbolSets.some(
-      opt =>
-        (opt.id === SymbolSets.arasaac || opt.id === SymbolSets.cboard) &&
-        opt.enabled
+  get isSkinToneDisabled() {
+    const isArasaacEnabled = this.state.symbolSets.some(
+      opt => opt.id === SymbolSets.arasaac && opt.enabled
     );
+    const isCboardEnabled = this.state.symbolSets.some(
+      opt => opt.id === SymbolSets.cboard && opt.enabled
+    );
+    return !isArasaacEnabled && !isCboardEnabled;
+  }
+
+  get isHairColorDisabled() {
+    const isArasaacEnabled = this.state.symbolSets.some(
+      opt => opt.id === SymbolSets.arasaac && opt.enabled
+    );
+    return !isArasaacEnabled;
   }
 
   translateSymbols(symbols = []) {
@@ -479,30 +488,42 @@ export class SymbolSearch extends PureComponent {
   handleChangeOption = opt => {
     const newSymbolSets = this.state.symbolSets.map(option => {
       if (option.id === opt.id) {
-        option.enabled = !option.enabled;
+        return { ...option, enabled: !option.enabled };
       }
       return option;
     });
-    this.setState({
-      symbolSets: newSymbolSets
-    });
-    this.getSuggestions(this.state.value);
+    this.setState(
+      {
+        symbolSets: newSymbolSets
+      },
+      () => {
+        this.getSuggestions(this.state.value);
+      }
+    );
   };
 
   handleSkinToneChange = event => {
     const newSkin = event ? event.target.value : defaultSkin;
-    this.setState({
-      skin: newSkin
-    });
-    this.getSuggestions(this.state.value);
+    this.setState(
+      {
+        skin: newSkin
+      },
+      () => {
+        this.getSuggestions(this.state.value);
+      }
+    );
   };
 
   handleHairColorChange = event => {
     const newHair = event ? event.target.value : defaultHair;
-    this.setState({
-      hair: newHair
-    });
-    this.getSuggestions(this.state.value);
+    this.setState(
+      {
+        hair: newHair
+      },
+      () => {
+        this.getSuggestions(this.state.value);
+      }
+    );
   };
 
   handleClearSuggest() {
@@ -534,24 +555,22 @@ export class SymbolSearch extends PureComponent {
           </Tooltip>
         </div>
       ) : null;
-    const skinOptions = this.showInclusivityOptions ? (
+    const skinOptions = (
       <SkinToneSelect
         selectedColor={this.state.skin}
         onChange={this.handleSkinToneChange}
+        disabled={this.isSkinToneDisabled}
       />
-    ) : null;
-    const hairOptions = this.showInclusivityOptions ? (
+    );
+    const hairOptions = (
       <HairColorSelect
         selectedColor={this.state.hair}
         onChange={this.handleHairColorChange}
+        disabled={this.isHairColorDisabled}
       />
-    ) : null;
+    );
     const autoSuggest = (
-      <div
-        className={`react-autosuggest__container ${
-          this.showInclusivityOptions ? 'more-options' : ''
-        }`}
-      >
+      <div className="react-autosuggest__container more-options">
         <Autosuggest
           aria-label="Search auto-suggest"
           alwaysRenderSuggestions={true}
