@@ -99,7 +99,7 @@ class SkinToneSelect extends React.Component {
   }
 
   render() {
-    const { intl, selectedColor, iconColor, disabled } = this.props;
+    const { intl, selectedColor, disabled } = this.props;
     const skinToneLabel = intl.formatMessage(messages.skinTone);
     const radioGroupStyle = { flexDirection: 'column' };
     const radioItemStyle = { padding: '2px' };
@@ -110,15 +110,28 @@ class SkinToneSelect extends React.Component {
         className="colorSelectDropdown"
         ref={this.wrapperRef}
       >
-        <Tooltip title={skinToneLabel} aria-label={skinToneLabel}>
-          <IconButton
-            label={skinToneLabel}
-            onClick={() => this.toggleOpen()}
-            style={{ color: iconColor ? iconColor : 'inherit' }}
-            disabled={disabled}
-          >
-            <PanTool />
-          </IconButton>
+        <Tooltip
+          title={
+            disabled
+              ? intl.formatMessage(messages.skinToneDisabled)
+              : skinToneLabel
+          }
+          aria-label={
+            disabled
+              ? intl.formatMessage(messages.skinToneDisabled)
+              : skinToneLabel
+          }
+        >
+          <span>
+            <IconButton
+              label={skinToneLabel}
+              onClick={() => this.toggleOpen()}
+              style={{ color: disabled ? '' : 'inherit' }}
+              disabled={disabled}
+            >
+              <PanTool />
+            </IconButton>
+          </span>
         </Tooltip>
         <FormControl className="colorSelectDropdown-options">
           <Card className={this.state.open ? 'opened' : 'closed'}>

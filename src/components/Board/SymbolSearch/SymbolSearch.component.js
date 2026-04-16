@@ -556,48 +556,18 @@ export class SymbolSearch extends PureComponent {
         </div>
       ) : null;
     const skinOptions = (
-      <Tooltip
-        title={
-          this.isSkinToneDisabled
-            ? intl.formatMessage(messages.skinToneOptionsDisabled)
-            : intl.formatMessage(messages.skinToneOptionsTitle)
-        }
-        aria-label={
-          this.isSkinToneDisabled
-            ? intl.formatMessage(messages.skinToneOptionsDisabled)
-            : intl.formatMessage(messages.skinToneOptionsTitle)
-        }
-      >
-        <span>
-          <SkinToneSelect
-            selectedColor={this.state.skin}
-            onChange={this.handleSkinToneChange}
-            disabled={this.isSkinToneDisabled}
-          />
-        </span>
-      </Tooltip>
+      <SkinToneSelect
+        selectedColor={this.state.skin}
+        onChange={this.handleSkinToneChange}
+        disabled={this.isSkinToneDisabled}
+      />
     );
     const hairOptions = (
-      <Tooltip
-        title={
-          this.isHairColorDisabled
-            ? intl.formatMessage(messages.hairColorOptionsDisabled)
-            : intl.formatMessage(messages.hairColorOptionsTitle)
-        }
-        aria-label={
-          this.isHairColorDisabled
-            ? intl.formatMessage(messages.hairColorOptionsDisabled)
-            : intl.formatMessage(messages.hairColorOptionsTitle)
-        }
-      >
-        <span>
-          <HairColorSelect
-            selectedColor={this.state.hair}
-            onChange={this.handleHairColorChange}
-            disabled={this.isHairColorDisabled}
-          />
-        </span>
-      </Tooltip>
+      <HairColorSelect
+        selectedColor={this.state.hair}
+        onChange={this.handleHairColorChange}
+        disabled={this.isHairColorDisabled}
+      />
     );
     const autoSuggest = (
       <div className="react-autosuggest__container more-options">

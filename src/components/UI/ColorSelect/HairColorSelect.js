@@ -123,15 +123,28 @@ class HairColorSelect extends React.Component {
         className="colorSelectDropdown"
         ref={this.wrapperRef}
       >
-        <Tooltip title={hairColorLabel} aria-label={hairColorLabel}>
-          <IconButton
-            label={hairColorLabel}
-            onClick={() => this.toggleOpen()}
-            style={{ color: iconColor ? iconColor : 'inherit' }}
-            disabled={disabled}
-          >
-            <Face />
-          </IconButton>
+        <Tooltip
+          title={
+            disabled
+              ? intl.formatMessage(messages.hairColorDisabled)
+              : hairColorLabel
+          }
+          aria-label={
+            disabled
+              ? intl.formatMessage(messages.hairColorDisabled)
+              : hairColorLabel
+          }
+        >
+          <span>
+            <IconButton
+              label={hairColorLabel}
+              onClick={() => this.toggleOpen()}
+              style={{ color: disabled ? '' : 'inherit' }}
+              disabled={disabled}
+            >
+              <Face />
+            </IconButton>
+          </span>
         </Tooltip>
         <FormControl className="colorSelectDropdown-options">
           <Card className={this.state.open ? 'opened' : 'closed'}>
