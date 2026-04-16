@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import TextField from '@material-ui/core/TextField';
 import {
   Button,
@@ -23,7 +23,8 @@ const propTypes = {
   onSubmit: PropTypes.func.isRequired,
   error: PropTypes.bool,
   value: PropTypes.string,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  intl: intlShape.isRequired
 };
 
 const defaultProps = {
@@ -31,20 +32,38 @@ const defaultProps = {
   value: ''
 };
 
-const PinDialog = ({ open, onClose, onSubmit, error, value, onChange }) => {
+const PinDialog = ({
+  open,
+  onClose,
+  onSubmit,
+  error,
+  value,
+  onChange,
+  intl
+}) => {
   const inputRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(
     () => {
+      let focusTimeoutId;
+
       if (open && inputRef.current) {
-        setTimeout(() => {
-          inputRef.current.focus();
+        focusTimeoutId = setTimeout(() => {
+          if (inputRef.current) {
+            inputRef.current.focus();
+          }
         }, 100);
       }
       if (open) {
         setIsVisible(false);
       }
+
+      return () => {
+        if (focusTimeoutId) {
+          clearTimeout(focusTimeoutId);
+        }
+      };
     },
     [open]
   );
@@ -92,7 +111,7 @@ const PinDialog = ({ open, onClose, onSubmit, error, value, onChange }) => {
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
-                  aria-label="toggle pin visibility"
+                  aria-label={intl.formatMessage(messages.togglePinVisibility)}
                   onClick={toggleVisibility}
                   edge="end"
                 >
@@ -132,4 +151,4 @@ const PinDialog = ({ open, onClose, onSubmit, error, value, onChange }) => {
 PinDialog.propTypes = propTypes;
 PinDialog.defaultProps = defaultProps;
 
-export default PinDialog;
+export default injectIntl(PinDialog);
