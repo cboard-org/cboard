@@ -110,7 +110,7 @@ class HairColorSelect extends React.Component {
   }
 
   render() {
-    const { intl, selectedColor, iconColor, disabled } = this.props;
+    const { intl, selectedColor, disabled } = this.props;
     const hairColorLabel = `${this.state.sourceName} ${intl.formatMessage(
       messages.hairColor
     )}`;
