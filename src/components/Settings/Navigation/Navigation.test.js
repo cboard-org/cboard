@@ -18,6 +18,10 @@ jest.mock('./Navigation.messages', () => {
     enableSecondary: {
       id: 'cboard.components.Settings.Navigation.enableSecondary',
       defaultMessage: 'some text secondary'
+    },
+    togglePinVisibility: {
+      id: 'cboard.components.Settings.Navigation.togglePinVisibility',
+      defaultMessage: 'Toggle PIN visibility'
     }
   };
 });
