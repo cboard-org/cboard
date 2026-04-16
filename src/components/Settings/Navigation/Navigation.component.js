@@ -123,7 +123,11 @@ class Navigation extends React.Component {
       changeLiveMode();
     }
     const { pinCodeVisible, ...navigationSettings } = this.state;
-    this.props.updateNavigationSettings(navigationSettings);
+    const hasValidPinCode = /^\d{4}$/.test(navigationSettings.pinCode || '');
+    this.props.updateNavigationSettings({
+      ...navigationSettings,
+      pinLockEnabled: navigationSettings.pinLockEnabled && hasValidPinCode
+    });
   };
 
   onNavigationSettingsChange(navigationSetting, event) {
@@ -333,7 +337,9 @@ class Navigation extends React.Component {
                       endAdornment: (
                         <InputAdornment position="end">
                           <IconButton
-                            aria-label="toggle pin visibility"
+                            aria-label={this.props.intl.formatMessage(
+                              messages.togglePinVisibility
+                            )}
                             onClick={this.togglePinCodeVisibility}
                             edge="end"
                             size="small"
