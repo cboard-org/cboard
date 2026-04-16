@@ -18,10 +18,20 @@
   background: #ddd;
 }
 
-.FilterBar__FormGroup {
+.FilterBar > .FilterBar__FormGroup {
   justify-content: center;
   margin: auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1em;
   outline: 0;
   position: relative;
+}
+
+@media (max-width: 500px) {
+  .FilterBar > .FilterBar__FormGroup {
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+  }
 }
