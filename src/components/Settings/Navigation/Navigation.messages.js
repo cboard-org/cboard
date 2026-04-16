@@ -116,5 +116,9 @@ export default defineMessages({
   onTop: {
     id: 'cboard.components.Settings.Navigation.onTop',
     defaultMessage: 'On top'
+  },
+  togglePinVisibility: {
+    id: 'cboard.components.Settings.Navigation.togglePinVisibility',
+    defaultMessage: 'Toggle PIN visibility'
   }
 });
