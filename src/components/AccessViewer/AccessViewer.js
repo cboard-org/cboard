@@ -183,6 +183,7 @@ const AccessViewer = ({ speak, cancelSpeech, intl }) => {
           isSelecting={false}
           isSaving={false}
           onTileClick={handleTileClick}
+          onFocusTile={noop}
           onRequestPreviousBoard={handleRequestPreviousBoard}
           onRequestToRootBoard={handleRequestToRootBoard}
           onLockClick={handleLockClick}
