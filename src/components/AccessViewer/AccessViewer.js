@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { injectIntl, intlShape } from 'react-intl';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -13,6 +13,7 @@ import {
   speak,
   cancelSpeech
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
+import { isLogged as isLoggedSelector } from '../App/App.selectors';
 import API from '../../api';
 import AccessViewerNavbar from './AccessViewerNavbar';
 import AccessViewerHeader from './AccessViewerHeader';
@@ -21,8 +22,9 @@ import './AccessViewer.css';
 
 const noop = () => {};
 
-const AccessViewer = ({ speak, cancelSpeech, intl }) => {
+const AccessViewer = ({ speak, cancelSpeech, isLogged, intl }) => {
   const { slug, code } = useParams();
+  const history = useHistory();
   const boardRef = useRef(null);
 
   const [loading, setLoading] = useState(true);
@@ -168,6 +170,14 @@ const AccessViewer = ({ speak, cancelSpeech, intl }) => {
     setIsLocked(prev => !prev);
   }, []);
 
+  const handleCloseClick = useCallback(
+    () => {
+      cancelSpeech();
+      history.push(isLogged ? '/' : '/login-signup');
+    },
+    [isLogged, history, cancelSpeech]
+  );
+
   if (loading) {
     return (
       <div className="AccessViewer__loading">
@@ -220,6 +230,7 @@ const AccessViewer = ({ speak, cancelSpeech, intl }) => {
         onBackClick={handleRequestPreviousBoard}
         onHomeClick={handleRequestToRootBoard}
         onLockClick={handleLockClick}
+        onCloseClick={handleCloseClick}
       />
 
       <div className="AccessViewer__board">
@@ -253,12 +264,16 @@ AccessViewer.propTypes = {
   intl: intlShape.isRequired
 };
 
+const mapStateToProps = state => ({
+  isLogged: isLoggedSelector(state)
+});
+
 const mapDispatchToProps = {
   speak,
   cancelSpeech
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(injectIntl(AccessViewer));
