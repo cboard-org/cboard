@@ -20,7 +20,7 @@ import './AccessViewer.css';
 const noop = () => {};
 
 const AccessViewer = ({ speak, cancelSpeech, intl }) => {
-  const { code } = useParams();
+  const { slug, code } = useParams();
   const boardRef = useRef(null);
 
   const [loading, setLoading] = useState(true);
@@ -45,7 +45,7 @@ const AccessViewer = ({ speak, cancelSpeech, intl }) => {
           setLoading(true);
           setError(null);
 
-          const response = await API.getAccessBoard(code);
+          const response = await API.getAccessBoard(slug, code);
 
           if (!response.boards || response.boards.length === 0) {
             setError('error');
@@ -88,7 +88,7 @@ const AccessViewer = ({ speak, cancelSpeech, intl }) => {
         cancelSpeech();
       };
     },
-    [code, cancelSpeech]
+    [slug, code, cancelSpeech]
   );
 
   const handleTileClick = useCallback(
