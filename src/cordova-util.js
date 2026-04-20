@@ -1,3 +1,5 @@
+import history from './history';
+
 export const isCordova = () => !!window.cordova;
 
 export const isAndroid = () =>
@@ -35,9 +37,33 @@ export const cleanUpCvaOnResume = onResume => {
   document.removeEventListener('resume', onResume, false);
 };
 
+export const initDeepLinking = () => {
+  if (!window.IonicDeeplink) {
+    console.log('IonicDeeplink plugin not available');
+    return;
+  }
+
+  window.IonicDeeplink.route(
+    { '/access/:code': { target: 'access' } },
+    match => {
+      if (match.$route === '/access/:code') {
+        history.push(`/access/${match.$args.code}`);
+      }
+    },
+    nomatch => {
+      console.log('Deep link no match:', nomatch.$link);
+    }
+  );
+};
+
 export const initCordovaPlugins = () => {
   console.log('now cordova is ready ');
   if (isCordova()) {
+    try {
+      initDeepLinking();
+    } catch (err) {
+      console.log(err.message);
+    }
     try {
       window.StatusBar.hide();
     } catch (err) {
