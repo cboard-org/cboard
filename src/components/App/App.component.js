@@ -65,7 +65,7 @@ export class App extends Component {
 
         <Notifications />
         <Switch>
-          <Route path="/access/:code" component={AccessViewer} />
+          <Route path="/access/:slug/:code" component={AccessViewer} />
           <RedirectIfLogged
             component={AuthScreen}
             isLogged={isLogged}
