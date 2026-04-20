@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { injectIntl, intlShape } from 'react-intl';
 import HomeIcon from '@material-ui/icons/Home';
+import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 
 import BackButton from '../UI/BackButton';
@@ -18,7 +19,8 @@ const AccessViewerNavbar = ({
   onBackClick,
   onHomeClick,
   onLockClick,
-  onLockNotify
+  onLockNotify,
+  onCloseClick
 }) => {
   return (
     <div className="Navbar">
@@ -48,6 +50,13 @@ const AccessViewerNavbar = ({
           onLockTick={onLockNotify}
           onClick={onLockClick}
         />
+        <IconButton
+          onClick={onCloseClick}
+          aria-label="close"
+          style={{ color: '#fff' }}
+        >
+          <CloseIcon />
+        </IconButton>
       </div>
     </div>
   );
@@ -61,7 +70,8 @@ AccessViewerNavbar.propTypes = {
   onBackClick: PropTypes.func.isRequired,
   onHomeClick: PropTypes.func.isRequired,
   onLockClick: PropTypes.func.isRequired,
-  onLockNotify: PropTypes.func
+  onLockNotify: PropTypes.func,
+  onCloseClick: PropTypes.func.isRequired
 };
 
 AccessViewerNavbar.defaultProps = {
