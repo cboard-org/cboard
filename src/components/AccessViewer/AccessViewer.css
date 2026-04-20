@@ -18,6 +18,17 @@
   font-weight: 500;
 }
 
+.AccessViewer__output {
+  height: 112px;
+  max-height: 15%;
+  min-height: 70px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.AccessViewer__output > * {
+  height: 100%;
+}
+
 .AccessViewer__board {
   flex: 1;
   overflow: hidden;
