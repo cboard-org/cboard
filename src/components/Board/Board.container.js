@@ -68,12 +68,7 @@ import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 import PremiumFeature from '../PremiumFeature';
-import {
-  playTileAudio,
-  vocalizeTile,
-  findNextBoard,
-  scrollBoardToTop
-} from './Board.utils';
+import { vocalizeTile, findNextBoard, scrollBoardToTop } from './Board.utils';
 import LoadingIcon from '../UI/LoadingIcon';
 import { resolveTileLabel } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
