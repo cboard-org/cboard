@@ -181,7 +181,6 @@ const AccessViewer = ({ speak, cancelSpeech }) => {
           board={currentBoard}
           intl={intl}
           navigationSettings={{}}
-          hideNavbar={true}
           viewerMode={true}
           isLocked={isLocked}
           isSelecting={false}
