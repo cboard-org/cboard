@@ -69,15 +69,14 @@ import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.cons
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 import PremiumFeature from '../PremiumFeature';
 import {
-  IS_BROWSING_FROM_APPLE_TOUCH,
-  IS_BROWSING_FROM_SAFARI
-} from '../../constants';
+  playTileAudio,
+  vocalizeTile,
+  findNextBoard,
+  scrollBoardToTop
+} from './Board.utils';
 import LoadingIcon from '../UI/LoadingIcon';
 import { resolveTileLabel } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
-
-const ogv = require('ogv');
-ogv.OGVLoader.base = process.env.PUBLIC_URL + '/ogv';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -422,15 +421,6 @@ export class BoardContainer extends Component {
     } catch (e) {}
 
     return dataURL;
-  }
-
-  async playAudio(src) {
-    const safariNeedHelp =
-      (IS_BROWSING_FROM_SAFARI || IS_BROWSING_FROM_APPLE_TOUCH) &&
-      src.endsWith('.ogg');
-    const audio = safariNeedHelp ? new ogv.OGVPlayer() : new Audio();
-    audio.src = src;
-    await audio.play();
   }
 
   handleEditBoardTitle = name => {
@@ -842,28 +832,13 @@ export class BoardContainer extends Component {
     } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
 
-    const say = () => {
-      if (tile.sound) {
-        this.playAudio(tile.sound);
-      } else {
-        const toSpeak = !hasAction ? tile.vocalization || tile.label : null;
-        if (toSpeak) {
-          speak(toSpeak);
-        }
-      }
-    };
-
     if (tile.loadBoard) {
-      const nextBoard =
-        boards.find(b => b.id === tile.loadBoard) ||
-        // If the board id is invalid, try falling back to a board
-        // with the right name.
-        boards.find(b => b.name === tile.label);
+      const nextBoard = findNextBoard(tile, boards);
       if (nextBoard) {
         changeBoard(nextBoard.id);
         this.props.history.push(nextBoard.id);
         if (navigationSettings.vocalizeFolders) {
-          say();
+          vocalizeTile(tile, speak, { hasAction });
         }
       } else {
         showNotification(intl.formatMessage(messages.boardMissed));
@@ -871,7 +846,7 @@ export class BoardContainer extends Component {
     } else {
       clickSymbol(tile.label);
       if (!navigationSettings.quietBuilderMode) {
-        say();
+        vocalizeTile(tile, speak, { hasAction });
       }
       if (isLiveMode) {
         const liveTile = {
@@ -1164,11 +1139,8 @@ export class BoardContainer extends Component {
   };
 
   scrollToTop = () => {
-    if (this.boardRef && !this.state.isSelecting) {
-      const boardComponentRef = this.props.board.isFixed
-        ? 'fixedBoardContainerRef'
-        : 'boardContainerRef';
-      this.boardRef.current[boardComponentRef].current.scrollTop = 0;
+    if (!this.state.isSelecting) {
+      scrollBoardToTop(this.boardRef, this.props.board?.isFixed);
     }
   };
 
