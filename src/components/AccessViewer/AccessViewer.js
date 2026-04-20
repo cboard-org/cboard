@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { useIntl } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -19,8 +19,7 @@ import './AccessViewer.css';
 
 const noop = () => {};
 
-const AccessViewer = ({ speak, cancelSpeech }) => {
-  const intl = useIntl();
+const AccessViewer = ({ speak, cancelSpeech, intl }) => {
   const { code } = useParams();
   const boardRef = useRef(null);
 
@@ -33,7 +32,6 @@ const AccessViewer = ({ speak, cancelSpeech }) => {
   // boardHistory: navigation stack; last entry is the current board
   const [boardHistory, setBoardHistory] = useState([]);
 
-  const [output, setOutput] = useState([]);
   const [isLocked, setIsLocked] = useState(true);
 
   const currentBoard =
@@ -111,7 +109,6 @@ const AccessViewer = ({ speak, cancelSpeech }) => {
       }
 
       vocalizeTile(tile, speak);
-      setOutput(prev => [...prev, tile]);
     },
     [intl, allBoards, speak]
   );
@@ -201,6 +198,10 @@ const AccessViewer = ({ speak, cancelSpeech }) => {
   );
 };
 
+AccessViewer.propTypes = {
+  intl: intlShape.isRequired
+};
+
 const mapDispatchToProps = {
   speak,
   cancelSpeech
@@ -209,4 +210,4 @@ const mapDispatchToProps = {
 export default connect(
   null,
   mapDispatchToProps
-)(AccessViewer);
+)(injectIntl(AccessViewer));
