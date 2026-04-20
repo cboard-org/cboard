@@ -99,5 +99,18 @@ export default defineMessages({
   onTop: {
     id: 'cboard.components.Settings.Navigation.onTop',
     defaultMessage: 'On top'
+  },
+  tileCooldown: {
+    id: 'settings.tileCooldown',
+    defaultMessage: 'Prevent rapid re-selecting the same tile'
+  },
+  tileCooldownSecondary: {
+    id: 'settings.tileCooldownSecondary',
+    defaultMessage:
+      'Disables clicking the same tile repeatedly for a short period'
+  },
+  tileCooldownDuration: {
+    id: 'settings.tileCooldownDuration',
+    defaultMessage: 'Cooldown duration'
   }
 });
