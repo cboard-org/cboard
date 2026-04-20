@@ -1,5 +1,3 @@
-import history from './history';
-
 export const isCordova = () => !!window.cordova;
 
 export const isAndroid = () =>
@@ -42,6 +40,8 @@ export const initDeepLinking = () => {
     console.log('IonicDeeplink plugin not available');
     return;
   }
+
+  const history = require('./history').default;
 
   window.IonicDeeplink.route(
     { '/access/:code': { target: 'access' } },
