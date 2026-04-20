@@ -4,7 +4,9 @@ import { injectIntl, intlShape } from 'react-intl';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import { Scanner } from 'react-scannable';
 import Board from '../Board/Board.component';
+import SymbolOutput from '../Board/Output/SymbolOutput';
 import { vocalizeTile, scrollBoardToTop } from '../Board/Board.utils';
 import { resolveTileLabel } from '../../helpers';
 import {
@@ -32,6 +34,7 @@ const AccessViewer = ({ speak, cancelSpeech, intl }) => {
   // boardHistory: navigation stack; last entry is the current board
   const [boardHistory, setBoardHistory] = useState([]);
 
+  const [output, setOutput] = useState([]);
   const [isLocked, setIsLocked] = useState(true);
 
   const currentBoard =
@@ -109,6 +112,7 @@ const AccessViewer = ({ speak, cancelSpeech, intl }) => {
       }
 
       vocalizeTile(tile, speak);
+      setOutput(prev => [...prev, tile]);
     },
     [intl, allBoards, speak]
   );
@@ -129,6 +133,35 @@ const AccessViewer = ({ speak, cancelSpeech, intl }) => {
       }
     },
     [boardHistory.length]
+  );
+
+  const handleOutputClick = useCallback(
+    event => {
+      const tag = event.target.tagName.toLowerCase();
+      if ((tag === 'div' || tag === 'p') && output.length) {
+        const text = output
+          .map(tile => tile.vocalization || tile.label)
+          .join(' ');
+        cancelSpeech();
+        speak(text);
+      }
+    },
+    [output, speak, cancelSpeech]
+  );
+
+  const handleOutputBackspace = useCallback(() => {
+    setOutput(prev => prev.slice(0, -1));
+  }, []);
+
+  const handleOutputClear = useCallback(() => {
+    setOutput([]);
+  }, []);
+
+  const handleOutputRemove = useCallback(
+    index => () => {
+      setOutput(prev => prev.filter((_, i) => i !== index));
+    },
+    []
   );
 
   const handleLockClick = useCallback(() => {
@@ -162,6 +195,23 @@ const AccessViewer = ({ speak, cancelSpeech, intl }) => {
           brandColor={client.color}
         />
       )}
+
+      <div className="AccessViewer__output">
+        <Scanner active={false}>
+          <SymbolOutput
+            symbols={output}
+            tabIndex={output.length ? '0' : '-1'}
+            navigationSettings={{}}
+            onClick={handleOutputClick}
+            onBackspaceClick={handleOutputBackspace}
+            onClearClick={handleOutputClear}
+            onRemoveClick={handleOutputRemove}
+            onWriteSymbol={() => () => {}}
+            onSwitchLiveMode={noop}
+            isLiveMode={false}
+          />
+        </Scanner>
+      </div>
 
       <AccessViewerNavbar
         title={currentBoard.name || ''}
