@@ -42,7 +42,7 @@ const AccessViewerNavbar = ({
         {!isLocked && (
           <SettingsButton
             component={Link}
-            to={{ pathname: '/settings', state: { viewerMode: true } }}
+            to={{ pathname: '/settings', state: { isAccessViewerMode: true } }}
           />
         )}
         <LockToggle

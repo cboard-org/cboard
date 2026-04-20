@@ -239,7 +239,7 @@ const AccessViewer = ({ speak, cancelSpeech, isLogged, intl }) => {
           board={currentBoard}
           intl={intl}
           navigationSettings={{}}
-          viewerMode={true}
+          isAccessViewerMode={true}
           isLocked={isLocked}
           isSelecting={false}
           isSaving={false}

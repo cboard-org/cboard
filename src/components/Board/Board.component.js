@@ -107,7 +107,7 @@ export class Board extends Component {
      * If true, hides the Navbar and disables all editing features
      * (drag & drop, EditToolbar). Used by AccessViewer.
      */
-    viewerMode: PropTypes.bool
+    isAccessViewerMode: PropTypes.bool
   };
 
   static defaultProps = {
@@ -122,7 +122,7 @@ export class Board extends Component {
     selectedTileIds: [],
     emptyVoiceAlert: false,
     userData: {},
-    viewerMode: false
+    isAccessViewerMode: false
   };
 
   constructor(props) {
@@ -337,7 +337,7 @@ export class Board extends Component {
       changeDefaultBoard,
       improvedPhrase,
       speak,
-      viewerMode
+      isAccessViewerMode
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -372,14 +372,15 @@ export class Board extends Component {
             <div
               className={classNames('Board__output', {
                 hidden:
-                  this.props.displaySettings.hideOutputActive || viewerMode
+                  this.props.displaySettings.hideOutputActive ||
+                  isAccessViewerMode
               })}
             >
               <OutputContainer />
             </div>
           </Scannable>
 
-          {!viewerMode && (
+          {!isAccessViewerMode && (
             <Navbar
               className="Board__navbar"
               disabled={disableBackButton || isSelecting || isSaving}
@@ -426,7 +427,7 @@ export class Board extends Component {
             isSelecting={isSelecting || isSaving}
           />
 
-          {!viewerMode && (
+          {!isAccessViewerMode && (
             <EditToolbar
               board={board}
               onBoardTitleClick={this.handleBoardTitleClick}
@@ -480,7 +481,7 @@ export class Board extends Component {
                   (tiles.length ? (
                     <Grid
                       board={board}
-                      edit={!viewerMode && isSelecting && !isSaving}
+                      edit={!isAccessViewerMode && isSelecting && !isSaving}
                       cols={cols}
                       onLayoutChange={onLayoutChange}
                       setIsScroll={setIsScroll}
@@ -502,7 +503,7 @@ export class Board extends Component {
                       board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER
                     }
                     rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
-                    dragAndDropEnabled={!viewerMode && isSelecting}
+                    dragAndDropEnabled={!isAccessViewerMode && isSelecting}
                     renderItem={this.renderTileFixedBoard}
                     onItemDrop={onTileDrop}
                     fixedRef={this.fixedBoardContainerRef}

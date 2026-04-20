@@ -52,12 +52,12 @@ class SymbolOutput extends PureComponent {
      * If true, hides editing controls (remove, backspace, clear, share, live mode)
      * and disables symbol writing. Used by AccessViewer.
      */
-    viewerMode: PropTypes.bool
+    isAccessViewerMode: PropTypes.bool
   };
 
   static defaultProps = {
     symbols: [],
-    viewerMode: false
+    isAccessViewerMode: false
   };
 
   scrollToLastSymbol = () => {
@@ -98,7 +98,7 @@ class SymbolOutput extends PureComponent {
       phrase,
       isLiveMode,
       increaseOutputButtons,
-      viewerMode,
+      isAccessViewerMode,
       ...other
     } = this.props;
 
@@ -137,10 +137,10 @@ class SymbolOutput extends PureComponent {
                 label={label}
                 type={type}
                 labelpos="Below"
-                onWrite={viewerMode ? undefined : onWriteSymbol(index)}
+                onWrite={isAccessViewerMode ? undefined : onWriteSymbol(index)}
                 intl={intl}
               />
-              {!viewerMode && (
+              {!isAccessViewerMode && (
                 <div className="SymbolOutput__value__IconButton">
                   <IconButton
                     color="inherit"
@@ -156,7 +156,7 @@ class SymbolOutput extends PureComponent {
             </div>
           ))}
         </Scroll>
-        {!viewerMode && (
+        {!isAccessViewerMode && (
           <div
             style={{
               display: 'flex',
