@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "TEAM_ID.com.unicef.cboard",
+        "paths": ["/access/*", "/board/*"]
+      }
+    ]
+  }
+}
