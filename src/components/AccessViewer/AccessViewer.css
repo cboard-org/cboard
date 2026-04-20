@@ -1,0 +1,65 @@
+.AccessViewer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.AccessViewer__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  color: white;
+  min-height: 40px;
+}
+
+.AccessViewer__header-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.AccessViewer__board {
+  flex: 1;
+  overflow: hidden;
+}
+
+.AccessViewer__loading {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.AccessViewer__loading p {
+  color: #666;
+  margin: 0;
+}
+
+.AccessViewer__error {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.AccessViewer__error-icon {
+  font-size: 64px !important;
+  color: #f44336;
+  margin-bottom: 16px;
+}
+
+.AccessViewer__error h2 {
+  margin: 0 0 8px;
+  color: #333;
+}
+
+.AccessViewer__error p {
+  margin: 0;
+  color: #666;
+  max-width: 300px;
+}
