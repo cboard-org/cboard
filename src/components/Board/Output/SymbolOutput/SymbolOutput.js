@@ -137,22 +137,20 @@ class SymbolOutput extends PureComponent {
                 label={label}
                 type={type}
                 labelpos="Below"
-                onWrite={isAccessViewerMode ? undefined : onWriteSymbol(index)}
+                onWrite={onWriteSymbol(index)}
                 intl={intl}
               />
-              {!isAccessViewerMode && (
-                <div className="SymbolOutput__value__IconButton">
-                  <IconButton
-                    color="inherit"
-                    size={'small'}
-                    onClick={onRemoveClick(index)}
-                    disabled={!navigationSettings.removeOutputActive}
-                    style={removeButtonStyle}
-                  >
-                    <ClearIcon />
-                  </IconButton>
-                </div>
-              )}
+              <div className="SymbolOutput__value__IconButton">
+                <IconButton
+                  color="inherit"
+                  size={'small'}
+                  onClick={onRemoveClick(index)}
+                  disabled={!navigationSettings.removeOutputActive}
+                  style={removeButtonStyle}
+                >
+                  <ClearIcon />
+                </IconButton>
+              </div>
             </div>
           ))}
         </Scroll>
