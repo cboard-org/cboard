@@ -667,13 +667,14 @@ class API {
   }
 
   /**
-   * Gets ALL boards for an access code in a single request.
+   * Gets ALL boards for a slug + access code pair in a single request.
    * Enables instant frontend navigation without additional requests.
+   * @param {string} slug - Client slug (e.g. cafeteria-don-pedro)
    * @param {string} code - Access code (e.g. CAFE01)
    * @returns {Promise<{client: Object, boards: Array, rootBoardId: string}>}
    */
-  async getAccessBoard(code) {
-    const { data } = await this.axiosInstance.get(`/access/${code}`);
+  async getAccessBoard(slug, code) {
+    const { data } = await this.axiosInstance.get(`/access/${slug}/${code}`);
     return data;
   }
 
