@@ -657,6 +657,26 @@ class API {
     }
   }
 
+  /**
+   * Lists active clients for the Cboard Access section.
+   * @returns {Promise<{total: number, data: Array}>}
+   */
+  async getAccessClients() {
+    const { data } = await this.axiosInstance.get('/access/clients/all');
+    return data;
+  }
+
+  /**
+   * Gets ALL boards for an access code in a single request.
+   * Enables instant frontend navigation without additional requests.
+   * @param {string} code - Access code (e.g. CAFE01)
+   * @returns {Promise<{client: Object, boards: Array, rootBoardId: string}>}
+   */
+  async getAccessBoard(code) {
+    const { data } = await this.axiosInstance.get(`/access/${code}`);
+    return data;
+  }
+
   async improvePhrase({ phrase, language }) {
     const authToken = getAuthToken();
     if (!(authToken && authToken.length)) {
