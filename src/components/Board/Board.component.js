@@ -371,7 +371,8 @@ export class Board extends Component {
           <Scannable>
             <div
               className={classNames('Board__output', {
-                hidden: this.props.displaySettings.hideOutputActive
+                hidden:
+                  this.props.displaySettings.hideOutputActive || viewerMode
               })}
             >
               <OutputContainer />
