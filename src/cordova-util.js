@@ -44,10 +44,10 @@ export const initDeepLinking = () => {
   const history = require('./history').default;
 
   window.IonicDeeplink.route(
-    { '/access/:code': { target: 'access' } },
+    { '/access/:slug/:code': { target: 'access' } },
     match => {
-      if (match.$route === '/access/:code') {
-        history.push(`/access/${match.$args.code}`);
+      if (match.$route === '/access/:slug/:code') {
+        history.push(`/access/${match.$args.slug}/${match.$args.code}`);
       }
     },
     nomatch => {
