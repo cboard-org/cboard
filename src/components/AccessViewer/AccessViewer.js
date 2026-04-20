@@ -13,6 +13,7 @@ import {
   speak,
   cancelSpeech
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
+import shortid from 'shortid';
 import { isLogged as isLoggedSelector } from '../App/App.selectors';
 import API from '../../api';
 import AccessViewerNavbar from './AccessViewerNavbar';
@@ -22,7 +23,21 @@ import './AccessViewer.css';
 
 const noop = () => {};
 
-const AccessViewer = ({ speak, cancelSpeech, isLogged, intl }) => {
+const defaultLiveTile = {
+  backgroundColor: 'rgb(255, 241, 118)',
+  image: '',
+  label: '',
+  labelKey: '',
+  type: 'live'
+};
+
+const AccessViewer = ({
+  speak,
+  cancelSpeech,
+  isLogged,
+  intl,
+  navigationSettings
+}) => {
   const { slug, code } = useParams();
   const history = useHistory();
   const boardRef = useRef(null);
@@ -38,6 +53,7 @@ const AccessViewer = ({ speak, cancelSpeech, isLogged, intl }) => {
 
   const [output, setOutput] = useState([]);
   const [isLocked, setIsLocked] = useState(true);
+  const [isLiveMode, setIsLiveMode] = useState(false);
 
   const currentBoard =
     boardHistory.length > 0 ? boardHistory[boardHistory.length - 1] : null;
@@ -139,6 +155,7 @@ const AccessViewer = ({ speak, cancelSpeech, isLogged, intl }) => {
 
   const handleOutputClick = useCallback(
     event => {
+      if (isLiveMode) return;
       const tag = event.target.tagName.toLowerCase();
       if ((tag === 'div' || tag === 'p') && output.length) {
         const text = output
@@ -148,8 +165,20 @@ const AccessViewer = ({ speak, cancelSpeech, isLogged, intl }) => {
         speak(text);
       }
     },
-    [output, speak, cancelSpeech]
+    [output, speak, cancelSpeech, isLiveMode]
   );
+
+  const handleSwitchLiveMode = useCallback(() => {
+    setIsLiveMode(prev => {
+      if (!prev) {
+        setOutput(prevOutput => [
+          ...prevOutput,
+          { ...defaultLiveTile, id: shortid.generate() }
+        ]);
+      }
+      return !prev;
+    });
+  }, []);
 
   const handleOutputBackspace = useCallback(() => {
     setOutput(prev => prev.slice(0, -1));
@@ -162,6 +191,18 @@ const AccessViewer = ({ speak, cancelSpeech, isLogged, intl }) => {
   const handleOutputRemove = useCallback(
     index => () => {
       setOutput(prev => prev.filter((_, i) => i !== index));
+    },
+    []
+  );
+
+  const handleWriteSymbol = useCallback(
+    index => event => {
+      const newLabel = event.target.value;
+      setOutput(prev => {
+        const updated = [...prev];
+        updated[index] = { ...updated[index], label: newLabel };
+        return updated;
+      });
     },
     []
   );
@@ -211,14 +252,14 @@ const AccessViewer = ({ speak, cancelSpeech, isLogged, intl }) => {
           <SymbolOutput
             symbols={output}
             tabIndex={output.length ? '0' : '-1'}
-            navigationSettings={{}}
-            onClick={handleOutputClick}
+            navigationSettings={navigationSettings}
+            onClick={isLiveMode ? undefined : handleOutputClick}
             onBackspaceClick={handleOutputBackspace}
             onClearClick={handleOutputClear}
             onRemoveClick={handleOutputRemove}
-            onWriteSymbol={() => () => {}}
-            onSwitchLiveMode={noop}
-            isLiveMode={false}
+            onWriteSymbol={handleWriteSymbol}
+            onSwitchLiveMode={handleSwitchLiveMode}
+            isLiveMode={isLiveMode}
           />
         </Scanner>
       </div>
@@ -265,7 +306,8 @@ AccessViewer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isLogged: isLoggedSelector(state)
+  isLogged: isLoggedSelector(state),
+  navigationSettings: state.app.navigationSettings
 });
 
 const mapDispatchToProps = {
