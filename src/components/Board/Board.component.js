@@ -102,7 +102,12 @@ export class Board extends Component {
     copiedTiles: PropTypes.arrayOf(PropTypes.object),
     setIsScroll: PropTypes.func,
     isScroll: PropTypes.bool,
-    totalRows: PropTypes.number
+    totalRows: PropTypes.number,
+    /**
+     * If true, hides the Navbar and disables all editing features
+     * (drag & drop, EditToolbar). Used by AccessViewer.
+     */
+    viewerMode: PropTypes.bool
   };
 
   static defaultProps = {
@@ -116,7 +121,8 @@ export class Board extends Component {
     scannerSettings: { active: false, delay: 2000, strategy: 'automatic' },
     selectedTileIds: [],
     emptyVoiceAlert: false,
-    userData: {}
+    userData: {},
+    viewerMode: false
   };
 
   constructor(props) {
@@ -330,7 +336,8 @@ export class Board extends Component {
       totalRows,
       changeDefaultBoard,
       improvedPhrase,
-      speak
+      speak,
+      viewerMode
     } = this.props;
 
     const tiles = this.renderTiles(board.tiles);
@@ -371,21 +378,23 @@ export class Board extends Component {
             </div>
           </Scannable>
 
-          <Navbar
-            className="Board__navbar"
-            disabled={disableBackButton || isSelecting || isSaving}
-            isLocked={isLocked}
-            isScannerActive={this.props.scannerSettings.active}
-            onBackClick={onRequestPreviousBoard}
-            onLockClick={onLockClick}
-            onDeactivateScannerClick={deactivateScanner}
-            onLockNotify={onLockNotify}
-            title={resolveBoardName(board, intl)}
-            board={board}
-            userData={userData}
-            publishBoard={publishBoard}
-            showNotification={this.props.showNotification}
-          />
+          {!viewerMode && (
+            <Navbar
+              className="Board__navbar"
+              disabled={disableBackButton || isSelecting || isSaving}
+              isLocked={isLocked}
+              isScannerActive={this.props.scannerSettings.active}
+              onBackClick={onRequestPreviousBoard}
+              onLockClick={onLockClick}
+              onDeactivateScannerClick={deactivateScanner}
+              onLockNotify={onLockNotify}
+              title={resolveBoardName(board, intl)}
+              board={board}
+              userData={userData}
+              publishBoard={publishBoard}
+              showNotification={this.props.showNotification}
+            />
+          )}
           {emptyVoiceAlert && (
             <Alert variant="filled" severity="error">
               {intl.formatMessage(messages.emptyVoiceAlert)}
@@ -416,27 +425,29 @@ export class Board extends Component {
             isSelecting={isSelecting || isSaving}
           />
 
-          <EditToolbar
-            board={board}
-            onBoardTitleClick={this.handleBoardTitleClick}
-            className="Board__edit-toolbar"
-            isSelectAll={isSelectAll}
-            isSelecting={isSelecting}
-            isSaving={isSaving}
-            isLoggedIn={isLoggedIn}
-            onAddClick={onAddClick}
-            isFixedBoard={isFixedBoard}
-            onDeleteClick={onDeleteClick}
-            onEditClick={onEditClick}
-            onSaveBoardClick={onSaveBoardClick}
-            onSelectAllToggle={onSelectAllToggle}
-            onSelectClick={onSelectClick}
-            selectedItemsCount={selectedTileIds.length}
-            onBoardTypeChange={onBoardTypeChange}
-            onCopyTiles={onCopyTiles}
-            onPasteTiles={onPasteTiles}
-            copiedTiles={this.props.copiedTiles}
-          />
+          {!viewerMode && (
+            <EditToolbar
+              board={board}
+              onBoardTitleClick={this.handleBoardTitleClick}
+              className="Board__edit-toolbar"
+              isSelectAll={isSelectAll}
+              isSelecting={isSelecting}
+              isSaving={isSaving}
+              isLoggedIn={isLoggedIn}
+              onAddClick={onAddClick}
+              isFixedBoard={isFixedBoard}
+              onDeleteClick={onDeleteClick}
+              onEditClick={onEditClick}
+              onSaveBoardClick={onSaveBoardClick}
+              onSelectAllToggle={onSelectAllToggle}
+              onSelectClick={onSelectClick}
+              selectedItemsCount={selectedTileIds.length}
+              onBoardTypeChange={onBoardTypeChange}
+              onCopyTiles={onCopyTiles}
+              onPasteTiles={onPasteTiles}
+              copiedTiles={this.props.copiedTiles}
+            />
+          )}
           <div className="BoardSideButtonsContainer">
             {navigationSettings.caBackButtonActive && (
               <NavigationButtons
@@ -468,7 +479,7 @@ export class Board extends Component {
                   (tiles.length ? (
                     <Grid
                       board={board}
-                      edit={isSelecting && !isSaving}
+                      edit={!viewerMode && isSelecting && !isSaving}
                       cols={cols}
                       onLayoutChange={onLayoutChange}
                       setIsScroll={setIsScroll}
@@ -490,7 +501,7 @@ export class Board extends Component {
                       board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER
                     }
                     rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
-                    dragAndDropEnabled={isSelecting}
+                    dragAndDropEnabled={!viewerMode && isSelecting}
                     renderItem={this.renderTileFixedBoard}
                     onItemDrop={onTileDrop}
                     fixedRef={this.fixedBoardContainerRef}
