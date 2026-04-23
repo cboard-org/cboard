@@ -262,6 +262,8 @@ class Language extends React.Component {
       nativeName = `Srpski jezik ${langCode}`;
     } else if (lang === 'pt-TL') {
       nativeName = `Tetum`;
+    } else if (lang === 'lo-LA') {
+      nativeName = `ລາວ ${langCode}`;
     }
     return nativeName;
   }

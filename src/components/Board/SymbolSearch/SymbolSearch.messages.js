@@ -12,5 +12,38 @@ export default defineMessages({
   uploadAnImage: {
     id: 'cboard.components.InputImage.uploadImage',
     defaultMessage: 'Upload an image'
+  },
+  walkthroughEndTour: {
+    id: 'cboard.components.SymbolSearch.walkthroughEndTour',
+    defaultMessage: 'End Tour'
+  },
+  walkthroughCloseTour: {
+    id: 'cboard.components.SymbolSearch.walkthroughCloseTour',
+    defaultMessage: 'Close Tour'
+  },
+  walkthroughBack: {
+    id: 'cboard.components.SymbolSearch.walkthroughBack',
+    defaultMessage: 'Back'
+  },
+  walkthroughNext: {
+    id: 'cboard.components.SymbolSearch.walkthroughNext',
+    defaultMessage: 'Next'
+  },
+  walkthroughSymbolSearch: {
+    id: 'cboard.components.SymbolSearch.walkthroughSymbolSearch',
+    defaultMessage: 'Welcome to the symbol search!'
+  },
+  walkthroughSymbolSearchDesc: {
+    id: 'cboard.components.SymbolSearch.walkthroughSymbolSearchDesc',
+    defaultMessage:
+      'The symbol search allows you to find symbols from various libraries to use for your board tiles.'
+  },
+  cboardSymbols: {
+    id: 'cboard.components.SymbolSearch.cboardSymbols',
+    defaultMessage: 'Cboard Symbols'
+  },
+  inclusivityOptions: {
+    id: 'cboard.components.SymbolSearch.inclusivityOptions',
+    defaultMessage: 'Inclusivity (ARASAAC & Cboard)'
   }
 });

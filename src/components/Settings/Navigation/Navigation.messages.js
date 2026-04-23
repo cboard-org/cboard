@@ -22,6 +22,23 @@ export default defineMessages({
     id: 'cboard.components.Settings.Navigation.quickUnlockSecondary',
     defaultMessage: 'Unlocks the settings with a single click'
   },
+  pinLock: {
+    id: 'cboard.components.Settings.Navigation.pinLock',
+    defaultMessage: 'Enable PIN lock'
+  },
+  pinLockSecondary: {
+    id: 'cboard.components.Settings.Navigation.pinLockSecondary',
+    defaultMessage:
+      'Requires a 4-digit PIN to unlock settings instead of multiple clicks'
+  },
+  pinCodeLabel: {
+    id: 'cboard.components.Settings.Navigation.pinCodeLabel',
+    defaultMessage: 'Enter 4-digit PIN'
+  },
+  pinCodeError: {
+    id: 'cboard.components.Settings.Navigation.pinCodeError',
+    defaultMessage: 'PIN must be exactly 4 digits'
+  },
   shareShow: {
     id: 'cboard.components.Settings.Navigation.shareShow',
     defaultMessage: 'Show the share phrase button'
@@ -99,5 +116,9 @@ export default defineMessages({
   onTop: {
     id: 'cboard.components.Settings.Navigation.onTop',
     defaultMessage: 'On top'
+  },
+  togglePinVisibility: {
+    id: 'cboard.components.Settings.Navigation.togglePinVisibility',
+    defaultMessage: 'Toggle PIN visibility'
   }
 });

@@ -3,50 +3,29 @@ import { createCboard } from '../page-objects/cboard.js';
 
 test.describe('Cboard - Authentication', () => {
   let cboard;
-
   test.beforeEach(async ({ page }) => {
     cboard = createCboard(page);
   });
-
   test.describe('Login Functionality', () => {
     test.beforeEach(async () => {
       await cboard.gotoLoginSignup();
     });
-
     test('should display login form when Login button is clicked', async () => {
-      // Click Login button
       await cboard.openLoginDialog();
-
-      // Verify login form elements
       await cboard.expectLoginFormVisible();
     });
     test.skip('should show/hide password when toggle button is clicked', async () => {
-      // Open login dialog
       await cboard.openLoginDialog();
-
-      // Verify password field is initially hidden
       await cboard.expectPasswordFieldType('login', 'password');
-
-      // Click show password button
       await cboard.togglePasswordVisibility();
-
-      // Verify password is now visible
       await cboard.expectPasswordFieldType('login', 'text');
     });
-
     test('should validate empty email and password fields', async () => {
-      // Open login dialog
       await cboard.openLoginDialog();
-
-      // Click login button without entering credentials
       await cboard.submitLoginForm();
-
-      // Check for validation - fields should be required
       await cboard.expectRequiredFields();
     });
-
     test.skip('should handle invalid email format', async () => {
-      // Open login dialog and fill with invalid email
       await cboard.attemptLogin('invalid-email', 'password123');
 
       // Verify email validation

@@ -28,27 +28,40 @@ export class SpeechProvider extends Component {
       getTtsDefaultEngine,
       ttsEngine,
       setTtsEngine,
-      setCurrentVoiceSource
+      setCurrentVoiceSource,
+      elevenLabsApiKey
     } = this.props;
 
+    if (elevenLabsApiKey) {
+      tts.initElevenLabsInstance(elevenLabsApiKey);
+    }
+
     if (tts.isSupported()) {
-      //if android we have to set the tts engine first
       if (isAndroid()) {
         getTtsEngines();
         getTtsDefaultEngine();
-      }
-      if (ttsEngine && ttsEngine.name) {
-        try {
-          await setTtsEngine(ttsEngine.name);
-        } catch (err) {
-          console.error(err.message);
+
+        const defaultEngine = tts.getTtsDefaultEngine();
+
+        if (
+          ttsEngine &&
+          ttsEngine.name &&
+          defaultEngine &&
+          defaultEngine.name &&
+          ttsEngine.name !== defaultEngine.name
+        ) {
+          try {
+            await setTtsEngine(ttsEngine.name);
+          } catch (err) {
+            console.error('Error setting TTS engine:', err.message);
+          }
         }
       }
       try {
         const voices = await getVoices();
         await updateLangSpeechStatus(voices);
       } catch (err) {
-        console.error(err.message);
+        console.error('Error getting voices:', err.message);
       }
     }
     setCurrentVoiceSource();
@@ -62,7 +75,8 @@ export class SpeechProvider extends Component {
 }
 
 const mapStateToProps = state => ({
-  ttsEngine: state.speech.ttsEngine
+  ttsEngine: state.speech.ttsEngine,
+  elevenLabsApiKey: state.speech.elevenLabsApiKey
 });
 
 const mapDispatchToProps = {

@@ -71,6 +71,16 @@ function reconcileBoards(localBoard, remoteBoard) {
   return localBoard;
 }
 
+function resolveLastEdited(oldBoard, newBoard) {
+  const oldDate = oldBoard?.lastEdited ? moment(oldBoard.lastEdited) : null;
+  const newDate = newBoard?.lastEdited ? moment(newBoard.lastEdited) : null;
+
+  if (newDate && (!oldDate || oldDate.isBefore(newDate))) {
+    return newDate.format();
+  }
+  return moment().format();
+}
+
 function tileReducer(board, action) {
   switch (action.type) {
     case CREATE_TILE:
@@ -154,7 +164,7 @@ function boardReducer(state = initialState, action) {
       if (index !== -1) {
         const nextBoard = {
           ...action.boardData,
-          lastEdited: moment().format()
+          lastEdited: resolveLastEdited(oldBoard, action.boardData)
         };
         updateBoards.splice(index, 1, nextBoard);
         return {

@@ -139,11 +139,11 @@ function Symbol(props) {
         props.labelpos !== 'Hidden' && (
           <Typography className="Symbol__label">{label}</Typography>
         )}
-      {src && (
-        <div className="Symbol__image-container">
-          <img className="Symbol__image" src={src} alt="" />
-        </div>
-      )}
+
+      <div className="Symbol__image-container">
+        {src && <img className="Symbol__image" src={src} alt="" />}
+      </div>
+
       {props.type !== 'live' &&
         props.labelpos === 'Below' &&
         props.labelpos !== 'Hidden' && (

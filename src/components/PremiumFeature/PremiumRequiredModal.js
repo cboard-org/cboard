@@ -23,12 +23,12 @@ function PremiumRequiredModal({
   const { open, showTryPeriodFinishedMessages } = premiumRequiredModalState;
 
   const dialogText = {
-    tittle: showTryPeriodFinishedMessages ? (
+    title: showTryPeriodFinishedMessages ? (
       <FormattedMessage {...messages.tryPeriodFinishTittle} />
     ) : (
       <FormattedMessage {...messages.featureBlockedTittle} />
     ),
-    body: <FormattedMessage {...messages.featureBlockedText} />
+    body: <FormattedMessage {...messages.unlockBoardText} />
   };
 
   return (
@@ -40,7 +40,7 @@ function PremiumRequiredModal({
     >
       <DialogContent className={style.content}>
         <WarningIcon fontSize="large" color="action" />
-        <Typography variant="h3">{dialogText.tittle}</Typography>
+        <Typography variant="h3">{dialogText.title}</Typography>
         <Typography className={style.dialogText} variant="h6">
           {dialogText.body}
         </Typography>

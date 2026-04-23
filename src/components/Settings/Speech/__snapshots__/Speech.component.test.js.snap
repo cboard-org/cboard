@@ -4,6 +4,7 @@ exports[`Speech tests default renderer 1`] = `
 <Speech
   classes={
     Object {
+      "apiKeyInput": "Speech-apiKeyInput-2",
       "container": "Speech-container-1",
     }
   }

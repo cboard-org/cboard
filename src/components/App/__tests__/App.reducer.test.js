@@ -26,7 +26,8 @@ describe('reducer', () => {
           isPublicBoardsEnabled: true,
           isAllMyBoardsEnabled: true
         },
-        isAnalyticsTourEnabled: true
+        isAnalyticsTourEnabled: true,
+        isSymbolSearchTourEnabled: true
       },
       displaySettings: {
         uiSize: DISPLAY_SIZE_STANDARD,
@@ -48,7 +49,9 @@ describe('reducer', () => {
         removeOutputActive: false,
         vocalizeFolders: false,
         quietBuilderMode: false,
-        improvePhraseActive: false
+        improvePhraseActive: false,
+        pinLockEnabled: false,
+        pinCode: ''
       },
       symbolsSettings: {
         arasaacActive: false
@@ -79,7 +82,9 @@ describe('reducer', () => {
         removeOutputActive: false,
         vocalizeFolders: false,
         quietBuilderMode: false,
-        improvePhraseActive: false
+        improvePhraseActive: false,
+        pinLockEnabled: false,
+        pinCode: ''
       },
       userData: uData
     };

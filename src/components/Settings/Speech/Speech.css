@@ -1,5 +1,14 @@
 .Speech__ListItemText {
-  max-width: 50%;
+  flex: 1 1 0%;
+  padding-right: 15px;
+}
+
+.Speech__HelpText {
+  padding: 18px 24px;
+  border-top: 1px solid #eee;
+  font-size: 0.875rem;
+  line-height: 1.46429rem;
+  color: #777;
 }
 
 .Speech__VoiceMenuItemText {
@@ -23,6 +32,8 @@
   max-width: 80%;
 }
 
-.MuiChip-root {
+.Speech__VoiceChips {
+  display: flex;
+  gap: 8px;
   margin-left: auto;
 }

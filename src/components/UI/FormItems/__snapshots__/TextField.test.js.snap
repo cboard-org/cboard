@@ -6,6 +6,7 @@ exports[`TextField tests default renderer 1`] = `
   error={true}
 >
   <WithStyles(ForwardRef(TextField))
+    InputProps={null}
     error={true}
   />
   <WithStyles(ForwardRef(FormHelperText))>

@@ -18,6 +18,10 @@ jest.mock('./Navigation.messages', () => {
     enableSecondary: {
       id: 'cboard.components.Settings.Navigation.enableSecondary',
       defaultMessage: 'some text secondary'
+    },
+    togglePinVisibility: {
+      id: 'cboard.components.Settings.Navigation.togglePinVisibility',
+      defaultMessage: 'Toggle PIN visibility'
     }
   };
 });
@@ -31,7 +35,9 @@ const INITIAL_NAVIGATION_SETTINGS = {
   quickUnlockActive: false,
   removeOutputActive: false,
   vocalizeFolders: false,
-  quietBuilderMode: false
+  quietBuilderMode: false,
+  pinLockEnabled: false,
+  pinCode: ''
 };
 
 let navigationSettings = INITIAL_NAVIGATION_SETTINGS;
@@ -52,7 +58,7 @@ describe('Navigation tests', () => {
   });
 
   test('switchs behavior', () => {
-    const wrapper = shallow(<Navigation {...COMPONENT_PROPS} />);
+    const wrapper = shallow(<Navigation {...COMPONENT_PROPS} />).dive();
     let tree = toJson(wrapper);
     expect(tree).toMatchSnapshot();
 
@@ -80,7 +86,7 @@ describe('Navigation tests', () => {
     expect(tree).toMatchSnapshot();
   });
   test('switch behavior', () => {
-    const wrapper = shallow(<Navigation {...COMPONENT_PROPS} />);
+    const wrapper = shallow(<Navigation {...COMPONENT_PROPS} />).dive();
 
     const state = wrapper.state();
 

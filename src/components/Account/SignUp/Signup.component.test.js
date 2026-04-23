@@ -1,7 +1,6 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { shallowMatchSnapshot } from '../../../common/test_utils';
-import { SignUp } from './SignUp.component';
+import { mount } from 'enzyme';
+import SignUp from './SignUp.component';
 
 jest.mock('./SignUp.messages', () => {
   return {
@@ -41,12 +40,14 @@ describe('SignUp tests', () => {
     isDialogOpen: false,
     onClose: jest.fn()
   };
+
   test('default renderer', () => {
-    const wrapper = shallow(<SignUp {...props} />);
+    const wrapper = mount(<SignUp {...props} />);
     expect(wrapper).toMatchSnapshot();
   });
-  test('check with subnit', () => {
-    const wrapper = shallow(<SignUp {...props} />);
+
+  test('check with submit', () => {
+    const wrapper = mount(<SignUp {...props} />);
     const form = wrapper.find('Formik').at(0);
     try {
       form.simulate('submit', { passwordConfirm: {} }, { email: 'test' });
