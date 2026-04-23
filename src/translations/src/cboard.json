@@ -448,7 +448,7 @@
   "cboard.components.Settings.CommunicationHistory.clearHistory": "Clear History",
   "cboard.components.Settings.CommunicationHistory.noDataAvailable": "No communication data available. Start using the board to track interactions.",
   "cboard.components.Settings.CommunicationHistory.privacyNote": "Privacy & Data Storage",
-  "cboard.components.Settings.CommunicationHistory.privacyDescription": "Communication history is stored locally on your device and in your account if logged in. Data is never shared without your explicit consent. You can clear your history at any time.",
+  "cboard.components.Settings.CommunicationHistory.privacyDescription": "Communication history is stored locally on each device. Data is not shared across devices, even with the same account. Sync will be available in a future update. Data is never shared without your consent, and you can clear your history at any time.",
   "cboard.components.Settings.CommunicationHistory.clearConfirmTitle": "Clear Communication History?",
   "cboard.components.Settings.CommunicationHistory.clearConfirmMessage": "This will permanently delete all communication history data. This action cannot be undone.",
   "cboard.components.Settings.CommunicationHistory.clearConfirm": "Yes, Clear History",
