@@ -794,12 +794,9 @@ export class BoardContainer extends Component {
   };
 
   handleLockClick = () => {
-    const {
-      showPremiumRequired,
-      isSubscriptionRequired,
-      setIsSaving
-    } = this.props;
-    const { pinLockEnabled, pinCode } = this.props.navigationSettings || {};
+    const { showPremiumRequired, isSubscriptionRequired } = this.props;
+    const { pinLockEnabled, pinCode, setIsSaving } =
+      this.props.navigationSettings || {};
 
     const hasValidPinCode =
       typeof pinCode === 'string' && /^\d{4}$/.test(pinCode);
