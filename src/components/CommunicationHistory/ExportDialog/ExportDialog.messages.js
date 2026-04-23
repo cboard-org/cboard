@@ -37,22 +37,6 @@ export default defineMessages({
     id: 'cboard.components.CommunicationHistory.ExportDialog.endDate',
     defaultMessage: 'End Date'
   },
-  exportOptions: {
-    id: 'cboard.components.CommunicationHistory.ExportDialog.exportOptions',
-    defaultMessage: 'Export Options'
-  },
-  includeImages: {
-    id: 'cboard.components.CommunicationHistory.ExportDialog.includeImages',
-    defaultMessage: 'Include pictogram images'
-  },
-  includeSummary: {
-    id: 'cboard.components.CommunicationHistory.ExportDialog.includeSummary',
-    defaultMessage: 'Include summary statistics'
-  },
-  includeMetadata: {
-    id: 'cboard.components.CommunicationHistory.ExportDialog.includeMetadata',
-    defaultMessage: 'Include session metadata'
-  },
   previewStats: {
     id: 'cboard.components.CommunicationHistory.ExportDialog.previewStats',
     defaultMessage: 'Preview Statistics'

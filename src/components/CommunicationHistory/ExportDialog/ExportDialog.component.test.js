@@ -18,19 +18,6 @@ jest.mock('./ExportDialog.messages', () => ({
     customRange: { id: 'customRange', defaultMessage: 'Custom Range' },
     startDate: { id: 'startDate', defaultMessage: 'Start Date' },
     endDate: { id: 'endDate', defaultMessage: 'End Date' },
-    exportOptions: { id: 'exportOptions', defaultMessage: 'Export Options' },
-    includeImages: {
-      id: 'includeImages',
-      defaultMessage: 'Include pictogram images'
-    },
-    includeSummary: {
-      id: 'includeSummary',
-      defaultMessage: 'Include summary statistics'
-    },
-    includeMetadata: {
-      id: 'includeMetadata',
-      defaultMessage: 'Include session metadata'
-    },
     previewStats: { id: 'previewStats', defaultMessage: 'Preview Statistics' },
     totalEntries: { id: 'totalEntries', defaultMessage: 'Total Entries:' },
     symbols: { id: 'symbols', defaultMessage: 'Symbols:' },
@@ -73,6 +60,10 @@ describe('ExportDialog component', () => {
 
     expect(wrapper.text()).not.toContain('Select User');
     expect(wrapper.text()).not.toContain('All Users');
+    expect(wrapper.text()).not.toContain('Export Options');
+    expect(wrapper.text()).not.toContain('Include pictogram images');
+    expect(wrapper.text()).not.toContain('Include summary statistics');
+    expect(wrapper.text()).not.toContain('Include session metadata');
   });
 
   it('exports using current user metadata', () => {
