@@ -28,6 +28,7 @@ const createState = (boards, syncMeta = {}) => ({
     displaySettings: {},
     navigationSettings: {},
     userData: null,
+    sessionId: null,
     isConnected: true,
     liveHelp: {
       isRootBoardTourEnabled: false,

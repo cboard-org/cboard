@@ -1,9 +1,12 @@
 import API from '../../api';
+import shortid from 'shortid';
 import {
   FINISH_FIRST_VISIT,
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS,
   UPDATE_USER_DATA,
+  START_COMMUNICATION_SESSION,
+  CLEAR_COMMUNICATION_SESSION,
   DISABLE_TOUR,
   ENABLE_ALL_TOURS,
   SET_UNLOGGED_USER_LOCATION,
@@ -66,6 +69,19 @@ export function updateUserData(userData) {
   return {
     type: UPDATE_USER_DATA,
     userData
+  };
+}
+
+export function startCommunicationSession() {
+  return {
+    type: START_COMMUNICATION_SESSION,
+    sessionId: shortid.generate()
+  };
+}
+
+export function clearCommunicationSession() {
+  return {
+    type: CLEAR_COMMUNICATION_SESSION
   };
 }
 

@@ -196,6 +196,7 @@ export class BoardContainer extends Component {
     disableTour: PropTypes.func,
     isLiveMode: PropTypes.bool,
     changeDefaultBoard: PropTypes.func,
+    sessionId: PropTypes.string,
     trackSymbolSelection: PropTypes.func,
     trackPhraseSpoken: PropTypes.func,
     trackClearAction: PropTypes.func,
@@ -868,7 +869,8 @@ export class BoardContainer extends Component {
       isLiveMode,
       trackSymbolSelection,
       userData,
-      board
+      board,
+      sessionId
     } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
 
@@ -903,11 +905,6 @@ export class BoardContainer extends Component {
         ...tile,
         boardId: board.id
       };
-      const sessionId =
-        this.props.sessionId || this.sessionId || shortid.generate();
-      if (!this.sessionId) {
-        this.sessionId = sessionId;
-      }
       trackSymbolSelection(
         enhancedTile,
         userData?.email || userData?.id || null,
@@ -1866,7 +1863,8 @@ export const mapStateToProps = state => {
       navigationSettings,
       userData,
       isConnected,
-      liveHelp
+      liveHelp,
+      sessionId
     },
     language: { lang },
     subscription: { premiumRequiredModalState }
@@ -1892,6 +1890,7 @@ export const mapStateToProps = state => {
     displaySettings,
     navigationSettings,
     userData,
+    sessionId,
     emptyVoiceAlert,
     lang,
     offlineVoiceAlert,
