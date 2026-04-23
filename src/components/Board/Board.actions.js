@@ -60,7 +60,6 @@ import {
 
 import {
   replaceBoardCommunicator,
-  addBoardCommunicator,
   upsertCommunicator,
   getApiMyCommunicators,
   editCommunicator,
