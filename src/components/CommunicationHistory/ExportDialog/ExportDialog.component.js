@@ -14,7 +14,6 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-  Checkbox,
   Typography,
   CircularProgress,
   Box
@@ -74,9 +73,6 @@ const ExportDialog = ({
   const [dateRange, setDateRange] = useState('all');
   const [customStartDate, setCustomStartDate] = useState('');
   const [customEndDate, setCustomEndDate] = useState('');
-  const [includeImages, setIncludeImages] = useState(true);
-  const [includeSummary, setIncludeSummary] = useState(true);
-  const [includeMetadata, setIncludeMetadata] = useState(true);
 
   const handleDateRangeChange = event => {
     setDateRange(event.target.value);
@@ -144,11 +140,6 @@ const ExportDialog = ({
         from: dateRange === 'custom' ? customStartDate : null,
         to: dateRange === 'custom' ? customEndDate : null,
         type: dateRange
-      },
-      options: {
-        includeImages,
-        includeSummary,
-        includeMetadata
       },
       metadata: {
         exportDate: moment().toISOString(),
@@ -227,42 +218,6 @@ const ExportDialog = ({
               />
             </div>
           )}
-        </FormControl>
-
-        <FormControl className={classes.formControl}>
-          <FormLabel component="legend">
-            <FormattedMessage {...messages.exportOptions} />
-          </FormLabel>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={includeImages}
-                onChange={e => setIncludeImages(e.target.checked)}
-                color="primary"
-              />
-            }
-            label={intl.formatMessage(messages.includeImages)}
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={includeSummary}
-                onChange={e => setIncludeSummary(e.target.checked)}
-                color="primary"
-              />
-            }
-            label={intl.formatMessage(messages.includeSummary)}
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={includeMetadata}
-                onChange={e => setIncludeMetadata(e.target.checked)}
-                color="primary"
-              />
-            }
-            label={intl.formatMessage(messages.includeMetadata)}
-          />
         </FormControl>
 
         <Box className={classes.statsBox}>
