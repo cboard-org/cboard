@@ -74,6 +74,7 @@ import {
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import LoadingIcon from '../UI/LoadingIcon';
+import PinDialog from '../UI/PinDialog';
 import { resolveTileLabel } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
 
@@ -204,7 +205,10 @@ export class BoardContainer extends Component {
     copiedTiles: [],
     isScroll: false,
     totalRows: null,
-    isCbuilderBoard: false
+    isCbuilderBoard: false,
+    pinDialogOpen: false,
+    pinAttempt: '',
+    pinError: false
   };
   constructor(props) {
     super(props);
@@ -779,11 +783,23 @@ export class BoardContainer extends Component {
   };
 
   handleLockClick = () => {
-    const {
-      showPremiumRequired,
-      isSubscriptionRequired,
-      setIsSaving
-    } = this.props;
+    const { showPremiumRequired, isSubscriptionRequired } = this.props;
+    const { pinLockEnabled, pinCode, setIsSaving } =
+      this.props.navigationSettings || {};
+
+    const hasValidPinCode =
+      typeof pinCode === 'string' && /^\d{4}$/.test(pinCode);
+
+    if (pinLockEnabled && this.state.isLocked) {
+      if (!this.state.pinDialogOpen) {
+        this.setState({
+          pinDialogOpen: true,
+          pinAttempt: '',
+          pinError: !hasValidPinCode
+        });
+      }
+      return;
+    }
 
     this.setState(
       prevState => ({
@@ -912,13 +928,27 @@ export class BoardContainer extends Component {
 
   handleLockNotify = countdown => {
     const { intl, showNotification, hideNotification } = this.props;
-    const quickUnlockActive = this.props.navigationSettings?.quickUnlockActive;
+    const { quickUnlockActive, pinLockEnabled, pinCode } =
+      this.props.navigationSettings || {};
 
     if (quickUnlockActive) {
       hideNotification();
       this.handleLockClick();
       return;
     }
+
+    if (pinLockEnabled && pinCode && pinCode.length === 4) {
+      if (!this.state.pinDialogOpen) {
+        hideNotification();
+        this.setState({
+          pinDialogOpen: true,
+          pinAttempt: '',
+          pinError: false
+        });
+      }
+      return;
+    }
+
     if (countdown > 3) {
       return;
     }
@@ -937,6 +967,49 @@ export class BoardContainer extends Component {
     setTimeout(() => {
       showNotification(clicksToUnlock);
     });
+  };
+
+  handlePinDialogClose = () => {
+    this.setState({
+      pinDialogOpen: false,
+      pinAttempt: '',
+      pinError: false
+    });
+  };
+
+  handlePinChange = value => {
+    this.setState({
+      pinAttempt: value,
+      pinError: false
+    });
+  };
+
+  handlePinSubmit = () => {
+    const { showPremiumRequired, isSubscriptionRequired } = this.props;
+    const { pinCode } = this.props.navigationSettings || {};
+    if (this.state.pinAttempt === pinCode) {
+      this.setState(
+        {
+          pinDialogOpen: false,
+          pinAttempt: '',
+          pinError: false,
+          isLocked: false,
+          isSaving: false,
+          isSelecting: false,
+          selectedTileIds: []
+        },
+        () => {
+          if (isSubscriptionRequired) {
+            showPremiumRequired({ showTryPeriodFinishedMessages: true });
+          }
+        }
+      );
+    } else {
+      this.setState({
+        pinError: true,
+        pinAttempt: ''
+      });
+    }
   };
 
   handleScannerStrategyNotification = () => {
@@ -1737,6 +1810,14 @@ export class BoardContainer extends Component {
           onAddApiBoard={this.handleAddApiBoard}
           isSymbolSearchTourEnabled={this.props.isSymbolSearchTourEnabled}
           disableTour={this.props.disableTour}
+        />
+        <PinDialog
+          open={this.state.pinDialogOpen}
+          onClose={this.handlePinDialogClose}
+          onSubmit={this.handlePinSubmit}
+          error={this.state.pinError}
+          value={this.state.pinAttempt}
+          onChange={this.handlePinChange}
         />
       </Fragment>
     );
