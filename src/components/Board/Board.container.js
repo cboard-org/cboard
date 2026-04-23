@@ -800,6 +800,21 @@ export class BoardContainer extends Component {
       }
       return;
     }
+    const { pinLockEnabled, pinCode } = this.props.navigationSettings || {};
+
+    const hasValidPinCode =
+      typeof pinCode === 'string' && /^\d{4}$/.test(pinCode);
+
+    if (pinLockEnabled && this.state.isLocked) {
+      if (!this.state.pinDialogOpen) {
+        this.setState({
+          pinDialogOpen: true,
+          pinAttempt: '',
+          pinError: !hasValidPinCode
+        });
+      }
+      return;
+    }
 
     this.setState(
       prevState => ({

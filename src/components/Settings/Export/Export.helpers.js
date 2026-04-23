@@ -172,29 +172,34 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
               ? `.${tile.image}`
               : tile.image;
 
-          const imageResponse = image.startsWith('data:')
-            ? getBase64Image(image)
-            : await getDataUri(image);
-
-          const getCustomImagePath = () => {
-            const components = [
-              'custom',
-              board.name || board.nameKey,
-              tile.label || tile.labelKey || tile.id
-            ];
-            const extension = mime.extension(imageResponse['content_type']);
-            return `/${_.join(components, '/')}.${extension}`;
-          };
-
-          const path = image.startsWith('data:')
-            ? getCustomImagePath()
-            : isCordova()
-            ? ''
-            : image.startsWith('/')
-            ? image
-            : `/${image}`;
+          let imageResponse = null;
+          try {
+            imageResponse = image.startsWith('data:')
+              ? getBase64Image(image)
+              : await getDataUri(image);
+          } catch (err) {
+            console.warn(`Skipping image for tile ${tile.id}.`, err);
+          }
 
           if (imageResponse) {
+            const getCustomImagePath = () => {
+              const components = [
+                'custom',
+                board.name || board.nameKey,
+                tile.label || tile.labelKey || tile.id
+              ];
+              const extension = mime.extension(imageResponse['content_type']);
+              return `/${_.join(components, '/')}.${extension}`;
+            };
+
+            const path = image.startsWith('data:')
+              ? getCustomImagePath()
+              : isCordova()
+              ? ''
+              : image.startsWith('/')
+              ? image
+              : `/${image}`;
+
             const imageID = new mongoose.Types.ObjectId().toString();
             fetchedImages[imageID] = _.defaults({ path }, imageResponse);
             button['image_id'] = imageID;
@@ -750,13 +755,16 @@ export async function openboardExportManyAdapter(boards = [], intl) {
   for (let i = 0; i < boardsLength; i++) {
     const board = boards[i];
     const boardMapFilename = `boards/${board.id}.obf`;
-    const { obf, images } = await boardToOBF(boardsMap, board, intl, {
-      embed: false
-    });
-
-    if (!obf) {
+    let result;
+    try {
+      result = await boardToOBF(boardsMap, board, intl, { embed: false });
+    } catch (err) {
+      console.warn(`Skipping board ${board.id} during OpenBoard export.`, err);
       continue;
     }
+
+    const { obf, images } = result;
+    if (!obf) continue;
 
     zip.file(boardMapFilename, JSON.stringify(obf, null, 2));
 
