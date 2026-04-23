@@ -905,11 +905,7 @@ export class BoardContainer extends Component {
         ...tile,
         boardId: board.id
       };
-      trackSymbolSelection(
-        enhancedTile,
-        userData?.email || userData?.id || null,
-        sessionId
-      );
+      trackSymbolSelection(enhancedTile, userData?.id || null, sessionId);
 
       clickSymbol(tile.label);
       if (!navigationSettings.quietBuilderMode) {
