@@ -1430,12 +1430,28 @@ export class Cboard {
   }
 
   get singleExportFormatDropdown() {
-    return this.page.getByRole('button', { name: 'Export' }).first();
+    return this.page.locator('#export-single-select');
+  }
+
+  get singleExportActionButton() {
+    return this.page
+      .locator('.Export__section')
+      .nth(0)
+      .locator('button')
+      .filter({ hasText: 'Export' });
   }
 
   // All boards export section
   get allBoardsExportFormatDropdown() {
-    return this.page.getByRole('button', { name: 'Export' }).last();
+    return this.page.locator('#export-all-select');
+  }
+
+  get allBoardsExportActionButton() {
+    return this.page
+      .locator('.Export__section')
+      .nth(1)
+      .locator('button')
+      .filter({ hasText: 'Export' });
   }
 
   // PDF Settings
@@ -2780,7 +2796,10 @@ export class Cboard {
   async verifySingleBoardExportControls() {
     await expect(this.boardsDropdown).toBeVisible();
     await expect(this.singleExportFormatDropdown).toBeVisible();
+    await expect(this.singleExportActionButton).toBeVisible();
+    await expect(this.singleExportActionButton).toBeDisabled();
   }
+
   async verifyAllBoardsExportSection() {
     await expect(this.page.locator('text=All boards').first()).toBeVisible();
     await expect(this.allBoardsExportFormatDropdown).toBeVisible();
@@ -2788,6 +2807,39 @@ export class Cboard {
 
   async verifyAllBoardsExportControls() {
     await expect(this.allBoardsExportFormatDropdown).toBeVisible();
+    await expect(this.allBoardsExportActionButton).toBeVisible();
+    await expect(this.allBoardsExportActionButton).toBeDisabled();
+  }
+
+  async selectSingleBoard(boardName) {
+    await this.boardsDropdown.click();
+    await this.page.getByRole('option', { name: boardName }).click();
+  }
+
+  async selectSingleBoardFormat(format) {
+    await this.singleExportFormatDropdown.click();
+    await this.page.getByRole('option', { name: format }).click();
+  }
+
+  async verifySingleExportButtonEnabled() {
+    await expect(this.singleExportActionButton).toBeEnabled();
+  }
+
+  async verifySingleExportButtonDisabled() {
+    await expect(this.singleExportActionButton).toBeDisabled();
+  }
+
+  async selectAllBoardsFormat(format) {
+    await this.allBoardsExportFormatDropdown.click();
+    await this.page.getByRole('option', { name: format }).click();
+  }
+
+  async verifyAllBoardsExportButtonEnabled() {
+    await expect(this.allBoardsExportActionButton).toBeEnabled();
+  }
+
+  async verifyAllBoardsExportButtonDisabled() {
+    await expect(this.allBoardsExportActionButton).toBeDisabled();
   }
 
   async verifyPdfSettingsSection() {
@@ -2844,6 +2896,9 @@ export class Cboard {
     await expect(this.exportHeading).toBeVisible();
     await expect(this.boardsDropdown).toBeVisible();
     await expect(this.singleExportFormatDropdown).toBeVisible();
+    await expect(this.singleExportActionButton).toBeVisible();
+    await expect(this.allBoardsExportFormatDropdown).toBeVisible();
+    await expect(this.allBoardsExportActionButton).toBeVisible();
   }
 
   // === IMPORT SETTINGS ACTIONS ===

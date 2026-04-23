@@ -2,7 +2,6 @@ import { trackEvent } from '@redux-beacon/google-analytics-gtag';
 import { isCordova, cvaTrackEvent } from '../../cordova-util';
 
 import {
-  IMPORT_BOARDS,
   CREATE_BOARD,
   CHANGE_BOARD,
   CREATE_TILE,
@@ -23,17 +22,6 @@ const getTiles = (boards, boardId, tilesId) => {
     }, '');
   return tiles;
 };
-
-const importBoards = trackEvent((action, prevState, nextState) => {
-  const gaEvent = {
-    category: 'Backup',
-    action: 'Import Boards'
-  };
-  if (isCordova()) {
-    cvaTrackEvent(gaEvent.category, gaEvent.action);
-  }
-  return gaEvent;
-});
 
 const changeBoard = trackEvent((action, prevState, nextState) => {
   const board = nextState.board.boards.find(
@@ -136,7 +124,6 @@ const clickOutput = trackEvent((action, prevState, nextState) => {
 });
 
 const eventsMap = {
-  [IMPORT_BOARDS]: importBoards,
   [CREATE_BOARD]: createBoard,
   [CHANGE_BOARD]: changeBoard,
   [CREATE_TILE]: createTile,

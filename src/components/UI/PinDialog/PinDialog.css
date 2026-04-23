@@ -1,0 +1,9 @@
+.PinDialog__input {
+  margin-top: 16px;
+}
+
+.PinDialog__input input {
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 8px;
+}

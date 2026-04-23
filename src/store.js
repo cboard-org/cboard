@@ -3,7 +3,6 @@ import thunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
 import googleAnalytics from './analytics';
 import createReducer from './reducers';
-
 let store;
 
 export default function configureStore(initialState = {}) {
