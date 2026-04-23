@@ -185,11 +185,7 @@ export class OutputContainer extends Component {
       await this.speakOutput(liveText);
     } else {
       if (output.length > 0) {
-        trackPhraseSpoken(
-          output,
-          userData?.email || userData?.id || null,
-          sessionId
-        );
+        trackPhraseSpoken(output, userData?.id || null, sessionId);
       }
 
       const outputFrames = this.groupOutputByType();
@@ -221,14 +217,14 @@ export class OutputContainer extends Component {
       sessionId
     } = this.props;
     cancelSpeech();
-    trackBackspaceAction(userData?.email || userData?.id || null, sessionId);
+    trackBackspaceAction(userData?.id || null, sessionId);
     this.popOutput();
   };
 
   handleClearClick = () => {
     const { cancelSpeech, trackClearAction, userData, sessionId } = this.props;
     cancelSpeech();
-    trackClearAction(userData?.email || userData?.id || null, sessionId);
+    trackClearAction(userData?.id || null, sessionId);
     this.clearOutput();
   };
 
