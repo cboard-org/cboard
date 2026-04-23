@@ -17,47 +17,47 @@ import {
   Checkbox,
   Typography,
   CircularProgress,
-  Box,
+  Box
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import CloseIcon from '@material-ui/icons/Close';
 import messages from './ExportDialog.messages';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   dialogPaper: {
     minWidth: '500px',
-    maxWidth: '600px',
+    maxWidth: '600px'
   },
   formControl: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
-    width: '100%',
+    width: '100%'
   },
   dateInputs: {
     display: 'flex',
     gap: theme.spacing(2),
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(1)
   },
   exportButton: {
-    marginLeft: theme.spacing(1),
+    marginLeft: theme.spacing(1)
   },
   progressWrapper: {
     display: 'flex',
     alignItems: 'center',
-    gap: theme.spacing(2),
+    gap: theme.spacing(2)
   },
   statsBox: {
     backgroundColor: theme.palette.grey[100],
     padding: theme.spacing(2),
     borderRadius: theme.shape.borderRadius,
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(2)
   },
   statItem: {
     display: 'flex',
     justifyContent: 'space-between',
-    marginBottom: theme.spacing(1),
-  },
+    marginBottom: theme.spacing(1)
+  }
 }));
 
 const ExportDialog = ({
@@ -65,20 +65,20 @@ const ExportDialog = ({
   onClose,
   onExport,
   communicationHistory,
-  users,
+  currentUserId,
+  currentUserName,
   intl,
-  isExporting,
+  isExporting
 }) => {
   const classes = useStyles();
   const [dateRange, setDateRange] = useState('all');
   const [customStartDate, setCustomStartDate] = useState('');
   const [customEndDate, setCustomEndDate] = useState('');
-  const [selectedUser, setSelectedUser] = useState('all');
   const [includeImages, setIncludeImages] = useState(true);
   const [includeSummary, setIncludeSummary] = useState(true);
   const [includeMetadata, setIncludeMetadata] = useState(true);
 
-  const handleDateRangeChange = (event) => {
+  const handleDateRangeChange = event => {
     setDateRange(event.target.value);
     if (event.target.value !== 'custom') {
       setCustomStartDate('');
@@ -89,10 +89,6 @@ const ExportDialog = ({
   const getFilteredEntries = () => {
     let filtered = [...communicationHistory];
 
-    if (selectedUser !== 'all') {
-      filtered = filtered.filter((entry) => entry.userId === selectedUser);
-    }
-
     let startDate = null;
     let endDate = moment().endOf('day');
 
@@ -101,10 +97,14 @@ const ExportDialog = ({
         startDate = moment().startOf('day');
         break;
       case 'week':
-        startDate = moment().subtract(7, 'days').startOf('day');
+        startDate = moment()
+          .subtract(7, 'days')
+          .startOf('day');
         break;
       case 'month':
-        startDate = moment().subtract(30, 'days').startOf('day');
+        startDate = moment()
+          .subtract(30, 'days')
+          .startOf('day');
         break;
       case 'custom':
         if (customStartDate) {
@@ -119,7 +119,7 @@ const ExportDialog = ({
     }
 
     if (startDate) {
-      filtered = filtered.filter((entry) => {
+      filtered = filtered.filter(entry => {
         const entryDate = moment(entry.timestamp);
         return (
           entryDate.isSameOrAfter(startDate) &&
@@ -133,35 +133,35 @@ const ExportDialog = ({
 
   const handleExport = () => {
     const filteredEntries = getFilteredEntries();
+    const reportUserId = currentUserId || 'Guest';
+    const reportUserName = currentUserName || 'Guest';
+
     const exportData = {
       entries: filteredEntries,
-      userId: selectedUser === 'all' ? null : selectedUser,
-      userName:
-        selectedUser === 'all'
-          ? 'All Users'
-          : users.find((u) => u.id === selectedUser)?.name || 'Unknown User',
+      userId: reportUserId,
+      userName: reportUserName,
       dateRange: {
         from: dateRange === 'custom' ? customStartDate : null,
         to: dateRange === 'custom' ? customEndDate : null,
-        type: dateRange,
+        type: dateRange
       },
       options: {
         includeImages,
         includeSummary,
-        includeMetadata,
+        includeMetadata
       },
       metadata: {
         exportDate: moment().toISOString(),
-        totalEntries: filteredEntries.length,
-      },
+        totalEntries: filteredEntries.length
+      }
     };
 
     onExport(exportData);
   };
 
   const filteredEntries = getFilteredEntries();
-  const symbolCount = filteredEntries.filter((e) => e.type === 'symbol').length;
-  const phraseCount = filteredEntries.filter((e) => e.type === 'phrase').length;
+  const symbolCount = filteredEntries.filter(e => e.type === 'symbol').length;
+  const phraseCount = filteredEntries.filter(e => e.type === 'phrase').length;
 
   return (
     <Dialog
@@ -175,30 +175,6 @@ const ExportDialog = ({
         <FormattedMessage {...messages.exportTitle} />
       </DialogTitle>
       <DialogContent>
-        <FormControl className={classes.formControl}>
-          <FormLabel component="legend">
-            <FormattedMessage {...messages.selectUser} />
-          </FormLabel>
-          <RadioGroup
-            value={selectedUser}
-            onChange={(e) => setSelectedUser(e.target.value)}
-          >
-            <FormControlLabel
-              value="all"
-              control={<Radio color="primary" />}
-              label={intl.formatMessage(messages.allUsers)}
-            />
-            {users.map((user) => (
-              <FormControlLabel
-                key={user.id}
-                value={user.id}
-                control={<Radio color="primary" />}
-                label={user.name}
-              />
-            ))}
-          </RadioGroup>
-        </FormControl>
-
         <FormControl className={classes.formControl}>
           <FormLabel component="legend">
             <FormattedMessage {...messages.dateRange} />
@@ -237,7 +213,7 @@ const ExportDialog = ({
                 type="date"
                 label={intl.formatMessage(messages.startDate)}
                 value={customStartDate}
-                onChange={(e) => setCustomStartDate(e.target.value)}
+                onChange={e => setCustomStartDate(e.target.value)}
                 InputLabelProps={{ shrink: true }}
                 fullWidth
               />
@@ -245,7 +221,7 @@ const ExportDialog = ({
                 type="date"
                 label={intl.formatMessage(messages.endDate)}
                 value={customEndDate}
-                onChange={(e) => setCustomEndDate(e.target.value)}
+                onChange={e => setCustomEndDate(e.target.value)}
                 InputLabelProps={{ shrink: true }}
                 fullWidth
               />
@@ -261,7 +237,7 @@ const ExportDialog = ({
             control={
               <Checkbox
                 checked={includeImages}
-                onChange={(e) => setIncludeImages(e.target.checked)}
+                onChange={e => setIncludeImages(e.target.checked)}
                 color="primary"
               />
             }
@@ -271,7 +247,7 @@ const ExportDialog = ({
             control={
               <Checkbox
                 checked={includeSummary}
-                onChange={(e) => setIncludeSummary(e.target.checked)}
+                onChange={e => setIncludeSummary(e.target.checked)}
                 color="primary"
               />
             }
@@ -281,7 +257,7 @@ const ExportDialog = ({
             control={
               <Checkbox
                 checked={includeMetadata}
-                onChange={(e) => setIncludeMetadata(e.target.checked)}
+                onChange={e => setIncludeMetadata(e.target.checked)}
                 color="primary"
               />
             }
@@ -353,14 +329,17 @@ ExportDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   onExport: PropTypes.func.isRequired,
   communicationHistory: PropTypes.array.isRequired,
-  users: PropTypes.array,
+  currentUserId: PropTypes.string,
+  currentUserName: PropTypes.string,
   intl: PropTypes.object.isRequired,
-  isExporting: PropTypes.bool,
+  isExporting: PropTypes.bool
 };
 
 ExportDialog.defaultProps = {
-  users: [],
-  isExporting: false,
+  currentUserId: null,
+  currentUserName: null,
+  isExporting: false
 };
 
+export { ExportDialog };
 export default injectIntl(ExportDialog);
