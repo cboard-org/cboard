@@ -43,11 +43,11 @@ import {
   historyRemoveBoard,
   updateApiObjects,
   updateApiObjectsNoChild,
-  getApiObjects,
   downloadImages,
   createApiBoard,
   upsertApiBoard,
-  changeDefaultBoard
+  changeDefaultBoard,
+  setIsSaving
 } from './Board.actions';
 import {
   addBoardCommunicator,
@@ -67,6 +67,7 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
+import { getVisibleBoards } from './Board.selectors';
 import PremiumFeature from '../PremiumFeature';
 import {
   IS_BROWSING_FROM_APPLE_TOUCH,
@@ -198,7 +199,6 @@ export class BoardContainer extends Component {
     isSelecting: false,
     isLocked: true,
     tileEditorOpen: false,
-    isGettingApiObjects: false,
     copyPublicBoard: false,
     blockedPrivateBoard: false,
     isFixedBoard: false,
@@ -227,18 +227,9 @@ export class BoardContainer extends Component {
       boards,
       communicator,
       changeBoard,
-      userData,
-      history,
-      getApiObjects
+      history
       //downloadImages
     } = this.props;
-
-    // Loggedin user?
-    if ('name' in userData && 'email' in userData && window.navigator.onLine) {
-      //synchronize communicator and boards with API
-      this.setState({ isGettingApiObjects: true });
-      getApiObjects().then(() => this.setState({ isGettingApiObjects: false }));
-    }
 
     let boardExists = null;
 
@@ -462,6 +453,7 @@ export class BoardContainer extends Component {
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({ isSaving: true });
+      this.props.setIsSaving(true);
       try {
         //prepare board
         let boardData = {
@@ -505,6 +497,7 @@ export class BoardContainer extends Component {
         console.log(err.message);
       } finally {
         this.setState({ isSaving: false });
+        this.props.setIsSaving(false);
       }
     }
   };
@@ -791,7 +784,8 @@ export class BoardContainer extends Component {
 
   handleLockClick = () => {
     const { showPremiumRequired, isSubscriptionRequired } = this.props;
-    const { pinLockEnabled, pinCode } = this.props.navigationSettings || {};
+    const { pinLockEnabled, pinCode, setIsSaving } =
+      this.props.navigationSettings || {};
 
     const hasValidPinCode =
       typeof pinCode === 'string' && /^\d{4}$/.test(pinCode);
@@ -815,6 +809,7 @@ export class BoardContainer extends Component {
         selectedTileIds: []
       }),
       () => {
+        setIsSaving(false);
         if (!this.state.isLocked && isSubscriptionRequired) {
           showPremiumRequired({ showTryPeriodFinishedMessages: true });
         }
@@ -1090,6 +1085,7 @@ export class BoardContainer extends Component {
       this.setState({
         isSaving: true
       });
+      this.props.setIsSaving(true);
 
       if (tile && tile.sound && tile.sound.startsWith('data')) {
         tile = await this.uploadTileSound(tile);
@@ -1182,9 +1178,11 @@ export class BoardContainer extends Component {
             switchBoard(parentBoardId);
             this.props.history.replace(`/board/${parentBoardId}`, []);
             this.setState({ isSaving: false });
+            this.props.setIsSaving(false);
           })
           .catch(e => {
             this.setState({ isSaving: false });
+            this.props.setIsSaving(false);
           });
       } else {
         if (!createChildBoard) {
@@ -1198,9 +1196,11 @@ export class BoardContainer extends Component {
               }
               this.historyReplaceBoardId(parentBoardId);
               this.setState({ isSaving: false });
+              this.props.setIsSaving(false);
             })
             .catch(e => {
               this.setState({ isSaving: false });
+              this.props.setIsSaving(false);
             });
         } else {
           updateApiObjects(childBoardData, parentBoardData, createParentBoard)
@@ -1216,9 +1216,11 @@ export class BoardContainer extends Component {
               }
               this.historyReplaceBoardId(parentBoardId);
               this.setState({ isSaving: false });
+              this.props.setIsSaving(false);
             })
             .catch(e => {
               this.setState({ isSaving: false });
+              this.props.setIsSaving(false);
             });
         }
       }
@@ -1249,11 +1251,18 @@ export class BoardContainer extends Component {
   };
 
   handleCopyRemoteBoard = async () => {
-    const { intl, showNotification, history, switchBoard } = this.props;
+    const {
+      intl,
+      showNotification,
+      history,
+      switchBoard,
+      setIsSaving
+    } = this.props;
     try {
       this.setState({
         isSaving: true
       });
+      setIsSaving(true);
       const copiedBoard = await this.createBoardsRecursively(
         this.state.copyPublicBoard
       );
@@ -1275,6 +1284,7 @@ export class BoardContainer extends Component {
     this.setState({
       isSaving: false
     });
+    setIsSaving(false);
   };
 
   async createBoardsRecursively(board, records) {
@@ -1447,9 +1457,16 @@ export class BoardContainer extends Component {
   };
 
   handlePasteTiles = async () => {
-    const { board, intl, createTile, showNotification } = this.props;
+    const {
+      board,
+      intl,
+      createTile,
+      showNotification,
+      setIsSaving
+    } = this.props;
     try {
       this.setState({ isSaving: true });
+      setIsSaving(true);
       for await (const tile of this.state.copiedTiles) {
         const newTile = {
           ...tile,
@@ -1468,6 +1485,7 @@ export class BoardContainer extends Component {
       console.error(err.message);
     } finally {
       this.setState({ isSaving: false });
+      setIsSaving(false);
     }
   };
 
@@ -1806,7 +1824,7 @@ export class BoardContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
   const {
     board,
     communicator,
@@ -1834,8 +1852,8 @@ const mapStateToProps = state => {
   const offlineVoiceAlert = !isConnected && speech.options.isCloud;
   return {
     communicator: currentCommunicator,
-    board: board.boards.find(board => board.id === activeBoardId),
-    boards: board.boards,
+    board: getVisibleBoards(state).find(board => board.id === activeBoardId),
+    boards: getVisibleBoards(state),
     output: board.output,
     isLiveMode: board.isLiveMode,
     scannerSettings: scanner,
@@ -1879,14 +1897,14 @@ const mapDispatchToProps = {
   addBoardCommunicator,
   updateApiObjects,
   updateApiObjectsNoChild,
-  getApiObjects,
   downloadImages,
   disableTour,
   createApiBoard,
   upsertApiBoard,
   changeDefaultBoard,
   verifyAndUpsertCommunicator,
-  showPremiumRequired
+  showPremiumRequired,
+  setIsSaving
 };
 
 export default connect(

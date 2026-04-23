@@ -107,6 +107,7 @@ function appReducer(state = initialState, action) {
         symbolsSettings
       };
     case UPDATE_CONNECTIVITY:
+      if (state.isConnected === action.payload) return state;
       return {
         ...state,
         isConnected: action.payload
