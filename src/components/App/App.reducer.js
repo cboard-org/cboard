@@ -5,6 +5,8 @@ import {
   UPDATE_NAVIGATION_SETTINGS,
   UPDATE_SYMBOLS_SETTINGS,
   UPDATE_USER_DATA,
+  START_COMMUNICATION_SESSION,
+  CLEAR_COMMUNICATION_SESSION,
   DISABLE_TOUR,
   ENABLE_ALL_TOURS,
   SET_UNLOGGED_USER_LOCATION,
@@ -61,6 +63,7 @@ const initialState = {
   symbolsSettings: {
     arasaacActive: false
   },
+  sessionId: null,
   userData: {}
 };
 
@@ -175,6 +178,16 @@ function appReducer(state = initialState, action) {
         userData: action.userData
           ? getKeysFromApiUserDataResponse(action.userData)
           : state.userData
+      };
+    case START_COMMUNICATION_SESSION:
+      return {
+        ...state,
+        sessionId: action.sessionId
+      };
+    case CLEAR_COMMUNICATION_SESSION:
+      return {
+        ...state,
+        sessionId: null
       };
     case SET_UNLOGGED_USER_LOCATION:
       return {
