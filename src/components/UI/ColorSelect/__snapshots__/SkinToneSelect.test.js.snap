@@ -2,6 +2,7 @@
 
 exports[`SkinToneSelect tests default renderer 1`] = `
 <SkinToneSelect
+  disabled={false}
   intl={
     Object {
       "formatMessage": [Function],

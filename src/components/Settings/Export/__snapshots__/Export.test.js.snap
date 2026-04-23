@@ -115,11 +115,29 @@ exports[`Export tests default renderer 1`] = `
                     </WithStyles(ForwardRef(MenuItem))>
                   </WithStyles(ForwardRef(Select))>
                 </WithStyles(ForwardRef(FormControl))>
+                <WithStyles(ForwardRef(Button))
+                  color="primary"
+                  disabled={true}
+                  onClick={[Function]}
+                  startIcon={<Memo />}
+                  variant="contained"
+                >
+                  <FormattedMessage
+                    defaultMessage="Export"
+                    id="cboard.components.Settings.Export.export"
+                    values={Object {}}
+                  />
+                </WithStyles(ForwardRef(Button))>
               </div>
             </div>
           </WithStyles(ForwardRef(ListItemSecondaryAction))>
         </WithStyles(ForwardRef(ListItem))>
-        <WithStyles(ForwardRef(Divider)) />
+      </WithStyles(ForwardRef(List))>
+    </WithStyles(ForwardRef(Paper))>
+    <WithStyles(ForwardRef(Paper))
+      className="Export__section"
+    >
+      <WithStyles(ForwardRef(List))>
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
             className="Export__ListItemText"
@@ -157,43 +175,60 @@ exports[`Export tests default renderer 1`] = `
             <div
               className="Export__SelectContainer"
             >
-              <WithStyles(ForwardRef(FormControl))
-                className="Export__SelectContainer__Select"
-                disabled={false}
-                variant="standard"
+              <div
+                className="Export__SelectContainer"
               >
-                <WithStyles(ForwardRef(InputLabel))
-                  id="export-all-select-label"
-                />
-                <WithStyles(ForwardRef(Select))
-                  autoWidth={false}
-                  id="export-all-select"
-                  labelId="export-all-select-label"
-                  onChange={[Function]}
-                  value=""
+                <WithStyles(ForwardRef(FormControl))
+                  className="Export__SelectContainer__Select"
+                  disabled={false}
+                  variant="standard"
                 >
-                  <WithStyles(ForwardRef(MenuItem))
-                    value="cboard"
+                  <WithStyles(ForwardRef(InputLabel))
+                    id="export-all-select-label"
+                  />
+                  <WithStyles(ForwardRef(Select))
+                    autoWidth={false}
+                    id="export-all-select"
+                    labelId="export-all-select-label"
+                    onChange={[Function]}
+                    value=""
                   >
-                    Cboard
-                  </WithStyles(ForwardRef(MenuItem))>
-                  <WithStyles(ForwardRef(MenuItem))
-                    value="openboard"
-                  >
-                    OpenBoard
-                  </WithStyles(ForwardRef(MenuItem))>
-                  <WithStyles(ForwardRef(MenuItem))
-                    value="pdf"
-                  >
-                    PDF
-                  </WithStyles(ForwardRef(MenuItem))>
-                  <WithStyles(ForwardRef(MenuItem))
-                    value="picsee_pdf"
-                  >
-                    PicseePal PDF
-                  </WithStyles(ForwardRef(MenuItem))>
-                </WithStyles(ForwardRef(Select))>
-              </WithStyles(ForwardRef(FormControl))>
+                    <WithStyles(ForwardRef(MenuItem))
+                      value="cboard"
+                    >
+                      Cboard
+                    </WithStyles(ForwardRef(MenuItem))>
+                    <WithStyles(ForwardRef(MenuItem))
+                      value="openboard"
+                    >
+                      OpenBoard
+                    </WithStyles(ForwardRef(MenuItem))>
+                    <WithStyles(ForwardRef(MenuItem))
+                      value="pdf"
+                    >
+                      PDF
+                    </WithStyles(ForwardRef(MenuItem))>
+                    <WithStyles(ForwardRef(MenuItem))
+                      value="picsee_pdf"
+                    >
+                      PicseePal PDF
+                    </WithStyles(ForwardRef(MenuItem))>
+                  </WithStyles(ForwardRef(Select))>
+                </WithStyles(ForwardRef(FormControl))>
+                <WithStyles(ForwardRef(Button))
+                  color="primary"
+                  disabled={true}
+                  onClick={[Function]}
+                  startIcon={<Memo />}
+                  variant="contained"
+                >
+                  <FormattedMessage
+                    defaultMessage="Export"
+                    id="cboard.components.Settings.Export.export"
+                    values={Object {}}
+                  />
+                </WithStyles(ForwardRef(Button))>
+              </div>
             </div>
           </WithStyles(ForwardRef(ListItemSecondaryAction))>
         </WithStyles(ForwardRef(ListItem))>

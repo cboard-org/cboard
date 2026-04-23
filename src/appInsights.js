@@ -19,7 +19,8 @@ export const appInsights = new ApplicationInsights({
       'madaportal.org',
       '*.doubleclick.net',
       'pagead2.googlesyndication.com',
-      'eastus.tts.speech.microsoft.com'
+      'eastus.tts.speech.microsoft.com',
+      '*.cboard.io'
     ]
   }
 });

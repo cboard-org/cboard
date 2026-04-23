@@ -14,6 +14,21 @@ exports[`About tests default renderer 1`] = `
 >
   <WithStyles(ForwardRef(Paper))>
     <FullScreenDialogContent>
+      <div
+        className="logo"
+      >
+        <CboardLogo
+          isViolet={true}
+        />
+      </div>
+      <WithStyles(ForwardRef(Typography))
+        gutterBottom={true}
+        variant="h6"
+      >
+        <FormattedMessage
+          values={Object {}}
+        />
+      </WithStyles(ForwardRef(Typography))>
       <WithStyles(ForwardRef(Typography))
         variant="body1"
       >
@@ -23,120 +38,33 @@ exports[`About tests default renderer 1`] = `
           values={Object {}}
         />
       </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(Typography))
-        variant="h5"
+      <div
+        className="title"
       >
-        <FormattedMessage
-          defaultMessage="Contributors"
-          id="cboard.components.About.contributors"
-          values={Object {}}
-        />
-      </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(Typography))
-        component="div"
-        variant="body1"
-      >
-        <ul>
-          <li>
-            <WithStyles(ForwardRef(Link))
-              href="https://twitter.com/amberleyjohanna"
-              target="_blank"
-            >
-              Amberley Romo
-            </WithStyles(ForwardRef(Link))>
-          </li>
-          <li>
-            <WithStyles(ForwardRef(Link))
-              href="https://twitter.com/_arthurdenner"
-              target="_blank"
-            >
-              Arthur Denner
-            </WithStyles(ForwardRef(Link))>
-          </li>
-          <li>
-            <WithStyles(ForwardRef(Link))
-              href="https://twitter.com/hwk73"
-              target="_blank"
-            >
-              Arijit Bhattacharya
-            </WithStyles(ForwardRef(Link))>
-          </li>
-          <li>
-            <WithStyles(ForwardRef(Link))
-              href="https://github.com/BrendanFDMoore"
-              target="_blank"
-            >
-              Brendan Moore
-            </WithStyles(ForwardRef(Link))>
-          </li>
-          <li>
-            <WithStyles(ForwardRef(Link))
-              href="https://twitter.com/jvuillermet"
-              target="_blank"
-            >
-              Jeremy Vuillermet
-            </WithStyles(ForwardRef(Link))>
-          </li>
-          <li>
-            <WithStyles(ForwardRef(Link))
-              href="https://twitter.com/jquintozamora"
-              target="_blank"
-            >
-              Jose Quinto
-            </WithStyles(ForwardRef(Link))>
-          </li>
-          <li>
-            <WithStyles(ForwardRef(Link))
-              href="https://github.com/martinbedouret"
-              target="_blank"
-            >
-              Martin Bedouret
-            </WithStyles(ForwardRef(Link))>
-          </li>
-          <li>
-            <WithStyles(ForwardRef(Link))
-              href="https://github.com/shayc"
-              target="_blank"
-            >
-              Shay Cojocaru
-            </WithStyles(ForwardRef(Link))>
-          </li>
-        </ul>
-      </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(Typography))
-        variant="h5"
-      >
-        <FormattedMessage
-          defaultMessage="Resources"
-          id="cboard.components.About.resources"
-          values={Object {}}
-        />
-      </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          variant="h5"
+        >
+          <FormattedMessage
+            values={Object {}}
+          />
+        </WithStyles(ForwardRef(Typography))>
+      </div>
       <WithStyles(ForwardRef(Typography))
         component="div"
+        gutterBottom={true}
         variant="body1"
       >
-        <ul>
-          <li>
-            <WithStyles(ForwardRef(Link))
-              href="https://openassistive.org/awesome-assistivetech/"
-              target="_blank"
-            >
-              Awesome Assistivetech
-            </WithStyles(ForwardRef(Link))>
-             
-            - A curated list of
-             
-            <span
-              aria-label="cool"
-              role="img"
-            >
-              😎
-            </span>
-             
-            awesome Assistive Technology frameworks and tools to help you develop your AT tool/system.
-          </li>
-        </ul>
+        <React.Fragment>
+          <FormattedMessage
+            values={Object {}}
+          />
+          <WithStyles(ForwardRef(Link))
+            href="https://github.com/cboard-org/cboard/"
+            target="_blank"
+          >
+             Cboard Github
+          </WithStyles(ForwardRef(Link))>
+        </React.Fragment>
       </WithStyles(ForwardRef(Typography))>
       <WithStyles(ForwardRef(Typography))
         variant="h5"
@@ -172,8 +100,47 @@ exports[`About tests default renderer 1`] = `
               CC BY-SA
             </WithStyles(ForwardRef(Link))>
           </li>
+          <li>
+            ARASAAC Symbols -
+             
+            <WithStyles(ForwardRef(Link))
+              href="https://arasaac.org/terms-of-use/"
+              target="_blank"
+            >
+              Creative Commons License BY-NC-SA
+            </WithStyles(ForwardRef(Link))>
+          </li>
         </ul>
       </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        variant="h5"
+      >
+        <FormattedMessage
+          values={Object {}}
+        />
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        component="div"
+        variant="body1"
+      >
+        <FormattedMessage
+          values={Object {}}
+        />
+      </WithStyles(ForwardRef(Typography))>
+      <div
+        className="imageContainer"
+      >
+        <img
+          alt="UNICEF"
+          className="imageItem"
+          src="/images/sponsers/unicef.png"
+        />
+        <img
+          alt="Microsoft"
+          className="imageItem"
+          src="/images/sponsers/microsoft.png"
+        />
+      </div>
     </FullScreenDialogContent>
   </WithStyles(ForwardRef(Paper))>
 </WithStyles(FullScreenDialog)>

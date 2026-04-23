@@ -1,5 +1,5 @@
 # Stage 1 - the build process
-FROM node:18.18.1 as build-deps
+FROM node:22.14.0 as build-deps
 WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
 RUN yarn install

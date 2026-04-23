@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LockToggle tests default renderer 1`] = `
-<_class
+<_Class
   clicksToUnlock={4}
   intl={
     Object {

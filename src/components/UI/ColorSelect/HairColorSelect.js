@@ -49,10 +49,15 @@ const hairColorSources = new Map([
 const sourcesNames = new Map([['arasaac', 'ARASAAC']]);
 
 const propTypes = {
-  source: PropTypes.string.isRequired,
+  source: PropTypes.string,
   intl: intlShape.isRequired,
   onChange: PropTypes.func.isRequired,
-  selectedColor: PropTypes.string.isRequired
+  selectedColor: PropTypes.string.isRequired,
+  disabled: PropTypes.bool
+};
+
+const defaultProps = {
+  source: 'arasaac'
 };
 
 class HairColorSelect extends React.Component {
@@ -98,13 +103,14 @@ class HairColorSelect extends React.Component {
   };
 
   toggleOpen() {
+    if (this.props.disabled) return;
     this.setState({
       open: !this.state.open
     });
   }
 
   render() {
-    const { intl, selectedColor, iconColor } = this.props;
+    const { intl, selectedColor, disabled } = this.props;
     const hairColorLabel = `${this.state.sourceName} ${intl.formatMessage(
       messages.hairColor
     )}`;
@@ -117,14 +123,28 @@ class HairColorSelect extends React.Component {
         className="colorSelectDropdown"
         ref={this.wrapperRef}
       >
-        <Tooltip title={hairColorLabel} aria-label={hairColorLabel}>
-          <IconButton
-            label={hairColorLabel}
-            onClick={() => this.toggleOpen()}
-            style={{ color: iconColor ? iconColor : 'inherit' }}
-          >
-            <Face />
-          </IconButton>
+        <Tooltip
+          title={
+            disabled
+              ? intl.formatMessage(messages.hairColorDisabled)
+              : hairColorLabel
+          }
+          aria-label={
+            disabled
+              ? intl.formatMessage(messages.hairColorDisabled)
+              : hairColorLabel
+          }
+        >
+          <span>
+            <IconButton
+              label={hairColorLabel}
+              onClick={() => this.toggleOpen()}
+              style={{ color: disabled ? '' : 'inherit' }}
+              disabled={disabled}
+            >
+              <Face />
+            </IconButton>
+          </span>
         </Tooltip>
         <FormControl className="colorSelectDropdown-options">
           <Card className={this.state.open ? 'opened' : 'closed'}>
@@ -161,4 +181,5 @@ class HairColorSelect extends React.Component {
 }
 
 HairColorSelect.propTypes = propTypes;
+HairColorSelect.defaultProps = defaultProps;
 export default injectIntl(HairColorSelect);
