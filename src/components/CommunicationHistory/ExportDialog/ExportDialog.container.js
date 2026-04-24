@@ -12,8 +12,7 @@ import { showNotification } from '../../Notifications/Notifications.actions';
 const mapStateToProps = state => ({
   communicationHistory: state.communicationHistory.entries,
   isExporting: state.communicationHistory.isExporting,
-  currentUserId: state.app.userData?.id || null,
-  currentUserName: state.app.userData?.name || null
+  users: state.app.userData ? [state.app.userData] : []
 });
 
 const mapDispatchToProps = dispatch => ({

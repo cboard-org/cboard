@@ -5,6 +5,14 @@ export default defineMessages({
     id: 'cboard.components.CommunicationHistory.ExportDialog.exportTitle',
     defaultMessage: 'Export Communication History'
   },
+  selectUser: {
+    id: 'cboard.components.CommunicationHistory.ExportDialog.selectUser',
+    defaultMessage: 'Select User'
+  },
+  allUsers: {
+    id: 'cboard.components.CommunicationHistory.ExportDialog.allUsers',
+    defaultMessage: 'All Users'
+  },
   dateRange: {
     id: 'cboard.components.CommunicationHistory.ExportDialog.dateRange',
     defaultMessage: 'Date Range'

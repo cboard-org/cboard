@@ -908,7 +908,11 @@ export class BoardContainer extends Component {
       if (!this.sessionId) {
         this.sessionId = sessionId;
       }
-      trackSymbolSelection(enhancedTile, userData?.id || null, sessionId);
+      trackSymbolSelection(
+        enhancedTile,
+        userData?.email || userData?.id || null,
+        sessionId
+      );
 
       clickSymbol(tile.label);
       if (!navigationSettings.quietBuilderMode) {
