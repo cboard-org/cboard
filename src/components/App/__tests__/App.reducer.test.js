@@ -4,8 +4,6 @@ import { DISPLAY_SIZE_STANDARD } from '../../Settings/Display/Display.constants'
 import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../../Settings/Navigation/Navigation.constants';
 import {
   FINISH_FIRST_VISIT,
-  START_COMMUNICATION_SESSION,
-  CLEAR_COMMUNICATION_SESSION,
   UPDATE_CONNECTIVITY,
   UPDATE_DISPLAY_SETTINGS,
   UPDATE_NAVIGATION_SETTINGS
@@ -58,7 +56,6 @@ describe('reducer', () => {
       symbolsSettings: {
         arasaacActive: false
       },
-      sessionId: null,
       userData: {}
     };
     uData = { name: 'martin bedouret', email: 'anything@cboard.io' };
@@ -149,29 +146,6 @@ describe('reducer', () => {
     expect(appReducer(initialState, updateConnectivity)).toEqual({
       ...initialState,
       isConnected: false
-    });
-  });
-  it('should handle start communication session', () => {
-    const startCommunicationSession = {
-      type: START_COMMUNICATION_SESSION,
-      sessionId: 'session_123'
-    };
-    expect(appReducer(initialState, startCommunicationSession)).toEqual({
-      ...initialState,
-      sessionId: 'session_123'
-    });
-  });
-  it('should handle clear communication session', () => {
-    const stateWithSession = {
-      ...initialState,
-      sessionId: 'session_123'
-    };
-    const clearCommunicationSession = {
-      type: CLEAR_COMMUNICATION_SESSION
-    };
-    expect(appReducer(stateWithSession, clearCommunicationSession)).toEqual({
-      ...initialState,
-      sessionId: null
     });
   });
 });

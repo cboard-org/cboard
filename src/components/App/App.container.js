@@ -15,8 +15,7 @@ import {
   updateUserDataFromAPI,
   updateLoggedUserLocation,
   updateUnloggedUserLocation,
-  updateConnectivity,
-  startCommunicationSession
+  updateConnectivity
 } from '../App/App.actions';
 import { getApiObjects } from '../Board/Board.actions';
 import {
@@ -54,10 +53,6 @@ export class AppContainer extends Component {
      */
     userId: PropTypes.string,
     /**
-     * Starts the communication session
-     */
-    startCommunicationSession: PropTypes.func.isRequired,
-    /**
      * Get API objects (boards and communicators)
      */
     getApiObjects: PropTypes.func.isRequired
@@ -66,7 +61,6 @@ export class AppContainer extends Component {
   lastSyncTime = null;
 
   componentDidMount() {
-    const { startCommunicationSession } = this.props;
     const localizeUser = () => {
       const {
         isLogged,
@@ -109,8 +103,6 @@ export class AppContainer extends Component {
     );
 
     localizeUser();
-
-    startCommunicationSession();
 
     initGoogleAnalytics();
 
@@ -256,7 +248,6 @@ const mapDispatchToProps = {
   updateLoggedUserLocation,
   updateUnloggedUserLocation,
   updateConnectivity,
-  startCommunicationSession,
   getApiObjects
 };
 
