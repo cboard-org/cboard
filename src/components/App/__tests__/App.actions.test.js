@@ -59,18 +59,4 @@ describe('actions', () => {
     };
     expect(actions.finishFirstVisit()).toEqual(expectedAction);
   });
-
-  it('should create an action to start communication session', () => {
-    const action = actions.startCommunicationSession();
-
-    expect(action.type).toEqual(types.START_COMMUNICATION_SESSION);
-    expect(action.sessionId).toBeDefined();
-  });
-
-  it('should create an action to clear communication session', () => {
-    const expectedAction = {
-      type: types.CLEAR_COMMUNICATION_SESSION
-    };
-    expect(actions.clearCommunicationSession()).toEqual(expectedAction);
-  });
 });

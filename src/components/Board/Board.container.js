@@ -50,12 +50,6 @@ import {
   setIsSaving
 } from './Board.actions';
 import {
-  trackSymbolSelection,
-  trackPhraseSpoken,
-  trackClearAction,
-  trackBackspaceAction
-} from '../CommunicationHistory/CommunicationHistory.actions';
-import {
   addBoardCommunicator,
   verifyAndUpsertCommunicator
 } from '../Communicator/Communicator.actions';
@@ -195,12 +189,7 @@ export class BoardContainer extends Component {
     isSymbolSearchTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func,
     isLiveMode: PropTypes.bool,
-    changeDefaultBoard: PropTypes.func,
-    sessionId: PropTypes.string,
-    trackSymbolSelection: PropTypes.func,
-    trackPhraseSpoken: PropTypes.func,
-    trackClearAction: PropTypes.func,
-    trackBackspaceAction: PropTypes.func
+    changeDefaultBoard: PropTypes.func
   };
 
   state = {
@@ -866,11 +855,7 @@ export class BoardContainer extends Component {
       boards,
       showNotification,
       navigationSettings,
-      isLiveMode,
-      trackSymbolSelection,
-      userData,
-      board,
-      sessionId
+      isLiveMode
     } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
 
@@ -901,12 +886,6 @@ export class BoardContainer extends Component {
         showNotification(intl.formatMessage(messages.boardMissed));
       }
     } else {
-      const enhancedTile = {
-        ...tile,
-        boardId: board.id
-      };
-      trackSymbolSelection(enhancedTile, userData?.id || null, sessionId);
-
       clickSymbol(tile.label);
       if (!navigationSettings.quietBuilderMode) {
         say();
@@ -1859,8 +1838,7 @@ export const mapStateToProps = state => {
       navigationSettings,
       userData,
       isConnected,
-      liveHelp,
-      sessionId
+      liveHelp
     },
     language: { lang },
     subscription: { premiumRequiredModalState }
@@ -1886,7 +1864,6 @@ export const mapStateToProps = state => {
     displaySettings,
     navigationSettings,
     userData,
-    sessionId,
     emptyVoiceAlert,
     lang,
     offlineVoiceAlert,
@@ -1929,10 +1906,6 @@ const mapDispatchToProps = {
   upsertApiBoard,
   changeDefaultBoard,
   verifyAndUpsertCommunicator,
-  trackSymbolSelection,
-  trackPhraseSpoken,
-  trackClearAction,
-  trackBackspaceAction,
   showPremiumRequired,
   setIsSaving
 };
