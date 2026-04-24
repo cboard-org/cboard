@@ -14,11 +14,6 @@ import {
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
 
 import { changeOutput, clickOutput, changeLiveMode } from '../Board.actions';
-import {
-  trackPhraseSpoken,
-  trackClearAction,
-  trackBackspaceAction
-} from '../../CommunicationHistory/CommunicationHistory.actions';
 import SymbolOutput from './SymbolOutput';
 
 function translateOutput(output, intl) {
@@ -54,18 +49,7 @@ export class OutputContainer extends Component {
          */
         label: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
       })
-    ),
-    /**
-     * Tracking actions
-     */
-    trackPhraseSpoken: PropTypes.func.isRequired,
-    trackClearAction: PropTypes.func.isRequired,
-    trackBackspaceAction: PropTypes.func.isRequired,
-    /**
-     * User/session metadata
-     */
-    userData: PropTypes.object,
-    sessionId: PropTypes.string
+    )
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -179,19 +163,9 @@ export class OutputContainer extends Component {
   }
 
   async play(liveText = '') {
-    const { output, trackPhraseSpoken, userData, sessionId } = this.props;
-
     if (liveText) {
       await this.speakOutput(liveText);
     } else {
-      if (output.length > 0) {
-        trackPhraseSpoken(
-          output,
-          userData?.email || userData?.id || null,
-          sessionId
-        );
-      }
-
       const outputFrames = this.groupOutputByType();
 
       await this.asyncForEach(outputFrames, async frame => {
@@ -214,21 +188,14 @@ export class OutputContainer extends Component {
   }
 
   handleBackspaceClick = () => {
-    const {
-      cancelSpeech,
-      trackBackspaceAction,
-      userData,
-      sessionId
-    } = this.props;
+    const { cancelSpeech } = this.props;
     cancelSpeech();
-    trackBackspaceAction(userData?.email || userData?.id || null, sessionId);
     this.popOutput();
   };
 
   handleClearClick = () => {
-    const { cancelSpeech, trackClearAction, userData, sessionId } = this.props;
+    const { cancelSpeech } = this.props;
     cancelSpeech();
-    trackClearAction(userData?.email || userData?.id || null, sessionId);
     this.clearOutput();
   };
 
@@ -384,9 +351,7 @@ const mapStateToProps = ({ board, app }) => {
     output: board.output,
     isLiveMode: board.isLiveMode,
     navigationSettings: app.navigationSettings,
-    increaseOutputButtons: app.displaySettings.increaseOutputButtons,
-    userData: app.userData,
-    sessionId: app.sessionId
+    increaseOutputButtons: app.displaySettings.increaseOutputButtons
   };
 };
 
@@ -396,10 +361,7 @@ const mapDispatchToProps = {
   clickOutput,
   speak,
   showNotification,
-  changeLiveMode,
-  trackPhraseSpoken,
-  trackClearAction,
-  trackBackspaceAction
+  changeLiveMode
 };
 
 export default connect(

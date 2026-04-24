@@ -50,12 +50,6 @@ import {
   setIsSaving
 } from './Board.actions';
 import {
-  trackSymbolSelection,
-  trackPhraseSpoken,
-  trackClearAction,
-  trackBackspaceAction
-} from '../CommunicationHistory/CommunicationHistory.actions';
-import {
   addBoardCommunicator,
   verifyAndUpsertCommunicator
 } from '../Communicator/Communicator.actions';
@@ -195,11 +189,7 @@ export class BoardContainer extends Component {
     isSymbolSearchTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func,
     isLiveMode: PropTypes.bool,
-    changeDefaultBoard: PropTypes.func,
-    trackSymbolSelection: PropTypes.func,
-    trackPhraseSpoken: PropTypes.func,
-    trackClearAction: PropTypes.func,
-    trackBackspaceAction: PropTypes.func
+    changeDefaultBoard: PropTypes.func
   };
 
   state = {
@@ -865,10 +855,7 @@ export class BoardContainer extends Component {
       boards,
       showNotification,
       navigationSettings,
-      isLiveMode,
-      trackSymbolSelection,
-      userData,
-      board
+      isLiveMode
     } = this.props;
     const hasAction = tile.action && tile.action.startsWith('+');
 
@@ -899,21 +886,6 @@ export class BoardContainer extends Component {
         showNotification(intl.formatMessage(messages.boardMissed));
       }
     } else {
-      const enhancedTile = {
-        ...tile,
-        boardId: board.id
-      };
-      const sessionId =
-        this.props.sessionId || this.sessionId || shortid.generate();
-      if (!this.sessionId) {
-        this.sessionId = sessionId;
-      }
-      trackSymbolSelection(
-        enhancedTile,
-        userData?.email || userData?.id || null,
-        sessionId
-      );
-
       clickSymbol(tile.label);
       if (!navigationSettings.quietBuilderMode) {
         say();
@@ -1934,10 +1906,6 @@ const mapDispatchToProps = {
   upsertApiBoard,
   changeDefaultBoard,
   verifyAndUpsertCommunicator,
-  trackSymbolSelection,
-  trackPhraseSpoken,
-  trackClearAction,
-  trackBackspaceAction,
   showPremiumRequired,
   setIsSaving
 };
