@@ -50,7 +50,7 @@ export default defineMessages({
   privacyDescription: {
     id: 'cboard.components.Settings.CommunicationHistory.privacyDescription',
     defaultMessage:
-      'Communication history is stored locally on each device. Data is not shared across devices, even with the same account. Sync will be available in a future update. Data is never shared without your consent, and you can clear your history at any time.'
+      'Communication history is stored locally on your device and in your account if logged in. Data is never shared without your explicit consent. You can clear your history at any time.'
   },
   clearConfirmTitle: {
     id: 'cboard.components.Settings.CommunicationHistory.clearConfirmTitle',
