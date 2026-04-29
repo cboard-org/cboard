@@ -63,6 +63,34 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push cboard/cboard:latest
             docker push cboard/cboard:$TAG
+  qa-image:
+    docker:
+      - image: cimg/node:22.14.0
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-
+      - run: yarn install --cache-folder ~/.cache/yarn
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - setup_remote_docker:
+          version: default
+          docker_layer_caching: false
+      - run:
+          name: Build and Push QA Docker Image
+          command: |
+            TAG=qa-$CIRCLE_BUILD_NUM
+            echo $TAG > ./public/version
+            docker build -t cboard/cboard:$TAG -t cboard/cboard:qa .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push cboard/cboard:qa
+            docker push cboard/cboard:$TAG
   deploy-qa:
     machine:
       image: ubuntu-2204:2024.11.1
@@ -153,3 +181,17 @@ workflows:
           filters:
             branches:
               only: master
+  qa-branch-build-image:
+    jobs:
+      - build:
+          context: azure
+          filters:
+            branches:
+              only: cboard-access-frontend
+      - qa-image:
+          context: azure
+          requires:
+            - build
+          filters:
+            branches:
+              only: cboard-access-frontend
