@@ -7,6 +7,7 @@ import { isArray } from 'lodash';
 import AnalyticsComponent from './Analytics.component';
 import { logout } from '../Account/Login/Login.actions';
 import { getUser, isLogged } from '../App/App.selectors';
+import { getVisibleBoards } from '../Board/Board.selectors';
 import { showNotification } from '../Notifications/Notifications.actions';
 import API from '../../api';
 import messages from './Analytics.messages';
@@ -423,10 +424,10 @@ export class AnalyticsContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   isLogged: isLogged(state),
   user: getUser(state),
-  boards: state.board.boards
+  boards: getVisibleBoards(state)
 });
 
 const mapDispatchToProps = {

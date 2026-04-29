@@ -143,21 +143,24 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
   if (!board.tiles || board.tiles.length < 1) {
     return { obf: null, images: null };
   }
+  const columns =
+    board.isFixed && board.grid ? board.grid.columns : CBOARD_COLUMNS;
 
   const images = {};
   const fetchedImages = {};
-  const grid = new Array(Math.ceil(board.tiles.length / CBOARD_COLUMNS));
+  const grid =
+    board.isFixed && board.grid && board.grid.order
+      ? board.grid.order
+      : new Array(Math.ceil(board.tiles.length / columns));
   let currentRow = 0;
   const buttons = await Promise.all(
     board.tiles.map(async (tile, i) => {
-      currentRow =
-        i >= (currentRow + 1) * CBOARD_COLUMNS ? currentRow + 1 : currentRow;
-
       if (tile) {
-        if (grid[currentRow]) {
+        if (!board.isFixed) {
+          currentRow =
+            i >= (currentRow + 1) * columns ? currentRow + 1 : currentRow;
+          grid[currentRow] = grid[currentRow] || [];
           grid[currentRow].push(tile.id);
-        } else {
-          grid[currentRow] = [tile.id];
         }
 
         const button = {
@@ -172,29 +175,34 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
               ? `.${tile.image}`
               : tile.image;
 
-          const imageResponse = image.startsWith('data:')
-            ? getBase64Image(image)
-            : await getDataUri(image);
-
-          const getCustomImagePath = () => {
-            const components = [
-              'custom',
-              board.name || board.nameKey,
-              tile.label || tile.labelKey || tile.id
-            ];
-            const extension = mime.extension(imageResponse['content_type']);
-            return `/${_.join(components, '/')}.${extension}`;
-          };
-
-          const path = image.startsWith('data:')
-            ? getCustomImagePath()
-            : isCordova()
-            ? ''
-            : image.startsWith('/')
-            ? image
-            : `/${image}`;
+          let imageResponse = null;
+          try {
+            imageResponse = image.startsWith('data:')
+              ? getBase64Image(image)
+              : await getDataUri(image);
+          } catch (err) {
+            console.warn(`Skipping image for tile ${tile.id}.`, err);
+          }
 
           if (imageResponse) {
+            const getCustomImagePath = () => {
+              const components = [
+                'custom',
+                board.name || board.nameKey,
+                tile.label || tile.labelKey || tile.id
+              ];
+              const extension = mime.extension(imageResponse['content_type']);
+              return `/${_.join(components, '/')}.${extension}`;
+            };
+
+            const path = image.startsWith('data:')
+              ? getCustomImagePath()
+              : isCordova()
+              ? ''
+              : image.startsWith('/')
+              ? image
+              : `/${image}`;
+
             const imageID = new mongoose.Types.ObjectId().toString();
             fetchedImages[imageID] = _.defaults({ path }, imageResponse);
             button['image_id'] = imageID;
@@ -226,8 +234,8 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
     })
   );
 
-  if (grid.length >= 1) {
-    const lastGridRowDiff = CBOARD_COLUMNS - grid[grid.length - 1].length;
+  if (grid.length >= 1 && Array.isArray(grid[grid.length - 1])) {
+    const lastGridRowDiff = columns - grid[grid.length - 1].length;
     if (lastGridRowDiff > 0) {
       const emptyButtons = new Array(lastGridRowDiff).map(() => null);
       grid[grid.length - 1] = grid[grid.length - 1].concat(emptyButtons);
@@ -245,7 +253,7 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
       sounds: [],
       grid: {
         rows: grid.length,
-        columns: CBOARD_COLUMNS,
+        columns: columns,
         order: grid
       },
       description_html: board.nameKey
@@ -750,13 +758,16 @@ export async function openboardExportManyAdapter(boards = [], intl) {
   for (let i = 0; i < boardsLength; i++) {
     const board = boards[i];
     const boardMapFilename = `boards/${board.id}.obf`;
-    const { obf, images } = await boardToOBF(boardsMap, board, intl, {
-      embed: false
-    });
-
-    if (!obf) {
+    let result;
+    try {
+      result = await boardToOBF(boardsMap, board, intl, { embed: false });
+    } catch (err) {
+      console.warn(`Skipping board ${board.id} during OpenBoard export.`, err);
       continue;
     }
+
+    const { obf, images } = result;
+    if (!obf) continue;
 
     zip.file(boardMapFilename, JSON.stringify(obf, null, 2));
 

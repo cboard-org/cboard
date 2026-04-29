@@ -54,7 +54,9 @@ const initialState = {
     vocalizeFolders: false,
     quietBuilderMode: false,
     liveMode: false,
-    improvePhraseActive: false
+    improvePhraseActive: false,
+    pinLockEnabled: false,
+    pinCode: ''
   },
   symbolsSettings: {
     arasaacActive: false
@@ -105,6 +107,7 @@ function appReducer(state = initialState, action) {
         symbolsSettings
       };
     case UPDATE_CONNECTIVITY:
+      if (state.isConnected === action.payload) return state;
       return {
         ...state,
         isConnected: action.payload

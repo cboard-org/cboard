@@ -10,6 +10,7 @@ import {
   changeDefaultBoard
 } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
+import { getVisibleBoards } from '../../Board/Board.selectors';
 import {
   importCommunicator,
   deleteCommunicator,
@@ -81,7 +82,7 @@ class CommunicatorContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (
+export const mapStateToProps = (
   { board, communicator, app: { userData, displaySettings } },
   ownProps
 ) => {
@@ -90,7 +91,7 @@ const mapStateToProps = (
     communicator => communicator.id === activeCommunicatorId
   );
   const activeBoardId = board.activeBoardId;
-  const boards = board.boards.filter(
+  const boards = getVisibleBoards({ board }).filter(
     board =>
       board !== null &&
       board.id !== null &&
