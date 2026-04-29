@@ -58,8 +58,8 @@
   padding: 20px;
 }
 
-.AccessViewer__error-icon {
-  font-size: 64px !important;
+.AccessViewer__error .AccessViewer__error-icon {
+  font-size: 64px;
   color: #f44336;
   margin-bottom: 16px;
 }
