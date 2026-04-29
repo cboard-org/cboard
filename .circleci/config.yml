@@ -187,11 +187,15 @@ workflows:
           context: azure
           filters:
             branches:
-              only: cboard-access-frontend
+              only:
+                - cboard-access-frontend
+                - /^pull\/2159$/
       - qa-image:
           context: azure
           requires:
             - build
           filters:
             branches:
-              only: cboard-access-frontend
+              only:
+                - cboard-access-frontend
+                - /^pull\/2159$/
