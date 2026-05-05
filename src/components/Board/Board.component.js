@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import classNames from 'classnames';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { Scanner, Scannable } from 'react-scannable';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -12,19 +11,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Alert from '@material-ui/lab/Alert';
 
-import FixedGrid from '../FixedGrid';
-import Grid from '../Grid';
-import Symbol from './Symbol';
 import OutputContainer from './Output';
 import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
-import Tile from './Tile';
-import EmptyBoard from './EmptyBoard';
 import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
-import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
-import NavigationButtons from '../NavigationButtons';
-import EditGridButtons from '../EditGridButtons';
-import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
+import BoardGrid from './BoardGrid/BoardGrid.component';
 
 import { Link } from 'react-router-dom';
 
@@ -32,10 +23,8 @@ import messages from './Board.messages';
 
 import './Board.css';
 import BoardTour from './BoardTour/BoardTour';
-import ScrollButtons from '../ScrollButtons';
-import { NAVIGATION_BUTTONS_STYLE_SIDES } from '../Settings/Navigation/Navigation.constants';
 import ImprovePhraseOutput from './ImprovePhraseOutput';
-import { resolveTileLabel, resolveBoardName } from '../../helpers';
+import { resolveBoardName } from '../../helpers';
 
 export class Board extends Component {
   static propTypes = {
@@ -102,12 +91,7 @@ export class Board extends Component {
     copiedTiles: PropTypes.arrayOf(PropTypes.object),
     setIsScroll: PropTypes.func,
     isScroll: PropTypes.bool,
-    totalRows: PropTypes.number,
-    /**
-     * If true, hides the Navbar and disables all editing features
-     * (drag & drop, EditToolbar). Used by AccessViewer.
-     */
-    isAccessViewerMode: PropTypes.bool
+    totalRows: PropTypes.number
   };
 
   static defaultProps = {
@@ -121,8 +105,7 @@ export class Board extends Component {
     scannerSettings: { active: false, delay: 2000, strategy: 'automatic' },
     selectedTileIds: [],
     emptyVoiceAlert: false,
-    userData: {},
-    isAccessViewerMode: false
+    userData: {}
   };
 
   constructor(props) {
@@ -143,29 +126,9 @@ export class Board extends Component {
     }
   }
 
-  handleTileClick = tile => {
-    const { onTileClick, isSelecting } = this.props;
-
-    if (tile.loadBoard && !isSelecting) {
-      const boardComponentRef = this.props.board.isFixed
-        ? 'fixedBoardContainerRef'
-        : 'boardContainerRef';
-      this[boardComponentRef].current.scrollTop = 0;
-    }
-    onTileClick(tile);
-  };
-
   handleTileFocus = tileId => {
     const { onFocusTile, board } = this.props;
     onFocusTile(tileId, board.id);
-  };
-
-  handleBoardKeyUp = event => {
-    const { onRequestPreviousBoard } = this.props;
-
-    if (event.keyCode === keycode('esc')) {
-      onRequestPreviousBoard();
-    }
   };
 
   handleBoardTitleClick = () => {
@@ -199,101 +162,6 @@ export class Board extends Component {
     });
   };
 
-  renderTiles(tiles) {
-    const {
-      isSelecting,
-      isSaving,
-      selectedTileIds,
-      displaySettings
-    } = this.props;
-
-    return tiles.map(tileToRender => {
-      const tile = {
-        ...tileToRender,
-        label: resolveTileLabel(tileToRender, this.props.intl)
-      };
-      const isSelected = selectedTileIds.includes(tile.id);
-      const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
-
-      return (
-        <div key={tile.id}>
-          <Tile
-            backgroundColor={tile.backgroundColor}
-            borderColor={tile.borderColor}
-            variant={variant}
-            onClick={e => {
-              e.stopPropagation();
-              this.handleTileClick(tile);
-            }}
-            onFocus={() => {
-              this.handleTileFocus(tile.id);
-            }}
-          >
-            <Symbol
-              image={tile.image}
-              label={tile.label}
-              keyPath={tile.keyPath}
-              labelpos={displaySettings.labelPosition}
-            />
-
-            {isSelecting && !isSaving && (
-              <div className="CheckCircle">
-                {isSelected && (
-                  <CheckCircleIcon className="CheckCircle__icon" />
-                )}
-              </div>
-            )}
-          </Tile>
-        </div>
-      );
-    });
-  }
-
-  renderTileFixedBoard = tileToRender => {
-    const tile = {
-      ...tileToRender,
-      label: resolveTileLabel(tileToRender, this.props.intl)
-    };
-    const {
-      isSelecting,
-      isSaving,
-      selectedTileIds,
-      displaySettings
-    } = this.props;
-
-    const isSelected = selectedTileIds.includes(tile.id);
-    const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
-
-    return (
-      <Tile
-        backgroundColor={tile.backgroundColor}
-        borderColor={tile.borderColor}
-        variant={variant}
-        onClick={e => {
-          e.stopPropagation();
-          this.handleTileClick(tile);
-        }}
-        onFocus={() => {
-          this.handleTileFocus(tile.id);
-        }}
-        id={tile.id}
-      >
-        <Symbol
-          image={tile.image}
-          label={tile.label}
-          keyPath={tile.keyPath}
-          labelpos={displaySettings.labelPosition}
-        />
-
-        {isSelecting && !isSaving && (
-          <div className="CheckCircle">
-            {isSelected && <CheckCircleIcon className="CheckCircle__icon" />}
-          </div>
-        )}
-      </Tile>
-    );
-  };
-
   render() {
     const {
       board,
@@ -318,6 +186,7 @@ export class Board extends Component {
       onBoardTypeChange,
       selectedTileIds,
       navigationSettings,
+      scannerSettings,
       deactivateScanner,
       publishBoard,
       emptyVoiceAlert,
@@ -336,28 +205,21 @@ export class Board extends Component {
       totalRows,
       changeDefaultBoard,
       improvedPhrase,
-      speak,
-      isAccessViewerMode
+      speak
     } = this.props;
 
-    const tiles = this.renderTiles(board.tiles);
-    const cols = DISPLAY_SIZE_GRID_COLS[this.props.displaySettings.uiSize];
     const isLoggedIn = !!userData.email;
-    const isNavigationButtonsOnTheSide =
-      navigationSettings.navigationButtonsStyle === undefined ||
-      navigationSettings.navigationButtonsStyle ===
-        NAVIGATION_BUTTONS_STYLE_SIDES;
 
     return (
       <Scanner
-        active={this.props.scannerSettings.active}
-        iterationInterval={this.props.scannerSettings.delay}
-        strategy={this.props.scannerSettings.strategy}
+        active={scannerSettings.active}
+        iterationInterval={scannerSettings.delay}
+        strategy={scannerSettings.strategy}
         onDeactivation={deactivateScanner}
       >
         <div
           className={classNames('Board', {
-            'is-locked': this.props.isLocked
+            'is-locked': isLocked
           })}
         >
           <BoardTour
@@ -371,32 +233,29 @@ export class Board extends Component {
           <Scannable>
             <div
               className={classNames('Board__output', {
-                hidden:
-                  this.props.displaySettings.hideOutputActive ||
-                  isAccessViewerMode
+                hidden: this.props.displaySettings.hideOutputActive
               })}
             >
               <OutputContainer />
             </div>
           </Scannable>
 
-          {!isAccessViewerMode && (
-            <Navbar
-              className="Board__navbar"
-              disabled={disableBackButton || isSelecting || isSaving}
-              isLocked={isLocked}
-              isScannerActive={this.props.scannerSettings.active}
-              onBackClick={onRequestPreviousBoard}
-              onLockClick={onLockClick}
-              onDeactivateScannerClick={deactivateScanner}
-              onLockNotify={onLockNotify}
-              title={resolveBoardName(board, intl)}
-              board={board}
-              userData={userData}
-              publishBoard={publishBoard}
-              showNotification={this.props.showNotification}
-            />
-          )}
+          <Navbar
+            className="Board__navbar"
+            disabled={disableBackButton || isSelecting || isSaving}
+            isLocked={isLocked}
+            isScannerActive={scannerSettings.active}
+            onBackClick={onRequestPreviousBoard}
+            onLockClick={onLockClick}
+            onDeactivateScannerClick={deactivateScanner}
+            onLockNotify={onLockNotify}
+            title={resolveBoardName(board, intl)}
+            board={board}
+            userData={userData}
+            publishBoard={publishBoard}
+            showNotification={this.props.showNotification}
+          />
+
           {emptyVoiceAlert && (
             <Alert variant="filled" severity="error">
               {intl.formatMessage(messages.emptyVoiceAlert)}
@@ -427,131 +286,54 @@ export class Board extends Component {
             isSelecting={isSelecting || isSaving}
           />
 
-          {!isAccessViewerMode && (
-            <EditToolbar
-              board={board}
-              onBoardTitleClick={this.handleBoardTitleClick}
-              className="Board__edit-toolbar"
-              isSelectAll={isSelectAll}
-              isSelecting={isSelecting}
-              isSaving={isSaving}
-              isLoggedIn={isLoggedIn}
-              onAddClick={onAddClick}
-              isFixedBoard={isFixedBoard}
-              onDeleteClick={onDeleteClick}
-              onEditClick={onEditClick}
-              onSaveBoardClick={onSaveBoardClick}
-              onSelectAllToggle={onSelectAllToggle}
-              onSelectClick={onSelectClick}
-              selectedItemsCount={selectedTileIds.length}
-              onBoardTypeChange={onBoardTypeChange}
-              onCopyTiles={onCopyTiles}
-              onPasteTiles={onPasteTiles}
-              copiedTiles={this.props.copiedTiles}
-            />
-          )}
-          <div className="BoardSideButtonsContainer">
-            {navigationSettings.caBackButtonActive && (
-              <NavigationButtons
-                active={
-                  navigationSettings.caBackButtonActive &&
-                  !isSelecting &&
-                  (!isSaving || isNavigationButtonsOnTheSide) &&
-                  !this.props.scannerSettings.active
-                }
-                navHistory={this.props.navHistory}
-                previousBoard={onRequestPreviousBoard}
-                toRootBoard={onRequestToRootBoard}
-                isSaving={isSaving}
-                isNavigationButtonsOnTheSide={isNavigationButtonsOnTheSide}
-              />
-            )}
-            <Scannable>
-              <div
-                id="BoardTilesContainer"
-                className={classNames('Board__tiles', {
-                  ScrollButtonsOnTheSides:
-                    navigationSettings.bigScrollButtonsActive &&
-                    isNavigationButtonsOnTheSide
-                })}
-                onKeyUp={this.handleBoardKeyUp}
-                ref={this.boardContainerRef}
-              >
-                {!board.isFixed &&
-                  (tiles.length ? (
-                    <Grid
-                      board={board}
-                      edit={!isAccessViewerMode && isSelecting && !isSaving}
-                      cols={cols}
-                      onLayoutChange={onLayoutChange}
-                      setIsScroll={setIsScroll}
-                      isBigScrollBtns={
-                        navigationSettings.bigScrollButtonsActive
-                      }
-                    >
-                      {tiles}
-                    </Grid>
-                  ) : (
-                    <EmptyBoard />
-                  ))}
+          <EditToolbar
+            board={board}
+            onBoardTitleClick={this.handleBoardTitleClick}
+            className="Board__edit-toolbar"
+            isSelectAll={isSelectAll}
+            isSelecting={isSelecting}
+            isSaving={isSaving}
+            isLoggedIn={isLoggedIn}
+            onAddClick={onAddClick}
+            isFixedBoard={isFixedBoard}
+            onDeleteClick={onDeleteClick}
+            onEditClick={onEditClick}
+            onSaveBoardClick={onSaveBoardClick}
+            onSelectAllToggle={onSelectAllToggle}
+            onSelectClick={onSelectClick}
+            selectedItemsCount={selectedTileIds.length}
+            onBoardTypeChange={onBoardTypeChange}
+            onCopyTiles={onCopyTiles}
+            onPasteTiles={onPasteTiles}
+            copiedTiles={this.props.copiedTiles}
+          />
 
-                {board.isFixed && (
-                  <FixedGrid
-                    order={board.grid ? board.grid.order : []}
-                    items={board.tiles}
-                    columns={
-                      board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER
-                    }
-                    rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
-                    dragAndDropEnabled={!isAccessViewerMode && isSelecting}
-                    renderItem={this.renderTileFixedBoard}
-                    onItemDrop={onTileDrop}
-                    fixedRef={this.fixedBoardContainerRef}
-                    setIsScroll={setIsScroll}
-                    isBigScrollBtns={navigationSettings.bigScrollButtonsActive}
-                    isNavigationButtonsOnTheSide={isNavigationButtonsOnTheSide}
-                  />
-                )}
+          <BoardGrid
+            board={board}
+            displaySettings={this.props.displaySettings}
+            navigationSettings={navigationSettings}
+            scannerSettings={scannerSettings}
+            isSelecting={isSelecting}
+            isSaving={isSaving}
+            isFixedBoard={isFixedBoard}
+            selectedTileIds={selectedTileIds}
+            intl={intl}
+            onTileClick={this.props.onTileClick}
+            onFocusTile={this.handleTileFocus}
+            onTileDrop={onTileDrop}
+            onLayoutChange={onLayoutChange}
+            onAddRemoveRow={onAddRemoveRow}
+            onAddRemoveColumn={onAddRemoveColumn}
+            onRequestPreviousBoard={onRequestPreviousBoard}
+            onRequestToRootBoard={onRequestToRootBoard}
+            setIsScroll={setIsScroll}
+            isScroll={isScroll}
+            totalRows={totalRows}
+            boardContainerRef={this.boardContainerRef}
+            fixedBoardContainerRef={this.fixedBoardContainerRef}
+            navHistory={this.props.navHistory}
+          />
 
-                <EditGridButtons
-                  active={
-                    isFixedBoard && isSelecting && !isSaving ? true : false
-                  }
-                  columns={
-                    board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER
-                  }
-                  rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
-                  onAddRemoveRow={onAddRemoveRow}
-                  onAddRemoveColumn={onAddRemoveColumn}
-                  moveColsButtonToLeft={
-                    navigationSettings.bigScrollButtonsActive &&
-                    isNavigationButtonsOnTheSide
-                  }
-                />
-              </div>
-            </Scannable>
-
-            {navigationSettings.bigScrollButtonsActive && (
-              <ScrollButtons
-                active={
-                  navigationSettings.bigScrollButtonsActive &&
-                  (!isSaving || isNavigationButtonsOnTheSide) &&
-                  !this.props.scannerSettings.active &&
-                  (isScroll || isNavigationButtonsOnTheSide)
-                }
-                isScroll={isScroll}
-                isSaving={isSaving}
-                boardContainer={
-                  board.isFixed
-                    ? this.fixedBoardContainerRef
-                    : this.boardContainerRef
-                }
-                totalRows={totalRows}
-                boardId={board.id}
-                isNavigationButtonsOnTheSide={isNavigationButtonsOnTheSide}
-              />
-            )}
-          </div>
           {navigationSettings.improvePhraseActive && (
             <ImprovePhraseOutput
               improvedPhrase={improvedPhrase}
