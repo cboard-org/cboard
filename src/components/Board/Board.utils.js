@@ -3,8 +3,14 @@ import {
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import moment from 'moment';
+import shortid from 'shortid';
 import { SHORT_ID_MAX_LENGTH, DEFAULT_BOARD_EMAIL } from './Board.constants';
 import { DEFAULT_BOARDS } from '../../helpers';
+import messages from './Board.messages';
+import {
+  SCANNING_METHOD_MANUAL,
+  SCANNING_METHOD_AUTOMATIC
+} from '../Settings/Scanning/Scanning.constants';
 
 const ogv = require('ogv');
 ogv.OGVLoader.base = process.env.PUBLIC_URL + '/ogv';
@@ -59,6 +65,19 @@ export const findNextBoard = (tile, boards) => {
 };
 
 /**
+ * Creates a live mode tile marker appended after the spoken symbol.
+ * @returns {Object} Live tile object with a unique id
+ */
+export const createLiveTile = () => ({
+  backgroundColor: 'rgb(255, 241, 118)',
+  id: shortid.generate(),
+  image: '',
+  label: '',
+  labelKey: '',
+  type: 'live'
+});
+
+/**
  * Core tile click logic shared between Board.container and AccessViewer.
  * Handles folder navigation and symbol output, delegating side effects via callbacks.
  * @param {Object} params
@@ -69,6 +88,8 @@ export const findNextBoard = (tile, boards) => {
  * @param {Function} params.speak - TTS speak function
  * @param {Function} params.changeBoard - Callback to change active board
  * @param {Function} params.changeOutput - Callback to update output
+ * @param {Function} [params.clickSymbol] - Analytics/click tracking callback
+ * @param {boolean} [params.isLiveMode] - Whether live mode is active
  * @param {Function} [params.onNavigate] - Called after successful board navigation
  * @param {Function} [params.onBoardNotFound] - Called when loadBoard target not found
  * @returns {{ navigated: boolean, nextBoardId?: string }}
@@ -81,6 +102,8 @@ export const processTileClick = ({
   speak,
   changeBoard,
   changeOutput,
+  clickSymbol,
+  isLiveMode,
   onNavigate,
   onBoardNotFound
 }) => {
@@ -105,15 +128,41 @@ export const processTileClick = ({
     }
   }
 
+  if (clickSymbol) clickSymbol(tile.label);
+
   if (!navigationSettings.quietBuilderMode) {
     vocalizeTile(tile, speak, { hasAction });
   }
 
-  if (changeOutput) {
-    changeOutput([...output, tile]);
-  }
+  const newOutput = isLiveMode
+    ? [...output, tile, createLiveTile()]
+    : [...output, tile];
+
+  if (changeOutput) changeOutput(newOutput);
 
   return { navigated: false };
+};
+
+/**
+ * Returns message descriptors for scanner strategy notifications.
+ * Receives all platform/env inputs as params to keep the function pure and testable.
+ * @param {string} strategy - Scanner strategy (manual/automatic)
+ * @param {boolean} isAnyMobile - Whether the current device is a mobile device
+ * @returns {{ strategyMessage: Object|null, deactivateMessage: Object, showDeactivate: boolean }}
+ */
+export const getScannerStrategyNotificationMessages = (
+  strategy,
+  isAnyMobile = false
+) => {
+  const messagesKeyMap = {
+    [SCANNING_METHOD_MANUAL]: messages.scannerManualStrategy,
+    [SCANNING_METHOD_AUTOMATIC]: messages.scannerAutomaticStrategy
+  };
+  return {
+    strategyMessage: messagesKeyMap[strategy] || null,
+    deactivateMessage: messages.scannerHowToDeactivate,
+    showDeactivate: !isAnyMobile
+  };
 };
 
 /**
