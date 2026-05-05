@@ -5,15 +5,16 @@ import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { Scanner } from 'react-scannable';
-import Board from '../Board/Board.component';
-import SymbolOutput from '../Board/Output/SymbolOutput';
-import { vocalizeTile, scrollBoardToTop } from '../Board/Board.utils';
+import BoardGrid from '../Board/BoardGrid/BoardGrid.component';
+import OutputContainer from '../Board/Output';
+import { Scannable } from 'react-scannable';
+import { vocalizeTile } from '../Board/Board.utils';
 import { resolveTileLabel } from '../../helpers';
 import {
   speak,
   cancelSpeech
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
-import shortid from 'shortid';
+import { changeOutput } from '../Board/Board.actions';
 import { isLogged as isLoggedSelector } from '../App/App.selectors';
 import API from '../../api';
 import AccessViewerNavbar from './AccessViewerNavbar';
@@ -23,24 +24,21 @@ import './AccessViewer.css';
 
 const noop = () => {};
 
-const defaultLiveTile = {
-  backgroundColor: 'rgb(255, 241, 118)',
-  image: '',
-  label: '',
-  labelKey: '',
-  type: 'live'
-};
-
 const AccessViewer = ({
   speak,
   cancelSpeech,
+  changeOutput,
+  output,
   isLogged,
   intl,
-  navigationSettings
+  displaySettings,
+  navigationSettings,
+  scannerSettings
 }) => {
   const { slug, code } = useParams();
   const history = useHistory();
-  const boardRef = useRef(null);
+  const boardContainerRef = useRef(null);
+  const fixedBoardContainerRef = useRef(null);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -51,16 +49,16 @@ const AccessViewer = ({
   // boardHistory: navigation stack; last entry is the current board
   const [boardHistory, setBoardHistory] = useState([]);
 
-  const [output, setOutput] = useState([]);
   const [isLocked, setIsLocked] = useState(true);
-  const [isLiveMode, setIsLiveMode] = useState(false);
 
   const currentBoard =
     boardHistory.length > 0 ? boardHistory[boardHistory.length - 1] : null;
 
-  // Load all boards in a single request on mount
+  // Load all boards in a single request on mount; clear output on enter and leave
   useEffect(
     () => {
+      changeOutput([]);
+
       const loadAllBoards = async () => {
         try {
           setLoading(true);
@@ -107,9 +105,10 @@ const AccessViewer = ({
 
       return () => {
         cancelSpeech();
+        changeOutput([]);
       };
     },
-    [slug, code, cancelSpeech]
+    [slug, code, cancelSpeech, changeOutput]
   );
 
   const handleTileClick = useCallback(
@@ -123,16 +122,15 @@ const AccessViewer = ({
         const nextBoard = allBoards[tile.loadBoard];
         if (nextBoard) {
           setBoardHistory(prev => [...prev, nextBoard]);
-          scrollBoardToTop(boardRef, nextBoard.isFixed);
           vocalizeTile(tile, speak);
         }
         return;
       }
 
       vocalizeTile(tile, speak);
-      setOutput(prev => [...prev, tile]);
+      changeOutput([...output, tile]);
     },
-    [intl, allBoards, speak]
+    [intl, allBoards, speak, output, changeOutput]
   );
 
   const handleRequestPreviousBoard = useCallback(
@@ -151,60 +149,6 @@ const AccessViewer = ({
       }
     },
     [boardHistory.length]
-  );
-
-  const handleOutputClick = useCallback(
-    event => {
-      if (isLiveMode) return;
-      const tag = event.target.tagName.toLowerCase();
-      if ((tag === 'div' || tag === 'p') && output.length) {
-        const text = output
-          .map(tile => tile.vocalization || tile.label)
-          .join(' ');
-        cancelSpeech();
-        speak(text);
-      }
-    },
-    [output, speak, cancelSpeech, isLiveMode]
-  );
-
-  const handleSwitchLiveMode = useCallback(() => {
-    setIsLiveMode(prev => {
-      if (!prev) {
-        setOutput(prevOutput => [
-          ...prevOutput,
-          { ...defaultLiveTile, id: shortid.generate() }
-        ]);
-      }
-      return !prev;
-    });
-  }, []);
-
-  const handleOutputBackspace = useCallback(() => {
-    setOutput(prev => prev.slice(0, -1));
-  }, []);
-
-  const handleOutputClear = useCallback(() => {
-    setOutput([]);
-  }, []);
-
-  const handleOutputRemove = useCallback(
-    index => () => {
-      setOutput(prev => prev.filter((_, i) => i !== index));
-    },
-    []
-  );
-
-  const handleWriteSymbol = useCallback(
-    index => event => {
-      const newLabel = event.target.value;
-      setOutput(prev => {
-        const updated = [...prev];
-        updated[index] = { ...updated[index], label: newLabel };
-        return updated;
-      });
-    },
-    []
   );
 
   const handleLockClick = useCallback(() => {
@@ -239,65 +183,56 @@ const AccessViewer = ({
   const disableBackButton = boardHistory.length <= 1;
 
   return (
-    <div className="AccessViewer">
-      {client && (
-        <AccessViewerHeader
-          clientName={client.name}
-          brandColor={client.color}
-        />
-      )}
-
-      <div className="AccessViewer__output">
-        <Scanner active={false}>
-          <SymbolOutput
-            symbols={output}
-            tabIndex={output.length ? '0' : '-1'}
-            navigationSettings={navigationSettings}
-            onClick={isLiveMode ? undefined : handleOutputClick}
-            onBackspaceClick={handleOutputBackspace}
-            onClearClick={handleOutputClear}
-            onRemoveClick={handleOutputRemove}
-            onWriteSymbol={handleWriteSymbol}
-            onSwitchLiveMode={handleSwitchLiveMode}
-            isLiveMode={isLiveMode}
+    <Scanner
+      active={scannerSettings.active}
+      iterationInterval={scannerSettings.delay}
+      strategy={scannerSettings.strategy}
+    >
+      <div className="AccessViewer">
+        {client && (
+          <AccessViewerHeader
+            clientName={client.name}
+            brandColor={client.color}
           />
-        </Scanner>
-      </div>
+        )}
 
-      <AccessViewerNavbar
-        title={currentBoard.name || ''}
-        isLocked={isLocked}
-        disableBackButton={disableBackButton}
-        onBackClick={handleRequestPreviousBoard}
-        onHomeClick={handleRequestToRootBoard}
-        onLockClick={handleLockClick}
-        onCloseClick={handleCloseClick}
-      />
+        <Scannable>
+          <div className="AccessViewer__output">
+            <OutputContainer />
+          </div>
+        </Scannable>
 
-      <div className="AccessViewer__board">
-        <Board
-          ref={boardRef}
-          board={currentBoard}
-          intl={intl}
-          navigationSettings={{}}
-          isAccessViewerMode={true}
+        <AccessViewerNavbar
+          title={currentBoard.name || ''}
           isLocked={isLocked}
-          isSelecting={false}
-          isSaving={false}
-          onTileClick={handleTileClick}
-          onFocusTile={noop}
-          onRequestPreviousBoard={handleRequestPreviousBoard}
-          onRequestToRootBoard={handleRequestToRootBoard}
+          disableBackButton={disableBackButton}
+          onBackClick={handleRequestPreviousBoard}
+          onHomeClick={handleRequestToRootBoard}
           onLockClick={handleLockClick}
-          onLockNotify={noop}
-          onAddClick={noop}
-          onDeleteClick={noop}
-          onEditClick={noop}
-          onSelectClick={noop}
-          onSelectAllToggle={noop}
+          onCloseClick={handleCloseClick}
         />
+
+        <div className="AccessViewer__board">
+          <BoardGrid
+            board={currentBoard}
+            displaySettings={displaySettings}
+            navigationSettings={navigationSettings}
+            scannerSettings={scannerSettings}
+            isSelecting={false}
+            isSaving={false}
+            isFixedBoard={currentBoard.isFixed}
+            selectedTileIds={[]}
+            intl={intl}
+            onTileClick={handleTileClick}
+            onFocusTile={noop}
+            onRequestPreviousBoard={handleRequestPreviousBoard}
+            onRequestToRootBoard={handleRequestToRootBoard}
+            boardContainerRef={boardContainerRef}
+            fixedBoardContainerRef={fixedBoardContainerRef}
+          />
+        </div>
       </div>
-    </div>
+    </Scanner>
   );
 };
 
@@ -307,12 +242,16 @@ AccessViewer.propTypes = {
 
 const mapStateToProps = state => ({
   isLogged: isLoggedSelector(state),
-  navigationSettings: state.app.navigationSettings
+  output: state.board.output,
+  displaySettings: state.app.displaySettings,
+  navigationSettings: state.app.navigationSettings,
+  scannerSettings: state.scanner
 });
 
 const mapDispatchToProps = {
   speak,
-  cancelSpeech
+  cancelSpeech,
+  changeOutput
 };
 
 export default connect(
