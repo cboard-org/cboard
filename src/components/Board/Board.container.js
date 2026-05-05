@@ -60,16 +60,16 @@ import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
 import API from '../../api';
-import {
-  SCANNING_METHOD_AUTOMATIC,
-  SCANNING_METHOD_MANUAL
-} from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 import { getVisibleBoards } from './Board.selectors';
 import PremiumFeature from '../PremiumFeature';
-import { vocalizeTile, findNextBoard, scrollBoardToTop } from './Board.utils';
+import {
+  scrollBoardToTop,
+  processTileClick,
+  getScannerStrategyNotificationMessages
+} from './Board.utils';
 import LoadingIcon from '../UI/LoadingIcon';
 import PinDialog from '../UI/PinDialog';
 import { resolveTileLabel } from '../../helpers';
@@ -840,40 +840,27 @@ export class BoardContainer extends Component {
       boards,
       showNotification,
       navigationSettings,
-      isLiveMode
+      isLiveMode,
+      output
     } = this.props;
-    const hasAction = tile.action && tile.action.startsWith('+');
 
-    if (tile.loadBoard) {
-      const nextBoard = findNextBoard(tile, boards);
-      if (nextBoard) {
-        changeBoard(nextBoard.id);
-        this.props.history.push(nextBoard.id);
-        if (navigationSettings.vocalizeFolders) {
-          vocalizeTile(tile, speak, { hasAction });
-        }
-      } else {
+    processTileClick({
+      tile,
+      boards,
+      output,
+      navigationSettings,
+      speak,
+      changeBoard,
+      changeOutput,
+      clickSymbol,
+      isLiveMode,
+      onNavigate: nextBoardId => {
+        this.props.history.push(nextBoardId);
+      },
+      onBoardNotFound: () => {
         showNotification(intl.formatMessage(messages.boardMissed));
       }
-    } else {
-      clickSymbol(tile.label);
-      if (!navigationSettings.quietBuilderMode) {
-        vocalizeTile(tile, speak, { hasAction });
-      }
-      if (isLiveMode) {
-        const liveTile = {
-          backgroundColor: 'rgb(255, 241, 118)',
-          id: shortid.generate(),
-          image: '',
-          label: '',
-          labelKey: '',
-          type: 'live'
-        };
-        changeOutput([...this.props.output, tile, liveTile]);
-      } else {
-        changeOutput([...this.props.output, tile]);
-      }
-    }
+    });
   };
 
   handleAddTile = (tile, boardId) => {
@@ -991,15 +978,19 @@ export class BoardContainer extends Component {
       showNotification,
       intl
     } = this.props;
-    const messagesKeyMap = {
-      [SCANNING_METHOD_MANUAL]: messages.scannerManualStrategy,
-      [SCANNING_METHOD_AUTOMATIC]: messages.scannerAutomaticStrategy
-    };
-    showNotification(intl.formatMessage(messagesKeyMap[strategy]));
 
-    if (!isMobile.any) {
+    const {
+      strategyMessage,
+      deactivateMessage,
+      showDeactivate
+    } = getScannerStrategyNotificationMessages(strategy, isMobile.any);
+
+    if (strategyMessage) {
+      showNotification(intl.formatMessage(strategyMessage));
+    }
+    if (showDeactivate) {
       setTimeout(() => {
-        showNotification(intl.formatMessage(messages.scannerHowToDeactivate));
+        showNotification(intl.formatMessage(deactivateMessage));
       }, NOTIFICATION_DELAY);
     }
   };
