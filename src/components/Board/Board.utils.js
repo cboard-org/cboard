@@ -3,7 +3,6 @@ import {
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import moment from 'moment';
-import shortid from 'shortid';
 import { SHORT_ID_MAX_LENGTH, DEFAULT_BOARD_EMAIL } from './Board.constants';
 import { DEFAULT_BOARDS } from '../../helpers';
 import messages from './Board.messages';
@@ -66,11 +65,12 @@ export const findNextBoard = (tile, boards) => {
 
 /**
  * Creates a live mode tile marker appended after the spoken symbol.
+ * @param {Function} generateId - Function that returns a unique id string
  * @returns {Object} Live tile object with a unique id
  */
-export const createLiveTile = () => ({
+export const createLiveTile = generateId => ({
   backgroundColor: 'rgb(255, 241, 118)',
-  id: shortid.generate(),
+  id: generateId(),
   image: '',
   label: '',
   labelKey: '',
@@ -90,6 +90,7 @@ export const createLiveTile = () => ({
  * @param {Function} params.changeOutput - Callback to update output
  * @param {Function} [params.clickSymbol] - Analytics/click tracking callback
  * @param {boolean} [params.isLiveMode] - Whether live mode is active
+ * @param {Function} [params.generateId] - Function that returns a unique id (required when isLiveMode is true)
  * @param {Function} [params.onNavigate] - Called after successful board navigation
  * @param {Function} [params.onBoardNotFound] - Called when loadBoard target not found
  * @returns {{ navigated: boolean, nextBoardId?: string }}
@@ -104,6 +105,7 @@ export const processTileClick = ({
   changeOutput,
   clickSymbol,
   isLiveMode,
+  generateId,
   onNavigate,
   onBoardNotFound
 }) => {
@@ -135,7 +137,7 @@ export const processTileClick = ({
   }
 
   const newOutput = isLiveMode
-    ? [...output, tile, createLiveTile()]
+    ? [...output, tile, createLiveTile(generateId)]
     : [...output, tile];
 
   if (changeOutput) changeOutput(newOutput);
