@@ -3,12 +3,14 @@ import { useParams, useHistory } from 'react-router-dom';
 import { injectIntl, intlShape } from 'react-intl';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import classNames from 'classnames';
+import shortid from 'shortid';
 
 import { Scanner } from 'react-scannable';
 import BoardGrid from '../Board/BoardGrid/BoardGrid.component';
 import OutputContainer from '../Board/Output';
 import { Scannable } from 'react-scannable';
-import { vocalizeTile } from '../Board/Board.utils';
+import { processTileClick } from '../Board/Board.utils';
 import { resolveTileLabel } from '../../helpers';
 import {
   speak,
@@ -118,19 +120,31 @@ const AccessViewer = ({
         label: resolveTileLabel(clickedTile, intl)
       };
 
-      if (tile.loadBoard) {
-        const nextBoard = allBoards[tile.loadBoard];
-        if (nextBoard) {
-          setBoardHistory(prev => [...prev, nextBoard]);
-          vocalizeTile(tile, speak);
-        }
-        return;
-      }
-
-      vocalizeTile(tile, speak);
-      changeOutput([...output, tile]);
+      processTileClick({
+        tile,
+        boards: Object.values(allBoards),
+        output,
+        navigationSettings,
+        speak,
+        changeBoard: null,
+        changeOutput,
+        isLiveMode: currentBoard ? currentBoard.isLiveMode : false,
+        generateId: shortid.generate,
+        onNavigate: nextBoardId => {
+          setBoardHistory(prev => [...prev, allBoards[nextBoardId]]);
+        },
+        onBoardNotFound: () => {}
+      });
     },
-    [intl, allBoards, speak, output, changeOutput]
+    [
+      intl,
+      allBoards,
+      speak,
+      output,
+      changeOutput,
+      navigationSettings,
+      currentBoard
+    ]
   );
 
   const handleRequestPreviousBoard = useCallback(
@@ -197,7 +211,11 @@ const AccessViewer = ({
         )}
 
         <Scannable>
-          <div className="AccessViewer__output">
+          <div
+            className={classNames('AccessViewer__output', {
+              hidden: displaySettings.hideOutputActive
+            })}
+          >
             <OutputContainer />
           </div>
         </Scannable>
