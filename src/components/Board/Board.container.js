@@ -854,6 +854,7 @@ export class BoardContainer extends Component {
       changeOutput,
       clickSymbol,
       isLiveMode,
+      generateId: shortid.generate,
       onNavigate: nextBoardId => {
         this.props.history.push(nextBoardId);
       },
