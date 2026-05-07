@@ -18,7 +18,7 @@ import {
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
 import { changeOutput } from '../Board/Board.actions';
 import { isLogged as isLoggedSelector } from '../App/App.selectors';
-import API from '../../api';
+import { getAccessBoard } from '../../api/accessApi';
 import AccessViewerNavbar from './AccessViewerNavbar';
 import AccessViewerHeader from './AccessViewerHeader';
 import AccessViewerError from './AccessViewerError';
@@ -66,7 +66,7 @@ const AccessViewer = ({
           setLoading(true);
           setError(null);
 
-          const response = await API.getAccessBoard(slug, code);
+          const response = await getAccessBoard(slug, code);
 
           if (!response.boards || response.boards.length === 0) {
             setError('error');
