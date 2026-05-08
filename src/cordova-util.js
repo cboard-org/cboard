@@ -35,19 +35,23 @@ export const cleanUpCvaOnResume = onResume => {
   document.removeEventListener('resume', onResume, false);
 };
 
-export const initDeepLinking = () => {
+export const initDeepLinking = history => {
   if (!window.IonicDeeplink) {
     console.log('IonicDeeplink plugin not available');
     return;
   }
 
-  const history = require('./history').default;
-
   window.IonicDeeplink.route(
-    { '/access/:slug/:code': { target: 'access' } },
+    {
+      '/access/:slug/:code': { target: 'access' },
+      '/board/:id': { target: 'board' }
+    },
     match => {
       if (match.$route === '/access/:slug/:code') {
         history.push(`/access/${match.$args.slug}/${match.$args.code}`);
+      }
+      if (match.$route === '/board/:id') {
+        history.push(`/board/${match.$args.id}`);
       }
     },
     nomatch => {
@@ -59,11 +63,6 @@ export const initDeepLinking = () => {
 export const initCordovaPlugins = () => {
   console.log('now cordova is ready ');
   if (isCordova()) {
-    try {
-      initDeepLinking();
-    } catch (err) {
-      console.log(err.message);
-    }
     try {
       window.StatusBar.hide();
     } catch (err) {
