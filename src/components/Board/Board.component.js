@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import keycode from 'keycode';
 import classNames from 'classnames';
 import { Scanner, Scannable } from 'react-scannable';
 import TextField from '@material-ui/core/TextField';
