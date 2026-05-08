@@ -9,7 +9,13 @@ import { PersistGate } from 'redux-persist/es/integration/react';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 import App from './components/App';
-import { isCordova, onCordovaReady, initCordovaPlugins } from './cordova-util';
+import {
+  isCordova,
+  onCordovaReady,
+  initCordovaPlugins,
+  initDeepLinking
+} from './cordova-util';
+import history from './history';
 import './index.css';
 import './polyfills';
 import './env';
@@ -44,6 +50,7 @@ const paypalOptions = {
 const renderApp = () => {
   if (isCordova()) {
     initCordovaPlugins();
+    initDeepLinking(history);
   }
   ReactDOM.render(
     <Provider store={store}>
