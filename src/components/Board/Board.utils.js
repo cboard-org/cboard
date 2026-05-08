@@ -117,11 +117,11 @@ export const processTileClick = ({
     if (nextBoard) {
       if (changeBoard) changeBoard(nextBoard.id);
 
+      if (onNavigate) onNavigate(nextBoard.id);
+
       if (navigationSettings.vocalizeFolders) {
         vocalizeTile(tile, speak, { hasAction });
       }
-
-      if (onNavigate) onNavigate(nextBoard.id);
 
       return { navigated: true, nextBoardId: nextBoard.id };
     } else {
