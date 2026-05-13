@@ -68,7 +68,8 @@ import PremiumFeature from '../PremiumFeature';
 import {
   scrollBoardToTop,
   processTileClick,
-  getScannerStrategyNotificationMessages
+  getScannerStrategyNotificationMessages,
+  computeScrollState
 } from './Board.utils';
 import LoadingIcon from '../UI/LoadingIcon';
 import PinDialog from '../UI/PinDialog';
@@ -732,9 +733,11 @@ export class BoardContainer extends Component {
           if (item.x > valorAnterior) return item.x;
           return valorAnterior;
         }, 0) + 1;
-      const rows = 3;
-      const isScroll = currentLayout.length / cols > rows ? true : false;
-      const totalRows = Math.ceil(currentLayout.length / cols);
+      const { isScroll, totalRows } = computeScrollState(
+        currentLayout.length,
+        cols,
+        3
+      );
       this.setIsScroll(isScroll, totalRows);
     }
 
