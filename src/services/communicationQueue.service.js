@@ -1,4 +1,4 @@
-import { getStore } from '../configureStore';
+import { getStore } from '../store';
 
 import {
   removeEvents,
