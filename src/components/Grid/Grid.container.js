@@ -7,6 +7,7 @@ import 'react-grid-layout/css/styles.css';
 
 import './Grid.css';
 import { GRID_BREAKPOINTS } from './Grid.constants';
+import { computeScrollState } from '../Board/Board.utils';
 
 const colsRowsShape = PropTypes.shape({
   lg: PropTypes.number,
@@ -50,9 +51,11 @@ export class GridContainer extends PureComponent {
     const breakPoint = this.getBreakpointFromWidth(breakpoints, size.width);
     const currentLayout = this.generateLayout(cols[breakPoint]);
 
-    const isScroll =
-      currentLayout.length / cols[breakPoint] > rows[breakPoint] ? true : false;
-    const totalRows = Math.ceil(children.length / cols[breakPoint]);
+    const { isScroll, totalRows } = computeScrollState(
+      currentLayout.length,
+      cols[breakPoint],
+      rows[breakPoint]
+    );
     setIsScroll(isScroll, totalRows);
   }
 

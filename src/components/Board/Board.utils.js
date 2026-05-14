@@ -296,3 +296,8 @@ export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
     boardIdsToDelete
   };
 }
+
+export const computeScrollState = (itemCount, cols, rows) => ({
+  isScroll: itemCount / cols > rows,
+  totalRows: Math.ceil(itemCount / cols)
+});

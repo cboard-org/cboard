@@ -10,7 +10,7 @@ import { Scanner } from 'react-scannable';
 import BoardGrid from '../Board/BoardGrid/BoardGrid.component';
 import OutputContainer from '../Board/Output';
 import { Scannable } from 'react-scannable';
-import { processTileClick } from '../Board/Board.utils';
+import { processTileClick, computeScrollState } from '../Board/Board.utils';
 import { resolveTileLabel } from '../../helpers';
 import {
   speak,
@@ -53,6 +53,29 @@ const AccessViewer = ({
   const [boardHistory, setBoardHistory] = useState([]);
 
   const [isLocked, setIsLocked] = useState(true);
+
+  const [isScroll, setIsScrollState] = useState(false);
+  const [totalRows, setTotalRows] = useState(0);
+  const setIsScroll = useCallback((scroll, rows = 0) => {
+    setIsScrollState(scroll);
+    setTotalRows(rows);
+  }, []);
+
+  const handleLayoutChange = useCallback(
+    currentLayout => {
+      if (!navigationSettings.bigScrollButtonsActive) return;
+      const cols =
+        currentLayout.reduce((max, item) => (item.x > max ? item.x : max), 0) +
+        1;
+      const { isScroll, totalRows } = computeScrollState(
+        currentLayout.length,
+        cols,
+        3
+      );
+      setIsScroll(isScroll, totalRows);
+    },
+    [navigationSettings.bigScrollButtonsActive, setIsScroll]
+  );
 
   const currentBoard =
     boardHistory.length > 0 ? boardHistory[boardHistory.length - 1] : null;
@@ -248,6 +271,11 @@ const AccessViewer = ({
             onRequestToRootBoard={handleRequestToRootBoard}
             boardContainerRef={boardContainerRef}
             fixedBoardContainerRef={fixedBoardContainerRef}
+            setIsScroll={setIsScroll}
+            isScroll={isScroll}
+            totalRows={totalRows}
+            navHistory={boardHistory.map(b => b.id)}
+            onLayoutChange={handleLayoutChange}
           />
         </div>
       </div>
