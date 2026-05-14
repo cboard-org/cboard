@@ -22,6 +22,7 @@ import { getAccessBoard } from '../../api/accessApi';
 import AccessViewerNavbar from './AccessViewerNavbar';
 import AccessViewerHeader from './AccessViewerHeader';
 import AccessViewerError from './AccessViewerError';
+import messages from './AccessViewer.messages';
 import './AccessViewer.css';
 
 const noop = () => {};
@@ -181,7 +182,7 @@ const AccessViewer = ({
     return (
       <div className="AccessViewer__loading">
         <CircularProgress size={60} thickness={5} />
-        <p>Loading board...</p>
+        <p>{intl.formatMessage(messages.loadingBoard)}</p>
       </div>
     );
   }
