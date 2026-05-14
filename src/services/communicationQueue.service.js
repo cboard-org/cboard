@@ -7,6 +7,7 @@ import {
 
 const FLUSH_INTERVAL = 15000;
 const BATCH_SIZE = 25;
+const MAX_RETRIES = 5;
 
 let flushInterval = null;
 
@@ -31,6 +32,10 @@ export function startCommunicationQueueService() {
 }
 
 export async function flushQueue() {
+  if (!navigator.onLine) {
+    return;
+  }
+
   const store = getStore();
 
   if (!store) {
@@ -45,7 +50,17 @@ export async function flushQueue() {
     return;
   }
 
-  const batch = queuedEvents.slice(0, BATCH_SIZE);
+  const now = Date.now();
+
+  const retryableEvents = queuedEvents.filter(
+    event => !event.nextRetryAt || event.nextRetryAt <= now
+  );
+
+  const batch = retryableEvents.slice(0, BATCH_SIZE);
+
+  if (!batch.length) {
+    return;
+  }
 
   try {
     console.log('Flushing communication events:', batch);
@@ -57,7 +72,9 @@ export async function flushQueue() {
     console.error('Failed to flush communication queue', error);
 
     batch.forEach(event => {
-      store.dispatch(incrementRetry(event.id));
+      if ((event.retryCount || 0) < MAX_RETRIES) {
+        store.dispatch(incrementRetry(event.id));
+      }
     });
   }
 }
