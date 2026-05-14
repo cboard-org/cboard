@@ -30,7 +30,6 @@ const AccessViewerNavbar = ({
           disabled={disableBackButton}
           onClick={onHomeClick}
           aria-label="home"
-          style={{ color: '#fff' }}
         >
           <HomeIcon />
         </IconButton>
