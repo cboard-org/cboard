@@ -1,5 +1,10 @@
 import { getStore } from '../configureStore';
 
+import {
+  removeEvents,
+  incrementRetry
+} from '../components/CommunicationQueue/CommunicationQueue.actions';
+
 const FLUSH_INTERVAL = 15000;
 const BATCH_SIZE = 25;
 
@@ -47,7 +52,12 @@ export async function flushQueue() {
 
     // API request will go here later
 
+    store.dispatch(removeEvents(batch.map(event => event.id)));
   } catch (error) {
     console.error('Failed to flush communication queue', error);
+
+    batch.forEach(event => {
+      store.dispatch(incrementRetry(event.id));
+    });
   }
 }
