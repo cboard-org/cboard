@@ -20,10 +20,12 @@ import configureStore, { getStore } from './store';
 import SubscriptionProvider from './providers/SubscriptionProvider';
 import { PAYPAL_CLIENT_ID } from './constants';
 import { initializeAppInsights } from './appInsights';
+import { startCommunicationQueueService } from './services/communicationQueue.service';
 
 initializeAppInsights();
 const { persistor } = configureStore();
 const store = getStore();
+
 const dndOptions = {
   enableTouchEvents: true,
   enableMouseEvents: true,
@@ -45,6 +47,7 @@ const renderApp = () => {
   if (isCordova()) {
     initCordovaPlugins();
   }
+  startCommunicationQueueService();
   ReactDOM.render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
