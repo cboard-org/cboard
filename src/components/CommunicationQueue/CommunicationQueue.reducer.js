@@ -37,7 +37,10 @@ function communicationQueueReducer(state = initialState, action) {
           event.id === action.payload
             ? {
                 ...event,
-                retryCount: (event.retryCount || 0) + 1
+                retryCount: (event.retryCount || 0) + 1,
+                nextRetryAt:
+                  Date.now() +
+                  Math.min(1000 * 2 ** ((event.retryCount || 0) + 1), 60000)
               }
             : event
         )
