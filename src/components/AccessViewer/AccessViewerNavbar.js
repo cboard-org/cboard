@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { injectIntl, intlShape } from 'react-intl';
 import HomeIcon from '@material-ui/icons/Home';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
@@ -12,7 +11,6 @@ import SettingsButton from '../UI/SettingsButton';
 import '../Board/Navbar/Navbar.css';
 
 const AccessViewerNavbar = ({
-  intl,
   title,
   isLocked,
   disableBackButton,
@@ -62,7 +60,6 @@ const AccessViewerNavbar = ({
 };
 
 AccessViewerNavbar.propTypes = {
-  intl: intlShape.isRequired,
   title: PropTypes.string,
   isLocked: PropTypes.bool,
   disableBackButton: PropTypes.bool,
@@ -80,4 +77,4 @@ AccessViewerNavbar.defaultProps = {
   onLockNotify: () => {}
 };
 
-export default injectIntl(AccessViewerNavbar);
+export default AccessViewerNavbar;
