@@ -15,26 +15,47 @@ import { FormattedMessage } from 'react-intl';
 
 import style from './LoginRequiredModal.module.css';
 
-function LoginRequiredModal({ hideLoginRequired, loginRequiredModalState }) {
-  const { open } = loginRequiredModalState;
+function LoginRequiredModal({
+  hideLoginRequired,
+  loginRequiredModalState,
+  open: openProp,
+  onClose,
+  onContinue,
+  title,
+  text
+}) {
+  const isControlled = openProp !== undefined;
+  const open = isControlled ? openProp : loginRequiredModalState.open;
+  const handleClose = isControlled ? onClose : hideLoginRequired;
 
   return (
     <Dialog
       open={open}
-      onClose={hideLoginRequired}
+      onClose={handleClose}
       maxWidth="md"
       aria-labelledby="dialog"
     >
       <DialogContent className={style.content}>
         <WarningIcon fontSize="large" color="action" />
         <Typography variant="h3">
-          <FormattedMessage {...messages.featureBlockedTitle} />
+          {title || <FormattedMessage {...messages.featureBlockedTitle} />}
         </Typography>
         <Typography className={style.dialogText} variant="h6">
-          <FormattedMessage {...messages.featureBlockedText} />
+          {text || <FormattedMessage {...messages.featureBlockedText} />}
         </Typography>
+        {onContinue && (
+          <Button
+            onClick={onContinue}
+            color="default"
+            variant="outlined"
+            size="large"
+          >
+            <FormattedMessage {...messages.continueWithoutSaving} />
+          </Button>
+        )}
         <Button
-          onClick={hideLoginRequired}
+          className={style.buttonGap}
+          onClick={handleClose}
           color="primary"
           variant="contained"
           size="large"

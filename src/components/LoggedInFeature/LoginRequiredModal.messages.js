@@ -15,5 +15,18 @@ export default defineMessages({
   loginSignupNow: {
     id: 'cboard.components.LoginRequiredModal.loginSignupNow',
     defaultMessage: 'Login or Sign Up now'
+  },
+  continueWithoutSaving: {
+    id: 'cboard.components.LoginRequiredModal.continueWithoutSaving',
+    defaultMessage: 'Continue without saving'
+  },
+  unauthenticatedEditTitle: {
+    id: 'cboard.components.LoginRequiredModal.unauthenticatedEditTitle',
+    defaultMessage: 'You are not logged in'
+  },
+  unauthenticatedEditText: {
+    id: 'cboard.components.LoginRequiredModal.unauthenticatedEditText',
+    defaultMessage:
+      'Any changes you make will not be saved. If you already have a Cboard account, log in to save your changes. If you do not have an account yet, sign up to keep your work.'
   }
 });

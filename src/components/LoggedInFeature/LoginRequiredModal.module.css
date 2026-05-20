@@ -12,6 +12,10 @@
   padding-bottom: 1em;
 }
 
+.buttonGap {
+  margin-top: 0.75em;
+}
+
 @media (max-width: 480px), (max-height: 400px) {
   .content {
     margin: 2em 1em;
