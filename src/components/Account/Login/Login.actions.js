@@ -176,6 +176,11 @@ export function login({ email, password, activatedData }, type = 'local') {
         currentCommunicator =
           loginData.communicators[lastRemoteSavedCommunicatorIndex]; //use the latest communicator
       }
+      const hasRemoteCommunicators =
+        loginData.communicators && loginData.communicators.length > 0;
+      const discardLocalChanges =
+        !loginData.isFirstLogin || hasRemoteCommunicators;
+
       if (apiBoards.length && currentCommunicator) {
         dispatch(addBoards(apiBoards));
       }
@@ -190,7 +195,7 @@ export function login({ email, password, activatedData }, type = 'local') {
           })
         );
       }
-      dispatch(loginSuccess(loginData));
+      dispatch(loginSuccess({ ...loginData, discardLocalChanges }));
       await setAVoice({ loginData, dispatch, getState });
     } catch (e) {
       console.error(e);
