@@ -54,6 +54,7 @@ import {
   verifyAndUpsertCommunicator
 } from '../Communicator/Communicator.actions';
 import { disableTour } from '../App/App.actions';
+import { isLogged } from '../App/App.selectors';
 import { showPremiumRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 import { isSubscriptionRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.selectors';
 import TileEditor from './TileEditor';
@@ -75,6 +76,8 @@ import {
 } from '../../constants';
 import LoadingIcon from '../UI/LoadingIcon';
 import PinDialog from '../UI/PinDialog';
+import LoginRequiredModal from '../LoggedInFeature/LoginRequiredModal';
+import loginRequiredMessages from '../LoggedInFeature/LoginRequiredModal.messages';
 import { resolveTileLabel } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
 
@@ -208,7 +211,9 @@ export class BoardContainer extends Component {
     isCbuilderBoard: false,
     pinDialogOpen: false,
     pinAttempt: '',
-    pinError: false
+    pinError: false,
+    showUnauthEditWarning: false,
+    unauthEditContinueAction: null
   };
   constructor(props) {
     super(props);
@@ -641,6 +646,19 @@ export class BoardContainer extends Component {
   };
 
   handleAddClick = () => {
+    const { isLogged } = this.props;
+    if (!isLogged) {
+      this.setState({
+        showUnauthEditWarning: true,
+        unauthEditContinueAction: () =>
+          this.setState({
+            tileEditorOpen: true,
+            selectedTileIds: [],
+            isSelecting: false
+          })
+      });
+      return;
+    }
     this.setState({
       tileEditorOpen: true,
       selectedTileIds: [],
@@ -821,6 +839,14 @@ export class BoardContainer extends Component {
   };
 
   handleSelectClick = () => {
+    const { isLogged } = this.props;
+    if (!this.state.isSelecting && !isLogged) {
+      this.setState({
+        showUnauthEditWarning: true,
+        unauthEditContinueAction: () => this.toggleSelectMode()
+      });
+      return;
+    }
     this.toggleSelectMode();
   };
 
@@ -1814,6 +1840,24 @@ export class BoardContainer extends Component {
           isSymbolSearchTourEnabled={this.props.isSymbolSearchTourEnabled}
           disableTour={this.props.disableTour}
         />
+        <LoginRequiredModal
+          open={this.state.showUnauthEditWarning}
+          onClose={() => this.setState({ showUnauthEditWarning: false })}
+          onContinue={() => {
+            const action = this.state.unauthEditContinueAction;
+            this.setState({
+              showUnauthEditWarning: false,
+              unauthEditContinueAction: null
+            });
+            if (action) action();
+          }}
+          title={this.props.intl.formatMessage(
+            loginRequiredMessages.unauthenticatedEditTitle
+          )}
+          text={this.props.intl.formatMessage(
+            loginRequiredMessages.unauthenticatedEditText
+          )}
+        />
         <PinDialog
           open={this.state.pinDialogOpen}
           onClose={this.handlePinDialogClose}
@@ -1872,7 +1916,8 @@ export const mapStateToProps = state => {
     isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
     isPremiumRequiredModalOpen: premiumRequiredModalState?.open,
     improvedPhrase: board.improvedPhrase,
-    isSubscriptionRequired: isSubscriptionRequired(state)
+    isSubscriptionRequired: isSubscriptionRequired(state),
+    isLogged: isLogged(state)
   };
 };
 
