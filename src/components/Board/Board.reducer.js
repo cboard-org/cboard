@@ -118,7 +118,7 @@ function tileReducer(board, action) {
 
 function boardReducer(state = initialState, action) {
   switch (action.type) {
-    case LOGIN_SUCCESS:
+    case LOGIN_SUCCESS: {
       let activeBoardId = state.activeBoardId;
       const userCommunicators = action.payload.communicators || [];
       const activeCommunicator = userCommunicators.length
@@ -130,11 +130,22 @@ function boardReducer(state = initialState, action) {
           activeCommunicator.rootBoard || initialState.activeBoardId;
       }
 
+      if (action.payload.discardLocalChanges) {
+        const remoteBoards = action.payload.boards || [];
+        return {
+          ...state,
+          boards: [...deepCopy(initialBoardsState), ...remoteBoards],
+          activeBoardId,
+          navHistory: activeBoardId ? [activeBoardId] : []
+        };
+      }
+
       return {
         ...state,
         activeBoardId,
         navHistory: activeBoardId ? [activeBoardId] : []
       };
+    }
 
     case LOGOUT:
       return {
