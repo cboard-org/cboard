@@ -139,14 +139,10 @@ function boardReducer(state = initialState, action) {
           b => !remoteIds.has(b.id)
         );
         const allBoards = [...defaults, ...remoteBoards];
-        const boardIds = new Set(allBoards.map(b => b.id));
-        const prunedSyncMeta = Object.fromEntries(
-          Object.entries(state.syncMeta).filter(([key]) => boardIds.has(key))
-        );
         return {
           ...state,
           boards: allBoards,
-          syncMeta: prunedSyncMeta,
+          syncMeta: {},
           activeBoardId,
           navHistory: activeBoardId ? [activeBoardId] : []
         };
