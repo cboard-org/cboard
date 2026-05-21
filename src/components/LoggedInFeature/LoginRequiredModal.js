@@ -43,27 +43,28 @@ export function LoginRequiredModalPure({
         <Typography className={style.dialogText} variant="h6">
           {text || <FormattedMessage {...messages.featureBlockedText} />}
         </Typography>
-        {onContinue && (
+        <div className={style.buttons}>
+          {onContinue && (
+            <Button
+              onClick={onContinue}
+              color="default"
+              variant="outlined"
+              size="large"
+            >
+              <FormattedMessage {...messages.continueWithoutSaving} />
+            </Button>
+          )}
           <Button
-            onClick={onContinue}
-            color="default"
-            variant="outlined"
+            onClick={handleClose}
+            color="primary"
+            variant="contained"
             size="large"
+            component={Link}
+            to="/login-signup"
           >
-            <FormattedMessage {...messages.continueWithoutSaving} />
+            <FormattedMessage {...messages.loginSignupNow} />
           </Button>
-        )}
-        <Button
-          className={style.buttonGap}
-          onClick={handleClose}
-          color="primary"
-          variant="contained"
-          size="large"
-          component={Link}
-          to="/login-signup"
-        >
-          <FormattedMessage {...messages.loginSignupNow} />
-        </Button>
+        </div>
       </DialogContent>
     </Dialog>
   );
