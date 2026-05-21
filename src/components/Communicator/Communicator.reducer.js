@@ -42,13 +42,15 @@ function communicatorReducer(state = initialState, action) {
       const activeCommunicatorId = userCommunicators.length
         ? userCommunicators[userCommunicators.length - 1].id
         : state.activeCommunicatorId;
-      const baseCommunicators = action.payload.discardLocalChanges
+      const remoteIds = new Set(userCommunicators.map(c => c.id));
+      const base = (action.payload.discardLocalChanges
         ? deepCopy(defaultCommunicators)
-        : state.communicators;
+        : state.communicators
+      ).filter(c => !remoteIds.has(c.id));
       return {
         ...state,
         activeCommunicatorId,
-        communicators: baseCommunicators.concat(userCommunicators)
+        communicators: base.concat(userCommunicators)
       };
     }
 
