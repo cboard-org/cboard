@@ -181,7 +181,7 @@ export function login({ email, password, activatedData }, type = 'local') {
       const isFirstLogin = loginData.isFirstLogin === true;
       const discardLocalChanges = !isFirstLogin || hasRemoteCommunicators;
 
-      if (apiBoards.length && currentCommunicator) {
+      if (apiBoards.length && currentCommunicator && !discardLocalChanges) {
         dispatch(addBoards(apiBoards));
       }
       if (type === 'local') {
