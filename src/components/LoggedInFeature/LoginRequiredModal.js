@@ -15,7 +15,7 @@ import { FormattedMessage } from 'react-intl';
 
 import style from './LoginRequiredModal.module.css';
 
-function LoginRequiredModal({
+export function LoginRequiredModalPure({
   hideLoginRequired,
   loginRequiredModalState,
   open: openProp,
@@ -80,4 +80,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LoginRequiredModal);
+)(LoginRequiredModalPure);

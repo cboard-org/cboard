@@ -76,7 +76,9 @@ import {
 } from '../../constants';
 import LoadingIcon from '../UI/LoadingIcon';
 import PinDialog from '../UI/PinDialog';
-import LoginRequiredModal from '../LoggedInFeature/LoginRequiredModal';
+import LoginRequiredModal, {
+  LoginRequiredModalPure
+} from '../LoggedInFeature/LoginRequiredModal';
 import loginRequiredMessages from '../LoggedInFeature/LoginRequiredModal.messages';
 import { resolveTileLabel } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
@@ -1840,7 +1842,7 @@ export class BoardContainer extends Component {
           isSymbolSearchTourEnabled={this.props.isSymbolSearchTourEnabled}
           disableTour={this.props.disableTour}
         />
-        <LoginRequiredModal
+        <LoginRequiredModalPure
           open={this.state.showUnauthEditWarning}
           onClose={() => this.setState({ showUnauthEditWarning: false })}
           onContinue={() => {
