@@ -131,10 +131,22 @@ function boardReducer(state = initialState, action) {
       }
 
       if (action.payload.discardLocalChanges) {
-        const remoteBoards = action.payload.boards || [];
+        const remoteBoards = (action.payload.boards || []).map(b =>
+          deepCopy(b)
+        );
+        const remoteIds = new Set(remoteBoards.map(b => b.id));
+        const defaults = deepCopy(initialBoardsState).filter(
+          b => !remoteIds.has(b.id)
+        );
+        const allBoards = [...defaults, ...remoteBoards];
+        const boardIds = new Set(allBoards.map(b => b.id));
+        const prunedSyncMeta = Object.fromEntries(
+          Object.entries(state.syncMeta).filter(([key]) => boardIds.has(key))
+        );
         return {
           ...state,
-          boards: [...deepCopy(initialBoardsState), ...remoteBoards],
+          boards: allBoards,
+          syncMeta: prunedSyncMeta,
           activeBoardId,
           navHistory: activeBoardId ? [activeBoardId] : []
         };
