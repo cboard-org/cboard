@@ -76,9 +76,7 @@ import {
 } from '../../constants';
 import LoadingIcon from '../UI/LoadingIcon';
 import PinDialog from '../UI/PinDialog';
-import LoginRequiredModal, {
-  LoginRequiredModalPure
-} from '../LoggedInFeature/LoginRequiredModal';
+import { LoginRequiredModalPure } from '../LoggedInFeature/LoginRequiredModal';
 import loginRequiredMessages from '../LoggedInFeature/LoginRequiredModal.messages';
 import { resolveTileLabel } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
