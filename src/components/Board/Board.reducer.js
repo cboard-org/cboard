@@ -142,7 +142,10 @@ function boardReducer(state = initialState, action) {
         return {
           ...state,
           boards: allBoards,
-          syncMeta: {},
+          syncMeta: allBoards.reduce((acc, b) => {
+            acc[b.id] = { status: SYNC_STATUS.SYNCED };
+            return acc;
+          }, {}),
           activeBoardId,
           navHistory: activeBoardId ? [activeBoardId] : []
         };
