@@ -151,8 +151,21 @@ function boardReducer(state = initialState, action) {
         };
       }
 
+      const remoteBoards = (action.payload.boards || []).map(b => deepCopy(b));
+      const existingIds = new Set(state.boards.map(b => b.id));
+      const newBoards = remoteBoards.filter(
+        b => b?.id && !existingIds.has(b.id)
+      );
+      const addedSyncMeta = newBoards.reduce((acc, b) => {
+        acc[b.id] = {
+          status: isLocalBoard(b) ? SYNC_STATUS.PENDING : SYNC_STATUS.SYNCED
+        };
+        return acc;
+      }, {});
       return {
         ...state,
+        boards: state.boards.concat(newBoards),
+        syncMeta: { ...state.syncMeta, ...addedSyncMeta },
         activeBoardId,
         navHistory: activeBoardId ? [activeBoardId] : []
       };
