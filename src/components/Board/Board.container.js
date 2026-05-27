@@ -213,7 +213,8 @@ export class BoardContainer extends Component {
     pinAttempt: '',
     pinError: false,
     showUnauthEditWarning: false,
-    unauthEditContinueAction: null
+    unauthEditContinueAction: null,
+    hasShownUnauthEditWarning: false
   };
   constructor(props) {
     super(props);
@@ -327,9 +328,12 @@ export class BoardContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { board } = this.props;
+    const { board, isLogged } = this.props;
     if (board && prevProps.board && board.isFixed !== prevProps.board.isFixed) {
       this.setState({ isFixedBoard: board.isFixed });
+    }
+    if (prevProps.isLogged && !isLogged) {
+      this.setState({ hasShownUnauthEditWarning: false });
     }
   }
 
@@ -648,14 +652,23 @@ export class BoardContainer extends Component {
   handleAddClick = () => {
     const { isLogged } = this.props;
     if (!isLogged) {
+      if (!this.state.hasShownUnauthEditWarning) {
+        this.setState({
+          showUnauthEditWarning: true,
+          hasShownUnauthEditWarning: true,
+          unauthEditContinueAction: () =>
+            this.setState({
+              tileEditorOpen: true,
+              selectedTileIds: [],
+              isSelecting: false
+            })
+        });
+        return;
+      }
       this.setState({
-        showUnauthEditWarning: true,
-        unauthEditContinueAction: () =>
-          this.setState({
-            tileEditorOpen: true,
-            selectedTileIds: [],
-            isSelecting: false
-          })
+        tileEditorOpen: true,
+        selectedTileIds: [],
+        isSelecting: false
       });
       return;
     }
@@ -841,10 +854,15 @@ export class BoardContainer extends Component {
   handleSelectClick = () => {
     const { isLogged } = this.props;
     if (!this.state.isSelecting && !isLogged) {
-      this.setState({
-        showUnauthEditWarning: true,
-        unauthEditContinueAction: () => this.toggleSelectMode()
-      });
+      if (!this.state.hasShownUnauthEditWarning) {
+        this.setState({
+          showUnauthEditWarning: true,
+          hasShownUnauthEditWarning: true,
+          unauthEditContinueAction: () => this.toggleSelectMode()
+        });
+        return;
+      }
+      this.toggleSelectMode();
       return;
     }
     this.toggleSelectMode();
