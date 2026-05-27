@@ -27,6 +27,6 @@ export default defineMessages({
   unauthenticatedEditText: {
     id: 'cboard.components.LoginRequiredModal.unauthenticatedEditText',
     defaultMessage:
-      'Any changes you make will not be saved. If you already have a Cboard account, log in to save your changes. If you do not have an account yet, sign up to keep your work.'
+      'Your changes are saved locally on this device. If you sign up for a new account, your changes will be synced and kept. If you already have a Cboard account with boards, logging in will replace your local changes with your saved boards.'
   }
 });

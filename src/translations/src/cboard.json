@@ -27,7 +27,7 @@
   "cboard.components.LoginRequiredModal.loginSignupNow": "Login or Sign Up now",
   "cboard.components.LoginRequiredModal.continueWithoutSaving": "Continue without saving",
   "cboard.components.LoginRequiredModal.unauthenticatedEditTitle": "You are not logged in",
-  "cboard.components.LoginRequiredModal.unauthenticatedEditText": "Any changes you make will not be saved. If you already have a Cboard account, log in to save your changes. If you do not have an account yet, sign up to keep your work.",
+  "cboard.components.LoginRequiredModal.unauthenticatedEditText": "Your changes are saved locally on this device. If you sign up for a new account, your changes will be synced and kept. If you already have a Cboard account with boards, logging in will replace your local changes with your saved boards.",
   "cboard.components.FormItems.PasswwordTextField.togglePasswordVisibility": "Toggle password visibility",
   "cboard.components.SignUp.signUp": "Sign Up",
   "cboard.components.SignUp.name": "Name",
