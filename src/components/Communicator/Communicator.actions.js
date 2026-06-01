@@ -233,6 +233,24 @@ export function verifyAndUpsertCommunicator(
 }
 
 /*
+ * Ensures the communicator belongs to the logged-in user, then persists it.
+ * Single call site for every communicator push — the ownership invariant
+ * cannot be forgotten by a future caller.
+ */
+export function pushCommunicator(communicator, { changeActive = true } = {}) {
+  return async (dispatch, getState) => {
+    const owned = dispatch(
+      verifyAndUpsertCommunicator(communicator, changeActive)
+    );
+    const { userData } = getState().app;
+    if ('name' in userData && 'email' in userData) {
+      await dispatch(upsertApiCommunicator(owned));
+    }
+    return owned;
+  };
+}
+
+/*
  * Thunk functions
  */
 

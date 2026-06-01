@@ -212,7 +212,8 @@ function communicatorReducer(state = initialState, action) {
       return { ...state };
 
     case CREATE_API_COMMUNICATOR_SUCCESS:
-      // need to check if it was the active communicator as well
+      // need to check if it was the active communicator as well.
+
       return {
         ...state,
         isFetching: false,
@@ -225,6 +226,8 @@ function communicatorReducer(state = initialState, action) {
             ? {
                 ...communicator,
                 id: action.communicator.id,
+                email: action.communicator.email,
+                author: action.communicator.author,
                 lastEdited: action.communicator.lastEdited
               }
             : communicator

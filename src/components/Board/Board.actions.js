@@ -727,6 +727,11 @@ export function pushLocalChangesToApi(remoteBoards = []) {
       dispatch
     });
 
+    // If any board needs to be created, ensure the active communicator is owned
+    // by the logged-in user before any push runs. Guard on email inequality:
+    // verifyAndUpsertCommunicator re-stamps lastEdited on every dispatch (via
+    // EDIT_COMMUNICATOR), so re-running it on an already-owned communicator
+    // would bump lastEdited and risk a spurious PUT on the next sync.
     if (boardsToSync.some(b => b.needsCreate)) {
       const { communicators, activeCommunicatorId } = getState().communicator;
       const activeCommunicator = communicators.find(
