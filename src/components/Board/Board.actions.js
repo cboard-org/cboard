@@ -727,12 +727,15 @@ export function pushLocalChangesToApi(remoteBoards = []) {
       dispatch
     });
 
+    // If any board needs to be created, ensure the active communicator is owned
+    // by the logged-in user before any push runs.
+    // verifyAndUpsertCommunicator is a no-op when the email already matches.
     if (boardsToSync.some(b => b.needsCreate)) {
       const { communicators, activeCommunicatorId } = getState().communicator;
       const activeCommunicator = communicators.find(
         c => c.id === activeCommunicatorId
       );
-      if (activeCommunicator && activeCommunicator.email !== userEmail) {
+      if (activeCommunicator) {
         dispatch(verifyAndUpsertCommunicator(activeCommunicator));
       }
     }
