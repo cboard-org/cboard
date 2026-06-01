@@ -727,6 +727,16 @@ export function pushLocalChangesToApi(remoteBoards = []) {
       dispatch
     });
 
+    if (boardsToSync.some(b => b.needsCreate)) {
+      const { communicators, activeCommunicatorId } = getState().communicator;
+      const activeCommunicator = communicators.find(
+        c => c.id === activeCommunicatorId
+      );
+      if (activeCommunicator && activeCommunicator.email !== userEmail) {
+        dispatch(verifyAndUpsertCommunicator(activeCommunicator));
+      }
+    }
+
     // PUSH: Create/update boards
     for (const { boardId, needsCreate } of boardsToSync) {
       // Re-read board from current state to avoid stale references
