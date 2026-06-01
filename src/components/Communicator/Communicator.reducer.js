@@ -213,8 +213,7 @@ function communicatorReducer(state = initialState, action) {
 
     case CREATE_API_COMMUNICATOR_SUCCESS:
       // need to check if it was the active communicator as well.
-      // Apply server-authoritative fields (email, author) so subsequent
-      // PUT requests carry the correct owner — not the default communicator's.
+
       return {
         ...state,
         isFetching: false,
