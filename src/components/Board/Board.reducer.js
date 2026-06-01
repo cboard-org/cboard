@@ -422,11 +422,17 @@ function boardReducer(state = initialState, action) {
       });
 
       const newSyncMeta = removeSyncMeta(state.syncMeta, action.boardId);
+      const patchedSyncMeta = finalBoards.reduce((meta, board) => {
+        if (board.markToUpdate || board.shouldCreateBoard) {
+          return setSyncMeta(meta, board.id, { status: SYNC_STATUS.PENDING });
+        }
+        return meta;
+      }, newSyncMeta);
       return {
         ...state,
         isFetching: false,
         boards: finalBoards,
-        syncMeta: setSyncMeta(newSyncMeta, action.board.id, {
+        syncMeta: setSyncMeta(patchedSyncMeta, action.board.id, {
           status: SYNC_STATUS.SYNCED
         })
       };
