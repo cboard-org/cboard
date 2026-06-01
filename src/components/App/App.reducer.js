@@ -167,7 +167,12 @@ function appReducer(state = initialState, action) {
     case LOGOUT:
       return {
         ...state,
-        userData: {}
+        userData: {},
+        navigationSettings: {
+          ...state.navigationSettings,
+          pinLockEnabled: false,
+          pinCode: ''
+        }
       };
     case UPDATE_USER_DATA:
       return {
