@@ -1,18 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
-import { makeStyles } from '@material-ui/core/styles';
+import { alpha, makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
+import Skeleton from '@material-ui/lab/Skeleton';
 import Pagination from '@material-ui/lab/Pagination';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
+import SearchIcon from '@material-ui/icons/Search';
+import InboxIcon from '@material-ui/icons/Inbox';
 
 import BoardCard from './BoardCard';
 import BoardRow from './BoardRow';
+import { softRadius } from './dashboardStyles';
 import { VIEW_MODES } from '../CommunicatorDialog.constants';
 import messages from '../CommunicatorDialog.messages';
+
+const SKELETON_COUNT = 8;
 
 const useStyles = makeStyles(theme => ({
   stateContainer: {
@@ -20,9 +26,26 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: theme.spacing(6, 2),
+    padding: theme.spacing(8, 2),
     color: theme.palette.text.secondary,
     textAlign: 'center'
+  },
+  emptyIconWrap: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 72,
+    height: 72,
+    borderRadius: '50%',
+    marginBottom: theme.spacing(2),
+    backgroundColor: alpha(theme.palette.primary.main, 0.1),
+    color: theme.palette.primary.main
+  },
+  emptyIcon: {
+    fontSize: '2.25rem'
+  },
+  emptyText: {
+    maxWidth: 320
   },
   list: {
     display: 'flex',
@@ -32,9 +55,61 @@ const useStyles = makeStyles(theme => ({
   pagination: {
     display: 'flex',
     justifyContent: 'center',
-    padding: theme.spacing(2, 0)
+    padding: theme.spacing(3, 0, 1)
+  },
+  skeletonCard: {
+    borderRadius: softRadius(theme),
+    overflow: 'hidden'
+  },
+  skeletonBody: {
+    padding: theme.spacing(1.5)
+  },
+  skeletonRow: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: theme.spacing(2),
+    padding: theme.spacing(1, 1.5)
   }
 }));
+
+const LoadingState = ({ classes, viewMode }) => {
+  if (viewMode === VIEW_MODES.LIST) {
+    return (
+      <div className={classes.list}>
+        {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
+          <div key={i} className={classes.skeletonRow}>
+            <Skeleton variant="rect" width={64} height={64} />
+            <div style={{ flex: 1 }}>
+              <Skeleton width="40%" />
+              <Skeleton width="70%" />
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  return (
+    <Grid container spacing={2}>
+      {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
+          <div className={classes.skeletonCard}>
+            <Skeleton variant="rect" height={132} />
+            <div className={classes.skeletonBody}>
+              <Skeleton width="80%" />
+              <Skeleton width="50%" />
+              <Skeleton width="35%" />
+            </div>
+          </div>
+        </Grid>
+      ))}
+    </Grid>
+  );
+};
+
+LoadingState.propTypes = {
+  classes: PropTypes.object.isRequired,
+  viewMode: PropTypes.string.isRequired
+};
 
 const BoardsView = ({
   intl,
@@ -53,11 +128,7 @@ const BoardsView = ({
   const classes = useStyles();
 
   if (loading) {
-    return (
-      <div className={classes.stateContainer}>
-        <CircularProgress />
-      </div>
-    );
+    return <LoadingState classes={classes} viewMode={viewMode} />;
   }
 
   if (error) {
@@ -82,9 +153,18 @@ const BoardsView = ({
   if (!boards.length) {
     return (
       <div className={classes.stateContainer}>
-        {intl.formatMessage(
-          hasSearch ? messages.noBoardsFound : messages.emptyBoardsList
-        )}
+        <div className={classes.emptyIconWrap}>
+          {hasSearch ? (
+            <SearchIcon className={classes.emptyIcon} />
+          ) : (
+            <InboxIcon className={classes.emptyIcon} />
+          )}
+        </div>
+        <Typography variant="subtitle1" className={classes.emptyText}>
+          {intl.formatMessage(
+            hasSearch ? messages.noBoardsFound : messages.emptyBoardsList
+          )}
+        </Typography>
       </div>
     );
   }
@@ -122,6 +202,7 @@ const BoardsView = ({
             count={totalPages}
             page={page}
             color="primary"
+            shape="rounded"
             onChange={(event, value) => onPageChange(value)}
           />
         </div>

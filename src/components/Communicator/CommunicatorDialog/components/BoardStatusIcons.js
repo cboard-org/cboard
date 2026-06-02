@@ -14,11 +14,23 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: theme.spacing(0.5),
-    color: theme.palette.success?.main || '#369b00'
+    gap: theme.spacing(0.5)
   },
   icon: {
     fontSize: '1.1rem'
+  },
+  // Semantic colors so each status reads on its own instead of a uniform green.
+  public: {
+    color: theme.palette.success?.main || '#369b00'
+  },
+  private: {
+    color: theme.palette.text.secondary
+  },
+  root_: {
+    color: theme.palette.primary.main
+  },
+  active: {
+    color: theme.palette.secondary?.main || theme.palette.primary.main
   }
 }));
 
@@ -33,21 +45,24 @@ const BoardStatusIcons = ({ intl, board, communicator, activeBoardId }) => {
       title: board.isPublic
         ? intl.formatMessage(messages.publicBoard)
         : intl.formatMessage(messages.privateBoard),
-      icon: board.isPublic ? <PublicIcon /> : <KeyIcon />
+      icon: board.isPublic ? <PublicIcon /> : <KeyIcon />,
+      colorClass: board.isPublic ? classes.public : classes.private
     }
   ];
   if (isRoot) {
     items.push({
       key: 'root',
       title: intl.formatMessage(messages.rootBoard),
-      icon: <HomeIcon />
+      icon: <HomeIcon />,
+      colorClass: classes.root_
     });
   }
   if (isActive) {
     items.push({
       key: 'active',
       title: intl.formatMessage(messages.activeBoard),
-      icon: <RemoveRedEyeIcon />
+      icon: <RemoveRedEyeIcon />,
+      colorClass: classes.active
     });
   }
 
@@ -60,7 +75,7 @@ const BoardStatusIcons = ({ intl, board, communicator, activeBoardId }) => {
           name="CommunicatorDialog__PropertyOption"
         >
           {React.cloneElement(item.icon, {
-            className: classes.icon,
+            className: `${classes.icon} ${item.colorClass}`,
             'aria-label': item.title
           })}
         </Tooltip>

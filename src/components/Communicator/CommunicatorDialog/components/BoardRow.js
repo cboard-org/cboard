@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -11,6 +12,12 @@ import BoardThumb from './BoardThumb';
 import BoardStatusIcons from './BoardStatusIcons';
 import BoardActionsBar from './BoardActionsBar';
 import { formatBoardLocale } from './boardLocale';
+import {
+  softRadius,
+  surfaceInteractive,
+  surfaceAccent,
+  busyOverlay
+} from './dashboardStyles';
 import messages from '../CommunicatorDialog.messages';
 
 const useStyles = makeStyles(theme => ({
@@ -19,13 +26,17 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     gap: theme.spacing(2),
-    padding: theme.spacing(1, 1.5)
+    padding: theme.spacing(1, 1.5),
+    borderRadius: softRadius(theme),
+    ...surfaceInteractive(theme)
   },
+  accent: surfaceAccent(theme),
   thumb: {
     width: 64,
     height: 64,
     flexShrink: 0,
-    borderRadius: theme.shape.borderRadius
+    borderRadius: theme.shape.borderRadius,
+    border: `1px solid ${theme.palette.divider}`
   },
   main: {
     flex: 1,
@@ -48,15 +59,7 @@ const useStyles = makeStyles(theme => ({
       display: 'none'
     }
   },
-  busy: {
-    position: 'absolute',
-    inset: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(255,255,255,0.5)',
-    zIndex: 2
-  }
+  busy: busyOverlay(theme)
 }));
 
 const BoardRow = ({
@@ -72,6 +75,8 @@ const BoardRow = ({
   const classes = useStyles();
   const title = board.name || board.id;
   const locale = formatBoardLocale(intl, board.locale);
+  const accented =
+    communicator.rootBoard === board.id || activeBoardId === board.id;
   const metaParts = [
     intl.formatMessage(messages.tilesQty, { qty: board.tiles.length }),
     locale,
@@ -81,7 +86,10 @@ const BoardRow = ({
   ].filter(Boolean);
 
   return (
-    <Paper variant="outlined" className={classes.row}>
+    <Paper
+      variant="outlined"
+      className={classNames(classes.row, { [classes.accent]: accented })}
+    >
       {busy && (
         <div className={classes.busy}>
           <CircularProgress size={24} />

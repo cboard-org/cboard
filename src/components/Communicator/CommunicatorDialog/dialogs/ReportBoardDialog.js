@@ -77,6 +77,8 @@ const ReportBoardDialog = ({
       open={open}
       onClose={loading ? undefined : onClose}
       aria-labelledby="board-report-title"
+      fullWidth
+      maxWidth="xs"
     >
       <DialogTitle id="board-report-title">
         <div
@@ -144,7 +146,7 @@ const ReportBoardDialog = ({
           </DialogContent>
           {!loading && (
             <DialogActions>
-              <Button onClick={onClose} color="default" variant="contained">
+              <Button onClick={onClose} color="primary">
                 {intl.formatMessage(messages.boardReportCancel)}
               </Button>
               <Button

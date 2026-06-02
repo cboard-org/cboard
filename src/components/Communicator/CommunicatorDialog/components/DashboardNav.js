@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
-import { makeStyles } from '@material-ui/core/styles';
+import { alpha, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
+import Typography from '@material-ui/core/Typography';
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PublicIcon from '@material-ui/icons/Public';
@@ -40,80 +41,120 @@ const SECTION_LABELS = {
   }
 };
 
-const useStyles = makeStyles(theme => ({
-  drawerPaper: {
-    width: NAV_WIDTH,
-    position: 'relative',
-    border: 'none',
-    borderRight: `1px solid ${theme.palette.divider}`,
-    backgroundColor: theme.palette.background.paper
-  },
-  temporaryPaper: {
-    width: NAV_WIDTH
-  },
-  list: {
-    paddingTop: theme.spacing(1)
-  },
-  item: {
-    borderRadius: theme.shape.borderRadius,
-    margin: theme.spacing(0.5, 1),
-    width: 'auto',
-    '&.Mui-selected': {
-      backgroundColor: alphaSelected(theme),
-      '&:hover': {
-        backgroundColor: alphaSelected(theme)
+const useStyles = makeStyles(theme => {
+  const dark = theme.palette.type === 'dark';
+  return {
+    drawerPaper: {
+      width: NAV_WIDTH,
+      position: 'relative',
+      border: 'none',
+      borderRight: `1px solid ${theme.palette.divider}`,
+      // Subtly recede the sidebar from the content surface in both modes.
+      backgroundColor: dark
+        ? alpha(theme.palette.common.white, 0.03)
+        : theme.palette.grey[50]
+    },
+    temporaryPaper: {
+      width: NAV_WIDTH,
+      backgroundColor: dark
+        ? theme.palette.background.paper
+        : theme.palette.grey[50]
+    },
+    header: {
+      padding: theme.spacing(2, 2, 1),
+      color: theme.palette.text.secondary,
+      fontWeight: 700,
+      letterSpacing: '0.08em',
+      textTransform: 'uppercase'
+    },
+    list: {
+      paddingTop: theme.spacing(0.5),
+      paddingBottom: theme.spacing(1.5)
+    },
+    item: {
+      position: 'relative',
+      borderRadius: theme.shape.borderRadius * 2,
+      margin: theme.spacing(0.25, 1),
+      padding: theme.spacing(1, 1.5),
+      width: 'auto',
+      transition: theme.transitions.create(['background-color']),
+      // Left accent bar that grows in when the section is selected.
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        left: 0,
+        top: '50%',
+        transform: 'translateY(-50%)',
+        width: 3,
+        height: 0,
+        borderRadius: 3,
+        backgroundColor: theme.palette.primary.main,
+        transition: theme.transitions.create('height')
+      },
+      '&.Mui-selected': {
+        backgroundColor: alpha(theme.palette.primary.main, 0.12),
+        '&:hover': {
+          backgroundColor: alpha(theme.palette.primary.main, 0.18)
+        },
+        '&::before': {
+          height: '60%'
+        }
       }
+    },
+    itemIcon: {
+      minWidth: 40
+    },
+    selectedIcon: {
+      color: theme.palette.primary.main
+    },
+    selectedText: {
+      color: theme.palette.primary.main,
+      fontWeight: 600
     }
-  },
-  selectedIcon: {
-    color: theme.palette.primary.main
-  },
-  selectedText: {
-    color: theme.palette.primary.main,
-    fontWeight: 600
-  }
-}));
-
-function alphaSelected(theme) {
-  return theme.palette.type === 'dark'
-    ? 'rgba(255, 255, 255, 0.12)'
-    : 'rgba(63, 81, 181, 0.12)';
-}
+  };
+});
 
 const NavList = ({ intl, section, onChange }) => {
   const classes = useStyles();
   return (
-    <List className={classes.list} component="nav">
-      {SECTION_ORDER.map(key => {
-        const meta = SECTION_LABELS[key];
-        const Icon = SECTION_ICONS[key];
-        const selected = section === key;
-        return (
-          <ListItem
-            button
-            key={key}
-            id={`CommunicatorDialog__nav-${key}`}
-            selected={selected}
-            className={classes.item}
-            onClick={() => onChange(key)}
-            aria-current={selected ? 'page' : undefined}
-          >
-            <ListItemIcon
-              className={selected ? classes.selectedIcon : undefined}
+    <>
+      <Typography variant="overline" component="div" className={classes.header}>
+        {intl.formatMessage(messages.navigation)}
+      </Typography>
+      <List className={classes.list} component="nav">
+        {SECTION_ORDER.map(key => {
+          const meta = SECTION_LABELS[key];
+          const Icon = SECTION_ICONS[key];
+          const selected = section === key;
+          return (
+            <ListItem
+              button
+              key={key}
+              id={`CommunicatorDialog__nav-${key}`}
+              selected={selected}
+              className={classes.item}
+              onClick={() => onChange(key)}
+              aria-current={selected ? 'page' : undefined}
             >
-              <Icon />
-            </ListItemIcon>
-            <ListItemText
-              primaryTypographyProps={{
-                className: selected ? classes.selectedText : undefined
-              }}
-              primary={intl.formatMessage(messages[meta.label])}
-              secondary={intl.formatMessage(messages[meta.hint])}
-            />
-          </ListItem>
-        );
-      })}
-    </List>
+              <ListItemIcon
+                className={`${classes.itemIcon} ${
+                  selected ? classes.selectedIcon : ''
+                }`}
+              >
+                <Icon />
+              </ListItemIcon>
+              <ListItemText
+                primaryTypographyProps={{
+                  className: selected ? classes.selectedText : undefined
+                }}
+                primary={intl.formatMessage(messages[meta.label])}
+                secondary={intl.formatMessage(messages[meta.hint])}
+              />
+            </ListItem>
+          );
+        })}
+      </List>
+    </>
   );
 };
 

@@ -59,6 +59,8 @@ const PublishBoardDialog = ({
       open={open}
       onClose={loading ? undefined : onClose}
       aria-labelledby="board-publish-title"
+      fullWidth
+      maxWidth="xs"
     >
       <DialogTitle id="board-publish-title">
         {intl.formatMessage(messages.publishBoard)}

@@ -53,6 +53,8 @@ const ConfirmDialog = ({
       open={open}
       onClose={loading ? undefined : onClose}
       aria-labelledby="confirm-dialog-title"
+      fullWidth
+      maxWidth="xs"
     >
       <DialogTitle id="confirm-dialog-title">{title}</DialogTitle>
       <DialogContent>

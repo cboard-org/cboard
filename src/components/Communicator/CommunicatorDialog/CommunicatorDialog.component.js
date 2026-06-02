@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
-import { makeStyles } from '@material-ui/core/styles';
+import { alpha, makeStyles } from '@material-ui/core/styles';
 import { debounce } from 'lodash';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
@@ -18,6 +18,7 @@ import useBoardActions from './hooks/useBoardActions';
 import DashboardToolbar from './components/DashboardToolbar';
 import DashboardNav, { NAV_WIDTH } from './components/DashboardNav';
 import SectionHeader from './components/SectionHeader';
+import ContentToolbar from './components/ContentToolbar';
 import BoardsView from './components/BoardsView';
 import CommunicatorDialogTour from './CommunicatorDialogTour.component';
 
@@ -42,7 +43,29 @@ const useStyles = makeStyles(theme => ({
   content: {
     flex: 1,
     minWidth: 0,
-    padding: theme.spacing(0, 2, 2)
+    // Horizontal padding lives on the children (sticky header / boards) so the
+    // sticky bar can span edge to edge without negative margins, which were
+    // causing a page-wide horizontal scrollbar.
+    paddingBottom: theme.spacing(2)
+  },
+  stickyHeader: {
+    position: 'sticky',
+    top: 0,
+    zIndex: 3,
+    // Title block and the search/view toolbar share one row on wider screens
+    // and wrap to two rows on xs, keeping the header compact so more boards
+    // stay visible.
+    display: 'flex',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: theme.spacing(1, 2),
+    padding: theme.spacing(1, 2),
+    backgroundColor: alpha(theme.palette.background.default, 0.85),
+    backdropFilter: 'blur(8px)',
+    borderBottom: `1px solid ${theme.palette.divider}`
+  },
+  boards: {
+    padding: theme.spacing(2, 2, 0)
   }
 }));
 
@@ -192,16 +215,7 @@ const CommunicatorDialog = ({
       open={open}
       title={intl.formatMessage(messages.title)}
       onClose={onClose}
-      buttons={
-        <DashboardToolbar
-          intl={intl}
-          search={searchInput}
-          onSearchChange={handleSearchChange}
-          viewMode={viewMode}
-          onViewModeChange={handleViewModeChange}
-          onOpenNav={() => setMobileNavOpen(true)}
-        />
-      }
+      // buttons={<DashboardToolbar intl={intl} />}
     >
       <div className={classes.dashboard}>
         <DashboardNav
@@ -213,22 +227,38 @@ const CommunicatorDialog = ({
         />
 
         <main className={classes.content}>
-          <SectionHeader intl={intl} section={section} total={fetcher.total} />
+          <div className={classes.stickyHeader}>
+            <SectionHeader
+              intl={intl}
+              section={section}
+              total={fetcher.total}
+              onOpenNav={() => setMobileNavOpen(true)}
+            />
+            <ContentToolbar
+              intl={intl}
+              search={searchInput}
+              onSearchChange={handleSearchChange}
+              viewMode={viewMode}
+              onViewModeChange={handleViewModeChange}
+            />
+          </div>
 
-          <BoardsView
-            intl={intl}
-            boards={fetcher.boards}
-            viewMode={viewMode}
-            loading={fetcher.loading}
-            error={fetcher.error}
-            hasSearch={!!search}
-            page={fetcher.page}
-            totalPages={fetcher.totalPages}
-            onPageChange={fetcher.goToPage}
-            onRetry={fetcher.refetch}
-            busyBoardId={busyBoardId}
-            boardProps={boardProps}
-          />
+          <div className={classes.boards}>
+            <BoardsView
+              intl={intl}
+              boards={fetcher.boards}
+              viewMode={viewMode}
+              loading={fetcher.loading}
+              error={fetcher.error}
+              hasSearch={!!search}
+              page={fetcher.page}
+              totalPages={fetcher.totalPages}
+              onPageChange={fetcher.goToPage}
+              onRetry={fetcher.refetch}
+              busyBoardId={busyBoardId}
+              boardProps={boardProps}
+            />
+          </div>
 
           <CommunicatorDialogTour
             communicatorTour={communicatorTour}

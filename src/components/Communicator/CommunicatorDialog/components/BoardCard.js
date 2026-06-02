@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -13,6 +14,12 @@ import BoardThumb from './BoardThumb';
 import BoardStatusIcons from './BoardStatusIcons';
 import BoardActionsBar from './BoardActionsBar';
 import { formatBoardLocale } from './boardLocale';
+import {
+  softRadius,
+  surfaceInteractive,
+  surfaceAccent,
+  busyOverlay
+} from './dashboardStyles';
 import messages from '../CommunicatorDialog.messages';
 
 const useStyles = makeStyles(theme => ({
@@ -20,10 +27,14 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    height: '100%'
+    height: '100%',
+    borderRadius: softRadius(theme),
+    overflow: 'hidden',
+    ...surfaceInteractive(theme, { lift: true })
   },
+  accent: surfaceAccent(theme),
   thumb: {
-    height: 130,
+    height: 132,
     flexShrink: 0
   },
   content: {
@@ -32,6 +43,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     fontWeight: 600,
+    lineHeight: 1.3,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     display: '-webkit-box',
@@ -43,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     gap: theme.spacing(0.5),
     color: theme.palette.text.secondary,
-    marginTop: theme.spacing(0.5)
+    marginTop: theme.spacing(0.75)
   },
   metaIcon: {
     fontSize: '1rem'
@@ -52,28 +64,23 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.secondary,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    marginTop: theme.spacing(0.25)
   },
   footer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: theme.spacing(0, 1, 1, 2),
-    gap: theme.spacing(1)
+    gap: theme.spacing(1),
+    borderTop: `1px solid ${theme.palette.divider}`,
+    paddingTop: theme.spacing(1)
   },
   date: {
     fontSize: '0.75rem',
     color: theme.palette.text.hint
   },
-  busy: {
-    position: 'absolute',
-    inset: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(255,255,255,0.5)',
-    zIndex: 2
-  }
+  busy: busyOverlay(theme)
 }));
 
 const BoardCard = ({
@@ -89,9 +96,14 @@ const BoardCard = ({
   const classes = useStyles();
   const title = board.name || board.id;
   const locale = formatBoardLocale(intl, board.locale);
+  const accented =
+    communicator.rootBoard === board.id || activeBoardId === board.id;
 
   return (
-    <Card variant="outlined" className={classes.card}>
+    <Card
+      variant="outlined"
+      className={classNames(classes.card, { [classes.accent]: accented })}
+    >
       {busy && (
         <div className={classes.busy}>
           <CircularProgress size={28} />
