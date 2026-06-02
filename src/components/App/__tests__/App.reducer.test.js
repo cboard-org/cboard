@@ -109,6 +109,26 @@ describe('reducer', () => {
     };
     expect(appReducer(initialState, logout)).toEqual(initialState);
   });
+  it('should clear PIN on logout', () => {
+    const stateWithPin = {
+      ...initialState,
+      userData: uData,
+      navigationSettings: {
+        ...initialState.navigationSettings,
+        pinLockEnabled: true,
+        pinCode: '1234'
+      }
+    };
+    expect(appReducer(stateWithPin, { type: LOGOUT })).toEqual({
+      ...stateWithPin,
+      userData: {},
+      navigationSettings: {
+        ...stateWithPin.navigationSettings,
+        pinLockEnabled: false,
+        pinCode: ''
+      }
+    });
+  });
   it('should handle updateDisplaySettings', () => {
     const updateDisplaySettings = {
       type: UPDATE_DISPLAY_SETTINGS,
