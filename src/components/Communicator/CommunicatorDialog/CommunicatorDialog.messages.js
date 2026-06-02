@@ -352,5 +352,74 @@ export default defineMessages({
   boardInfoLocale: {
     id: 'cboard.components.CommunicatorDialog.boardInfoLanguage',
     defaultMessage: 'Language'
+  },
+  // --- Dashboard layout ---
+  sectionMyCommunicator: {
+    id: 'cboard.components.CommunicatorDialog.sectionMyCommunicator',
+    defaultMessage: 'My Communicator'
+  },
+  sectionMyCommunicatorHint: {
+    id: 'cboard.components.CommunicatorDialog.sectionMyCommunicatorHint',
+    defaultMessage: 'Quick access boards and your home board'
+  },
+  sectionMyBoards: {
+    id: 'cboard.components.CommunicatorDialog.sectionMyBoards',
+    defaultMessage: 'My Boards'
+  },
+  sectionMyBoardsHint: {
+    id: 'cboard.components.CommunicatorDialog.sectionMyBoardsHint',
+    defaultMessage: 'All the boards you have created'
+  },
+  sectionCommunity: {
+    id: 'cboard.components.CommunicatorDialog.sectionCommunity',
+    defaultMessage: 'Community'
+  },
+  sectionCommunityHint: {
+    id: 'cboard.components.CommunicatorDialog.sectionCommunityHint',
+    defaultMessage: 'Discover and copy public boards'
+  },
+  navigation: {
+    id: 'cboard.components.CommunicatorDialog.navigation',
+    defaultMessage: 'Navigation'
+  },
+  searchBoardsPlaceholder: {
+    id: 'cboard.components.CommunicatorDialog.searchBoardsPlaceholder',
+    defaultMessage: 'Search by name or author'
+  },
+  clearSearch: {
+    id: 'cboard.components.CommunicatorDialog.clearSearch',
+    defaultMessage: 'Clear search'
+  },
+  gridView: {
+    id: 'cboard.components.CommunicatorDialog.gridView',
+    defaultMessage: 'Grid view'
+  },
+  listView: {
+    id: 'cboard.components.CommunicatorDialog.listView',
+    defaultMessage: 'List view'
+  },
+  boardActions: {
+    id: 'cboard.components.CommunicatorDialog.boardActions',
+    defaultMessage: 'Board actions'
+  },
+  openBoardInNewTab: {
+    id: 'cboard.components.CommunicatorDialog.openBoardInNewTab',
+    defaultMessage: 'Open in a new tab'
+  },
+  errorGettingBoards: {
+    id: 'cboard.components.CommunicatorDialog.errorGettingBoards',
+    defaultMessage: 'There was an error loading the boards.'
+  },
+  tryAgain: {
+    id: 'cboard.components.CommunicatorDialog.tryAgain',
+    defaultMessage: 'Try again'
+  },
+  noBoardsFound: {
+    id: 'cboard.components.CommunicatorDialog.noBoardsFound',
+    defaultMessage: 'No boards match your search.'
+  },
+  rootBoardChip: {
+    id: 'cboard.components.CommunicatorDialog.rootBoardChip',
+    defaultMessage: 'Home'
   }
 });
