@@ -65,7 +65,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '#CommunicatorDialog__BoardBtn',
+      target: '#CommunicatorDialog__nav-myCommunicator',
       content: (
         <div>
           <FormattedMessage {...messages.walkthroughBoards} />
@@ -74,7 +74,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '#CommunicatorDialog__PublicBoardsBtn',
+      target: '#CommunicatorDialog__nav-community',
       content: (
         <div>
           <FormattedMessage {...messages.walkthroughPublicBoards} />
@@ -83,7 +83,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '#CommunicatorDialog__AllMyBoardsBtn',
+      target: '#CommunicatorDialog__nav-myBoards',
       content: (
         <div>
           <FormattedMessage {...messages.walkthroughAllMyBoards} />
@@ -92,7 +92,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '.CommunicatorDialogButtons__searchButton',
+      target: '#CommunicatorDialog__search',
       content: <FormattedMessage {...messages.walkthroughSearch} />
     },
     {
@@ -152,7 +152,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '.CommunicatorDialog__boards__item__actions',
+      target: '.CommunicatorDialog__boardActions',
       placement: 'left',
       content: (
         <div className="CommunicatorDialog__Tour">
@@ -214,7 +214,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '.CommunicatorDialog__boards__item__actions',
+      target: '.CommunicatorDialog__boardActions',
       placement: 'left',
       content: (
         <div className="CommunicatorDialog__Tour">
@@ -275,22 +275,8 @@ function CommunicatorDialogTour({
       )
     },
     {
-      target: '#CommunicatorDialog__boards__item__image__Btn',
       hideCloseButton: true,
-      content: (
-        <FormattedMessage {...messages.walkthroughAllMyBoardsEditBoardImage} />
-      )
-    },
-    {
-      target: '.CommunicatorDialog__boards__item__edit-title',
-      hideCloseButton: true,
-      content: (
-        <FormattedMessage {...messages.walkthroughAllMyBoardsEditBoardName} />
-      )
-    },
-    {
-      hideCloseButton: true,
-      target: '.CommunicatorDialog__boards__item__actions',
+      target: '.CommunicatorDialog__boardActions',
       placement: 'left',
       content: (
         <div className="CommunicatorDialog__Tour">
