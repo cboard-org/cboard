@@ -89,8 +89,8 @@ describe('tests for cboardImportAdapter refactor', () => {
     });
 
     // 3. Prepare other variables for cboardImportAdapter
-    const mockIntl = {}; 
-    const allBoardsEmpty = []; 
+    const mockIntl = {};
+    const allBoardsEmpty = [];
 
     // 4. Execute
     const result = await cboardImportAdapter(
@@ -103,5 +103,25 @@ describe('tests for cboardImportAdapter refactor', () => {
     expect(result).toBeInstanceOf(Array);
     expect(result).toHaveLength(1);
     expect(result[0]).toEqual(newBoard);
+  });
+
+  test('Must ignore hidden boards', async () => {
+    // 1. Mock board with ext_cboard_hidden: true
+    const hiddenBoard = {
+      id: 'hidden-board',
+      name: 'Hidden Board',
+      ext_cboard_hidden: true,
+      tiles: []
+    };
+    // 2. Create mock file
+    const fileContent = JSON.stringify([hiddenBoard]);
+    const mockFile = new File([fileContent], 'import.json', {
+      type: 'application/json'
+    });
+    // 3. Execute
+    const result = await cboardImportAdapter(mockFile, {}, []);
+    // 4. Assert - hidden board must be ignored
+    expect(result).toBeInstanceOf(Array);
+    expect(result).toHaveLength(0);
   });
 });
