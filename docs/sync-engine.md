@@ -322,7 +322,8 @@ For each untracked board belonging to the user:
   │     │     │    (moment(local.lastEdited).isSameOrBefore(remote.lastEdited))
   │     │     │
   │     │     ├── YES → GRADUATE
-  │     │     │    dispatch(updateBoard(board, fromRemote=true))
+  │     │     │    collect board.id into boardsToGraduate
+  │     │     │    (batched: dispatch(markBoardsSynced(ids)) once at end)
   │     │     │    Effect: syncMeta[id] = { status: SYNCED }
   │     │     │    The board is now tracked. No API call needed.
   │     │     │
@@ -347,6 +348,8 @@ For each untracked board belonging to the user:
 #### Why Graduation Matters
 
 Graduation is a performance optimization and correctness guarantee. Without it, every untracked board that already exists on the server with identical or newer content would be unnecessarily pushed on every sync cycle. Graduation silently onboards these boards into the tracking system with zero API calls.
+
+Graduation only flips `syncMeta[id].status` to `SYNCED` — the board's data is unchanged (the local copy is the same age or older than the remote). For this reason it uses the dedicated `MARK_BOARDS_SYNCED` action, which batches all graduated board IDs into a single dispatch/reducer pass instead of dispatching one `UPDATE_BOARD` per board (which would also needlessly rewrite the `boards` array).
 
 #### Transformation During Onboarding
 
@@ -569,6 +572,7 @@ The `syncMeta` object tracks each board's sync status. Here's how every reducer 
 | `ADD_BOARDS`               | `[id]: { status: isLocalBoard ? PENDING : SYNCED }` | Pull adds remote boards, or boards added programmatically |
 | `CREATE_BOARD`             | `[id]: { status: PENDING }`                         | User creates a new board                                  |
 | `UPDATE_BOARD`             | `[id]: { status: fromRemote ? SYNCED : PENDING }`   | Local edit (PENDING) or remote pull (SYNCED)              |
+| `MARK_BOARDS_SYNCED`       | For each id: `[id]: { status: SYNCED }` (batched)   | Graduation of untracked boards (Pass 2, no data change)  |
 | `DELETE_BOARD`             | `[id]: { status: PENDING, isDeleted: true }`        | User deletes a board (soft delete)                        |
 | `CREATE_TILE`              | `[boardId]: { status: PENDING }`                    | Tile added to board                                       |
 | `DELETE_TILES`             | `[boardId]: { status: PENDING }`                    | Tiles removed from board                                  |

@@ -785,12 +785,12 @@ describe('pushLocalChangesToApi', () => {
     expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
     expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
 
-    // Should graduate to SYNCED via updateBoard with fromRemote=true
-    expect(actionTypes).toContain(types.UPDATE_BOARD);
-    const updateAction = storeWithBoards
+    // Should graduate to SYNCED via a single batched MARK_BOARDS_SYNCED action
+    expect(actionTypes).toContain(types.MARK_BOARDS_SYNCED);
+    const markAction = storeWithBoards
       .getActions()
-      .find(a => a.type === types.UPDATE_BOARD);
-    expect(updateAction.fromRemote).toBe(true);
+      .find(a => a.type === types.MARK_BOARDS_SYNCED);
+    expect(markAction.boardIds).toContain('12345678901234567890');
   });
 
   it('should push untracked board that does not exist on server', async () => {
