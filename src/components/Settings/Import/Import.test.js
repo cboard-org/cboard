@@ -3,6 +3,7 @@ import { shallowMatchSnapshot } from '../../../common/test_utils';
 import toJson from 'enzyme-to-json';
 import { shallow } from 'enzyme';
 
+import { cboardImportAdapter } from './Import.helpers';
 import Import from './Import.component';
 
 jest.mock('./Import.messages', () => {
@@ -62,5 +63,45 @@ describe('Import tests', () => {
     const wrapper = shallow(<Import {...COMPONENT_PROPS} />);
     const cboard = wrapper.find('#file');
     cboard.prop('onChange')(event);
+  });
+});
+
+describe('tests for cboardImportAdapter refactor', () => {
+  test('Must import a new board correctly', async () => {
+    // 1. Mock new board as json
+    const newBoard = {
+      id: 'new-board',
+      name: 'New Board',
+      tiles: [
+        {
+          id: 'tile-1',
+          label: 'Test',
+          type: 'button'
+        }
+      ]
+    };
+
+    // 2. Create mock of file for FileReader
+    // Pass array of boards
+    const fileContent = JSON.stringify([newBoard]);
+    const mockFile = new File([fileContent], 'import.json', {
+      type: 'application/json'
+    });
+
+    // 3. Prepare other variables for cboardImportAdapter
+    const mockIntl = {}; 
+    const allBoardsEmpty = []; 
+
+    // 4. Execute
+    const result = await cboardImportAdapter(
+      mockFile,
+      mockIntl,
+      allBoardsEmpty
+    );
+
+    // 5. Assert
+    expect(result).toBeInstanceOf(Array);
+    expect(result).toHaveLength(1);
+    expect(result[0]).toEqual(newBoard);
   });
 });
