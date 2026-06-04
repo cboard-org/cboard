@@ -243,4 +243,33 @@ describe('tests for obzImportAdapter', () => {
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe(boardId);
   });
+
+  test('Must ignore hidden boards when importing from .obz', async () => {
+    const zip = new JSZip();
+    const boardId = 'new-board';
+    const boardContent = {
+      id: boardId,
+      name: 'New Board from OBZ',
+      buttons: [],
+      ext_cboard_hidden: true
+    };
+    zip.file('board1.obf', JSON.stringify(boardContent));
+    const content = await zip.generateAsync({ type: 'arraybuffer' });
+
+    const mockFile = new File([content], 'test.obz', {
+      type: 'application/zip'
+    });
+
+    jest
+      .spyOn(JSZipUtils, 'getBinaryContent')
+      .mockImplementation((path, callback) => {
+        callback(null, content);
+      });
+
+    const allBoards = [];
+    const result = await obzImportAdapter(mockFile, {}, allBoards);
+
+    expect(result).toBeInstanceOf(Array);
+    expect(result).toHaveLength(0);
+  });
 });
