@@ -73,8 +73,6 @@ import { DEFAULT_BOARDS } from '../../helpers';
 import history from './../../history';
 import { improvePhraseAbortController } from '../../api/api';
 
-const BOARDS_PAGE_LIMIT = 500;
-
 export function addBoards(boards) {
   return {
     type: ADD_BOARDS,
@@ -535,7 +533,7 @@ export function getApiMyBoards() {
   return async dispatch => {
     dispatch(getApiMyBoardsStarted());
     try {
-      const res = await API.getMyBoards({ limit: BOARDS_PAGE_LIMIT });
+      const res = await API.getBoardsSync();
       dispatch(getApiMyBoardsSuccess(res));
       if (res?.data && Array.isArray(res.data)) {
         try {
@@ -567,7 +565,16 @@ export function syncBoardsFailure(error) {
 
 /**
  * PULL: Apply remote changes to local Redux state.
- * Adds new remote boards and updates boards where remote is newer.
+ *
+ * Classification runs against the lightweight sync manifest ({ id, lastEdited }
+ * only), which is the authoritative list of the boards that exist on the
+ * server (getBoardsSync returns the complete, unpaged set).
+ *
+ * - Deletions: a board absent from the manifest has been deleted on the server,
+ *   so it is removed locally directly — no verification fetch.
+ * - Adds / updates: the full bodies (with tiles) for every new/changed board
+ *   are fetched in a single getBoardsByIds() request, then applied from the
+ *   resulting in-memory map. One request regardless of how many boards changed.
  */
 export function applyRemoteChangesToState({
   boardsToAdd,
@@ -575,44 +582,60 @@ export function applyRemoteChangesToState({
   boardIdsToDelete = []
 }) {
   return async (dispatch, getState) => {
-    if (boardsToAdd.length > 0) {
-      dispatch(addBoards(boardsToAdd));
-    }
-    for (const board of boardsToUpdate) {
-      const fromRemote = true; //sets syncStatus to SYNCED
-      dispatch(updateBoard(board, fromRemote));
-    }
-
     const preFetchSyncMeta = getState().board.syncMeta;
 
-    // Verify boards that appear deleted on server (concurrent)
-    await Promise.all(
-      boardIdsToDelete.map(async boardId => {
-        try {
-          const res = await API.getBoard(boardId);
-          if (res) {
-            const postFetchMeta = getState().board.syncMeta;
-            const wasPending =
-              preFetchSyncMeta[boardId]?.status === SYNC_STATUS.PENDING;
-            const isNowPending =
-              postFetchMeta[boardId]?.status === SYNC_STATUS.PENDING;
-            // User edited the board while we were verifying — skip overwrite
-            if (!wasPending && isNowPending) return;
-            dispatch(updateBoard(res, true));
-          }
-        } catch (e) {
-          if (e.response?.status === 404) {
-            dispatch(deleteApiBoardSuccess({ id: boardId }));
-          } else {
-            console.error(
-              'Failed to verify board deletion on server:',
-              boardId,
-              e
-            );
-          }
-        }
-      })
-    );
+    boardIdsToDelete.forEach(boardId => {
+      dispatch(deleteApiBoardSuccess({ id: boardId }));
+    });
+
+    const idsToFetch = [...boardsToAdd, ...boardsToUpdate].map(b => b.id);
+    if (idsToFetch.length === 0) return;
+
+    let bodiesById;
+    try {
+      const res = await API.getBoardsByIds(idsToFetch);
+      if (!Array.isArray(res?.data)) {
+        throw new Error('Bulk board fetch returned an unexpected shape');
+      }
+      bodiesById = new Map(res.data.map(b => [b.id, b]));
+    } catch (e) {
+      // Transient/server failure: defer adds & updates to the next sync. The
+      // deletions above are already applied (manifest-authoritative) and the
+      // PUSH phase can still upload local edits, so we don't abort the cycle.
+      console.error('Bulk board body fetch failed; deferring adds/updates:', e);
+      return;
+    }
+
+    // Resolve a fetched body, honoring a concurrent local edit: if the user
+    // marked the board PENDING while we were fetching, skip overwriting their
+    // changes. A requested id missing from the response (deleted in the race
+    // window between the manifest and this fetch) resolves to null and is
+    // skipped — it self-heals on the next sync.
+    const postFetchSyncMeta = getState().board.syncMeta;
+    const resolveBody = boardId => {
+      const body = bodiesById.get(boardId) ?? null;
+      if (!body) return null;
+      const wasPending =
+        preFetchSyncMeta[boardId]?.status === SYNC_STATUS.PENDING;
+      const isNowPending =
+        postFetchSyncMeta[boardId]?.status === SYNC_STATUS.PENDING;
+      if (!wasPending && isNowPending) return null;
+      return body;
+    };
+
+    // New boards on the server: add the ones we got bodies for.
+    const addedBoards = boardsToAdd.map(b => resolveBody(b.id)).filter(Boolean);
+    if (addedBoards.length > 0) {
+      dispatch(addBoards(addedBoards));
+    }
+
+    // Changed boards on the server: update the ones we got bodies for.
+    boardsToUpdate.forEach(b => {
+      const body = resolveBody(b.id);
+      if (body) {
+        dispatch(updateBoard(body, true)); //sets syncStatus to SYNCED
+      }
+    });
   };
 }
 
