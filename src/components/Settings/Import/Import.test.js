@@ -124,4 +124,19 @@ describe('tests for cboardImportAdapter refactor', () => {
     expect(result).toBeInstanceOf(Array);
     expect(result).toHaveLength(0);
   });
+
+  test('Must ignore board with id "root"', async () => {
+    const rootBoard = {
+      id: 'root',
+      name: 'Root Board',
+      tiles: []
+    };
+    const fileContent = JSON.stringify([rootBoard]);
+    const mockFile = new File([fileContent], 'import.json', {
+      type: 'application/json'
+    });
+    const result = await cboardImportAdapter(mockFile, {}, []);
+    expect(result).toBeInstanceOf(Array);
+    expect(result).toHaveLength(0);
+  });
 });
