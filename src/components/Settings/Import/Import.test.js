@@ -156,4 +156,24 @@ describe('tests for cboardImportAdapter refactor', () => {
     expect(result).toBeInstanceOf(Array);
     expect(result).toHaveLength(1);
   });
+
+  test('Must generate a new ID if there is a collision', async () => {
+    const collisionBoard = {
+      id: 'board-123',
+      name: 'Board with collision ID',
+      tiles: []
+    };
+    const fileContent = JSON.stringify([collisionBoard]);
+    const mockFile = new File([fileContent], 'import.json', {
+      type: 'application/json'
+    });
+    const allBoards = [{ id: 'board-123' }];
+
+    const result = await cboardImportAdapter(mockFile, {}, allBoards);
+
+    expect(result).toBeInstanceOf(Array);
+    expect(result).toHaveLength(1);
+    expect(result[0].id).not.toBe('board-123');
+    expect(result[0].id).toBeDefined();
+  });
 });

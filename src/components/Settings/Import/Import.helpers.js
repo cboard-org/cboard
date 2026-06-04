@@ -186,12 +186,19 @@ export async function cboardImportAdapter(file, intl, allBoards) {
         try {
           const boards = JSON.parse(reader.result);
           const allBoardsIds = getBoardsIds(allBoards);
-          const fboards = boards.filter(
-            board =>
-              (typeof board.ext_cboard_hidden === 'undefined' ||
-                !board.ext_cboard_hidden) &&
-              board.id !== 'root'
-          );
+          const fboards = boards
+            .filter(
+              board =>
+                (typeof board.ext_cboard_hidden === 'undefined' ||
+                  !board.ext_cboard_hidden) &&
+                board.id !== 'root'
+            )
+            .map(board => {
+              if (allBoardsIds.includes(board.id)) {
+                return { ...board, id: shortid.generate() };
+              }
+              return board;
+            });
           resolve(fboards);
         } catch (err) {
           reject(err);
