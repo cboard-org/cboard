@@ -190,8 +190,7 @@ export async function cboardImportAdapter(file, intl, allBoards) {
             board =>
               (typeof board.ext_cboard_hidden === 'undefined' ||
                 !board.ext_cboard_hidden) &&
-              board.id !== 'root' &&
-              !allBoardsIds.includes(board.id)
+              board.id !== 'root'
           );
           resolve(fboards);
         } catch (err) {

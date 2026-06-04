@@ -5,6 +5,7 @@ import { shallow } from 'enzyme';
 
 import { cboardImportAdapter } from './Import.helpers';
 import Import from './Import.component';
+import { async } from 'q';
 
 jest.mock('./Import.messages', () => {
   return {
@@ -138,5 +139,21 @@ describe('tests for cboardImportAdapter refactor', () => {
     const result = await cboardImportAdapter(mockFile, {}, []);
     expect(result).toBeInstanceOf(Array);
     expect(result).toHaveLength(0);
+  });
+
+  test('Must not discard board if the id already exists', async () => {
+    const rootBoard = {
+      id: 'boardRoot',
+      name: 'Board Root',
+      tiles: []
+    };
+    const fileContent = JSON.stringify([rootBoard]);
+    const mockFile = new File([fileContent], 'import.json', {
+      type: 'application/json'
+    });
+    const allBoards = [{ id: 'boardRoot' }];
+    const result = await cboardImportAdapter(mockFile, {}, allBoards);
+    expect(result).toBeInstanceOf(Array);
+    expect(result).toHaveLength(1);
   });
 });
