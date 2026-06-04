@@ -272,4 +272,31 @@ describe('tests for obzImportAdapter', () => {
     expect(result).toBeInstanceOf(Array);
     expect(result).toHaveLength(0);
   });
+
+  test('Must ignore board with id "root" when importing from .obz', async () => {
+    const zip = new JSZip();
+    const boardContent = {
+      id: 'root',
+      name: 'Root Board',
+      buttons: []
+    };
+    zip.file('board1.obf', JSON.stringify(boardContent));
+    const content = await zip.generateAsync({ type: 'arraybuffer' });
+
+    const mockFile = new File([content], 'test.obz', {
+      type: 'application/zip'
+    });
+
+    jest
+      .spyOn(JSZipUtils, 'getBinaryContent')
+      .mockImplementation((path, callback) => {
+        callback(null, content);
+      });
+
+    const allBoards = [];
+    const result = await obzImportAdapter(mockFile, {}, allBoards);
+
+    expect(result).toBeInstanceOf(Array);
+    expect(result).toHaveLength(0);
+  });
 });

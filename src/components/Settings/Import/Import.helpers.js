@@ -165,6 +165,14 @@ async function obfToCboard(obfBoard, boards = {}, images = {}, allBoards = []) {
   return board;
 }
 
+function shouldImportBoard(board) {
+  return (
+    (typeof board.ext_cboard_hidden === 'undefined' ||
+      !board.ext_cboard_hidden) &&
+    board.id !== 'root'
+  );
+}
+
 function resolveCollision(board, allBoardsIds) {
   if (allBoardsIds.includes(board.id)) {
     return { ...board, prevId: board.id, id: shortid.generate() };
@@ -194,12 +202,7 @@ export async function cboardImportAdapter(file, intl, allBoards) {
           const boards = JSON.parse(reader.result);
           const allBoardsIds = getBoardsIds(allBoards);
           const fboards = boards
-            .filter(
-              board =>
-                (typeof board.ext_cboard_hidden === 'undefined' ||
-                  !board.ext_cboard_hidden) &&
-                board.id !== 'root'
-            )
+            .filter(board => shouldImportBoard(board))
             .map(board => resolveCollision(board, allBoardsIds));
           resolve(fboards);
         } catch (err) {
@@ -243,9 +246,7 @@ export async function obzImportAdapter(file, intl, allBoards) {
         if (isBoard) {
           const tempBoard = JSON.parse(result);
           if (
-            (typeof tempBoard.ext_cboard_hidden === 'undefined' ||
-              !tempBoard.ext_cboard_hidden) &&
-            tempBoard.id !== 'root' &&
+            shouldImportBoard(tempBoard) &&
             !allBoardsIds.includes(tempBoard.id)
           ) {
             boards[k] = tempBoard;
