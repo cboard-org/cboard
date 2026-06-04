@@ -73,6 +73,20 @@ class API {
     });
   }
 
+  getBoardsByIds(ids = []) {
+    return Promise.resolve({
+      total: ids.length,
+      data: ids.map(id => ({ ...mockBoard, id }))
+    });
+  }
+
+  getBoardsSync() {
+    return Promise.resolve({
+      total: 1,
+      data: [{ id: mockBoard.id, lastEdited: mockBoard.lastEdited }]
+    });
+  }
+
   createBoard(board) {
     return new Promise((resolve, reject) => {
       if (board.hasOwnProperty('error')) {
