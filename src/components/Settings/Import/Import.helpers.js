@@ -165,6 +165,13 @@ async function obfToCboard(obfBoard, boards = {}, images = {}, allBoards = []) {
   return board;
 }
 
+function resolveCollision(board, allBoardsIds) {
+  if (allBoardsIds.includes(board.id)) {
+    return { ...board, prevId: board.id, id: shortid.generate() };
+  }
+  return board;
+}
+
 function getBoardsIds(boards) {
   const allBoardsIds = [];
   boards.forEach(board => {
@@ -193,12 +200,7 @@ export async function cboardImportAdapter(file, intl, allBoards) {
                   !board.ext_cboard_hidden) &&
                 board.id !== 'root'
             )
-            .map(board => {
-              if (allBoardsIds.includes(board.id)) {
-                return { ...board, id: shortid.generate() };
-              }
-              return board;
-            });
+            .map(board => resolveCollision(board, allBoardsIds));
           resolve(fboards);
         } catch (err) {
           reject(err);
