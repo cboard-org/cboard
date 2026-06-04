@@ -2,8 +2,10 @@ import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
 import toJson from 'enzyme-to-json';
 import { shallow } from 'enzyme';
+import JSZip from 'jszip';
+import JSZipUtils from 'jszip-utils';
 
-import { cboardImportAdapter } from './Import.helpers';
+import { cboardImportAdapter, obzImportAdapter } from './Import.helpers';
 import Import from './Import.component';
 import { async } from 'q';
 
@@ -194,5 +196,51 @@ describe('tests for cboardImportAdapter refactor', () => {
     expect(result).toBeInstanceOf(Array);
     expect(result).toHaveLength(1);
     expect(result[0].prevId).toBe('board-123');
+  });
+});
+
+describe('tests for obzImportAdapter', () => {
+  let originalCreateObjectURL;
+
+  beforeAll(() => {
+    originalCreateObjectURL = global.URL.createObjectURL;
+    global.URL.createObjectURL = jest.fn(() => 'blob:mock-url');
+  });
+
+  afterAll(() => {
+    global.URL.createObjectURL = originalCreateObjectURL;
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  test('Must correctly import a board whose ID does not exist in the system using .obz', async () => {
+    const zip = new JSZip();
+    const boardId = 'new-board';
+    const boardContent = {
+      id: boardId,
+      name: 'New Board from OBZ',
+      buttons: []
+    };
+    zip.file('board1.obf', JSON.stringify(boardContent));
+    const content = await zip.generateAsync({ type: 'arraybuffer' });
+
+    const mockFile = new File([content], 'test.obz', {
+      type: 'application/zip'
+    });
+
+    jest
+      .spyOn(JSZipUtils, 'getBinaryContent')
+      .mockImplementation((path, callback) => {
+        callback(null, content);
+      });
+
+    const allBoards = [];
+    const result = await obzImportAdapter(mockFile, {}, allBoards);
+
+    expect(result).toBeInstanceOf(Array);
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe(boardId);
   });
 });
