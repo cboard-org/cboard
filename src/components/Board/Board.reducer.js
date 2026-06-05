@@ -41,6 +41,7 @@ import {
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
+  MARK_BOARDS_SYNCED,
   SYNC_STATUS,
   SET_IS_SAVING
 } from './Board.constants';
@@ -159,6 +160,19 @@ function boardReducer(state = initialState, action) {
         ...state,
         boards: state.boards.concat(newBoards),
         syncMeta: { ...state.syncMeta, ...addedSyncMeta }
+      };
+    }
+    case MARK_BOARDS_SYNCED: {
+      const syncedSyncMeta = action.boardIds.reduce((acc, id) => {
+        acc[id] = {
+          ...(state.syncMeta[id] || {}),
+          status: SYNC_STATUS.SYNCED
+        };
+        return acc;
+      }, {});
+      return {
+        ...state,
+        syncMeta: { ...state.syncMeta, ...syncedSyncMeta }
       };
     }
     case CHANGE_BOARD:

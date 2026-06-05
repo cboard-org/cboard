@@ -44,6 +44,7 @@ import {
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
+  MARK_BOARDS_SYNCED,
   SYNC_STATUS,
   SET_IS_SAVING
 } from './Board.constants';
@@ -255,6 +256,16 @@ export function updateBoard(boardData, fromRemote = false) {
     type: UPDATE_BOARD,
     boardData,
     fromRemote
+  };
+}
+/**
+ * Batch-mark untracked boards as SYNCED (graduation) without touching board data.
+ * Used to onboard untracked boards into the sync system in a single dispatch.
+ */
+export function markBoardsSynced(boardIds) {
+  return {
+    type: MARK_BOARDS_SYNCED,
+    boardIds
   };
 }
 export function deleteBoard(boardId) {
@@ -635,6 +646,7 @@ function classifyBoardsForPush({
 }) {
   const boardsToSync = [];
   const boardsToDelete = [];
+  const boardsToGraduate = [];
 
   // Helper to transform default/offline boards to belong to the current user
   const transformAndTrack = board => {
@@ -673,8 +685,8 @@ function classifyBoardsForPush({
 
     const remote = remoteBoardMap.get(b.id);
     if (remote && moment(b.lastEdited).isSameOrBefore(remote.lastEdited)) {
-      // Graduate to SYNCED without pushing
-      dispatch(updateBoard(b, true));
+      // Graduate to SYNCED without pushing (board data is unchanged)
+      boardsToGraduate.push(b.id);
       continue;
     }
 
@@ -690,6 +702,11 @@ function classifyBoardsForPush({
     if (syncMeta[b.id]?.isDeleted === true) {
       boardsToDelete.push(b);
     }
+  }
+
+  // Graduate untracked boards to SYNCED in a single batched dispatch.
+  if (boardsToGraduate.length > 0) {
+    dispatch(markBoardsSynced(boardsToGraduate));
   }
 
   return { boardsToSync, boardsToDelete };
