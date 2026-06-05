@@ -324,4 +324,33 @@ describe('tests for obzImportAdapter', () => {
     expect(result).toBeInstanceOf(Array);
     expect(result).toHaveLength(1);
   });
+
+  test('Must generate a new ID if there is a collision using .obz', async () => {
+    const zip = new JSZip();
+    const boardContent = {
+      id: 'board-123',
+      name: 'Board with collision',
+      buttons: []
+    };
+    zip.file('board1.obf', JSON.stringify(boardContent));
+    const content = await zip.generateAsync({ type: 'arraybuffer' });
+
+    const mockFile = new File([content], 'test.obz', {
+      type: 'application/zip'
+    });
+
+    jest
+      .spyOn(JSZipUtils, 'getBinaryContent')
+      .mockImplementation((path, callback) => {
+        callback(null, content);
+      });
+
+    const allBoards = [{ id: 'board-123' }];
+    const result = await obzImportAdapter(mockFile, {}, allBoards);
+
+    expect(result).toBeInstanceOf(Array);
+    expect(result).toHaveLength(1);
+    expect(result[0].id).not.toBe('board-123');
+    expect(result[0].id).toBeDefined();
+  });
 });

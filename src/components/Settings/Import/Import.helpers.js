@@ -270,7 +270,9 @@ export async function obzImportAdapter(file, intl, allBoards) {
   const cboardBoards = [];
   for (let key in boards) {
     const board = await obfToCboard(boards[key], boards, images);
-    cboardBoards.push(board);
+    if (board) {
+      cboardBoards.push(resolveCollision(board, allBoardsIds));
+    }
   }
 
   return cboardBoards;
