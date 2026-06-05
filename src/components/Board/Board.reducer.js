@@ -379,6 +379,7 @@ function boardReducer(state = initialState, action) {
     case CREATE_API_BOARD_SUCCESS: {
       const tilesToUpdateIds = [];
       const boardsToMarkForCreation = [];
+      const pendingBoardIds = new Set();
 
       for (const board of state.boards) {
         if (!board.tiles) continue;
@@ -394,7 +395,7 @@ function boardReducer(state = initialState, action) {
         }
       }
 
-      // Pass 2: immutably produce new boards
+      // Pass 2: immutably produce new boards; collect PENDING ids alongside flag decisions
       const updatedBoards = state.boards.map(board => {
         const tileNeedsUpdate = board.tiles?.some(
           t => t != null && t.loadBoard === action.boardId
@@ -411,6 +412,10 @@ function boardReducer(state = initialState, action) {
           newBoard = { ...board, tiles: newTiles };
           if (isServerBoard(board) && board.hasOwnProperty('email')) {
             newBoard = { ...newBoard, markToUpdate: true };
+            // Skip the board being created — it is always set to SYNCED below
+            if (board.id !== action.boardId) {
+              pendingBoardIds.add(board.id);
+            }
           }
         }
 
@@ -425,17 +430,24 @@ function boardReducer(state = initialState, action) {
         return newBoard;
       });
 
-      // Pass 3: apply shouldCreateBoard where needed
+      // Pass 3: apply shouldCreateBoard where needed; collect PENDING ids alongside flag decisions
       const finalBoards = updatedBoards.map(board => {
         if (!boardsToMarkForCreation.includes(board.id)) return board;
         const boardTileIds = board.tiles?.map(t => t.id) ?? [];
         const alreadyOnDb = boardTileIds.some(id =>
           tilesToUpdateIds.includes(id)
         );
-        return alreadyOnDb ? board : { ...board, shouldCreateBoard: true };
+        if (alreadyOnDb) return board;
+        pendingBoardIds.add(board.id);
+        return { ...board, shouldCreateBoard: true };
       });
 
-      const newSyncMeta = removeSyncMeta(state.syncMeta, action.boardId);
+      let newSyncMeta = removeSyncMeta(state.syncMeta, action.boardId);
+      for (const id of pendingBoardIds) {
+        newSyncMeta = setSyncMeta(newSyncMeta, id, {
+          status: SYNC_STATUS.PENDING
+        });
+      }
       return {
         ...state,
         isFetching: false,

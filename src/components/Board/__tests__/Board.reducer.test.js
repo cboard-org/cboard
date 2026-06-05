@@ -752,5 +752,70 @@ describe('reducer', () => {
       });
       expect(result.syncMeta[mockBoard.id]).toBeUndefined();
     });
+
+    it('should set syncMeta PENDING for server board with markToUpdate on CREATE_API_BOARD_SUCCESS', () => {
+      // A server board (id >= 14 chars, has email) whose tile references the local board being promoted
+      const serverParentBoard = {
+        id: 'server-board-id-1234',
+        name: 'Server Parent',
+        email: 'user@example.com',
+        tiles: [{ id: 'tile-xyz', loadBoard: 'localChild' }]
+      };
+      const localChildBoard = {
+        id: 'localChild',
+        name: 'Local Child',
+        tiles: []
+      };
+      const stateWithBoards = {
+        ...initialState,
+        boards: [...initialState.boards, serverParentBoard, localChildBoard]
+      };
+      const createApiBoardSuccess = {
+        type: CREATE_API_BOARD_SUCCESS,
+        board: { id: 'new-server-id-98765', lastEdited: '2024-01-01' },
+        boardId: 'localChild'
+      };
+      const result = boardReducer(stateWithBoards, createApiBoardSuccess);
+      // Server parent board got markToUpdate: true → must be PENDING so next sync picks it up
+      expect(result.syncMeta['server-board-id-1234']).toEqual({
+        status: SYNC_STATUS.PENDING
+      });
+      // Newly created board stays SYNCED
+      expect(result.syncMeta['new-server-id-98765']).toEqual({
+        status: SYNC_STATUS.SYNCED
+      });
+    });
+
+    it('should set syncMeta PENDING for local board with shouldCreateBoard on CREATE_API_BOARD_SUCCESS', () => {
+      // A local board (id < 14 chars) whose tile references the local board being promoted
+      const localParentBoard = {
+        id: 'localParent',
+        name: 'Local Parent',
+        tiles: [{ id: 'tile-abc', loadBoard: 'localChild' }]
+      };
+      const localChildBoard = {
+        id: 'localChild',
+        name: 'Local Child',
+        tiles: []
+      };
+      const stateWithBoards = {
+        ...initialState,
+        boards: [...initialState.boards, localParentBoard, localChildBoard]
+      };
+      const createApiBoardSuccess = {
+        type: CREATE_API_BOARD_SUCCESS,
+        board: { id: 'new-server-id-98765', lastEdited: '2024-01-01' },
+        boardId: 'localChild'
+      };
+      const result = boardReducer(stateWithBoards, createApiBoardSuccess);
+      // Local parent board got shouldCreateBoard: true → must be PENDING so next sync creates it
+      expect(result.syncMeta['localParent']).toEqual({
+        status: SYNC_STATUS.PENDING
+      });
+      // Newly created board stays SYNCED
+      expect(result.syncMeta['new-server-id-98765']).toEqual({
+        status: SYNC_STATUS.SYNCED
+      });
+    });
   });
 });
