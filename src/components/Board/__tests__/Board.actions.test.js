@@ -1040,12 +1040,20 @@ describe('pushLocalChangesToApi', () => {
 });
 
 describe('applyRemoteChangesToState', () => {
-  it('should dispatch addBoards for new remote boards', async () => {
+  it('should fetch full bodies in one request and dispatch addBoards for new remote boards', async () => {
+    const API = require('../../../api/api').default;
+    const fullBoards = {
+      'new-board-1': { id: 'new-board-1', name: 'New Board', tiles: [] },
+      'new-board-2': { id: 'new-board-2', name: 'Another New Board', tiles: [] }
+    };
+    // A single bulk request returns every requested body.
+    API.getBoardsByIds = jest.fn(ids =>
+      Promise.resolve({ data: ids.map(id => fullBoards[id]) })
+    );
+
     const store = mockStore(initialState);
-    const boardsToAdd = [
-      { id: 'new-board-1', name: 'New Board' },
-      { id: 'new-board-2', name: 'Another New Board' }
-    ];
+    // Manifest entries only carry { id, lastEdited }.
+    const boardsToAdd = [{ id: 'new-board-1' }, { id: 'new-board-2' }];
 
     await store.dispatch(
       actions.applyRemoteChangesToState({
@@ -1054,20 +1062,32 @@ describe('applyRemoteChangesToState', () => {
         boardIdsToDelete: []
       })
     );
-    const dispatchedActions = store.getActions();
+    const addAction = store.getActions().find(a => a.type === types.ADD_BOARDS);
 
-    expect(dispatchedActions).toContainEqual({
-      type: types.ADD_BOARDS,
-      boards: boardsToAdd
-    });
+    expect(API.getBoardsByIds).toHaveBeenCalledTimes(1);
+    expect(API.getBoardsByIds).toHaveBeenCalledWith([
+      'new-board-1',
+      'new-board-2'
+    ]);
+    expect(addAction).toBeDefined();
+    expect(addAction.boards).toEqual([
+      fullBoards['new-board-1'],
+      fullBoards['new-board-2']
+    ]);
   });
 
-  it('should dispatch updateBoard for each board to update', async () => {
+  it('should fetch full bodies in one request and dispatch updateBoard for each changed board', async () => {
+    const API = require('../../../api/api').default;
+    const fullBoards = {
+      '1': { id: '1', name: 'Updated Board 1', tiles: [] },
+      '2': { id: '2', name: 'Updated Board 2', tiles: [] }
+    };
+    API.getBoardsByIds = jest.fn(ids =>
+      Promise.resolve({ data: ids.map(id => fullBoards[id]) })
+    );
+
     const store = mockStore(initialState);
-    const boardsToUpdate = [
-      { id: '1', name: 'Updated Board 1' },
-      { id: '2', name: 'Updated Board 2' }
-    ];
+    const boardsToUpdate = [{ id: '1' }, { id: '2' }];
 
     await store.dispatch(
       actions.applyRemoteChangesToState({
@@ -1076,11 +1096,11 @@ describe('applyRemoteChangesToState', () => {
         boardIdsToDelete: []
       })
     );
-    const dispatchedActions = store.getActions();
-    const updateActions = dispatchedActions.filter(
-      a => a.type === types.UPDATE_BOARD
-    );
+    const updateActions = store
+      .getActions()
+      .filter(a => a.type === types.UPDATE_BOARD);
 
+    expect(API.getBoardsByIds).toHaveBeenCalledTimes(1);
     expect(updateActions).toHaveLength(2);
   });
 
@@ -1099,12 +1119,12 @@ describe('applyRemoteChangesToState', () => {
     expect(actionTypes).not.toContain(types.ADD_BOARDS);
   });
 
-  it('should dispatch deleteApiBoardSuccess for boards confirmed deleted (404)', async () => {
+  it('should dispatch deleteApiBoardSuccess for boards missing from the manifest, without fetching them', async () => {
     const API = require('../../../api/api').default;
     const boardId = '12345678901234567890';
-    API.getBoard = jest.fn().mockRejectedValue({
-      response: { status: 404 }
-    });
+    // The manifest is authoritative for existence, so a board classified for
+    // deletion is removed without any per-id verification fetch.
+    API.getBoard = jest.fn();
 
     const store = mockStore(initialState);
 
@@ -1117,17 +1137,21 @@ describe('applyRemoteChangesToState', () => {
     );
     const dispatchedActions = store.getActions();
 
+    expect(API.getBoard).not.toHaveBeenCalled();
     expect(dispatchedActions).toContainEqual({
       type: types.DELETE_API_BOARD_SUCCESS,
       board: { id: boardId }
     });
   });
 
-  it('should dispatch updateBoard when board still exists on server', async () => {
+  it('should delete a board missing from the manifest, not update it, even if the server still has it', async () => {
     const API = require('../../../api/api').default;
     const boardId = '12345678901234567890';
-    const serverBoard = { id: boardId, name: 'Server Board' };
-    API.getBoard = jest.fn().mockResolvedValue(serverBoard);
+    // Even though a fetch would show the board still exists, we trust the
+    // manifest: absence means deleted, so we never consult the server.
+    API.getBoard = jest
+      .fn()
+      .mockResolvedValue({ id: boardId, name: 'Server Board' });
 
     const store = mockStore(initialState);
 
@@ -1138,11 +1162,42 @@ describe('applyRemoteChangesToState', () => {
         boardIdsToDelete: [boardId]
       })
     );
-    const updateActions = store
-      .getActions()
-      .filter(a => a.type === types.UPDATE_BOARD);
+    const dispatchedActions = store.getActions();
 
-    expect(updateActions).toHaveLength(1);
+    expect(API.getBoard).not.toHaveBeenCalled();
+    expect(
+      dispatchedActions.filter(a => a.type === types.UPDATE_BOARD)
+    ).toHaveLength(0);
+    expect(dispatchedActions).toContainEqual({
+      type: types.DELETE_API_BOARD_SUCCESS,
+      board: { id: boardId }
+    });
+  });
+
+  it('should still apply deletions and not throw when the bulk body fetch fails', async () => {
+    const API = require('../../../api/api').default;
+    API.getBoardsByIds = jest.fn().mockRejectedValue(new Error('network down'));
+
+    const store = mockStore(initialState);
+
+    await expect(
+      store.dispatch(
+        actions.applyRemoteChangesToState({
+          boardsToAdd: [{ id: 'new-board-1' }],
+          boardsToUpdate: [],
+          boardIdsToDelete: ['12345678901234567890']
+        })
+      )
+    ).resolves.toBeUndefined();
+
+    const dispatchedActions = store.getActions();
+    // Deletions are manifest-authoritative: applied regardless of the fetch.
+    expect(dispatchedActions).toContainEqual({
+      type: types.DELETE_API_BOARD_SUCCESS,
+      board: { id: '12345678901234567890' }
+    });
+    // Adds/updates are deferred to the next sync, not partially applied.
+    expect(dispatchedActions.map(a => a.type)).not.toContain(types.ADD_BOARDS);
   });
 });
 
@@ -1160,10 +1215,17 @@ describe('syncBoards', () => {
   });
 
   it('should apply remote changes and push local changes', async () => {
+    const API = require('../../../api/api').default;
     const remoteBoard = { id: 'new-remote-board', name: 'From Server' };
+    // PULL fetches the full bodies for new/changed manifest entries in bulk.
+    API.getBoardsByIds = jest.fn().mockResolvedValue({ data: [remoteBoard] });
     const store = mockStore(initialState);
 
-    await store.dispatch(actions.syncBoards([remoteBoard]));
+    await store.dispatch(
+      actions.syncBoards([
+        { id: remoteBoard.id, lastEdited: '2024-01-01T00:00:00Z' }
+      ])
+    );
     const actionTypes = store.getActions().map(a => a.type);
 
     // PULL: should add the new remote board
@@ -1196,8 +1258,16 @@ describe('syncBoards', () => {
         }
       }
     });
+    const updatedRemote = {
+      ...localBoard,
+      name: 'Updated',
+      lastEdited: '2024-01-02T00:00:00Z'
+    };
+    const API = require('../../../api/api').default;
+    API.getBoardsByIds = jest.fn().mockResolvedValue({ data: [updatedRemote] });
+    // Manifest entry: id + newer lastEdited triggers the update.
     const remoteBoards = [
-      { ...localBoard, name: 'Updated', lastEdited: '2024-01-02T00:00:00Z' }
+      { id: localBoard.id, lastEdited: '2024-01-02T00:00:00Z' }
     ];
 
     await store.dispatch(actions.syncBoards(remoteBoards));
@@ -1208,11 +1278,10 @@ describe('syncBoards', () => {
     expect(updateActions).toHaveLength(1);
   });
 
-  it('should handle boards deleted on server with 404 (PULL)', async () => {
+  it('should delete local boards missing from the manifest (PULL)', async () => {
     const API = require('../../../api/api').default;
-    API.getBoard = jest.fn().mockRejectedValue({
-      response: { status: 404 }
-    });
+    // Absent from the manifest ([]) => deleted on server; no fetch to verify.
+    API.getBoard = jest.fn();
 
     const localBoard = { ...mockBoard, id: '12345678901234567890' };
     const store = mockStore({
@@ -1235,10 +1304,16 @@ describe('syncBoards', () => {
     });
   });
 
-  it('should update board when server still has it despite not being in remote list (PULL)', async () => {
+  it('should delete a board absent from the manifest even if the server still has it (PULL)', async () => {
     const API = require('../../../api/api').default;
-    const serverBoard = { id: '12345678901234567890', name: 'Still on server' };
-    API.getBoard = jest.fn().mockResolvedValue(serverBoard);
+    // The manifest ([]) is authoritative: even though getBoard would resolve
+    // the board, its absence from the manifest means it was deleted remotely.
+    API.getBoard = jest
+      .fn()
+      .mockResolvedValue({
+        id: '12345678901234567890',
+        name: 'Still on server'
+      });
 
     const localBoard = { ...mockBoard, id: '12345678901234567890' };
     const store = mockStore({
@@ -1253,11 +1328,16 @@ describe('syncBoards', () => {
     });
 
     await store.dispatch(actions.syncBoards([]));
-    const updateActions = store
-      .getActions()
-      .filter(a => a.type === types.UPDATE_BOARD);
+    const dispatchedActions = store.getActions();
 
-    expect(updateActions).toHaveLength(1);
+    expect(API.getBoard).not.toHaveBeenCalled();
+    expect(
+      dispatchedActions.filter(a => a.type === types.UPDATE_BOARD)
+    ).toHaveLength(0);
+    expect(dispatchedActions).toContainEqual({
+      type: types.DELETE_API_BOARD_SUCCESS,
+      board: { id: '12345678901234567890' }
+    });
   });
 
   it('should push locally modified boards with syncMeta PENDING (PUSH)', async () => {
@@ -1328,6 +1408,11 @@ describe('syncBoards', () => {
   it('should execute PULL before PUSH in correct order', async () => {
     const pendingBoard = { ...mockBoard, id: '12345678901234567890' };
     const newRemoteBoard = { id: 'new-remote-board', name: 'From Server' };
+    const API = require('../../../api/api').default;
+    // PULL fetches the full bodies for new/changed manifest entries in bulk.
+    API.getBoardsByIds = jest
+      .fn()
+      .mockResolvedValue({ data: [newRemoteBoard] });
     const store = mockStore({
       ...initialState,
       board: {
@@ -1353,10 +1438,12 @@ describe('syncBoards', () => {
 });
 
 describe('getApiMyBoards', () => {
-  it('should trigger syncBoards when API returns data array', async () => {
+  it('should trigger syncBoards when the sync manifest returns a data array', async () => {
     const API = require('../../../api/api').default;
-    const remoteBoards = [{ id: 'remote-board-1', name: 'Remote Board' }];
-    API.getMyBoards = jest.fn().mockResolvedValue({ data: remoteBoards });
+    API.getBoardsSync = jest.fn().mockResolvedValue({
+      total: 1,
+      data: [{ id: 'remote-board-1', lastEdited: '2020-01-01T00:00:00.000Z' }]
+    });
 
     const store = mockStore(initialState);
     await store.dispatch(actions.getApiMyBoards());
@@ -1365,9 +1452,9 @@ describe('getApiMyBoards', () => {
     expect(actionTypes).toContain(types.SYNC_BOARDS_STARTED);
   });
 
-  it('should not trigger syncBoards when API returns data: null', async () => {
+  it('should not trigger syncBoards when the sync manifest returns data: null', async () => {
     const API = require('../../../api/api').default;
-    API.getMyBoards = jest.fn().mockResolvedValue({ data: null });
+    API.getBoardsSync = jest.fn().mockResolvedValue({ data: null });
 
     const store = mockStore(initialState);
     await store.dispatch(actions.getApiMyBoards());

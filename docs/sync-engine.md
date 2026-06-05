@@ -34,6 +34,7 @@ edge cases.
 | Term                  | Definition                                                                                                                                                                                                   |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **syncMeta**          | A Redux state object (`state.board.syncMeta`) that maps each board ID to its sync metadata: `{ status, isDeleted? }`. It is the single source of truth for whether a board needs syncing.                    |
+| **Sync manifest**     | The lightweight `{ id, lastEdited }[]` list returned by `getBoardsSync()` (`GET /board/sync/:email`). It is the **authoritative, complete, unpaged** list of the boards that exist on the server. PULL classification runs against it; full board bodies are fetched separately only for the boards it identifies as new or changed. |
 | **PENDING**           | `syncMeta` status indicating the board has local changes not yet pushed to the server. Any local edit (board update, tile create/edit/delete) sets this status.                                              |
 | **SYNCED**            | `syncMeta` status indicating the board's local state matches the server. Set after successful API create/update or when pulling a remote board.                                                              |
 | **isDeleted**         | Boolean flag on a `syncMeta` entry. When `true`, the board is marked for deletion on the server during the next PUSH phase. The board data remains in Redux until the API deletion succeeds.                 |
@@ -59,9 +60,9 @@ Server (API)                          Local (Redux)
      │                                      │
      │  ┌──────────────────────────────┐    │
      │  │  Phase 1: PULL               │    │
-     │──┤  Remote → Local              │───▶│  Apply additions, updates,
-     │  │  classifyRemoteBoards()      │    │  and verified deletions
-     │  │  applyRemoteChangesToState() │    │
+     │──┤  Remote → Local              │───▶│  Apply manifest-driven
+     │  │  classifyRemoteBoards()      │    │  deletions, then fetch &
+     │  │  applyRemoteChangesToState() │    │  apply new/changed bodies
      │  └──────────────────────────────┘    │
      │                                      │
      │  ┌──────────────────────────────┐    │
@@ -84,10 +85,10 @@ Server (API)                          Local (Redux)
 ## 3. Entry Point
 
 **Function:** `getApiMyBoards()`
-**File:** `src/components/Board/Board.actions.js:530`
+**File:** `src/components/Board/Board.actions.js:532`
 
 ```
-Board component mounts (logged in + online)
+App sync trigger (logged in + online — see §11)
        │
        ▼
   getApiObjects()
@@ -96,20 +97,22 @@ Board component mounts (logged in + online)
   getApiMyBoards()
        │
        ├── dispatch(getApiMyBoardsStarted())
-       ├── API.getMyBoards({ limit: 500 })
+       ├── API.getBoardsSync()           ◄── lightweight { id, lastEdited } manifest
        ├── dispatch(getApiMyBoardsSuccess(res))
        │
        └── if res.data is Array:
               dispatch(syncBoards(res.data))   ◄── triggers the engine
 ```
 
-The remote boards array (`res.data`) is passed directly to `syncBoards()` as the authoritative server state snapshot.
+`getBoardsSync()` (`GET /board/sync/:email`) returns the **complete, unpaged sync manifest** — only `{ id, lastEdited }` per board, not full bodies. That manifest array (`res.data`) is passed directly to `syncBoards()` as the authoritative server state snapshot. Full board bodies (with tiles) are fetched later, only for the boards PULL classifies as new or changed.
+
+> **Note:** `getApiMyBoardsSuccess` only flips `isFetching` — it does **not** store the manifest into `state.board.boards`. The manifest is a classification input, never board data.
 
 ---
 
 ## 4. Orchestrator: `syncBoards()`
 
-**File:** `src/components/Board/Board.actions.js:782-822`
+**File:** `src/components/Board/Board.actions.js:817`
 
 `syncBoards(remoteBoards)` is the master orchestrator. It is a Redux thunk that:
 
@@ -144,64 +147,97 @@ await dispatch(pushLocalChangesToApi(remoteBoards));
 
 **File:** `src/components/Board/Board.utils.js:78-116`
 
-Compares the server snapshot against local state and returns three lists:
+Compares the **sync manifest** (`{ id, lastEdited }` entries) against local state and returns three lists. Each `boardsToAdd` / `boardsToUpdate` element is the lightweight manifest entry — its full body is fetched in PULL (see 5.2):
 
 | Output             | Condition                                                                                                                                | Description                                                                        |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `boardsToAdd`      | Remote board ID not found in local boards                                                                                                | New board from server — never seen locally.                                        |
+| `boardsToAdd`      | Manifest board ID not found in local boards                                                                                              | New board on the server — never seen locally.                                      |
 | `boardsToUpdate`   | `moment(remote.lastEdited).isAfter(local.lastEdited)`                                                                                    | Server has a newer version. Remote wins (last-write-wins).                         |
-| `boardIdsToDelete` | Local board has a server ID (`>= 14 chars`) AND is not in the remote set AND is not locally marked as deleted AND has a `syncMeta` entry | Board appears to have been deleted on the server. Requires verification (see 5.2). |
+| `boardIdsToDelete` | Local board has a server ID (`>= 14 chars`) AND is not in the manifest AND is not locally marked as deleted AND has a `syncMeta` entry   | Board is absent from the manifest, which is authoritative for existence → deleted on the server (see 5.2). |
+
+> **`lastEdited` is the freshness contract.** Updates are detected solely by comparing timestamps. The engine never re-pulls a board whose `lastEdited` hasn't advanced, so every server-side board mutation **must** bump `lastEdited`, or the change will stay invisible on already-synced devices.
 
 **Why `boardIdsToDelete` requires `localHasSyncStatus`:** Only boards that the sync system is already tracking are candidates for server-side deletion detection. Untracked boards (no `syncMeta` entry) are excluded to prevent false deletions of pre-existing boards that haven't been onboarded yet.
 
 ### 5.2 `applyRemoteChangesToState({ boardsToAdd, boardsToUpdate, boardIdsToDelete })`
 
-**File:** `src/components/Board/Board.actions.js:568-613`
+**File:** `src/components/Board/Board.actions.js:579`
 
-Applies the classified changes to Redux state:
+Applies the classified changes to Redux state in three steps. Because the
+manifest is authoritative for existence, deletions need no server round-trip,
+and the bodies for every new/changed board are fetched in **one** request.
 
-**Additions:**
-
-```
-dispatch(addBoards(boardsToAdd))
-```
-
-The `ADD_BOARDS` reducer assigns `SYNCED` status to server boards and `PENDING` to local boards.
-
-**Updates:**
-
-```
-dispatch(updateBoard(board, fromRemote=true))
-```
-
-The `fromRemote=true` flag causes the reducer to set syncMeta status to `SYNCED`.
-
-**Deletions — Verification Protocol:**
-
-Boards that appear deleted on the server are **not immediately removed**. Instead, each is individually verified:
+**Step 1 — Deletions (no fetch):**
 
 ```
 For each boardId in boardIdsToDelete:
-  │
-  ├── GET /board/{boardId}
-  │
-  ├── If 404 → Board confirmed deleted on server
-  │      └── dispatch(deleteApiBoardSuccess({ id: boardId }))
-  │          (hard delete from Redux: removes board + syncMeta)
-  │
-  ├── If board returned → Board still exists on server
-  │      ├── Check: was SYNCED before fetch but became PENDING during fetch?
-  │      │     └── YES: User edited while verifying → skip (don't overwrite)
-  │      │     └── NO:  Update local with server version
-  │      └── dispatch(updateBoard(res, fromRemote=true))
-  │
-  └── If other error → Log and skip
+  └── dispatch(deleteApiBoardSuccess({ id: boardId }))
+      (hard delete from Redux: removes board + syncMeta)
 ```
 
-This verification prevents data loss when:
+A board absent from the manifest has been deleted on the server, full stop.
+There is no per-id verification — the manifest already _is_ the complete server
+truth. (This replaces the old `GET /board/{id}` 404-verification protocol.)
 
-- The API's paginated response omits a board (pagination edge case).
-- A concurrent edit occurred between fetching the board list and processing deletions.
+**Step 2 — Fetch new/changed bodies in a single request:**
+
+```
+idsToFetch = [...boardsToAdd, ...boardsToUpdate].map(b => b.id)
+if idsToFetch is empty → return (deletions already applied)
+
+try:
+  res = API.getBoardsByIds(idsToFetch)   ◄── POST /board/byids { ids }
+  if res.data is not an Array → throw   (malformed shape = bug, surface it)
+  bodiesById = Map(res.data, keyed by id)
+catch:
+  console.error(...) and RETURN          ◄── see failure handling below
+```
+
+`getBoardsByIds` is a **POST** (not GET) so a large id list — e.g. a fresh
+device where every board is an "add" — can't blow past URL-length limits. One
+request resolves every body regardless of how many boards changed; there is no
+per-id `getBoard()` storm and no body-count threshold.
+
+**Step 3 — Apply adds and updates from the fetched bodies:**
+
+```
+resolveBody(id):
+  body = bodiesById.get(id) ?? null
+  if !body → null                        (id missing from response → skip)
+  if was SYNCED before fetch but became PENDING during fetch → null
+  else → body
+
+addedBoards = boardsToAdd.map(b => resolveBody(b.id)).filter(Boolean)
+if addedBoards.length → dispatch(addBoards(addedBoards))
+
+for each b in boardsToUpdate:
+  body = resolveBody(b.id)
+  if body → dispatch(updateBoard(body, fromRemote=true))
+```
+
+- `ADD_BOARDS` assigns `SYNCED` to server boards and `PENDING` to local boards.
+- `updateBoard(body, fromRemote=true)` sets syncMeta status to `SYNCED`.
+- **Concurrent-edit guard:** if the user marked a board `PENDING` while its body
+  was being fetched, `resolveBody` returns `null` and the local edit is not
+  overwritten. (Deletions in Step 1 are unaffected — they are authoritative.)
+- **Missing id ⇒ skip:** a requested id absent from the response (board deleted
+  in the race window between manifest and fetch) is skipped and self-heals on
+  the next sync.
+
+**Failure handling (the `catch` in Step 2):**
+
+If the bulk body fetch fails (network, timeout, 5xx), the engine logs and
+returns **without throwing**:
+
+- Deletions (Step 1) are **already applied** and stay applied — they derive from
+  the manifest, not from this fetch.
+- Adds and updates are **deferred to the next sync**, never partially applied.
+- The cycle is _not_ aborted, so the PUSH phase still runs and local edits can
+  still upload. (A read failure usually implies writes fail too, so this mainly
+  matters when reads fail but writes succeed — e.g. a read replica is down.)
+
+A malformed response shape (not transient) still throws, surfacing a genuine
+contract break rather than silently syncing garbage.
 
 ---
 
@@ -626,12 +662,30 @@ The `syncMeta` object tracks each board's sync status. Here's how every reducer 
 This section documents each trigger point where board synchronization occurs.
 Add new subsections as new lifecycle integrations are implemented.
 
-### 11.1 App Mount (Login)
+All triggers funnel through `App.container.js → handleDataRefresh(source)`,
+which is guarded by: logged-in, online, and a **2-minute throttle**
+(`THROTTLE_MS`, bypassed when there are pending local sync boards). When it
+passes, it dispatches `getApiObjects() → getApiMyBoards() → syncBoards(manifest)`.
 
-- **Trigger:** Board component mounts when user is logged in and online.
-- **Flow:** `Board.container.js` → `getApiObjects()` → `getApiMyBoards()` → `syncBoards(res.data)`
-- **Scope:** Full sync — all boards pulled and pushed.
-- **Notes:** This is currently the only lifecycle where sync runs.
+### 11.1 Sync triggers
+
+| Trigger             | Event                                  | `source` label        |
+| ------------------- | -------------------------------------- | --------------------- |
+| App start           | `componentDidMount`                    | `App started`         |
+| Tab focused         | `visibilitychange` (web)               | `Tab focused`         |
+| Connection restored | `online` event                        | `Connection restored` |
+| App resumed         | Cordova `onCvaResume`                  | `App resumed`         |
+| Manual sync         | `SyncButton` → `getApiObjects()`       | (component)           |
+
+- **Scope:** Every trigger runs the **same full manifest reconciliation** — the
+  complete board list is compared via `getBoardsSync()`, then only new/changed
+  bodies are fetched and only PENDING boards are pushed.
+- **Important:** there is **no** request that re-downloads all board _bodies_ on
+  a routine sync. A full-body download only happens implicitly on a fresh
+  device / first login, where every manifest entry classifies as an add and
+  `getBoardsByIds()` fetches them all in one request. Steady-state syncs transfer
+  only deltas. This is by design — the manifest is the "full pull"; bodies follow
+  for changes only.
 
 <!--
 ### 11.X [Template for new lifecycles]
@@ -691,27 +745,28 @@ USER ACTION (edit board / create tile / delete board)
   Redux Reducer marks syncMeta[boardId] = PENDING
        │
        ▼
-  [Later] App triggers getApiMyBoards()
+  [Later] App trigger → getApiMyBoards()
        │
        ▼
-  API.getMyBoards({ limit: 500 })
+  API.getBoardsSync()  ─── { id, lastEdited } manifest (all boards)
        │
        ▼
-  syncBoards(remoteBoards) ─── dispatches SYNC_BOARDS_STARTED
+  syncBoards(manifest) ─── dispatches SYNC_BOARDS_STARTED
        │
        ├──────────────── PHASE 1: PULL ────────────────┐
        │                                                │
-       │  classifyRemoteBoards(local, remote, syncMeta) │
+       │  classifyRemoteBoards(local, manifest, syncMeta)│
        │       │                                        │
-       │       ├── boardsToAdd (new from server)        │
+       │       ├── boardsToAdd (new on server)          │
        │       ├── boardsToUpdate (server is newer)     │
-       │       └── boardIdsToDelete (missing on server) │
+       │       └── boardIdsToDelete (absent from manifest)│
        │                                                │
        │  applyRemoteChangesToState()                   │
+       │       ├── delete absent boards (no fetch)      │
+       │       ├── API.getBoardsByIds(new+changed ids)  │
+       │       │     (single POST /board/byids)         │
        │       ├── addBoards → syncMeta = SYNCED        │
-       │       ├── updateBoard(fromRemote) → SYNCED     │
-       │       └── verify deletions → hard delete or    │
-       │           update                               │
+       │       └── updateBoard(fromRemote) → SYNCED     │
        │                                                │
        ├──────────────── PHASE 2: PUSH ────────────────┐
        │                                                │
@@ -742,14 +797,16 @@ USER ACTION (edit board / create tile / delete board)
 
 | Scenario                            | Handling                                                                                 | Location                   |
 | ----------------------------------- | ---------------------------------------------------------------------------------------- | -------------------------- |
-| `syncBoards()` throws               | Catches error, dispatches `SYNC_BOARDS_FAILURE`, returns `{ success: false }`            | `Board.actions.js:816-819` |
-| Individual board push fails         | `console.error`, continues to next board. Failed board remains `PENDING` for next sync.  | `Board.actions.js:751-753` |
-| Board delete fails with non-404     | `console.error`, continues. Board remains marked `isDeleted` for next sync.              | `Board.actions.js:772-773` |
-| Board delete fails with 404         | Treated as success — board already gone from server. Dispatches `deleteApiBoardSuccess`. | `Board.actions.js:768-771` |
-| Deletion verification returns 404   | Confirmed deleted — hard delete locally.                                                 | `Board.actions.js:600-601` |
-| Deletion verification returns board | Board still exists — update locally instead of deleting.                                 | `Board.actions.js:597`     |
+| `syncBoards()` throws               | Catches error, dispatches `SYNC_BOARDS_FAILURE`, returns `{ success: false }`            | `Board.actions.js:848`     |
+| Bulk body fetch fails (PULL)        | `console.error`, **returns without throwing**. Deletions stay applied; adds/updates deferred to next sync; PUSH still runs. | `Board.actions.js:605`     |
+| Bulk body fetch returns bad shape   | Throws `'Bulk board fetch returned an unexpected shape'` — surfaces a contract break.    | `Board.actions.js:597`     |
+| Board absent from manifest          | Hard delete locally — no verification fetch (manifest is authoritative).                 | `Board.actions.js:588`     |
+| Requested id missing from body fetch | Skipped (board deleted in race window); self-heals on next sync.                        | `Board.actions.js:579`     |
+| Individual board push fails         | `console.error`, continues to next board. Failed board remains `PENDING` for next sync.  | `Board.actions.js:783`     |
+| Board delete fails with non-404     | `console.error`, continues. Board remains marked `isDeleted` for next sync.              | `Board.actions.js:803`     |
+| Board delete fails with 404         | Treated as success — board already gone from server. Dispatches `deleteApiBoardSuccess`. | `Board.actions.js:799-800` |
 | 403 from any API call               | Axios interceptor triggers automatic logout.                                             | Global API config          |
-| No `userEmail` in state             | `pushLocalChangesToApi` returns immediately — no push occurs.                            | `Board.actions.js:706`     |
+| No `userEmail` in state             | `pushLocalChangesToApi` returns immediately — no push occurs.                            | `Board.actions.js:733`     |
 
 ### Known Edge Cases
 
@@ -757,7 +814,8 @@ USER ACTION (edit board / create tile / delete board)
 | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
 | **ID-length heuristic**                          | A locally-generated ID that happens to be >= 14 chars would be misclassified as a server board.                                | `shortid` output is typically 7-12 chars, making collision extremely unlikely.                                             |
 | **`moment.js` timestamp precision**              | Two edits within the same second could have identical `lastEdited` values, causing `isAfter` to return false.                  | `isSameOrBefore` in graduation uses inclusive comparison. Last-write-wins is acceptable for the conflict resolution model. |
-| **Concurrent edit during deletion verification** | User edits a board while `applyRemoteChangesToState` is verifying its deletion.                                                | Pre/post fetch `syncMeta` comparison detects the SYNCED→PENDING transition and skips the overwrite.                        |
+| **Concurrent edit during body fetch**            | User edits a board (SYNCED→PENDING) while `applyRemoteChangesToState` is fetching its body for an add/update.                  | `resolveBody` compares pre/post-fetch `syncMeta`; on a SYNCED→PENDING transition it returns `null` and skips the overwrite, preserving the local edit.       |
+| **Stale `lastEdited` on the server**             | A board body changes server-side without bumping `lastEdited`.                                                                 | Not detected — the manifest comparison sees no change and never re-pulls. The freshness model depends on every write bumping `lastEdited` (see §5.1).       |
 | **`updateApiObjectsNoChild` recursive cascade**  | `updateApiMarkedBoards` → `updateApiObjectsNoChild` → `updateApiMarkedBoards` can recurse for deeply nested board hierarchies. | Recursion terminates naturally when no more boards are marked. Assumes finite board hierarchy depth.                       |
 | **Stale board references in push loop**          | A prior iteration's API call may change board IDs in state via `CREATE_API_BOARD_SUCCESS`.                                     | The push loop re-reads each board from `getState()` before every API call.                                                 |
 | **Communicator always persisted**                | `upsertApiCommunicator` is called even when the communicator didn't change.                                                    | No functional impact, but causes unnecessary API calls.                                                                    |
@@ -768,9 +826,10 @@ USER ACTION (edit board / create tile / delete board)
 
 | Component                 | Path                                      | Key Lines                                                                                                                                                                                                    |
 | ------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Actions (sync engine)** | `src/components/Board/Board.actions.js`   | `syncBoards` (782), `applyRemoteChangesToState` (568), `classifyBoardsForPush` (623), `pushLocalChangesToApi` (703), `updateApiObjectsNoChild` (992), `updateApiMarkedBoards` (1040), `getApiMyBoards` (530) |
+| **Actions (sync engine)** | `src/components/Board/Board.actions.js`   | `syncBoards` (817), `applyRemoteChangesToState` (579), `classifyBoardsForPush` (654), `pushLocalChangesToApi` (734), `updateApiObjectsNoChild` (1027), `updateApiMarkedBoards` (1075), `getApiMyBoards` (532) |
 | **Utilities**             | `src/components/Board/Board.utils.js`     | `classifyRemoteBoards` (78), `isLocalBoard` (26), `isServerBoard` (27), `transformBoardForUser` (60), `isUnloggedCreatedBoard` (32), `hasDefaultOrNoEmail` (29), `isDefaultBoard` (23)                       |
 | **Reducer**               | `src/components/Board/Board.reducer.js`   | `syncMeta` handling throughout, `CREATE_API_BOARD_SUCCESS` cascade (363), `SYNC_BOARDS_*` (521-537)                                                                                                          |
 | **Constants**             | `src/components/Board/Board.constants.js` | `SYNC_STATUS` (50), `SHORT_ID_MAX_LENGTH` (48), `DEFAULT_BOARD_EMAIL` (55)                                                                                                                                   |
-| **API**                   | `src/api/api.js`                          | `getMyBoards`, `getBoard`, `createBoard`, `updateBoard`, `deleteBoard`                                                                                                                                       |
+| **API**                   | `src/api/api.js`                          | `getBoardsSync` (280, `GET /board/sync/:email` manifest), `getBoardsByIds` (262, `POST /board/byids`), `getMyBoards`, `getBoard`, `createBoard`, `updateBoard`, `deleteBoard`                                 |
+| **Sync triggers**         | `src/components/App/App.container.js`     | `handleDataRefresh` (142), trigger handlers (171-185), `THROTTLE_MS` (138)                                                                                                                                   |
 | **Container**             | `src/components/Board/Board.container.js` | `getApiObjects` dispatch on mount                                                                                                                                                                            |
