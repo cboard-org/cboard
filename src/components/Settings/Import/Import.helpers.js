@@ -129,9 +129,6 @@ async function getTilesData(obfBoard, boards = {}, images = {}) {
 
 async function obfToCboard(obfBoard, boards = {}, images = {}, allBoards = []) {
   const allBoardsIds = getBoardsIds(allBoards);
-  if (allBoardsIds.includes(obfBoard.id)) {
-    return undefined;
-  }
   let tiles = [];
   if (obfBoard.buttons) {
     tiles = await getTilesData(obfBoard, boards, images);
@@ -160,6 +157,14 @@ async function obfToCboard(obfBoard, boards = {}, images = {}, allBoards = []) {
 
   if (obfBoard.locale) {
     board.locale = obfBoard.locale;
+  }
+
+  // Resolve ID collisions with existing boards (preserve prevId when changed)
+  board = resolveCollision(board, allBoardsIds);
+
+  // Only import boards that are allowed (not hidden, not root)
+  if (!shouldImportBoard(board)) {
+    return undefined;
   }
 
   return board;
@@ -245,10 +250,8 @@ export async function obzImportAdapter(file, intl, allBoards) {
 
         if (isBoard) {
           const tempBoard = JSON.parse(result);
-          if (
-            shouldImportBoard(tempBoard) &&
-            !allBoardsIds.includes(tempBoard.id)
-          ) {
+          // keep boards that should be imported; collisions are resolved later
+          if (shouldImportBoard(tempBoard)) {
             boards[k] = tempBoard;
           }
         } else {
