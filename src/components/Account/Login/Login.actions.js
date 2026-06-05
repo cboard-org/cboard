@@ -18,6 +18,7 @@ import {
 import { getVoiceURI } from '../../../i18n';
 import { isCordova, isElectron } from '../../../cordova-util';
 import tts from '../../../providers/SpeechProvider/tts';
+import { appInsights } from '../../../appInsights';
 
 export function loginSuccess(payload) {
   return dispatch => {
@@ -36,6 +37,12 @@ export function loginSuccess(payload) {
     }
     if (!isCordova() && typeof window?.gtag === 'function')
       window.gtag('set', { user_id: payload.id });
+
+    try {
+      appInsights.setAuthenticatedUserContext(payload.id);
+    } catch (err) {
+      console.error(err);
+    }
   };
 }
 
@@ -58,6 +65,12 @@ export function logout() {
 
   if (!isCordova() && typeof window?.gtag === 'function') {
     window.gtag('set', { user_id: null });
+  }
+
+  try {
+    appInsights.clearAuthenticatedUserContext();
+  } catch (err) {
+    console.error(err);
   }
 
   return async dispatch => {
