@@ -817,5 +817,114 @@ describe('reducer', () => {
         status: SYNC_STATUS.SYNCED
       });
     });
+
+    it('should keep the just-created board PENDING on CREATE_API_BOARD_SUCCESS while it still references a local child (issue #2218, create path)', () => {
+      // The board being created (e.g. a transformed default parent) carries a
+      // tile pointing at a grandchild that has NOT been created yet, so the copy
+      // pushed to the server holds a dangling short id.
+      const localGrandchild = {
+        id: 'gchild', // short id (< 14) → still local / not on the server
+        name: 'Grandchild',
+        tiles: []
+      };
+      const parentBeingCreated = {
+        id: 'shortParent',
+        name: 'Parent',
+        email: 'user@example.com',
+        tiles: [{ id: 'tile-1', loadBoard: 'gchild' }]
+      };
+      const stateWithBoards = {
+        ...initialState,
+        boards: [...initialState.boards, parentBeingCreated, localGrandchild],
+        syncMeta: { shortParent: { status: SYNC_STATUS.PENDING } }
+      };
+      const createApiBoardSuccess = {
+        type: CREATE_API_BOARD_SUCCESS,
+        board: { id: 'new-server-parent-id-11111', lastEdited: '2024-01-01' },
+        boardId: 'shortParent'
+      };
+      const result = boardReducer(stateWithBoards, createApiBoardSuccess);
+      // Must NOT graduate to SYNCED: the grandchild is still local, so the
+      // reference just persisted on the server is dangling. Stay PENDING.
+      expect(result.syncMeta['new-server-parent-id-11111']).toEqual({
+        status: SYNC_STATUS.PENDING
+      });
+    });
+
+    it('should keep board PENDING on UPDATE_API_BOARD_SUCCESS while it still references a local child (issue #2218)', () => {
+      const localChild = { id: 'shortChild', name: 'Child', tiles: [] };
+      const serverParent = {
+        id: 'server-parent-id-12345',
+        name: 'Parent',
+        email: 'user@example.com',
+        tiles: [{ id: 'tile-1', loadBoard: 'shortChild' }]
+      };
+      const stateWithBoards = {
+        ...initialState,
+        boards: [...initialState.boards, serverParent, localChild],
+        syncMeta: { 'server-parent-id-12345': { status: SYNC_STATUS.PENDING } }
+      };
+      const updateApiBoardSuccess = {
+        type: UPDATE_API_BOARD_SUCCESS,
+        boardData: { ...serverParent, lastEdited: '2024-01-01' }
+      };
+      const result = boardReducer(stateWithBoards, updateApiBoardSuccess);
+      // Must NOT graduate to SYNCED: the copy pushed to the server carries a
+      // dangling short id, so it stays PENDING to retry on the next sync run.
+      expect(result.syncMeta['server-parent-id-12345']).toEqual({
+        status: SYNC_STATUS.PENDING
+      });
+    });
+
+    it('should graduate to SYNCED on UPDATE_API_BOARD_SUCCESS when loadBoard points to a server child', () => {
+      const serverChild = {
+        id: 'server-child-id-67890',
+        name: 'Child',
+        tiles: []
+      };
+      const serverParent = {
+        id: 'server-parent-id-12345',
+        name: 'Parent',
+        email: 'user@example.com',
+        tiles: [{ id: 'tile-1', loadBoard: 'server-child-id-67890' }]
+      };
+      const stateWithBoards = {
+        ...initialState,
+        boards: [...initialState.boards, serverParent, serverChild],
+        syncMeta: { 'server-parent-id-12345': { status: SYNC_STATUS.PENDING } }
+      };
+      const updateApiBoardSuccess = {
+        type: UPDATE_API_BOARD_SUCCESS,
+        boardData: { ...serverParent, lastEdited: '2024-01-01' }
+      };
+      const result = boardReducer(stateWithBoards, updateApiBoardSuccess);
+      expect(result.syncMeta['server-parent-id-12345'].status).toBe(
+        SYNC_STATUS.SYNCED
+      );
+    });
+
+    it('should graduate to SYNCED on UPDATE_API_BOARD_SUCCESS when loadBoard points to a default board (never trapped in PENDING)', () => {
+      // 'root' is a shipped default board (short id, support@cboard.io email)
+      // that is intentionally never pushed, so a link to it is not a pending ref.
+      const serverParent = {
+        id: 'server-parent-id-12345',
+        name: 'Parent',
+        email: 'user@example.com',
+        tiles: [{ id: 'tile-1', loadBoard: 'root' }]
+      };
+      const stateWithBoards = {
+        ...initialState,
+        boards: [...initialState.boards, serverParent],
+        syncMeta: { 'server-parent-id-12345': { status: SYNC_STATUS.PENDING } }
+      };
+      const updateApiBoardSuccess = {
+        type: UPDATE_API_BOARD_SUCCESS,
+        boardData: { ...serverParent, lastEdited: '2024-01-01' }
+      };
+      const result = boardReducer(stateWithBoards, updateApiBoardSuccess);
+      expect(result.syncMeta['server-parent-id-12345'].status).toBe(
+        SYNC_STATUS.SYNCED
+      );
+    });
   });
 });

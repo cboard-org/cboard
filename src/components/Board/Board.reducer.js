@@ -1,7 +1,11 @@
 import moment from 'moment';
 
 import { DEFAULT_BOARDS, deepCopy } from '../../helpers';
-import { isLocalBoard, isServerBoard } from './Board.utils';
+import {
+  isLocalBoard,
+  isServerBoard,
+  hasUnsyncedChildReference
+} from './Board.utils';
 
 import {
   ADD_BOARDS,
@@ -448,12 +452,17 @@ function boardReducer(state = initialState, action) {
           status: SYNC_STATUS.PENDING
         });
       }
+      const createdBoard = finalBoards.find(b => b.id === action.board.id);
+      const createdStillPending = hasUnsyncedChildReference(
+        createdBoard,
+        finalBoards
+      );
       return {
         ...state,
         isFetching: false,
         boards: finalBoards,
         syncMeta: setSyncMeta(newSyncMeta, action.board.id, {
-          status: SYNC_STATUS.SYNCED
+          status: createdStillPending ? SYNC_STATUS.PENDING : SYNC_STATUS.SYNCED
         })
       };
     }
@@ -467,7 +476,9 @@ function boardReducer(state = initialState, action) {
         ...state,
         isFetching: true
       };
-    case UPDATE_API_BOARD_SUCCESS:
+    case UPDATE_API_BOARD_SUCCESS: {
+      const pushedBoard = state.boards.find(b => b.id === action.boardData.id);
+      const stillPending = hasUnsyncedChildReference(pushedBoard, state.boards);
       return {
         ...state,
         isFetching: false,
@@ -477,9 +488,10 @@ function boardReducer(state = initialState, action) {
             : board
         ),
         syncMeta: setSyncMeta(state.syncMeta, action.boardData.id, {
-          status: SYNC_STATUS.SYNCED
+          status: stillPending ? SYNC_STATUS.PENDING : SYNC_STATUS.SYNCED
         })
       };
+    }
     case UPDATE_API_BOARD_FAILURE:
       return {
         ...state,
