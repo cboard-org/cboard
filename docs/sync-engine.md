@@ -48,6 +48,7 @@ edge cases.
 | **Communicator**      | The top-level container that holds references to all boards a user has access to, including the `rootBoard` and `activeBoardId`.                                                                             |
 | **markToUpdate**      | A board-level flag set by the `CREATE_API_BOARD_SUCCESS` reducer when a tile's `loadBoard` reference changes due to an ID swap. Signals `updateApiMarkedBoards()` to push the board.                         |
 | **shouldCreateBoard** | A board-level flag set by `CREATE_API_BOARD_SUCCESS` for local boards that reference the newly-created board but aren't on the server themselves yet. Signals `updateApiMarkedBoards()` to create them.      |
+| **Unsynced child reference** | A `tile.loadBoard` on a parent board that points at a local (short-id) child that has **not yet been created** on the server. Pushing such a parent persists a dangling reference. Detected by `hasUnsyncedChildReference()`; the parent is held `PENDING` (not graduated to `SYNCED`) until the child gets a server id and the reference is rewritten. See issue #2218. |
 
 ---
 
@@ -491,8 +492,30 @@ CREATE_API_BOARD_SUCCESS reducer:
   │
   └── Update syncMeta:
         Remove syncMeta[oldId]
-        Set syncMeta[newId] = { status: SYNCED }
+        If the just-created board still has an unsynced child reference
+          → Set syncMeta[newId] = { status: PENDING }   (retry next sync)
+        else
+          → Set syncMeta[newId] = { status: SYNCED }
 ```
+
+#### Graduation guard (issue #2218)
+
+The just-created board is **not** graduated to `SYNCED` if it still holds an
+**unsynced child reference** — a `tile.loadBoard` pointing at a local child that
+has not been created on the server yet (`hasUnsyncedChildReference`). Marking it
+`SYNCED` would lock in a dangling short id on the server: the parent's copy would
+reference a board id that was never persisted.
+
+Instead the board is kept `PENDING` so the next sync run re-pushes it once the
+child has a server id and the reference has been rewritten. The same guard is
+applied in `UPDATE_API_BOARD_SUCCESS`. The CREATE path matters in particular for
+**transformed default boards**: modifying a default board transforms it to a user
+board and *creates* it on the server, so it graduates here rather than on the
+update path.
+
+> Default boards are excluded from the check — they are intentionally never
+> pushed (kept local with short ids), so a link to one is not a pending reference
+> and must not trap the parent in `PENDING`.
 
 ### 8.2 `updateApiMarkedBoards()`
 
@@ -555,6 +578,7 @@ Is board.id in DEFAULT_BOARD_IDS set AND email === "support@cboard.io"?
 | `isDefaultBoard(board)`                             | ID in known set AND default email                  | Unlogged board detection                         |
 | `hasDefaultOrNoEmail(board)`                        | `!email \|\| email === "support@cboard.io"`        | Transform decision                               |
 | `isUnloggedCreatedBoard(board)`                     | `!isDefaultBoard && hasDefaultOrNoEmail`           | Pass 2 classification                            |
+| `hasUnsyncedChildReference(board, boards)`          | `true` if any `tile.loadBoard` points at a local, non-default board still present in `boards` (i.e. a child not yet on the server) | Graduation guard in `CREATE_API_BOARD_SUCCESS` and `UPDATE_API_BOARD_SUCCESS` |
 | `transformBoardForUser(board, email, name, locale)` | Sets email, author, name, isPublic, locale, hidden | Onboarding default/offline boards                |
 
 ### `transformBoardForUser` Output
@@ -613,8 +637,8 @@ The `syncMeta` object tracks each board's sync status. Here's how every reducer 
 | `CREATE_TILE`              | `[boardId]: { status: PENDING }`                    | Tile added to board                                       |
 | `DELETE_TILES`             | `[boardId]: { status: PENDING }`                    | Tiles removed from board                                  |
 | `EDIT_TILES`               | `[boardId]: { status: PENDING }`                    | Tiles modified on board                                   |
-| `CREATE_API_BOARD_SUCCESS` | Remove `[oldId]`, set `[newId]: { status: SYNCED }` | Board successfully created on server                      |
-| `UPDATE_API_BOARD_SUCCESS` | `[id]: { status: SYNCED }`                          | Board successfully updated on server                      |
+| `CREATE_API_BOARD_SUCCESS` | Remove `[oldId]`, set `[newId]: { status: SYNCED }` — but `PENDING` if the board still has an unsynced child reference (#2218) | Board successfully created on server                      |
+| `UPDATE_API_BOARD_SUCCESS` | `[id]: { status: SYNCED }` — but `PENDING` if the board still has an unsynced child reference (#2218) | Board successfully updated on server                      |
 | `DELETE_API_BOARD_SUCCESS` | Remove `[id]` entirely                              | Board removed from server (hard delete)                   |
 | `REPLACE_BOARD`            | Migrate `[prevId]` → `[currentId]`                  | Board ID swapped (local → server)                         |
 | `LOGOUT`                   | Reset to `{}`                                       | User logs out                                             |
@@ -818,6 +842,7 @@ USER ACTION (edit board / create tile / delete board)
 | **Stale `lastEdited` on the server**             | A board body changes server-side without bumping `lastEdited`.                                                                 | Not detected — the manifest comparison sees no change and never re-pulls. The freshness model depends on every write bumping `lastEdited` (see §5.1).       |
 | **`updateApiObjectsNoChild` recursive cascade**  | `updateApiMarkedBoards` → `updateApiObjectsNoChild` → `updateApiMarkedBoards` can recurse for deeply nested board hierarchies. | Recursion terminates naturally when no more boards are marked. Assumes finite board hierarchy depth.                       |
 | **Stale board references in push loop**          | A prior iteration's API call may change board IDs in state via `CREATE_API_BOARD_SUCCESS`.                                     | The push loop re-reads each board from `getState()` before every API call.                                                 |
+| **Parent pushed before its local child (#2218)** | A parent can reach the server with a `tile.loadBoard` pointing at a local short id (e.g. an offline-created folder, or a folder added to a default board) — a dangling reference if the child create is later lost. | `hasUnsyncedChildReference` holds the parent `PENDING` (in both `CREATE_API_BOARD_SUCCESS` and `UPDATE_API_BOARD_SUCCESS`) instead of graduating it to `SYNCED`, so it is re-pushed once the child has a server id. Fully ordering children before parents in the push loop is tracked under the resilience epic (#2195). |
 | **Communicator always persisted**                | `upsertApiCommunicator` is called even when the communicator didn't change.                                                    | No functional impact, but causes unnecessary API calls.                                                                    |
 
 ---
