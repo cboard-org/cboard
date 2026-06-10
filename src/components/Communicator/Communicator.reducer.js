@@ -37,16 +37,22 @@ function communicatorReducer(state = initialState, action) {
     communicator => communicator.id === state.activeCommunicatorId
   );
   switch (action.type) {
-    case LOGIN_SUCCESS:
+    case LOGIN_SUCCESS: {
       const userCommunicators = action.payload.communicators || [];
       const activeCommunicatorId = userCommunicators.length
         ? userCommunicators[userCommunicators.length - 1].id
         : state.activeCommunicatorId;
+      const remoteIds = new Set(userCommunicators.map(c => c.id));
+      const base = (action.payload.discardLocalChanges
+        ? deepCopy(defaultCommunicators)
+        : state.communicators
+      ).filter(c => !remoteIds.has(c.id));
       return {
         ...state,
         activeCommunicatorId,
-        communicators: state.communicators.concat(userCommunicators)
+        communicators: base.concat(userCommunicators)
       };
+    }
 
     case LOGOUT:
       return {
