@@ -162,9 +162,10 @@ describe('reducer', () => {
     });
   });
   it('should handle createApiBoardSuccess', () => {
+    const serverBoardId = 'server-board-id-123456';
     const createApiBoardSuccess = {
       type: CREATE_API_BOARD_SUCCESS,
-      board: mockBoard,
+      board: { ...mockBoard, id: serverBoardId },
       boardId: '456456456456456456456'
     };
     expect(
@@ -187,12 +188,13 @@ describe('reducer', () => {
         ...initialState.boards,
         {
           ...mockBoard,
-          tiles: [{ id: '1234', loadBoard: '123' }],
+          id: serverBoardId,
+          tiles: [{ id: '1234', loadBoard: serverBoardId }],
           lastEdited: mockBoard.lastEdited
         }
       ],
       syncMeta: {
-        [mockBoard.id]: { status: SYNC_STATUS.SYNCED }
+        [serverBoardId]: { status: SYNC_STATUS.SYNCED }
       },
       isFetching: false
     });
