@@ -54,8 +54,10 @@ import {
   verifyAndUpsertCommunicator
 } from '../Communicator/Communicator.actions';
 import { disableTour } from '../App/App.actions';
+import { isLogged } from '../App/App.selectors';
 import { showPremiumRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 import { isSubscriptionRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.selectors';
+import UnauthenticatedEditModal from '../LoggedInFeature/UnauthenticatedEditModal';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
@@ -208,7 +210,8 @@ export class BoardContainer extends Component {
     isCbuilderBoard: false,
     pinDialogOpen: false,
     pinAttempt: '',
-    pinError: false
+    pinError: false,
+    showUnauthEditModal: false
   };
   constructor(props) {
     super(props);
@@ -801,6 +804,11 @@ export class BoardContainer extends Component {
           pinError: !hasValidPinCode
         });
       }
+      return;
+    }
+
+    if (this.state.isLocked && !this.props.isLogged) {
+      this.setState({ showUnauthEditModal: true });
       return;
     }
 
@@ -1814,6 +1822,32 @@ export class BoardContainer extends Component {
           isSymbolSearchTourEnabled={this.props.isSymbolSearchTourEnabled}
           disableTour={this.props.disableTour}
         />
+        <UnauthenticatedEditModal
+          open={this.state.showUnauthEditModal}
+          onClose={() => this.setState({ showUnauthEditModal: false })}
+          onContinue={() => {
+            const {
+              showPremiumRequired,
+              isSubscriptionRequired,
+              setIsSaving
+            } = this.props;
+            this.setState(
+              {
+                showUnauthEditModal: false,
+                isLocked: false,
+                isSaving: false,
+                isSelecting: false,
+                selectedTileIds: []
+              },
+              () => {
+                setIsSaving(false);
+                if (isSubscriptionRequired) {
+                  showPremiumRequired({ showTryPeriodFinishedMessages: true });
+                }
+              }
+            );
+          }}
+        />
         <PinDialog
           open={this.state.pinDialogOpen}
           onClose={this.handlePinDialogClose}
@@ -1872,7 +1906,8 @@ export const mapStateToProps = state => {
     isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
     isPremiumRequiredModalOpen: premiumRequiredModalState?.open,
     improvedPhrase: board.improvedPhrase,
-    isSubscriptionRequired: isSubscriptionRequired(state)
+    isSubscriptionRequired: isSubscriptionRequired(state),
+    isLogged: isLogged(state)
   };
 };
 
