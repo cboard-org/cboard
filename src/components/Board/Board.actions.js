@@ -1095,7 +1095,7 @@ export function updateApiMarkedBoards() {
     const allBoards = [...getState().board.boards];
     for await (const board of allBoards) {
       const boardsIds = getState().board.boards?.map(board => board.id);
-      if (!boardsIds.includes(board.id)) return;
+      if (!boardsIds.includes(board.id)) continue;
 
       if (
         isServerBoard(board) &&
