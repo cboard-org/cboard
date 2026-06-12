@@ -461,9 +461,13 @@ function boardReducer(state = initialState, action) {
         ...state,
         isFetching: false,
         boards: finalBoards,
-        syncMeta: setSyncMeta(newSyncMeta, action.board.id, {
-          status: createdStillPending ? SYNC_STATUS.PENDING : SYNC_STATUS.SYNCED
-        })
+        syncMeta: createdBoard
+          ? setSyncMeta(newSyncMeta, action.board.id, {
+              status: createdStillPending
+                ? SYNC_STATUS.PENDING
+                : SYNC_STATUS.SYNCED
+            })
+          : newSyncMeta
       };
     }
     case CREATE_API_BOARD_FAILURE:
@@ -487,9 +491,11 @@ function boardReducer(state = initialState, action) {
             ? { ...board, lastEdited: action.boardData.lastEdited }
             : board
         ),
-        syncMeta: setSyncMeta(state.syncMeta, action.boardData.id, {
-          status: stillPending ? SYNC_STATUS.PENDING : SYNC_STATUS.SYNCED
-        })
+        syncMeta: pushedBoard
+          ? setSyncMeta(state.syncMeta, action.boardData.id, {
+              status: stillPending ? SYNC_STATUS.PENDING : SYNC_STATUS.SYNCED
+            })
+          : state.syncMeta
       };
     }
     case UPDATE_API_BOARD_FAILURE:
