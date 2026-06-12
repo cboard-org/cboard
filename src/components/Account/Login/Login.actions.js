@@ -175,8 +175,7 @@ export function login({ email, password, activatedData }, type = 'local') {
 
       const hasRemoteCommunicators =
         loginData.communicators && loginData.communicators.length > 0;
-      const isFirstLogin = loginData.isFirstLogin === true;
-      const discardLocalChanges = !isFirstLogin || hasRemoteCommunicators;
+      const discardLocalChanges = hasRemoteCommunicators;
 
       if (type === 'local') {
         dispatch(
