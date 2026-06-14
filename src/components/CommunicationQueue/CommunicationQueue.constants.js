@@ -1,0 +1,4 @@
+export const QUEUE_EVENT = 'QUEUE_EVENT';
+export const REMOVE_EVENTS = 'REMOVE_EVENTS';
+export const INCREMENT_RETRY = 'INCREMENT_RETRY';
+export const CLEAR_QUEUE = 'CLEAR_QUEUE';
