@@ -10,7 +10,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import './ColorSelectDropdown.css';
 import Circle from './Circle';
 import messages from './SkinTone.messages';
-
 const skinToneSources = new Map([
   [
     'arasaac',
@@ -20,20 +19,20 @@ const skinToneSources = new Map([
         color: '#f5e5de'
       },
       {
-        name: 'black',
-        color: '#a65c17'
-      },
-      {
         name: 'assian',
         color: '#f4ecad'
+      },
+      {
+        name: 'aztec',
+        color: '#cf9d7c'
       },
       {
         name: 'mulatto',
         color: '#e3ab72'
       },
       {
-        name: 'aztec',
-        color: '#cf9d7c'
+        name: 'black',
+        color: '#a65c17'
       }
     ]
   ]
