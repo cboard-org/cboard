@@ -19,6 +19,7 @@ import Analytics from '../Analytics';
 import './App.css';
 import LoginRequiredModal from '../LoggedInFeature/LoginRequiredModal';
 
+import CommunicatorBuild from '../Communicator/CommunicatorBuild';
 export class App extends Component {
   static propTypes = {
     /**
@@ -59,6 +60,7 @@ export class App extends Component {
 
     return (
       <div className={classNames('App', { 'is-dark': dark })}>
+        <CommunicatorBuild />
         <Helmet>
           <html lang={lang} dir={dir} />
         </Helmet>
