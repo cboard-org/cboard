@@ -228,6 +228,36 @@ export class Cboard {
       .filter({ hasText: 'Reset Your Password' });
   }
 
+  get unauthenticatedEditModal() {
+    return this.page
+      .locator('[role="dialog"]')
+      .filter({ hasText: 'You are not logged in' });
+  }
+
+  get continueEditingButton() {
+    return this.page.getByRole('button', { name: 'Continue editing' });
+  }
+
+  get pinDialog() {
+    return this.page.getByRole('dialog', { name: 'Enter PIN' });
+  }
+
+  get pinDialogInput() {
+    return this.pinDialog.locator('input[inputmode="numeric"]');
+  }
+
+  get pinDialogUnlockButton() {
+    return this.pinDialog.getByRole('button', { name: 'Unlock' });
+  }
+
+  get pinDialogCancelButton() {
+    return this.pinDialog.getByRole('button', { name: 'Cancel' });
+  }
+
+  get pinDialogErrorMessage() {
+    return this.page.getByText('Incorrect PIN. Please try again.');
+  }
+
   // === FORM FIELD LOCATORS ===
   get emailField() {
     return this.page.locator('input[name="email"]');
@@ -1656,6 +1686,17 @@ export class Cboard {
       .first();
   }
 
+  get pinLockToggle() {
+    return this.page
+      .getByRole('listitem')
+      .filter({ hasText: 'Enable PIN lock' })
+      .getByRole('checkbox');
+  }
+
+  get navigationSettingsPinInput() {
+    return this.page.locator('input[inputmode="numeric"]');
+  }
+
   // === SETTINGS ACTIONS ===
   async navigateToSettings() {
     try {
@@ -1665,13 +1706,7 @@ export class Cboard {
       const isUnlockVisible = await unlockButton.isVisible({ timeout: 2000 });
 
       if (isUnlockVisible) {
-        await this.clickUnlockButton();
-        await this.page.waitForTimeout(500);
-        await this.clickUnlockButton();
-        await this.page.waitForTimeout(500);
-        await this.clickUnlockButton();
-        await this.page.waitForTimeout(500);
-        await this.clickUnlockButton();
+        await this.unlockAsGuest();
       }
     } catch (error) {
       console.log(
@@ -1777,6 +1812,99 @@ export class Cboard {
     await tab.click();
     await this.page.waitForTimeout(500);
   }
+
+  // === PIN LOCK SETTINGS ACTIONS ===
+
+  /**
+   * Unlock the board via the 4-click childProof sequence.
+   * For unauthenticated users this handles the "You are not logged in" modal
+   * by clicking "Continue editing". For logged-in users the board unlocks
+   * directly and the modal is silently skipped.
+   */
+  async unlockAsGuest() {
+    for (let i = 0; i < 4; i++) {
+      await this.unlockButton.click();
+      if (i < 3) await this.page.waitForTimeout(400);
+    }
+    // Guest users see the UnauthenticatedEditModal; logged-in users do not.
+    try {
+      await this.continueEditingButton.waitFor({
+        state: 'visible',
+        timeout: 2000
+      });
+      await this.continueEditingButton.click();
+    } catch {
+      // Logged-in user: board unlocked directly, no modal to dismiss.
+    }
+  }
+
+  /**
+   * Full navigation flow from the locked board to the Navigation and Buttons settings panel.
+   * Handles the guest unlock modal, tour popups, and settings navigation.
+   */
+  async navigateToNavigationSettings() {
+    await this.unlockAsGuest();
+    await this.dismissTourPopup();
+    await this.settingsButton.waitFor({ state: 'visible', timeout: 10000 });
+    await this.settingsButton.click();
+    await this.dismissTourPopup();
+    await this.clickSettingsTab('Navigation and Buttons');
+  }
+
+  /**
+   * Enable PIN lock and set the 4-digit PIN code in the Navigation and Buttons settings panel.
+   * Assumes the panel is already open.
+   * @param {string} pin - A 4-digit numeric string
+   */
+  async enablePinLockInSettings(pin) {
+    await this.pinLockToggle.click();
+    await this.navigationSettingsPinInput.fill(pin);
+  }
+
+  /**
+   * Click the unlock button once to trigger the PIN dialog.
+   * Only call this when PIN lock is configured; the dialog opens on the first click.
+   */
+  async openPinDialog() {
+    await this.unlockButton.click();
+    await this.pinDialog.waitFor({ state: 'visible', timeout: 5000 });
+  }
+
+  /**
+   * Fill and submit a PIN in the PIN dialog.
+   * @param {string} pin - A 4-digit numeric string
+   */
+  async submitPin(pin) {
+    await this.pinDialogInput.fill(pin);
+    await this.pinDialogUnlockButton.click();
+  }
+
+  async expectPinDialogVisible() {
+    await expect(this.pinDialog).toBeVisible();
+  }
+
+  async expectPinDialogNotVisible() {
+    await expect(this.pinDialog).not.toBeVisible();
+  }
+
+  /**
+   * Assert the PIN dialog shows an error: message visible, input cleared.
+   */
+  async expectPinDialogError() {
+    await expect(this.pinDialogErrorMessage).toBeVisible();
+    await expect(this.pinDialogInput).toHaveValue('');
+  }
+
+  /**
+   * Assert the board is fully unlocked: settings toolbar is visible.
+   */
+  async expectBoardUnlocked() {
+    await this.expectButtonVisible(this.settingsButton);
+    await this.expectButtonVisible(this.lockButton);
+    await this.expectButtonVisible(this.printBoardButton);
+    await this.expectButtonVisible(this.shareButton);
+  }
+
   async verifySettingsVisible() {
     // Verify that at least one of the main settings tabs is visible
     const settingsTabsVisible = await Promise.all([
@@ -3486,10 +3614,8 @@ export class Cboard {
   // === COMMUNICATOR DIALOG METHODS ===
   async openCommunicatorDialog() {
     // Ensure the app is unlocked first
-    for (let i = 1; i <= 4; i++) {
-      await this.clickUnlock();
-    }
-    await this.dismissOverlays();
+    await this.unlockAsGuest();
+    await this.dismissTourPopup();
 
     // Click the build tab to open communicator dialog
     await this.buildTab.click();
