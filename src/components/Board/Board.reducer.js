@@ -1,7 +1,11 @@
 import moment from 'moment';
 
 import { DEFAULT_BOARDS, deepCopy } from '../../helpers';
-import { isLocalBoard, isServerBoard } from './Board.utils';
+import {
+  isLocalBoard,
+  isServerBoard,
+  hasUnsyncedChildReference
+} from './Board.utils';
 
 import {
   ADD_BOARDS,
@@ -487,13 +491,22 @@ function boardReducer(state = initialState, action) {
           status: SYNC_STATUS.PENDING
         });
       }
+      const createdBoard = finalBoards.find(b => b.id === action.board.id);
+      const createdStillPending = hasUnsyncedChildReference(
+        createdBoard,
+        finalBoards
+      );
       return {
         ...state,
         isFetching: false,
         boards: finalBoards,
-        syncMeta: setSyncMeta(newSyncMeta, action.board.id, {
-          status: SYNC_STATUS.SYNCED
-        })
+        syncMeta: createdBoard
+          ? setSyncMeta(newSyncMeta, action.board.id, {
+              status: createdStillPending
+                ? SYNC_STATUS.PENDING
+                : SYNC_STATUS.SYNCED
+            })
+          : newSyncMeta
       };
     }
     case CREATE_API_BOARD_FAILURE:
@@ -506,7 +519,9 @@ function boardReducer(state = initialState, action) {
         ...state,
         isFetching: true
       };
-    case UPDATE_API_BOARD_SUCCESS:
+    case UPDATE_API_BOARD_SUCCESS: {
+      const pushedBoard = state.boards.find(b => b.id === action.boardData.id);
+      const stillPending = hasUnsyncedChildReference(pushedBoard, state.boards);
       return {
         ...state,
         isFetching: false,
@@ -515,10 +530,13 @@ function boardReducer(state = initialState, action) {
             ? { ...board, lastEdited: action.boardData.lastEdited }
             : board
         ),
-        syncMeta: setSyncMeta(state.syncMeta, action.boardData.id, {
-          status: SYNC_STATUS.SYNCED
-        })
+        syncMeta: pushedBoard
+          ? setSyncMeta(state.syncMeta, action.boardData.id, {
+              status: stillPending ? SYNC_STATUS.PENDING : SYNC_STATUS.SYNCED
+            })
+          : state.syncMeta
       };
+    }
     case UPDATE_API_BOARD_FAILURE:
       return {
         ...state,
