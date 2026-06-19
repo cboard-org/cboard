@@ -7,6 +7,7 @@ import {
   DISABLE_TOUR,
   ENABLE_ALL_TOURS,
   SET_UNLOGGED_USER_LOCATION,
+  SET_UNAUTH_EDIT_MODAL_DISMISSED,
   UPDATE_SYMBOLS_SETTINGS,
   UPDATE_CONNECTIVITY
 } from './App.constants';
@@ -73,6 +74,13 @@ export function setUnloggedUserLocation(location) {
   return {
     type: SET_UNLOGGED_USER_LOCATION,
     location
+  };
+}
+
+export function setUnauthEditModalDismissed(dismissed = true) {
+  return {
+    type: SET_UNAUTH_EDIT_MODAL_DISMISSED,
+    payload: dismissed
   };
 }
 
