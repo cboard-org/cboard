@@ -4,6 +4,7 @@
  */
 
 import { expect } from '@playwright/test';
+import { readFile } from 'fs/promises';
 
 export class Cboard {
   constructor(page) {
@@ -1455,12 +1456,22 @@ export class Cboard {
   }
 
   // Single board export section
+  /** Boards trigger — 1st MUI Select visible div inside the single-board Paper. */
   get boardsDropdown() {
-    return this.page.getByRole('button', { name: 'Boards' });
+    return this.page
+      .locator('.Export__section')
+      .nth(0)
+      .locator('.MuiSelect-select')
+      .nth(0);
   }
 
+  /** Format trigger — 2nd MUI Select visible div inside the single-board Paper. */
   get singleExportFormatDropdown() {
-    return this.page.locator('#export-single-select');
+    return this.page
+      .locator('.Export__section')
+      .nth(0)
+      .locator('.MuiSelect-select')
+      .nth(1);
   }
 
   get singleExportActionButton() {
@@ -1472,8 +1483,13 @@ export class Cboard {
   }
 
   // All boards export section
+  /** Format trigger — 1st MUI Select visible div inside the all-boards Paper. */
   get allBoardsExportFormatDropdown() {
-    return this.page.locator('#export-all-select');
+    return this.page
+      .locator('.Export__section')
+      .nth(1)
+      .locator('.MuiSelect-select')
+      .nth(0);
   }
 
   get allBoardsExportActionButton() {
@@ -1485,8 +1501,13 @@ export class Cboard {
   }
 
   // PDF Settings
+  /** Font-size trigger — 1st MUI Select visible div inside the PDF settings Paper. */
   get pdfFontSizeDropdown() {
-    return this.page.getByRole('button', { name: 'Font size Medium' });
+    return this.page
+      .locator('.Export__section')
+      .nth(2)
+      .locator('.MuiSelect-select')
+      .nth(0);
   }
 
   get pdfFontSizeInput() {
@@ -2946,7 +2967,7 @@ export class Cboard {
 
   async selectSingleBoardFormat(format) {
     await this.singleExportFormatDropdown.click();
-    await this.page.getByRole('option', { name: format }).click();
+    await this.page.getByRole('option', { name: format, exact: true }).click();
   }
 
   async verifySingleExportButtonEnabled() {
@@ -2955,6 +2976,70 @@ export class Cboard {
 
   async verifySingleExportButtonDisabled() {
     await expect(this.singleExportActionButton).toBeDisabled();
+  }
+
+  /**
+   * Click the single-board Export button and wait for the browser download event.
+   * Must be called after both a board and a format have been selected.
+   * @returns {Promise<import('@playwright/test').Download>}
+   */
+  async triggerSingleBoardExportAndWaitForDownload() {
+    const [download] = await Promise.all([
+      this.page.waitForEvent('download', { timeout: 30000 }),
+      this.singleExportActionButton.click()
+    ]);
+    return download;
+  }
+
+  /**
+   * Assert the downloaded file's suggested name contains the expected suffix.
+   * @param {import('@playwright/test').Download} download
+   * @param {string} expectedSuffix  e.g. 'board.json', 'board.obf', 'board.pdf'
+   */
+  async verifyDownloadedFileName(download, expectedSuffix) {
+    const name = download.suggestedFilename();
+    expect(name).toContain(expectedSuffix);
+  }
+
+  /**
+   * Verify a downloaded Cboard (.json) file is not corrupted.
+   * Parses the JSON and asserts it is an array of board objects with required fields.
+   * @param {import('@playwright/test').Download} download
+   */
+  async verifyDownloadedCboardFile(download) {
+    const filePath = await download.path();
+    const raw = await readFile(filePath, 'utf8');
+    const boards = JSON.parse(raw);
+    expect(Array.isArray(boards)).toBe(true);
+    expect(boards.length).toBeGreaterThan(0);
+    expect(boards[0]).toHaveProperty('id');
+    expect(boards[0]).toHaveProperty('tiles');
+  }
+
+  /**
+   * Verify a downloaded OpenBoard (.obf) file is not corrupted.
+   * Parses the JSON and checks the OBF format marker and required fields.
+   * @param {import('@playwright/test').Download} download
+   */
+  async verifyDownloadedOpenBoardFile(download) {
+    const filePath = await download.path();
+    const raw = await readFile(filePath, 'utf8');
+    const obf = JSON.parse(raw);
+    expect(obf).toHaveProperty('format', 'open-board-0.1');
+    expect(obf).toHaveProperty('id');
+    expect(obf).toHaveProperty('buttons');
+  }
+
+  /**
+   * Verify a downloaded PDF file is not corrupted.
+   * Checks the PDF magic bytes header (%PDF-) and minimum file size.
+   * @param {import('@playwright/test').Download} download
+   */
+  async verifyDownloadedPdfFile(download) {
+    const filePath = await download.path();
+    const buffer = await readFile(filePath);
+    expect(buffer.slice(0, 5).toString('ascii')).toBe('%PDF-');
+    expect(buffer.length).toBeGreaterThan(1000);
   }
 
   async selectAllBoardsFormat(format) {
@@ -2970,6 +3055,32 @@ export class Cboard {
     await expect(this.allBoardsExportActionButton).toBeDisabled();
   }
 
+  /**
+   * Assert no loading spinner is visible in the all-boards export section.
+   * Used to verify that format selection alone does NOT trigger an auto-export.
+   */
+  async verifyAllBoardsNoLoadingSpinner() {
+    await expect(
+      this.page
+        .locator('.Export__section')
+        .nth(1)
+        .locator('.Export__SelectContainer--spinner')
+    ).not.toBeVisible();
+  }
+
+  /**
+   * Assert that the single-board and all-boards sections are rendered as
+   * separate Paper containers (PR #2149 split them from one shared Paper).
+   */
+  async verifyExportSectionsAreSeparated() {
+    const sections = this.page.locator('.Export__section');
+    const count = await sections.count();
+    expect(count).toBeGreaterThanOrEqual(2);
+    // Each section must be an independent element in the DOM
+    await expect(sections.nth(0)).toBeVisible();
+    await expect(sections.nth(1)).toBeVisible();
+  }
+
   async verifyPdfSettingsSection() {
     await expect(this.page.locator('text=PDF Settings')).toBeVisible();
     await expect(this.pdfFontSizeDropdown).toBeVisible();
@@ -2981,18 +3092,26 @@ export class Cboard {
 
   async clickBoardsDropdown() {
     await this.boardsDropdown.click();
+    // Close the dropdown without selecting, so subsequent interactions are clean
+    await this.page.keyboard.press('Escape');
   }
 
   async clickSingleExportFormat() {
     await this.singleExportFormatDropdown.click();
+    // Close the dropdown without selecting
+    await this.page.keyboard.press('Escape');
   }
 
   async clickAllBoardsExportFormat() {
     await this.allBoardsExportFormatDropdown.click();
+    // Close the dropdown without selecting
+    await this.page.keyboard.press('Escape');
   }
 
   async clickPdfFontSize() {
     await this.pdfFontSizeDropdown.click();
+    // Close the dropdown without selecting
+    await this.page.keyboard.press('Escape');
   }
 
   async verifyFormatDocumentationLinks() {
