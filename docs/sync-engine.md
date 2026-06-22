@@ -739,22 +739,44 @@ Use this as the contract between the engine and the presentation layer.
 | Board pending delete | `state.board.syncMeta[id]?.isDeleted` | `true` — queued for server deletion     |
 | Board untracked      | `state.board.syncMeta[id]`            | `undefined` — not yet onboarded         |
 | API call active      | `state.board.isFetching`              | `true` during individual API calls      |
+| Single board saving  | `state.board.isSaving`                | `true` during an individual create/update API call |
+| Any board pending    | `hasPendingSyncBoards(state)`         | `true` if any board's `syncMeta` status is `pending` |
+| Online               | `state.app.isConnected`               | `true` when the device has connectivity  |
 
-### Suggested UI Mapping
+### Implemented UI Mapping
 
-<!--
-Fill in as UI is implemented. Example mapping:
+The `SyncButton` component
+(`src/components/Communicator/CommunicatorToolbar/SyncButton/SyncButton.js`)
+collapses the signals above into a single **display state**. It first derives a
+coarse sync status, then maps it (plus connectivity) to what the user sees.
 
-| User Sees | Condition |
-|-----------|-----------|
-| Spinner / "Syncing..." | isSyncing === true |
-| Green checkmark | syncMeta[activeBoard]?.status === 'synced' |
-| Orange dot / "Unsaved" | syncMeta[activeBoard]?.status === 'pending' |
-| Red banner / "Sync failed" | syncError !== null |
-| No indicator | syncMeta[activeBoard] === undefined (untracked) |
--->
+**Derived sync status** (`getSyncStatus`):
 
-_To be defined when the sync status UI is implemented._
+| Sync status | Condition                                |
+| ----------- | ---------------------------------------- |
+| `SYNCING`   | `isSyncing \|\| isFetching \|\| isSaving` |
+| `PENDING`   | `hasPendingBoards`                       |
+| `SYNCED`    | otherwise                                |
+
+**Display state** (`getDisplayState`, evaluated top-down — first match wins):
+
+| User sees                       | Display state    | Condition                              | Icon              |
+| ------------------------------- | ---------------- | -------------------------------------- | ----------------- |
+| "Working Offline" (amber)       | `workingOffline` | `!isOnline && hasPendingBoards`        | `OfflinePin`      |
+| "Offline" (amber)               | `offline`        | `!isOnline`                            | `CloudOff`        |
+| Spinner                         | `saving`         | `syncStatus === SYNCING`               | `CircularProgress`|
+| "Saved Locally" (amber)         | `savedLocally`   | `syncStatus === PENDING`               | `SyncProblem`     |
+| Checkmark (green)               | `synced`         | otherwise                              | `CloudDone`       |
+
+**Notes:**
+
+- The indicator is **global**, not per-board — it reflects whether _any_ board is
+  pending (`hasPendingSyncBoards`), not the active board's status.
+- Manual sync: the `savedLocally` and `saving` states are clickable and dispatch
+  `getApiObjects()`; clicking is disabled while `SYNCING`. The offline states are
+  non-interactive.
+- `syncError` is **not** currently surfaced by `SyncButton` — a failed sync falls
+  back to `savedLocally` (boards remain `PENDING`) once syncing stops.
 
 ---
 
