@@ -50,4 +50,44 @@ test.describe('Cboard - Navigation Settings: PIN Lock', () => {
     await cboard.expectPinDialogNotVisible();
     await cboard.expectBoardUnlocked();
   });
+
+  test('should close the PIN dialog without unlocking when Cancel is clicked and allow reopening', async () => {
+    await cboard.openPinDialog();
+    await cboard.expectPinDialogVisible();
+
+    // Cancel must dismiss the dialog
+    await cboard.pinDialogCancelButton.click();
+    await cboard.expectPinDialogNotVisible();
+
+    // Board must still be locked — settings toolbar not visible, unlock button present
+    await expect(cboard.settingsButton).not.toBeVisible();
+    await cboard.expectButtonVisible(cboard.unlockButton);
+
+    // Clicking unlock again must re-open the PIN dialog (cancel doesn't disable PIN lock)
+    await cboard.openPinDialog();
+    await cboard.expectPinDialogVisible();
+  });
+
+  test('should require the PIN again after the board is re-locked following a successful unlock', async () => {
+    // First unlock with correct PIN
+    await cboard.openPinDialog();
+    await cboard.submitPin(TEST_PIN);
+    await cboard.expectPinDialogNotVisible();
+    await cboard.expectBoardUnlocked();
+
+    // Re-lock the board
+    await cboard.clickLock();
+    await cboard.waitForTimeout(500);
+    await expect(cboard.settingsButton).not.toBeVisible();
+    await cboard.expectButtonVisible(cboard.unlockButton);
+
+    // PIN dialog must appear again on the very first click — PIN lock is still active
+    await cboard.openPinDialog();
+    await cboard.expectPinDialogVisible();
+
+    // Correct PIN must unlock again
+    await cboard.submitPin(TEST_PIN);
+    await cboard.expectPinDialogNotVisible();
+    await cboard.expectBoardUnlocked();
+  });
 });

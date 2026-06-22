@@ -3663,6 +3663,138 @@ export class Cboard {
     );
     await expect(reportDialog).not.toBeVisible();
   }
+
+  // === SYMBOL SEARCH ===
+
+  /** Button that opens the SymbolSearch dialog from within the tile editor */
+  get symbolSearchButton() {
+    return this.page.getByRole('button', { name: 'Symbol search' });
+  }
+
+  /** Search text input inside the SymbolSearch dialog */
+  get symbolSearchInput() {
+    return this.page.getByRole('textbox', { name: 'Search symbol library' });
+  }
+
+  /** First result option in the symbol search suggestions list */
+  get symbolSearchFirstResult() {
+    return this.page.getByRole('option').first();
+  }
+
+  // Provider filter checkboxes (MUI Switch rendered as role="checkbox")
+  get mulberryCheckbox() {
+    return this.page.getByRole('checkbox', { name: 'Mulberry' });
+  }
+
+  get globalSymbolsCheckbox() {
+    return this.page.getByRole('checkbox', { name: 'Global Symbols' });
+  }
+
+  get arasaacSymbolsCheckbox() {
+    return this.page.getByRole('checkbox', { name: 'ARASAAC' });
+  }
+
+  /** The Cboard Symbols provider checkbox — added by PR #2147 */
+  get cboardSymbolsCheckbox() {
+    return this.page.getByRole('checkbox', { name: 'Cboard Symbols' });
+  }
+
+  /**
+   * The Skin Tone IconButton inside SkinToneSelect.
+   * Rendered as disabled when neither ARASAAC nor Cboard Symbols is active.
+   */
+  get skinToneButton() {
+    return this.page.locator('#SkinToneOptions button');
+  }
+
+  /**
+   * Open the SymbolSearch dialog starting from a fresh locked board.
+   * Unlocks the board, opens the tile editor, then clicks "Symbol search".
+   * Dismisses the symbol search tour if it appears.
+   */
+  async openSymbolSearch() {
+    await this.unlockAsGuest();
+    await this.dismissTourPopup();
+    await this.addTileButton.waitFor({ state: 'visible', timeout: 10000 });
+    await this.addTileButton.click();
+    await this.symbolSearchButton.waitFor({ state: 'visible', timeout: 5000 });
+    await this.symbolSearchButton.click();
+    // Dismiss the symbol search walkthrough tour if present
+    try {
+      const skipTour = this.page.locator('[data-test-id="button-skip"]');
+      await skipTour.waitFor({ state: 'visible', timeout: 2000 });
+      await skipTour.click();
+    } catch {
+      // No tour shown
+    }
+    await this.symbolSearchInput.waitFor({ state: 'visible', timeout: 5000 });
+  }
+
+  /**
+   * Type a search term and wait for the debounce (300 ms) plus API response.
+   * @param {string} query
+   */
+  async searchSymbol(query) {
+    await this.symbolSearchInput.fill(query);
+    await this.page.waitForTimeout(2000);
+  }
+
+  /** Toggle the Mulberry provider on or off. */
+  async toggleMulberryProvider() {
+    await this.mulberryCheckbox.click();
+  }
+
+  /** Toggle the Global Symbols provider on or off. */
+  async toggleGlobalSymbolsProvider() {
+    await this.globalSymbolsCheckbox.click();
+  }
+
+  /** Toggle the Cboard Symbols provider on or off. */
+  async toggleCboardSymbolsProvider() {
+    await this.cboardSymbolsCheckbox.click();
+  }
+
+  /** Toggle the ARASAAC provider on or off. */
+  async toggleArasaacSymbolsProvider() {
+    await this.arasaacSymbolsCheckbox.click();
+  }
+
+  /** Assert all 4 symbol provider checkboxes are visible in the filter bar. */
+  async expectAllSymbolProvidersVisible() {
+    await expect(this.mulberryCheckbox).toBeVisible();
+    await expect(this.globalSymbolsCheckbox).toBeVisible();
+    await expect(this.arasaacSymbolsCheckbox).toBeVisible();
+    await expect(this.cboardSymbolsCheckbox).toBeVisible();
+  }
+
+  /** Assert the Cboard Symbols provider is currently enabled (checked). */
+  async expectCboardSymbolsEnabled() {
+    await expect(this.cboardSymbolsCheckbox).toBeChecked();
+  }
+
+  /**
+   * Assert at least one symbol result is visible in the suggestions list.
+   * @param {string} [label] - When provided, asserts a result with that exact label is visible.
+   */
+  async expectSymbolResultsVisible(label) {
+    if (label) {
+      await expect(
+        this.page.getByRole('option', { name: label, exact: true }).first()
+      ).toBeVisible();
+    } else {
+      await expect(this.symbolSearchFirstResult).toBeVisible();
+    }
+  }
+
+  /** Assert the Skin Tone selector is active (not disabled). */
+  async expectSkinToneEnabled() {
+    await expect(this.skinToneButton).not.toBeDisabled();
+  }
+
+  /** Assert the Skin Tone selector is inactive (disabled). */
+  async expectSkinToneDisabled() {
+    await expect(this.skinToneButton).toBeDisabled();
+  }
 }
 
 // Export a factory function for creating page instances
