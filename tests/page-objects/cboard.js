@@ -3795,6 +3795,19 @@ export class Cboard {
   async expectSkinToneDisabled() {
     await expect(this.skinToneButton).toBeDisabled();
   }
+
+  /** Assert the Cboard Symbols provider is currently disabled (unchecked). */
+  async expectCboardSymbolsDisabled() {
+    await expect(this.cboardSymbolsCheckbox).not.toBeChecked();
+  }
+
+  /**
+   * Assert that no symbol results are visible in the suggestions list.
+   * Used to verify that disabling all providers yields an empty result set.
+   */
+  async expectNoSymbolResults() {
+    await expect(this.symbolSearchFirstResult).not.toBeVisible();
+  }
 }
 
 // Export a factory function for creating page instances
