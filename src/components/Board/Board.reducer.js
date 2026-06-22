@@ -151,7 +151,7 @@ function boardReducer(state = initialState, action) {
         return {
           ...state,
           boards: allBoards,
-          syncMeta: allBoards.reduce((acc, b) => {
+          syncMeta: remoteBoards.reduce((acc, b) => {
             acc[b.id] = { status: SYNC_STATUS.SYNCED };
             return acc;
           }, {}),

@@ -409,6 +409,26 @@ After Pass 2 completes, every board that was untracked either:
 
 On the next sync cycle, these boards will be handled by **Pass 1** (the standard PENDING tracking path) instead of Pass 2, because they now have `syncMeta` entries. Pass 2 effectively runs once per board — it's a one-time migration.
 
+### 7.1 `syncMeta` initialization at login
+
+`LOGIN_SUCCESS` (`Board.reducer.js`) has two branches, selected by
+`discardLocalChanges = hasRemoteCommunicators` (`Login.actions.js`):
+
+- **Discard** (user already has remote communicators): local state is replaced
+  by the server boards. Only the remote (server) boards are graduated to
+  `SYNCED`; the shipped defaults that aren't on the server are left untracked.
+- **Merge** (no remote communicators): server boards are merged into local
+  state and classified (`PENDING`/`SYNCED`); pre-existing local boards keep
+  their current `syncMeta`.
+
+**Decision:** default boards are never added to `syncMeta` at login (either
+branch). They stay untracked, consistent with the merge branch and the sync
+engine, which never push or track default boards. Untracked and `SYNCED` behave
+identically in the UI — only `PENDING` is surfaced (see §12) — and untracked
+defaults are protected from deletion by their short ID (`localHasSyncStatus`,
+§5.1). A default board only enters `syncMeta` once the user edits it (→
+`PENDING`), at which point it is transformed and pushed.
+
 ---
 
 ## 8. `updateApiObjectsNoChild()` Deep Dive
