@@ -7,7 +7,6 @@ test.describe('Cboard - Import Settings', () => {
     cboard = createCboard(page);
     await cboard.goto();
 
-    // Navigate to settings and Import tab
     await cboard.navigateToSettings();
     await cboard.clickSettingsTab('Import');
   });
@@ -33,11 +32,7 @@ test.describe('Cboard - Import Settings', () => {
   });
 
   test('should allow file import', async ({ page }) => {
-    // Click import button
     await cboard.clickImportButton();
-
-    // This should trigger file upload dialog
-    // Note: File upload testing requires special handling for file inputs
   });
 
   test('should explain selective import behavior', async ({ page }) => {
@@ -59,7 +54,6 @@ test.describe('Cboard - Import Settings', () => {
   test('should use page object methods to verify import settings elements', async ({
     page
   }) => {
-    // Use page object methods to verify import settings
     await cboard.verifyImportSettingsElements();
   });
 });

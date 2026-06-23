@@ -1,6 +1,5 @@
 import API from '../../../api';
 import { LOGIN_SUCCESS, LOGOUT } from './Login.constants';
-import { addBoards } from '../../Board/Board.actions';
 import {
   changeVoice,
   changePitch,
@@ -18,6 +17,7 @@ import {
 import { getVoiceURI } from '../../../i18n';
 import { isCordova, isElectron } from '../../../cordova-util';
 import tts from '../../../providers/SpeechProvider/tts';
+import { appInsights } from '../../../appInsights';
 
 export function loginSuccess(payload) {
   return dispatch => {
@@ -36,6 +36,12 @@ export function loginSuccess(payload) {
     }
     if (!isCordova() && typeof window?.gtag === 'function')
       window.gtag('set', { user_id: payload.id });
+
+    try {
+      appInsights.setAuthenticatedUserContext(payload.id);
+    } catch (err) {
+      console.error(err);
+    }
   };
 }
 
@@ -58,6 +64,12 @@ export function logout() {
 
   if (!isCordova() && typeof window?.gtag === 'function') {
     window.gtag('set', { user_id: null });
+  }
+
+  try {
+    appInsights.clearAuthenticatedUserContext();
+  } catch (err) {
+    console.error(err);
   }
 
   return async dispatch => {
@@ -161,24 +173,10 @@ export function login({ email, password, activatedData }, type = 'local') {
         ? activatedData
         : await API[apiMethod](email, password);
 
-      const apiBoards = loginData.boards || [];
+      const hasRemoteCommunicators =
+        loginData.communicators && loginData.communicators.length > 0;
+      const discardLocalChanges = hasRemoteCommunicators;
 
-      const { communicator } = getState();
-
-      const activeCommunicatorId = communicator.activeCommunicatorId;
-      let currentCommunicator = communicator.communicators.find(
-        communicator => communicator.id === activeCommunicatorId
-      );
-
-      if (loginData.communicators && loginData.communicators.length) {
-        const lastRemoteSavedCommunicatorIndex =
-          loginData.communicators.length - 1;
-        currentCommunicator =
-          loginData.communicators[lastRemoteSavedCommunicatorIndex]; //use the latest communicator
-      }
-      if (apiBoards.length && currentCommunicator) {
-        dispatch(addBoards(apiBoards));
-      }
       if (type === 'local') {
         dispatch(
           disableTour({
@@ -190,7 +188,7 @@ export function login({ email, password, activatedData }, type = 'local') {
           })
         );
       }
-      dispatch(loginSuccess(loginData));
+      dispatch(loginSuccess({ ...loginData, discardLocalChanges }));
       await setAVoice({ loginData, dispatch, getState });
     } catch (e) {
       console.error(e);

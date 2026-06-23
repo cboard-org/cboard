@@ -18,6 +18,7 @@ platforms:
   #   osVersion: 11
   #   browserName: playwright-firefox
   #   browserVersion: latest
+parallelsPerPlatform: 5
 browserstackLocal: false
 buildName: cboard-e2e-test
 projectName: Cboard AAC

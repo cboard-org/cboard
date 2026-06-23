@@ -77,15 +77,16 @@ function withChildProof(WrappedComponent) {
       if (this.count === clicksToUnlock) {
         onToggle();
         this.deactivateLock();
+        // Reset immediately so the unlock gesture is self-contained. If the
+        // parent intercepts onToggle (e.g. shows the unauthenticated edit
+        // modal or the PIN dialog) instead of actually unlocking, the next
+        // attempt must repeat the full gesture rather than fire on a single
+        // click.
+        this.resetCount();
 
         setTimeout(() => {
           this.activateLock();
         }, 1000);
-      }
-
-      if (this.count === clicksToUnlock + 1) {
-        this.resetCount();
-        onToggle();
       }
     }
 

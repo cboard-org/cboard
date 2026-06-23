@@ -256,6 +256,44 @@ class API {
     return data;
   }
 
+  // Fetch the full bodies of a specific set of boards in a single request.
+  // POST (not GET) because the id list can be large enough to blow past URL
+  // length limits on a fresh-device sync.
+  async getBoardsByIds(ids = []) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { data } = await this.axiosInstance.post(
+      `/board/byids`,
+      { ids },
+      { headers }
+    );
+    return data;
+  }
+
+  async getBoardsSync() {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const { email } = getUserData();
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { data } = await this.axiosInstance.get(`/board/sync/${email}`, {
+      headers
+    });
+    return data;
+  }
+
   async getCommunicators({
     page = 1,
     limit = 10,

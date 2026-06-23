@@ -1,6 +1,11 @@
 import * as actions from '../App.actions';
 import * as types from '../App.constants';
-import { getUser, isFirstVisit, isLogged } from '../App.selectors';
+import {
+  getUser,
+  isFirstVisit,
+  isLogged,
+  isUnauthEditModalDismissed
+} from '../App.selectors';
 
 describe('actions', () => {
   it('Checks selectors', () => {
@@ -58,5 +63,30 @@ describe('actions', () => {
       type: types.FINISH_FIRST_VISIT
     };
     expect(actions.finishFirstVisit()).toEqual(expectedAction);
+  });
+
+  it('should create an action to dismiss the unauth edit modal', () => {
+    const expectedAction = {
+      type: types.SET_UNAUTH_EDIT_MODAL_DISMISSED,
+      payload: true
+    };
+    expect(actions.setUnauthEditModalDismissed(true)).toEqual(expectedAction);
+  });
+
+  it('should default the unauth edit modal dismiss payload to true', () => {
+    const expectedAction = {
+      type: types.SET_UNAUTH_EDIT_MODAL_DISMISSED,
+      payload: true
+    };
+    expect(actions.setUnauthEditModalDismissed()).toEqual(expectedAction);
+  });
+
+  it('isUnauthEditModalDismissed reads the app flag', () => {
+    expect(
+      isUnauthEditModalDismissed({ app: { unauthEditModalDismissed: true } })
+    ).toBe(true);
+    expect(
+      isUnauthEditModalDismissed({ app: { unauthEditModalDismissed: false } })
+    ).toBe(false);
   });
 });

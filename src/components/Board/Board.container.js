@@ -53,9 +53,11 @@ import {
   addBoardCommunicator,
   verifyAndUpsertCommunicator
 } from '../Communicator/Communicator.actions';
-import { disableTour } from '../App/App.actions';
+import { disableTour, setUnauthEditModalDismissed } from '../App/App.actions';
+import { isLogged, isUnauthEditModalDismissed } from '../App/App.selectors';
 import { showPremiumRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 import { isSubscriptionRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.selectors';
+import UnauthenticatedEditModal from '../LoggedInFeature/UnauthenticatedEditModal';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
@@ -184,7 +186,16 @@ export class BoardContainer extends Component {
     isSymbolSearchTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func,
     isLiveMode: PropTypes.bool,
-    changeDefaultBoard: PropTypes.func
+    changeDefaultBoard: PropTypes.func,
+    /**
+     * Whether the unauthenticated edit modal has already been dismissed
+     * for the current logged-out session
+     */
+    unauthEditModalDismissed: PropTypes.bool,
+    /**
+     * Persist that the unauthenticated edit modal was dismissed
+     */
+    setUnauthEditModalDismissed: PropTypes.func
   };
 
   state = {
@@ -203,7 +214,8 @@ export class BoardContainer extends Component {
     isCbuilderBoard: false,
     pinDialogOpen: false,
     pinAttempt: '',
-    pinError: false
+    pinError: false,
+    showUnauthEditModal: false
   };
   constructor(props) {
     super(props);
@@ -789,6 +801,15 @@ export class BoardContainer extends Component {
           pinError: !hasValidPinCode
         });
       }
+      return;
+    }
+
+    if (
+      this.state.isLocked &&
+      !this.props.isLogged &&
+      !this.props.unauthEditModalDismissed
+    ) {
+      this.setState({ showUnauthEditModal: true });
       return;
     }
 
@@ -1776,6 +1797,34 @@ export class BoardContainer extends Component {
           isSymbolSearchTourEnabled={this.props.isSymbolSearchTourEnabled}
           disableTour={this.props.disableTour}
         />
+        <UnauthenticatedEditModal
+          open={this.state.showUnauthEditModal}
+          onClose={() => this.setState({ showUnauthEditModal: false })}
+          onContinue={() => {
+            const {
+              showPremiumRequired,
+              isSubscriptionRequired,
+              setIsSaving,
+              setUnauthEditModalDismissed
+            } = this.props;
+            setUnauthEditModalDismissed(true);
+            this.setState(
+              {
+                showUnauthEditModal: false,
+                isLocked: false,
+                isSaving: false,
+                isSelecting: false,
+                selectedTileIds: []
+              },
+              () => {
+                setIsSaving(false);
+                if (isSubscriptionRequired) {
+                  showPremiumRequired({ showTryPeriodFinishedMessages: true });
+                }
+              }
+            );
+          }}
+        />
         <PinDialog
           open={this.state.pinDialogOpen}
           onClose={this.handlePinDialogClose}
@@ -1834,7 +1883,9 @@ export const mapStateToProps = state => {
     isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
     isPremiumRequiredModalOpen: premiumRequiredModalState?.open,
     improvedPhrase: board.improvedPhrase,
-    isSubscriptionRequired: isSubscriptionRequired(state)
+    isSubscriptionRequired: isSubscriptionRequired(state),
+    isLogged: isLogged(state),
+    unauthEditModalDismissed: isUnauthEditModalDismissed(state)
   };
 };
 
@@ -1869,7 +1920,8 @@ const mapDispatchToProps = {
   changeDefaultBoard,
   verifyAndUpsertCommunicator,
   showPremiumRequired,
-  setIsSaving
+  setIsSaving,
+  setUnauthEditModalDismissed
 };
 
 export default connect(

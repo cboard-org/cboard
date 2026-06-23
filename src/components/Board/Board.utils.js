@@ -208,6 +208,26 @@ export const isDefaultBoard = board =>
 export const isLocalBoard = board => board.id.length < SHORT_ID_MAX_LENGTH;
 export const isServerBoard = board => board.id.length >= SHORT_ID_MAX_LENGTH;
 
+/**
+ * Returns true if `board` has a folder tile whose `loadBoard` points to a board
+ * that is still local and is not a shipped default board.
+ * @param {Object} board    The board whose tiles are checked.
+ * @param {Object[]} boards The full local board list (to resolve loadBoard ids).
+ * @returns {boolean}
+ */
+export const hasUnsyncedChildReference = (board, boards = []) => {
+  if (!board || !Array.isArray(board.tiles)) return false;
+  const unsyncedLocalIds = new Set(
+    boards
+      .filter(b => b && isLocalBoard(b) && !isDefaultBoard(b))
+      .map(b => b.id)
+  );
+  if (unsyncedLocalIds.size === 0) return false;
+  return board.tiles.some(
+    tile => tile && tile.loadBoard && unsyncedLocalIds.has(tile.loadBoard)
+  );
+};
+
 export const hasDefaultOrNoEmail = board =>
   !board.email || board.email === DEFAULT_BOARD_EMAIL;
 

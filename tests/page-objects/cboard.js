@@ -4,6 +4,9 @@
  */
 
 import { expect } from '@playwright/test';
+import { readFile } from 'fs/promises';
+import { tmpdir } from 'os';
+import { join } from 'path';
 
 export class Cboard {
   constructor(page) {
@@ -226,6 +229,36 @@ export class Cboard {
     return this.page
       .locator('[role="dialog"]')
       .filter({ hasText: 'Reset Your Password' });
+  }
+
+  get unauthenticatedEditModal() {
+    return this.page
+      .locator('[role="dialog"]')
+      .filter({ hasText: 'You are not logged in' });
+  }
+
+  get continueEditingButton() {
+    return this.page.getByRole('button', { name: 'Continue editing' });
+  }
+
+  get pinDialog() {
+    return this.page.getByRole('dialog', { name: 'Enter PIN' });
+  }
+
+  get pinDialogInput() {
+    return this.pinDialog.locator('input[inputmode="numeric"]');
+  }
+
+  get pinDialogUnlockButton() {
+    return this.pinDialog.getByRole('button', { name: 'Unlock' });
+  }
+
+  get pinDialogCancelButton() {
+    return this.pinDialog.getByRole('button', { name: 'Cancel' });
+  }
+
+  get pinDialogErrorMessage() {
+    return this.page.getByText('Incorrect PIN. Please try again.');
   }
 
   // === FORM FIELD LOCATORS ===
@@ -1425,12 +1458,22 @@ export class Cboard {
   }
 
   // Single board export section
+  /** Boards trigger — 1st MUI Select visible div inside the single-board Paper. */
   get boardsDropdown() {
-    return this.page.getByRole('button', { name: 'Boards' });
+    return this.page
+      .locator('.Export__section')
+      .nth(0)
+      .locator('.MuiSelect-select')
+      .nth(0);
   }
 
+  /** Format trigger — 2nd MUI Select visible div inside the single-board Paper. */
   get singleExportFormatDropdown() {
-    return this.page.locator('#export-single-select');
+    return this.page
+      .locator('.Export__section')
+      .nth(0)
+      .locator('.MuiSelect-select')
+      .nth(1);
   }
 
   get singleExportActionButton() {
@@ -1442,8 +1485,13 @@ export class Cboard {
   }
 
   // All boards export section
+  /** Format trigger — 1st MUI Select visible div inside the all-boards Paper. */
   get allBoardsExportFormatDropdown() {
-    return this.page.locator('#export-all-select');
+    return this.page
+      .locator('.Export__section')
+      .nth(1)
+      .locator('.MuiSelect-select')
+      .nth(0);
   }
 
   get allBoardsExportActionButton() {
@@ -1455,8 +1503,13 @@ export class Cboard {
   }
 
   // PDF Settings
+  /** Font-size trigger — 1st MUI Select visible div inside the PDF settings Paper. */
   get pdfFontSizeDropdown() {
-    return this.page.getByRole('button', { name: 'Font size Medium' });
+    return this.page
+      .locator('.Export__section')
+      .nth(2)
+      .locator('.MuiSelect-select')
+      .nth(0);
   }
 
   get pdfFontSizeInput() {
@@ -1656,6 +1709,17 @@ export class Cboard {
       .first();
   }
 
+  get pinLockToggle() {
+    return this.page
+      .getByRole('listitem')
+      .filter({ hasText: 'Enable PIN lock' })
+      .getByRole('checkbox');
+  }
+
+  get navigationSettingsPinInput() {
+    return this.page.locator('input[inputmode="numeric"]');
+  }
+
   // === SETTINGS ACTIONS ===
   async navigateToSettings() {
     try {
@@ -1665,13 +1729,7 @@ export class Cboard {
       const isUnlockVisible = await unlockButton.isVisible({ timeout: 2000 });
 
       if (isUnlockVisible) {
-        await this.clickUnlockButton();
-        await this.page.waitForTimeout(500);
-        await this.clickUnlockButton();
-        await this.page.waitForTimeout(500);
-        await this.clickUnlockButton();
-        await this.page.waitForTimeout(500);
-        await this.clickUnlockButton();
+        await this.unlockAsGuest();
       }
     } catch (error) {
       console.log(
@@ -1777,6 +1835,99 @@ export class Cboard {
     await tab.click();
     await this.page.waitForTimeout(500);
   }
+
+  // === PIN LOCK SETTINGS ACTIONS ===
+
+  /**
+   * Unlock the board via the 4-click childProof sequence.
+   * For unauthenticated users this handles the "You are not logged in" modal
+   * by clicking "Continue editing". For logged-in users the board unlocks
+   * directly and the modal is silently skipped.
+   */
+  async unlockAsGuest() {
+    for (let i = 0; i < 4; i++) {
+      await this.unlockButton.click();
+      if (i < 3) await this.page.waitForTimeout(400);
+    }
+    // Guest users see the UnauthenticatedEditModal; logged-in users do not.
+    try {
+      await this.continueEditingButton.waitFor({
+        state: 'visible',
+        timeout: 2000
+      });
+      await this.continueEditingButton.click();
+    } catch {
+      // Logged-in user: board unlocked directly, no modal to dismiss.
+    }
+  }
+
+  /**
+   * Full navigation flow from the locked board to the Navigation and Buttons settings panel.
+   * Handles the guest unlock modal, tour popups, and settings navigation.
+   */
+  async navigateToNavigationSettings() {
+    await this.unlockAsGuest();
+    await this.dismissTourPopup();
+    await this.settingsButton.waitFor({ state: 'visible', timeout: 10000 });
+    await this.settingsButton.click();
+    await this.dismissTourPopup();
+    await this.clickSettingsTab('Navigation and Buttons');
+  }
+
+  /**
+   * Enable PIN lock and set the 4-digit PIN code in the Navigation and Buttons settings panel.
+   * Assumes the panel is already open.
+   * @param {string} pin - A 4-digit numeric string
+   */
+  async enablePinLockInSettings(pin) {
+    await this.pinLockToggle.click();
+    await this.navigationSettingsPinInput.fill(pin);
+  }
+
+  /**
+   * Click the unlock button once to trigger the PIN dialog.
+   * Only call this when PIN lock is configured; the dialog opens on the first click.
+   */
+  async openPinDialog() {
+    await this.unlockButton.click();
+    await this.pinDialog.waitFor({ state: 'visible', timeout: 5000 });
+  }
+
+  /**
+   * Fill and submit a PIN in the PIN dialog.
+   * @param {string} pin - A 4-digit numeric string
+   */
+  async submitPin(pin) {
+    await this.pinDialogInput.fill(pin);
+    await this.pinDialogUnlockButton.click();
+  }
+
+  async expectPinDialogVisible() {
+    await expect(this.pinDialog).toBeVisible();
+  }
+
+  async expectPinDialogNotVisible() {
+    await expect(this.pinDialog).not.toBeVisible();
+  }
+
+  /**
+   * Assert the PIN dialog shows an error: message visible, input cleared.
+   */
+  async expectPinDialogError() {
+    await expect(this.pinDialogErrorMessage).toBeVisible();
+    await expect(this.pinDialogInput).toHaveValue('');
+  }
+
+  /**
+   * Assert the board is fully unlocked: settings toolbar is visible.
+   */
+  async expectBoardUnlocked() {
+    await this.expectButtonVisible(this.settingsButton);
+    await this.expectButtonVisible(this.lockButton);
+    await this.expectButtonVisible(this.printBoardButton);
+    await this.expectButtonVisible(this.shareButton);
+  }
+
   async verifySettingsVisible() {
     // Verify that at least one of the main settings tabs is visible
     const settingsTabsVisible = await Promise.all([
@@ -2818,7 +2969,7 @@ export class Cboard {
 
   async selectSingleBoardFormat(format) {
     await this.singleExportFormatDropdown.click();
-    await this.page.getByRole('option', { name: format }).click();
+    await this.page.getByRole('option', { name: format, exact: true }).click();
   }
 
   async verifySingleExportButtonEnabled() {
@@ -2827,6 +2978,73 @@ export class Cboard {
 
   async verifySingleExportButtonDisabled() {
     await expect(this.singleExportActionButton).toBeDisabled();
+  }
+
+  /**
+   * Click the single-board Export button and wait for the browser download event.
+   * Must be called after both a board and a format have been selected.
+   * @returns {Promise<import('@playwright/test').Download>}
+   */
+  async triggerSingleBoardExportAndWaitForDownload() {
+    const [download] = await Promise.all([
+      this.page.waitForEvent('download', { timeout: 30000 }),
+      this.singleExportActionButton.click()
+    ]);
+    return download;
+  }
+
+  /**
+   * Assert the downloaded file's suggested name contains the expected suffix.
+   * @param {import('@playwright/test').Download} download
+   * @param {string} expectedSuffix  e.g. 'board.json', 'board.obf', 'board.pdf'
+   */
+  async verifyDownloadedFileName(download, expectedSuffix) {
+    const name = download.suggestedFilename();
+    expect(name).toContain(expectedSuffix);
+  }
+
+  /**
+   * Verify a downloaded Cboard (.json) file is not corrupted.
+   * Parses the JSON and asserts it is an array of board objects with required fields.
+   * @param {import('@playwright/test').Download} download
+   */
+  async verifyDownloadedCboardFile(download) {
+    const filePath = join(tmpdir(), `cboard-${Date.now()}.json`);
+    await download.saveAs(filePath);
+    const raw = await readFile(filePath, 'utf8');
+    const boards = JSON.parse(raw);
+    expect(Array.isArray(boards)).toBe(true);
+    expect(boards.length).toBeGreaterThan(0);
+    expect(boards[0]).toHaveProperty('id');
+    expect(boards[0]).toHaveProperty('tiles');
+  }
+
+  /**
+   * Verify a downloaded OpenBoard (.obf) file is not corrupted.
+   * Parses the JSON and checks the OBF format marker and required fields.
+   * @param {import('@playwright/test').Download} download
+   */
+  async verifyDownloadedOpenBoardFile(download) {
+    const filePath = join(tmpdir(), `cboard-${Date.now()}.obf`);
+    await download.saveAs(filePath);
+    const raw = await readFile(filePath, 'utf8');
+    const obf = JSON.parse(raw);
+    expect(obf).toHaveProperty('format', 'open-board-0.1');
+    expect(obf).toHaveProperty('id');
+    expect(obf).toHaveProperty('buttons');
+  }
+
+  /**
+   * Verify a downloaded PDF file is not corrupted.
+   * Checks the PDF magic bytes header (%PDF-) and minimum file size.
+   * @param {import('@playwright/test').Download} download
+   */
+  async verifyDownloadedPdfFile(download) {
+    const filePath = join(tmpdir(), `cboard-${Date.now()}.pdf`);
+    await download.saveAs(filePath);
+    const buffer = await readFile(filePath);
+    expect(buffer.slice(0, 5).toString('ascii')).toBe('%PDF-');
+    expect(buffer.length).toBeGreaterThan(1000);
   }
 
   async selectAllBoardsFormat(format) {
@@ -2842,6 +3060,32 @@ export class Cboard {
     await expect(this.allBoardsExportActionButton).toBeDisabled();
   }
 
+  /**
+   * Assert no loading spinner is visible in the all-boards export section.
+   * Used to verify that format selection alone does NOT trigger an auto-export.
+   */
+  async verifyAllBoardsNoLoadingSpinner() {
+    await expect(
+      this.page
+        .locator('.Export__section')
+        .nth(1)
+        .locator('.Export__SelectContainer--spinner')
+    ).not.toBeVisible();
+  }
+
+  /**
+   * Assert that the single-board and all-boards sections are rendered as
+   * separate Paper containers (PR #2149 split them from one shared Paper).
+   */
+  async verifyExportSectionsAreSeparated() {
+    const sections = this.page.locator('.Export__section');
+    const count = await sections.count();
+    expect(count).toBeGreaterThanOrEqual(2);
+    // Each section must be an independent element in the DOM
+    await expect(sections.nth(0)).toBeVisible();
+    await expect(sections.nth(1)).toBeVisible();
+  }
+
   async verifyPdfSettingsSection() {
     await expect(this.page.locator('text=PDF Settings')).toBeVisible();
     await expect(this.pdfFontSizeDropdown).toBeVisible();
@@ -2853,18 +3097,26 @@ export class Cboard {
 
   async clickBoardsDropdown() {
     await this.boardsDropdown.click();
+    // Close the dropdown without selecting, so subsequent interactions are clean
+    await this.page.keyboard.press('Escape');
   }
 
   async clickSingleExportFormat() {
     await this.singleExportFormatDropdown.click();
+    // Close the dropdown without selecting
+    await this.page.keyboard.press('Escape');
   }
 
   async clickAllBoardsExportFormat() {
     await this.allBoardsExportFormatDropdown.click();
+    // Close the dropdown without selecting
+    await this.page.keyboard.press('Escape');
   }
 
   async clickPdfFontSize() {
     await this.pdfFontSizeDropdown.click();
+    // Close the dropdown without selecting
+    await this.page.keyboard.press('Escape');
   }
 
   async verifyFormatDocumentationLinks() {
@@ -3110,6 +3362,120 @@ export class Cboard {
 
   async waitForTimeout(ms = 1000) {
     await this.page.waitForTimeout(ms);
+  }
+
+  // === SYNC BUTTON ===
+
+  /**
+   * The SyncButton component rendered inside CommunicatorToolbar.
+   * Only present in the DOM when the user is logged in.
+   */
+  get syncButton() {
+    return this.page.locator('.SyncButton');
+  }
+
+  /** Assert the SyncButton is visible in the toolbar (requires login). */
+  async expectSyncButtonVisible(options = {}) {
+    await expect(this.syncButton).toBeVisible({ timeout: 20000, ...options });
+  }
+
+  /**
+   * Assert the SyncButton is in the "Synced" state (CloudDone icon, no text).
+   * The IconButton carries aria-label="Synced"; no visible text label is rendered.
+   */
+  async expectSyncButtonSynced(options = {}) {
+    await expect(this.page.locator('.SyncButton--synced')).toBeVisible({
+      timeout: 15000,
+      ...options
+    });
+  }
+
+  /**
+   * Assert the SyncButton shows "Saved Locally" (online, pending boards, not syncing).
+   * Rendered as a Button with visible text + SyncProblemIcon.
+   */
+  async expectSyncButtonSavedLocally(options = {}) {
+    await expect(this.page.locator('.SyncButton--savedLocally')).toBeVisible({
+      timeout: 10000,
+      ...options
+    });
+  }
+
+  /**
+   * Assert the SyncButton shows "Working Offline" (offline + pending boards).
+   * Rendered as a Button with visible text + OfflinePinIcon.
+   */
+  async expectSyncButtonWorkingOffline(options = {}) {
+    await expect(this.page.locator('.SyncButton--workingOffline')).toBeVisible({
+      timeout: 10000,
+      ...options
+    });
+  }
+
+  /**
+   * Assert the SyncButton shows "Offline" (offline, no pending boards).
+   * Rendered as a Button with visible text + CloudOffIcon.
+   */
+  async expectSyncButtonOffline(options = {}) {
+    await expect(this.page.locator('.SyncButton--offline')).toBeVisible({
+      timeout: 10000,
+      ...options
+    });
+  }
+
+  // === AUTHENTICATION HELPERS ===
+
+  /**
+   * Log in with the test credentials configured in playwright.config.ts.
+   * After successful login waits for the board URL; falls back to goto() on failure.
+   */
+  async loginWithTestCredentials() {
+    const email = process.env.TEST_USER_EMAIL;
+    const password = process.env.TEST_USER_PASSWORD;
+    await this.gotoLoginSignup();
+    await this.attemptLogin(email, password);
+    try {
+      await this.page.waitForURL(/\/board/, { timeout: 10000 });
+    } catch {
+      // continue even if redirect doesn't happen within timeout
+    }
+    // A full reload to /board/root ensures the board is mounted in the
+    // logged-in state and not stuck behind the login-page overlay.
+    await this.goto();
+    await this.dismissTourPopup();
+    try {
+      await this.syncButton.waitFor({ state: 'visible', timeout: 10000 });
+    } catch {
+      // Login may have failed; individual test assertions will surface the error
+    }
+  }
+
+  // === TILE EDITING ===
+
+  /**
+   * Unlock the board (works for both guest and logged-in users), open the
+   * TileEditor, fill in a label, and save.  This dispatches CREATE_TILE which
+   * marks the active board as syncMeta=PENDING (PR #2128).
+   *
+   * @param {string} label  Text to use as the new tile label.
+   */
+  async addSimpleTile(label, { skipUnlock = false } = {}) {
+    if (!skipUnlock) {
+      await this.unlockAsGuest();
+      await this.dismissTourPopup();
+    }
+    await this.addTileButton.waitFor({ state: 'visible', timeout: 10000 });
+    await this.addTileButton.click();
+    // TileEditor opens inside a FullScreenDialog
+    const labelInput = this.page.locator('input#label');
+    await labelInput.waitFor({ state: 'visible', timeout: 5000 });
+    await labelInput.fill(label);
+    // #save-button is disabled until a label is present
+    const saveButton = this.page.locator('button#save-button');
+    await saveButton.waitFor({ state: 'visible', timeout: 5000 });
+    await saveButton.click();
+    // Wait for TileEditor to close
+    await labelInput.waitFor({ state: 'hidden', timeout: 5000 });
   }
 
   // === FONT FAMILY METHODS ===
@@ -3486,10 +3852,8 @@ export class Cboard {
   // === COMMUNICATOR DIALOG METHODS ===
   async openCommunicatorDialog() {
     // Ensure the app is unlocked first
-    for (let i = 1; i <= 4; i++) {
-      await this.clickUnlock();
-    }
-    await this.dismissOverlays();
+    await this.unlockAsGuest();
+    await this.dismissTourPopup();
 
     // Click the build tab to open communicator dialog
     await this.buildTab.click();
@@ -3536,6 +3900,151 @@ export class Cboard {
       '[role="dialog"]:has-text("Report this Board")'
     );
     await expect(reportDialog).not.toBeVisible();
+  }
+
+  // === SYMBOL SEARCH ===
+
+  /** Button that opens the SymbolSearch dialog from within the tile editor */
+  get symbolSearchButton() {
+    return this.page.getByRole('button', { name: 'Symbol search' });
+  }
+
+  /** Search text input inside the SymbolSearch dialog */
+  get symbolSearchInput() {
+    return this.page.getByRole('textbox', { name: 'Search symbol library' });
+  }
+
+  /** First result option in the symbol search suggestions list */
+  get symbolSearchFirstResult() {
+    return this.page.getByRole('option').first();
+  }
+
+  // Provider filter checkboxes (MUI Switch rendered as role="checkbox")
+  get mulberryCheckbox() {
+    return this.page.getByRole('checkbox', { name: 'Mulberry' });
+  }
+
+  get globalSymbolsCheckbox() {
+    return this.page.getByRole('checkbox', { name: 'Global Symbols' });
+  }
+
+  get arasaacSymbolsCheckbox() {
+    return this.page.getByRole('checkbox', { name: 'ARASAAC' });
+  }
+
+  /** The Cboard Symbols provider checkbox — added by PR #2147 */
+  get cboardSymbolsCheckbox() {
+    return this.page.getByRole('checkbox', { name: 'Cboard Symbols' });
+  }
+
+  /**
+   * The Skin Tone IconButton inside SkinToneSelect.
+   * Rendered as disabled when neither ARASAAC nor Cboard Symbols is active.
+   */
+  get skinToneButton() {
+    return this.page.locator('#SkinToneOptions button');
+  }
+
+  /**
+   * Open the SymbolSearch dialog starting from a fresh locked board.
+   * Unlocks the board, opens the tile editor, then clicks "Symbol search".
+   * Dismisses the symbol search tour if it appears.
+   */
+  async openSymbolSearch() {
+    await this.unlockAsGuest();
+    await this.dismissTourPopup();
+    await this.addTileButton.waitFor({ state: 'visible', timeout: 10000 });
+    await this.addTileButton.click();
+    await this.symbolSearchButton.waitFor({ state: 'visible', timeout: 5000 });
+    await this.symbolSearchButton.click();
+    // Dismiss the symbol search walkthrough tour if present
+    try {
+      const skipTour = this.page.locator('[data-test-id="button-skip"]');
+      await skipTour.waitFor({ state: 'visible', timeout: 2000 });
+      await skipTour.click();
+    } catch {
+      // No tour shown
+    }
+    await this.symbolSearchInput.waitFor({ state: 'visible', timeout: 5000 });
+  }
+
+  /**
+   * Type a search term and wait for the debounce (300 ms) plus API response.
+   * @param {string} query
+   */
+  async searchSymbol(query) {
+    await this.symbolSearchInput.fill(query);
+    await this.page.waitForTimeout(2000);
+  }
+
+  /** Toggle the Mulberry provider on or off. */
+  async toggleMulberryProvider() {
+    await this.mulberryCheckbox.click();
+  }
+
+  /** Toggle the Global Symbols provider on or off. */
+  async toggleGlobalSymbolsProvider() {
+    await this.globalSymbolsCheckbox.click();
+  }
+
+  /** Toggle the Cboard Symbols provider on or off. */
+  async toggleCboardSymbolsProvider() {
+    await this.cboardSymbolsCheckbox.click();
+  }
+
+  /** Toggle the ARASAAC provider on or off. */
+  async toggleArasaacSymbolsProvider() {
+    await this.arasaacSymbolsCheckbox.click();
+  }
+
+  /** Assert all 4 symbol provider checkboxes are visible in the filter bar. */
+  async expectAllSymbolProvidersVisible() {
+    await expect(this.mulberryCheckbox).toBeVisible();
+    await expect(this.globalSymbolsCheckbox).toBeVisible();
+    await expect(this.arasaacSymbolsCheckbox).toBeVisible();
+    await expect(this.cboardSymbolsCheckbox).toBeVisible();
+  }
+
+  /** Assert the Cboard Symbols provider is currently enabled (checked). */
+  async expectCboardSymbolsEnabled() {
+    await expect(this.cboardSymbolsCheckbox).toBeChecked();
+  }
+
+  /**
+   * Assert at least one symbol result is visible in the suggestions list.
+   * @param {string} [label] - When provided, asserts a result with that exact label is visible.
+   */
+  async expectSymbolResultsVisible(label) {
+    if (label) {
+      await expect(
+        this.page.getByRole('option', { name: label, exact: true }).first()
+      ).toBeVisible();
+    } else {
+      await expect(this.symbolSearchFirstResult).toBeVisible();
+    }
+  }
+
+  /** Assert the Skin Tone selector is active (not disabled). */
+  async expectSkinToneEnabled() {
+    await expect(this.skinToneButton).not.toBeDisabled();
+  }
+
+  /** Assert the Skin Tone selector is inactive (disabled). */
+  async expectSkinToneDisabled() {
+    await expect(this.skinToneButton).toBeDisabled();
+  }
+
+  /** Assert the Cboard Symbols provider is currently disabled (unchecked). */
+  async expectCboardSymbolsDisabled() {
+    await expect(this.cboardSymbolsCheckbox).not.toBeChecked();
+  }
+
+  /**
+   * Assert that no symbol results are visible in the suggestions list.
+   * Used to verify that disabling all providers yields an empty result set.
+   */
+  async expectNoSymbolResults() {
+    await expect(this.symbolSearchFirstResult).not.toBeVisible();
   }
 }
 

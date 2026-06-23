@@ -24,6 +24,7 @@ import {
   onCvaResume,
   cleanUpCvaOnResume
 } from '../../cordova-util';
+import { appInsights } from '../../appInsights';
 
 export class AppContainer extends Component {
   static propTypes = {
@@ -97,6 +98,20 @@ export class AppContainer extends Component {
       }
     };
 
+    const initAppInsightsUserContext = () => {
+      const { isLogged, userId } = this.props;
+      // The App Insights authenticated user context is per-session, so it must
+      // be re-applied on each launch for returning users. Use the Mongo user
+      // _id (never the email, which is PII).
+      if (isLogged && userId) {
+        try {
+          appInsights.setAuthenticatedUserContext(userId);
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    };
+
     registerServiceWorker(
       this.handleNewContentAvailable,
       this.handleContentCached
@@ -105,6 +120,8 @@ export class AppContainer extends Component {
     localizeUser();
 
     initGoogleAnalytics();
+
+    initAppInsightsUserContext();
 
     // Set initial connection status and register event listeners
     if (!navigator.onLine) {
