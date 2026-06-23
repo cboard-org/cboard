@@ -3359,6 +3359,120 @@ export class Cboard {
     await this.page.waitForTimeout(ms);
   }
 
+  // === SYNC BUTTON ===
+
+  /**
+   * The SyncButton component rendered inside CommunicatorToolbar.
+   * Only present in the DOM when the user is logged in.
+   */
+  get syncButton() {
+    return this.page.locator('.SyncButton');
+  }
+
+  /** Assert the SyncButton is visible in the toolbar (requires login). */
+  async expectSyncButtonVisible() {
+    await expect(this.syncButton).toBeVisible();
+  }
+
+  /**
+   * Assert the SyncButton is in the "Synced" state (CloudDone icon, no text).
+   * The IconButton carries aria-label="Synced"; no visible text label is rendered.
+   */
+  async expectSyncButtonSynced(options = {}) {
+    await expect(this.page.locator('.SyncButton--synced')).toBeVisible({
+      timeout: 15000,
+      ...options
+    });
+  }
+
+  /**
+   * Assert the SyncButton shows "Saved Locally" (online, pending boards, not syncing).
+   * Rendered as a Button with visible text + SyncProblemIcon.
+   */
+  async expectSyncButtonSavedLocally(options = {}) {
+    await expect(this.page.locator('.SyncButton--savedLocally')).toBeVisible({
+      timeout: 10000,
+      ...options
+    });
+  }
+
+  /**
+   * Assert the SyncButton shows "Working Offline" (offline + pending boards).
+   * Rendered as a Button with visible text + OfflinePinIcon.
+   */
+  async expectSyncButtonWorkingOffline(options = {}) {
+    await expect(this.page.locator('.SyncButton--workingOffline')).toBeVisible({
+      timeout: 10000,
+      ...options
+    });
+  }
+
+  /**
+   * Assert the SyncButton shows "Offline" (offline, no pending boards).
+   * Rendered as a Button with visible text + CloudOffIcon.
+   */
+  async expectSyncButtonOffline(options = {}) {
+    await expect(this.page.locator('.SyncButton--offline')).toBeVisible({
+      timeout: 10000,
+      ...options
+    });
+  }
+
+  // === AUTHENTICATION HELPERS ===
+
+  /**
+   * Log in with the test credentials configured in playwright.config.ts.
+   * After successful login waits for the board URL; falls back to goto() on failure.
+   */
+  async loginWithTestCredentials() {
+    const email = process.env.TEST_USER_EMAIL;
+    const password = process.env.TEST_USER_PASSWORD;
+    await this.gotoLoginSignup();
+    await this.attemptLogin(email, password);
+    try {
+      await this.page.waitForURL(/\/board/, { timeout: 10000 });
+    } catch {
+      // continue even if redirect doesn't happen within timeout
+    }
+    // A full reload to /board/root ensures the board is mounted in the
+    // logged-in state and not stuck behind the login-page overlay.
+    await this.goto();
+    await this.dismissTourPopup();
+    try {
+      await this.syncButton.waitFor({ state: 'visible', timeout: 10000 });
+    } catch {
+      // Login may have failed; individual test assertions will surface the error
+    }
+  }
+
+  // === TILE EDITING ===
+
+  /**
+   * Unlock the board (works for both guest and logged-in users), open the
+   * TileEditor, fill in a label, and save.  This dispatches CREATE_TILE which
+   * marks the active board as syncMeta=PENDING (PR #2128).
+   *
+   * @param {string} label  Text to use as the new tile label.
+   */
+  async addSimpleTile(label, { skipUnlock = false } = {}) {
+    if (!skipUnlock) {
+      await this.unlockAsGuest();
+      await this.dismissTourPopup();
+    }
+    await this.addTileButton.waitFor({ state: 'visible', timeout: 10000 });
+    await this.addTileButton.click();
+    // TileEditor opens inside a FullScreenDialog
+    const labelInput = this.page.locator('input#label');
+    await labelInput.waitFor({ state: 'visible', timeout: 5000 });
+    await labelInput.fill(label);
+    // #save-button is disabled until a label is present
+    const saveButton = this.page.locator('button#save-button');
+    await saveButton.waitFor({ state: 'visible', timeout: 5000 });
+    await saveButton.click();
+    // Wait for TileEditor to close
+    await labelInput.waitFor({ state: 'hidden', timeout: 5000 });
+  }
+
   // === FONT FAMILY METHODS ===
   async verifyFontFamilyOptions(expectedOptions) {
     // Verify that the font family dropdown options are visible
