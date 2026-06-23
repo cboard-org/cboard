@@ -5,6 +5,8 @@
 
 import { expect } from '@playwright/test';
 import { readFile } from 'fs/promises';
+import { tmpdir } from 'os';
+import { join } from 'path';
 
 export class Cboard {
   constructor(page) {
@@ -3007,7 +3009,8 @@ export class Cboard {
    * @param {import('@playwright/test').Download} download
    */
   async verifyDownloadedCboardFile(download) {
-    const filePath = await download.path();
+    const filePath = join(tmpdir(), `cboard-${Date.now()}.json`);
+    await download.saveAs(filePath);
     const raw = await readFile(filePath, 'utf8');
     const boards = JSON.parse(raw);
     expect(Array.isArray(boards)).toBe(true);
@@ -3022,7 +3025,8 @@ export class Cboard {
    * @param {import('@playwright/test').Download} download
    */
   async verifyDownloadedOpenBoardFile(download) {
-    const filePath = await download.path();
+    const filePath = join(tmpdir(), `cboard-${Date.now()}.obf`);
+    await download.saveAs(filePath);
     const raw = await readFile(filePath, 'utf8');
     const obf = JSON.parse(raw);
     expect(obf).toHaveProperty('format', 'open-board-0.1');
@@ -3036,7 +3040,8 @@ export class Cboard {
    * @param {import('@playwright/test').Download} download
    */
   async verifyDownloadedPdfFile(download) {
-    const filePath = await download.path();
+    const filePath = join(tmpdir(), `cboard-${Date.now()}.pdf`);
+    await download.saveAs(filePath);
     const buffer = await readFile(filePath);
     expect(buffer.slice(0, 5).toString('ascii')).toBe('%PDF-');
     expect(buffer.length).toBeGreaterThan(1000);
