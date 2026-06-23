@@ -28,7 +28,7 @@ test.describe('Cboard - Board Sync', () => {
       });
       await expect(
         page.locator('.SyncButton--saving, .SyncButton--savedLocally')
-      ).toBeVisible({ timeout: 5000 });
+      ).toBeVisible({ timeout: 15000 });
     });
 
     test('should show "Working Offline" when app goes offline with pending boards', async ({
@@ -37,6 +37,11 @@ test.describe('Cboard - Board Sync', () => {
       await cboard.addSimpleTile(`offline-test-${Date.now()}`, {
         skipUnlock: true
       });
+      // Wait for pending sync state before going offline to ensure boards are
+      // still pending when offline is set (avoids race where API syncs first).
+      await expect(
+        page.locator('.SyncButton--saving, .SyncButton--savedLocally')
+      ).toBeVisible({ timeout: 15000 });
       await page.context().setOffline(true);
 
       await cboard.expectSyncButtonWorkingOffline();

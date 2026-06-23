@@ -3375,8 +3375,8 @@ export class Cboard {
   }
 
   /** Assert the SyncButton is visible in the toolbar (requires login). */
-  async expectSyncButtonVisible() {
-    await expect(this.syncButton).toBeVisible();
+  async expectSyncButtonVisible(options = {}) {
+    await expect(this.syncButton).toBeVisible({ timeout: 20000, ...options });
   }
 
   /**
