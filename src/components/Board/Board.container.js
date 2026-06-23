@@ -53,8 +53,8 @@ import {
   addBoardCommunicator,
   verifyAndUpsertCommunicator
 } from '../Communicator/Communicator.actions';
-import { disableTour } from '../App/App.actions';
-import { isLogged } from '../App/App.selectors';
+import { disableTour, setUnauthEditModalDismissed } from '../App/App.actions';
+import { isLogged, isUnauthEditModalDismissed } from '../App/App.selectors';
 import { showPremiumRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 import { isSubscriptionRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.selectors';
 import UnauthenticatedEditModal from '../LoggedInFeature/UnauthenticatedEditModal';
@@ -191,7 +191,16 @@ export class BoardContainer extends Component {
     isSymbolSearchTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func,
     isLiveMode: PropTypes.bool,
-    changeDefaultBoard: PropTypes.func
+    changeDefaultBoard: PropTypes.func,
+    /**
+     * Whether the unauthenticated edit modal has already been dismissed
+     * for the current logged-out session
+     */
+    unauthEditModalDismissed: PropTypes.bool,
+    /**
+     * Persist that the unauthenticated edit modal was dismissed
+     */
+    setUnauthEditModalDismissed: PropTypes.func
   };
 
   state = {
@@ -807,7 +816,11 @@ export class BoardContainer extends Component {
       return;
     }
 
-    if (this.state.isLocked && !this.props.isLogged) {
+    if (
+      this.state.isLocked &&
+      !this.props.isLogged &&
+      !this.props.unauthEditModalDismissed
+    ) {
       this.setState({ showUnauthEditModal: true });
       return;
     }
@@ -1829,8 +1842,10 @@ export class BoardContainer extends Component {
             const {
               showPremiumRequired,
               isSubscriptionRequired,
-              setIsSaving
+              setIsSaving,
+              setUnauthEditModalDismissed
             } = this.props;
+            setUnauthEditModalDismissed(true);
             this.setState(
               {
                 showUnauthEditModal: false,
@@ -1907,7 +1922,8 @@ export const mapStateToProps = state => {
     isPremiumRequiredModalOpen: premiumRequiredModalState?.open,
     improvedPhrase: board.improvedPhrase,
     isSubscriptionRequired: isSubscriptionRequired(state),
-    isLogged: isLogged(state)
+    isLogged: isLogged(state),
+    unauthEditModalDismissed: isUnauthEditModalDismissed(state)
   };
 };
 
@@ -1942,7 +1958,8 @@ const mapDispatchToProps = {
   changeDefaultBoard,
   verifyAndUpsertCommunicator,
   showPremiumRequired,
-  setIsSaving
+  setIsSaving,
+  setUnauthEditModalDismissed
 };
 
 export default connect(
