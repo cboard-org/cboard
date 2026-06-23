@@ -73,6 +73,11 @@ import { isAndroid, writeCvaFile } from '../../cordova-util';
 import { DEFAULT_BOARDS } from '../../helpers';
 import history from './../../history';
 import { improvePhraseAbortController } from '../../api/api';
+import {
+  trackSyncEvent,
+  trackSyncException,
+  countPendingBoards
+} from './Board.sync.analytics';
 
 export function addBoards(boards) {
   return {
@@ -614,6 +619,7 @@ export function applyRemoteChangesToState({
       // deletions above are already applied (manifest-authoritative) and the
       // PUSH phase can still upload local edits, so we don't abort the cycle.
       console.error('Bulk board body fetch failed; deferring adds/updates:', e);
+      trackSyncException(e, { phase: 'pullBulkFetch' });
       return;
     }
 
@@ -702,9 +708,15 @@ function classifyBoardsForPush({
   // or were created when the user was unlogged (empty email) or have the default email.
   const remoteBoardMap = new Map(remoteBoards.map(b => [b.id, b]));
 
+  let untrackedSeen = 0;
+  let pushedNew = 0;
+  let pushedUpdate = 0;
+
   for (const b of boards) {
     if (syncMeta[b.id] || (b.email !== userEmail && !isUnloggedCreatedBoard(b)))
       continue;
+
+    untrackedSeen++;
 
     const remote = remoteBoardMap.get(b.id);
     if (remote && moment(b.lastEdited).isSameOrBefore(remote.lastEdited)) {
@@ -713,10 +725,19 @@ function classifyBoardsForPush({
       continue;
     }
 
-    const wasTransformed = transformAndTrack(b);
-    boardsToSync.push({
-      boardId: b.id,
-      needsCreate: wasTransformed || isLocalBoard(b)
+    const needsCreate = transformAndTrack(b) || isLocalBoard(b);
+    needsCreate ? pushedNew++ : pushedUpdate++;
+    boardsToSync.push({ boardId: b.id, needsCreate });
+  }
+
+  if (untrackedSeen > 0) {
+    trackSyncEvent('Sync_Graduation', {
+      measurements: {
+        untrackedSeen,
+        graduated: boardsToGraduate.length,
+        pushedNew,
+        pushedUpdate
+      }
     });
   }
 
@@ -803,6 +824,7 @@ export function pushLocalChangesToApi(remoteBoards = []) {
         }
       } catch (e) {
         console.error('Failed to push board to API:', board.id, e);
+        trackSyncException(e, { phase: 'pushBoard', boardId: board.id });
       }
     }
 
@@ -836,15 +858,38 @@ export function syncBoards(remoteBoards) {
   return async (dispatch, getState) => {
     dispatch(syncBoardsStarted());
 
-    try {
-      const { boards: localBoards, syncMeta } = getState().board;
+    const startedAt = Date.now();
+    const { boards: localBoards, syncMeta } = getState().board;
+    const pendingBefore = countPendingBoards(syncMeta);
 
+    if (Object.keys(syncMeta).length === 0 && localBoards.length > 0) {
+      const serverBoards = localBoards.filter(isServerBoard).length;
+      trackSyncEvent('Sync_FirstRun', {
+        measurements: {
+          totalBoards: localBoards.length,
+          localBoards: localBoards.length - serverBoards,
+          serverBoards
+        }
+      });
+    }
+
+    try {
       // 1. Classify boards for PULL (remote changes + remote deletions)
       const {
         boardsToAdd,
         boardsToUpdate,
         boardIdsToDelete
       } = classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
+
+      if (boardIdsToDelete.length > 0) {
+        trackSyncEvent('Sync_RemoteDeletions', {
+          measurements: {
+            deletedCount: boardIdsToDelete.length,
+            manifestSize: remoteBoards.length,
+            localServerBoards: localBoards.filter(isServerBoard).length
+          }
+        });
+      }
 
       // 2. PULL: Apply remote changes to local state (includes remote deletions)
       await dispatch(
@@ -865,10 +910,27 @@ export function syncBoards(remoteBoards) {
       await dispatch(pushLocalChangesToApi(remoteBoards));
 
       dispatch(syncBoardsSuccess());
+      trackSyncEvent('Sync_Completed', {
+        properties: { outcome: 'success' },
+        measurements: {
+          durationMs: Date.now() - startedAt,
+          pendingBefore,
+          pendingAfter: countPendingBoards(getState().board.syncMeta)
+        }
+      });
       return { success: true };
     } catch (error) {
       console.error('Sync boards failed:', error);
       dispatch(syncBoardsFailure(error));
+      trackSyncEvent('Sync_Completed', {
+        properties: { outcome: 'failure' },
+        measurements: {
+          durationMs: Date.now() - startedAt,
+          pendingBefore,
+          pendingAfter: countPendingBoards(getState().board.syncMeta)
+        }
+      });
+      trackSyncException(error, { phase: 'syncBoards' });
       return { success: false, error };
     }
   };
