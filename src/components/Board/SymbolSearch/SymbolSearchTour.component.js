@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Joyride, { STATUS } from 'react-joyride';
 import messages from './SymbolSearch.messages';
+import skinToneMessages from '../../UI/ColorSelect/SkinTone.messages';
+import hairColorMessages from '../../UI/ColorSelect/HairColor.messages';
 import { FormattedMessage, intlShape } from 'react-intl';
 import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper/core';
 import 'swiper/swiper.min.css';
@@ -55,7 +57,7 @@ function SymbolSearchTour({ intl, disableTour, isSymbolSearchTourEnabled }) {
       content: (
         <div>
           <h2>
-            <FormattedMessage {...messages.skinToneOptionsTitle} />
+            <FormattedMessage {...skinToneMessages.skinTone} />
           </h2>
           <h5>
             <FormattedMessage {...messages.skinToneOptionsDesc} />
@@ -69,7 +71,7 @@ function SymbolSearchTour({ intl, disableTour, isSymbolSearchTourEnabled }) {
       content: (
         <div>
           <h2>
-            <FormattedMessage {...messages.hairColorOptionsTitle} />
+            <FormattedMessage {...hairColorMessages.hairColor} />
           </h2>
           <h5>
             <FormattedMessage {...messages.hairColorOptionsDesc} />
