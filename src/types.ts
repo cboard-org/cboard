@@ -1,3 +1,10 @@
+export interface InflectionOption {
+  id?: string;
+  shorthandLabel: string;
+  outputLabel: string;
+  vocalization: string;
+  sound?: string;
+}
 export interface TileItem {
   id: string;
   label?: string;
@@ -9,4 +16,5 @@ export interface TileItem {
   type?: string;
   backgroundColor: string;
   linkedBoard?: boolean;
+  inflectionOptions?: InflectionOption[];
 }
