@@ -21,7 +21,10 @@ import EditToolbar from './EditToolbar';
 import Tile from './Tile';
 import EmptyBoard from './EmptyBoard';
 import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
-import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
+import {
+  DISPLAY_SIZE_GRID_COLS,
+  LABEL_CASE_DEFAULT
+} from '../Settings/Display/Display.constants';
 import NavigationButtons from '../NavigationButtons';
 import EditGridButtons from '../EditGridButtons';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
@@ -109,6 +112,7 @@ export class Board extends Component {
     displaySettings: {
       uiSize: 'Standard',
       labelPosition: 'Below',
+      labelCase: LABEL_CASE_DEFAULT,
       shareShowActive: false,
       hideOutputActive: false
     },
@@ -228,6 +232,7 @@ export class Board extends Component {
               label={tile.label}
               keyPath={tile.keyPath}
               labelpos={displaySettings.labelPosition}
+              labelCase={displaySettings.labelCase}
             />
 
             {isSelecting && !isSaving && (
@@ -277,6 +282,7 @@ export class Board extends Component {
           label={tile.label}
           keyPath={tile.keyPath}
           labelpos={displaySettings.labelPosition}
+          labelCase={displaySettings.labelCase}
         />
 
         {isSelecting && !isSaving && (

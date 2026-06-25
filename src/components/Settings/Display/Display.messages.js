@@ -5,7 +5,10 @@ import {
   DISPLAY_SIZE_EXTRALARGE,
   LABEL_POSITION_ABOVE,
   LABEL_POSITION_BELOW,
-  LABEL_POSITION_HIDDEN
+  LABEL_POSITION_HIDDEN,
+  LABEL_CASE_LOWER,
+  LABEL_CASE_DEFAULT,
+  LABEL_CASE_UPPER
 } from './Display.constants';
 
 export default defineMessages({
@@ -36,6 +39,18 @@ export default defineMessages({
   [LABEL_POSITION_HIDDEN]: {
     id: 'cboard.components.Settings.Display.LabelPositionHidden',
     defaultMessage: 'Hidden'
+  },
+  [LABEL_CASE_LOWER]: {
+    id: 'cboard.components.Settings.Display.LabelCaseLower',
+    defaultMessage: 'lowercase'
+  },
+  [LABEL_CASE_DEFAULT]: {
+    id: 'cboard.components.Settings.Display.LabelCaseDefault',
+    defaultMessage: 'default'
+  },
+  [LABEL_CASE_UPPER]: {
+    id: 'cboard.components.Settings.Display.LabelCaseUpper',
+    defaultMessage: 'UPPERCASE'
   },
   uiSize: {
     id: 'cboard.components.Settings.Display.uiSize',
@@ -69,6 +84,15 @@ export default defineMessages({
     id: 'cboard.components.Settings.Display.labelPositionSecondary',
     defaultMessage:
       'Whether labels on tiles should be visible, or positioned above or below'
+  },
+  labelCase: {
+    id: 'cboard.components.Settings.Display.labelCase',
+    defaultMessage: 'Label Case'
+  },
+  labelCaseSecondary: {
+    id: 'cboard.components.Settings.Display.labelCaseSecondary',
+    defaultMessage:
+      'Whether labels on tiles should be left as they are or forced to lowercase or UPPERCASE'
   },
   outputHide: {
     id: 'cboard.components.Settings.Display.outputHide',
