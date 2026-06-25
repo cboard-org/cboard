@@ -387,7 +387,8 @@ async function generatePDFBoard(
   intl,
   breakPage = true,
   picsee = false,
-  labelFontSize
+  labelFontSize,
+  showTileBorders = false
 ) {
   const header = {
     absolutePosition: { x: 0, y: 5 },
@@ -395,7 +396,6 @@ async function generatePDFBoard(
     alignment: 'center',
     fontSize: 8
   };
-
   const columns =
     board.isFixed && board.grid ? board.grid.columns : CBOARD_COLUMNS;
   const rows = board.isFixed && board.grid ? board.grid.rows : CBOARD_ROWS;
@@ -425,7 +425,8 @@ async function generatePDFBoard(
         columns,
         intl,
         picsee,
-        labelFontSize
+        labelFontSize,
+        showTileBorders
       )
     : await generateNonFixedBoard(
         board,
@@ -433,7 +434,8 @@ async function generatePDFBoard(
         columns,
         intl,
         picsee,
-        labelFontSize
+        labelFontSize,
+        showTileBorders
       );
 
   const lastGridRowDiff = columns - grid[grid.length - 2].length; // labels row
@@ -465,7 +467,8 @@ async function generateFixedBoard(
   columns,
   intl,
   picsee = false,
-  labelFontSize
+  labelFontSize,
+  showTileBorders = false
 ) {
   let currentRow = 0;
   let cont = 0;
@@ -522,7 +525,8 @@ async function generateFixedBoard(
           currentRow,
           pageBreak,
           picsee,
-          labelFontSize
+          labelFontSize,
+          showTileBorders
         );
         cont++;
       }
@@ -537,7 +541,8 @@ async function generateNonFixedBoard(
   columns,
   intl,
   picsee = false,
-  labelFontSize
+  labelFontSize,
+  showTileBorders = false
 ) {
   // Do a grid with 2n rows
   const grid = new Array(Math.ceil(board.tiles.length / columns) * 2);
@@ -568,7 +573,8 @@ async function generateNonFixedBoard(
       currentRow,
       pageBreak,
       picsee,
-      labelFontSize
+      labelFontSize,
+      showTileBorders
     );
   }, Promise.resolve());
   return grid;
@@ -583,7 +589,8 @@ const addTileToGrid = async (
   currentRow,
   pageBreak = false,
   picsee = false,
-  labelFontSize
+  labelFontSize,
+  showTileBorders = false
 ) => {
   const { label, image } = getPDFTileData(tile, intl);
   const fixedRow = currentRow * 2;
@@ -621,11 +628,12 @@ const addTileToGrid = async (
     );
   };
 
-  const hexBackgroundColor = tile.backgroundColor.startsWith('#')
-    ? tile.backgroundColor === '#d9d9d9'
+  const backgroundColor = tile.backgroundColor || '#FFFFFF';
+  const hexBackgroundColor = backgroundColor.startsWith('#')
+    ? backgroundColor === '#d9d9d9'
       ? '#FFFFFF'
-      : tile.backgroundColor
-    : rgbToHex(tile.backgroundColor);
+      : backgroundColor
+    : rgbToHex(backgroundColor);
 
   const labelPosition =
     getDisplaySettings().labelPosition || LABEL_POSITION_BELOW;
@@ -635,7 +643,12 @@ const addTileToGrid = async (
     alignment: 'center',
     width: '100',
     fillColor: hexBackgroundColor,
-    border: PDF_GRID_BORDER[labelPosition].imageData
+    border: showTileBorders
+      ? [true, true, true, true]
+      : PDF_GRID_BORDER[labelPosition].imageData,
+    borderColor: showTileBorders
+      ? ['black', 'black', 'black', 'black']
+      : undefined
   };
 
   const labelData = {
@@ -643,7 +656,12 @@ const addTileToGrid = async (
     alignment: 'center',
     fontSize: labelFontSize,
     fillColor: hexBackgroundColor,
-    border: PDF_GRID_BORDER[labelPosition].labelData
+    border: showTileBorders
+      ? [true, true, true, true]
+      : PDF_GRID_BORDER[labelPosition].labelData,
+    borderColor: showTileBorders
+      ? ['black', 'black', 'black', 'black']
+      : undefined
   };
 
   const IMG_WIDTH = picsee ? PICSEEPAL_IMAGES_WIDTH : PDF_IMAGES_WIDTH;
@@ -903,7 +921,8 @@ export async function pdfExportAdapter(
   boards = [],
   labelFontSize,
   intl,
-  picsee = false
+  picsee = false,
+  showTileBorders = false
 ) {
   const font = definePDFfont(intl);
   const docDefinition = {
@@ -984,7 +1003,8 @@ export async function pdfExportAdapter(
       intl,
       breakPage,
       picsee,
-      labelFontSize
+      labelFontSize,
+      showTileBorders
     );
     return prevContent.concat(boardPDFData);
   }, Promise.resolve([]));
