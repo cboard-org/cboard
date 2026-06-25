@@ -45,6 +45,10 @@ export default defineMessages({
     id: 'cboard.components.Settings.People.logout',
     defaultMessage: 'Logout'
   },
+  login: {
+    id: 'cboard.components.Settings.People.login',
+    defaultMessage: 'Login'
+  },
   deleteAccountPrimary: {
     id: 'cboard.components.Settings.People.deleteAccountPrimary',
     defaultMessage: 'Delete this account'
