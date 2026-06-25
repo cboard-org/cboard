@@ -40,7 +40,7 @@ export default defineMessages({
   },
   skinToneOptionsTitle: {
     id: 'cboard.components.SymbolSearch.skinToneOptionsTitle',
-    defaultMessage: 'Skin tone options'
+    defaultMessage: 'Skin tone'
   },
   skinToneOptionsDesc: {
     id: 'cboard.components.SymbolSearch.skinToneOptionsDesc',
@@ -49,7 +49,7 @@ export default defineMessages({
   },
   hairColorOptionsTitle: {
     id: 'cboard.components.SymbolSearch.hairColorOptionsTitle',
-    defaultMessage: 'Hair color options'
+    defaultMessage: 'Hair color'
   },
   hairColorOptionsDesc: {
     id: 'cboard.components.SymbolSearch.hairColorOptionsDesc',
