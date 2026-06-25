@@ -3,6 +3,26 @@ import * as types from '../SpeechProvider.constants';
 
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+
+jest.mock('../tts', () => ({
+  __esModule: true,
+  default: {
+    speak: jest.fn(),
+    cancel: jest.fn(),
+    getVoiceByVoiceURI: jest.fn(() => null)
+  }
+}));
+
+global.window.speechSynthesis = {
+  getVoices: jest.fn(() => [
+    { voiceURI: 'test-voice-en', lang: 'en-US', name: 'Test Voice' }
+  ]),
+  speak: jest.fn(),
+  cancel: jest.fn(),
+  pause: jest.fn(),
+  resume: jest.fn()
+};
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
@@ -89,14 +109,15 @@ describe('actions', () => {
   it('should create an action to change voice', () => {
     const voiceURI = 'Shay Hebrew Voice';
     const lang = 'he';
-
-    const expectedAction = {
-      type: types.CHANGE_VOICE,
-      voiceURI,
-      lang
-    };
-
-    expect(actions.changeVoice(voiceURI, lang)).toEqual(expectedAction);
+    const store = mockStore(initialState);
+    store.dispatch(actions.changeVoice(voiceURI, lang));
+    const dispatchedActions = store.getActions();
+    const changeVoiceAction = dispatchedActions.find(
+      a => a.type === types.CHANGE_VOICE
+    );
+    expect(changeVoiceAction).toEqual(
+      expect.objectContaining({ type: types.CHANGE_VOICE, voiceURI, lang })
+    );
   });
 
   it('should create an action to change pitch', () => {
@@ -125,5 +146,15 @@ describe('actions', () => {
     const onend = jest.fn();
     const dispatch = jest.fn();
     store.dispatch(actions.speak('aaa', onend(dispatch)));
+  });
+  it('should create an action to change ElevenLabs API key', () => {
+    const elevenLabsApiKey = 'test-api-key';
+    const expectedAction = {
+      type: types.CHANGE_ELEVENLABS_API_KEY,
+      elevenLabsApiKey
+    };
+    expect(actions.changeElevenLabsApiKey(elevenLabsApiKey)).toEqual(
+      expectedAction
+    );
   });
 });
