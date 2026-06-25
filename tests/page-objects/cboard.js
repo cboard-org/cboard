@@ -3426,27 +3426,74 @@ export class Cboard {
   // === AUTHENTICATION HELPERS ===
 
   /**
+   * If the SyncButton is stuck in "Saved Locally" state, click it to trigger
+   * a manual sync. Safe to call regardless of the current sync state.
+   */
+  async triggerSyncIfNeeded() {
+    try {
+      const savedLocally = this.page.locator('.SyncButton--savedLocally');
+      if (await savedLocally.isVisible({ timeout: 3000 })) {
+        await savedLocally.click();
+      }
+    } catch {
+      // Not in savedLocally state — auto-sync already running or already synced
+    }
+  }
+
+  /**
    * Log in with the test credentials configured in playwright.config.ts.
-   * After successful login waits for the board URL; falls back to goto() on failure.
+   *
+   * After the login form is submitted the SPA auto-redirects
+   * /login-signup → / → /board/{id}.  We wait for that natural navigation
+   * instead of forcing a full HTTP reload with goto().  A forced reload reads
+   * state from IndexedDB which may not yet contain the newly-persisted auth
+   * token — especially when there are pending local boards to replace (as in
+   * scenarios 3 & 6).  Only if the SPA redirect does not fire within the
+   * extended timeout do we fall back to a manual goto() (by which time 20 s
+   * have elapsed and the IndexedDB write is guaranteed to have finished).
    */
   async loginWithTestCredentials() {
     const email = process.env.TEST_USER_EMAIL;
     const password = process.env.TEST_USER_PASSWORD;
     await this.gotoLoginSignup();
     await this.attemptLogin(email, password);
+    let redirectSucceeded = false;
     try {
-      await this.page.waitForURL(/\/board/, { timeout: 10000 });
+      // Give the app enough time to receive the API response and redirect.
+      await this.page.waitForURL(/\/board/, { timeout: 20000 });
+      redirectSucceeded = true;
     } catch {
-      // continue even if redirect doesn't happen within timeout
+      // Auto-redirect did not happen; fall back to a manual navigation below.
     }
-    // A full reload to /board/root ensures the board is mounted in the
-    // logged-in state and not stuck behind the login-page overlay.
-    await this.goto();
+    if (!redirectSucceeded) {
+      // After 20 s the IndexedDB write is complete, so a reload is safe.
+      await this.goto();
+    }
     await this.dismissTourPopup();
     try {
-      await this.syncButton.waitFor({ state: 'visible', timeout: 10000 });
+      // Use 'attached' rather than 'visible': the SyncButton is hidden when the
+      // board is locked (CSS display:none on .Board__communicator-toolbar), so
+      // visibility checks will always time out in locked mode.  'attached'
+      // confirms the user is actually logged in (the element is rendered by
+      // {isLoggedIn && <SyncButton />}) without requiring the board to be
+      // unlocked first.
+      await this.syncButton.waitFor({ state: 'attached', timeout: 10000 });
     } catch {
-      // Login may have failed; individual test assertions will surface the error
+      // Login may have failed; individual test assertions will surface the error.
+    }
+  }
+
+  /**
+   * Log out the currently logged-in user via the Settings panel.
+   * Waits for the SyncButton to disappear, confirming the logged-out state.
+   */
+  async performLogout() {
+    await this.navigateToSettings();
+    await this.page.getByRole('button', { name: 'Logout' }).click();
+    try {
+      await this.syncButton.waitFor({ state: 'hidden', timeout: 15000 });
+    } catch {
+      // Sync button already gone or state changed; continue
     }
   }
 
@@ -3476,6 +3523,42 @@ export class Cboard {
     await saveButton.click();
     // Wait for TileEditor to close
     await labelInput.waitFor({ state: 'hidden', timeout: 5000 });
+  }
+
+  /**
+   * Returns a locator for a board tile matched by its visible label text.
+   * Tiles are rendered as `<button class="Tile">` elements inside the grid.
+   *
+   * @param {string} label  Exact label text of the tile.
+   */
+  getTileByLabel(label) {
+    return this.page.locator('button.Tile', { hasText: label });
+  }
+
+  /**
+   * Assert that a tile with the given label is visible on the current board.
+   *
+   * @param {string} label    Tile label to look for.
+   * @param {Object} options  Optional Playwright expect options (e.g. { timeout }).
+   */
+  async expectTileOnBoard(label, options = {}) {
+    await expect(this.getTileByLabel(label)).toBeVisible({
+      timeout: 10000,
+      ...options
+    });
+  }
+
+  /**
+   * Assert that no tile with the given label is visible on the current board.
+   *
+   * @param {string} label    Tile label to look for.
+   * @param {Object} options  Optional Playwright expect options (e.g. { timeout }).
+   */
+  async expectTileNotOnBoard(label, options = {}) {
+    await expect(this.getTileByLabel(label)).not.toBeVisible({
+      timeout: 5000,
+      ...options
+    });
   }
 
   // === FONT FAMILY METHODS ===
