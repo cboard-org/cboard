@@ -75,7 +75,7 @@ test.describe('Cboard - Sync Changes', () => {
   test('should redirect to the login page when "Login or Sign Up" is clicked in the warning modal', async ({
     page
   }) => {
-    await cboard.unlockAsGuest();
+    await cboard.unlockAsGuest(false);
     await expect(cboard.unauthenticatedEditModal).toBeVisible({
       timeout: 10000
     });
