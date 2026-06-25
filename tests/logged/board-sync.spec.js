@@ -12,7 +12,7 @@ test.describe('Cboard - Sync Changes', () => {
   test('should display the unauthenticated edit modal when unlocking without login', async ({
     page
   }) => {
-    await cboard.unlockAsGuest();
+    await cboard.unlockAsGuest(false);
     await expect(cboard.unauthenticatedEditModal).toBeVisible({
       timeout: 10000
     });
