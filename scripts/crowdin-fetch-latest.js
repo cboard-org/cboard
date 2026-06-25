@@ -10,7 +10,7 @@ const CROWDIN_PROJECT_ID = 262825;
 
 // initialization of crowdin client
 const credentials = {
-  token: CROWDIN_TOKEN,
+  token: CROWDIN_TOKEN
 };
 
 // create an instance of the crowdin client
@@ -24,27 +24,27 @@ const moreLanguagesExtractPath = resolve('./src/translations/moreLanguages');
 const langExtractPath = resolve('./src/translations');
 const cboardSrcPath = resolve('./src/translations/src/cboard.json');
 
-const downloadCboardJson = (onComplete) => {
+const downloadCboardJson = onComplete => {
   console.log('Trying to download latest cboard.json...');
 
   const cboardJson = fs.createWriteStream(cboardSrcPath);
   https.get(
     `https://api.crowdin.com/api/project/cboard/export-file?file=cboard.json&language=en&key=${CROWDIN_API_KEY}`,
-    function (response) {
+    function(response) {
       response.pipe(cboardJson);
-      cboardJson.on('finish', function () {
+      cboardJson.on('finish', function() {
         console.log('cboard.json download complete.');
         cboardJson.close(onComplete);
       });
-      cboardJson.on('error', function (err) {
+      cboardJson.on('error', function(err) {
         console.log('cboard.json download encountered error!');
         console.log(err);
       });
-    },
+    }
   );
 };
 
-const downloadTranslations = async (onComplete) => {
+const downloadTranslations = async onComplete => {
   console.log('Trying to download latest translation strings...');
 
   // get project build
@@ -52,16 +52,16 @@ const downloadTranslations = async (onComplete) => {
   const buildId = build.data[0].data.id;
   const download = await translationApi.downloadTranslations(
     CROWDIN_PROJECT_ID,
-    buildId,
+    buildId
   );
   const allTxZip = fs.createWriteStream(zipFilePath);
-  https.get(download.data.url, function (response) {
+  https.get(download.data.url, function(response) {
     response.pipe(allTxZip);
-    allTxZip.on('finish', function () {
+    allTxZip.on('finish', function() {
       console.log('Translation download complete.');
       allTxZip.close(onComplete);
     });
-    allTxZip.on('error', function (err) {
+    allTxZip.on('error', function(err) {
       console.log('Translation download encountered error!');
       console.log(err);
     });
@@ -83,11 +83,11 @@ const extractTranslations = () => {
 
   const unzipper = new DecompressZip(zipFilePath);
 
-  unzipper.on('error', function (err) {
+  unzipper.on('error', function(err) {
     console.log('DecompressZip Caught an error:', err);
   });
 
-  unzipper.on('extract', function (log) {
+  unzipper.on('extract', function(log) {
     console.log('DecompressZip finished extracting.');
     //   const dirs = fs
     //     .readdirSync(langExtractPath, { withFileTypes: true })
@@ -114,7 +114,7 @@ const extractTranslations = () => {
     //     console.error(`Error while deleting ${extractPath}/website`);
     //   }
     deleteTemporaryDownloadFile();
-    fs.readdirSync(extractPath).forEach((file) => {
+    fs.readdirSync(extractPath).forEach(file => {
       if (file.endsWith('.json')) {
         fs.copyFileSync(`${extractPath}/${file}`, `${langExtractPath}/${file}`);
       }
@@ -123,25 +123,25 @@ const extractTranslations = () => {
     const custom = [
       {
         source: 'me-ME',
-        dest: 'sr-ME',
+        dest: 'sr-ME'
       },
       {
         source: 'sr-CS',
-        dest: 'sr-RS',
+        dest: 'sr-RS'
       },
       {
         source: 'tu-TI',
-        dest: 'pt-TL',
+        dest: 'pt-TL'
       },
       {
         source: 'no-NO',
-        dest: 'nb-NO',
-      },
+        dest: 'nb-NO'
+      }
     ];
-    custom.forEach((data) => {
+    custom.forEach(data => {
       fs.copyFileSync(
         `${extractPath}/${data.source}.json`,
-        `${langExtractPath}/${data.dest}.json`,
+        `${langExtractPath}/${data.dest}.json`
       );
       //fs.copyFileSync(
       //       `${helpExtractPath}/${data.source}.md`,
@@ -149,19 +149,19 @@ const extractTranslations = () => {
       //     );
     });
     try {
-      fs.rm(`${extractPath}`, { recursive: true });
+      fs.rmSync(`${extractPath}`, { recursive: true });
       console.log(`Download folder was deleted.`);
     } catch (err) {
-      console.error(`Error while deleting ${extractPath}`);
+      console.error(`Error while deleting ${extractPath}`, err.message);
     }
   });
 
-  unzipper.on('progress', function (fileIndex, fileCount) {
+  unzipper.on('progress', function(fileIndex, fileCount) {
     //console.log('Extracted file ' + (fileIndex + 1) + ' of ' + fileCount);
   });
 
   unzipper.extract({
-    path: extractPath,
+    path: extractPath
   });
 };
 
