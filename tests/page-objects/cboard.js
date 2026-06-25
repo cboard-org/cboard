@@ -3526,6 +3526,39 @@ export class Cboard {
   }
 
   /**
+   * Creates a new empty board by opening the Add Tile dialog, entering a name
+   * and selecting the "Empty Board" type, then saving.
+   *
+   * After saving, a folder-style tile linked to the new (empty) board appears
+   * on the current board. The board must be in edit/unlocked mode; pass
+   * `skipUnlock: true` when it is already unlocked.
+   *
+   * @param {string} name              Name to give the new board.
+   * @param {Object} [options]
+   * @param {boolean} [options.skipUnlock=false]  Skip the unlock step.
+   */
+  async addEmptyBoard(name, { skipUnlock = false } = {}) {
+    if (!skipUnlock) {
+      await this.unlockAsGuest();
+      await this.dismissTourPopup();
+    }
+    await this.addTileButton.waitFor({ state: 'visible', timeout: 10000 });
+    await this.addTileButton.click();
+    // TileEditor opens inside a FullScreenDialog
+    const labelInput = this.page.locator('input#label');
+    await labelInput.waitFor({ state: 'visible', timeout: 5000 });
+    await labelInput.fill(name);
+    // Select the "Empty Board" type radio (value="board")
+    await this.page.getByRole('radio', { name: 'Empty Board' }).click();
+    // Save button becomes enabled once a label is present
+    const saveButton = this.page.locator('button#save-button');
+    await saveButton.waitFor({ state: 'visible', timeout: 5000 });
+    await saveButton.click();
+    // Wait for TileEditor to close
+    await labelInput.waitFor({ state: 'hidden', timeout: 5000 });
+  }
+
+  /**
    * Returns a locator for a board tile matched by its visible label text.
    * Tiles are rendered as `<button class="Tile">` elements inside the grid.
    *
@@ -3559,6 +3592,40 @@ export class Cboard {
       timeout: 5000,
       ...options
     });
+  }
+
+  /**
+   * Returns a locator for an entry in the Boards panel list that matches the
+   * given board name.  The panel is the MUI Menu rendered with id="boards-menu";
+   * each row has class "CommunicatorToolbar__menuitem".
+   *
+   * @param {string} name  Board name to look for.
+   */
+  getBoardListItem(name) {
+    return this.page.locator('#boards-menu .CommunicatorToolbar__menuitem', {
+      hasText: name
+    });
+  }
+
+  /**
+   * Opens the Boards panel and asserts that no entry with the given name is
+   * present, then closes the panel.
+   *
+   * The board must be in edit/unlocked mode so the Boards button is visible.
+   *
+   * @param {string} name     Board name that must NOT appear in the list.
+   * @param {Object} options  Optional Playwright expect options (e.g. { timeout }).
+   */
+  async expectBoardNotOnBoardList(name, options = {}) {
+    await this.page.locator('#boards-button').click();
+    await this.page
+      .locator('#boards-menu')
+      .waitFor({ state: 'visible', timeout: 5000 });
+    await expect(this.getBoardListItem(name)).not.toBeAttached({
+      timeout: 3000,
+      ...options
+    });
+    await this.page.keyboard.press('Escape');
   }
 
   // === FONT FAMILY METHODS ===

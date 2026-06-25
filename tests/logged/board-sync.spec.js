@@ -61,35 +61,16 @@ test.describe('Cboard - Sync Changes', () => {
     await cboard.expectSyncButtonSynced({ timeout: 30000 });
   });
 
-  /**
-   * Scenario 7 — Active board not found in remote account after login
-   *
-   * Precondition: User is navigating a locally created board that does not
-   * exist in the remote account.
-   * After login the app must redirect to the root board without crashing.
-   *
-   * Skipped: requires complex state setup (local board absent from remote).
-   */
-  test.skip('should redirect to the root board without crashing when the active local board does not exist remotely', async () => {});
-
-  /**
-   * Scenario 8 — OAuth login (Google / Facebook) with local changes
-   *
-   * Precondition: User has local changes and signs in via OAuth.
-   * Behaviour must be identical to email/password login.
-   *
-   * Skipped: requires real OAuth interaction which cannot be automated.
-   */
-  test.skip('should behave identically to email login when signing in via OAuth with pending local changes', async () => {});
-
-  /**
-   * Scenario 9 — Register from the warning modal
-   *
-   * Precondition: User is not logged in.
-   * Clicking "Login or Sign Up" in the warning modal must redirect to the
-   * login page.  Completing a new registration must preserve the prior local
-   * changes (the full registration sub-case is skipped to avoid polluting data).
-   */
+  test('should redirect to the root board without crashing when the active local board does not exist remotely', async () => {
+    await cboard.addEmptyBoard('My New Board');
+    let localTileName = `local-${Date.now()}`;
+    await cboard.addSimpleTile(localTileName, { skipUnlock: true });
+    await cboard.expectTileOnBoard(localTileName);
+    await cboard.loginWithTestCredentials();
+    await cboard.unlockAsGuest();
+    await cboard.expectTileNotOnBoard(localTileName);
+    await cboard.expectBoardNotOnBoardList('My New Board');
+  });
 
   test('should redirect to the login page when "Login or Sign Up" is clicked in the warning modal', async ({
     page
