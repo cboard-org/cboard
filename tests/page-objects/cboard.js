@@ -1847,7 +1847,7 @@ export class Cboard {
   async unlockAsGuest(dismissEditModal = true) {
     for (let i = 0; i < 4; i++) {
       await this.unlockButton.click();
-      if (i < 3) await this.page.waitForTimeout(400);
+      if (i < 3) await this.page.waitForTimeout(300);
     }
     // Guest users see the UnauthenticatedEditModal; logged-in users do not.
     if (!dismissEditModal) return;
