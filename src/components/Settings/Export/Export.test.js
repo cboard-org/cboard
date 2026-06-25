@@ -1,8 +1,6 @@
 import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
-import intl from 'react-intl';
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import Export from './Export.component';
 
 jest.mock('./Export.messages', () => {
@@ -55,6 +53,11 @@ const COMPONENT_PROPS = {
   boards: []
 };
 
+const board = { id: 'board1', name: 'Test Board' };
+
+const getButtons = wrapper => wrapper.find('WithStyles(ForwardRef(Button))');
+const getSelects = wrapper => wrapper.find('WithStyles(ForwardRef(Select))');
+
 describe('Export tests', () => {
   test('default renderer', () => {
     shallowMatchSnapshot(<Export {...COMPONENT_PROPS} />);
@@ -77,14 +80,31 @@ describe('Export tests', () => {
   test('calls onExportClick when export single board button is clicked with valid selections', () => {
     const onExportClick = jest.fn();
     const wrapper = shallow(
-      <Export {...COMPONENT_PROPS} onExportClick={onExportClick} />
+      <Export
+        {...COMPONENT_PROPS}
+        boards={[board]}
+        onExportClick={onExportClick}
+      />
     );
-    wrapper.setState({
-      singleBoard: { id: 'board1', name: 'Test Board' },
-      exportSingleBoard: 'pdf'
-    });
-    wrapper.instance().handleSingleExport();
-    expect(onExportClick).toHaveBeenCalled();
+
+    getSelects(wrapper)
+      .at(0)
+      .prop('onChange')({ target: { value: board } });
+    getSelects(wrapper)
+      .at(1)
+      .prop('onChange')({ target: { value: 'pdf' } });
+    wrapper.update();
+
+    getButtons(wrapper)
+      .at(0)
+      .prop('onClick')();
+
+    expect(onExportClick).toHaveBeenCalledWith(
+      'pdf',
+      board,
+      expect.any(Number),
+      expect.any(Function)
+    );
   });
 
   test('calls onExportClick when export all boards button is clicked with valid format', () => {
@@ -92,15 +112,42 @@ describe('Export tests', () => {
     const wrapper = shallow(
       <Export {...COMPONENT_PROPS} onExportClick={onExportClick} />
     );
-    wrapper.setState({ exportAllBoard: 'cboard' });
-    wrapper.instance().handleAllExport();
-    expect(onExportClick).toHaveBeenCalled();
+
+    getSelects(wrapper)
+      .at(2)
+      .prop('onChange')({ target: { value: 'cboard' } });
+    wrapper.update();
+
+    getButtons(wrapper)
+      .at(1)
+      .prop('onClick')();
+
+    expect(onExportClick).toHaveBeenCalledWith(
+      'cboard',
+      '',
+      expect.any(Number),
+      expect.any(Function)
+    );
   });
 
   test('sets boardError when export single is clicked without selecting a board', () => {
     const wrapper = shallow(<Export {...COMPONENT_PROPS} />);
-    wrapper.setState({ exportSingleBoard: 'pdf' });
-    wrapper.instance().handleSingleExport();
-    expect(wrapper.state('boardError')).toBe(true);
+
+    getSelects(wrapper)
+      .at(1)
+      .prop('onChange')({ target: { value: 'pdf' } });
+    wrapper.update();
+
+    getButtons(wrapper)
+      .at(0)
+      .prop('onClick')();
+    wrapper.update();
+
+    expect(
+      wrapper
+        .find('WithStyles(ForwardRef(FormControl))')
+        .at(0)
+        .prop('error')
+    ).toBe(true);
   });
 });
