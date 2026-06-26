@@ -608,7 +608,7 @@ describe('reducer', () => {
       type: SYNC_STARTED
     };
     expect(
-      boardReducer({ ...initialState, syncError: 'stale' }, syncStarted)
+      boardReducer({ ...initialState, syncError: null }, syncStarted)
     ).toEqual({
       ...initialState,
       isSyncing: true,
@@ -632,7 +632,7 @@ describe('reducer', () => {
     };
     expect(
       boardReducer(
-        { ...initialState, isSyncing: true, syncError: 'stale' },
+        { ...initialState, isSyncing: true, syncError: null },
         syncBoardsStarted
       )
     ).toEqual({
