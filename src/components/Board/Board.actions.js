@@ -44,6 +44,8 @@ import {
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
+  SYNC_STARTED,
+  SYNC_FINISHED,
   MARK_BOARDS_SYNCED,
   SYNC_STATUS,
   SET_IS_SAVING
@@ -579,6 +581,14 @@ export function syncBoardsFailure(error) {
   return { type: SYNC_BOARDS_FAILURE, error: error.message || error };
 }
 
+export function syncStarted() {
+  return { type: SYNC_STARTED };
+}
+
+export function syncFinished() {
+  return { type: SYNC_FINISHED };
+}
+
 /**
  * PULL: Apply remote changes to local Redux state.
  *
@@ -1006,7 +1016,11 @@ export function deleteApiBoard(boardId) {
  * Thunk asynchronous functions
  */
 export function getApiObjects() {
-  return dispatch => {
+  return (dispatch, getState) => {
+    if (getState().board.isSyncing) {
+      return Promise.resolve();
+    }
+    dispatch(syncStarted());
     return dispatch(getApiMyBoards())
       .then(res => {
         return dispatch(getApiMyCommunicators())
@@ -1017,6 +1031,9 @@ export function getApiObjects() {
       })
       .catch(err => {
         console.error(err.message);
+      })
+      .finally(() => {
+        dispatch(syncFinished());
       });
   };
 }
