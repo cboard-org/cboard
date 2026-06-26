@@ -46,6 +46,7 @@ import {
   SYNC_BOARDS_FAILURE,
   SYNC_STARTED,
   SYNC_FINISHED,
+  CLEAR_SYNC,
   MARK_BOARDS_SYNCED,
   SYNC_STATUS,
   SET_IS_SAVING
@@ -587,6 +588,10 @@ export function syncStarted() {
 
 export function syncFinished() {
   return { type: SYNC_FINISHED };
+}
+
+export function clearSync() {
+  return { type: CLEAR_SYNC };
 }
 
 /**

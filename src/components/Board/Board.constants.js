@@ -45,6 +45,7 @@ export const SYNC_BOARDS_SUCCESS = 'cboard/Board/SYNC_BOARDS_SUCCESS';
 export const SYNC_BOARDS_FAILURE = 'cboard/Board/SYNC_BOARDS_FAILURE';
 export const SYNC_STARTED = 'cboard/Board/SYNC_STARTED';
 export const SYNC_FINISHED = 'cboard/Board/SYNC_FINISHED';
+export const CLEAR_SYNC = 'cboard/Board/CLEAR_SYNC';
 export const MARK_BOARDS_SYNCED = 'cboard/Board/MARK_BOARDS_SYNCED';
 export const SET_IS_SAVING = 'cboard/Board/SET_IS_SAVING';
 

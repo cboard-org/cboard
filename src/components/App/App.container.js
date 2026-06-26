@@ -17,7 +17,7 @@ import {
   updateUnloggedUserLocation,
   updateConnectivity
 } from '../App/App.actions';
-import { getApiObjects } from '../Board/Board.actions';
+import { getApiObjects, clearSync } from '../Board/Board.actions';
 import {
   isCordova,
   isElectron,
@@ -56,7 +56,11 @@ export class AppContainer extends Component {
     /**
      * Get API objects (boards and communicators)
      */
-    getApiObjects: PropTypes.func.isRequired
+    getApiObjects: PropTypes.func.isRequired,
+    /**
+     * Clear a stale isSyncing flag rehydrated from a previous session
+     */
+    clearSync: PropTypes.func.isRequired
   };
 
   lastSyncTime = null;
@@ -138,6 +142,7 @@ export class AppContainer extends Component {
       this.handleWebVisibilityChange
     );
 
+    this.props.clearSync();
     this.handleDataRefresh('App started');
   }
 
@@ -264,7 +269,8 @@ const mapDispatchToProps = {
   updateLoggedUserLocation,
   updateUnloggedUserLocation,
   updateConnectivity,
-  getApiObjects
+  getApiObjects,
+  clearSync
 };
 
 export default connect(
