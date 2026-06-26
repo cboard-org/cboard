@@ -38,6 +38,7 @@ describe('AppContainer.handleDataRefresh', () => {
       hasPendingSyncBoards: true,
       getApiObjects
     });
+    instance.lastSyncTime = Date.now();
 
     instance.handleDataRefresh('App started');
 
