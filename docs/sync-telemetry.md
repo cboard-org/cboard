@@ -61,7 +61,9 @@ Once per cycle, in `classifyBoardsForPush`, whenever any untracked board was see
 | `pushedUpdate` | measurements | `needsCreate: false` |
 
 ### `Sync_Completed`
-On every cycle, success or failure.
+On every **board-sync cycle**, success or failure. Scope is the board phase only
+(`syncBoards()`); it does not cover the communicators phase. For the whole sync flight, see
+`Sync_FullRun`.
 
 | field | bag | meaning |
 |---|---|---|
@@ -69,6 +71,22 @@ On every cycle, success or failure.
 | `durationMs` | measurements | wall time of the cycle |
 | `pendingBefore` | measurements | PENDING boards pre-sync |
 | `pendingAfter` | measurements | PENDING boards post-sync |
+
+### `Sync_FullRun`
+On every full sync flight driven by `getApiObjects()` — the top-level entry point that runs the
+board phase (`getApiMyBoards` → `syncBoards`) **and** the communicators phase
+(`getApiMyCommunicators`). Where `Sync_Completed` covers only the board phase, this event reports
+whether the whole path completed, so a communicators-only failure (previously swallowed by a
+`console.error`) is now visible. Fires once per call, including when the single-flight guard skips
+the run.
+
+| field | bag | meaning |
+|---|---|---|
+| `outcome` | properties | `success` (both phases ok) \| `failure` (a phase threw) \| `skipped` (guard hit, sync already in progress) |
+| `source` | properties | what triggered the sync (e.g. login, manual `SyncButton`) |
+| `boardsOk` | properties | `"true"` \| `"false"` — did the board phase complete |
+| `communicatorsOk` | properties | `"true"` \| `"false"` — did the communicators phase complete |
+| `durationMs` | measurements | wall time of the full flight (omitted on `skipped`) |
 
 ### `Sync_RemoteDeletions` — passive data-loss detector
 Once per cycle in `syncBoards()`, after `classifyRemoteBoards`, **only when `boardIdsToDelete` is
@@ -92,6 +110,8 @@ tell them apart in the `exceptions` table:
 | `pullBulkFetch` | bulk board-body fetch catch | `console.error` only (invisible in cloud) |
 | `pushBoard` | per-board push catch (also carries `boardId`) | `console.error` only |
 | `syncBoards` | top-level cycle catch | `console.error` only |
+| `getApiMyBoards` | full-path board phase catch in `getApiObjects` (also carries `source`) | `console.error` only |
+| `getApiMyCommunicators` | full-path communicators phase catch in `getApiObjects` (also carries `source`) | `console.error` only |
 
 These were silent before — surfacing them in the cloud is the highest-value part of this
 telemetry.
@@ -104,9 +124,10 @@ telemetry.
 |---|---|
 | `Sync_FirstRun` | `Board.actions.js` → `syncBoards()`, after the pre-PULL `getState().board` read |
 | `Sync_Graduation` | `Board.actions.js` → `classifyBoardsForPush`, before the batched `markBoardsSynced` |
-| `Sync_Completed` | `Board.actions.js` → `syncBoards()` success & catch |
+| `Sync_Completed` | `Board.actions.js` → `syncBoards()` success & catch (board phase only) |
+| `Sync_FullRun` | `Board.actions.js` → `getApiObjects()` `finally` (and the early `isSyncing` guard) |
 | `Sync_RemoteDeletions` | `Board.actions.js` → `syncBoards()`, after `classifyRemoteBoards`, guarded by `boardIdsToDelete.length > 0` |
-| `trackSyncException` | `Board.actions.js` → the three sync `catch` blocks (`pullBulkFetch`, `pushBoard`, `syncBoards`) |
+| `trackSyncException` | `Board.actions.js` → the five sync `catch` blocks (`pullBulkFetch`, `pushBoard`, `syncBoards`, `getApiMyBoards`, `getApiMyCommunicators`) |
 
 The helper lives in `Board.sync.analytics.js` and is kept in the actions layer because these
 events need computed before/after state and timing that the redux-beacon `eventsMap` can't
