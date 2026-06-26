@@ -152,7 +152,7 @@ export class AppContainer extends Component {
   }
 
   isSyncRecentlyExecuted = () => {
-    const THROTTLE_MS = 1000 * 60 * 2;
+    const THROTTLE_MS = 1000 * 30;
     return this.lastSyncTime && Date.now() - this.lastSyncTime < THROTTLE_MS;
   };
 
