@@ -174,8 +174,7 @@ export class AppContainer extends Component {
     }
 
     this.lastSyncTime = Date.now();
-    console.log(`Sync dispatched - ${source}`);
-    this.props.getApiObjects();
+    this.props.getApiObjects(source);
   };
 
   handleOffline = () => {

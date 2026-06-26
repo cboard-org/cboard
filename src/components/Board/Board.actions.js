@@ -1015,11 +1015,13 @@ export function deleteApiBoard(boardId) {
 /*
  * Thunk asynchronous functions
  */
-export function getApiObjects() {
+export function getApiObjects(source = 'Unknown') {
   return (dispatch, getState) => {
     if (getState().board.isSyncing) {
+      console.log(`Sync skipped - already in progress (${source})`);
       return Promise.resolve();
     }
+    console.log(`Sync dispatched - ${source}`);
     dispatch(syncStarted());
     return dispatch(getApiMyBoards())
       .then(res => {

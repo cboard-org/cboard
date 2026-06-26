@@ -178,7 +178,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onSyncClick: getApiObjects
+  onSyncClick: () => getApiObjects('Sync button')
 };
 
 export default connect(
