@@ -19,37 +19,19 @@ const translationApi = new crowdinTranslations(credentials);
 // paths
 const zipFilePath = resolve('./alltx.zip');
 const extractPath = resolve('./downloads');
-const helpExtractPath = resolve('./src/translations/help');
-const moreLanguagesExtractPath = resolve('./src/translations/moreLanguages');
 const langExtractPath = resolve('./src/translations');
-const cboardSrcPath = resolve('./src/translations/src/cboard.json');
-
-const downloadCboardJson = onComplete => {
-  console.log('Trying to download latest cboard.json...');
-
-  const cboardJson = fs.createWriteStream(cboardSrcPath);
-  https.get(
-    `https://api.crowdin.com/api/project/cboard/export-file?file=cboard.json&language=en&key=${CROWDIN_API_KEY}`,
-    function(response) {
-      response.pipe(cboardJson);
-      cboardJson.on('finish', function() {
-        console.log('cboard.json download complete.');
-        cboardJson.close(onComplete);
-      });
-      cboardJson.on('error', function(err) {
-        console.log('cboard.json download encountered error!');
-        console.log(err);
-      });
-    }
-  );
-};
 
 const downloadTranslations = async onComplete => {
   console.log('Trying to download latest translation strings...');
 
-  // get project build
-  const build = await translationApi.listProjectBuilds(CROWDIN_PROJECT_ID);
-  const buildId = build.data[0].data.id;
+  // trigger a fresh project build
+  const buildResponse = await translationApi.buildProject(CROWDIN_PROJECT_ID);
+  const buildId = buildResponse.data.id;
+  console.log(`Build triggered (ID: ${buildId}). Waiting for it to finish...`);
+
+  // poll until the build is complete
+  await waitForBuild(buildId);
+
   const download = await translationApi.downloadTranslations(
     CROWDIN_PROJECT_ID,
     buildId
@@ -65,6 +47,38 @@ const downloadTranslations = async onComplete => {
       console.log('Translation download encountered error!');
       console.log(err);
     });
+  });
+};
+
+const waitForBuild = async buildId => {
+  const POLL_INTERVAL_MS = 5000;
+
+  return new Promise((resolve, reject) => {
+    const check = async () => {
+      try {
+        const statusResponse = await translationApi.checkBuildStatus(
+          CROWDIN_PROJECT_ID,
+          buildId
+        );
+        const { status, progress } = statusResponse.data;
+
+        process.stdout.write(`\rBuild status: ${status} (${progress}%)   `);
+
+        if (status === 'finished') {
+          process.stdout.write('\n');
+          console.log('Build finished successfully.');
+          resolve();
+        } else if (status === 'failed' || status === 'canceled') {
+          process.stdout.write('\n');
+          reject(new Error(`Build ${status}.`));
+        } else {
+          setTimeout(check, POLL_INTERVAL_MS);
+        }
+      } catch (err) {
+        reject(err);
+      }
+    };
+    check();
   });
 };
 
@@ -87,39 +101,14 @@ const extractTranslations = () => {
     console.log('DecompressZip Caught an error:', err);
   });
 
-  unzipper.on('extract', function(log) {
+  unzipper.on('extract', function() {
     console.log('DecompressZip finished extracting.');
-    //   const dirs = fs
-    //     .readdirSync(langExtractPath, { withFileTypes: true })
-    //     .filter(dirent => dirent.isDirectory())
-    //     .map(dirent => dirent.name);
-    //   //copy and rename help files
-    //   dirs.forEach(dir => {
-    //     fs.copyFileSync(
-    //       `${langExtractPath}/${dir}/help/help.md`,
-    //       `${helpExtractPath}/${dir}.md`
-    //     );
-    //   });
-    //   dirs.forEach(dir => {
-    //     fs.copyFileSync(
-    //       `${langExtractPath}/${dir}/articles/moreLanguages.md`,
-    //       `${moreLanguagesExtractPath}/${dir}.md`
-    //     );
-    //   });
-    //   // delete directory recursively
-    //   try {
-    //     fs.rmdirSync(`${extractPath}/website`, { recursive: true });
-    //     console.log(`website folder was deleted.`);
-    //   } catch (err) {
-    //     console.error(`Error while deleting ${extractPath}/website`);
-    //   }
     deleteTemporaryDownloadFile();
     fs.readdirSync(extractPath).forEach(file => {
       if (file.endsWith('.json')) {
         fs.copyFileSync(`${extractPath}/${file}`, `${langExtractPath}/${file}`);
       }
     });
-    //   //handle special cases for custom languages
     const custom = [
       {
         source: 'me-ME',
@@ -143,10 +132,6 @@ const extractTranslations = () => {
         `${extractPath}/${data.source}.json`,
         `${langExtractPath}/${data.dest}.json`
       );
-      //fs.copyFileSync(
-      //       `${helpExtractPath}/${data.source}.md`,
-      //       `${helpExtractPath}/${data.dest}.md`
-      //     );
     });
     try {
       fs.rmSync(`${extractPath}`, { recursive: true });
@@ -156,15 +141,10 @@ const extractTranslations = () => {
     }
   });
 
-  unzipper.on('progress', function(fileIndex, fileCount) {
-    //console.log('Extracted file ' + (fileIndex + 1) + ' of ' + fileCount);
-  });
-
   unzipper.extract({
     path: extractPath
   });
 };
 
 console.log('Pulling translations from CrowdIn...');
-//downloadCboardJson(() => null);
 downloadTranslations(extractTranslations);
