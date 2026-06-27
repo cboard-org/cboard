@@ -707,7 +707,7 @@ This section documents each trigger point where board synchronization occurs.
 Add new subsections as new lifecycle integrations are implemented.
 
 All triggers funnel through `App.container.js → handleDataRefresh(source)`,
-which is guarded by: logged-in, online, and a **2-minute throttle**
+which is guarded by: logged-in, online, and a **30-second throttle**
 (`THROTTLE_MS`, bypassed when there are pending local sync boards). When it
 passes, it dispatches `getApiObjects() → getApiMyBoards() → syncBoards(manifest)`.
 

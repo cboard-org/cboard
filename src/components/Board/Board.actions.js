@@ -44,6 +44,9 @@ import {
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
+  SYNC_STARTED,
+  SYNC_FINISHED,
+  CLEAR_SYNC,
   MARK_BOARDS_SYNCED,
   SYNC_STATUS,
   SET_IS_SAVING
@@ -579,6 +582,18 @@ export function syncBoardsFailure(error) {
   return { type: SYNC_BOARDS_FAILURE, error: error.message || error };
 }
 
+export function syncStarted() {
+  return { type: SYNC_STARTED };
+}
+
+export function syncFinished() {
+  return { type: SYNC_FINISHED };
+}
+
+export function clearSync() {
+  return { type: CLEAR_SYNC };
+}
+
 /**
  * PULL: Apply remote changes to local Redux state.
  *
@@ -1005,19 +1020,47 @@ export function deleteApiBoard(boardId) {
 /*
  * Thunk asynchronous functions
  */
-export function getApiObjects() {
-  return dispatch => {
-    return dispatch(getApiMyBoards())
-      .then(res => {
-        return dispatch(getApiMyCommunicators())
-          .then(res => {})
-          .catch(err => {
-            console.error(err.message);
-          });
-      })
-      .catch(err => {
-        console.error(err.message);
+export function getApiObjects(source = 'Unknown') {
+  return async (dispatch, getState) => {
+    if (getState().board.isSyncing) {
+      console.log(`Sync skipped - already in progress (${source})`);
+      trackSyncEvent('Sync_FullRun', {
+        properties: { source, outcome: 'skipped' }
       });
+      return Promise.resolve();
+    }
+    console.log(`Sync dispatched - ${source}`);
+    dispatch(syncStarted());
+
+    const startedAt = Date.now();
+    let boardsOk = false;
+    let communicatorsOk = false;
+
+    try {
+      await dispatch(getApiMyBoards());
+      boardsOk = true;
+      try {
+        await dispatch(getApiMyCommunicators());
+        communicatorsOk = true;
+      } catch (err) {
+        console.error(err.message);
+        trackSyncException(err, { phase: 'getApiMyCommunicators', source });
+      }
+    } catch (err) {
+      console.error(err.message);
+      trackSyncException(err, { phase: 'getApiMyBoards', source });
+    } finally {
+      dispatch(syncFinished());
+      trackSyncEvent('Sync_FullRun', {
+        properties: {
+          source,
+          outcome: boardsOk && communicatorsOk ? 'success' : 'failure',
+          boardsOk: String(boardsOk),
+          communicatorsOk: String(communicatorsOk)
+        },
+        measurements: { durationMs: Date.now() - startedAt }
+      });
+    }
   };
 }
 
