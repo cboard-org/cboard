@@ -9,6 +9,10 @@ import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
 import { Typography } from '@material-ui/core';
 import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
+import {
+  getCachedImage,
+  putCachedImage
+} from '../../../idb/imageCache/imageCache';
 
 const propTypes = {
   /**
@@ -22,7 +26,14 @@ const propTypes = {
   labelpos: PropTypes.string,
   type: PropTypes.string,
   onWrite: PropTypes.func,
-  intl: PropTypes.object
+  intl: PropTypes.object,
+  /**
+   * Keep a remote image on-device so it still renders offline. Opt-in, and only for
+   * images already committed to a board: anywhere a user merely browses images
+   * (search results, tile editor previews) every image passed through would be
+   * stored forever. A tile saved in the editor is cached once the board renders it.
+   */
+  cacheRemoteImage: PropTypes.bool
 };
 
 function formatSrc(src) {
@@ -39,6 +50,7 @@ function Symbol(props) {
     onWrite,
     intl,
     image,
+    cacheRemoteImage,
     ...other
   } = props;
 
@@ -61,21 +73,59 @@ function Symbol(props) {
     let cancelled = false;
 
     async function getSrc() {
+      const setBlobSrc = (data, type) => {
+        const blob = new Blob([data], { type });
+        const url = URL.createObjectURL(blob);
+        if (objectUrlRef.current) {
+          URL.revokeObjectURL(objectUrlRef.current);
+        }
+        objectUrlRef.current = url;
+        setSrc(url);
+      };
+
       const imageFromIndexedDb = await fetchArasaacImagefromIndexedDB(keyPath);
 
       if (cancelled) return;
 
       if (imageFromIndexedDb) {
-        const blob = new Blob([imageFromIndexedDb.data], {
-          type: imageFromIndexedDb.type
-        });
-        const url = URL.createObjectURL(blob);
-        setSrc(url);
+        setBlobSrc(imageFromIndexedDb.data, imageFromIndexedDb.type);
+        return;
+      }
 
-        if (objectUrlRef.current) {
-          URL.revokeObjectURL(objectUrlRef.current);
+      // Serve remote symbol images (e.g. globalsymbols.com) from IndexedDB so they
+      // still render offline. Service workers don't run in the Cordova webview,
+      // so IndexedDB is the only durable cache on native. Reads are unconditional;
+      // only writes need cacheRemoteImage, so images cached earlier keep working.
+      if (image && /^https?:\/\//.test(image)) {
+        const cached = await getCachedImage(image);
+        if (cancelled) return;
+
+        if (cached) {
+          setBlobSrc(cached.data, cached.type);
+          return;
         }
-        objectUrlRef.current = url;
+
+        setSrc(formatSrc(image));
+
+        if (cacheRemoteImage && navigator.onLine) {
+          // force-cache reuses the response the <img> above already fetched
+          // instead of hitting the network a second time for the same url.
+          // on failure (offline, CORS) keep the network src and retry next render
+          const res = await fetch(image, { cache: 'force-cache' }).catch(
+            () => null
+          );
+          const type = res?.headers.get('content-type') || '';
+
+          // captive portals answer 200 with their own HTML: caching that would
+          // poison this url forever, since a cache hit never re-fetches
+          if (res?.ok && type.startsWith('image/')) {
+            await putCachedImage({
+              url: image,
+              type,
+              data: await res.arrayBuffer()
+            });
+          }
+        }
         return;
       }
 
@@ -95,7 +145,7 @@ function Symbol(props) {
         objectUrlRef.current = null;
       }
     };
-  }, [fetchArasaacImagefromIndexedDB, image, keyPath]);
+  }, [fetchArasaacImagefromIndexedDB, image, keyPath, cacheRemoteImage]);
 
   const symbolClassName = classNames('Symbol', className);
 
