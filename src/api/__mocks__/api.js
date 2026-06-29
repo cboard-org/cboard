@@ -127,7 +127,7 @@ class API {
     });
   }
 
-  async uploadBoardLocalImages(board) {
+  async uploadBoardLocalMedia(board) {
     return { board, hadFailure: false };
   }
 

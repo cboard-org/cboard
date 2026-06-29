@@ -464,7 +464,7 @@ class API {
     return url;
   }
 
-  async uploadBoardLocalImages(board) {
+  async uploadBoardLocalMedia(board) {
     const tiles = board?.tiles || [];
     const targets = tiles.filter(
       tile => isDataURL(tile?.image) || isLocalFileURL(tile?.image)

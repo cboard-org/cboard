@@ -1538,7 +1538,7 @@ describe('getApiMyBoards', () => {
   });
 });
 
-describe('sanitizeBoardImages', () => {
+describe('sanitizeBoardMedia', () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });
@@ -1548,13 +1548,13 @@ describe('sanitizeBoardImages', () => {
       id: 'b1',
       tiles: [{ id: 't1', image: 'https://cdn.example.com/a.png' }]
     };
-    API.uploadBoardLocalImages = jest
+    API.uploadBoardLocalMedia = jest
       .fn()
       .mockResolvedValue({ board: sanitized, hadFailure: false });
     const store = mockStore({});
 
     const result = await store.dispatch(
-      actions.sanitizeBoardImages({ id: 'b1', tiles: [] })
+      actions.sanitizeBoardMedia({ id: 'b1', tiles: [] })
     );
 
     expect(result).toBe(sanitized);
@@ -1570,13 +1570,13 @@ describe('sanitizeBoardImages', () => {
       id: 'b1',
       tiles: [{ id: 't1', image: 'data:image/png;base64,AAAA' }]
     };
-    API.uploadBoardLocalImages = jest
+    API.uploadBoardLocalMedia = jest
       .fn()
       .mockResolvedValue({ board: sanitized, hadFailure: true });
     const store = mockStore({});
 
     await expect(
-      store.dispatch(actions.sanitizeBoardImages({ id: 'b1', tiles: [] }))
+      store.dispatch(actions.sanitizeBoardMedia({ id: 'b1', tiles: [] }))
     ).rejects.toThrow('image upload failed');
 
     expect(store.getActions()).toContainEqual({
@@ -1598,7 +1598,7 @@ describe('createApiBoard sanitization', () => {
       isPublic: false,
       tiles: [{ id: 't1', image: 'https://cdn.example.com/a.png' }]
     };
-    API.uploadBoardLocalImages = jest
+    API.uploadBoardLocalMedia = jest
       .fn()
       .mockResolvedValue({ board: sanitized, hadFailure: false });
     API.createBoard = jest.fn().mockResolvedValue(sanitized);
@@ -1631,7 +1631,7 @@ describe('createApiBoard sanitization', () => {
       isPublic: false,
       tiles: [{ id: 't1', image: 'data:image/png;base64,AAAA' }]
     };
-    API.uploadBoardLocalImages = jest
+    API.uploadBoardLocalMedia = jest
       .fn()
       .mockResolvedValue({ board: sanitized, hadFailure: true });
     API.createBoard = jest.fn();

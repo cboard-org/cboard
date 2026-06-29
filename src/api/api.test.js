@@ -191,7 +191,7 @@ describe('Cboard API calls', () => {
       .catch(catchFn);
     mockAxios.mockResponse(mockBoard);
   });
-  describe('uploadBoardLocalImages', () => {
+  describe('uploadBoardLocalMedia', () => {
     afterEach(() => {
       jest.restoreAllMocks();
       isAndroid.mockReturnValue(false);
@@ -208,7 +208,7 @@ describe('Cboard API calls', () => {
       const uploadFromDataURL = jest.spyOn(API, 'uploadFromDataURL');
       const uploadFile = jest.spyOn(API, 'uploadFile');
 
-      const result = await API.uploadBoardLocalImages(board);
+      const result = await API.uploadBoardLocalMedia(board);
 
       expect(result).toEqual({ board, hadFailure: false });
       expect(uploadFromDataURL).not.toHaveBeenCalled();
@@ -237,7 +237,7 @@ describe('Cboard API calls', () => {
         ]
       };
 
-      const { board: sanitized, hadFailure } = await API.uploadBoardLocalImages(
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
         board
       );
 
@@ -263,7 +263,7 @@ describe('Cboard API calls', () => {
         ]
       };
 
-      const { board: sanitized, hadFailure } = await API.uploadBoardLocalImages(
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
         board
       );
 
@@ -281,7 +281,7 @@ describe('Cboard API calls', () => {
         tiles: [{ id: 't1', image: 'file:///storage/emulated/0/img.png' }]
       };
 
-      const { board: sanitized, hadFailure } = await API.uploadBoardLocalImages(
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
         board
       );
 

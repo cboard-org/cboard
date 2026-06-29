@@ -951,9 +951,9 @@ export function syncBoards(remoteBoards) {
   };
 }
 
-export function sanitizeBoardImages(board) {
+export function sanitizeBoardMedia(board) {
   return async dispatch => {
-    const { board: sanitized, hadFailure } = await API.uploadBoardLocalImages(
+    const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
       board
     );
     if (sanitized !== board) {
@@ -974,7 +974,7 @@ export function createApiBoard(boardData, boardId) {
       isPublic: false
     };
     try {
-      boardData = await dispatch(sanitizeBoardImages(boardData));
+      boardData = await dispatch(sanitizeBoardMedia(boardData));
     } catch (err) {
       dispatch(createApiBoardFailure(err.message));
       throw new Error(err.message);
@@ -995,7 +995,7 @@ export function updateApiBoard(boardData) {
   return async dispatch => {
     dispatch(updateApiBoardStarted());
     try {
-      boardData = await dispatch(sanitizeBoardImages(boardData));
+      boardData = await dispatch(sanitizeBoardMedia(boardData));
     } catch (err) {
       dispatch(updateApiBoardFailure(err.message));
       throw new Error(err.message);

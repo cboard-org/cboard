@@ -92,7 +92,7 @@ export class ImportContainer extends PureComponent {
             boardToCreate.name = 'unknow';
           }
           try {
-            const { board: sanitized } = await API.uploadBoardLocalImages(
+            const { board: sanitized } = await API.uploadBoardLocalMedia(
               boardToCreate
             );
             const response = await API.createBoard(sanitized);
