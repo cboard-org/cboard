@@ -9,7 +9,7 @@ import {
   AZURE_SPEECH_SUBSCR_KEY
 } from '../constants';
 import { getStore } from '../store';
-import { dataURLtoFile } from '../helpers';
+import { dataURLtoFile, isDataURL, isLocalFileURL } from '../helpers';
 import { logout } from '../components/Account/Login/Login.actions.js';
 import { isAndroid } from '../cordova-util';
 
@@ -455,14 +455,77 @@ class API {
   }
 
   async uploadFromDataURL(dataURL, filename, checkExtension = false) {
-    const file = dataURLtoFile(dataURL, filename, checkExtension);
-
     let url = null;
     try {
+      const file = dataURLtoFile(dataURL, filename, checkExtension);
       url = await this.uploadFile(file, filename);
     } catch (e) {}
 
     return url;
+  }
+
+  async uploadBoardLocalImages(board) {
+    const tiles = board?.tiles || [];
+    const targets = tiles.filter(
+      tile => isDataURL(tile?.image) || isLocalFileURL(tile?.image)
+    );
+
+    if (!targets.length) {
+      return { board, hadFailure: false };
+    }
+
+    const urlByTileId = {};
+    let hadFailure = false;
+
+    const uploadTarget = async tile => {
+      try {
+        let url = null;
+        if (isDataURL(tile.image)) {
+          url = await this.uploadFromDataURL(tile.image, tile.id, true);
+        } else if (isLocalFileURL(tile.image) && isAndroid()) {
+          const file = await new Promise(resolve => {
+            window.resolveLocalFileSystemURL(
+              tile.image,
+              fileEntry => {
+                fileEntry.file(file => resolve(file), () => resolve(null));
+              },
+              () => resolve(null)
+            );
+          });
+          if (file) {
+            const segments = tile.image.split('/');
+            const name = segments[segments.length - 1] || tile.id;
+            url = await this.uploadFile(file, name);
+          }
+        } else {
+          return;
+        }
+
+        if (url) {
+          urlByTileId[tile.id] = url;
+        } else {
+          hadFailure = true;
+        }
+      } catch (e) {
+        hadFailure = true;
+      }
+    };
+
+    const CONCURRENCY = 5;
+    for (let i = 0; i < targets.length; i += CONCURRENCY) {
+      await Promise.all(targets.slice(i, i + CONCURRENCY).map(uploadTarget));
+    }
+
+    const sanitizedBoard = {
+      ...board,
+      tiles: tiles.map(tile =>
+        urlByTileId[(tile?.id)]
+          ? { ...tile, image: urlByTileId[tile.id] }
+          : tile
+      )
+    };
+
+    return { board: sanitizedBoard, hadFailure };
   }
 
   async uploadFile(file, filename) {

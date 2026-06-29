@@ -1537,3 +1537,118 @@ describe('getApiMyBoards', () => {
     expect(actionTypes).not.toContain(types.SYNC_BOARDS_STARTED);
   });
 });
+
+describe('sanitizeBoardImages', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('dispatches updateBoard with the sanitized board', async () => {
+    const sanitized = {
+      id: 'b1',
+      tiles: [{ id: 't1', image: 'https://cdn.example.com/a.png' }]
+    };
+    API.uploadBoardLocalImages = jest
+      .fn()
+      .mockResolvedValue({ board: sanitized, hadFailure: false });
+    const store = mockStore({});
+
+    const result = await store.dispatch(
+      actions.sanitizeBoardImages({ id: 'b1', tiles: [] })
+    );
+
+    expect(result).toBe(sanitized);
+    expect(store.getActions()).toContainEqual({
+      type: types.UPDATE_BOARD,
+      boardData: sanitized,
+      fromRemote: false
+    });
+  });
+
+  it('commits partial successes then rethrows on hadFailure', async () => {
+    const sanitized = {
+      id: 'b1',
+      tiles: [{ id: 't1', image: 'data:image/png;base64,AAAA' }]
+    };
+    API.uploadBoardLocalImages = jest
+      .fn()
+      .mockResolvedValue({ board: sanitized, hadFailure: true });
+    const store = mockStore({});
+
+    await expect(
+      store.dispatch(actions.sanitizeBoardImages({ id: 'b1', tiles: [] }))
+    ).rejects.toThrow('image upload failed');
+
+    expect(store.getActions()).toContainEqual({
+      type: types.UPDATE_BOARD,
+      boardData: sanitized,
+      fromRemote: false
+    });
+  });
+});
+
+describe('createApiBoard sanitization', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('sends url-only tiles to createBoard for a board with local images', async () => {
+    const sanitized = {
+      id: 'b1',
+      isPublic: false,
+      tiles: [{ id: 't1', image: 'https://cdn.example.com/a.png' }]
+    };
+    API.uploadBoardLocalImages = jest
+      .fn()
+      .mockResolvedValue({ board: sanitized, hadFailure: false });
+    API.createBoard = jest.fn().mockResolvedValue(sanitized);
+    const store = mockStore({});
+
+    await store.dispatch(
+      actions.createApiBoard(
+        {
+          id: 'b1',
+          tiles: [{ id: 't1', image: 'data:image/png;base64,AAAA' }]
+        },
+        'b1'
+      )
+    );
+
+    expect(API.createBoard).toHaveBeenCalledWith(sanitized);
+    const payload = API.createBoard.mock.calls[0][0];
+    payload.tiles.forEach(tile => {
+      expect(tile.image.startsWith('data:')).toBe(false);
+      expect(/^(file|cdvfile):/i.test(tile.image)).toBe(false);
+    });
+    expect(store.getActions()).toContainEqual(
+      expect.objectContaining({ type: types.CREATE_API_BOARD_SUCCESS })
+    );
+  });
+
+  it('does not call createBoard when sanitization fails', async () => {
+    const sanitized = {
+      id: 'b1',
+      isPublic: false,
+      tiles: [{ id: 't1', image: 'data:image/png;base64,AAAA' }]
+    };
+    API.uploadBoardLocalImages = jest
+      .fn()
+      .mockResolvedValue({ board: sanitized, hadFailure: true });
+    API.createBoard = jest.fn();
+    const store = mockStore({});
+
+    await expect(
+      store.dispatch(
+        actions.createApiBoard(
+          {
+            id: 'b1',
+            tiles: [{ id: 't1', image: 'data:image/png;base64,AAAA' }]
+          },
+          'b1'
+        )
+      )
+    ).rejects.toThrow('image upload failed');
+
+    expect(API.createBoard).not.toHaveBeenCalled();
+  });
+});

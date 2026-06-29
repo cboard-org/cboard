@@ -442,8 +442,12 @@ class CommunicatorDialogContainer extends React.Component {
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       try {
-        const boardResponse = await API.updateBoard(boardData);
-        replaceBoard(boardData, boardResponse);
+        const { board: sanitized } = await API.uploadBoardLocalImages(
+          boardData
+        );
+        replaceBoard(boardData, sanitized);
+        const boardResponse = await API.updateBoard(sanitized);
+        replaceBoard(sanitized, boardResponse);
       } catch (err) {}
     }
   }
