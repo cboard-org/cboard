@@ -55,7 +55,10 @@ export class ImportContainer extends PureComponent {
         let boardToBeUpdated = board;
         if (shouldUpdate && updated) {
           try {
-            boardToBeUpdated = await API.updateBoard(boardToBeUpdated);
+            const { board: sanitized } = await API.uploadBoardLocalMedia(
+              boardToBeUpdated
+            );
+            boardToBeUpdated = await API.updateBoard(sanitized);
           } catch (err) {
             console.error(err.message);
           }
