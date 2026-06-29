@@ -191,7 +191,7 @@ describe('Cboard API calls', () => {
       .catch(catchFn);
     mockAxios.mockResponse(mockBoard);
   });
-  describe('uploadBoardLocalImages', () => {
+  describe('uploadBoardLocalMedia', () => {
     afterEach(() => {
       jest.restoreAllMocks();
       isAndroid.mockReturnValue(false);
@@ -208,7 +208,7 @@ describe('Cboard API calls', () => {
       const uploadFromDataURL = jest.spyOn(API, 'uploadFromDataURL');
       const uploadFile = jest.spyOn(API, 'uploadFile');
 
-      const result = await API.uploadBoardLocalImages(board);
+      const result = await API.uploadBoardLocalMedia(board);
 
       expect(result).toEqual({ board, hadFailure: false });
       expect(uploadFromDataURL).not.toHaveBeenCalled();
@@ -237,7 +237,7 @@ describe('Cboard API calls', () => {
         ]
       };
 
-      const { board: sanitized, hadFailure } = await API.uploadBoardLocalImages(
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
         board
       );
 
@@ -263,7 +263,7 @@ describe('Cboard API calls', () => {
         ]
       };
 
-      const { board: sanitized, hadFailure } = await API.uploadBoardLocalImages(
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
         board
       );
 
@@ -281,7 +281,7 @@ describe('Cboard API calls', () => {
         tiles: [{ id: 't1', image: 'file:///storage/emulated/0/img.png' }]
       };
 
-      const { board: sanitized, hadFailure } = await API.uploadBoardLocalImages(
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
         board
       );
 
@@ -290,6 +290,78 @@ describe('Cboard API calls', () => {
       expect(sanitized.tiles[0].image).toBe(
         'file:///storage/emulated/0/img.png'
       );
+    });
+
+    it('replaces base64 sounds with uploaded urls on success', async () => {
+      jest
+        .spyOn(API, 'uploadFromDataURL')
+        .mockResolvedValue('https://cdn.example.com/sound.mp3');
+
+      const board = {
+        id: 'b1',
+        tiles: [
+          { id: 't1', sound: 'data:audio/mp3;base64,AAAA' },
+          { id: 't2', sound: 'https://cdn.example.com/keep.mp3' }
+        ]
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(false);
+      expect(API.uploadFromDataURL).toHaveBeenCalledWith(
+        'data:audio/mp3;base64,AAAA',
+        't1.mp3'
+      );
+      expect(sanitized.tiles[0].sound).toBe(
+        'https://cdn.example.com/sound.mp3'
+      );
+      expect(sanitized.tiles[1].sound).toBe('https://cdn.example.com/keep.mp3');
+    });
+
+    it('replaces both image and sound on the same tile', async () => {
+      jest
+        .spyOn(API, 'uploadFromDataURL')
+        .mockResolvedValueOnce('https://cdn.example.com/img.png')
+        .mockResolvedValueOnce('https://cdn.example.com/sound.mp3');
+
+      const board = {
+        id: 'b1',
+        tiles: [
+          {
+            id: 't1',
+            image: 'data:image/png;base64,AAAA',
+            sound: 'data:audio/mp3;base64,BBBB'
+          }
+        ]
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(false);
+      expect(sanitized.tiles[0].image).toBe('https://cdn.example.com/img.png');
+      expect(sanitized.tiles[0].sound).toBe(
+        'https://cdn.example.com/sound.mp3'
+      );
+    });
+
+    it('commits successes and flags hadFailure when a sound upload fails', async () => {
+      jest.spyOn(API, 'uploadFromDataURL').mockResolvedValue(null);
+
+      const board = {
+        id: 'b1',
+        tiles: [{ id: 't1', sound: 'data:audio/mp3;base64,AAAA' }]
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(true);
+      expect(sanitized.tiles[0].sound).toBe('data:audio/mp3;base64,AAAA');
     });
   });
 
