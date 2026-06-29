@@ -1,7 +1,6 @@
 import { mapStateToProps, BoardContainer } from '../Board.container';
 import { SYNC_STATUS } from '../Board.constants';
 
-jest.mock('ogv', () => ({ OGVLoader: { base: '' } }));
 jest.mock('dom-to-image', () => ({}));
 jest.mock('../Board.component', () => () => null);
 

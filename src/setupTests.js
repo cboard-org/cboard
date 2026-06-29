@@ -3,6 +3,23 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { Stream } from 'stream';
 import 'fake-indexeddb/auto';
 
+if (typeof MessageChannel === 'undefined') {
+  global.MessageChannel = class MessageChannel {
+    constructor() {
+      this.port1 = {
+        postMessage: jest.fn(),
+        onmessage: null,
+        close: jest.fn()
+      };
+      this.port2 = {
+        postMessage: jest.fn(),
+        onmessage: null,
+        close: jest.fn()
+      };
+    }
+  };
+}
+
 configure({ adapter: new Adapter() });
 
 //window global object
