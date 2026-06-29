@@ -960,7 +960,7 @@ export function sanitizeBoardMedia(board) {
       dispatch(updateBoard(sanitized));
     }
     if (hadFailure) {
-      throw new Error('image upload failed');
+      throw new Error('media upload failed');
     }
     return sanitized;
   };

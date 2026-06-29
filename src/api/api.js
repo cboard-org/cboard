@@ -464,47 +464,81 @@ class API {
     return url;
   }
 
+  async uploadTileImageMedia(tile) {
+    if (isDataURL(tile.image)) {
+      const url = await this.uploadFromDataURL(tile.image, tile.id, true);
+      return { attempted: true, url };
+    }
+
+    if (isLocalFileURL(tile.image) && isAndroid()) {
+      const file = await new Promise(resolve => {
+        window.resolveLocalFileSystemURL(
+          tile.image,
+          fileEntry => {
+            fileEntry.file(file => resolve(file), () => resolve(null));
+          },
+          () => resolve(null)
+        );
+      });
+      if (file) {
+        const segments = tile.image.split('/');
+        const name = segments[segments.length - 1] || tile.id;
+        const url = await this.uploadFile(file, name);
+        return { attempted: true, url };
+      }
+      return { attempted: true, url: null };
+    }
+
+    return { attempted: false, url: null };
+  }
+
+  async uploadTileSoundMedia(tile) {
+    if (isDataURL(tile.sound)) {
+      const url = await this.uploadFromDataURL(tile.sound, `${tile.id}.mp3`);
+      return { attempted: true, url };
+    }
+
+    return { attempted: false, url: null };
+  }
+
   async uploadBoardLocalMedia(board) {
     const tiles = board?.tiles || [];
     const targets = tiles.filter(
-      tile => isDataURL(tile?.image) || isLocalFileURL(tile?.image)
+      tile =>
+        isDataURL(tile?.image) ||
+        isLocalFileURL(tile?.image) ||
+        isDataURL(tile?.sound)
     );
 
     if (!targets.length) {
       return { board, hadFailure: false };
     }
 
-    const urlByTileId = {};
+    const imageUrlByTileId = {};
+    const soundUrlByTileId = {};
     let hadFailure = false;
 
     const uploadTarget = async tile => {
       try {
-        let url = null;
-        if (isDataURL(tile.image)) {
-          url = await this.uploadFromDataURL(tile.image, tile.id, true);
-        } else if (isLocalFileURL(tile.image) && isAndroid()) {
-          const file = await new Promise(resolve => {
-            window.resolveLocalFileSystemURL(
-              tile.image,
-              fileEntry => {
-                fileEntry.file(file => resolve(file), () => resolve(null));
-              },
-              () => resolve(null)
-            );
-          });
-          if (file) {
-            const segments = tile.image.split('/');
-            const name = segments[segments.length - 1] || tile.id;
-            url = await this.uploadFile(file, name);
+        const [image, sound] = await Promise.all([
+          this.uploadTileImageMedia(tile),
+          this.uploadTileSoundMedia(tile)
+        ]);
+
+        if (image.attempted) {
+          if (image.url) {
+            imageUrlByTileId[tile.id] = image.url;
+          } else {
+            hadFailure = true;
           }
-        } else {
-          return;
         }
 
-        if (url) {
-          urlByTileId[tile.id] = url;
-        } else {
-          hadFailure = true;
+        if (sound.attempted) {
+          if (sound.url) {
+            soundUrlByTileId[tile.id] = sound.url;
+          } else {
+            hadFailure = true;
+          }
         }
       } catch (e) {
         hadFailure = true;
@@ -518,11 +552,18 @@ class API {
 
     const sanitizedBoard = {
       ...board,
-      tiles: tiles.map(tile =>
-        urlByTileId[(tile?.id)]
-          ? { ...tile, image: urlByTileId[tile.id] }
-          : tile
-      )
+      tiles: tiles.map(tile => {
+        const imageUrl = imageUrlByTileId[(tile?.id)];
+        const soundUrl = soundUrlByTileId[(tile?.id)];
+        if (!imageUrl && !soundUrl) {
+          return tile;
+        }
+        return {
+          ...tile,
+          ...(imageUrl ? { image: imageUrl } : {}),
+          ...(soundUrl ? { sound: soundUrl } : {})
+        };
+      })
     };
 
     return { board: sanitizedBoard, hadFailure };

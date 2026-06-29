@@ -1577,8 +1577,30 @@ describe('sanitizeBoardMedia', () => {
 
     await expect(
       store.dispatch(actions.sanitizeBoardMedia({ id: 'b1', tiles: [] }))
-    ).rejects.toThrow('image upload failed');
+    ).rejects.toThrow('media upload failed');
 
+    expect(store.getActions()).toContainEqual({
+      type: types.UPDATE_BOARD,
+      boardData: sanitized,
+      fromRemote: false
+    });
+  });
+
+  it('dispatches updateBoard with the sanitized sound', async () => {
+    const sanitized = {
+      id: 'b1',
+      tiles: [{ id: 't1', sound: 'https://cdn.example.com/sound.mp3' }]
+    };
+    API.uploadBoardLocalMedia = jest
+      .fn()
+      .mockResolvedValue({ board: sanitized, hadFailure: false });
+    const store = mockStore({});
+
+    const result = await store.dispatch(
+      actions.sanitizeBoardMedia({ id: 'b1', tiles: [] })
+    );
+
+    expect(result).toBe(sanitized);
     expect(store.getActions()).toContainEqual({
       type: types.UPDATE_BOARD,
       boardData: sanitized,
@@ -1647,7 +1669,7 @@ describe('createApiBoard sanitization', () => {
           'b1'
         )
       )
-    ).rejects.toThrow('image upload failed');
+    ).rejects.toThrow('media upload failed');
 
     expect(API.createBoard).not.toHaveBeenCalled();
   });
