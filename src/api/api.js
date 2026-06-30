@@ -17,6 +17,22 @@ const BASE_URL = API_URL;
 const LOCAL_COMMUNICATOR_ID = 'cboard_default';
 export let improvePhraseAbortController;
 
+const audioExtensionByMimeType = {
+  'audio/mp3': 'mp3',
+  'audio/mpeg': 'mp3',
+  'audio/mp4': 'mp4',
+  'audio/ogg': 'ogg',
+  'audio/webm': 'webm'
+};
+
+const audioExtensionFromDataURL = dataURL => {
+  const mimeType = dataURL.match(/^data:(audio\/[^;,]+)/i)?.[1].toLowerCase();
+  if (!mimeType) {
+    return 'mp3';
+  }
+  return audioExtensionByMimeType[mimeType] || mimeType.split('/')[1] || 'mp3';
+};
+
 const getUserData = () => {
   const store = getStore();
   const {
@@ -494,7 +510,11 @@ class API {
 
   async uploadTileSoundMedia(tile) {
     if (isDataURL(tile.sound)) {
-      const url = await this.uploadFromDataURL(tile.sound, `${tile.id}.mp3`);
+      const extension = audioExtensionFromDataURL(tile.sound);
+      const url = await this.uploadFromDataURL(
+        tile.sound,
+        `${tile.id}.${extension}`
+      );
       return { attempted: true, url };
     }
 

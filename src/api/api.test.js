@@ -9,6 +9,7 @@ import { isAndroid } from '../cordova-util';
 
 jest.mock('../store');
 jest.mock('../cordova-util', () => ({
+  isCordova: jest.fn(() => false),
   isAndroid: jest.fn(() => false)
 }));
 
@@ -318,6 +319,30 @@ describe('Cboard API calls', () => {
         'https://cdn.example.com/sound.mp3'
       );
       expect(sanitized.tiles[1].sound).toBe('https://cdn.example.com/keep.mp3');
+    });
+
+    it('uses the sound data URL MIME type for uploaded filenames', async () => {
+      jest
+        .spyOn(API, 'uploadFromDataURL')
+        .mockResolvedValue('https://cdn.example.com/sound.webm');
+
+      const board = {
+        id: 'b1',
+        tiles: [{ id: 't1', sound: 'data:audio/webm;base64,AAAA' }]
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(false);
+      expect(API.uploadFromDataURL).toHaveBeenCalledWith(
+        'data:audio/webm;base64,AAAA',
+        't1.webm'
+      );
+      expect(sanitized.tiles[0].sound).toBe(
+        'https://cdn.example.com/sound.webm'
+      );
     });
 
     it('replaces both image and sound on the same tile', async () => {
