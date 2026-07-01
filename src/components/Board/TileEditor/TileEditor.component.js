@@ -38,10 +38,9 @@ import API from '../../../api';
 import {
   isAndroid,
   isCordova,
-  requestCvaPermissions,
-  writeCvaFile
+  requestCvaPermissions
 } from '../../../cordova-util';
-import { convertImageUrlToCatchable, resolveBoardName } from '../../../helpers';
+import { resolveBoardName } from '../../../helpers';
 import PremiumFeature from '../../PremiumFeature';
 import LoadBoardEditor from './LoadBoardEditor/LoadBoardEditor';
 import { Typography } from '@material-ui/core';
@@ -228,30 +227,13 @@ export class TileEditor extends Component {
     const { userData } = this.props;
     const user = userData.email ? userData : null;
     if (user) {
-      // this.setState({
-      //   loading: true
-      // });
       try {
-        const imageUrl = await API.uploadFile(blob, fileName);
-        // console.log('imagen guardada en servidor', imageUrl);
-        return convertImageUrlToCatchable(imageUrl) || imageUrl;
+        return await API.uploadFile(blob, fileName);
       } catch (error) {
-        //console.log('imagen no guardad en servidor');
-        return await this.blobToBase64(blob);
-      }
-      // } finally {
-      //   this.setState({
-      //     loading: false
-      //   });
-    } else {
-      if (isAndroid()) {
-        const filePath = '/Android/data/com.unicef.cboard/files/' + fileName;
-        const fEntry = await writeCvaFile(filePath, blob);
-        return fEntry.nativeURL;
-      } else {
         return await this.blobToBase64(blob);
       }
     }
+    return await this.blobToBase64(blob);
   };
 
   blobToBase64 = async blob => {

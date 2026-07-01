@@ -9,7 +9,12 @@ import {
   AZURE_SPEECH_SUBSCR_KEY
 } from '../constants';
 import { getStore } from '../store';
-import { dataURLtoFile, isDataURL, isLocalFileURL } from '../helpers';
+import {
+  convertMediaUrlToCDN,
+  dataURLtoBlob,
+  isDataURL,
+  isLocalFileURL
+} from '../helpers';
 import { logout } from '../components/Account/Login/Login.actions.js';
 import { isAndroid } from '../cordova-util';
 
@@ -457,8 +462,13 @@ class API {
   async uploadFromDataURL(dataURL, filename, checkExtension = false) {
     let url = null;
     try {
-      const file = dataURLtoFile(dataURL, filename, checkExtension);
-      url = await this.uploadFile(file, filename);
+      const blob = dataURLtoBlob(dataURL);
+      let name = filename;
+      if (checkExtension) {
+        const extension = (blob.type.split('/')[1] || 'png').toLowerCase();
+        name = `${filename}.${extension}`;
+      }
+      url = await this.uploadFile(blob, name);
     } catch (e) {}
 
     return url;
@@ -481,9 +491,18 @@ class API {
         );
       });
       if (file) {
+        const arrayBuffer = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.onerror = () => reject(reader.error);
+          reader.readAsArrayBuffer(file);
+        });
+        const realBlob = new Blob([arrayBuffer], {
+          type: file.type || 'image/png'
+        });
         const segments = tile.image.split('/');
         const name = segments[segments.length - 1] || tile.id;
-        const url = await this.uploadFile(file, name);
+        const url = await this.uploadFile(realBlob, name);
         return { attempted: true, url };
       }
       return { attempted: true, url: null };
@@ -586,7 +605,8 @@ class API {
       headers
     });
 
-    return response.data.url;
+    const url = response.data.url;
+    return (url && convertMediaUrlToCDN(url)) || url;
   }
 
   async createCommunicator(communicator) {
