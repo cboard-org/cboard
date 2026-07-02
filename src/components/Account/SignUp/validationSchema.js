@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const validationSchema = yup.object().shape({
+export const validationSchemaStep1 = yup.object().shape({
   password: yup
     .string()
     .required('Required')
@@ -19,4 +19,17 @@ const validationSchema = yup.object().shape({
     .oneOf([true], 'Accept Terms and Policy is required')
 });
 
-export default validationSchema;
+export const validationSchemaStep2 = validationSchemaStep1.shape({
+  role: yup.string().required('Required'),
+  age: yup
+    .number()
+    .nullable()
+    .positive()
+    .integer(),
+  pathology: yup
+    .array()
+    .of(yup.string())
+    .nullable()
+});
+
+export default validationSchemaStep1;
