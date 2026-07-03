@@ -10,6 +10,10 @@ import { IconButton, Tooltip } from '@material-ui/core';
 import BackspaceIcon from '@material-ui/icons/Backspace';
 
 import API from '../../../api';
+import {
+  searchCboardSymbols,
+  mapArasaacToCboardSkinTone
+} from '../../../api/cboard-symbols';
 import { ARASAAC_BASE_PATH_API } from '../../../constants';
 import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
 import FullScreenDialog from '../../UI/FullScreenDialog';
@@ -26,7 +30,8 @@ import HairColorSelect from '../../UI/ColorSelect/HairColorSelect';
 const SymbolSets = {
   mulberry: '0',
   global: '1',
-  arasaac: '2'
+  arasaac: '2',
+  cboard: '3'
 };
 
 const symbolSetsOptions = [
@@ -43,6 +48,11 @@ const symbolSetsOptions = [
   {
     id: SymbolSets.arasaac,
     text: 'ARASAAC',
+    enabled: true
+  },
+  {
+    id: SymbolSets.cboard,
+    text: 'Cboard Symbols',
     enabled: true
   }
 ];
@@ -72,6 +82,7 @@ export class SymbolSearch extends PureComponent {
       openMirror: false,
       isFetchingArasaac: false,
       isFetchingGlobalsymbols: false,
+      isFetchingCboardSymbols: false,
       value: '',
       suggestions: [],
       skin: defaultSkin,
@@ -100,10 +111,21 @@ export class SymbolSearch extends PureComponent {
     return null;
   }
 
-  get showInclusivityOptions() {
-    return this.state.symbolSets.some(
+  get isSkinToneDisabled() {
+    const isArasaacEnabled = this.state.symbolSets.some(
       opt => opt.id === SymbolSets.arasaac && opt.enabled
     );
+    const isCboardEnabled = this.state.symbolSets.some(
+      opt => opt.id === SymbolSets.cboard && opt.enabled
+    );
+    return !isArasaacEnabled && !isCboardEnabled;
+  }
+
+  get isHairColorDisabled() {
+    const isArasaacEnabled = this.state.symbolSets.some(
+      opt => opt.id === SymbolSets.arasaac && opt.enabled
+    );
+    return !isArasaacEnabled;
   }
 
   translateSymbols(symbols = []) {
@@ -305,6 +327,71 @@ export class SymbolSearch extends PureComponent {
     }
   };
 
+  fetchCboardSymbolsSuggestions = async searchText => {
+    const {
+      intl: { locale }
+    } = this.props;
+    const { skin } = this.state;
+
+    if (!searchText) {
+      return [];
+    }
+
+    try {
+      this.setState({
+        isFetchingCboardSymbols: true
+      });
+
+      // Map ARASAAC skin tone to Cboard skin tone format
+      const cboardSkinTone = mapArasaacToCboardSkinTone(skin);
+
+      const data = await searchCboardSymbols(locale, searchText);
+
+      if (data.length) {
+        const suggestions = [
+          ...this.state.suggestions.filter(
+            suggestion => !suggestion.fromCboardSymbols
+          )
+        ];
+
+        const cboardSuggestions = data.map(pictogram => {
+          // Select appropriate variant based on synced skin tone
+          const variant = pictogram.variants?.find(
+            v => v.skinTone === cboardSkinTone
+          );
+          const imageUrl = variant?.url || pictogram.url;
+
+          // Get localized concept for display
+          const languageCode = locale.slice(0, 2);
+          const translation = pictogram.translations?.[languageCode];
+          const label = translation?.concept || searchText;
+
+          return {
+            id: pictogram._id,
+            src: imageUrl,
+            keyPath: `cboard_${pictogram._id}`,
+            translatedId: label.toLowerCase(),
+            fromCboardSymbols: true
+          };
+        });
+
+        this.setState({
+          suggestions: [...suggestions, ...cboardSuggestions],
+          isFetchingCboardSymbols: false
+        });
+      }
+
+      return [];
+    } catch (err) {
+      console.error('Error fetching Cboard Symbols:', err);
+      return [];
+    } finally {
+      this.setState({
+        isFetchingCboardSymbols: false
+      });
+    }
+  };
+
   getSuggestions(value) {
     this.setState({
       suggestions: []
@@ -314,6 +401,9 @@ export class SymbolSearch extends PureComponent {
     }
     if (this.state.symbolSets[SymbolSets.arasaac].enabled) {
       this.fetchArasaacSuggestions(value);
+    }
+    if (this.state.symbolSets[SymbolSets.cboard].enabled) {
+      this.fetchCboardSymbolsSuggestions(value);
     }
     if (this.state.symbolSets[SymbolSets.mulberry].enabled) {
       this.setState({
@@ -352,6 +442,7 @@ export class SymbolSearch extends PureComponent {
       return imageArasaacUrl.length ? imageArasaacUrl : suggestion.src;
     };
 
+    // Cboard Symbols already have the correct URL, no need to fetch
     const symbolImage = suggestion.fromArasaac
       ? await fetchArasaacImageUrl()
       : suggestion.src;
@@ -397,30 +488,42 @@ export class SymbolSearch extends PureComponent {
   handleChangeOption = opt => {
     const newSymbolSets = this.state.symbolSets.map(option => {
       if (option.id === opt.id) {
-        option.enabled = !option.enabled;
+        return { ...option, enabled: !option.enabled };
       }
       return option;
     });
-    this.setState({
-      symbolSets: newSymbolSets
-    });
-    this.getSuggestions(this.state.value);
+    this.setState(
+      {
+        symbolSets: newSymbolSets
+      },
+      () => {
+        this.getSuggestions(this.state.value);
+      }
+    );
   };
 
   handleSkinToneChange = event => {
     const newSkin = event ? event.target.value : defaultSkin;
-    this.setState({
-      skin: newSkin
-    });
-    this.getSuggestions(this.state.value);
+    this.setState(
+      {
+        skin: newSkin
+      },
+      () => {
+        this.getSuggestions(this.state.value);
+      }
+    );
   };
 
   handleHairColorChange = event => {
     const newHair = event ? event.target.value : defaultHair;
-    this.setState({
-      hair: newHair
-    });
-    this.getSuggestions(this.state.value);
+    this.setState(
+      {
+        hair: newHair
+      },
+      () => {
+        this.getSuggestions(this.state.value);
+      }
+    );
   };
 
   handleClearSuggest() {
@@ -452,24 +555,22 @@ export class SymbolSearch extends PureComponent {
           </Tooltip>
         </div>
       ) : null;
-    const skinOptions = this.showInclusivityOptions ? (
+    const skinOptions = (
       <SkinToneSelect
         selectedColor={this.state.skin}
         onChange={this.handleSkinToneChange}
+        disabled={this.isSkinToneDisabled}
       />
-    ) : null;
-    const hairOptions = this.showInclusivityOptions ? (
+    );
+    const hairOptions = (
       <HairColorSelect
         selectedColor={this.state.hair}
         onChange={this.handleHairColorChange}
+        disabled={this.isHairColorDisabled}
       />
-    ) : null;
+    );
     const autoSuggest = (
-      <div
-        className={`react-autosuggest__container ${
-          this.showInclusivityOptions ? 'more-options' : ''
-        }`}
-      >
+      <div className="react-autosuggest__container more-options">
         <Autosuggest
           aria-label="Search auto-suggest"
           alwaysRenderSuggestions={true}
@@ -498,6 +599,7 @@ export class SymbolSearch extends PureComponent {
     const symbolNotFound =
       !this.state.isFetchingArasaac &&
       !this.state.isFetchingGlobalsymbols &&
+      !this.state.isFetchingCboardSymbols &&
       this.state.value.trim() !== '' &&
       this.state.suggestions.length === 0 ? (
         <SymbolNotFound />

@@ -8,6 +8,12 @@ export const DEFAULT_BOARDS = {
 
 export const deepCopy = obj => JSON.parse(JSON.stringify(obj));
 
+export const isDataURL = str =>
+  typeof str === 'string' && str.startsWith('data:');
+
+export const isLocalFileURL = str =>
+  typeof str === 'string' && /^(file|cdvfile):/i.test(str);
+
 export const dataURLtoFile = (dataurl, filename, checkExtension = false) => {
   // https://stackoverflow.com/a/38936042
   const arr = dataurl.split(',');

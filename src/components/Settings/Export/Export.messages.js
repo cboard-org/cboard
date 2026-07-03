@@ -43,7 +43,7 @@ export default defineMessages({
   },
   boardDownloadError: {
     id: 'cboard.components.Settings.Export.boardDownloadedError',
-    defaultMessage: 'Ups..Something went wrong. Please try again'
+    defaultMessage: 'Oops..Something went wrong. Please try again'
   },
   downloadNoConnectionError: {
     id: 'cboard.components.Settings.Export.downloadNoConnectionError',

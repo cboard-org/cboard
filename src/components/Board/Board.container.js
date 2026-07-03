@@ -43,19 +43,21 @@ import {
   historyRemoveBoard,
   updateApiObjects,
   updateApiObjectsNoChild,
-  getApiObjects,
   downloadImages,
   createApiBoard,
   upsertApiBoard,
-  changeDefaultBoard
+  changeDefaultBoard,
+  setIsSaving
 } from './Board.actions';
 import {
   addBoardCommunicator,
   verifyAndUpsertCommunicator
 } from '../Communicator/Communicator.actions';
-import { disableTour } from '../App/App.actions';
+import { disableTour, setUnauthEditModalDismissed } from '../App/App.actions';
+import { isLogged, isUnauthEditModalDismissed } from '../App/App.selectors';
 import { showPremiumRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 import { isSubscriptionRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.selectors';
+import UnauthenticatedEditModal from '../LoggedInFeature/UnauthenticatedEditModal';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
@@ -67,12 +69,14 @@ import {
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
+import { getVisibleBoards } from './Board.selectors';
 import PremiumFeature from '../PremiumFeature';
 import {
   IS_BROWSING_FROM_APPLE_TOUCH,
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import LoadingIcon from '../UI/LoadingIcon';
+import PinDialog from '../UI/PinDialog';
 import { resolveTileLabel } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
 
@@ -187,7 +191,16 @@ export class BoardContainer extends Component {
     isSymbolSearchTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func,
     isLiveMode: PropTypes.bool,
-    changeDefaultBoard: PropTypes.func
+    changeDefaultBoard: PropTypes.func,
+    /**
+     * Whether the unauthenticated edit modal has already been dismissed
+     * for the current logged-out session
+     */
+    unauthEditModalDismissed: PropTypes.bool,
+    /**
+     * Persist that the unauthenticated edit modal was dismissed
+     */
+    setUnauthEditModalDismissed: PropTypes.func
   };
 
   state = {
@@ -197,14 +210,17 @@ export class BoardContainer extends Component {
     isSelecting: false,
     isLocked: true,
     tileEditorOpen: false,
-    isGettingApiObjects: false,
     copyPublicBoard: false,
     blockedPrivateBoard: false,
     isFixedBoard: false,
     copiedTiles: [],
     isScroll: false,
     totalRows: null,
-    isCbuilderBoard: false
+    isCbuilderBoard: false,
+    pinDialogOpen: false,
+    pinAttempt: '',
+    pinError: false,
+    showUnauthEditModal: false
   };
   constructor(props) {
     super(props);
@@ -223,18 +239,9 @@ export class BoardContainer extends Component {
       boards,
       communicator,
       changeBoard,
-      userData,
-      history,
-      getApiObjects
+      history
       //downloadImages
     } = this.props;
-
-    // Loggedin user?
-    if ('name' in userData && 'email' in userData && window.navigator.onLine) {
-      //synchronize communicator and boards with API
-      this.setState({ isGettingApiObjects: true });
-      getApiObjects().then(() => this.setState({ isGettingApiObjects: false }));
-    }
 
     let boardExists = null;
 
@@ -458,6 +465,7 @@ export class BoardContainer extends Component {
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({ isSaving: true });
+      this.props.setIsSaving(true);
       try {
         //prepare board
         let boardData = {
@@ -501,6 +509,7 @@ export class BoardContainer extends Component {
         console.log(err.message);
       } finally {
         this.setState({ isSaving: false });
+        this.props.setIsSaving(false);
       }
     }
   };
@@ -786,7 +795,35 @@ export class BoardContainer extends Component {
   };
 
   handleLockClick = () => {
-    const { showPremiumRequired, isSubscriptionRequired } = this.props;
+    const {
+      showPremiumRequired,
+      isSubscriptionRequired,
+      setIsSaving
+    } = this.props;
+    const { pinLockEnabled, pinCode } = this.props.navigationSettings || {};
+
+    const hasValidPinCode =
+      typeof pinCode === 'string' && /^\d{4}$/.test(pinCode);
+
+    if (pinLockEnabled && this.state.isLocked) {
+      if (!this.state.pinDialogOpen) {
+        this.setState({
+          pinDialogOpen: true,
+          pinAttempt: '',
+          pinError: !hasValidPinCode
+        });
+      }
+      return;
+    }
+
+    if (
+      this.state.isLocked &&
+      !this.props.isLogged &&
+      !this.props.unauthEditModalDismissed
+    ) {
+      this.setState({ showUnauthEditModal: true });
+      return;
+    }
 
     this.setState(
       prevState => ({
@@ -796,6 +833,7 @@ export class BoardContainer extends Component {
         selectedTileIds: []
       }),
       () => {
+        setIsSaving(false);
         if (!this.state.isLocked && isSubscriptionRequired) {
           showPremiumRequired({ showTryPeriodFinishedMessages: true });
         }
@@ -914,13 +952,27 @@ export class BoardContainer extends Component {
 
   handleLockNotify = countdown => {
     const { intl, showNotification, hideNotification } = this.props;
-    const quickUnlockActive = this.props.navigationSettings?.quickUnlockActive;
+    const { quickUnlockActive, pinLockEnabled, pinCode } =
+      this.props.navigationSettings || {};
 
     if (quickUnlockActive) {
       hideNotification();
       this.handleLockClick();
       return;
     }
+
+    if (pinLockEnabled && pinCode && pinCode.length === 4) {
+      if (!this.state.pinDialogOpen) {
+        hideNotification();
+        this.setState({
+          pinDialogOpen: true,
+          pinAttempt: '',
+          pinError: false
+        });
+      }
+      return;
+    }
+
     if (countdown > 3) {
       return;
     }
@@ -939,6 +991,49 @@ export class BoardContainer extends Component {
     setTimeout(() => {
       showNotification(clicksToUnlock);
     });
+  };
+
+  handlePinDialogClose = () => {
+    this.setState({
+      pinDialogOpen: false,
+      pinAttempt: '',
+      pinError: false
+    });
+  };
+
+  handlePinChange = value => {
+    this.setState({
+      pinAttempt: value,
+      pinError: false
+    });
+  };
+
+  handlePinSubmit = () => {
+    const { showPremiumRequired, isSubscriptionRequired } = this.props;
+    const { pinCode } = this.props.navigationSettings || {};
+    if (this.state.pinAttempt === pinCode) {
+      this.setState(
+        {
+          pinDialogOpen: false,
+          pinAttempt: '',
+          pinError: false,
+          isLocked: false,
+          isSaving: false,
+          isSelecting: false,
+          selectedTileIds: []
+        },
+        () => {
+          if (isSubscriptionRequired) {
+            showPremiumRequired({ showTryPeriodFinishedMessages: true });
+          }
+        }
+      );
+    } else {
+      this.setState({
+        pinError: true,
+        pinAttempt: ''
+      });
+    }
   };
 
   handleScannerStrategyNotification = () => {
@@ -1014,6 +1109,7 @@ export class BoardContainer extends Component {
       this.setState({
         isSaving: true
       });
+      this.props.setIsSaving(true);
 
       if (tile && tile.sound && tile.sound.startsWith('data')) {
         tile = await this.uploadTileSound(tile);
@@ -1106,9 +1202,11 @@ export class BoardContainer extends Component {
             switchBoard(parentBoardId);
             this.props.history.replace(`/board/${parentBoardId}`, []);
             this.setState({ isSaving: false });
+            this.props.setIsSaving(false);
           })
           .catch(e => {
             this.setState({ isSaving: false });
+            this.props.setIsSaving(false);
           });
       } else {
         if (!createChildBoard) {
@@ -1122,9 +1220,11 @@ export class BoardContainer extends Component {
               }
               this.historyReplaceBoardId(parentBoardId);
               this.setState({ isSaving: false });
+              this.props.setIsSaving(false);
             })
             .catch(e => {
               this.setState({ isSaving: false });
+              this.props.setIsSaving(false);
             });
         } else {
           updateApiObjects(childBoardData, parentBoardData, createParentBoard)
@@ -1140,9 +1240,11 @@ export class BoardContainer extends Component {
               }
               this.historyReplaceBoardId(parentBoardId);
               this.setState({ isSaving: false });
+              this.props.setIsSaving(false);
             })
             .catch(e => {
               this.setState({ isSaving: false });
+              this.props.setIsSaving(false);
             });
         }
       }
@@ -1173,11 +1275,18 @@ export class BoardContainer extends Component {
   };
 
   handleCopyRemoteBoard = async () => {
-    const { intl, showNotification, history, switchBoard } = this.props;
+    const {
+      intl,
+      showNotification,
+      history,
+      switchBoard,
+      setIsSaving
+    } = this.props;
     try {
       this.setState({
         isSaving: true
       });
+      setIsSaving(true);
       const copiedBoard = await this.createBoardsRecursively(
         this.state.copyPublicBoard
       );
@@ -1199,6 +1308,7 @@ export class BoardContainer extends Component {
     this.setState({
       isSaving: false
     });
+    setIsSaving(false);
   };
 
   async createBoardsRecursively(board, records) {
@@ -1371,9 +1481,16 @@ export class BoardContainer extends Component {
   };
 
   handlePasteTiles = async () => {
-    const { board, intl, createTile, showNotification } = this.props;
+    const {
+      board,
+      intl,
+      createTile,
+      showNotification,
+      setIsSaving
+    } = this.props;
     try {
       this.setState({ isSaving: true });
+      setIsSaving(true);
       for await (const tile of this.state.copiedTiles) {
         const newTile = {
           ...tile,
@@ -1392,6 +1509,7 @@ export class BoardContainer extends Component {
       console.error(err.message);
     } finally {
       this.setState({ isSaving: false });
+      setIsSaving(false);
     }
   };
 
@@ -1717,12 +1835,48 @@ export class BoardContainer extends Component {
           isSymbolSearchTourEnabled={this.props.isSymbolSearchTourEnabled}
           disableTour={this.props.disableTour}
         />
+        <UnauthenticatedEditModal
+          open={this.state.showUnauthEditModal}
+          onClose={() => this.setState({ showUnauthEditModal: false })}
+          onContinue={() => {
+            const {
+              showPremiumRequired,
+              isSubscriptionRequired,
+              setIsSaving,
+              setUnauthEditModalDismissed
+            } = this.props;
+            setUnauthEditModalDismissed(true);
+            this.setState(
+              {
+                showUnauthEditModal: false,
+                isLocked: false,
+                isSaving: false,
+                isSelecting: false,
+                selectedTileIds: []
+              },
+              () => {
+                setIsSaving(false);
+                if (isSubscriptionRequired) {
+                  showPremiumRequired({ showTryPeriodFinishedMessages: true });
+                }
+              }
+            );
+          }}
+        />
+        <PinDialog
+          open={this.state.pinDialogOpen}
+          onClose={this.handlePinDialogClose}
+          onSubmit={this.handlePinSubmit}
+          error={this.state.pinError}
+          value={this.state.pinAttempt}
+          onChange={this.handlePinChange}
+        />
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
   const {
     board,
     communicator,
@@ -1750,8 +1904,8 @@ const mapStateToProps = state => {
   const offlineVoiceAlert = !isConnected && speech.options.isCloud;
   return {
     communicator: currentCommunicator,
-    board: board.boards.find(board => board.id === activeBoardId),
-    boards: board.boards,
+    board: getVisibleBoards(state).find(board => board.id === activeBoardId),
+    boards: getVisibleBoards(state),
     output: board.output,
     isLiveMode: board.isLiveMode,
     scannerSettings: scanner,
@@ -1767,7 +1921,9 @@ const mapStateToProps = state => {
     isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
     isPremiumRequiredModalOpen: premiumRequiredModalState?.open,
     improvedPhrase: board.improvedPhrase,
-    isSubscriptionRequired: isSubscriptionRequired(state)
+    isSubscriptionRequired: isSubscriptionRequired(state),
+    isLogged: isLogged(state),
+    unauthEditModalDismissed: isUnauthEditModalDismissed(state)
   };
 };
 
@@ -1795,14 +1951,15 @@ const mapDispatchToProps = {
   addBoardCommunicator,
   updateApiObjects,
   updateApiObjectsNoChild,
-  getApiObjects,
   downloadImages,
   disableTour,
   createApiBoard,
   upsertApiBoard,
   changeDefaultBoard,
   verifyAndUpsertCommunicator,
-  showPremiumRequired
+  showPremiumRequired,
+  setIsSaving,
+  setUnauthEditModalDismissed
 };
 
 export default connect(

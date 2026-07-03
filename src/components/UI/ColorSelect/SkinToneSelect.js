@@ -38,13 +38,18 @@ const skinToneSources = new Map([
     ]
   ]
 ]);
-const sourcesNames = new Map([['arasaac', 'ARASAAC']]);
 
 const propTypes = {
-  source: PropTypes.string.isRequired,
+  source: PropTypes.string,
   intl: intlShape.isRequired,
   onChange: PropTypes.func.isRequired,
-  selectedColor: PropTypes.string.isRequired
+  selectedColor: PropTypes.string.isRequired,
+  disabled: PropTypes.bool
+};
+
+const defaultProps = {
+  source: 'arasaac',
+  disabled: false
 };
 
 class SkinToneSelect extends React.Component {
@@ -55,9 +60,6 @@ class SkinToneSelect extends React.Component {
     this.handleClickOutside = this.handleClickOutside.bind(this);
     this.state = {
       open: false,
-      sourceName: sourcesNames.has(props.source)
-        ? sourcesNames.get(props.source)
-        : sourcesNames.get('arasaac'),
       skinToneMenu: skinToneSources.has(props.source)
         ? skinToneSources.get(props.source)
         : skinToneSources.get('arasaac')
@@ -90,16 +92,15 @@ class SkinToneSelect extends React.Component {
   };
 
   toggleOpen() {
+    if (this.props.disabled) return;
     this.setState({
       open: !this.state.open
     });
   }
 
   render() {
-    const { intl, selectedColor, iconColor } = this.props;
-    const skinToneLabel = `${this.state.sourceName} ${intl.formatMessage(
-      messages.skinTone
-    )}`;
+    const { intl, selectedColor, disabled } = this.props;
+    const skinToneLabel = intl.formatMessage(messages.skinTone);
     const radioGroupStyle = { flexDirection: 'column' };
     const radioItemStyle = { padding: '2px' };
 
@@ -109,14 +110,28 @@ class SkinToneSelect extends React.Component {
         className="colorSelectDropdown"
         ref={this.wrapperRef}
       >
-        <Tooltip title={skinToneLabel} aria-label={skinToneLabel}>
-          <IconButton
-            label={skinToneLabel}
-            onClick={() => this.toggleOpen()}
-            style={{ color: iconColor ? iconColor : 'inherit' }}
-          >
-            <PanTool />
-          </IconButton>
+        <Tooltip
+          title={
+            disabled
+              ? intl.formatMessage(messages.skinToneDisabled)
+              : skinToneLabel
+          }
+          aria-label={
+            disabled
+              ? intl.formatMessage(messages.skinToneDisabled)
+              : skinToneLabel
+          }
+        >
+          <span>
+            <IconButton
+              label={skinToneLabel}
+              onClick={() => this.toggleOpen()}
+              style={{ color: disabled ? '' : 'inherit' }}
+              disabled={disabled}
+            >
+              <PanTool />
+            </IconButton>
+          </span>
         </Tooltip>
         <FormControl className="colorSelectDropdown-options">
           <Card className={this.state.open ? 'opened' : 'closed'}>
@@ -153,4 +168,5 @@ class SkinToneSelect extends React.Component {
 }
 
 SkinToneSelect.propTypes = propTypes;
+SkinToneSelect.defaultProps = defaultProps;
 export default injectIntl(SkinToneSelect);

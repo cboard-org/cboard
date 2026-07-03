@@ -41,14 +41,8 @@ test.describe('Cboard - Security Features', () => {
     await cboard.expectButtonNotVisible(cboard.printBoardButton);
     await cboard.expectButtonNotVisible(cboard.shareButton);
     await cboard.expectButtonNotVisible(cboard.fullScreenButton);
-    for (let i = 1; i <= 4; i++) {
-      await cboard.clickUnlock();
-      if (i < 4) {
-        await cboard.expectButtonVisible(cboard.unlockClicksAlert);
-        await cboard.expectButtonNotVisible(cboard.settingsButton);
-      }
-    }
-    await cboard.dismissOverlays();
+    await cboard.unlockAsGuest();
+    await cboard.dismissTourPopup();
     await cboard.expectButtonVisible(cboard.settingsButton);
     await cboard.expectButtonVisible(cboard.printBoardButton);
     await cboard.expectButtonVisible(cboard.shareButton);
@@ -73,10 +67,8 @@ test.describe('Cboard - Security Features', () => {
   test('should lock settings again when lock button is clicked', async ({
     page
   }) => {
-    for (let i = 1; i <= 4; i++) {
-      await cboard.clickUnlock();
-    }
-    await cboard.dismissOverlays();
+    await cboard.unlockAsGuest();
+    await cboard.dismissTourPopup();
     await cboard.expectButtonVisible(cboard.settingsButton);
     await cboard.expectButtonVisible(cboard.lockButton);
     await cboard.clickLock();

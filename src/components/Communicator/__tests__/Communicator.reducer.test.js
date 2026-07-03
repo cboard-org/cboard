@@ -124,6 +124,48 @@ describe('reducer', () => {
       communicatorReducer(initialState, createApiCommunicatorSuccess)
     ).toEqual({ ...initialState, isFetching: false });
   });
+
+  it('should apply server email and author on CREATE_API_COMMUNICATOR_SUCCESS', () => {
+    const localId = 'shortLocalId';
+    const serverComm = {
+      id: 'mongoServerId123456789',
+      email: 'user@example.com',
+      author: 'Real User',
+      lastEdited: moment().format()
+    };
+    const stateWithLocal = {
+      ...initialState,
+      communicators: [
+        ...initialState.communicators,
+        {
+          ...mockComm,
+          id: localId,
+          email: 'support@cboard.io',
+          author: 'Cboard Team'
+        }
+      ],
+      activeCommunicatorId: localId
+    };
+
+    const action = {
+      type: CREATE_API_COMMUNICATOR_SUCCESS,
+      communicator: serverComm,
+      communicatorId: localId
+    };
+
+    const result = communicatorReducer(stateWithLocal, action);
+
+    const updated = result.communicators.find(c => c.id === serverComm.id);
+    expect(updated).toBeDefined();
+    expect(updated.email).toBe(serverComm.email);
+    expect(updated.author).toBe(serverComm.author);
+    expect(updated.lastEdited).toBe(serverComm.lastEdited);
+    // boards and other local fields are preserved
+    expect(updated.boards).toEqual(mockComm.boards);
+    // activeCommunicatorId follows the new server id
+    expect(result.activeCommunicatorId).toBe(serverComm.id);
+    expect(result.isFetching).toBe(false);
+  });
   it('should handle updateApiCommunicatorSuccess', () => {
     const updateApiCommunicatorSuccess = {
       type: UPDATE_API_COMMUNICATOR_SUCCESS,

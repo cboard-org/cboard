@@ -9,10 +9,12 @@ import {
   deleteBoardCommunicator,
   addBoardCommunicator,
   verifyAndUpsertCommunicator,
-  upsertApiCommunicator
+  upsertApiCommunicator,
+  pushCommunicator
 } from '../Communicator.actions';
 import { deleteBoard, deleteApiBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
+import { getVisibleBoards } from '../../Board/Board.selectors';
 import {
   addBoards,
   replaceBoard,
@@ -406,28 +408,17 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async updateCommunicatorBoards(boards) {
-    const {
-      userData,
-      currentCommunicator,
-      verifyAndUpsertCommunicator,
-      upsertApiCommunicator
-    } = this.props;
+    const { currentCommunicator, pushCommunicator } = this.props;
 
     const updatedCommunicatorData = {
       ...currentCommunicator,
       boards: boards.map(cb => cb.id)
     };
 
-    const upsertedCommunicator = verifyAndUpsertCommunicator(
-      updatedCommunicatorData
-    );
-
-    if ('name' in userData && 'email' in userData) {
-      try {
-        await upsertApiCommunicator(upsertedCommunicator);
-      } catch (err) {
-        console.error('Error upserting communicator', err);
-      }
+    try {
+      await pushCommunicator(updatedCommunicatorData);
+    } catch (err) {
+      console.error('Error upserting communicator', err);
     }
   }
 
@@ -451,8 +442,10 @@ class CommunicatorDialogContainer extends React.Component {
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       try {
-        const boardResponse = await API.updateBoard(boardData);
-        replaceBoard(boardData, boardResponse);
+        const { board: sanitized } = await API.uploadBoardLocalMedia(boardData);
+        replaceBoard(boardData, sanitized);
+        const boardResponse = await API.updateBoard(sanitized);
+        replaceBoard(sanitized, boardResponse);
       } catch (err) {}
     }
   }
@@ -467,24 +460,14 @@ class CommunicatorDialogContainer extends React.Component {
   }
 
   async setRootBoard(board) {
-    const {
-      userData,
-      currentCommunicator,
-      verifyAndUpsertCommunicator,
-      upsertApiCommunicator
-    } = this.props;
+    const { currentCommunicator, pushCommunicator } = this.props;
 
     const updatedCommunicatorData = {
       ...currentCommunicator,
       rootBoard: board.id
     };
-    const upsertedCommunicator = verifyAndUpsertCommunicator(
-      updatedCommunicatorData
-    );
     try {
-      if ('name' in userData && 'email' in userData) {
-        await upsertApiCommunicator(upsertedCommunicator);
-      }
+      await pushCommunicator(updatedCommunicatorData);
     } catch (err) {
       console.error('Error upserting communicator', err);
     }
@@ -499,11 +482,10 @@ class CommunicatorDialogContainer extends React.Component {
       showNotification,
       deleteBoard,
       communicators,
-      verifyAndUpsertCommunicator,
       deleteApiBoard,
       userData,
       intl,
-      upsertApiCommunicator
+      pushCommunicator
     } = this.props;
     deleteBoard(board.id);
 
@@ -520,16 +502,10 @@ class CommunicatorDialogContainer extends React.Component {
           boards: comm.boards.filter(b => b !== board.id)
         };
 
-        const upsertedCommunicator = verifyAndUpsertCommunicator(
-          filteredCommunicator
-        );
-
-        if ('name' in userData && 'email' in userData) {
-          try {
-            await upsertApiCommunicator(upsertedCommunicator);
-          } catch (err) {
-            console.error('Error upserting communicator', err);
-          }
+        try {
+          await pushCommunicator(filteredCommunicator);
+        } catch (err) {
+          console.error('Error upserting communicator', err);
         }
       }
     }
@@ -588,18 +564,22 @@ class CommunicatorDialogContainer extends React.Component {
   }
 }
 
-const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
+export const mapStateToProps = (
+  { board, communicator, language, app },
+  ownProps
+) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
     communicator => communicator.id === activeCommunicatorId
   );
 
-  const communicatorBoards = board.boards.filter(
+  const visibleBoards = getVisibleBoards({ board });
+  const communicatorBoards = visibleBoards.filter(
     board => currentCommunicator.boards.indexOf(board.id) >= 0
   );
 
   const { userData, displaySettings } = app;
-  const cboardBoards = board.boards.filter(
+  const cboardBoards = visibleBoards.filter(
     board => board.email === 'support@cboard.io'
   );
   const communicatorTour = app.liveHelp.communicatorTour || {
@@ -614,7 +594,7 @@ const mapStateToProps = ({ board, communicator, language, app }, ownProps) => {
     currentCommunicator,
     communicatorBoards,
     cboardBoards,
-    availableBoards: board.boards,
+    availableBoards: visibleBoards,
     userData,
     language,
     activeBoardId: board.activeBoardId,
@@ -638,7 +618,8 @@ const mapDispatchToProps = {
   updateApiBoard,
   disableTour,
   verifyAndUpsertCommunicator,
-  upsertApiCommunicator
+  upsertApiCommunicator,
+  pushCommunicator
 };
 
 export default connect(

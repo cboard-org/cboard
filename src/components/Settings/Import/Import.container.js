@@ -5,10 +5,8 @@ import { injectIntl, intlShape } from 'react-intl';
 import shortid from 'shortid';
 
 import { addBoards, changeBoard } from '../../Board/Board.actions';
-import {
-  upsertApiCommunicator,
-  verifyAndUpsertCommunicator
-} from '../../Communicator/Communicator.actions';
+import { getVisibleBoards } from '../../Board/Board.selectors';
+import { pushCommunicator } from '../../Communicator/Communicator.actions';
 import { switchBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import Import from './Import.component';
@@ -56,7 +54,14 @@ export class ImportContainer extends PureComponent {
 
         let boardToBeUpdated = board;
         if (shouldUpdate && updated) {
-          boardToBeUpdated = await API.updateBoard(boardToBeUpdated);
+          try {
+            const { board: sanitized } = await API.uploadBoardLocalMedia(
+              boardToBeUpdated
+            );
+            boardToBeUpdated = await API.updateBoard(sanitized);
+          } catch (err) {
+            console.error(err.message);
+          }
         }
 
         return boardToBeUpdated;
@@ -90,24 +95,28 @@ export class ImportContainer extends PureComponent {
             boardToCreate.name = 'unknow';
           }
           try {
-            const response = await API.createBoard(boardToCreate);
+            const { board: sanitized } = await API.uploadBoardLocalMedia(
+              boardToCreate
+            );
+            const response = await API.createBoard(sanitized);
             if (board.id) {
               response.prevId = board.id;
             }
             return response;
           } catch (err) {
-            console.log(err.message);
-            return board;
+            console.error(err.message);
+            const localBoard = this.prepareLocalBoard(boardToCreate);
+            if (board.id) {
+              localBoard.prevId = board.id;
+            }
+            return localBoard;
           }
         })
       );
     } else {
-      boardsResponse.forEach(board => {
-        if (board.id) {
-          board.prevId = board.id;
-        }
-        board.id = shortid.generate();
-      });
+      boardsResponse = boardsResponse.map(board =>
+        this.prepareLocalBoard(board)
+      );
     }
 
     boardsResponse = await this.updateLoadBoardsIds(
@@ -120,32 +129,30 @@ export class ImportContainer extends PureComponent {
     this.props.switchBoard(boardsResponse[0].id);
   }
 
+  prepareLocalBoard(board) {
+    const boardWithNewId = { ...board };
+    if (boardWithNewId.id) {
+      boardWithNewId.prevId = boardWithNewId.id;
+    }
+    boardWithNewId.id = shortid.generate();
+    return boardWithNewId;
+  }
+
   async addBoardsToCommunicator(boards) {
-    const {
-      currentCommunicator,
-      verifyAndUpsertCommunicator,
-      userData,
-      upsertApiCommunicator
-    } = this.props;
+    const { currentCommunicator, pushCommunicator } = this.props;
 
     const communicatorBoards = new Set(
       currentCommunicator.boards.concat(boards.map(b => b.id))
     );
-    let communicatorModified = {
+    const communicatorModified = {
       ...currentCommunicator,
       boards: Array.from(communicatorBoards)
     };
 
-    const upsertedCommunicator = verifyAndUpsertCommunicator(
-      communicatorModified
-    );
-
-    if ('name' in userData && 'email' in userData) {
-      try {
-        await upsertApiCommunicator(upsertedCommunicator);
-      } catch (err) {
-        console.error('Error upserting communicator', err);
-      }
+    try {
+      await pushCommunicator(communicatorModified);
+    } catch (err) {
+      console.error('Error upserting communicator', err);
     }
   }
 
@@ -215,7 +222,7 @@ export class ImportContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ board, communicator, app }) => {
+export const mapStateToProps = ({ board, communicator, app }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
     communicator => communicator.id === activeCommunicatorId
@@ -224,7 +231,7 @@ const mapStateToProps = ({ board, communicator, app }) => {
   const { userData } = app;
 
   return {
-    boards: board.boards,
+    boards: getVisibleBoards({ board }),
     currentCommunicator,
     communicators: communicator.communicators,
     userData
@@ -236,8 +243,7 @@ const mapDispatchToProps = {
   changeBoard,
   switchBoard,
   showNotification,
-  verifyAndUpsertCommunicator,
-  upsertApiCommunicator
+  pushCommunicator
 };
 
 export default connect(

@@ -40,20 +40,28 @@ export default defineMessages({
   },
   skinToneOptionsTitle: {
     id: 'cboard.components.SymbolSearch.skinToneOptionsTitle',
-    defaultMessage: 'Skin tone options'
+    defaultMessage: 'Skin tone'
   },
   skinToneOptionsDesc: {
     id: 'cboard.components.SymbolSearch.skinToneOptionsDesc',
     defaultMessage:
-      'You can customize the skin tone symbols to better represent yourself and others. These options currently only apply to ARASAAC symbols.'
+      'You can customize the skin tone symbols to better represent yourself and others. These options currently only apply to Cboard Symbols and ARASAAC symbols.'
   },
   hairColorOptionsTitle: {
     id: 'cboard.components.SymbolSearch.hairColorOptionsTitle',
-    defaultMessage: 'Hair color options'
+    defaultMessage: 'Hair color'
   },
   hairColorOptionsDesc: {
     id: 'cboard.components.SymbolSearch.hairColorOptionsDesc',
     defaultMessage:
       'You can also customize the hair color of symbols. These options currently only apply to ARASAAC symbols.'
+  },
+  cboardSymbols: {
+    id: 'cboard.components.SymbolSearch.cboardSymbols',
+    defaultMessage: 'Cboard Symbols'
+  },
+  inclusivityOptions: {
+    id: 'cboard.components.SymbolSearch.inclusivityOptions',
+    defaultMessage: 'Inclusivity (ARASAAC & Cboard)'
   }
 });

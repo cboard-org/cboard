@@ -52,6 +52,12 @@
   }
 }
 
+@media (max-width: 500px) {
+  .react-autosuggest__suggestions-container {
+    top: 200px;
+  }
+}
+
 .react-autosuggest__suggestions-container--open {
   height: fit-content;
 }

@@ -10,10 +10,11 @@ import {
   changeDefaultBoard
 } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
+import { getVisibleBoards } from '../../Board/Board.selectors';
 import {
   importCommunicator,
   deleteCommunicator,
-  verifyAndUpsertCommunicator
+  pushCommunicator
 } from '../Communicator.actions';
 
 class CommunicatorContainer extends React.Component {
@@ -34,28 +35,17 @@ class CommunicatorContainer extends React.Component {
   }
 
   editCommunicatorTitle = async name => {
-    const {
-      currentCommunicator,
-      verifyAndUpsertCommunicator,
-      upsertApiCommunicator,
-      userData
-    } = this.props;
+    const { currentCommunicator, pushCommunicator } = this.props;
 
     const updatedCommunicatorData = {
       ...currentCommunicator,
       name
     };
 
-    const upsertedCommunicator = verifyAndUpsertCommunicator(
-      updatedCommunicatorData
-    );
-
-    if ('name' in userData && 'email' in userData) {
-      try {
-        await upsertApiCommunicator(upsertedCommunicator);
-      } catch (err) {
-        console.error('Error upserting communicator', err);
-      }
+    try {
+      await pushCommunicator(updatedCommunicatorData);
+    } catch (err) {
+      console.error('Error upserting communicator', err);
     }
   };
 
@@ -81,7 +71,7 @@ class CommunicatorContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (
+export const mapStateToProps = (
   { board, communicator, app: { userData, displaySettings } },
   ownProps
 ) => {
@@ -90,7 +80,7 @@ const mapStateToProps = (
     communicator => communicator.id === activeCommunicatorId
   );
   const activeBoardId = board.activeBoardId;
-  const boards = board.boards.filter(
+  const boards = getVisibleBoards({ board }).filter(
     board =>
       board !== null &&
       board.id !== null &&
@@ -111,7 +101,7 @@ const mapStateToProps = (
 
 const mapDispatchToProps = {
   importCommunicator,
-  verifyAndUpsertCommunicator,
+  pushCommunicator,
   deleteCommunicator,
   showNotification,
   switchBoard,
