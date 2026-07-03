@@ -1,5 +1,6 @@
 import * as actions from '../SpeechProvider.actions';
 import * as types from '../SpeechProvider.constants';
+import tts from '../tts';
 
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -138,14 +139,28 @@ describe('actions', () => {
     expect(actions.changeRate(rate)).toEqual(expectedAction);
   });
   it('should create an action to cancelSpeech', () => {
-    const dispatch = jest.fn();
-    actions.cancelSpeech()(dispatch);
+    const store = mockStore(initialState);
+    store.dispatch(actions.cancelSpeech());
+    expect(store.getActions()).toEqual([
+      { type: types.CANCEL_SPEECH, isSpeaking: false }
+    ]);
+    expect(tts.cancel).toHaveBeenCalled();
   });
   it('should create an action to speak ', () => {
     const store = mockStore(initialState);
     const onend = jest.fn();
-    const dispatch = jest.fn();
-    store.dispatch(actions.speak('aaa', onend(dispatch)));
+    store.dispatch(actions.speak('aaa', onend));
+    expect(store.getActions()).toEqual([
+      { type: types.START_SPEECH, isSpeaking: true, text: 'aaa' }
+    ]);
+    expect(tts.speak).toHaveBeenCalledWith(
+      'aaa',
+      expect.objectContaining({
+        ...initialState.speech.options,
+        onend: expect.any(Function)
+      }),
+      expect.any(Function)
+    );
   });
   it('should create an action to change ElevenLabs API key', () => {
     const elevenLabsApiKey = 'test-api-key';
@@ -156,5 +171,52 @@ describe('actions', () => {
     expect(actions.changeElevenLabsApiKey(elevenLabsApiKey)).toEqual(
       expectedAction
     );
+  });
+  it('should create an action to cache ElevenLabs voices', () => {
+    const expectedAction = {
+      type: types.CACHE_ELEVENLABS_VOICES,
+      voices
+    };
+    expect(actions.cacheElevenLabsVoices(voices)).toEqual(expectedAction);
+  });
+  it('should create an action to clear the ElevenLabs cache', () => {
+    const expectedAction = {
+      type: types.CLEAR_ELEVENLABS_CACHE
+    };
+    expect(actions.clearElevenLabsCache()).toEqual(expectedAction);
+  });
+  it('should create an action to change ElevenLabs stability', () => {
+    const stability = 0.8;
+    const expectedAction = {
+      type: types.CHANGE_ELEVENLABS_STABILITY,
+      stability
+    };
+    expect(actions.changeElevenLabsStability(stability)).toEqual(
+      expectedAction
+    );
+  });
+  it('should create an action to change ElevenLabs similarity', () => {
+    const similarity = 0.6;
+    const expectedAction = {
+      type: types.CHANGE_ELEVENLABS_SIMILARITY,
+      similarity
+    };
+    expect(actions.changeElevenLabsSimilarity(similarity)).toEqual(
+      expectedAction
+    );
+  });
+  it('should create an action to change ElevenLabs style', () => {
+    const style = 0.3;
+    const expectedAction = {
+      type: types.CHANGE_ELEVENLABS_STYLE,
+      style
+    };
+    expect(actions.changeElevenLabsStyle(style)).toEqual(expectedAction);
+  });
+  it('should create an action to reset ElevenLabs settings', () => {
+    const expectedAction = {
+      type: types.RESET_ELEVENLABS_SETTINGS
+    };
+    expect(actions.resetElevenLabsSettings()).toEqual(expectedAction);
   });
 });
