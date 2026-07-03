@@ -1113,6 +1113,47 @@ describe('pushLocalChangesToApi', () => {
     // Should CREATE on API (transformed boards are created, not updated)
     expect(actionTypes).toContain(types.CREATE_API_BOARD_STARTED);
   });
+
+  it('should hard delete an untracked server board when its update returns 404', async () => {
+    // An untracked board with a server ID (>= 14 chars) that is absent from the
+    // manifest is pushed via updateApiBoard (PUT). If the server 404s, the board
+    // was deleted on another device — hard delete it locally so it stops
+    // re-pushing forever instead of becoming a sync zombie.
+    const zombieBoard = {
+      ...mockBoard,
+      id: '12345678901234567890', // server ID
+      email: 'asd@qwe.com'
+      // no syncMeta entry -> untracked
+    };
+    const remoteBoards = []; // absent from manifest
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: [zombieBoard],
+        syncMeta: {}
+      }
+    });
+
+    const notFound = new Error('Request failed with status code 404');
+    notFound.response = { status: 404 };
+    const originalUpdateBoard = API.updateBoard;
+    API.updateBoard = jest.fn().mockRejectedValue(notFound);
+
+    try {
+      await storeWithBoards.dispatch(
+        actions.pushLocalChangesToApi(remoteBoards)
+      );
+    } finally {
+      API.updateBoard = originalUpdateBoard;
+    }
+
+    const deleteSuccess = storeWithBoards
+      .getActions()
+      .find(a => a.type === types.DELETE_API_BOARD_SUCCESS);
+    expect(deleteSuccess).toBeDefined();
+    expect(deleteSuccess.board.id).toBe('12345678901234567890');
+  });
 });
 
 describe('applyRemoteChangesToState', () => {

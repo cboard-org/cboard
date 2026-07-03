@@ -838,6 +838,10 @@ export function pushLocalChangesToApi(remoteBoards = []) {
           await dispatch(updateApiBoard(board));
         }
       } catch (e) {
+        if (e.response?.status === 404 && !getState().board.syncMeta[board.id]) {
+          dispatch(deleteApiBoardSuccess({ id: board.id }));
+          continue;
+        }
         console.error('Failed to push board to API:', board.id, e);
         trackSyncException(e, { phase: 'pushBoard', boardId: board.id });
       }
@@ -1007,7 +1011,7 @@ export function updateApiBoard(boardData) {
       })
       .catch(err => {
         dispatch(updateApiBoardFailure(err.message));
-        throw new Error(err.message);
+        throw err;
       });
   };
 }
