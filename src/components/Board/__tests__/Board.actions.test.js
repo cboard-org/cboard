@@ -666,15 +666,59 @@ describe('classifyRemoteBoards', () => {
   });
 
   it('should identify boards deleted on server (boardIdsToDelete)', () => {
-    const localBoards = [{ id: '12345678901234567890', name: 'Server Board' }];
+    const localBoards = [
+      {
+        id: '12345678901234567890',
+        name: 'Server Board',
+        lastEdited: '2024-01-01T00:00:00Z'
+      }
+    ];
     const syncMeta = {
       '12345678901234567890': { status: types.SYNC_STATUS.SYNCED }
     };
-    const remoteBoards = []; // board not in remote = deleted on server
+    // Board absent from a manifest that is fresh enough to know about it
+    const remoteBoards = [
+      { id: '09876543210987654321', lastEdited: '2024-01-02T00:00:00Z' }
+    ];
     const result = classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
 
     expect(result.boardIdsToDelete).toHaveLength(1);
     expect(result.boardIdsToDelete).toContain('12345678901234567890');
+  });
+
+  it('should not delete boards newer than the manifest watermark (stale manifest)', () => {
+    const localBoards = [
+      {
+        id: '12345678901234567890',
+        name: 'Just-created Board',
+        lastEdited: '2024-01-03T00:00:00Z'
+      }
+    ];
+    const syncMeta = {
+      '12345678901234567890': { status: types.SYNC_STATUS.SYNCED }
+    };
+    const remoteBoards = [
+      { id: '09876543210987654321', lastEdited: '2024-01-02T00:00:00Z' }
+    ];
+    const result = classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
+
+    expect(result.boardIdsToDelete).toHaveLength(0);
+  });
+
+  it('should not delete any board when the manifest is empty', () => {
+    const localBoards = [
+      {
+        id: '12345678901234567890',
+        name: 'Server Board',
+        lastEdited: '2024-01-01T00:00:00Z'
+      }
+    ];
+    const syncMeta = {
+      '12345678901234567890': { status: types.SYNC_STATUS.SYNCED }
+    };
+    const result = classifyRemoteBoards(localBoards, [], syncMeta);
+
+    expect(result.boardIdsToDelete).toHaveLength(0);
   });
 
   it('should not classify short ID boards as deleted on server', () => {
@@ -1153,6 +1197,46 @@ describe('pushLocalChangesToApi', () => {
       .find(a => a.type === types.DELETE_API_BOARD_SUCCESS);
     expect(deleteSuccess).toBeDefined();
     expect(deleteSuccess.board.id).toBe('12345678901234567890');
+  });
+
+  it('should not hard delete an untracked board on 404 when the manifest still lists it', async () => {
+    // A 404 that contradicts the manifest (board listed as existing) signals a
+    // transient server problem, not a real deletion — keep the board.
+    const untrackedBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      email: 'asd@qwe.com',
+      lastEdited: '2024-01-02T00:00:00Z'
+    };
+    const remoteBoards = [
+      { id: '12345678901234567890', lastEdited: '2024-01-01T00:00:00Z' }
+    ];
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: [untrackedBoard],
+        syncMeta: {}
+      }
+    });
+
+    const notFound = new Error('Request failed with status code 404');
+    notFound.response = { status: 404 };
+    const originalUpdateBoard = API.updateBoard;
+    API.updateBoard = jest.fn().mockRejectedValue(notFound);
+
+    try {
+      await storeWithBoards.dispatch(
+        actions.pushLocalChangesToApi(remoteBoards)
+      );
+    } finally {
+      API.updateBoard = originalUpdateBoard;
+    }
+
+    const deleteSuccess = storeWithBoards
+      .getActions()
+      .find(a => a.type === types.DELETE_API_BOARD_SUCCESS);
+    expect(deleteSuccess).toBeUndefined();
   });
 });
 

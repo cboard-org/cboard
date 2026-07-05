@@ -26,6 +26,11 @@ import {
 } from '../../cordova-util';
 import { appInsights } from '../../appInsights';
 
+// Module-scoped so a remount of AppContainer within the same JS context cannot
+// clear the isSyncing flag of a sync that is still in flight. Only the first
+// mount after a page load needs to clear the flag rehydrated by redux-persist.
+let staleSyncFlagCleared = false;
+
 export class AppContainer extends Component {
   static propTypes = {
     /**
@@ -142,7 +147,10 @@ export class AppContainer extends Component {
       this.handleWebVisibilityChange
     );
 
-    this.props.clearSync();
+    if (!staleSyncFlagCleared) {
+      staleSyncFlagCleared = true;
+      this.props.clearSync();
+    }
     this.handleDataRefresh('App started');
   }
 

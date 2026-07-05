@@ -116,14 +116,34 @@ export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
     }
   }
 
-  // Identify boards deleted on server
+  // Identify boards deleted on server. A manifest may only delete boards it is
+  // fresh enough to have known about: boards edited after the newest timestamp
+  // in the manifest (or any board, when the manifest is empty) are kept, so a
+  // stale manifest snapshot cannot destroy just-created boards.
+  const manifestWatermark = remoteBoards.reduce(
+    (max, remote) =>
+      remote.lastEdited && (!max || moment(remote.lastEdited).isAfter(max))
+        ? remote.lastEdited
+        : max,
+    null
+  );
+
   for (const local of localBoards) {
     const hasServerId = isServerBoard(local);
     const notInRemote = !remoteBoardIds.has(local.id);
     const notLocallyDeleted = !syncMeta[local.id]?.isDeleted;
     const localHasSyncStatus = syncMeta[local.id] != null;
+    const knownToManifest =
+      manifestWatermark != null &&
+      !moment(local.lastEdited).isAfter(manifestWatermark);
 
-    if (hasServerId && notInRemote && notLocallyDeleted && localHasSyncStatus) {
+    if (
+      hasServerId &&
+      notInRemote &&
+      notLocallyDeleted &&
+      localHasSyncStatus &&
+      knownToManifest
+    ) {
       boardIdsToDelete.push(local.id);
     }
   }
