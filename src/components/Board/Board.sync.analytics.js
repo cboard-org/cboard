@@ -35,3 +35,8 @@ export function countPendingBoards(syncMeta = {}) {
     meta => meta?.status === SYNC_STATUS.PENDING && !meta?.isDeleted
   ).length;
 }
+
+/** Count boards with no syncMeta entry (untracked, see docs/sync-engine.md §7). */
+export function countUntrackedBoards(boards = [], syncMeta = {}) {
+  return boards.filter(board => syncMeta[board.id] == null).length;
+}

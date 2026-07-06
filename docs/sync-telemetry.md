@@ -60,6 +60,22 @@ Once per cycle, in `classifyBoardsForPush`, whenever any untracked board was see
 | `pushedNew` | measurements | `needsCreate: true` |
 | `pushedUpdate` | measurements | `needsCreate: false` |
 
+### `Sync_BoardsStarted`
+At the top of every board-sync cycle (`syncBoards()`), before PULL classification. Captures the
+inputs the cycle is about to act on, so any later deletion/push anomaly can be replayed against
+the exact manifest snapshot and local state the engine saw — including `manifestWatermark`, which
+directly exposes a stale manifest (a watermark hours old while the device is actively creating
+boards was the signature of the 2026-07-01 incident).
+
+| field | bag | meaning |
+|---|---|---|
+| `manifestWatermark` | properties | newest `lastEdited` in the manifest (`"null"` for an empty manifest) |
+| `pendingBefore` | measurements | PENDING boards entering the cycle |
+| `manifestSize` | measurements | boards in the remote manifest |
+| `localBoards` | measurements | total local boards |
+| `localServerBoards` | measurements | local boards with a server id |
+| `untrackedBefore` | measurements | local boards with no `syncMeta` entry |
+
 ### `Sync_Completed`
 On every **board-sync cycle**, success or failure. Scope is the board phase only
 (`syncBoards()`); it does not cover the communicators phase. For the whole sync flight, see
@@ -71,6 +87,7 @@ On every **board-sync cycle**, success or failure. Scope is the board phase only
 | `durationMs` | measurements | wall time of the cycle |
 | `pendingBefore` | measurements | PENDING boards pre-sync |
 | `pendingAfter` | measurements | PENDING boards post-sync |
+| `untrackedAfter` | measurements | local boards with no `syncMeta` entry post-sync (pairs with `Sync_BoardsStarted.untrackedBefore`; a device where this never reaches 0 is graduation-stuck) |
 
 ### `Sync_FullRun`
 On every full sync flight driven by `getApiObjects()` — the top-level entry point that runs the
@@ -100,6 +117,8 @@ is about to delete — it does not stop it.
 | `deletedCount` | measurements | boards this cycle will hard-delete via PULL |
 | `manifestSize` | measurements | boards in the remote manifest (`remoteBoards.length`) |
 | `localServerBoards` | measurements | local boards with a server id, pre-delete (deletion denominator) |
+| `manifestWatermark` | properties | newest `lastEdited` in the manifest — a stale watermark alongside deletions is the incident signature |
+| `boardIds` | properties | comma-joined ids being deleted (first 50) — makes post-incident DB verification possible |
 
 ### `Sync_PushNotFoundDelete`
 In the push-loop catch, when a board's push PUT returns **404** and the board is **also absent
@@ -141,6 +160,7 @@ telemetry.
 | `Sync_Graduation` | `Board.actions.js` → `classifyBoardsForPush`, before the batched `markBoardsSynced` |
 | `Sync_Completed` | `Board.actions.js` → `syncBoards()` success & catch (board phase only) |
 | `Sync_FullRun` | `Board.actions.js` → `getApiObjects()` `finally` (and the early `isSyncing` guard) |
+| `Sync_BoardsStarted` | `Board.actions.js` → `syncBoards()`, after the pre-PULL `getState().board` read |
 | `Sync_RemoteDeletions` | `Board.actions.js` → `syncBoards()`, after `classifyRemoteBoards`, guarded by `boardIdsToDelete.length > 0` |
 | `Sync_PushNotFoundDelete` | `Board.actions.js` → `pushLocalChangesToApi` push-loop catch, before the 404 hard delete |
 | `trackSyncException` | `Board.actions.js` → the five sync `catch` blocks (`pullBulkFetch`, `pushBoard`, `syncBoards`, `getApiMyBoards`, `getApiMyCommunicators`) |

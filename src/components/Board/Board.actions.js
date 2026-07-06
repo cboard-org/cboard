@@ -80,7 +80,8 @@ import { improvePhraseAbortController } from '../../api/api';
 import {
   trackSyncEvent,
   trackSyncException,
-  countPendingBoards
+  countPendingBoards,
+  countUntrackedBoards
 } from './Board.sync.analytics';
 
 export function addBoards(boards) {
@@ -894,6 +895,20 @@ export function syncBoards(remoteBoards) {
     const { boards: localBoards, syncMeta } = getState().board;
     const pendingBefore = countPendingBoards(syncMeta);
 
+    const manifest = Array.isArray(remoteBoards) ? remoteBoards : [];
+    trackSyncEvent('Sync_BoardsStarted', {
+      properties: {
+        manifestWatermark: String(getManifestWatermark(manifest))
+      },
+      measurements: {
+        pendingBefore,
+        manifestSize: manifest.length,
+        localBoards: localBoards.length,
+        localServerBoards: localBoards.filter(isServerBoard).length,
+        untrackedBefore: countUntrackedBoards(localBoards, syncMeta)
+      }
+    });
+
     if (Object.keys(syncMeta).length === 0 && localBoards.length > 0) {
       const serverBoards = localBoards.filter(isServerBoard).length;
       trackSyncEvent('Sync_FirstRun', {
@@ -915,6 +930,10 @@ export function syncBoards(remoteBoards) {
 
       if (boardIdsToDelete.length > 0) {
         trackSyncEvent('Sync_RemoteDeletions', {
+          properties: {
+            manifestWatermark: String(getManifestWatermark(remoteBoards)),
+            boardIds: boardIdsToDelete.slice(0, 50).join(',')
+          },
           measurements: {
             deletedCount: boardIdsToDelete.length,
             manifestSize: remoteBoards.length,
@@ -942,24 +961,34 @@ export function syncBoards(remoteBoards) {
       await dispatch(pushLocalChangesToApi(remoteBoards));
 
       dispatch(syncBoardsSuccess());
+      const successState = getState().board;
       trackSyncEvent('Sync_Completed', {
         properties: { outcome: 'success' },
         measurements: {
           durationMs: Date.now() - startedAt,
           pendingBefore,
-          pendingAfter: countPendingBoards(getState().board.syncMeta)
+          pendingAfter: countPendingBoards(successState.syncMeta),
+          untrackedAfter: countUntrackedBoards(
+            successState.boards,
+            successState.syncMeta
+          )
         }
       });
       return { success: true };
     } catch (error) {
       console.error('Sync boards failed:', error);
       dispatch(syncBoardsFailure(error));
+      const failureState = getState().board;
       trackSyncEvent('Sync_Completed', {
         properties: { outcome: 'failure' },
         measurements: {
           durationMs: Date.now() - startedAt,
           pendingBefore,
-          pendingAfter: countPendingBoards(getState().board.syncMeta)
+          pendingAfter: countPendingBoards(failureState.syncMeta),
+          untrackedAfter: countUntrackedBoards(
+            failureState.boards,
+            failureState.syncMeta
+          )
         }
       });
       trackSyncException(error, { phase: 'syncBoards' });
