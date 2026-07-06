@@ -840,7 +840,6 @@ export function pushLocalChangesToApi(remoteBoards = []) {
       } catch (e) {
         if (
           e.response?.status === 404 &&
-          !getState().board.syncMeta[board.id] &&
           !remoteBoards.some(remote => remote.id === board.id)
         ) {
           dispatch(deleteApiBoardSuccess({ id: board.id }));

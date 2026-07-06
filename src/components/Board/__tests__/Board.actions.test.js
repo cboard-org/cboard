@@ -1199,6 +1199,51 @@ describe('pushLocalChangesToApi', () => {
     expect(deleteSuccess.board.id).toBe('12345678901234567890');
   });
 
+  it('should hard delete a tracked PENDING board on 404 when the manifest confirms it is gone', async () => {
+    // Edit-vs-delete conflict: the board was edited locally (PENDING, recent
+    // lastEdited keeps it above the manifest watermark) but deleted on another
+    // device. The PUT 404 plus manifest absence confirm the server deletion, so
+    // delete wins — otherwise the board would re-push and 404 forever.
+    const editedBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      email: 'asd@qwe.com',
+      lastEdited: '2024-01-03T00:00:00Z'
+    };
+    const remoteBoards = [
+      { id: '09876543210987654321', lastEdited: '2024-01-02T00:00:00Z' }
+    ];
+    const storeWithBoards = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: [editedBoard],
+        syncMeta: {
+          '12345678901234567890': { status: types.SYNC_STATUS.PENDING }
+        }
+      }
+    });
+
+    const notFound = new Error('Request failed with status code 404');
+    notFound.response = { status: 404 };
+    const originalUpdateBoard = API.updateBoard;
+    API.updateBoard = jest.fn().mockRejectedValue(notFound);
+
+    try {
+      await storeWithBoards.dispatch(
+        actions.pushLocalChangesToApi(remoteBoards)
+      );
+    } finally {
+      API.updateBoard = originalUpdateBoard;
+    }
+
+    const deleteSuccess = storeWithBoards
+      .getActions()
+      .find(a => a.type === types.DELETE_API_BOARD_SUCCESS);
+    expect(deleteSuccess).toBeDefined();
+    expect(deleteSuccess.board.id).toBe('12345678901234567890');
+  });
+
   it('should not hard delete an untracked board on 404 when the manifest still lists it', async () => {
     // A 404 that contradicts the manifest (board listed as existing) signals a
     // transient server problem, not a real deletion — keep the board.
