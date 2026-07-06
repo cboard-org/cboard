@@ -101,6 +101,21 @@ is about to delete — it does not stop it.
 | `manifestSize` | measurements | boards in the remote manifest (`remoteBoards.length`) |
 | `localServerBoards` | measurements | local boards with a server id, pre-delete (deletion denominator) |
 
+### `Sync_PushNotFoundDelete`
+In the push-loop catch, when a board's push PUT returns **404** and the board is **also absent
+from this cycle's manifest** — the double signal that hard-deletes it locally (untracked zombies
+and edit-vs-delete conflicts, see `docs/sync-engine.md` §14). This event is the safety monitor for
+that path: it should be rare and near-exclusively `tracked: "false"`. Bursts of it, or firings for
+boards that still exist in the DB, are the trigger to add the two-strike (cross-cycle) counter.
+
+| field | bag | meaning |
+|---|---|---|
+| `boardId` | properties | the board being hard-deleted |
+| `tracked` | properties | `"true"` = had `syncMeta` (edit-vs-delete conflict, local edit lost) \| `"false"` = untracked zombie |
+| `boardLastEdited` | properties | the board's local `lastEdited` |
+| `manifestWatermark` | properties | newest `lastEdited` in the manifest at delete time |
+| `manifestSize` | measurements | boards in the remote manifest |
+
 ### Sync exceptions
 Three failure paths additionally call `trackSyncException`, each tagged with a `phase` so you can
 tell them apart in the `exceptions` table:
@@ -127,6 +142,7 @@ telemetry.
 | `Sync_Completed` | `Board.actions.js` → `syncBoards()` success & catch (board phase only) |
 | `Sync_FullRun` | `Board.actions.js` → `getApiObjects()` `finally` (and the early `isSyncing` guard) |
 | `Sync_RemoteDeletions` | `Board.actions.js` → `syncBoards()`, after `classifyRemoteBoards`, guarded by `boardIdsToDelete.length > 0` |
+| `Sync_PushNotFoundDelete` | `Board.actions.js` → `pushLocalChangesToApi` push-loop catch, before the 404 hard delete |
 | `trackSyncException` | `Board.actions.js` → the five sync `catch` blocks (`pullBulkFetch`, `pushBoard`, `syncBoards`, `getApiMyBoards`, `getApiMyCommunicators`) |
 
 The helper lives in `Board.sync.analytics.js` and is kept in the actions layer because these

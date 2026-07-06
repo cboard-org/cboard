@@ -88,6 +88,21 @@ export const transformBoardForUser = (board, userEmail, userName, locale) => ({
 });
 
 /**
+ * Newest server-assigned `lastEdited` in a sync manifest, or null when the
+ * manifest is empty. Boards edited after this watermark are newer than
+ * everything the manifest knows about.
+ */
+export function getManifestWatermark(remoteBoards = []) {
+  return remoteBoards.reduce(
+    (max, remote) =>
+      remote.lastEdited && (!max || moment(remote.lastEdited).isAfter(max))
+        ? remote.lastEdited
+        : max,
+    null
+  );
+}
+
+/**
  * Classify remote boards for PULL operation.
  * Identifies boards that are new from the server or have newer versions on the server.
  * @param {Array} localBoards - Boards from local state
@@ -120,13 +135,7 @@ export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
   // fresh enough to have known about: boards edited after the newest timestamp
   // in the manifest (or any board, when the manifest is empty) are kept, so a
   // stale manifest snapshot cannot destroy just-created boards.
-  const manifestWatermark = remoteBoards.reduce(
-    (max, remote) =>
-      remote.lastEdited && (!max || moment(remote.lastEdited).isAfter(max))
-        ? remote.lastEdited
-        : max,
-    null
-  );
+  const manifestWatermark = getManifestWatermark(remoteBoards);
 
   for (const local of localBoards) {
     const hasServerId = isServerBoard(local);

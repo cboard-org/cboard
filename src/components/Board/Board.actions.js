@@ -59,7 +59,8 @@ import {
   hasDefaultOrNoEmail,
   isUnloggedCreatedBoard,
   classifyRemoteBoards,
-  transformBoardForUser
+  transformBoardForUser,
+  getManifestWatermark
 } from './Board.utils';
 
 import {
@@ -842,6 +843,15 @@ export function pushLocalChangesToApi(remoteBoards = []) {
           e.response?.status === 404 &&
           !remoteBoards.some(remote => remote.id === board.id)
         ) {
+          trackSyncEvent('Sync_PushNotFoundDelete', {
+            properties: {
+              boardId: board.id,
+              tracked: String(getState().board.syncMeta[board.id] != null),
+              boardLastEdited: String(board.lastEdited),
+              manifestWatermark: String(getManifestWatermark(remoteBoards))
+            },
+            measurements: { manifestSize: remoteBoards.length }
+          });
           dispatch(deleteApiBoardSuccess({ id: board.id }));
           continue;
         }
