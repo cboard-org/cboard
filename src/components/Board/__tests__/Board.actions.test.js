@@ -1526,22 +1526,38 @@ describe('syncBoards', () => {
 
   it('should delete local boards missing from the manifest (PULL)', async () => {
     const API = require('../../../api/api').default;
-    // Absent from the manifest ([]) => deleted on server; no fetch to verify.
+    // Absent from a fresh-enough manifest => deleted on server; no fetch to verify.
     API.getBoard = jest.fn();
 
-    const localBoard = { ...mockBoard, id: '12345678901234567890' };
+    const localBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      lastEdited: '2024-01-01T00:00:00Z'
+    };
+    // A second board, present in both local state and the manifest with the
+    // same timestamp, keeps the manifest watermark above localBoard.
+    const keptBoard = {
+      ...mockBoard,
+      id: '09876543210987654321',
+      lastEdited: '2024-01-02T00:00:00Z'
+    };
     const store = mockStore({
       ...initialState,
       board: {
         ...initialState.board,
-        boards: [localBoard],
+        boards: [localBoard, keptBoard],
         syncMeta: {
-          '12345678901234567890': { status: types.SYNC_STATUS.SYNCED }
+          '12345678901234567890': { status: types.SYNC_STATUS.SYNCED },
+          '09876543210987654321': { status: types.SYNC_STATUS.SYNCED }
         }
       }
     });
 
-    await store.dispatch(actions.syncBoards([]));
+    await store.dispatch(
+      actions.syncBoards([
+        { id: keptBoard.id, lastEdited: keptBoard.lastEdited }
+      ])
+    );
     const dispatchedActions = store.getActions();
 
     expect(dispatchedActions).toContainEqual({
@@ -1552,26 +1568,41 @@ describe('syncBoards', () => {
 
   it('should delete a board absent from the manifest even if the server still has it (PULL)', async () => {
     const API = require('../../../api/api').default;
-    // The manifest ([]) is authoritative: even though getBoard would resolve
-    // the board, its absence from the manifest means it was deleted remotely.
+    // The manifest is authoritative: even though getBoard would resolve the
+    // board, its absence from a fresh-enough manifest means it was deleted
+    // remotely.
     API.getBoard = jest.fn().mockResolvedValue({
       id: '12345678901234567890',
       name: 'Still on server'
     });
 
-    const localBoard = { ...mockBoard, id: '12345678901234567890' };
+    const localBoard = {
+      ...mockBoard,
+      id: '12345678901234567890',
+      lastEdited: '2024-01-01T00:00:00Z'
+    };
+    const keptBoard = {
+      ...mockBoard,
+      id: '09876543210987654321',
+      lastEdited: '2024-01-02T00:00:00Z'
+    };
     const store = mockStore({
       ...initialState,
       board: {
         ...initialState.board,
-        boards: [localBoard],
+        boards: [localBoard, keptBoard],
         syncMeta: {
-          '12345678901234567890': { status: types.SYNC_STATUS.SYNCED }
+          '12345678901234567890': { status: types.SYNC_STATUS.SYNCED },
+          '09876543210987654321': { status: types.SYNC_STATUS.SYNCED }
         }
       }
     });
 
-    await store.dispatch(actions.syncBoards([]));
+    await store.dispatch(
+      actions.syncBoards([
+        { id: keptBoard.id, lastEdited: keptBoard.lastEdited }
+      ])
+    );
     const dispatchedActions = store.getActions();
 
     expect(API.getBoard).not.toHaveBeenCalled();
