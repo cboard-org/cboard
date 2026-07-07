@@ -12,11 +12,11 @@ platforms:
   #   deviceName: Samsung Galaxy S25
   # - os: OS X
   #   osVersion: Ventura
-  #   browserName: playwright-webkit
+  #   browserName: safari
   #   browserVersion: latest
   # - os: Windows
   #   osVersion: 11
-  #   browserName: playwright-firefox
+  #   browserName: firefox
   #   browserVersion: latest
 parallelsPerPlatform: 5
 browserstackLocal: false

@@ -1844,12 +1844,13 @@ export class Cboard {
    * by clicking "Continue editing". For logged-in users the board unlocks
    * directly and the modal is silently skipped.
    */
-  async unlockAsGuest() {
+  async unlockAsGuest(dismissEditModal = true) {
     for (let i = 0; i < 4; i++) {
       await this.unlockButton.click();
-      if (i < 3) await this.page.waitForTimeout(400);
+      if (i < 3) await this.page.waitForTimeout(300);
     }
     // Guest users see the UnauthenticatedEditModal; logged-in users do not.
+    if (!dismissEditModal) return;
     try {
       await this.continueEditingButton.waitFor({
         state: 'visible',
@@ -3426,27 +3427,74 @@ export class Cboard {
   // === AUTHENTICATION HELPERS ===
 
   /**
+   * If the SyncButton is stuck in "Saved Locally" state, click it to trigger
+   * a manual sync. Safe to call regardless of the current sync state.
+   */
+  async triggerSyncIfNeeded() {
+    try {
+      const savedLocally = this.page.locator('.SyncButton--savedLocally');
+      if (await savedLocally.isVisible({ timeout: 3000 })) {
+        await savedLocally.click();
+      }
+    } catch {
+      // Not in savedLocally state — auto-sync already running or already synced
+    }
+  }
+
+  /**
    * Log in with the test credentials configured in playwright.config.ts.
-   * After successful login waits for the board URL; falls back to goto() on failure.
+   *
+   * After the login form is submitted the SPA auto-redirects
+   * /login-signup → / → /board/{id}.  We wait for that natural navigation
+   * instead of forcing a full HTTP reload with goto().  A forced reload reads
+   * state from IndexedDB which may not yet contain the newly-persisted auth
+   * token — especially when there are pending local boards to replace (as in
+   * scenarios 3 & 6).  Only if the SPA redirect does not fire within the
+   * extended timeout do we fall back to a manual goto() (by which time 20 s
+   * have elapsed and the IndexedDB write is guaranteed to have finished).
    */
   async loginWithTestCredentials() {
     const email = process.env.TEST_USER_EMAIL;
     const password = process.env.TEST_USER_PASSWORD;
     await this.gotoLoginSignup();
     await this.attemptLogin(email, password);
+    let redirectSucceeded = false;
     try {
-      await this.page.waitForURL(/\/board/, { timeout: 10000 });
+      // Give the app enough time to receive the API response and redirect.
+      await this.page.waitForURL(/\/board/, { timeout: 20000 });
+      redirectSucceeded = true;
     } catch {
-      // continue even if redirect doesn't happen within timeout
+      // Auto-redirect did not happen; fall back to a manual navigation below.
     }
-    // A full reload to /board/root ensures the board is mounted in the
-    // logged-in state and not stuck behind the login-page overlay.
-    await this.goto();
+    if (!redirectSucceeded) {
+      // After 20 s the IndexedDB write is complete, so a reload is safe.
+      await this.goto();
+    }
     await this.dismissTourPopup();
     try {
-      await this.syncButton.waitFor({ state: 'visible', timeout: 10000 });
+      // Use 'attached' rather than 'visible': the SyncButton is hidden when the
+      // board is locked (CSS display:none on .Board__communicator-toolbar), so
+      // visibility checks will always time out in locked mode.  'attached'
+      // confirms the user is actually logged in (the element is rendered by
+      // {isLoggedIn && <SyncButton />}) without requiring the board to be
+      // unlocked first.
+      await this.syncButton.waitFor({ state: 'attached', timeout: 10000 });
     } catch {
-      // Login may have failed; individual test assertions will surface the error
+      // Login may have failed; individual test assertions will surface the error.
+    }
+  }
+
+  /**
+   * Log out the currently logged-in user via the Settings panel.
+   * Waits for the SyncButton to disappear, confirming the logged-out state.
+   */
+  async performLogout() {
+    await this.navigateToSettings();
+    await this.page.getByRole('button', { name: 'Logout' }).click();
+    try {
+      await this.syncButton.waitFor({ state: 'hidden', timeout: 15000 });
+    } catch {
+      // Sync button already gone or state changed; continue
     }
   }
 
@@ -3476,6 +3524,109 @@ export class Cboard {
     await saveButton.click();
     // Wait for TileEditor to close
     await labelInput.waitFor({ state: 'hidden', timeout: 5000 });
+  }
+
+  /**
+   * Creates a new empty board by opening the Add Tile dialog, entering a name
+   * and selecting the "Empty Board" type, then saving.
+   *
+   * After saving, a folder-style tile linked to the new (empty) board appears
+   * on the current board. The board must be in edit/unlocked mode; pass
+   * `skipUnlock: true` when it is already unlocked.
+   *
+   * @param {string} name              Name to give the new board.
+   * @param {Object} [options]
+   * @param {boolean} [options.skipUnlock=false]  Skip the unlock step.
+   */
+  async addEmptyBoard(name, { skipUnlock = false } = {}) {
+    if (!skipUnlock) {
+      await this.unlockAsGuest();
+      await this.dismissTourPopup();
+    }
+    await this.addTileButton.waitFor({ state: 'visible', timeout: 10000 });
+    await this.addTileButton.click();
+    // TileEditor opens inside a FullScreenDialog
+    const labelInput = this.page.locator('input#label');
+    await labelInput.waitFor({ state: 'visible', timeout: 5000 });
+    await labelInput.fill(name);
+    // Select the "Empty Board" type radio (value="board")
+    await this.page.getByRole('radio', { name: 'Empty Board' }).click();
+    // Save button becomes enabled once a label is present
+    const saveButton = this.page.locator('button#save-button');
+    await saveButton.waitFor({ state: 'visible', timeout: 5000 });
+    await saveButton.click();
+    // Wait for TileEditor to close
+    await labelInput.waitFor({ state: 'hidden', timeout: 5000 });
+  }
+
+  /**
+   * Returns a locator for a board tile matched by its visible label text.
+   * Tiles are rendered as `<button class="Tile">` elements inside the grid.
+   *
+   * @param {string} label  Exact label text of the tile.
+   */
+  getTileByLabel(label) {
+    return this.page.locator('button.Tile', { hasText: label });
+  }
+
+  /**
+   * Assert that a tile with the given label is visible on the current board.
+   *
+   * @param {string} label    Tile label to look for.
+   * @param {Object} options  Optional Playwright expect options (e.g. { timeout }).
+   */
+  async expectTileOnBoard(label, options = {}) {
+    await expect(this.getTileByLabel(label)).toBeVisible({
+      timeout: 10000,
+      ...options
+    });
+  }
+
+  /**
+   * Assert that no tile with the given label is visible on the current board.
+   *
+   * @param {string} label    Tile label to look for.
+   * @param {Object} options  Optional Playwright expect options (e.g. { timeout }).
+   */
+  async expectTileNotOnBoard(label, options = {}) {
+    await expect(this.getTileByLabel(label)).not.toBeVisible({
+      timeout: 5000,
+      ...options
+    });
+  }
+
+  /**
+   * Returns a locator for an entry in the Boards panel list that matches the
+   * given board name.  The panel is the MUI Menu rendered with id="boards-menu";
+   * each row has class "CommunicatorToolbar__menuitem".
+   *
+   * @param {string} name  Board name to look for.
+   */
+  getBoardListItem(name) {
+    return this.page.locator('#boards-menu .CommunicatorToolbar__menuitem', {
+      hasText: name
+    });
+  }
+
+  /**
+   * Opens the Boards panel and asserts that no entry with the given name is
+   * present, then closes the panel.
+   *
+   * The board must be in edit/unlocked mode so the Boards button is visible.
+   *
+   * @param {string} name     Board name that must NOT appear in the list.
+   * @param {Object} options  Optional Playwright expect options (e.g. { timeout }).
+   */
+  async expectBoardNotOnBoardList(name, options = {}) {
+    await this.page.locator('#boards-button').click();
+    await this.page
+      .locator('#boards-menu')
+      .waitFor({ state: 'visible', timeout: 5000 });
+    await expect(this.getBoardListItem(name)).not.toBeAttached({
+      timeout: 3000,
+      ...options
+    });
+    await this.page.keyboard.press('Escape');
   }
 
   // === FONT FAMILY METHODS ===

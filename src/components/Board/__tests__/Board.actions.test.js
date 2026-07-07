@@ -4,6 +4,7 @@ import { classifyRemoteBoards } from '../Board.utils';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import defaultBoards from '../../../api/boards.json';
+import API from '../../../api/api';
 
 jest.mock('../../../api/api');
 
@@ -513,6 +514,81 @@ describe('syncBoardsFailure', () => {
       error: 'Network error'
     };
     expect(actions.syncBoardsFailure(error)).toEqual(expectedAction);
+  });
+});
+
+describe('syncStarted', () => {
+  it('should create an action to SYNC_STARTED', () => {
+    expect(actions.syncStarted()).toEqual({ type: types.SYNC_STARTED });
+  });
+});
+
+describe('syncFinished', () => {
+  it('should create an action to SYNC_FINISHED', () => {
+    expect(actions.syncFinished()).toEqual({ type: types.SYNC_FINISHED });
+  });
+});
+
+describe('clearSync', () => {
+  it('should create an action to CLEAR_SYNC', () => {
+    expect(actions.clearSync()).toEqual({ type: types.CLEAR_SYNC });
+  });
+});
+
+describe('getApiObjects concurrency guard', () => {
+  const buildState = isSyncing => ({
+    ...initialState,
+    board: { ...initialState.board, isSyncing }
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('no-ops without dispatching when a sync is already in progress', async () => {
+    const store = mockStore(buildState(true));
+    const getBoardsSync = jest.spyOn(API, 'getBoardsSync');
+
+    await store.dispatch(actions.getApiObjects());
+
+    expect(getBoardsSync).not.toHaveBeenCalled();
+    expect(store.getActions()).toEqual([]);
+  });
+
+  it('raises SYNC_STARTED then clears it with SYNC_FINISHED on a successful run', async () => {
+    const store = mockStore(buildState(false));
+
+    await store.dispatch(actions.getApiObjects());
+
+    const dispatched = store.getActions().map(action => action.type);
+    expect(dispatched[0]).toBe(types.SYNC_STARTED);
+    expect(dispatched).toContain(types.SYNC_FINISHED);
+  });
+
+  it('clears SYNC_FINISHED on the failure path (stuck-flag guard)', async () => {
+    const store = mockStore(buildState(false));
+    jest
+      .spyOn(API, 'getBoardsSync')
+      .mockRejectedValueOnce(new Error('network down'));
+
+    await store.dispatch(actions.getApiObjects());
+
+    const dispatched = store.getActions().map(action => action.type);
+    expect(dispatched[0]).toBe(types.SYNC_STARTED);
+    expect(dispatched).toContain(types.SYNC_FINISHED);
+  });
+
+  it('clears SYNC_FINISHED when the boards response is not an array', async () => {
+    const store = mockStore(buildState(false));
+    jest
+      .spyOn(API, 'getBoardsSync')
+      .mockResolvedValueOnce({ total: 0, data: null });
+
+    await store.dispatch(actions.getApiObjects());
+
+    const dispatched = store.getActions().map(action => action.type);
+    expect(dispatched[0]).toBe(types.SYNC_STARTED);
+    expect(dispatched).toContain(types.SYNC_FINISHED);
   });
 });
 
@@ -1308,12 +1384,10 @@ describe('syncBoards', () => {
     const API = require('../../../api/api').default;
     // The manifest ([]) is authoritative: even though getBoard would resolve
     // the board, its absence from the manifest means it was deleted remotely.
-    API.getBoard = jest
-      .fn()
-      .mockResolvedValue({
-        id: '12345678901234567890',
-        name: 'Still on server'
-      });
+    API.getBoard = jest.fn().mockResolvedValue({
+      id: '12345678901234567890',
+      name: 'Still on server'
+    });
 
     const localBoard = { ...mockBoard, id: '12345678901234567890' };
     const store = mockStore({
@@ -1461,5 +1535,142 @@ describe('getApiMyBoards', () => {
     const actionTypes = store.getActions().map(a => a.type);
 
     expect(actionTypes).not.toContain(types.SYNC_BOARDS_STARTED);
+  });
+});
+
+describe('sanitizeBoardMedia', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('dispatches updateBoard with the sanitized board', async () => {
+    const sanitized = {
+      id: 'b1',
+      tiles: [{ id: 't1', image: 'https://cdn.example.com/a.png' }]
+    };
+    API.uploadBoardLocalMedia = jest
+      .fn()
+      .mockResolvedValue({ board: sanitized, hadFailure: false });
+    const store = mockStore({});
+
+    const result = await store.dispatch(
+      actions.sanitizeBoardMedia({ id: 'b1', tiles: [] })
+    );
+
+    expect(result).toBe(sanitized);
+    expect(store.getActions()).toContainEqual({
+      type: types.UPDATE_BOARD,
+      boardData: sanitized,
+      fromRemote: false
+    });
+  });
+
+  it('commits partial successes then rethrows on hadFailure', async () => {
+    const sanitized = {
+      id: 'b1',
+      tiles: [{ id: 't1', image: 'data:image/png;base64,AAAA' }]
+    };
+    API.uploadBoardLocalMedia = jest
+      .fn()
+      .mockResolvedValue({ board: sanitized, hadFailure: true });
+    const store = mockStore({});
+
+    await expect(
+      store.dispatch(actions.sanitizeBoardMedia({ id: 'b1', tiles: [] }))
+    ).rejects.toThrow('media upload failed');
+
+    expect(store.getActions()).toContainEqual({
+      type: types.UPDATE_BOARD,
+      boardData: sanitized,
+      fromRemote: false
+    });
+  });
+
+  it('dispatches updateBoard with the sanitized sound', async () => {
+    const sanitized = {
+      id: 'b1',
+      tiles: [{ id: 't1', sound: 'https://cdn.example.com/sound.mp3' }]
+    };
+    API.uploadBoardLocalMedia = jest
+      .fn()
+      .mockResolvedValue({ board: sanitized, hadFailure: false });
+    const store = mockStore({});
+
+    const result = await store.dispatch(
+      actions.sanitizeBoardMedia({ id: 'b1', tiles: [] })
+    );
+
+    expect(result).toBe(sanitized);
+    expect(store.getActions()).toContainEqual({
+      type: types.UPDATE_BOARD,
+      boardData: sanitized,
+      fromRemote: false
+    });
+  });
+});
+
+describe('createApiBoard sanitization', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('sends url-only tiles to createBoard for a board with local images', async () => {
+    const sanitized = {
+      id: 'b1',
+      isPublic: false,
+      tiles: [{ id: 't1', image: 'https://cdn.example.com/a.png' }]
+    };
+    API.uploadBoardLocalMedia = jest
+      .fn()
+      .mockResolvedValue({ board: sanitized, hadFailure: false });
+    API.createBoard = jest.fn().mockResolvedValue(sanitized);
+    const store = mockStore({});
+
+    await store.dispatch(
+      actions.createApiBoard(
+        {
+          id: 'b1',
+          tiles: [{ id: 't1', image: 'data:image/png;base64,AAAA' }]
+        },
+        'b1'
+      )
+    );
+
+    expect(API.createBoard).toHaveBeenCalledWith(sanitized);
+    const payload = API.createBoard.mock.calls[0][0];
+    payload.tiles.forEach(tile => {
+      expect(tile.image.startsWith('data:')).toBe(false);
+      expect(/^(file|cdvfile):/i.test(tile.image)).toBe(false);
+    });
+    expect(store.getActions()).toContainEqual(
+      expect.objectContaining({ type: types.CREATE_API_BOARD_SUCCESS })
+    );
+  });
+
+  it('does not call createBoard when sanitization fails', async () => {
+    const sanitized = {
+      id: 'b1',
+      isPublic: false,
+      tiles: [{ id: 't1', image: 'data:image/png;base64,AAAA' }]
+    };
+    API.uploadBoardLocalMedia = jest
+      .fn()
+      .mockResolvedValue({ board: sanitized, hadFailure: true });
+    API.createBoard = jest.fn();
+    const store = mockStore({});
+
+    await expect(
+      store.dispatch(
+        actions.createApiBoard(
+          {
+            id: 'b1',
+            tiles: [{ id: 't1', image: 'data:image/png;base64,AAAA' }]
+          },
+          'b1'
+        )
+      )
+    ).rejects.toThrow('media upload failed');
+
+    expect(API.createBoard).not.toHaveBeenCalled();
   });
 });

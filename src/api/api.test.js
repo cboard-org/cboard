@@ -5,8 +5,12 @@ import thunk from 'redux-thunk';
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 import { getStore } from '../store';
+import { isAndroid } from '../cordova-util';
 
 jest.mock('../store');
+jest.mock('../cordova-util', () => ({
+  isAndroid: jest.fn(() => false)
+}));
 
 const mockBoard = {
   name: 'tewt',
@@ -187,6 +191,180 @@ describe('Cboard API calls', () => {
       .catch(catchFn);
     mockAxios.mockResponse(mockBoard);
   });
+  describe('uploadBoardLocalMedia', () => {
+    afterEach(() => {
+      jest.restoreAllMocks();
+      isAndroid.mockReturnValue(false);
+    });
+
+    it('returns the board untouched when no tiles have local images', async () => {
+      const board = {
+        id: 'b1',
+        tiles: [
+          { id: 't1', image: 'https://cdn.example.com/a.png' },
+          { id: 't2' }
+        ]
+      };
+      const uploadFromDataURL = jest.spyOn(API, 'uploadFromDataURL');
+      const uploadFile = jest.spyOn(API, 'uploadFile');
+
+      const result = await API.uploadBoardLocalMedia(board);
+
+      expect(result).toEqual({ board, hadFailure: false });
+      expect(uploadFromDataURL).not.toHaveBeenCalled();
+      expect(uploadFile).not.toHaveBeenCalled();
+    });
+
+    it('replaces base64 and file images with uploaded urls on success', async () => {
+      isAndroid.mockReturnValue(true);
+      const file = new File(['x'], 'img.png');
+      window.resolveLocalFileSystemURL = jest.fn((url, success) =>
+        success({ file: cb => cb(file) })
+      );
+      jest
+        .spyOn(API, 'uploadFromDataURL')
+        .mockResolvedValue('https://cdn.example.com/base64.png');
+      jest
+        .spyOn(API, 'uploadFile')
+        .mockResolvedValue('https://cdn.example.com/file.png');
+
+      const board = {
+        id: 'b1',
+        tiles: [
+          { id: 't1', image: 'data:image/png;base64,iVBORw0KGgo=' },
+          { id: 't2', image: 'file:///storage/emulated/0/img.png' },
+          { id: 't3', image: 'https://cdn.example.com/keep.png' }
+        ]
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(false);
+      expect(sanitized.tiles[0].image).toBe(
+        'https://cdn.example.com/base64.png'
+      );
+      expect(sanitized.tiles[1].image).toBe('https://cdn.example.com/file.png');
+      expect(sanitized.tiles[2].image).toBe('https://cdn.example.com/keep.png');
+    });
+
+    it('commits successes and flags hadFailure on partial failure', async () => {
+      jest
+        .spyOn(API, 'uploadFromDataURL')
+        .mockResolvedValueOnce('https://cdn.example.com/ok.png')
+        .mockResolvedValueOnce(null);
+
+      const board = {
+        id: 'b1',
+        tiles: [
+          { id: 't1', image: 'data:image/png;base64,AAAA' },
+          { id: 't2', image: 'data:image/png;base64,BBBB' }
+        ]
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(true);
+      expect(sanitized.tiles[0].image).toBe('https://cdn.example.com/ok.png');
+      expect(sanitized.tiles[1].image).toBe('data:image/png;base64,BBBB');
+    });
+
+    it('leaves file images untouched on non-android platforms', async () => {
+      isAndroid.mockReturnValue(false);
+      const uploadFile = jest.spyOn(API, 'uploadFile');
+
+      const board = {
+        id: 'b1',
+        tiles: [{ id: 't1', image: 'file:///storage/emulated/0/img.png' }]
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(false);
+      expect(uploadFile).not.toHaveBeenCalled();
+      expect(sanitized.tiles[0].image).toBe(
+        'file:///storage/emulated/0/img.png'
+      );
+    });
+
+    it('replaces base64 sounds with uploaded urls on success', async () => {
+      jest
+        .spyOn(API, 'uploadFromDataURL')
+        .mockResolvedValue('https://cdn.example.com/sound.mp3');
+
+      const board = {
+        id: 'b1',
+        tiles: [
+          { id: 't1', sound: 'data:audio/mp3;base64,AAAA' },
+          { id: 't2', sound: 'https://cdn.example.com/keep.mp3' }
+        ]
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(false);
+      expect(API.uploadFromDataURL).toHaveBeenCalledWith(
+        'data:audio/mp3;base64,AAAA',
+        't1.mp3'
+      );
+      expect(sanitized.tiles[0].sound).toBe(
+        'https://cdn.example.com/sound.mp3'
+      );
+      expect(sanitized.tiles[1].sound).toBe('https://cdn.example.com/keep.mp3');
+    });
+
+    it('replaces both image and sound on the same tile', async () => {
+      jest
+        .spyOn(API, 'uploadFromDataURL')
+        .mockResolvedValueOnce('https://cdn.example.com/img.png')
+        .mockResolvedValueOnce('https://cdn.example.com/sound.mp3');
+
+      const board = {
+        id: 'b1',
+        tiles: [
+          {
+            id: 't1',
+            image: 'data:image/png;base64,AAAA',
+            sound: 'data:audio/mp3;base64,BBBB'
+          }
+        ]
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(false);
+      expect(sanitized.tiles[0].image).toBe('https://cdn.example.com/img.png');
+      expect(sanitized.tiles[0].sound).toBe(
+        'https://cdn.example.com/sound.mp3'
+      );
+    });
+
+    it('commits successes and flags hadFailure when a sound upload fails', async () => {
+      jest.spyOn(API, 'uploadFromDataURL').mockResolvedValue(null);
+
+      const board = {
+        id: 'b1',
+        tiles: [{ id: 't1', sound: 'data:audio/mp3;base64,AAAA' }]
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(true);
+      expect(sanitized.tiles[0].sound).toBe('data:audio/mp3;base64,AAAA');
+    });
+  });
+
   it('fetches results from unauthorized api', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();

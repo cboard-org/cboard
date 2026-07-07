@@ -126,6 +126,11 @@ class API {
       }
     });
   }
+
+  async uploadBoardLocalMedia(board) {
+    return { board, hadFailure: false };
+  }
+
   async arasaacPictogramsSearch(locale, searchText) {
     return [];
   }

@@ -32,6 +32,9 @@ import {
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
+  SYNC_STARTED,
+  SYNC_FINISHED,
+  CLEAR_SYNC,
   SYNC_STATUS
 } from '../Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../../Account/Login/Login.constants';
@@ -601,11 +604,50 @@ describe('reducer', () => {
     expect(result.syncMeta[mockBoard.id].status).toBe(SYNC_STATUS.PENDING);
     expect(result.syncMeta[mockBoard.id].isDeleted).toBe(false);
   });
+  it('should handle syncStarted', () => {
+    const syncStarted = {
+      type: SYNC_STARTED
+    };
+    expect(
+      boardReducer({ ...initialState, syncError: null }, syncStarted)
+    ).toEqual({
+      ...initialState,
+      isSyncing: true,
+      syncError: null
+    });
+  });
+  it('should handle syncFinished', () => {
+    const syncFinished = {
+      type: SYNC_FINISHED
+    };
+    expect(
+      boardReducer({ ...initialState, isSyncing: true }, syncFinished)
+    ).toEqual({
+      ...initialState,
+      isSyncing: false
+    });
+  });
+  it('should handle clearSync', () => {
+    const clearSync = {
+      type: CLEAR_SYNC
+    };
+    expect(
+      boardReducer({ ...initialState, isSyncing: true }, clearSync)
+    ).toEqual({
+      ...initialState,
+      isSyncing: false
+    });
+  });
   it('should handle syncBoardsStarted', () => {
     const syncBoardsStarted = {
       type: SYNC_BOARDS_STARTED
     };
-    expect(boardReducer(initialState, syncBoardsStarted)).toEqual({
+    expect(
+      boardReducer(
+        { ...initialState, isSyncing: true, syncError: null },
+        syncBoardsStarted
+      )
+    ).toEqual({
       ...initialState,
       isSyncing: true,
       syncError: null
@@ -619,7 +661,7 @@ describe('reducer', () => {
       boardReducer({ ...initialState, isSyncing: true }, syncBoardsSuccess)
     ).toEqual({
       ...initialState,
-      isSyncing: false,
+      isSyncing: true,
       syncError: null
     });
   });
@@ -632,7 +674,7 @@ describe('reducer', () => {
       boardReducer({ ...initialState, isSyncing: true }, syncBoardsFailure)
     ).toEqual({
       ...initialState,
-      isSyncing: false,
+      isSyncing: true,
       syncError: 'Network error'
     });
   });
