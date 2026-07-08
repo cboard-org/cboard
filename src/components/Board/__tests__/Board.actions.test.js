@@ -1605,6 +1605,42 @@ describe('syncBoards', () => {
     ).toBeDefined();
   });
 
+  it('should keep a deletion candidate when the confirmation response has an unexpected shape (PULL)', async () => {
+    const API = require('../../../api/api').default;
+    // A response without a data array proves nothing about the candidate, so
+    // it is kept and retried next cycle, and the cycle still succeeds.
+    API.getBoardsByIds = jest.fn().mockResolvedValue({ data: null });
+
+    const localBoard = {
+      ...mockBoard,
+      id: '123456789012345678901234',
+      lastEdited: '2024-01-01T00:00:00Z'
+    };
+    const store = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: [localBoard],
+        syncMeta: {
+          '123456789012345678901234': { status: types.SYNC_STATUS.SYNCED }
+        }
+      }
+    });
+
+    await store.dispatch(actions.syncBoards([]));
+    const dispatchedActions = store.getActions();
+
+    expect(API.getBoardsByIds).toHaveBeenCalledWith([
+      '123456789012345678901234'
+    ]);
+    expect(
+      dispatchedActions.filter(a => a.type === types.DELETE_API_BOARD_SUCCESS)
+    ).toHaveLength(0);
+    expect(
+      dispatchedActions.find(a => a.type === types.SYNC_BOARDS_SUCCESS)
+    ).toBeDefined();
+  });
+
   it('should never confirm a candidate whose id is not a valid ObjectId (PULL)', async () => {
     const API = require('../../../api/api').default;
     // The server filters non-ObjectIds from the by-ids query, so their absence
