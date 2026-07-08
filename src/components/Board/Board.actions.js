@@ -781,6 +781,15 @@ function classifyBoardsForPush({
  * - Short ID boards (locally created) → updateApiObjectsNoChild (creates on server)
  * - Long ID boards (user's existing) → updateApiBoard (updates on server)
  */
+async function confirmServerDeletion(boardId) {
+  try {
+    await API.getBoard(boardId);
+    return false;
+  } catch (e) {
+    return e.response?.status === 404;
+  }
+}
+
 export function pushLocalChangesToApi(remoteBoards = []) {
   return async (dispatch, getState) => {
     const userEmail = getState().app?.userData?.email;
@@ -841,7 +850,8 @@ export function pushLocalChangesToApi(remoteBoards = []) {
       } catch (e) {
         if (
           e.response?.status === 404 &&
-          !remoteBoards.some(remote => remote.id === board.id)
+          !remoteBoards.some(remote => remote.id === board.id) &&
+          (await confirmServerDeletion(board.id))
         ) {
           trackSyncEvent('Sync_PushNotFoundDelete', {
             properties: {
@@ -906,12 +916,21 @@ export function syncBoards(remoteBoards) {
     }
 
     try {
-      // 1. Classify boards for PULL (remote changes + remote deletions)
+      // 1. Classify boards for PULL (remote changes + remote deletion candidates)
       const {
         boardsToAdd,
         boardsToUpdate,
-        boardIdsToDelete
+        boardIdsToVerify
       } = classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
+
+      // A candidate is deleted locally only when the server confirms the
+      // deletion by id: absent from the manifest AND GET /board/:id -> 404.
+      const boardIdsToDelete = [];
+      for (const boardId of boardIdsToVerify) {
+        if (await confirmServerDeletion(boardId)) {
+          boardIdsToDelete.push(boardId);
+        }
+      }
 
       if (boardIdsToDelete.length > 0) {
         trackSyncEvent('Sync_RemoteDeletions', {

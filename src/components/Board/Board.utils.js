@@ -108,12 +108,12 @@ export function getManifestWatermark(remoteBoards = []) {
  * @param {Array} localBoards - Boards from local state
  * @param {Array} remoteBoards - Boards from the server
  * @param {Object} syncMeta - Current syncMeta map
- * @returns {{ boardsToAdd, boardsToUpdate, boardIdsToDelete }}
+ * @returns {{ boardsToAdd, boardsToUpdate, boardIdsToVerify }}
  */
 export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
   const boardsToAdd = [];
   const boardsToUpdate = [];
-  const boardIdsToDelete = [];
+  const boardIdsToVerify = [];
 
   const remoteBoardIds = new Set(remoteBoards.map(b => b.id));
   const localBoardMap = new Map(localBoards.map(b => [b.id, b]));
@@ -131,35 +131,23 @@ export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
     }
   }
 
-  // Identify boards deleted on server. A manifest may only delete boards it is
-  // fresh enough to have known about: boards edited after the newest timestamp
-  // in the manifest (or any board, when the manifest is empty) are kept, so a
-  // stale manifest snapshot cannot destroy just-created boards.
-  const manifestWatermark = getManifestWatermark(remoteBoards);
-
+  // Identify candidates for server-side deletion. Absence from the manifest is
+  // not trusted on its own: each candidate must be confirmed deleted by the
+  // server (GET by id returning 404) before it is removed locally.
   for (const local of localBoards) {
     const hasServerId = isServerBoard(local);
     const notInRemote = !remoteBoardIds.has(local.id);
     const notLocallyDeleted = !syncMeta[local.id]?.isDeleted;
     const localHasSyncStatus = syncMeta[local.id] != null;
-    const knownToManifest =
-      manifestWatermark != null &&
-      !moment(local.lastEdited).isAfter(manifestWatermark);
 
-    if (
-      hasServerId &&
-      notInRemote &&
-      notLocallyDeleted &&
-      localHasSyncStatus &&
-      knownToManifest
-    ) {
-      boardIdsToDelete.push(local.id);
+    if (hasServerId && notInRemote && notLocallyDeleted && localHasSyncStatus) {
+      boardIdsToVerify.push(local.id);
     }
   }
 
   return {
     boardsToAdd,
     boardsToUpdate,
-    boardIdsToDelete
+    boardIdsToVerify
   };
 }

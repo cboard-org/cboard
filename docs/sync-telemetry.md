@@ -89,11 +89,11 @@ the run.
 | `durationMs` | measurements | wall time of the full flight (omitted on `skipped`) |
 
 ### `Sync_RemoteDeletions` — passive data-loss detector
-Once per cycle in `syncBoards()`, after `classifyRemoteBoards`, **only when `boardIdsToDelete` is
-non-empty**. PULL deletions are manifest-authoritative and hard-delete graduated boards; this
-event makes the fleet-wide volume of those deletions visible, so an anomalous spike (e.g. an
-empty/corrupt manifest mass-deleting) is caught the day it deploys. It **counts** what the cycle
-is about to delete — it does not stop it.
+Once per cycle in `syncBoards()`, after the per-id confirmation pass, **only when
+`boardIdsToDelete` is non-empty**. Every counted deletion carried the double signal — absent from
+the manifest AND `GET /board/:id` → 404. This event makes the fleet-wide volume of those
+deletions visible, so an anomalous spike (e.g. the server 404-ing boards that should exist) is
+caught the day it deploys. It **counts** what the cycle is about to delete — it does not stop it.
 
 | field | bag | meaning |
 |---|---|---|
@@ -102,11 +102,12 @@ is about to delete — it does not stop it.
 | `localServerBoards` | measurements | local boards with a server id, pre-delete (deletion denominator) |
 
 ### `Sync_PushNotFoundDelete`
-In the push-loop catch, when a board's push PUT returns **404** and the board is **also absent
-from this cycle's manifest** — the double signal that hard-deletes it locally (untracked zombies
-and edit-vs-delete conflicts, see `docs/sync-engine.md` §14). This event is the safety monitor for
-that path: it should be rare and near-exclusively `tracked: "false"`. Bursts of it, or firings for
-boards that still exist in the DB, are the trigger to add the two-strike (cross-cycle) counter.
+In the push-loop catch, when a board's push PUT returns **404**, the board is **absent from this
+cycle's manifest**, and a confirmation **`GET /board/:id` also returns 404** — the triple signal
+that hard-deletes it locally (untracked zombies and edit-vs-delete conflicts, see
+`docs/sync-engine.md` §14). This event is the safety monitor for that path: it should be rare and
+near-exclusively `tracked: "false"`. Firings for boards that still exist in the DB would mean the
+GET confirmation itself is unreliable — investigate server-side before touching the client.
 
 | field | bag | meaning |
 |---|---|---|
