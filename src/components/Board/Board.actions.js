@@ -772,15 +772,6 @@ function classifyBoardsForPush({
   return { boardsToSync, boardsToDelete };
 }
 
-/**
- * PUSH: Upload local changes to the API.
- * Pushes all boards with syncStatus: PENDING, plus untracked boards (no syncStatus)
- * that are newer than their remote version or don't exist on the server.
- * - Modified default boards (support@cboard.io) → transformed to user's boards, then CREATED on server
- * - Unlogged created boards (support@cboard.io as default) → transformed to user's boards, then CREATED on server
- * - Short ID boards (locally created) → updateApiObjectsNoChild (creates on server)
- * - Long ID boards (user's existing) → updateApiBoard (updates on server)
- */
 async function confirmServerDeletion(boardId) {
   try {
     await API.getBoard(boardId);
@@ -790,6 +781,15 @@ async function confirmServerDeletion(boardId) {
   }
 }
 
+/**
+ * PUSH: Upload local changes to the API.
+ * Pushes all boards with syncStatus: PENDING, plus untracked boards (no syncStatus)
+ * that are newer than their remote version or don't exist on the server.
+ * - Modified default boards (support@cboard.io) → transformed to user's boards, then CREATED on server
+ * - Unlogged created boards (support@cboard.io as default) → transformed to user's boards, then CREATED on server
+ * - Short ID boards (locally created) → updateApiObjectsNoChild (creates on server)
+ * - Long ID boards (user's existing) → updateApiBoard (updates on server)
+ */
 export function pushLocalChangesToApi(remoteBoards = []) {
   return async (dispatch, getState) => {
     const userEmail = getState().app?.userData?.email;
