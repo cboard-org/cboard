@@ -1139,192 +1139,123 @@ describe('pushLocalChangesToApi', () => {
     expect(actionTypes).toContain(types.CREATE_API_BOARD_STARTED);
   });
 
-  it('should hard delete an untracked server board when its update returns 404 and the server confirms', async () => {
-    // An untracked board with a server ID (>= 14 chars) that is absent from the
-    // manifest is pushed via updateApiBoard (PUT). If the server 404s the PUT
-    // and the GET-by-id confirmation also 404s, the board was deleted on
-    // another device — hard delete it locally so it stops re-pushing forever
-    // instead of becoming a sync zombie.
-    const zombieBoard = {
-      ...mockBoard,
-      id: '12345678901234567890', // server ID
-      email: 'asd@qwe.com'
-      // no syncMeta entry -> untracked
-    };
-    const remoteBoards = []; // absent from manifest
-    const storeWithBoards = mockStore({
-      ...initialState,
-      board: {
-        ...initialState.board,
-        boards: [zombieBoard],
-        syncMeta: {}
-      }
+  describe('push 404 hard delete', () => {
+    const serverBoardId = '123456789012345678901234';
+
+    afterEach(() => {
+      jest.restoreAllMocks();
     });
 
-    const notFound = new Error('Request failed with status code 404');
-    notFound.response = { status: 404 };
-    const originalUpdateBoard = API.updateBoard;
-    const originalGetBoard = API.getBoard;
-    API.updateBoard = jest.fn().mockRejectedValue(notFound);
-    API.getBoard = jest.fn().mockRejectedValue(notFound);
-
-    try {
-      await storeWithBoards.dispatch(
-        actions.pushLocalChangesToApi(remoteBoards)
+    const runPush404 = async ({
+      board,
+      syncMeta,
+      remoteBoards,
+      serverBoards
+    }) => {
+      const notFound = Object.assign(
+        new Error('Request failed with status code 404'),
+        { response: { status: 404 } }
       );
-    } finally {
-      API.updateBoard = originalUpdateBoard;
-      API.getBoard = originalGetBoard;
-    }
+      jest.spyOn(API, 'updateBoard').mockRejectedValue(notFound);
+      const getBoardsByIds = jest
+        .spyOn(API, 'getBoardsByIds')
+        .mockResolvedValue({ total: serverBoards.length, data: serverBoards });
+      const store = mockStore({
+        ...initialState,
+        board: { ...initialState.board, boards: [board], syncMeta }
+      });
 
-    const deleteSuccess = storeWithBoards
-      .getActions()
-      .find(a => a.type === types.DELETE_API_BOARD_SUCCESS);
-    expect(deleteSuccess).toBeDefined();
-    expect(deleteSuccess.board.id).toBe('12345678901234567890');
-  });
+      await store.dispatch(actions.pushLocalChangesToApi(remoteBoards));
 
-  it('should hard delete a tracked PENDING board on 404 when the server confirms it is gone', async () => {
-    // Edit-vs-delete conflict: the board was edited locally (PENDING) but
-    // deleted on another device. The PUT 404, manifest absence and GET-by-id
-    // 404 confirm the server deletion, so delete wins — otherwise the board
-    // would re-push and 404 forever.
-    const editedBoard = {
-      ...mockBoard,
-      id: '12345678901234567890',
-      email: 'asd@qwe.com',
-      lastEdited: '2024-01-03T00:00:00Z'
+      return {
+        deleteSuccess: store
+          .getActions()
+          .find(a => a.type === types.DELETE_API_BOARD_SUCCESS),
+        getBoardsByIds
+      };
     };
-    const remoteBoards = [
-      { id: '09876543210987654321', lastEdited: '2024-01-02T00:00:00Z' }
-    ];
-    const storeWithBoards = mockStore({
-      ...initialState,
-      board: {
-        ...initialState.board,
-        boards: [editedBoard],
-        syncMeta: {
-          '12345678901234567890': { status: types.SYNC_STATUS.PENDING }
-        }
-      }
+
+    it('should hard delete an untracked server board when its update returns 404 and the server confirms', async () => {
+      // An untracked board with a server ID that is absent from the manifest
+      // is pushed via updateApiBoard (PUT). If the server 404s the PUT and the
+      // by-ids confirmation omits the board, it was deleted on another device
+      // — hard delete it locally so it stops re-pushing forever instead of
+      // becoming a sync zombie.
+      const { deleteSuccess } = await runPush404({
+        board: { ...mockBoard, id: serverBoardId, email: 'asd@qwe.com' },
+        syncMeta: {}, // no entry -> untracked
+        remoteBoards: [], // absent from manifest
+        serverBoards: [] // absent from the confirmation read
+      });
+
+      expect(deleteSuccess).toBeDefined();
+      expect(deleteSuccess.board.id).toBe(serverBoardId);
     });
 
-    const notFound = new Error('Request failed with status code 404');
-    notFound.response = { status: 404 };
-    const originalUpdateBoard = API.updateBoard;
-    const originalGetBoard = API.getBoard;
-    API.updateBoard = jest.fn().mockRejectedValue(notFound);
-    API.getBoard = jest.fn().mockRejectedValue(notFound);
+    it('should hard delete a tracked PENDING board on 404 when the server confirms it is gone', async () => {
+      // Edit-vs-delete conflict: the board was edited locally (PENDING) but
+      // deleted on another device. The PUT 404, manifest absence and by-ids
+      // absence confirm the server deletion, so delete wins — otherwise the
+      // board would re-push and 404 forever.
+      const { deleteSuccess } = await runPush404({
+        board: {
+          ...mockBoard,
+          id: serverBoardId,
+          email: 'asd@qwe.com',
+          lastEdited: '2024-01-03T00:00:00Z'
+        },
+        syncMeta: { [serverBoardId]: { status: types.SYNC_STATUS.PENDING } },
+        remoteBoards: [
+          { id: '098765432109876543210987', lastEdited: '2024-01-02T00:00:00Z' }
+        ],
+        serverBoards: []
+      });
 
-    try {
-      await storeWithBoards.dispatch(
-        actions.pushLocalChangesToApi(remoteBoards)
-      );
-    } finally {
-      API.updateBoard = originalUpdateBoard;
-      API.getBoard = originalGetBoard;
-    }
-
-    const deleteSuccess = storeWithBoards
-      .getActions()
-      .find(a => a.type === types.DELETE_API_BOARD_SUCCESS);
-    expect(deleteSuccess).toBeDefined();
-    expect(deleteSuccess.board.id).toBe('12345678901234567890');
-  });
-
-  it('should not hard delete an untracked board on 404 when the manifest still lists it', async () => {
-    // A 404 that contradicts the manifest (board listed as existing) signals a
-    // transient server problem, not a real deletion — keep the board without
-    // even asking the server.
-    const untrackedBoard = {
-      ...mockBoard,
-      id: '12345678901234567890',
-      email: 'asd@qwe.com',
-      lastEdited: '2024-01-02T00:00:00Z'
-    };
-    const remoteBoards = [
-      { id: '12345678901234567890', lastEdited: '2024-01-01T00:00:00Z' }
-    ];
-    const storeWithBoards = mockStore({
-      ...initialState,
-      board: {
-        ...initialState.board,
-        boards: [untrackedBoard],
-        syncMeta: {}
-      }
+      expect(deleteSuccess).toBeDefined();
+      expect(deleteSuccess.board.id).toBe(serverBoardId);
     });
 
-    const notFound = new Error('Request failed with status code 404');
-    notFound.response = { status: 404 };
-    const originalUpdateBoard = API.updateBoard;
-    const originalGetBoard = API.getBoard;
-    const getBoardMock = jest.fn();
-    API.updateBoard = jest.fn().mockRejectedValue(notFound);
-    API.getBoard = getBoardMock;
+    it('should not hard delete an untracked board on 404 when the manifest still lists it', async () => {
+      // A 404 that contradicts the manifest (board listed as existing) signals
+      // a transient server problem, not a real deletion — keep the board
+      // without even asking the server.
+      const { deleteSuccess, getBoardsByIds } = await runPush404({
+        board: {
+          ...mockBoard,
+          id: serverBoardId,
+          email: 'asd@qwe.com',
+          lastEdited: '2024-01-02T00:00:00Z'
+        },
+        syncMeta: {},
+        remoteBoards: [
+          { id: serverBoardId, lastEdited: '2024-01-01T00:00:00Z' }
+        ],
+        serverBoards: []
+      });
 
-    try {
-      await storeWithBoards.dispatch(
-        actions.pushLocalChangesToApi(remoteBoards)
-      );
-    } finally {
-      API.updateBoard = originalUpdateBoard;
-      API.getBoard = originalGetBoard;
-    }
-
-    const deleteSuccess = storeWithBoards
-      .getActions()
-      .find(a => a.type === types.DELETE_API_BOARD_SUCCESS);
-    expect(deleteSuccess).toBeUndefined();
-    expect(getBoardMock).not.toHaveBeenCalled();
-  });
-
-  it('should not hard delete a board on a spurious 404 when the server still has it', async () => {
-    // The PUT 404s and the board is absent from the manifest, but the GET-by-id
-    // confirmation resolves — the 404 was transient, keep the board (and its
-    // pending local edit) for the next sync.
-    const editedBoard = {
-      ...mockBoard,
-      id: '12345678901234567890',
-      email: 'asd@qwe.com',
-      lastEdited: '2024-01-03T00:00:00Z'
-    };
-    const remoteBoards = [];
-    const storeWithBoards = mockStore({
-      ...initialState,
-      board: {
-        ...initialState.board,
-        boards: [editedBoard],
-        syncMeta: {
-          '12345678901234567890': { status: types.SYNC_STATUS.PENDING }
-        }
-      }
+      expect(deleteSuccess).toBeUndefined();
+      expect(getBoardsByIds).not.toHaveBeenCalled();
     });
 
-    const notFound = new Error('Request failed with status code 404');
-    notFound.response = { status: 404 };
-    const originalUpdateBoard = API.updateBoard;
-    const originalGetBoard = API.getBoard;
-    const getBoardMock = jest.fn().mockResolvedValue({
-      id: '12345678901234567890',
-      name: 'Still on server'
+    it('should not hard delete a board on a spurious 404 when the server still has it', async () => {
+      // The PUT 404s and the board is absent from the manifest, but the by-ids
+      // confirmation still returns it — the 404 was transient, keep the board
+      // (and its pending local edit) for the next sync.
+      const { deleteSuccess, getBoardsByIds } = await runPush404({
+        board: {
+          ...mockBoard,
+          id: serverBoardId,
+          email: 'asd@qwe.com',
+          lastEdited: '2024-01-03T00:00:00Z'
+        },
+        syncMeta: { [serverBoardId]: { status: types.SYNC_STATUS.PENDING } },
+        remoteBoards: [],
+        serverBoards: [{ id: serverBoardId, name: 'Still on server' }]
+      });
+
+      expect(deleteSuccess).toBeUndefined();
+      expect(getBoardsByIds).toHaveBeenCalledWith([serverBoardId]);
     });
-    API.updateBoard = jest.fn().mockRejectedValue(notFound);
-    API.getBoard = getBoardMock;
-
-    try {
-      await storeWithBoards.dispatch(
-        actions.pushLocalChangesToApi(remoteBoards)
-      );
-    } finally {
-      API.updateBoard = originalUpdateBoard;
-      API.getBoard = originalGetBoard;
-    }
-
-    const deleteSuccess = storeWithBoards
-      .getActions()
-      .find(a => a.type === types.DELETE_API_BOARD_SUCCESS);
-    expect(deleteSuccess).toBeUndefined();
-    expect(getBoardMock).toHaveBeenCalledWith('12345678901234567890');
   });
 });
 
@@ -1411,8 +1342,8 @@ describe('applyRemoteChangesToState', () => {
   it('should dispatch deleteApiBoardSuccess for boards missing from the manifest, without fetching them', async () => {
     const API = require('../../../api/api').default;
     const boardId = '12345678901234567890';
-    // The manifest is authoritative for existence, so a board classified for
-    // deletion is removed without any per-id verification fetch.
+    // Received boardIdsToDelete are already server-confirmed (syncBoards), so
+    // they are removed without any further verification fetch.
     API.getBoard = jest.fn();
 
     const store = mockStore(initialState);
@@ -1436,8 +1367,8 @@ describe('applyRemoteChangesToState', () => {
   it('should delete a board missing from the manifest, not update it, even if the server still has it', async () => {
     const API = require('../../../api/api').default;
     const boardId = '12345678901234567890';
-    // Even though a fetch would show the board still exists, we trust the
-    // manifest: absence means deleted, so we never consult the server.
+    // Confirmation already happened in syncBoards; this function trusts the
+    // received list and never consults the server again.
     API.getBoard = jest
       .fn()
       .mockResolvedValue({ id: boardId, name: 'Server Board' });
@@ -1569,14 +1500,12 @@ describe('syncBoards', () => {
 
   it('should delete local boards missing from the manifest when the server confirms (PULL)', async () => {
     const API = require('../../../api/api').default;
-    // Absent from the manifest AND GET-by-id returns 404 => deleted on server.
-    const notFound = new Error('Request failed with status code 404');
-    notFound.response = { status: 404 };
-    API.getBoard = jest.fn().mockRejectedValue(notFound);
+    // Absent from the manifest AND from a fresh by-ids read => deleted.
+    API.getBoardsByIds = jest.fn().mockResolvedValue({ total: 0, data: [] });
 
     const localBoard = {
       ...mockBoard,
-      id: '12345678901234567890',
+      id: '123456789012345678901234',
       lastEdited: '2024-01-01T00:00:00Z'
     };
     const store = mockStore({
@@ -1585,7 +1514,7 @@ describe('syncBoards', () => {
         ...initialState.board,
         boards: [localBoard],
         syncMeta: {
-          '12345678901234567890': { status: types.SYNC_STATUS.SYNCED }
+          '123456789012345678901234': { status: types.SYNC_STATUS.SYNCED }
         }
       }
     });
@@ -1593,25 +1522,27 @@ describe('syncBoards', () => {
     await store.dispatch(actions.syncBoards([]));
     const dispatchedActions = store.getActions();
 
-    expect(API.getBoard).toHaveBeenCalledWith('12345678901234567890');
+    expect(API.getBoardsByIds).toHaveBeenCalledWith([
+      '123456789012345678901234'
+    ]);
     expect(dispatchedActions).toContainEqual({
       type: types.DELETE_API_BOARD_SUCCESS,
-      board: { id: '12345678901234567890' }
+      board: { id: '123456789012345678901234' }
     });
   });
 
   it('should keep a board absent from the manifest when the server still has it (PULL)', async () => {
     const API = require('../../../api/api').default;
-    // A stale manifest snapshot can omit a board that still exists; the
-    // GET-by-id confirmation resolves, so the board is kept.
-    API.getBoard = jest.fn().mockResolvedValue({
-      id: '12345678901234567890',
-      name: 'Still on server'
+    // A stale manifest snapshot can omit a board that still exists; the fresh
+    // by-ids confirmation returns it, so the board is kept.
+    API.getBoardsByIds = jest.fn().mockResolvedValue({
+      total: 1,
+      data: [{ id: '123456789012345678901234', name: 'Still on server' }]
     });
 
     const localBoard = {
       ...mockBoard,
-      id: '12345678901234567890',
+      id: '123456789012345678901234',
       lastEdited: '2024-01-01T00:00:00Z'
     };
     const store = mockStore({
@@ -1620,7 +1551,7 @@ describe('syncBoards', () => {
         ...initialState.board,
         boards: [localBoard],
         syncMeta: {
-          '12345678901234567890': { status: types.SYNC_STATUS.SYNCED }
+          '123456789012345678901234': { status: types.SYNC_STATUS.SYNCED }
         }
       }
     });
@@ -1628,7 +1559,9 @@ describe('syncBoards', () => {
     await store.dispatch(actions.syncBoards([]));
     const dispatchedActions = store.getActions();
 
-    expect(API.getBoard).toHaveBeenCalledWith('12345678901234567890');
+    expect(API.getBoardsByIds).toHaveBeenCalledWith([
+      '123456789012345678901234'
+    ]);
     expect(
       dispatchedActions.filter(a => a.type === types.DELETE_API_BOARD_SUCCESS)
     ).toHaveLength(0);

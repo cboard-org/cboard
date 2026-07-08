@@ -131,7 +131,7 @@ const { boards: localBoards, syncMeta } = getState().board;
 const { boardsToAdd, boardsToUpdate, boardIdsToVerify } =
   classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
 
-// deletion candidates are confirmed per-id (GET → 404) before deletion
+// deletion candidates are confirmed per-id (fresh /board/byids read) before deletion
 await dispatch(applyRemoteChangesToState({ ... }));
 
 // Phase 2: pushLocalChangesToApi calls getState() internally,
@@ -161,7 +161,7 @@ Compares the **sync manifest** (`{ id, lastEdited }` entries) against local stat
 
 **Why `boardIdsToVerify` requires `localHasSyncStatus`:** Only boards that the sync system is already tracking are candidates for server-side deletion detection. Untracked boards (no `syncMeta` entry) are excluded to prevent false deletions of pre-existing boards that haven't been onboarded yet.
 
-**Per-id deletion confirmation (stale-manifest guard, #2258):** absence from the manifest is never trusted on its own. For each `boardIdsToVerify` candidate, `syncBoards` issues `GET /board/:id` and hard-deletes the board only when the server answers **404** — deletion must be confirmed by the server for that specific id. A stale manifest snapshot (concurrent tab racing another tab's just-completed creates, or a lagging read on the server) omits a board that still exists, so the GET resolves and the board is kept; the next cycle's fresh manifest lists it again and the candidacy disappears. A genuinely deleted board gets a confirmed 404 and is removed in the same cycle — this also covers an emptied account (empty manifest → every tracked server board is a candidate, each confirmed individually). Any other GET outcome (network error, 5xx) keeps the board and retries next cycle: keeping a board the user deleted is recoverable; deleting a board the user just created is not. In a healthy cycle the candidate list is empty, so the confirmation costs no extra requests.
+**Per-id deletion confirmation (stale-manifest guard, #2258):** absence from the manifest is never trusted on its own. `syncBoards` re-reads all `boardIdsToVerify` candidates with `POST /board/byids` (`confirmServerDeletions`, chunked to the server's 3000-id cap so an over-cap candidate list — e.g. after a server-side account cleanup — cannot 400 forever) and hard-deletes only the ids **absent from that fresh response** — deletion must be confirmed by the server for that specific id. A stale manifest snapshot (concurrent tab racing another tab's just-completed creates, or a lagging read on the server) omits a board that still exists, so the fresh read returns it and the board is kept; the next cycle's fresh manifest lists it again and the candidacy disappears. A genuinely deleted board is absent from the confirmation read too and is removed in the same cycle — this also covers an emptied account (empty manifest → every tracked server board is a candidate, all confirmed in one request). Any request failure (network error, 5xx, unexpected shape) confirms nothing for that chunk and retries next cycle: keeping a board the user deleted is recoverable; deleting a board the user just created is not. Ids that are not valid ObjectIds are never confirmed — the server filters them from the query, so their absence would prove nothing. In a healthy cycle the candidate list is empty, so the confirmation costs no requests.
 
 ### 5.2 `applyRemoteChangesToState({ boardsToAdd, boardsToUpdate, boardIdsToDelete })`
 
@@ -181,7 +181,7 @@ For each boardId in boardIdsToDelete:
 ```
 
 Every id in this list carried the double signal: absent from the manifest AND
-`GET /board/:id` → 404.
+absent from a fresh `POST /board/byids` read.
 
 **Step 2 — Fetch new/changed bodies in a single request:**
 
@@ -829,7 +829,7 @@ USER ACTION (edit board / create tile / delete board)
        │       ├── boardsToAdd (new on server)          │
        │       ├── boardsToUpdate (server is newer)     │
        │       └── boardIdsToVerify (absent from manifest)│
-       │             └── GET /board/:id → 404 confirms  │
+       │             └── fresh /board/byids read confirms│
        │                                                │
        │  applyRemoteChangesToState()                   │
        │       ├── delete confirmed-deleted boards      │
@@ -870,10 +870,10 @@ USER ACTION (edit board / create tile / delete board)
 | `syncBoards()` throws               | Catches error, dispatches `SYNC_BOARDS_FAILURE`, returns `{ success: false }`            | `Board.actions.js:848`     |
 | Bulk body fetch fails (PULL)        | `console.error`, **returns without throwing**. Deletions stay applied; adds/updates deferred to next sync; PUSH still runs. | `Board.actions.js:605`     |
 | Bulk body fetch returns bad shape   | Throws `'Bulk board fetch returned an unexpected shape'` — surfaces a contract break.    | `Board.actions.js:597`     |
-| Board absent from manifest          | Deletion candidate — hard deleted only after `GET /board/:id` returns 404 (server confirms by id). Any other GET outcome keeps the board for the next cycle. | `Board.actions.js` → `syncBoards` / `confirmServerDeletion` |
+| Board absent from manifest          | Deletion candidate — hard deleted only when a fresh `POST /board/byids` read also omits it (server confirms by id). Any request failure keeps the board for the next cycle. | `Board.actions.js` → `syncBoards` / `confirmServerDeletions` |
 | Requested id missing from body fetch | Skipped (board deleted in race window); self-heals on next sync.                        | `Board.actions.js:579`     |
 | Individual board push fails         | `console.error`, continues to next board. Failed board remains `PENDING` for next sync.  | `Board.actions.js:783`     |
-| Board push returns 404              | The board was deleted on the server (another device / web / account op) — hard delete locally via `deleteApiBoardSuccess` so it stops re-pushing forever. Only when the board is **also absent from this cycle's manifest AND `GET /board/:id` also returns 404** (a PUT 404 that either contradicts the manifest or isn't reproduced by the GET is treated as transient — no delete). Covers untracked zombies and the edit-vs-delete conflict: delete wins once the server confirms by id. | `Board.actions.js` push-loop catch |
+| Board push returns 404              | The board was deleted on the server (another device / web / account op) — hard delete locally via `deleteApiBoardSuccess` so it stops re-pushing forever. Only when the board is **also absent from this cycle's manifest AND a fresh `POST /board/byids` read also omits it** (a PUT 404 that either contradicts the manifest or isn't reproduced by the fresh read is treated as transient — no delete). Covers untracked zombies and the edit-vs-delete conflict: delete wins once the server confirms by id. | `Board.actions.js` push-loop catch |
 | Board delete fails with non-404     | `console.error`, continues. Board remains marked `isDeleted` for next sync.              | `Board.actions.js:803`     |
 | Board delete fails with 404         | Treated as success — board already gone from server. Dispatches `deleteApiBoardSuccess`. | `Board.actions.js:799-800` |
 | 403 from any API call               | Axios interceptor triggers automatic logout.                                             | Global API config          |
@@ -890,8 +890,8 @@ USER ACTION (edit board / create tile / delete board)
 | **`updateApiObjectsNoChild` recursive cascade**  | `updateApiMarkedBoards` → `updateApiObjectsNoChild` → `updateApiMarkedBoards` can recurse for deeply nested board hierarchies. | Recursion terminates naturally when no more boards are marked. Assumes finite board hierarchy depth.                       |
 | **Stale board references in push loop**          | A prior iteration's API call may change board IDs in state via `CREATE_API_BOARD_SUCCESS`.                                     | The push loop re-reads each board from `getState()` before every API call.                                                 |
 | **Parent pushed before its local child ** | A parent can reach the server with a `tile.loadBoard` pointing at a local short id (e.g. an offline-created folder, or a folder added to a default board) — a dangling reference if the child create is later lost. | `hasUnsyncedChildReference` holds the parent `PENDING` (in both `CREATE_API_BOARD_SUCCESS` and `UPDATE_API_BOARD_SUCCESS`) instead of graduating it to `SYNCED`, so it is re-pushed once the child has a server id. Fully ordering children before parents in the push loop is tracked under the resilience epic (#2195). |
-| **Untracked server board deleted remotely (zombie)** | A pre-sync-engine board persisted with a server id but **no `syncMeta`** (untracked, see §7) that was deleted on the server out-of-band is absent from the manifest. PULL never deletes it (the `localHasSyncStatus` guard, §5.1), so Pass 2 keeps pushing it via PUT every sync forever. | On a `404` from the push PUT of a board that is **also absent from this cycle's manifest and whose `GET /board/:id` also 404s**, hard delete it locally (`deleteApiBoardSuccess`). Safe because the deletion is confirmed by the server for that specific id. |
-| **Stale manifest vs. just-created boards (#2258)** | A sync cycle (typically a second browser tab sharing redux-persist state) can classify against a manifest snapshot that does not yet list boards another cycle just created; those boards are SYNCED + server-id, so the four candidate conditions hold and they were hard-deleted locally. | Per-id deletion confirmation: a candidate is deleted only when `GET /board/:id` returns 404. A board omitted by a stale snapshot still exists, so the GET resolves and the board is kept (see §5.1). |
+| **Untracked server board deleted remotely (zombie)** | A pre-sync-engine board persisted with a server id but **no `syncMeta`** (untracked, see §7) that was deleted on the server out-of-band is absent from the manifest. PULL never deletes it (the `localHasSyncStatus` guard, §5.1), so Pass 2 keeps pushing it via PUT every sync forever. | On a `404` from the push PUT of a board that is **also absent from this cycle's manifest and that a fresh `POST /board/byids` read also omits**, hard delete it locally (`deleteApiBoardSuccess`). Safe because the deletion is confirmed by the server for that specific id. |
+| **Stale manifest vs. just-created boards (#2258)** | A sync cycle (typically a second browser tab sharing redux-persist state) can classify against a manifest snapshot that does not yet list boards another cycle just created; those boards are SYNCED + server-id, so the four candidate conditions hold and they were hard-deleted locally. | Per-id deletion confirmation: a candidate is deleted only when a fresh `POST /board/byids` read omits it. A board omitted by a stale snapshot still exists, so the fresh read returns it and the board is kept (see §5.1). |
 | **`AppContainer` remount clearing an in-flight sync** | `clearSync()` on mount exists only to clear a stale persisted `isSyncing: true` from a killed session. On a remount within the same JS context it would also wipe the flag of a sync currently in flight, letting the mount-time `getApiObjects` start a concurrent cycle. | `clearSync` is dispatched only on the **first** `AppContainer` mount per page load (module-scoped flag in `App.container.js`); later remounts hit the `isSyncing` guard and are skipped. |
 | **Communicator always persisted**                | `upsertApiCommunicator` is called even when the communicator didn't change.                                                    | No functional impact, but causes unnecessary API calls.                                                                    |
 

@@ -88,21 +88,6 @@ export const transformBoardForUser = (board, userEmail, userName, locale) => ({
 });
 
 /**
- * Newest server-assigned `lastEdited` in a sync manifest, or null when the
- * manifest is empty. Boards edited after this watermark are newer than
- * everything the manifest knows about.
- */
-export function getManifestWatermark(remoteBoards = []) {
-  return remoteBoards.reduce(
-    (max, remote) =>
-      remote.lastEdited && (!max || moment(remote.lastEdited).isAfter(max))
-        ? remote.lastEdited
-        : max,
-    null
-  );
-}
-
-/**
  * Classify remote boards for PULL operation.
  * Identifies boards that are new from the server or have newer versions on the server.
  * @param {Array} localBoards - Boards from local state
@@ -133,7 +118,7 @@ export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
 
   // Identify candidates for server-side deletion. Absence from the manifest is
   // not trusted on its own: each candidate must be confirmed deleted by the
-  // server (GET by id returning 404) before it is removed locally.
+  // server (absent from a fresh by-ids read) before it is removed locally.
   for (const local of localBoards) {
     const hasServerId = isServerBoard(local);
     const notInRemote = !remoteBoardIds.has(local.id);
