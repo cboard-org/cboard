@@ -778,9 +778,12 @@ function classifyBoardsForPush({
  * confirms nothing for that chunk. Ids that are not valid ObjectIds are never
  * confirmed — the server filters them out, so their absence proves nothing.
  */
+const OBJECT_ID_REGEX = /^[0-9a-fA-F]{24}$/;
+// Mirrors the server's request cap on POST /board/byids; a lower server cap
+// would 400 every over-sized chunk and (safely) confirm nothing.
+const MAX_BOARDS_BY_IDS = 3000;
+
 async function confirmServerDeletions(boardIds) {
-  const OBJECT_ID_REGEX = /^[0-9a-fA-F]{24}$/;
-  const MAX_BOARDS_BY_IDS = 3000;
   const verifiableIds = boardIds.filter(id => OBJECT_ID_REGEX.test(id));
   const confirmedIds = [];
   for (let i = 0; i < verifiableIds.length; i += MAX_BOARDS_BY_IDS) {
@@ -792,6 +795,8 @@ async function confirmServerDeletions(boardIds) {
       confirmedIds.push(...chunk.filter(id => !existingIds.has(id)));
     } catch (e) {
       // Unconfirmed chunk: keep its boards and retry next cycle.
+      console.error('Deletion confirmation failed; keeping boards:', e);
+      trackSyncException(e, { phase: 'confirmDeletions' });
     }
   }
   return confirmedIds;
@@ -866,7 +871,10 @@ export function pushLocalChangesToApi(remoteBoards = []) {
           await dispatch(updateApiBoard(board));
         }
       } catch (e) {
+        // needsCreate boards never existed on the server, so absence from the
+        // by-ids read proves nothing — the hard-delete path is update-only.
         if (
+          !needsCreate &&
           e.response?.status === 404 &&
           !remoteBoardIds.has(board.id) &&
           (await confirmServerDeletions([board.id])).length > 0

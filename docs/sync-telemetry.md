@@ -119,12 +119,13 @@ by-ids confirmation itself is unreliable — investigate server-side before touc
 | `manifestSize` | measurements | boards in the remote manifest |
 
 ### Sync exceptions
-Three failure paths additionally call `trackSyncException`, each tagged with a `phase` so you can
+Several failure paths additionally call `trackSyncException`, each tagged with a `phase` so you can
 tell them apart in the `exceptions` table:
 
 | `phase` | where | was previously |
 |---|---|---|
 | `pullBulkFetch` | bulk board-body fetch catch | `console.error` only (invisible in cloud) |
+| `confirmDeletions` | per-chunk catch in `confirmServerDeletions` — a failing `/board/byids` keeps every candidate (fail-safe) but silently disables remote deletions, so it must be visible | new in this change |
 | `pushBoard` | per-board push catch (also carries `boardId`) | `console.error` only |
 | `syncBoards` | top-level cycle catch | `console.error` only |
 | `getApiMyBoards` | full-path board phase catch in `getApiObjects` (also carries `source`) | `console.error` only |
@@ -145,7 +146,7 @@ telemetry.
 | `Sync_FullRun` | `Board.actions.js` → `getApiObjects()` `finally` (and the early `isSyncing` guard) |
 | `Sync_RemoteDeletions` | `Board.actions.js` → `syncBoards()`, after `classifyRemoteBoards`, guarded by `boardIdsToDelete.length > 0` |
 | `Sync_PushNotFoundDelete` | `Board.actions.js` → `pushLocalChangesToApi` push-loop catch, before the 404 hard delete |
-| `trackSyncException` | `Board.actions.js` → the five sync `catch` blocks (`pullBulkFetch`, `pushBoard`, `syncBoards`, `getApiMyBoards`, `getApiMyCommunicators`) |
+| `trackSyncException` | `Board.actions.js` → the six sync `catch` blocks (`pullBulkFetch`, `confirmDeletions`, `pushBoard`, `syncBoards`, `getApiMyBoards`, `getApiMyCommunicators`) |
 
 The helper lives in `Board.sync.analytics.js` and is kept in the actions layer because these
 events need computed before/after state and timing that the redux-beacon `eventsMap` can't

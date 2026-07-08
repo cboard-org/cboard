@@ -1567,6 +1567,109 @@ describe('syncBoards', () => {
     ).toHaveLength(0);
   });
 
+  it('should keep a deletion candidate when the confirmation request fails (PULL)', async () => {
+    const API = require('../../../api/api').default;
+    // A failing /board/byids confirms nothing: the board is kept and the
+    // candidacy retries next cycle.
+    API.getBoardsByIds = jest
+      .fn()
+      .mockRejectedValue(new Error('Network Error'));
+
+    const localBoard = {
+      ...mockBoard,
+      id: '123456789012345678901234',
+      lastEdited: '2024-01-01T00:00:00Z'
+    };
+    const store = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: [localBoard],
+        syncMeta: {
+          '123456789012345678901234': { status: types.SYNC_STATUS.SYNCED }
+        }
+      }
+    });
+
+    await store.dispatch(actions.syncBoards([]));
+    const dispatchedActions = store.getActions();
+
+    expect(API.getBoardsByIds).toHaveBeenCalledWith([
+      '123456789012345678901234'
+    ]);
+    expect(
+      dispatchedActions.filter(a => a.type === types.DELETE_API_BOARD_SUCCESS)
+    ).toHaveLength(0);
+    expect(
+      dispatchedActions.find(a => a.type === types.SYNC_BOARDS_SUCCESS)
+    ).toBeDefined();
+  });
+
+  it('should never confirm a candidate whose id is not a valid ObjectId (PULL)', async () => {
+    const API = require('../../../api/api').default;
+    // The server filters non-ObjectIds from the by-ids query, so their absence
+    // from the response proves nothing — they are excluded before the request.
+    API.getBoardsByIds = jest.fn().mockResolvedValue({ total: 0, data: [] });
+
+    const localBoard = {
+      ...mockBoard,
+      id: '12345678901234567890', // 20 chars: passes isServerBoard, not an ObjectId
+      lastEdited: '2024-01-01T00:00:00Z'
+    };
+    const store = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: [localBoard],
+        syncMeta: {
+          '12345678901234567890': { status: types.SYNC_STATUS.SYNCED }
+        }
+      }
+    });
+
+    await store.dispatch(actions.syncBoards([]));
+    const dispatchedActions = store.getActions();
+
+    expect(API.getBoardsByIds).not.toHaveBeenCalled();
+    expect(
+      dispatchedActions.filter(a => a.type === types.DELETE_API_BOARD_SUCCESS)
+    ).toHaveLength(0);
+  });
+
+  it('should chunk the confirmation request to the by-ids cap (PULL)', async () => {
+    const API = require('../../../api/api').default;
+    API.getBoardsByIds = jest.fn().mockResolvedValue({ total: 0, data: [] });
+
+    const ids = Array.from({ length: 3001 }, (_, i) =>
+      i.toString(16).padStart(24, '0')
+    );
+    const store = mockStore({
+      ...initialState,
+      board: {
+        ...initialState.board,
+        boards: ids.map(id => ({
+          ...mockBoard,
+          id,
+          lastEdited: '2024-01-01T00:00:00Z'
+        })),
+        syncMeta: ids.reduce((meta, id) => {
+          meta[id] = { status: types.SYNC_STATUS.SYNCED };
+          return meta;
+        }, {})
+      }
+    });
+
+    await store.dispatch(actions.syncBoards([]));
+
+    expect(API.getBoardsByIds).toHaveBeenCalledTimes(2);
+    expect(API.getBoardsByIds.mock.calls[0][0]).toHaveLength(3000);
+    expect(API.getBoardsByIds.mock.calls[1][0]).toHaveLength(1);
+    const deletions = store
+      .getActions()
+      .filter(a => a.type === types.DELETE_API_BOARD_SUCCESS);
+    expect(deletions).toHaveLength(3001);
+  });
+
   it('should push locally modified boards with syncMeta PENDING (PUSH)', async () => {
     const pendingBoard = { ...mockBoard, id: '12345678901234567890' };
     const store = mockStore({
