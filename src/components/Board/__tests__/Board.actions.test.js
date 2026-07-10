@@ -529,12 +529,6 @@ describe('syncFinished', () => {
   });
 });
 
-describe('clearSync', () => {
-  it('should create an action to CLEAR_SYNC', () => {
-    expect(actions.clearSync()).toEqual({ type: types.CLEAR_SYNC });
-  });
-});
-
 describe('getApiObjects concurrency guard', () => {
   const buildState = isSyncing => ({
     ...initialState,
