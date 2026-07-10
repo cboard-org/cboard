@@ -1,7 +1,8 @@
 import {
   persistCombineReducers,
   persistReducer,
-  createMigrate
+  createMigrate,
+  createTransform
 } from 'redux-persist';
 
 import localForage from 'localforage';
@@ -130,12 +131,21 @@ export const boardMigrations = {
   })
 };
 
+// isSyncing describes a sync in flight in the current JS process, so a
+// rehydrated value is stale by definition and must never come back as true.
+export const boardSyncTransform = createTransform(
+  null,
+  outboundState => ({ ...outboundState, isSyncing: false }),
+  { whitelist: ['board'] }
+);
+
 const config = {
   key: 'root',
   storage: migratingStorage,
   blacklist: ['language'],
   version: 1,
-  migrate: createMigrate(boardMigrations, { debug: false })
+  migrate: createMigrate(boardMigrations, { debug: false }),
+  transforms: [boardSyncTransform]
 };
 
 const languagePersistConfig = {
