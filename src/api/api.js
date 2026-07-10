@@ -16,7 +16,7 @@ import {
   isLocalFileURL
 } from '../helpers';
 import { logout } from '../components/Account/Login/Login.actions.js';
-import { isAndroid } from '../cordova-util';
+import { cvaFileToBlob, isAndroid } from '../cordova-util';
 
 const BASE_URL = API_URL;
 const LOCAL_COMMUNICATOR_ID = 'cboard_default';
@@ -514,15 +514,7 @@ class API {
 
       let realBlob;
       try {
-        const arrayBuffer = await new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onloadend = () => resolve(reader.result);
-          reader.onerror = () => reject(reader.error);
-          reader.readAsArrayBuffer(file);
-        });
-        realBlob = new Blob([arrayBuffer], {
-          type: file.type || 'image/png'
-        });
+        realBlob = await cvaFileToBlob(file, 'image/png');
       } catch (e) {
         return { attempted: true, url: null, unrecoverable: true };
       }
@@ -565,10 +557,7 @@ class API {
       return { board, hadFailure: false };
     }
 
-    const imageUrlByTileId = {};
-    const soundUrlByTileId = {};
-    const clearImageTileIds = new Set();
-    const clearSoundTileIds = new Set();
+    const tileUpdates = {};
     let hadFailure = false;
 
     const uploadTarget = async tile => {
@@ -578,11 +567,12 @@ class API {
           this.uploadTileSoundMedia(tile)
         ]);
 
+        const update = {};
         if (image.attempted) {
           if (image.url) {
-            imageUrlByTileId[tile.id] = image.url;
+            update.image = image.url;
           } else if (image.unrecoverable) {
-            clearImageTileIds.add(tile.id);
+            update.image = '';
           } else {
             hadFailure = true;
           }
@@ -590,12 +580,16 @@ class API {
 
         if (sound.attempted) {
           if (sound.url) {
-            soundUrlByTileId[tile.id] = sound.url;
+            update.sound = sound.url;
           } else if (sound.unrecoverable) {
-            clearSoundTileIds.add(tile.id);
+            update.sound = '';
           } else {
             hadFailure = true;
           }
+        }
+
+        if (Object.keys(update).length) {
+          tileUpdates[tile.id] = update;
         }
       } catch (e) {
         hadFailure = true;
@@ -610,18 +604,8 @@ class API {
     const sanitizedBoard = {
       ...board,
       tiles: tiles.map(tile => {
-        const imageUrl = imageUrlByTileId[(tile?.id)];
-        const soundUrl = soundUrlByTileId[(tile?.id)];
-        const clearImage = clearImageTileIds.has(tile?.id);
-        const clearSound = clearSoundTileIds.has(tile?.id);
-        if (!imageUrl && !soundUrl && !clearImage && !clearSound) {
-          return tile;
-        }
-        return {
-          ...tile,
-          ...(imageUrl ? { image: imageUrl } : clearImage ? { image: '' } : {}),
-          ...(soundUrl ? { sound: soundUrl } : clearSound ? { sound: '' } : {})
-        };
+        const update = tileUpdates[(tile?.id)];
+        return update ? { ...tile, ...update } : tile;
       })
     };
 

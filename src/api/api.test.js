@@ -9,6 +9,7 @@ import { isAndroid } from '../cordova-util';
 
 jest.mock('../store');
 jest.mock('../cordova-util', () => ({
+  ...jest.requireActual('../cordova-util'),
   isAndroid: jest.fn(() => false)
 }));
 

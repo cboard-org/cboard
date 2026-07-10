@@ -28,18 +28,6 @@ export const dataURLtoBlob = dataurl => {
   return new Blob([u8arr], { type });
 };
 
-export const dataURLtoFile = (dataurl, filename, checkExtension = false) => {
-  const blob = dataURLtoBlob(dataurl);
-
-  let name = filename;
-  if (checkExtension) {
-    const extension = blob.type.split('/')[1].toLowerCase();
-    name = `${name}.${extension}`;
-  }
-
-  return new File([blob], name, { type: blob.type });
-};
-
 export const convertMediaUrlToCDN = imageUrl => {
   const CBOARD_PRODUCTION_BLOB_CONTAINER_HOSTNAME =
     'cboardgroupdiag483.blob.core.windows.net';
