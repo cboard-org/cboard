@@ -1,13 +1,9 @@
 import * as helpers from '../helpers';
 describe('helpers', () => {
-  it('should create a file from data', () => {
+  it('should create a blob from a data URL', () => {
     const dataUrl = 'data:text/plain;charset=utf-8;base64,dGVzdGluZw==';
-    const file = helpers.dataURLtoFile(dataUrl, 'myfile');
-    expect(file.name).toBe('myfile');
-  });
-  it('should create a file with ext from data', () => {
-    const dataUrl = 'data:text/plain;charset=utf-8;base64,dGVzdGluZw==';
-    const file = helpers.dataURLtoFile(dataUrl, 'myfile.txt', true);
-    expect(file.name).toBe('myfile.txt.plain');
+    const blob = helpers.dataURLtoBlob(dataUrl);
+    expect(blob.type).toBe('text/plain');
+    expect(blob.size).toBe(7);
   });
 });
