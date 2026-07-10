@@ -400,10 +400,10 @@ describe('Cboard API calls', () => {
       expect(sanitized.tiles[1].sound).toBe('');
     });
 
-    it('clears an unresolvable file image and does not flag failure', async () => {
+    it('clears a not-found file image and does not flag failure', async () => {
       isAndroid.mockReturnValue(true);
       window.resolveLocalFileSystemURL = jest.fn((url, success, error) =>
-        error()
+        error({ code: 1 })
       );
       const uploadFile = jest.spyOn(API, 'uploadFile');
 
@@ -419,6 +419,29 @@ describe('Cboard API calls', () => {
       expect(hadFailure).toBe(false);
       expect(uploadFile).not.toHaveBeenCalled();
       expect(sanitized.tiles[0].image).toBe('');
+    });
+
+    it('keeps a file image and flags failure on a transient resolve error', async () => {
+      isAndroid.mockReturnValue(true);
+      window.resolveLocalFileSystemURL = jest.fn((url, success, error) =>
+        error({ code: 2 })
+      );
+      const uploadFile = jest.spyOn(API, 'uploadFile');
+
+      const board = {
+        id: 'b1',
+        tiles: [{ id: 't1', image: 'file:///storage/emulated/0/img.png' }]
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(true);
+      expect(uploadFile).not.toHaveBeenCalled();
+      expect(sanitized.tiles[0].image).toBe(
+        'file:///storage/emulated/0/img.png'
+      );
     });
   });
 

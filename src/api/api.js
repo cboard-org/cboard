@@ -20,6 +20,12 @@ import { cvaFileToBlob, isAndroid } from '../cordova-util';
 
 const BASE_URL = API_URL;
 const LOCAL_COMMUNICATOR_ID = 'cboard_default';
+
+const FILE_NOT_FOUND_ERR = 1;
+const FILE_ENCODING_ERR = 5;
+const isUnrecoverableFileError = error =>
+  !!error &&
+  (error.code === FILE_NOT_FOUND_ERR || error.code === FILE_ENCODING_ERR);
 export let improvePhraseAbortController;
 
 const getUserData = () => {
@@ -499,22 +505,29 @@ class API {
     }
 
     if (isLocalFileURL(tile.image) && isAndroid()) {
-      const file = await new Promise(resolve => {
+      const resolved = await new Promise(resolve => {
         window.resolveLocalFileSystemURL(
           tile.image,
           fileEntry => {
-            fileEntry.file(file => resolve(file), () => resolve(null));
+            fileEntry.file(
+              file => resolve({ file }),
+              error => resolve({ error })
+            );
           },
-          () => resolve(null)
+          error => resolve({ error })
         );
       });
-      if (!file) {
-        return { attempted: true, url: null, unrecoverable: true };
+      if (!resolved.file) {
+        return {
+          attempted: true,
+          url: null,
+          unrecoverable: isUnrecoverableFileError(resolved.error)
+        };
       }
 
       let realBlob;
       try {
-        realBlob = await cvaFileToBlob(file, 'image/png');
+        realBlob = await cvaFileToBlob(resolved.file, 'image/png');
       } catch (e) {
         return { attempted: true, url: null, unrecoverable: true };
       }
