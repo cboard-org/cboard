@@ -604,7 +604,7 @@ describe('classifyRemoteBoards', () => {
       name: 'Remote Board'
     });
     expect(result.boardsToUpdate).toHaveLength(0);
-    expect(result.boardIdsToVerify).toHaveLength(0);
+    expect(result.boardIdsToVerifyDeletion).toHaveLength(0);
   });
 
   it('should classify remote-newer boards when remote has newer timestamp', () => {
@@ -665,7 +665,7 @@ describe('classifyRemoteBoards', () => {
     expect(result.boardsToUpdate).toHaveLength(0);
   });
 
-  it('should classify manifest-absent server boards as deletion candidates (boardIdsToVerify)', () => {
+  it('should classify manifest-absent server boards as deletion candidates (boardIdsToVerifyDeletion)', () => {
     const localBoards = [
       {
         id: '12345678901234567890',
@@ -681,8 +681,8 @@ describe('classifyRemoteBoards', () => {
     ];
     const result = classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
 
-    expect(result.boardIdsToVerify).toHaveLength(1);
-    expect(result.boardIdsToVerify).toContain('12345678901234567890');
+    expect(result.boardIdsToVerifyDeletion).toHaveLength(1);
+    expect(result.boardIdsToVerifyDeletion).toContain('12345678901234567890');
   });
 
   it('should classify absent boards as deletion candidates even when the manifest is empty', () => {
@@ -698,8 +698,8 @@ describe('classifyRemoteBoards', () => {
     };
     const result = classifyRemoteBoards(localBoards, [], syncMeta);
 
-    expect(result.boardIdsToVerify).toHaveLength(1);
-    expect(result.boardIdsToVerify).toContain('12345678901234567890');
+    expect(result.boardIdsToVerifyDeletion).toHaveLength(1);
+    expect(result.boardIdsToVerifyDeletion).toContain('12345678901234567890');
   });
 
   it('should not classify short ID boards as deletion candidates', () => {
@@ -709,7 +709,7 @@ describe('classifyRemoteBoards', () => {
     const remoteBoards = [];
     const result = classifyRemoteBoards(localBoards, remoteBoards);
 
-    expect(result.boardIdsToVerify).toHaveLength(0);
+    expect(result.boardIdsToVerifyDeletion).toHaveLength(0);
   });
 
   it('should not classify untracked boards (no syncStatus) as deletion candidates', () => {
@@ -719,7 +719,7 @@ describe('classifyRemoteBoards', () => {
     const remoteBoards = [];
     const result = classifyRemoteBoards(localBoards, remoteBoards);
 
-    expect(result.boardIdsToVerify).toHaveLength(0);
+    expect(result.boardIdsToVerifyDeletion).toHaveLength(0);
   });
 
   it('should not classify locally deleted boards as deletion candidates', () => {
@@ -733,7 +733,7 @@ describe('classifyRemoteBoards', () => {
     const remoteBoards = [];
     const result = classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
 
-    expect(result.boardIdsToVerify).toHaveLength(0);
+    expect(result.boardIdsToVerifyDeletion).toHaveLength(0);
   });
 });
 

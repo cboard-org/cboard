@@ -949,13 +949,12 @@ export function syncBoards(remoteBoards) {
       const {
         boardsToAdd,
         boardsToUpdate,
-        boardIdsToVerify
+        boardIdsToVerifyDeletion
       } = classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
 
-      // A candidate is deleted locally only when the server confirms the
-      // deletion by id: absent from the manifest AND absent from a fresh
-      // getBoardsByIds read.
-      const boardIdsToDelete = await confirmServerDeletions(boardIdsToVerify);
+      const boardIdsToDelete = await confirmServerDeletions(
+        boardIdsToVerifyDeletion
+      );
 
       if (boardIdsToDelete.length > 0) {
         trackSyncEvent('Sync_RemoteDeletions', {

@@ -93,12 +93,12 @@ export const transformBoardForUser = (board, userEmail, userName, locale) => ({
  * @param {Array} localBoards - Boards from local state
  * @param {Array} remoteBoards - Boards from the server
  * @param {Object} syncMeta - Current syncMeta map
- * @returns {{ boardsToAdd, boardsToUpdate, boardIdsToVerify }}
+ * @returns {{ boardsToAdd, boardsToUpdate, boardIdsToVerifyDeletion }}
  */
 export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
   const boardsToAdd = [];
   const boardsToUpdate = [];
-  const boardIdsToVerify = [];
+  const boardIdsToVerifyDeletion = [];
 
   const remoteBoardIds = new Set(remoteBoards.map(b => b.id));
   const localBoardMap = new Map(localBoards.map(b => [b.id, b]));
@@ -116,9 +116,6 @@ export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
     }
   }
 
-  // Identify candidates for server-side deletion. Absence from the manifest is
-  // not trusted on its own: each candidate must be confirmed deleted by the
-  // server (absent from a fresh by-ids read) before it is removed locally.
   for (const local of localBoards) {
     const hasServerId = isServerBoard(local);
     const notInRemote = !remoteBoardIds.has(local.id);
@@ -126,13 +123,13 @@ export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
     const localHasSyncStatus = syncMeta[local.id] != null;
 
     if (hasServerId && notInRemote && notLocallyDeleted && localHasSyncStatus) {
-      boardIdsToVerify.push(local.id);
+      boardIdsToVerifyDeletion.push(local.id);
     }
   }
 
   return {
     boardsToAdd,
     boardsToUpdate,
-    boardIdsToVerify
+    boardIdsToVerifyDeletion
   };
 }
