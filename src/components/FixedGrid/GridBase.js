@@ -37,13 +37,13 @@ function GridBase(props) {
   return (
     <div className={gridClassName} {...other}>
       {grid.map((row, rowIndex) => (
-        <Row key={rowIndex}>
+        <Row key={utils.getGridRowKey(row, rowIndex)}>
           {row.map((item, columnIndex) => {
             const yPosition = page * rows + rowIndex;
             const idWithPosition = `${columnIndex}-${yPosition}`;
             return (
               <DroppableCell
-                key={columnIndex}
+                key={utils.getGridCellKey(item, rowIndex, columnIndex)}
                 id={idWithPosition}
                 accept={'grid-item'}
                 onDrop={item => {
