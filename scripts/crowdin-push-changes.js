@@ -151,7 +151,8 @@ const runMachineTranslation = async fileId => {
             fileIds: [fileId],
             languageIds: languagesToTranslate,
             autoApproveOption: 'none',
-            translateUntranslatedOnly: false
+            duplicateTranslations: false,
+            scope: 'untranslated'
           }
         );
 
