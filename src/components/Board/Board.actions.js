@@ -924,32 +924,31 @@ export function syncBoards(remoteBoards) {
     const { boards: localBoards, syncMeta } = getState().board;
     const pendingBefore = countPendingBoards(syncMeta);
 
-    const manifest = Array.isArray(remoteBoards) ? remoteBoards : [];
-    trackSyncEvent('Sync_BoardsStarted', {
-      properties: {
-        manifestWatermark: String(getManifestWatermark(manifest))
-      },
-      measurements: {
-        pendingBefore,
-        manifestSize: manifest.length,
-        localBoards: localBoards.length,
-        localServerBoards: localBoards.filter(isServerBoard).length,
-        untrackedBefore: countUntrackedBoards(localBoards, syncMeta)
-      }
-    });
-
-    if (Object.keys(syncMeta).length === 0 && localBoards.length > 0) {
-      const serverBoards = localBoards.filter(isServerBoard).length;
-      trackSyncEvent('Sync_FirstRun', {
-        measurements: {
-          totalBoards: localBoards.length,
-          localBoards: localBoards.length - serverBoards,
-          serverBoards
-        }
-      });
-    }
+    const manifestWatermark = String(getManifestWatermark(remoteBoards));
+    const localServerBoards = localBoards.filter(isServerBoard).length;
 
     try {
+      trackSyncEvent('Sync_BoardsStarted', {
+        properties: { manifestWatermark },
+        measurements: {
+          pendingBefore,
+          manifestSize: remoteBoards.length,
+          localBoards: localBoards.length,
+          localServerBoards,
+          untrackedBefore: countUntrackedBoards(localBoards, syncMeta)
+        }
+      });
+
+      if (Object.keys(syncMeta).length === 0 && localBoards.length > 0) {
+        trackSyncEvent('Sync_FirstRun', {
+          measurements: {
+            totalBoards: localBoards.length,
+            localBoards: localBoards.length - localServerBoards,
+            serverBoards: localServerBoards
+          }
+        });
+      }
+
       // 1. Classify boards for PULL (remote changes + remote deletion candidates)
       const {
         boardsToAdd,
@@ -964,13 +963,13 @@ export function syncBoards(remoteBoards) {
       if (boardIdsToDelete.length > 0) {
         trackSyncEvent('Sync_RemoteDeletions', {
           properties: {
-            manifestWatermark: String(getManifestWatermark(remoteBoards)),
+            manifestWatermark,
             boardIds: boardIdsToDelete.slice(0, 50).join(',')
           },
           measurements: {
             deletedCount: boardIdsToDelete.length,
             manifestSize: remoteBoards.length,
-            localServerBoards: localBoards.filter(isServerBoard).length
+            localServerBoards
           }
         });
       }

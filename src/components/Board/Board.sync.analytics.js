@@ -11,11 +11,15 @@ const FEATURE = 'sync';
  * goes in `properties` (customDimensions). See docs/sync-telemetry.md.
  */
 export function trackSyncEvent(name, { properties = {}, measurements } = {}) {
-  appInsights.trackEvent({
-    name,
-    properties: { feature: FEATURE, ...properties },
-    measurements
-  });
+  try {
+    appInsights.trackEvent({
+      name,
+      properties: { feature: FEATURE, ...properties },
+      measurements
+    });
+  } catch (e) {
+    console.error('Sync telemetry failed:', name, e);
+  }
 }
 
 /**
@@ -23,10 +27,14 @@ export function trackSyncEvent(name, { properties = {}, measurements } = {}) {
  * otherwise only console.error, which is invisible once deployed.
  */
 export function trackSyncException(error, properties = {}) {
-  appInsights.trackException({
-    exception: error instanceof Error ? error : new Error(String(error)),
-    properties: { feature: FEATURE, ...properties }
-  });
+  try {
+    appInsights.trackException({
+      exception: error instanceof Error ? error : new Error(String(error)),
+      properties: { feature: FEATURE, ...properties }
+    });
+  } catch (e) {
+    console.error('Sync telemetry failed: trackException', e);
+  }
 }
 
 /** Count boards currently marked PENDING (not deleted) in a syncMeta map. */
@@ -43,11 +51,13 @@ export function countUntrackedBoards(boards = [], syncMeta = {}) {
 
 /**
  * Newest `lastEdited` in a manifest, as an ISO string (`null` when the manifest
- * is empty or holds no parseable date). A watermark far behind the device's own
- * edits is the signature of a stale manifest, so it is compared by parsed time
- * rather than string order.
+ * is absent, empty, or holds no parseable date). A watermark far behind the
+ * device's own edits is the signature of a stale manifest, so it is compared by
+ * parsed time rather than string order.
  */
-export function getManifestWatermark(manifest = []) {
+export function getManifestWatermark(manifest) {
+  if (!Array.isArray(manifest)) return null;
+
   const newestMs = manifest.reduce((max, remote) => {
     const parsed = Date.parse(remote?.lastEdited);
     return isNaN(parsed) || parsed <= max ? max : parsed;

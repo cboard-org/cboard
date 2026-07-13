@@ -69,7 +69,7 @@ boards was the signature of the 2026-07-01 incident).
 
 | field | bag | meaning |
 |---|---|---|
-| `manifestWatermark` | properties | newest `lastEdited` in the manifest (`"null"` for an empty manifest) |
+| `manifestWatermark` | properties | newest `lastEdited` in the manifest, compared by parsed time (`"null"` for an empty manifest, or one with no parseable date) |
 | `pendingBefore` | measurements | PENDING boards entering the cycle |
 | `manifestSize` | measurements | boards in the remote manifest |
 | `localBoards` | measurements | total local boards |
@@ -163,7 +163,7 @@ telemetry.
 | `Sync_Graduation` | `Board.actions.js` → `classifyBoardsForPush`, before the batched `markBoardsSynced` |
 | `Sync_Completed` | `Board.actions.js` → `syncBoards()` success & catch (board phase only) |
 | `Sync_FullRun` | `Board.actions.js` → `getApiObjects()` `finally` (and the early `isSyncing` guard) |
-| `Sync_BoardsStarted` | `Board.actions.js` → `syncBoards()`, after the pre-PULL `getState().board` read |
+| `Sync_BoardsStarted` | `Board.actions.js` → `syncBoards()`, first statement inside the cycle `try`, before PULL classification |
 | `Sync_RemoteDeletions` | `Board.actions.js` → `syncBoards()`, after the per-id confirmation pass (`confirmServerDeletions`), guarded by `boardIdsToDelete.length > 0` |
 | `Sync_PushNotFoundDelete` | `Board.actions.js` → `pushLocalChangesToApi` push-loop catch, before the 404 hard delete |
 | `trackSyncException` | `Board.actions.js` → the six sync `catch` blocks (`pullBulkFetch`, `confirmDeletions`, `pushBoard`, `syncBoards`, `getApiMyBoards`, `getApiMyCommunicators`) |
