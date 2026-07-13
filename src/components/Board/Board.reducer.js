@@ -47,7 +47,6 @@ import {
   SYNC_BOARDS_FAILURE,
   SYNC_STARTED,
   SYNC_FINISHED,
-  CLEAR_SYNC,
   MARK_BOARDS_SYNCED,
   SYNC_STATUS,
   SET_IS_SAVING
@@ -612,11 +611,6 @@ function boardReducer(state = initialState, action) {
         isSyncing: true
       };
     case SYNC_FINISHED:
-      return {
-        ...state,
-        isSyncing: false
-      };
-    case CLEAR_SYNC:
       return {
         ...state,
         isSyncing: false

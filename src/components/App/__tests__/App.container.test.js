@@ -1,4 +1,4 @@
-import { AppContainer } from '../App.container';
+import { AppContainer, resetSyncThrottle } from '../App.container';
 
 jest.mock('../App.component', () => () => null);
 
@@ -7,7 +7,6 @@ describe('AppContainer.handleDataRefresh', () => {
     const instance = new AppContainer();
     instance.props = {
       isLogged: true,
-      hasPendingSyncBoards: false,
       getApiObjects: jest.fn(() => Promise.resolve()),
       ...props
     };
@@ -17,6 +16,7 @@ describe('AppContainer.handleDataRefresh', () => {
   const originalOnLine = window.navigator.onLine;
 
   beforeEach(() => {
+    resetSyncThrottle();
     Object.defineProperty(window.navigator, 'onLine', {
       value: true,
       configurable: true
@@ -32,30 +32,34 @@ describe('AppContainer.handleDataRefresh', () => {
     jest.restoreAllMocks();
   });
 
-  it('dispatches a sync when pending boards bypass the throttle', () => {
+  it('dispatches a sync when the throttle window has not started', () => {
     const getApiObjects = jest.fn(() => Promise.resolve());
-    const instance = buildInstance({
-      hasPendingSyncBoards: true,
-      getApiObjects
-    });
-    instance.lastSyncTime = Date.now();
+    const instance = buildInstance({ getApiObjects });
 
     instance.handleDataRefresh('App started');
 
     expect(getApiObjects).toHaveBeenCalledTimes(1);
   });
 
-  it('skips sync when throttled and no boards are pending', () => {
+  it('skips sync when throttled', () => {
     const getApiObjects = jest.fn(() => Promise.resolve());
-    const instance = buildInstance({
-      hasPendingSyncBoards: false,
-      getApiObjects
-    });
-    instance.lastSyncTime = Date.now();
+    const instance = buildInstance({ getApiObjects });
 
+    instance.handleDataRefresh('App started');
     instance.handleDataRefresh('Tab focused');
 
-    expect(getApiObjects).not.toHaveBeenCalled();
+    expect(getApiObjects).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps the throttle across a remount (new instance)', () => {
+    const getApiObjects = jest.fn(() => Promise.resolve());
+    const firstMount = buildInstance({ getApiObjects });
+    firstMount.handleDataRefresh('App started');
+
+    const secondMount = buildInstance({ getApiObjects });
+    secondMount.handleDataRefresh('App started');
+
+    expect(getApiObjects).toHaveBeenCalledTimes(1);
   });
 
   it('skips sync when offline', () => {

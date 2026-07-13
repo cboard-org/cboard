@@ -88,32 +88,17 @@ export const transformBoardForUser = (board, userEmail, userName, locale) => ({
 });
 
 /**
- * Newest server-assigned `lastEdited` in a sync manifest, or null when the
- * manifest is empty. Boards edited after this watermark are newer than
- * everything the manifest knows about.
- */
-export function getManifestWatermark(remoteBoards = []) {
-  return remoteBoards.reduce(
-    (max, remote) =>
-      remote.lastEdited && (!max || moment(remote.lastEdited).isAfter(max))
-        ? remote.lastEdited
-        : max,
-    null
-  );
-}
-
-/**
  * Classify remote boards for PULL operation.
  * Identifies boards that are new from the server or have newer versions on the server.
  * @param {Array} localBoards - Boards from local state
  * @param {Array} remoteBoards - Boards from the server
  * @param {Object} syncMeta - Current syncMeta map
- * @returns {{ boardsToAdd, boardsToUpdate, boardIdsToDelete }}
+ * @returns {{ boardsToAdd, boardsToUpdate, boardIdsToVerifyDeletion }}
  */
 export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
   const boardsToAdd = [];
   const boardsToUpdate = [];
-  const boardIdsToDelete = [];
+  const boardIdsToVerifyDeletion = [];
 
   const remoteBoardIds = new Set(remoteBoards.map(b => b.id));
   const localBoardMap = new Map(localBoards.map(b => [b.id, b]));
@@ -131,35 +116,20 @@ export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
     }
   }
 
-  // Identify boards deleted on server. A manifest may only delete boards it is
-  // fresh enough to have known about: boards edited after the newest timestamp
-  // in the manifest (or any board, when the manifest is empty) are kept, so a
-  // stale manifest snapshot cannot destroy just-created boards.
-  const manifestWatermark = getManifestWatermark(remoteBoards);
-
   for (const local of localBoards) {
     const hasServerId = isServerBoard(local);
     const notInRemote = !remoteBoardIds.has(local.id);
     const notLocallyDeleted = !syncMeta[local.id]?.isDeleted;
     const localHasSyncStatus = syncMeta[local.id] != null;
-    const knownToManifest =
-      manifestWatermark != null &&
-      !moment(local.lastEdited).isAfter(manifestWatermark);
 
-    if (
-      hasServerId &&
-      notInRemote &&
-      notLocallyDeleted &&
-      localHasSyncStatus &&
-      knownToManifest
-    ) {
-      boardIdsToDelete.push(local.id);
+    if (hasServerId && notInRemote && notLocallyDeleted && localHasSyncStatus) {
+      boardIdsToVerifyDeletion.push(local.id);
     }
   }
 
   return {
     boardsToAdd,
     boardsToUpdate,
-    boardIdsToDelete
+    boardIdsToVerifyDeletion
   };
 }

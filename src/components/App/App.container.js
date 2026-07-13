@@ -9,7 +9,6 @@ import { isFirstVisit, isLogged } from './App.selectors';
 import messages from './App.messages';
 import App from './App.component';
 import { DISPLAY_SIZE_STANDARD } from '../Settings/Display/Display.constants';
-import { hasPendingSyncBoards } from '../Board/Board.selectors';
 
 import {
   updateUserDataFromAPI,
@@ -17,7 +16,7 @@ import {
   updateUnloggedUserLocation,
   updateConnectivity
 } from '../App/App.actions';
-import { getApiObjects, clearSync } from '../Board/Board.actions';
+import { getApiObjects } from '../Board/Board.actions';
 import {
   isCordova,
   isElectron,
@@ -26,10 +25,13 @@ import {
 } from '../../cordova-util';
 import { appInsights } from '../../appInsights';
 
-// Module-scoped so a remount of AppContainer within the same JS context cannot
-// clear the isSyncing flag of a sync that is still in flight. Only the first
-// mount after a page load needs to clear the flag rehydrated by redux-persist.
-let staleSyncFlagCleared = false;
+// Module-scoped so the sync throttle survives AppContainer remounts but still
+// resets on a real app launch.
+let lastSyncTime = null;
+
+export const resetSyncThrottle = () => {
+  lastSyncTime = null;
+};
 
 export class AppContainer extends Component {
   static propTypes = {
@@ -61,14 +63,8 @@ export class AppContainer extends Component {
     /**
      * Get API objects (boards and communicators)
      */
-    getApiObjects: PropTypes.func.isRequired,
-    /**
-     * Clear a stale isSyncing flag rehydrated from a previous session
-     */
-    clearSync: PropTypes.func.isRequired
+    getApiObjects: PropTypes.func.isRequired
   };
-
-  lastSyncTime = null;
 
   componentDidMount() {
     const localizeUser = () => {
@@ -147,10 +143,6 @@ export class AppContainer extends Component {
       this.handleWebVisibilityChange
     );
 
-    if (!staleSyncFlagCleared) {
-      staleSyncFlagCleared = true;
-      this.props.clearSync();
-    }
     this.handleDataRefresh('App started');
   }
 
@@ -166,11 +158,11 @@ export class AppContainer extends Component {
 
   isSyncRecentlyExecuted = () => {
     const THROTTLE_MS = 1000 * 30;
-    return this.lastSyncTime && Date.now() - this.lastSyncTime < THROTTLE_MS;
+    return lastSyncTime && Date.now() - lastSyncTime < THROTTLE_MS;
   };
 
   handleDataRefresh = (source = 'Unknown') => {
-    const { isLogged, hasPendingSyncBoards } = this.props;
+    const { isLogged } = this.props;
 
     if (!isLogged) {
       return;
@@ -181,12 +173,12 @@ export class AppContainer extends Component {
       return;
     }
 
-    if (this.isSyncRecentlyExecuted() && !hasPendingSyncBoards) {
+    if (this.isSyncRecentlyExecuted()) {
       console.log(`Sync skipped - throttled (${source})`);
       return;
     }
 
-    this.lastSyncTime = Date.now();
+    lastSyncTime = Date.now();
     this.props.getApiObjects(source);
   };
 
@@ -267,8 +259,7 @@ const mapStateToProps = state => ({
   lang: state.language.lang,
   displaySettings: state.app.displaySettings,
   isDownloadingLang: state.language.downloadingLang.isdownloading,
-  userId: state.app.userData.id,
-  hasPendingSyncBoards: hasPendingSyncBoards(state)
+  userId: state.app.userData.id
 });
 
 const mapDispatchToProps = {
@@ -277,8 +268,7 @@ const mapDispatchToProps = {
   updateLoggedUserLocation,
   updateUnloggedUserLocation,
   updateConnectivity,
-  getApiObjects,
-  clearSync
+  getApiObjects
 };
 
 export default connect(
