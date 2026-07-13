@@ -189,3 +189,37 @@ export function getTilesListForNewOrder({
   const tilesListForNewOrder = newPages.flat();
   return tilesListForNewOrder;
 }
+
+type GridCell = { id: string; [key: string]: any } | null | undefined;
+
+/**
+ * Build a stable React key for a grid row.
+ *
+ * A row is keyed by the id of its first non-empty tile, so the key follows the
+ * row's content rather than its position. This keeps the key constant when rows
+ * are inserted, removed or reordered, avoiding needless remounts (and the lost
+ * focus/state that comes with them). Fully empty rows have no content to
+ * preserve, so they fall back to a position-based key, which stays unique.
+ */
+export function getGridRowKey(row: GridCell[], rowIndex: number): string {
+  const firstItem = row.find((cell): cell is { id: string } =>
+    Boolean(cell && cell.id)
+  );
+  return firstItem ? `row-${firstItem.id}` : `row-empty-${rowIndex}`;
+}
+
+/**
+ * Build a stable React key for a grid cell.
+ *
+ * A filled cell is keyed by its tile id (stable across reorder); an empty cell
+ * has nothing to preserve, so it uses a unique position-based key.
+ */
+export function getGridCellKey(
+  cell: GridCell,
+  rowIndex: number,
+  columnIndex: number
+): string {
+  return cell && cell.id
+    ? `cell-${cell.id}`
+    : `cell-empty-${rowIndex}-${columnIndex}`;
+}
