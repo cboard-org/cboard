@@ -1,0 +1,37 @@
+.GridSizeSelector__ButtonGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1;
+}
+
+.GridSizeSelector__roundButton.MuiButton-root {
+  display: flex;
+  margin-left: 5px;
+  margin-right: 5px;
+  min-width: 0;
+  padding: 0;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background-color: rgb(245, 0, 87);
+  color: white;
+}
+
+.GridSizeSelector__roundButton.MuiButton-root:hover {
+  background-color: rgb(165, 7, 62);
+}
+
+.GridSizeSelector__roundButton.MuiButton-root.Mui-disabled {
+  background-color: darkgray;
+}
+
+.GridSizeSelector__roundButton.MuiButton-root.Mui-disabled:hover {
+  background-color: darkgray;
+}
+
+.GridSizeSelector__counter {
+  display: flex;
+  justify-content: center;
+  width: 2ch;
+}

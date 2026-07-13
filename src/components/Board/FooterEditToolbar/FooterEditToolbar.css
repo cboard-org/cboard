@@ -1,0 +1,9 @@
+.FooterEditToolbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40px;
+  color: #fff;
+  white-space: nowrap;
+  background-color: #2196f3;
+}
