@@ -876,12 +876,14 @@ export function pushLocalChangesToApi(remoteBoards = []) {
           !remoteBoardIds.has(board.id) &&
           (await confirmServerDeletions([board.id])).length > 0
         ) {
+          const manifestWatermarkMs = remoteBoards.reduce((max, remote) => {
+            const parsed = Date.parse(remote.lastEdited);
+            return isNaN(parsed) || parsed <= max ? max : parsed;
+          }, -Infinity);
           const manifestWatermark =
-            remoteBoards
-              .map(remote => remote.lastEdited)
-              .filter(Boolean)
-              .sort()
-              .pop() || null;
+            manifestWatermarkMs === -Infinity
+              ? null
+              : new Date(manifestWatermarkMs).toISOString();
           trackSyncEvent('Sync_PushNotFoundDelete', {
             properties: {
               boardId: board.id,
