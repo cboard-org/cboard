@@ -40,3 +40,18 @@ export function countPendingBoards(syncMeta = {}) {
 export function countUntrackedBoards(boards = [], syncMeta = {}) {
   return boards.filter(board => syncMeta[board.id] == null).length;
 }
+
+/**
+ * Newest `lastEdited` in a manifest, as an ISO string (`null` when the manifest
+ * is empty or holds no parseable date). A watermark far behind the device's own
+ * edits is the signature of a stale manifest, so it is compared by parsed time
+ * rather than string order.
+ */
+export function getManifestWatermark(manifest = []) {
+  const newestMs = manifest.reduce((max, remote) => {
+    const parsed = Date.parse(remote?.lastEdited);
+    return isNaN(parsed) || parsed <= max ? max : parsed;
+  }, -Infinity);
+
+  return newestMs === -Infinity ? null : new Date(newestMs).toISOString();
+}
