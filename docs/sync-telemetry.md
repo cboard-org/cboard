@@ -144,7 +144,7 @@ telemetry.
 | `Sync_Graduation` | `Board.actions.js` → `classifyBoardsForPush`, before the batched `markBoardsSynced` |
 | `Sync_Completed` | `Board.actions.js` → `syncBoards()` success & catch (board phase only) |
 | `Sync_FullRun` | `Board.actions.js` → `getApiObjects()` `finally` (and the early `isSyncing` guard) |
-| `Sync_RemoteDeletions` | `Board.actions.js` → `syncBoards()`, after `classifyRemoteBoards`, guarded by `boardIdsToDelete.length > 0` |
+| `Sync_RemoteDeletions` | `Board.actions.js` → `syncBoards()`, after the per-id confirmation pass (`confirmServerDeletions`), guarded by `boardIdsToDelete.length > 0` |
 | `Sync_PushNotFoundDelete` | `Board.actions.js` → `pushLocalChangesToApi` push-loop catch, before the 404 hard delete |
 | `trackSyncException` | `Board.actions.js` → the six sync `catch` blocks (`pullBulkFetch`, `confirmDeletions`, `pushBoard`, `syncBoards`, `getApiMyBoards`, `getApiMyCommunicators`) |
 
