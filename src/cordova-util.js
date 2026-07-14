@@ -37,7 +37,6 @@ export const cleanUpCvaOnResume = onResume => {
 
 export const initDeepLinking = history => {
   if (!window.IonicDeeplink) {
-    console.log('IonicDeeplink plugin not available');
     return;
   }
 
@@ -47,10 +46,10 @@ export const initDeepLinking = history => {
       '/board/:id': { target: 'board' }
     },
     match => {
-      if (match.$route === '/access/:slug/:code') {
+      if (match.$route.target === 'access') {
         history.push(`/access/${match.$args.slug}/${match.$args.code}`);
       }
-      if (match.$route === '/board/:id') {
+      if (match.$route.target === 'board') {
         history.push(`/board/${match.$args.id}`);
       }
     },
