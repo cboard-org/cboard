@@ -46,7 +46,6 @@ import {
   SYNC_BOARDS_FAILURE,
   SYNC_STARTED,
   SYNC_FINISHED,
-  CLEAR_SYNC,
   MARK_BOARDS_SYNCED,
   SYNC_STATUS,
   SET_IS_SAVING
@@ -79,7 +78,9 @@ import { improvePhraseAbortController } from '../../api/api';
 import {
   trackSyncEvent,
   trackSyncException,
-  countPendingBoards
+  countPendingBoards,
+  countUntrackedBoards,
+  getManifestWatermark
 } from './Board.sync.analytics';
 
 export function addBoards(boards) {
@@ -590,10 +591,6 @@ export function syncFinished() {
   return { type: SYNC_FINISHED };
 }
 
-export function clearSync() {
-  return { type: CLEAR_SYNC };
-}
-
 /**
  * PULL: Apply remote changes to local Redux state.
  *
@@ -601,8 +598,9 @@ export function clearSync() {
  * only), which is the authoritative list of the boards that exist on the
  * server (getBoardsSync returns the complete, unpaged set).
  *
- * - Deletions: a board absent from the manifest has been deleted on the server,
- *   so it is removed locally directly — no verification fetch.
+ * - Deletions: the received boardIdsToDelete are candidates whose deletion the
+ *   server already confirmed by id (see syncBoards), so they are removed
+ *   locally directly.
  * - Adds / updates: the full bodies (with tiles) for every new/changed board
  *   are fetched in a single getBoardsByIds() request, then applied from the
  *   resulting in-memory map. One request regardless of how many boards changed.
@@ -631,7 +629,7 @@ export function applyRemoteChangesToState({
       bodiesById = new Map(res.data.map(b => [b.id, b]));
     } catch (e) {
       // Transient/server failure: defer adds & updates to the next sync. The
-      // deletions above are already applied (manifest-authoritative) and the
+      // deletions above are already applied (server-confirmed) and the
       // PUSH phase can still upload local edits, so we don't abort the cycle.
       console.error('Bulk board body fetch failed; deferring adds/updates:', e);
       trackSyncException(e, { phase: 'pullBulkFetch' });
@@ -771,6 +769,35 @@ function classifyBoardsForPush({
   return { boardsToSync, boardsToDelete };
 }
 
+const OBJECT_ID_REGEX = /^[0-9a-fA-F]{24}$/;
+// Mirrors the server's request cap on POST /board/byids; a lower server cap
+// would 400 every over-sized chunk and (safely) confirm nothing.
+const MAX_BOARDS_BY_IDS = 3000;
+
+/**
+ * Returns the subset of boardIds whose deletion the server confirms: ids
+ * absent from a fresh getBoardsByIds read. Any error or unexpected shape
+ * confirms nothing for that chunk. Ids that are not valid ObjectIds are never
+ * confirmed — the server filters them out, so their absence proves nothing.
+ */
+async function confirmServerDeletions(boardIds) {
+  const verifiableIds = boardIds.filter(id => OBJECT_ID_REGEX.test(id));
+  const confirmedIds = [];
+  for (let i = 0; i < verifiableIds.length; i += MAX_BOARDS_BY_IDS) {
+    const chunk = verifiableIds.slice(i, i + MAX_BOARDS_BY_IDS);
+    try {
+      const res = await API.getBoardsByIds(chunk);
+      if (!Array.isArray(res?.data)) continue;
+      const existingIds = new Set(res.data.map(b => b.id));
+      confirmedIds.push(...chunk.filter(id => !existingIds.has(id)));
+    } catch (e) {
+      console.error('Deletion confirmation failed; keeping boards:', e);
+      trackSyncException(e, { phase: 'confirmDeletions' });
+    }
+  }
+  return confirmedIds;
+}
+
 /**
  * PUSH: Upload local changes to the API.
  * Pushes all boards with syncStatus: PENDING, plus untracked boards (no syncStatus)
@@ -818,6 +845,8 @@ export function pushLocalChangesToApi(remoteBoards = []) {
       }
     }
 
+    const remoteBoardIds = new Set(remoteBoards.map(remote => remote.id));
+
     // PUSH: Create/update boards
     for (const { boardId, needsCreate } of boardsToSync) {
       // Re-read board from current state to avoid stale references
@@ -838,6 +867,24 @@ export function pushLocalChangesToApi(remoteBoards = []) {
           await dispatch(updateApiBoard(board));
         }
       } catch (e) {
+        if (
+          !needsCreate &&
+          e.response?.status === 404 &&
+          !remoteBoardIds.has(board.id) &&
+          (await confirmServerDeletions([board.id])).length > 0
+        ) {
+          trackSyncEvent('Sync_PushNotFoundDelete', {
+            properties: {
+              boardId: board.id,
+              tracked: String(getState().board.syncMeta[board.id] != null),
+              boardLastEdited: String(board.lastEdited),
+              manifestWatermark: String(getManifestWatermark(remoteBoards))
+            },
+            measurements: { manifestSize: remoteBoards.length }
+          });
+          dispatch(deleteApiBoardSuccess({ id: board.id }));
+          continue;
+        }
         console.error('Failed to push board to API:', board.id, e);
         trackSyncException(e, { phase: 'pushBoard', boardId: board.id });
       }
@@ -877,31 +924,52 @@ export function syncBoards(remoteBoards) {
     const { boards: localBoards, syncMeta } = getState().board;
     const pendingBefore = countPendingBoards(syncMeta);
 
-    if (Object.keys(syncMeta).length === 0 && localBoards.length > 0) {
-      const serverBoards = localBoards.filter(isServerBoard).length;
-      trackSyncEvent('Sync_FirstRun', {
-        measurements: {
-          totalBoards: localBoards.length,
-          localBoards: localBoards.length - serverBoards,
-          serverBoards
-        }
-      });
-    }
+    const manifestWatermark = String(getManifestWatermark(remoteBoards));
+    const localServerBoards = localBoards.filter(isServerBoard).length;
 
     try {
-      // 1. Classify boards for PULL (remote changes + remote deletions)
+      trackSyncEvent('Sync_BoardsStarted', {
+        properties: { manifestWatermark },
+        measurements: {
+          pendingBefore,
+          manifestSize: remoteBoards.length,
+          localBoards: localBoards.length,
+          localServerBoards,
+          untrackedBefore: countUntrackedBoards(localBoards, syncMeta)
+        }
+      });
+
+      if (Object.keys(syncMeta).length === 0 && localBoards.length > 0) {
+        trackSyncEvent('Sync_FirstRun', {
+          measurements: {
+            totalBoards: localBoards.length,
+            localBoards: localBoards.length - localServerBoards,
+            serverBoards: localServerBoards
+          }
+        });
+      }
+
+      // 1. Classify boards for PULL (remote changes + remote deletion candidates)
       const {
         boardsToAdd,
         boardsToUpdate,
-        boardIdsToDelete
+        boardIdsToVerifyDeletion
       } = classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
+
+      const boardIdsToDelete = await confirmServerDeletions(
+        boardIdsToVerifyDeletion
+      );
 
       if (boardIdsToDelete.length > 0) {
         trackSyncEvent('Sync_RemoteDeletions', {
+          properties: {
+            manifestWatermark,
+            boardIds: boardIdsToDelete.slice(0, 50).join(',')
+          },
           measurements: {
             deletedCount: boardIdsToDelete.length,
             manifestSize: remoteBoards.length,
-            localServerBoards: localBoards.filter(isServerBoard).length
+            localServerBoards
           }
         });
       }
@@ -925,24 +993,34 @@ export function syncBoards(remoteBoards) {
       await dispatch(pushLocalChangesToApi(remoteBoards));
 
       dispatch(syncBoardsSuccess());
+      const successState = getState().board;
       trackSyncEvent('Sync_Completed', {
         properties: { outcome: 'success' },
         measurements: {
           durationMs: Date.now() - startedAt,
           pendingBefore,
-          pendingAfter: countPendingBoards(getState().board.syncMeta)
+          pendingAfter: countPendingBoards(successState.syncMeta),
+          untrackedAfter: countUntrackedBoards(
+            successState.boards,
+            successState.syncMeta
+          )
         }
       });
       return { success: true };
     } catch (error) {
       console.error('Sync boards failed:', error);
       dispatch(syncBoardsFailure(error));
+      const failureState = getState().board;
       trackSyncEvent('Sync_Completed', {
         properties: { outcome: 'failure' },
         measurements: {
           durationMs: Date.now() - startedAt,
           pendingBefore,
-          pendingAfter: countPendingBoards(getState().board.syncMeta)
+          pendingAfter: countPendingBoards(failureState.syncMeta),
+          untrackedAfter: countUntrackedBoards(
+            failureState.boards,
+            failureState.syncMeta
+          )
         }
       });
       trackSyncException(error, { phase: 'syncBoards' });
@@ -1007,7 +1085,7 @@ export function updateApiBoard(boardData) {
       })
       .catch(err => {
         dispatch(updateApiBoardFailure(err.message));
-        throw new Error(err.message);
+        throw err;
       });
   };
 }

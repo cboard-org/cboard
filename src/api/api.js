@@ -9,12 +9,23 @@ import {
   AZURE_SPEECH_SUBSCR_KEY
 } from '../constants';
 import { getStore } from '../store';
-import { dataURLtoFile, isDataURL, isLocalFileURL } from '../helpers';
+import {
+  convertMediaUrlToCDN,
+  dataURLtoBlob,
+  isDataURL,
+  isLocalFileURL
+} from '../helpers';
 import { logout } from '../components/Account/Login/Login.actions.js';
-import { isAndroid } from '../cordova-util';
+import { cvaFileToBlob, isAndroid } from '../cordova-util';
 
 const BASE_URL = API_URL;
 const LOCAL_COMMUNICATOR_ID = 'cboard_default';
+
+const FILE_NOT_FOUND_ERR = 1;
+const FILE_ENCODING_ERR = 5;
+const isUnrecoverableFileError = error =>
+  !!error &&
+  (error.code === FILE_NOT_FOUND_ERR || error.code === FILE_ENCODING_ERR);
 export let improvePhraseAbortController;
 
 const getUserData = () => {
@@ -454,51 +465,96 @@ class API {
     return data;
   }
 
-  async uploadFromDataURL(dataURL, filename, checkExtension = false) {
-    let url = null;
+  async tryUploadDataURL(dataURL, filename, checkExtension = false) {
+    let blob;
     try {
-      const file = dataURLtoFile(dataURL, filename, checkExtension);
-      url = await this.uploadFile(file, filename);
-    } catch (e) {}
+      blob = dataURLtoBlob(dataURL);
+    } catch (e) {
+      return { url: null, unrecoverable: true };
+    }
+    let name = filename;
+    if (checkExtension) {
+      const extension = (blob.type.split('/')[1] || 'png').toLowerCase();
+      name = `${filename}.${extension}`;
+    }
+    try {
+      const url = await this.uploadFile(blob, name);
+      return { url, unrecoverable: false };
+    } catch (e) {
+      return { url: null, unrecoverable: false };
+    }
+  }
 
+  async uploadFromDataURL(dataURL, filename, checkExtension = false) {
+    const { url } = await this.tryUploadDataURL(
+      dataURL,
+      filename,
+      checkExtension
+    );
     return url;
   }
 
   async uploadTileImageMedia(tile) {
     if (isDataURL(tile.image)) {
-      const url = await this.uploadFromDataURL(tile.image, tile.id, true);
-      return { attempted: true, url };
+      const { url, unrecoverable } = await this.tryUploadDataURL(
+        tile.image,
+        tile.id,
+        true
+      );
+      return { attempted: true, url, unrecoverable };
     }
 
     if (isLocalFileURL(tile.image) && isAndroid()) {
-      const file = await new Promise(resolve => {
+      const resolved = await new Promise(resolve => {
         window.resolveLocalFileSystemURL(
           tile.image,
           fileEntry => {
-            fileEntry.file(file => resolve(file), () => resolve(null));
+            fileEntry.file(
+              file => resolve({ file }),
+              error => resolve({ error })
+            );
           },
-          () => resolve(null)
+          error => resolve({ error })
         );
       });
-      if (file) {
+      if (!resolved.file) {
+        return {
+          attempted: true,
+          url: null,
+          unrecoverable: isUnrecoverableFileError(resolved.error)
+        };
+      }
+
+      let realBlob;
+      try {
+        realBlob = await cvaFileToBlob(resolved.file, 'image/png');
+      } catch (e) {
+        return { attempted: true, url: null, unrecoverable: true };
+      }
+
+      try {
         const segments = tile.image.split('/');
         const name = segments[segments.length - 1] || tile.id;
-        const url = await this.uploadFile(file, name);
-        return { attempted: true, url };
+        const url = await this.uploadFile(realBlob, name);
+        return { attempted: true, url, unrecoverable: false };
+      } catch (e) {
+        return { attempted: true, url: null, unrecoverable: false };
       }
-      return { attempted: true, url: null };
     }
 
-    return { attempted: false, url: null };
+    return { attempted: false, url: null, unrecoverable: false };
   }
 
   async uploadTileSoundMedia(tile) {
     if (isDataURL(tile.sound)) {
-      const url = await this.uploadFromDataURL(tile.sound, `${tile.id}.mp3`);
-      return { attempted: true, url };
+      const { url, unrecoverable } = await this.tryUploadDataURL(
+        tile.sound,
+        `${tile.id}.mp3`
+      );
+      return { attempted: true, url, unrecoverable };
     }
 
-    return { attempted: false, url: null };
+    return { attempted: false, url: null, unrecoverable: false };
   }
 
   async uploadBoardLocalMedia(board) {
@@ -514,8 +570,7 @@ class API {
       return { board, hadFailure: false };
     }
 
-    const imageUrlByTileId = {};
-    const soundUrlByTileId = {};
+    const tileUpdates = {};
     let hadFailure = false;
 
     const uploadTarget = async tile => {
@@ -525,9 +580,12 @@ class API {
           this.uploadTileSoundMedia(tile)
         ]);
 
+        const update = {};
         if (image.attempted) {
           if (image.url) {
-            imageUrlByTileId[tile.id] = image.url;
+            update.image = image.url;
+          } else if (image.unrecoverable) {
+            update.image = '';
           } else {
             hadFailure = true;
           }
@@ -535,10 +593,16 @@ class API {
 
         if (sound.attempted) {
           if (sound.url) {
-            soundUrlByTileId[tile.id] = sound.url;
+            update.sound = sound.url;
+          } else if (sound.unrecoverable) {
+            update.sound = '';
           } else {
             hadFailure = true;
           }
+        }
+
+        if (Object.keys(update).length) {
+          tileUpdates[tile.id] = update;
         }
       } catch (e) {
         hadFailure = true;
@@ -553,16 +617,8 @@ class API {
     const sanitizedBoard = {
       ...board,
       tiles: tiles.map(tile => {
-        const imageUrl = imageUrlByTileId[(tile?.id)];
-        const soundUrl = soundUrlByTileId[(tile?.id)];
-        if (!imageUrl && !soundUrl) {
-          return tile;
-        }
-        return {
-          ...tile,
-          ...(imageUrl ? { image: imageUrl } : {}),
-          ...(soundUrl ? { sound: soundUrl } : {})
-        };
+        const update = tileUpdates[(tile?.id)];
+        return update ? { ...tile, ...update } : tile;
       })
     };
 
@@ -586,7 +642,8 @@ class API {
       headers
     });
 
-    return response.data.url;
+    const url = response.data.url;
+    return (url && convertMediaUrlToCDN(url)) || url;
   }
 
   async createCommunicator(communicator) {

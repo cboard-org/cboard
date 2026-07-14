@@ -34,7 +34,6 @@ import {
   SYNC_BOARDS_FAILURE,
   SYNC_STARTED,
   SYNC_FINISHED,
-  CLEAR_SYNC,
   SYNC_STATUS
 } from '../Board.constants';
 import { LOGOUT, LOGIN_SUCCESS } from '../../Account/Login/Login.constants';
@@ -622,17 +621,6 @@ describe('reducer', () => {
     };
     expect(
       boardReducer({ ...initialState, isSyncing: true }, syncFinished)
-    ).toEqual({
-      ...initialState,
-      isSyncing: false
-    });
-  });
-  it('should handle clearSync', () => {
-    const clearSync = {
-      type: CLEAR_SYNC
-    };
-    expect(
-      boardReducer({ ...initialState, isSyncing: true }, clearSync)
     ).toEqual({
       ...initialState,
       isSyncing: false

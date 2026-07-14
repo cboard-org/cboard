@@ -234,6 +234,15 @@ export const readCvaFile = async name => {
   }
 };
 
+export const cvaFileToBlob = (file, fallbackType) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () =>
+      resolve(new Blob([reader.result], { type: file.type || fallbackType }));
+    reader.onerror = () => reject(reader.error);
+    reader.readAsArrayBuffer(file);
+  });
+
 export const writeCvaFile = async (name, blob) => {
   if (isCordova()) {
     return new Promise(function(resolve, reject) {
