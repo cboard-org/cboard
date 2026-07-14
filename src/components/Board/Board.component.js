@@ -201,46 +201,59 @@ export class Board extends Component {
       displaySettings
     } = this.props;
 
-    return tiles.map(tileToRender => {
-      const tile = {
-        ...tileToRender,
-        label: resolveTileLabel(tileToRender, this.props.intl)
-      };
-      const isSelected = selectedTileIds.includes(tile.id);
-      const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
+    // Handle null/undefined/non-array tiles defensively
+    if (!Array.isArray(tiles)) {
+      return [];
+    }
 
-      return (
-        <div key={tile.id}>
-          <Tile
-            backgroundColor={tile.backgroundColor}
-            borderColor={tile.borderColor}
-            variant={variant}
-            onClick={e => {
-              e.stopPropagation();
-              this.handleTileClick(tile);
-            }}
-            onFocus={() => {
-              this.handleTileFocus(tile.id);
-            }}
-          >
-            <Symbol
-              image={tile.image}
-              label={tile.label}
-              keyPath={tile.keyPath}
-              labelpos={displaySettings.labelPosition}
-            />
+    return (
+      tiles
+        // Filter out nulls and tiles without a valid string id
+        .filter(
+          tile =>
+            tile && typeof tile.id === 'string' && tile.id.trim().length > 0
+        )
+        .map(tileToRender => {
+          const tile = {
+            ...tileToRender,
+            label: resolveTileLabel(tileToRender, this.props.intl)
+          };
+          const isSelected = selectedTileIds.includes(tile.id);
+          const variant = Boolean(tile.loadBoard) ? 'folder' : 'button';
 
-            {isSelecting && !isSaving && (
-              <div className="CheckCircle">
-                {isSelected && (
-                  <CheckCircleIcon className="CheckCircle__icon" />
+          return (
+            <div key={tile.id}>
+              <Tile
+                backgroundColor={tile.backgroundColor}
+                borderColor={tile.borderColor}
+                variant={variant}
+                onClick={e => {
+                  e.stopPropagation();
+                  this.handleTileClick(tile);
+                }}
+                onFocus={() => {
+                  this.handleTileFocus(tile.id);
+                }}
+              >
+                <Symbol
+                  image={tile.image}
+                  label={tile.label}
+                  keyPath={tile.keyPath}
+                  labelpos={displaySettings.labelPosition}
+                />
+
+                {isSelecting && !isSaving && (
+                  <div className="CheckCircle">
+                    {isSelected && (
+                      <CheckCircleIcon className="CheckCircle__icon" />
+                    )}
+                  </div>
                 )}
-              </div>
-            )}
-          </Tile>
-        </div>
-      );
-    });
+              </Tile>
+            </div>
+          );
+        })
+    );
   }
 
   renderTileFixedBoard = tileToRender => {
