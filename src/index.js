@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'fontsource-roboto';
 import { Provider } from 'react-redux';
-import { BrowserRouter, HashRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Router, Route } from 'react-router-dom';
 import { TouchBackend } from 'react-dnd-touch-backend';
 import { DndProvider } from 'react-dnd';
 import { PersistGate } from 'redux-persist/es/integration/react';
@@ -36,8 +36,10 @@ const dndOptions = {
   enableKeyboardEvents: true
 };
 
-// When running in Cordova, must use the HashRouter
-const PlatformRouter = isCordova() ? HashRouter : BrowserRouter;
+// When running in Cordova, use Router with shared history so deep linking works
+const PlatformRouter = isCordova()
+  ? ({ children }) => <Router history={history}>{children}</Router>
+  : BrowserRouter;
 
 // PayPal configuration
 const paypalOptions = {
