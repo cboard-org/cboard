@@ -129,9 +129,6 @@ async function getTilesData(obfBoard, boards = {}, images = {}) {
 
 async function obfToCboard(obfBoard, boards = {}, images = {}, allBoards = []) {
   const allBoardsIds = getBoardsIds(allBoards);
-  if (allBoardsIds.includes(obfBoard.id)) {
-    return undefined;
-  }
   let tiles = [];
   if (obfBoard.buttons) {
     tiles = await getTilesData(obfBoard, boards, images);
@@ -162,6 +159,29 @@ async function obfToCboard(obfBoard, boards = {}, images = {}, allBoards = []) {
     board.locale = obfBoard.locale;
   }
 
+  // Resolve ID collisions with existing boards (preserve prevId when changed)
+  board = resolveCollision(board, allBoardsIds);
+
+  // Only import boards that are allowed (not hidden, not root)
+  if (!shouldImportBoard(board)) {
+    return undefined;
+  }
+
+  return board;
+}
+
+function shouldImportBoard(board) {
+  return (
+    (typeof board.ext_cboard_hidden === 'undefined' ||
+      !board.ext_cboard_hidden) &&
+    board.id !== 'root'
+  );
+}
+
+function resolveCollision(board, allBoardsIds) {
+  if (allBoardsIds.includes(board.id)) {
+    return { ...board, prevId: board.id, id: shortid.generate() };
+  }
   return board;
 }
 
@@ -186,13 +206,9 @@ export async function cboardImportAdapter(file, intl, allBoards) {
         try {
           const boards = JSON.parse(reader.result);
           const allBoardsIds = getBoardsIds(allBoards);
-          const fboards = boards.filter(
-            board =>
-              (typeof board.ext_cboard_hidden === 'undefined' ||
-                !board.ext_cboard_hidden) &&
-              board.id !== 'root' &&
-              !allBoardsIds.includes(board.id)
-          );
+          const fboards = boards
+            .filter(board => shouldImportBoard(board))
+            .map(board => resolveCollision(board, allBoardsIds));
           resolve(fboards);
         } catch (err) {
           reject(err);
@@ -234,12 +250,8 @@ export async function obzImportAdapter(file, intl, allBoards) {
 
         if (isBoard) {
           const tempBoard = JSON.parse(result);
-          if (
-            (typeof tempBoard.ext_cboard_hidden === 'undefined' ||
-              !tempBoard.ext_cboard_hidden) &&
-            tempBoard.id !== 'root' &&
-            !allBoardsIds.includes(tempBoard.id)
-          ) {
+          // keep boards that should be imported; collisions are resolved later
+          if (shouldImportBoard(tempBoard)) {
             boards[k] = tempBoard;
           }
         } else {
@@ -258,7 +270,9 @@ export async function obzImportAdapter(file, intl, allBoards) {
   const cboardBoards = [];
   for (let key in boards) {
     const board = await obfToCboard(boards[key], boards, images);
-    cboardBoards.push(board);
+    if (board) {
+      cboardBoards.push(resolveCollision(board, allBoardsIds));
+    }
   }
 
   return cboardBoards;
