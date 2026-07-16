@@ -35,6 +35,30 @@ export const cleanUpCvaOnResume = onResume => {
   document.removeEventListener('resume', onResume, false);
 };
 
+export const initDeepLinking = history => {
+  if (!window.IonicDeeplink) {
+    return;
+  }
+
+  window.IonicDeeplink.route(
+    {
+      '/access/:slug/:code': { target: 'access' },
+      '/board/:id': { target: 'board' }
+    },
+    match => {
+      if (match.$route.target === 'access') {
+        history.push(`/access/${match.$args.slug}/${match.$args.code}`);
+      }
+      if (match.$route.target === 'board') {
+        history.push(`/board/${match.$args.id}`);
+      }
+    },
+    nomatch => {
+      console.log('Deep link no match:', nomatch.$link);
+    }
+  );
+};
+
 export const initCordovaPlugins = () => {
   console.log('now cordova is ready ');
   if (isCordova()) {

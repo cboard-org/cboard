@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "9XLTTD28J7.com.cboardorg.cboard",
+        "paths": ["/access/*", "/board/*"]
+      }
+    ]
+  }
+}

@@ -62,26 +62,21 @@ import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
 import API from '../../api';
-import {
-  SCANNING_METHOD_AUTOMATIC,
-  SCANNING_METHOD_MANUAL
-} from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 import { getVisibleBoards } from './Board.selectors';
 import PremiumFeature from '../PremiumFeature';
 import {
-  IS_BROWSING_FROM_APPLE_TOUCH,
-  IS_BROWSING_FROM_SAFARI
-} from '../../constants';
+  scrollBoardToTop,
+  processTileClick,
+  getScannerStrategyNotificationMessages,
+  computeScrollState
+} from './Board.utils';
 import LoadingIcon from '../UI/LoadingIcon';
 import PinDialog from '../UI/PinDialog';
 import { resolveTileLabel } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
-
-const ogv = require('ogv');
-ogv.OGVLoader.base = process.env.PUBLIC_URL + '/ogv';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -431,15 +426,6 @@ export class BoardContainer extends Component {
     return dataURL;
   }
 
-  async playAudio(src) {
-    const safariNeedHelp =
-      (IS_BROWSING_FROM_SAFARI || IS_BROWSING_FROM_APPLE_TOUCH) &&
-      src.endsWith('.ogg');
-    const audio = safariNeedHelp ? new ogv.OGVPlayer() : new Audio();
-    audio.src = src;
-    await audio.play();
-  }
-
   handleEditBoardTitle = name => {
     const { board, updateBoard } = this.props;
     const titledBoard = {
@@ -759,9 +745,11 @@ export class BoardContainer extends Component {
           if (item.x > valorAnterior) return item.x;
           return valorAnterior;
         }, 0) + 1;
-      const rows = 3;
-      const isScroll = currentLayout.length / cols > rows ? true : false;
-      const totalRows = Math.ceil(currentLayout.length / cols);
+      const { isScroll, totalRows } = computeScrollState(
+        currentLayout.length,
+        cols,
+        3
+      );
       this.setIsScroll(isScroll, totalRows);
     }
 
@@ -876,55 +864,28 @@ export class BoardContainer extends Component {
       boards,
       showNotification,
       navigationSettings,
-      isLiveMode
+      isLiveMode,
+      output
     } = this.props;
-    const hasAction = tile.action && tile.action.startsWith('+');
 
-    const say = () => {
-      if (tile.sound) {
-        this.playAudio(tile.sound);
-      } else {
-        const toSpeak = !hasAction ? tile.vocalization || tile.label : null;
-        if (toSpeak) {
-          speak(toSpeak);
-        }
-      }
-    };
-
-    if (tile.loadBoard) {
-      const nextBoard =
-        boards.find(b => b.id === tile.loadBoard) ||
-        // If the board id is invalid, try falling back to a board
-        // with the right name.
-        boards.find(b => b.name === tile.label);
-      if (nextBoard) {
-        changeBoard(nextBoard.id);
-        this.props.history.push(nextBoard.id);
-        if (navigationSettings.vocalizeFolders) {
-          say();
-        }
-      } else {
+    processTileClick({
+      tile,
+      boards,
+      output,
+      navigationSettings,
+      speak,
+      changeBoard,
+      changeOutput,
+      clickSymbol,
+      isLiveMode,
+      generateId: shortid.generate,
+      onNavigate: nextBoardId => {
+        this.props.history.push(nextBoardId);
+      },
+      onBoardNotFound: () => {
         showNotification(intl.formatMessage(messages.boardMissed));
       }
-    } else {
-      clickSymbol(tile.label);
-      if (!navigationSettings.quietBuilderMode) {
-        say();
-      }
-      if (isLiveMode) {
-        const liveTile = {
-          backgroundColor: 'rgb(255, 241, 118)',
-          id: shortid.generate(),
-          image: '',
-          label: '',
-          labelKey: '',
-          type: 'live'
-        };
-        changeOutput([...this.props.output, tile, liveTile]);
-      } else {
-        changeOutput([...this.props.output, tile]);
-      }
-    }
+    });
   };
 
   handleAddTile = (tile, boardId) => {
@@ -1042,15 +1003,19 @@ export class BoardContainer extends Component {
       showNotification,
       intl
     } = this.props;
-    const messagesKeyMap = {
-      [SCANNING_METHOD_MANUAL]: messages.scannerManualStrategy,
-      [SCANNING_METHOD_AUTOMATIC]: messages.scannerAutomaticStrategy
-    };
-    showNotification(intl.formatMessage(messagesKeyMap[strategy]));
 
-    if (!isMobile.any) {
+    const {
+      strategyMessage,
+      deactivateMessage,
+      showDeactivate
+    } = getScannerStrategyNotificationMessages(strategy, isMobile.any);
+
+    if (strategyMessage) {
+      showNotification(intl.formatMessage(strategyMessage));
+    }
+    if (showDeactivate) {
       setTimeout(() => {
-        showNotification(intl.formatMessage(messages.scannerHowToDeactivate));
+        showNotification(intl.formatMessage(deactivateMessage));
       }, NOTIFICATION_DELAY);
     }
   };
@@ -1266,11 +1231,8 @@ export class BoardContainer extends Component {
   };
 
   scrollToTop = () => {
-    if (this.boardRef && !this.state.isSelecting) {
-      const boardComponentRef = this.props.board.isFixed
-        ? 'fixedBoardContainerRef'
-        : 'boardContainerRef';
-      this.boardRef.current[boardComponentRef].current.scrollTop = 0;
+    if (!this.state.isSelecting) {
+      scrollBoardToTop(this.boardRef, this.props.board?.isFixed);
     }
   };
 
