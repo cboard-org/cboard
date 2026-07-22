@@ -557,6 +557,19 @@ class API {
     return { attempted: false, url: null, unrecoverable: false };
   }
 
+  async uploadBoardCaptionMedia(board) {
+    if (isDataURL(board?.caption)) {
+      const { url, unrecoverable } = await this.tryUploadDataURL(
+        board.caption,
+        board.id,
+        true
+      );
+      return { attempted: true, url, unrecoverable };
+    }
+
+    return { attempted: false, url: null, unrecoverable: false };
+  }
+
   async uploadBoardLocalMedia(board) {
     const tiles = board?.tiles || [];
     const targets = tiles.filter(
@@ -566,7 +579,9 @@ class API {
         isDataURL(tile?.sound)
     );
 
-    if (!targets.length) {
+    const captionIsTarget = isDataURL(board?.caption);
+
+    if (!targets.length && !captionIsTarget) {
       return { board, hadFailure: false };
     }
 
@@ -621,6 +636,19 @@ class API {
         return update ? { ...tile, ...update } : tile;
       })
     };
+
+    if (captionIsTarget) {
+      const caption = await this.uploadBoardCaptionMedia(board);
+      if (caption.attempted) {
+        if (caption.url) {
+          sanitizedBoard.caption = caption.url;
+        } else if (caption.unrecoverable) {
+          sanitizedBoard.caption = '';
+        } else {
+          hadFailure = true;
+        }
+      }
+    }
 
     return { board: sanitizedBoard, hadFailure };
   }

@@ -443,6 +443,51 @@ describe('Cboard API calls', () => {
         'file:///storage/emulated/0/img.png'
       );
     });
+
+    it('uploads a base64 caption and rewrites it to the url on success', async () => {
+      jest.spyOn(API, 'tryUploadDataURL').mockResolvedValue({
+        url: 'https://cdn.example.com/caption.png',
+        unrecoverable: false
+      });
+
+      const board = {
+        id: 'b1',
+        tiles: [],
+        caption: 'data:image/png;base64,iVBORw0KGgo='
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(false);
+      expect(API.tryUploadDataURL).toHaveBeenCalledWith(
+        'data:image/png;base64,iVBORw0KGgo=',
+        'b1',
+        true
+      );
+      expect(sanitized.caption).toBe('https://cdn.example.com/caption.png');
+    });
+
+    it('leaves a non-data-url caption untouched and does not upload', async () => {
+      const uploadFile = jest.spyOn(API, 'uploadFile');
+      const tryUploadDataURL = jest.spyOn(API, 'tryUploadDataURL');
+
+      const board = {
+        id: 'b1',
+        tiles: [],
+        caption: 'https://cdn.example.com/existing.png'
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(false);
+      expect(uploadFile).not.toHaveBeenCalled();
+      expect(tryUploadDataURL).not.toHaveBeenCalled();
+      expect(sanitized.caption).toBe('https://cdn.example.com/existing.png');
+    });
   });
 
   it('fetches results from unauthorized api', () => {
