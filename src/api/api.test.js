@@ -488,6 +488,72 @@ describe('Cboard API calls', () => {
       expect(tryUploadDataURL).not.toHaveBeenCalled();
       expect(sanitized.caption).toBe('https://cdn.example.com/existing.png');
     });
+
+    it('clears a caption and does not flag failure when it is unrecoverable', async () => {
+      jest
+        .spyOn(API, 'tryUploadDataURL')
+        .mockResolvedValue({ url: null, unrecoverable: true });
+
+      const board = {
+        id: 'b1',
+        tiles: [],
+        caption: 'data:image/png;base64,@@@'
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(false);
+      expect(sanitized.caption).toBe('');
+    });
+
+    it('keeps the caption and flags hadFailure on a transient caption upload failure', async () => {
+      jest
+        .spyOn(API, 'tryUploadDataURL')
+        .mockResolvedValue({ url: null, unrecoverable: false });
+
+      const board = {
+        id: 'b1',
+        tiles: [],
+        caption: 'data:image/png;base64,AAAA'
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(true);
+      expect(sanitized.caption).toBe('data:image/png;base64,AAAA');
+    });
+
+    it('uploads both a base64 tile image and a base64 caption', async () => {
+      jest
+        .spyOn(API, 'tryUploadDataURL')
+        .mockResolvedValueOnce({
+          url: 'https://cdn.example.com/tile.png',
+          unrecoverable: false
+        })
+        .mockResolvedValueOnce({
+          url: 'https://cdn.example.com/caption.png',
+          unrecoverable: false
+        });
+
+      const board = {
+        id: 'b1',
+        tiles: [{ id: 't1', image: 'data:image/png;base64,AAAA' }],
+        caption: 'data:image/png;base64,BBBB'
+      };
+
+      const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
+        board
+      );
+
+      expect(hadFailure).toBe(false);
+      expect(API.tryUploadDataURL).toHaveBeenCalledTimes(2);
+      expect(sanitized.tiles[0].image).toBe('https://cdn.example.com/tile.png');
+      expect(sanitized.caption).toBe('https://cdn.example.com/caption.png');
+    });
   });
 
   it('fetches results from unauthorized api', () => {
