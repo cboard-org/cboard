@@ -921,6 +921,7 @@ export function syncBoards(remoteBoards) {
     dispatch(syncBoardsStarted());
 
     const startedAt = Date.now();
+    const userEmail = getState().app?.userData?.email;
     const { boards: localBoards, syncMeta } = getState().board;
     const pendingBefore = countPendingBoards(syncMeta);
 
@@ -935,7 +936,11 @@ export function syncBoards(remoteBoards) {
           manifestSize: remoteBoards.length,
           localBoards: localBoards.length,
           localServerBoards,
-          untrackedBefore: countUntrackedBoards(localBoards, syncMeta)
+          untrackedBefore: countUntrackedBoards(
+            localBoards,
+            syncMeta,
+            userEmail
+          )
         }
       });
 
@@ -1002,7 +1007,8 @@ export function syncBoards(remoteBoards) {
           pendingAfter: countPendingBoards(successState.syncMeta),
           untrackedAfter: countUntrackedBoards(
             successState.boards,
-            successState.syncMeta
+            successState.syncMeta,
+            userEmail
           )
         }
       });
@@ -1019,7 +1025,8 @@ export function syncBoards(remoteBoards) {
           pendingAfter: countPendingBoards(failureState.syncMeta),
           untrackedAfter: countUntrackedBoards(
             failureState.boards,
-            failureState.syncMeta
+            failureState.syncMeta,
+            userEmail
           )
         }
       });

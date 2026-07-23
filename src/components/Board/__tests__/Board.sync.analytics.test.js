@@ -1,7 +1,8 @@
 import {
   trackSyncEvent,
   trackSyncException,
-  getManifestWatermark
+  getManifestWatermark,
+  countUntrackedBoards
 } from '../Board.sync.analytics';
 import { appInsights } from '../../../appInsights';
 
@@ -54,6 +55,56 @@ describe('getManifestWatermark', () => {
   it('returns null for a missing or non-array manifest', () => {
     expect(getManifestWatermark()).toBeNull();
     expect(getManifestWatermark(null)).toBeNull();
+  });
+});
+
+describe('countUntrackedBoards', () => {
+  const USER_EMAIL = 'user@example.com';
+
+  it('counts untracked boards owned by the current user', () => {
+    const boards = [{ id: 'aaaaaaaaaaaaaaaa', email: USER_EMAIL }];
+
+    expect(countUntrackedBoards(boards, {}, USER_EMAIL)).toBe(1);
+  });
+
+  it('counts untracked boards created while unlogged (no email)', () => {
+    const boards = [{ id: 'aaaaaaaaaaaaaaaa', email: '' }];
+
+    expect(countUntrackedBoards(boards, {}, USER_EMAIL)).toBe(1);
+  });
+
+  it('excludes shipped default boards owned by the default email', () => {
+    // `root` is a real default board id; still owned by support@cboard.io it is
+    // never onboarded by the sync engine, so it must not count as untracked.
+    const boards = [{ id: 'root', email: 'support@cboard.io' }];
+
+    expect(countUntrackedBoards(boards, {}, USER_EMAIL)).toBe(0);
+  });
+
+  it("excludes untracked boards owned by another user's email", () => {
+    const boards = [{ id: 'aaaaaaaaaaaaaaaa', email: 'someone@else.com' }];
+
+    expect(countUntrackedBoards(boards, {}, USER_EMAIL)).toBe(0);
+  });
+
+  it('excludes boards that already have a syncMeta entry', () => {
+    const boards = [{ id: 'aaaaaaaaaaaaaaaa', email: USER_EMAIL }];
+    const syncMeta = { aaaaaaaaaaaaaaaa: { status: 'SYNCED' } };
+
+    expect(countUntrackedBoards(boards, syncMeta, USER_EMAIL)).toBe(0);
+  });
+
+  it('counts only the eligible untracked boards in a mixed list', () => {
+    const boards = [
+      { id: 'aaaaaaaaaaaaaaaa', email: USER_EMAIL }, // untracked, user-owned
+      { id: 'bbbbbbbbbbbbbbbb', email: '' }, // untracked, unlogged
+      { id: 'root', email: 'support@cboard.io' }, // default, excluded
+      { id: 'cccccccccccccccc', email: 'other@x.com' }, // other user, excluded
+      { id: 'dddddddddddddddd', email: USER_EMAIL } // tracked, excluded
+    ];
+    const syncMeta = { dddddddddddddddd: { status: 'SYNCED' } };
+
+    expect(countUntrackedBoards(boards, syncMeta, USER_EMAIL)).toBe(2);
   });
 });
 
