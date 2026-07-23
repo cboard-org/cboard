@@ -588,6 +588,17 @@ class API {
     const tileUpdates = {};
     let hadFailure = false;
 
+    const applyMedia = (result, apply) => {
+      if (!result.attempted) return;
+      if (result.url) apply(result.url);
+      else if (result.unrecoverable) apply('');
+      else hadFailure = true;
+    };
+
+    const captionPromise = captionIsTarget
+      ? this.uploadBoardCaptionMedia(board)
+      : null;
+
     const uploadTarget = async tile => {
       try {
         const [image, sound] = await Promise.all([
@@ -596,25 +607,8 @@ class API {
         ]);
 
         const update = {};
-        if (image.attempted) {
-          if (image.url) {
-            update.image = image.url;
-          } else if (image.unrecoverable) {
-            update.image = '';
-          } else {
-            hadFailure = true;
-          }
-        }
-
-        if (sound.attempted) {
-          if (sound.url) {
-            update.sound = sound.url;
-          } else if (sound.unrecoverable) {
-            update.sound = '';
-          } else {
-            hadFailure = true;
-          }
-        }
+        applyMedia(image, url => (update.image = url));
+        applyMedia(sound, url => (update.sound = url));
 
         if (Object.keys(update).length) {
           tileUpdates[tile.id] = update;
@@ -637,17 +631,8 @@ class API {
       })
     };
 
-    if (captionIsTarget) {
-      const caption = await this.uploadBoardCaptionMedia(board);
-      if (caption.attempted) {
-        if (caption.url) {
-          sanitizedBoard.caption = caption.url;
-        } else if (caption.unrecoverable) {
-          sanitizedBoard.caption = '';
-        } else {
-          hadFailure = true;
-        }
-      }
+    if (captionPromise) {
+      applyMedia(await captionPromise, url => (sanitizedBoard.caption = url));
     }
 
     return { board: sanitizedBoard, hadFailure };
