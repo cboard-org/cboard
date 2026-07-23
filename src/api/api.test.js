@@ -528,16 +528,13 @@ describe('Cboard API calls', () => {
     });
 
     it('uploads both a base64 tile image and a base64 caption', async () => {
-      jest
-        .spyOn(API, 'tryUploadDataURL')
-        .mockResolvedValueOnce({
-          url: 'https://cdn.example.com/tile.png',
-          unrecoverable: false
-        })
-        .mockResolvedValueOnce({
-          url: 'https://cdn.example.com/caption.png',
-          unrecoverable: false
-        });
+      jest.spyOn(API, 'tryUploadDataURL').mockImplementation(async dataURL => ({
+        url:
+          dataURL === 'data:image/png;base64,AAAA'
+            ? 'https://cdn.example.com/tile.png'
+            : 'https://cdn.example.com/caption.png',
+        unrecoverable: false
+      }));
 
       const board = {
         id: 'b1',
