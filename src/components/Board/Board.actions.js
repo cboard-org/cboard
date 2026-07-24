@@ -886,7 +886,12 @@ export function pushLocalChangesToApi(remoteBoards = []) {
           continue;
         }
         console.error('Failed to push board to API:', board.id, e);
-        trackSyncException(e, { phase: 'pushBoard', boardId: board.id });
+        trackSyncException(e, {
+          phase: 'pushBoard',
+          boardId: board.id,
+          status: String(e.response?.status ?? ''),
+          apiError: String(e.response?.data?.error ?? '')
+        });
       }
     }
 

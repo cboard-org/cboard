@@ -59,3 +59,4 @@ export const SYNC_STATUS = {
 };
 
 export const DEFAULT_BOARD_EMAIL = 'support@cboard.io';
+export const DEFAULT_BOARD_NAME = 'Untitled Board';

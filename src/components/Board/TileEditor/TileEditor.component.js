@@ -529,7 +529,7 @@ export class TileEditor extends Component {
     return (
       <div className="TileEditor">
         <FullScreenDialog
-          disableSubmit={!currentLabel}
+          disableSubmit={!currentLabel || !currentLabel.trim()}
           buttons={buttons}
           open={open}
           title={
