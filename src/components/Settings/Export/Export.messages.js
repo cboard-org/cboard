@@ -73,5 +73,9 @@ export default defineMessages({
   large: {
     id: 'cboard.components.Settings.Export.large',
     defaultMessage: 'Large'
+  },
+  showTileBorders: {
+    id: 'cboard.components.Settings.Export.showTileBorders',
+    defaultMessage: 'Show borders around tiles in PDF'
   }
 });
