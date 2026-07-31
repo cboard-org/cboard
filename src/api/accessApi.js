@@ -10,15 +10,6 @@ import { API_URL } from '../constants';
 const accessClient = axios.create({ baseURL: API_URL });
 
 /**
- * Lists active clients for the Cboard Access section.
- * @returns {Promise<{total: number, data: Array}>}
- */
-export async function getAccessClients() {
-  const { data } = await accessClient.get('/access/clients/all');
-  return data;
-}
-
-/**
  * Gets ALL boards for a slug + access code pair in a single request.
  * Enables instant frontend navigation without additional requests.
  * @param {string} slug - Client slug (e.g. cafeteria-don-pedro)
