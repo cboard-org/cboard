@@ -27,6 +27,7 @@ import {
   NOT_SUBSCRIBED,
   PROCCESING,
   ON_HOLD,
+  SUSPENDED,
   UNVERIFIED
 } from '../../../providers/SubscriptionProvider/SubscriptionProvider.constants';
 import Button from '@material-ui/core/Button';
@@ -77,7 +78,8 @@ const SubscriptionPlans = ({
     error,
     isOnTrialPeriod,
     isSubscribed,
-    products
+    products,
+    paypalFixPaymentUrl
   } = subscription;
 
   let plans = [];
@@ -117,7 +119,8 @@ const SubscriptionPlans = ({
 
     on_hold: 'warning', //TODO
     paused: 'info', //TODO
-    expired: 'warning' //TODO
+    expired: 'warning', //TODO
+    suspended: 'error'
   };
 
   const paypalButtonsStyle = {
@@ -276,7 +279,23 @@ const SubscriptionPlans = ({
                       <FormattedMessage {...messages.subscribe} />
                     </Button>
                   )}
-                  {!isCordova() && isLogged && (
+                  {!isCordova() && isLogged && status === SUSPENDED && (
+                    <Button
+                      variant="contained"
+                      fullWidth={true}
+                      color="primary"
+                      component="a"
+                      href={
+                        paypalFixPaymentUrl ||
+                        'https://www.paypal.com/myaccount/autopay/'
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FormattedMessage {...messages.fixPaymentOnPaypal} />
+                    </Button>
+                  )}
+                  {!isCordova() && isLogged && status !== SUSPENDED && (
                     <PayPalButtons
                       style={paypalButtonsStyle}
                       disabled={!canPurchase}
