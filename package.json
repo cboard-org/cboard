@@ -135,8 +135,8 @@
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js",
-      "^undici$": "<rootDir>/__mocks__/undici.js",
-      "^ogv$": "<rootDir>/__mocks__/ogv.js"
+      "^ogv$": "<rootDir>/__mocks__/ogv.js",
+      "^undici$": "<rootDir>/__mocks__/undici.js"
     },
     "collectCoverageFrom": [
       "src/**/*.js",
