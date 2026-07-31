@@ -71,7 +71,8 @@ import {
   scrollBoardToTop,
   processTileClick,
   getScannerStrategyNotificationMessages,
-  computeScrollState
+  computeScrollState,
+  notifyLockCountdown
 } from './Board.utils';
 import LoadingIcon from '../UI/LoadingIcon';
 import PinDialog from '../UI/PinDialog';
@@ -934,23 +935,11 @@ export class BoardContainer extends Component {
       return;
     }
 
-    if (countdown > 3) {
-      return;
-    }
-
-    if (!countdown) {
-      hideNotification();
-      return;
-    }
-
-    const clicksToUnlock = `${countdown} ${intl.formatMessage(
-      messages.clicksToUnlock
-    )}`;
-
-    hideNotification();
-    // HACK: refactor Notification container
-    setTimeout(() => {
-      showNotification(clicksToUnlock);
+    notifyLockCountdown({
+      countdown,
+      intl,
+      showNotification,
+      hideNotification
     });
   };
 

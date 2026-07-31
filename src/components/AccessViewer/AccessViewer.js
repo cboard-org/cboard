@@ -9,14 +9,21 @@ import shortid from 'shortid';
 import { Scanner } from 'react-scannable';
 import BoardGrid from '../Board/BoardGrid/BoardGrid.component';
 import OutputContainer from '../Board/Output';
-import { Scannable } from 'react-scannable';
-import { processTileClick, computeScrollState } from '../Board/Board.utils';
+import {
+  processTileClick,
+  computeScrollState,
+  notifyLockCountdown
+} from '../Board/Board.utils';
 import { resolveTileLabel } from '../../helpers';
 import {
   speak,
   cancelSpeech
 } from '../../providers/SpeechProvider/SpeechProvider.actions';
 import { changeOutput } from '../Board/Board.actions';
+import {
+  showNotification,
+  hideNotification
+} from '../Notifications/Notifications.actions';
 import { isLogged as isLoggedSelector } from '../App/App.selectors';
 import { getAccessBoard } from '../../api/accessApi';
 import AccessViewerNavbar from './AccessViewerNavbar';
@@ -31,6 +38,8 @@ const AccessViewer = ({
   speak,
   cancelSpeech,
   changeOutput,
+  showNotification,
+  hideNotification,
   output,
   isLogged,
   intl,
@@ -193,6 +202,18 @@ const AccessViewer = ({
     setIsLocked(prev => !prev);
   }, []);
 
+  const handleLockNotify = useCallback(
+    countdown => {
+      notifyLockCountdown({
+        countdown,
+        intl,
+        showNotification,
+        hideNotification
+      });
+    },
+    [intl, showNotification, hideNotification]
+  );
+
   const handleCloseClick = useCallback(
     () => {
       cancelSpeech();
@@ -251,6 +272,7 @@ const AccessViewer = ({
           onBackClick={handleRequestPreviousBoard}
           onHomeClick={handleRequestToRootBoard}
           onLockClick={handleLockClick}
+          onLockNotify={handleLockNotify}
           onCloseClick={handleCloseClick}
         />
 
@@ -298,7 +320,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   speak,
   cancelSpeech,
-  changeOutput
+  changeOutput,
+  showNotification,
+  hideNotification
 };
 
 export default connect(

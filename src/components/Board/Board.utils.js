@@ -168,6 +168,40 @@ export const getScannerStrategyNotificationMessages = (
 };
 
 /**
+ * Notifies how many clicks are left to complete the child-proof unlock gesture.
+ * @param {Object} params
+ * @param {number} params.countdown - Remaining clicks reported by withChildProof
+ * @param {Object} params.intl - react-intl instance
+ * @param {Function} params.showNotification
+ * @param {Function} params.hideNotification
+ */
+export const notifyLockCountdown = ({
+  countdown,
+  intl,
+  showNotification,
+  hideNotification
+}) => {
+  if (countdown > 3) {
+    return;
+  }
+
+  hideNotification();
+
+  if (!countdown) {
+    return;
+  }
+
+  const clicksToUnlock = `${countdown} ${intl.formatMessage(
+    messages.clicksToUnlock
+  )}`;
+
+  // HACK: refactor Notification container
+  setTimeout(() => {
+    showNotification(clicksToUnlock);
+  });
+};
+
+/**
  * Scrolls the board container to the top.
  * Extracted from Board.container.js scrollToTop method.
  * @param {Object} boardRef - React ref to the Board component
