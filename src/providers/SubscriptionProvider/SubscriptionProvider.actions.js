@@ -15,6 +15,7 @@ import {
   SHOW_LOGIN_REQUIRED,
   HIDE_LOGIN_REQUIRED,
   UNVERIFIED,
+  SUSPENDED,
   DAYS_TO_TRY
 } from './SubscriptionProvider.constants';
 import API from '../../api';
@@ -210,12 +211,18 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
         if (transaction?.expiryDate) {
           expiryDate = transaction.expiryDate;
         }
+        const paypalFixPaymentUrl =
+          status.toLowerCase() === SUSPENDED
+            ? transaction?.nativePurchase?.links?.find(l => l.rel === 'approve')
+                ?.href || null
+            : null;
         dispatch(
           updateSubscription({
             ownedProduct,
             status: status.toLowerCase(),
             isSubscribed,
-            expiryDate
+            expiryDate,
+            paypalFixPaymentUrl
           })
         );
       }
