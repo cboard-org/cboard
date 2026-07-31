@@ -20,7 +20,8 @@ export const appInsights = new ApplicationInsights({
       '*.doubleclick.net',
       'pagead2.googlesyndication.com',
       'eastus.tts.speech.microsoft.com',
-      '*.cboard.io'
+      'cbuilder.cboard.io',
+      'cbuilder.qa.cboard.io'
     ]
   }
 });

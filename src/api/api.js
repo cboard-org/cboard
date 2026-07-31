@@ -557,6 +557,19 @@ class API {
     return { attempted: false, url: null, unrecoverable: false };
   }
 
+  async uploadBoardCaptionMedia(board) {
+    if (isDataURL(board?.caption)) {
+      const { url, unrecoverable } = await this.tryUploadDataURL(
+        board.caption,
+        board.id,
+        true
+      );
+      return { attempted: true, url, unrecoverable };
+    }
+
+    return { attempted: false, url: null, unrecoverable: false };
+  }
+
   async uploadBoardLocalMedia(board) {
     const tiles = board?.tiles || [];
     const targets = tiles.filter(
@@ -566,12 +579,25 @@ class API {
         isDataURL(tile?.sound)
     );
 
-    if (!targets.length) {
+    const captionIsTarget = isDataURL(board?.caption);
+
+    if (!targets.length && !captionIsTarget) {
       return { board, hadFailure: false };
     }
 
     const tileUpdates = {};
     let hadFailure = false;
+
+    const applyMedia = (result, apply) => {
+      if (!result.attempted) return;
+      if (result.url) apply(result.url);
+      else if (result.unrecoverable) apply('');
+      else hadFailure = true;
+    };
+
+    const captionPromise = captionIsTarget
+      ? this.uploadBoardCaptionMedia(board)
+      : null;
 
     const uploadTarget = async tile => {
       try {
@@ -581,25 +607,8 @@ class API {
         ]);
 
         const update = {};
-        if (image.attempted) {
-          if (image.url) {
-            update.image = image.url;
-          } else if (image.unrecoverable) {
-            update.image = '';
-          } else {
-            hadFailure = true;
-          }
-        }
-
-        if (sound.attempted) {
-          if (sound.url) {
-            update.sound = sound.url;
-          } else if (sound.unrecoverable) {
-            update.sound = '';
-          } else {
-            hadFailure = true;
-          }
-        }
+        applyMedia(image, url => (update.image = url));
+        applyMedia(sound, url => (update.sound = url));
 
         if (Object.keys(update).length) {
           tileUpdates[tile.id] = update;
@@ -621,6 +630,10 @@ class API {
         return update ? { ...tile, ...update } : tile;
       })
     };
+
+    if (captionPromise) {
+      applyMedia(await captionPromise, url => (sanitizedBoard.caption = url));
+    }
 
     return { board: sanitizedBoard, hadFailure };
   }

@@ -1,5 +1,6 @@
 import { appInsights } from '../../appInsights';
 import { SYNC_STATUS } from './Board.constants';
+import { isUnloggedCreatedBoard } from './Board.utils';
 
 // All sync telemetry carries `feature: "sync"` so customEvents and exceptions
 // join cleanly in Kusto. appInsights auto-disables in development.
@@ -44,9 +45,20 @@ export function countPendingBoards(syncMeta = {}) {
   ).length;
 }
 
-/** Count boards with no syncMeta entry (untracked, see docs/sync-engine.md §7). */
-export function countUntrackedBoards(boards = [], syncMeta = {}) {
-  return boards.filter(board => syncMeta[board.id] == null).length;
+/**
+ * Count boards with no syncMeta entry that the sync engine would actually
+ * onboard (untracked, see docs/sync-engine.md §7). Mirrors the eligibility
+ * predicate in classifyBoardsForPush (Board.actions.js): an untracked board is
+ * only tracked when it belongs to the current user or was created while
+ * unlogged. Boards owned by another/default email are never onboarded, so they
+ * stay untracked by design and are excluded here to avoid inflating the metric.
+ */
+export function countUntrackedBoards(boards = [], syncMeta = {}, userEmail) {
+  return boards.filter(
+    board =>
+      syncMeta[board.id] == null &&
+      (board.email === userEmail || isUnloggedCreatedBoard(board))
+  ).length;
 }
 
 /**
