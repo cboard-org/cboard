@@ -41,6 +41,7 @@ const AccessViewer = ({
   showNotification,
   hideNotification,
   output,
+  isLiveMode,
   isLogged,
   intl,
   displaySettings,
@@ -161,7 +162,7 @@ const AccessViewer = ({
         speak,
         changeBoard: null,
         changeOutput,
-        isLiveMode: currentBoard ? currentBoard.isLiveMode : false,
+        isLiveMode,
         generateId: shortid.generate,
         onNavigate: nextBoardId => {
           setBoardHistory(prev => [...prev, allBoards[nextBoardId]]);
@@ -176,7 +177,7 @@ const AccessViewer = ({
       output,
       changeOutput,
       navigationSettings,
-      currentBoard
+      isLiveMode
     ]
   );
 
@@ -312,6 +313,7 @@ AccessViewer.propTypes = {
 const mapStateToProps = state => ({
   isLogged: isLoggedSelector(state),
   output: state.board.output,
+  isLiveMode: state.board.isLiveMode,
   displaySettings: state.app.displaySettings,
   navigationSettings: state.app.navigationSettings,
   scannerSettings: state.scanner
