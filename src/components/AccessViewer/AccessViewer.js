@@ -6,7 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import classNames from 'classnames';
 import shortid from 'shortid';
 
-import { Scanner } from 'react-scannable';
+import { Scanner, Scannable } from 'react-scannable';
 import BoardGrid from '../Board/BoardGrid/BoardGrid.component';
 import OutputContainer from '../Board/Output';
 import {
