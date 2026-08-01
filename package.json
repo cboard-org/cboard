@@ -192,5 +192,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "resolutions": {
+    "js-yaml": "^4.3.0"
+  }
 }
