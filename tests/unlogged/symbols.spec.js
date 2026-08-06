@@ -29,13 +29,7 @@ test.describe('Cboard - Symbol Search: Cboard Symbols Provider', () => {
   });
 
   test('should show Cboard Symbols results after re-enabling the provider from an all-disabled state', async () => {
-    await cboard.toggleMulberryProvider();
-    await cboard.waitForTimeout(500);
-    await cboard.toggleGlobalSymbolsProvider();
-    await cboard.waitForTimeout(500);
-    await cboard.toggleArasaacSymbolsProvider();
-    await cboard.waitForTimeout(500);
-    await cboard.toggleCboardSymbolsProvider();
+    await cboard.disableAllProviders();
     await cboard.expectCboardSymbolsDisabled();
     await cboard.waitForTimeout(500);
 
