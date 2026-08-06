@@ -4148,6 +4148,27 @@ export class Cboard {
     await this.arasaacSymbolsCheckbox.click();
   }
 
+  /**
+   * Deterministically turn a provider off. Clicks only when the switch is
+   * currently checked and waits until it is confirmed unchecked, so a click
+   * that fails to register (e.g. during a dialog transition) is self-healed.
+   * @param {import('@playwright/test').Locator} checkbox
+   */
+  async disableProvider(checkbox) {
+    if (await checkbox.isChecked()) {
+      await checkbox.click();
+    }
+    await expect(checkbox).not.toBeChecked();
+  }
+
+  /** Disable all four symbol providers and confirm each is unchecked. */
+  async disableAllProviders() {
+    await this.disableProvider(this.mulberryCheckbox);
+    await this.disableProvider(this.globalSymbolsCheckbox);
+    await this.disableProvider(this.arasaacSymbolsCheckbox);
+    await this.disableProvider(this.cboardSymbolsCheckbox);
+  }
+
   /** Assert all 4 symbol provider checkboxes are visible in the filter bar. */
   async expectAllSymbolProvidersVisible() {
     await expect(this.mulberryCheckbox).toBeVisible();
