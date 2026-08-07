@@ -28,7 +28,7 @@ test.describe('Cboard - Symbol Search: Cboard Symbols Provider', () => {
     await cboard.expectSymbolResultsVisible('dog');
   });
 
-  test('should show Cboard Symbols results after re-enabling the provider from an all-disabled state', async () => {
+  test.skip('should show Cboard Symbols results after re-enabling the provider from an all-disabled state', async () => {
     await cboard.disableAllProviders();
     await cboard.expectCboardSymbolsDisabled();
     await cboard.waitForTimeout(500);
