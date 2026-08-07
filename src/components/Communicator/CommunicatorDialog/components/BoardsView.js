@@ -123,7 +123,12 @@ const BoardsView = ({
   onPageChange,
   onRetry,
   busyBoardId,
-  boardProps
+  communicator,
+  activeBoardId,
+  selectedId,
+  onSelect,
+  onToggleQuickAccess,
+  registerTrigger
 }) => {
   const classes = useStyles();
 
@@ -174,11 +179,17 @@ const BoardsView = ({
       {viewMode === VIEW_MODES.GRID ? (
         <Grid container spacing={2}>
           {boards.map(board => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={board.id}>
+            <Grid item xs={12} sm={6} md={6} lg={4} key={board.id}>
               <BoardCard
-                {...boardProps}
+                intl={intl}
                 board={board}
+                communicator={communicator}
+                activeBoardId={activeBoardId}
+                selected={selectedId === board.id}
                 busy={busyBoardId === board.id}
+                onSelect={onSelect}
+                onToggleQuickAccess={onToggleQuickAccess}
+                registerTrigger={registerTrigger}
               />
             </Grid>
           ))}
@@ -187,10 +198,16 @@ const BoardsView = ({
         <div className={classes.list}>
           {boards.map(board => (
             <BoardRow
-              {...boardProps}
               key={board.id}
+              intl={intl}
               board={board}
+              communicator={communicator}
+              activeBoardId={activeBoardId}
+              selected={selectedId === board.id}
               busy={busyBoardId === board.id}
+              onSelect={onSelect}
+              onToggleQuickAccess={onToggleQuickAccess}
+              registerTrigger={registerTrigger}
             />
           ))}
         </div>
@@ -223,7 +240,12 @@ BoardsView.propTypes = {
   onPageChange: PropTypes.func.isRequired,
   onRetry: PropTypes.func.isRequired,
   busyBoardId: PropTypes.string,
-  boardProps: PropTypes.object.isRequired
+  communicator: PropTypes.object.isRequired,
+  activeBoardId: PropTypes.string,
+  selectedId: PropTypes.string,
+  onSelect: PropTypes.func.isRequired,
+  onToggleQuickAccess: PropTypes.func.isRequired,
+  registerTrigger: PropTypes.func.isRequired
 };
 
 export default BoardsView;
