@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { debounce } from 'lodash';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
@@ -36,7 +36,8 @@ import ReportBoardDialog from './dialogs/ReportBoardDialog';
 const useStyles = makeStyles(theme => ({
   dashboard: {
     display: 'flex',
-    minHeight: '100%'
+    height: '100%',
+    overflow: 'hidden'
   },
   nav: {
     width: NAV_WIDTH,
@@ -48,35 +49,39 @@ const useStyles = makeStyles(theme => ({
   content: {
     flex: 1,
     minWidth: 0,
-    // Horizontal padding lives on the children (sticky header / boards) so the
-    // sticky bar can span edge to edge without negative margins, which were
-    // causing a page-wide horizontal scrollbar.
-    paddingBottom: theme.spacing(2)
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'hidden'
   },
-  stickyHeader: {
-    position: 'sticky',
-    top: 0,
-    zIndex: 3,
-    // Title block and the search/view toolbar share one row on wider screens
-    // and wrap to two rows on xs, keeping the header compact so more boards
-    // stay visible.
+  header: {
+    flexShrink: 0,
     display: 'flex',
     alignItems: 'center',
     flexWrap: 'wrap',
     gap: theme.spacing(1, 2),
+
     padding: theme.spacing(1, 2),
-    backgroundColor: alpha(theme.palette.background.default, 0.85),
-    backdropFilter: 'blur(8px)',
+    backgroundColor: theme.palette.background.default,
     borderBottom: `1px solid ${theme.palette.divider}`
   },
-  boards: {
-    padding: theme.spacing(2, 2, 0)
+  scrollArea: {
+    flex: 1,
+    minHeight: 0,
+    overflowY: 'auto',
+    padding: theme.spacing(2, 2)
   },
-  boardsWithPanel: {
+  scrollAreaWithPanel: {
+    flex: 1,
+    minHeight: 0,
+    overflowY: 'auto',
     display: 'flex',
     alignItems: 'flex-start',
-    padding: theme.spacing(0, 2, 0, 0),
-    minWidth: 0
+    padding: theme.spacing(0, 2, 2, 0)
+  },
+  boards: {
+    flex: 1,
+    minWidth: 0,
+    padding: theme.spacing(2, 2, 0)
   }
 }));
 
@@ -297,7 +302,7 @@ const CommunicatorDialog = ({
         />
 
         <main className={classes.content}>
-          <div className={classes.stickyHeader}>
+          <div className={classes.header}>
             <SectionHeader
               intl={intl}
               section={section}
@@ -316,7 +321,7 @@ const CommunicatorDialog = ({
           </div>
 
           {section === SECTIONS.MY_COMMUNICATOR ? (
-            <div className={classes.boards}>
+            <div className={classes.scrollArea}>
               <QuickAccessTray
                 intl={intl}
                 boards={communicatorBoards}
@@ -329,7 +334,7 @@ const CommunicatorDialog = ({
               />
             </div>
           ) : (
-            <div className={classes.boardsWithPanel}>
+            <div className={classes.scrollAreaWithPanel}>
               <div className={classes.boards}>
                 <BoardsView
                   intl={intl}

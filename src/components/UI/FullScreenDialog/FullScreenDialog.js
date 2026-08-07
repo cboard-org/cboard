@@ -58,7 +58,8 @@ const styles = {
     margin: '0 auto'
   },
   contentFullWidth: {
-    margin: '0 auto'
+    margin: '0 auto',
+    height: '100%'
   }
 };
 

@@ -15,13 +15,14 @@ const PANEL_WIDTH = 300;
 const useStyles = makeStyles(theme => ({
   panel: {
     position: 'sticky',
-    top: theme.spacing(9),
+    top: theme.spacing(2),
     alignSelf: 'flex-start',
     width: PANEL_WIDTH,
     flexShrink: 0,
     marginLeft: theme.spacing(2),
+    marginTop: theme.spacing(2),
     borderRadius: softRadius(theme),
-    maxHeight: `calc(100vh - ${theme.spacing(12)}px)`,
+    maxHeight: `calc(100% - ${theme.spacing(2)}px)`,
     overflowY: 'auto'
   },
   sheet: {
@@ -50,7 +51,7 @@ const BoardDetailsSurface = ({
 }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const isNarrow = useMediaQuery(theme.breakpoints.down('xs'));
+  const isNarrow = useMediaQuery(theme.breakpoints.down('sm'));
   const headingRef = useRef(null);
 
   // Explicit activation: once a board is chosen, focus moves into the details

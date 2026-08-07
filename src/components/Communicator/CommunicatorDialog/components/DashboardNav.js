@@ -44,6 +44,9 @@ const SECTION_LABELS = {
 const useStyles = makeStyles(theme => {
   const dark = theme.palette.type === 'dark';
   return {
+    docked: {
+      height: '100%'
+    },
     drawerPaper: {
       width: NAV_WIDTH,
       position: 'relative',
@@ -174,11 +177,11 @@ const DashboardNav = ({
 
   return (
     <>
-      <Hidden xsDown implementation="css">
+      <Hidden xsDown implementation="css" className={classes.docked}>
         <Drawer
           variant="permanent"
           open
-          classes={{ paper: classes.drawerPaper }}
+          classes={{ docked: classes.docked, paper: classes.drawerPaper }}
         >
           <NavList intl={intl} section={section} onChange={onChange} />
         </Drawer>
