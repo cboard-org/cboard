@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import { alpha, makeStyles } from '@material-ui/core/styles';
@@ -127,6 +127,7 @@ const CommunicatorDialog = ({
   const [busyBoardId, setBusyBoardId] = useState(null);
   const [dialog, setDialog] = useState({ type: null, board: null });
   const [announcement, setAnnouncement] = useState('');
+  const announceTimer = useRef(null);
 
   const fetcher = useBoardsFetcher({
     section,
@@ -178,6 +179,8 @@ const CommunicatorDialog = ({
 
   useEffect(() => () => debouncedSetSearch.cancel(), [debouncedSetSearch]);
 
+  useEffect(() => () => window.clearTimeout(announceTimer.current), []);
+
   const handleSearchChange = value => {
     setSearchInput(value);
     debouncedSetSearch(value);
@@ -200,7 +203,11 @@ const CommunicatorDialog = ({
     setAnnouncement('');
     // Re-setting the same string would not re-announce; clearing first makes
     // repeated identical results (two exports in a row) audible.
-    window.setTimeout(() => setAnnouncement(message), 50);
+    window.clearTimeout(announceTimer.current);
+    announceTimer.current = window.setTimeout(
+      () => setAnnouncement(message),
+      50
+    );
   };
 
   const runBusy = async (board, fn, pendingMessage) => {
@@ -211,7 +218,9 @@ const CommunicatorDialog = ({
     try {
       await fn(board);
     } finally {
-      setBusyBoardId(null);
+      // A slower action finishing later must not clear the spinner of a
+      // different board the user has since started acting on.
+      setBusyBoardId(current => (current === board.id ? null : current));
     }
   };
 
