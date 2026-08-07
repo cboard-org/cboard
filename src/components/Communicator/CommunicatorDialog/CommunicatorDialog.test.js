@@ -4,6 +4,12 @@ import toJson from 'enzyme-to-json';
 import CommunicatorDialog from './CommunicatorDialog.component';
 import { SECTIONS } from './CommunicatorDialog.constants';
 
+jest.mock('../../Settings/Export/Export.helpers', () => ({
+  __esModule: true,
+  openboardExportOneAdapter: jest.fn(() => Promise.resolve()),
+  pdfExportAdapter: jest.fn(() => Promise.resolve())
+}));
+
 // react-intl is auto-mocked, so the real messages module resolves to undefined.
 // Provide a proxy that returns a descriptor for any key the component reads.
 jest.mock('./CommunicatorDialog.messages', () => ({

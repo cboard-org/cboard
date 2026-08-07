@@ -3,6 +3,13 @@ import shortid from 'shortid';
 import API from '../../../../api';
 import { SECTIONS } from '../CommunicatorDialog.constants';
 import messages from '../CommunicatorDialog.messages';
+import history from '../../../../history';
+import {
+  openboardExportOneAdapter,
+  pdfExportAdapter
+} from '../../../Settings/Export/Export.helpers';
+import { MEDIUM_FONT_SIZE } from '../../../Settings/Export/Export.constants';
+import { moveVisibleBoard } from '../components/quickAccessOrder';
 
 const isLoggedIn = userData =>
   !!userData && 'name' in userData && 'email' in userData;
@@ -38,13 +45,15 @@ const useBoardActions = ({
   // fetcher mutators
   refetch,
   removeBoardFromList,
-  replaceBoardInList
+  replaceBoardInList,
+  switchBoard,
+  onClose
 }) => {
-  const updateCommunicatorBoards = useCallback(
-    async boards => {
+  const persistCommunicatorBoardIds = useCallback(
+    async boardIds => {
       const updatedCommunicatorData = {
         ...currentCommunicator,
-        boards: boards.map(cb => cb.id)
+        boards: boardIds
       };
       const upsertedCommunicator = verifyAndUpsertCommunicator(
         updatedCommunicatorData
@@ -63,6 +72,11 @@ const useBoardActions = ({
       verifyAndUpsertCommunicator,
       upsertApiCommunicator
     ]
+  );
+
+  const updateCommunicatorBoards = useCallback(
+    async boards => persistCommunicatorBoardIds(boards.map(cb => cb.id)),
+    [persistCommunicatorBoardIds]
   );
 
   const updateBoardReferences = useCallback(
@@ -377,6 +391,64 @@ const useBoardActions = ({
     [language]
   );
 
+  /**
+   * Moves a board one slot up (delta -1) or down (delta 1) among the ids the
+   * tray is actually showing, leaving ids with no visible board untouched at
+   * their current index. Skips the write entirely when the move is a no-op.
+   */
+  const reorderCommunicatorBoards = useCallback(
+    async (boardId, delta, visibleIds) => {
+      const currentIds = currentCommunicator.boards;
+      const nextIds = moveVisibleBoard(currentIds, visibleIds, boardId, delta);
+      if (nextIds === currentIds) {
+        return;
+      }
+      await persistCommunicatorBoardIds(nextIds);
+    },
+    [currentCommunicator, persistCommunicatorBoardIds]
+  );
+
+  const exportBoard = useCallback(
+    async board => {
+      try {
+        await openboardExportOneAdapter(board, intl);
+        showNotification(
+          intl.formatMessage(messages.boardExported, { name: board.name })
+        );
+      } catch (err) {
+        showNotification(
+          intl.formatMessage(messages.boardExportError, { name: board.name })
+        );
+      }
+    },
+    [intl, showNotification]
+  );
+
+  const exportBoardToPdf = useCallback(
+    async board => {
+      try {
+        await pdfExportAdapter([board], MEDIUM_FONT_SIZE, intl);
+        showNotification(
+          intl.formatMessage(messages.boardExported, { name: board.name })
+        );
+      } catch (err) {
+        showNotification(
+          intl.formatMessage(messages.boardExportError, { name: board.name })
+        );
+      }
+    },
+    [intl, showNotification]
+  );
+
+  const showBoard = useCallback(
+    async board => {
+      switchBoard(board.id);
+      history.replace(`/board/${board.id}`);
+      onClose();
+    },
+    [switchBoard, onClose]
+  );
+
   return {
     addOrRemoveBoard,
     copyBoard,
@@ -384,7 +456,11 @@ const useBoardActions = ({
     publishBoard,
     deleteMyBoard,
     updateMyBoard,
-    boardReport
+    boardReport,
+    reorderCommunicatorBoards,
+    exportBoard,
+    exportBoardToPdf,
+    showBoard
   };
 };
 

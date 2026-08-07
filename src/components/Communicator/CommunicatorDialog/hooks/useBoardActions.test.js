@@ -21,6 +21,17 @@ jest.mock('../CommunicatorDialog.messages', () => ({
   )
 }));
 
+jest.mock('../../../Settings/Export/Export.helpers', () => ({
+  __esModule: true,
+  openboardExportOneAdapter: jest.fn(() => Promise.resolve()),
+  pdfExportAdapter: jest.fn(() => Promise.resolve())
+}));
+
+jest.mock('../../../../history', () => ({
+  __esModule: true,
+  default: { replace: jest.fn() }
+}));
+
 const intl = { formatMessage: ({ defaultMessage }) => defaultMessage };
 
 const Harness = ({ hookArgs, onResult }) => {
@@ -62,6 +73,8 @@ const baseArgs = overrides => ({
   refetch: jest.fn(),
   removeBoardFromList: jest.fn(),
   replaceBoardInList: jest.fn(),
+  switchBoard: jest.fn(),
+  onClose: jest.fn(),
   ...overrides
 });
 
@@ -107,5 +120,100 @@ describe('useBoardActions', () => {
     expect(args.deleteBoard).toHaveBeenCalledWith('b2');
     expect(args.removeBoardFromList).toHaveBeenCalledWith('b2');
     expect(args.showNotification).toHaveBeenCalled();
+  });
+
+  it('reorders the communicator ids without dropping hidden ones', async () => {
+    const args = baseArgs({
+      section: SECTIONS.MY_COMMUNICATOR,
+      currentCommunicator: {
+        id: 'c1',
+        boards: ['b1', 'hidden', 'b2'],
+        rootBoard: 'b1'
+      }
+    });
+    const get = renderActions(args);
+
+    await act(async () => {
+      await get().reorderCommunicatorBoards('b1', 1, ['b1', 'b2']);
+    });
+
+    expect(args.verifyAndUpsertCommunicator).toHaveBeenCalledWith(
+      expect.objectContaining({ boards: ['b2', 'hidden', 'b1'] })
+    );
+  });
+
+  it('does not persist a move that is already at the end', async () => {
+    const args = baseArgs({ section: SECTIONS.MY_COMMUNICATOR });
+    const get = renderActions(args);
+
+    await act(async () => {
+      await get().reorderCommunicatorBoards('b2', 1, ['b1', 'b2']);
+    });
+
+    expect(args.verifyAndUpsertCommunicator).not.toHaveBeenCalled();
+  });
+
+  it('exports a single board and notifies on success', async () => {
+    const {
+      openboardExportOneAdapter
+    } = require('../../../Settings/Export/Export.helpers');
+    const args = baseArgs({ section: SECTIONS.MY_BOARDS });
+    const get = renderActions(args);
+    const board = { id: 'b2', name: 'Comidas' };
+
+    await act(async () => {
+      await get().exportBoard(board);
+    });
+
+    expect(openboardExportOneAdapter).toHaveBeenCalledWith(board, args.intl);
+    expect(args.showNotification).toHaveBeenCalled();
+  });
+
+  it('notifies when an export fails', async () => {
+    const {
+      openboardExportOneAdapter
+    } = require('../../../Settings/Export/Export.helpers');
+    openboardExportOneAdapter.mockRejectedValueOnce(new Error('boom'));
+    const args = baseArgs({ section: SECTIONS.MY_BOARDS });
+    const get = renderActions(args);
+
+    await act(async () => {
+      await get().exportBoard({ id: 'b2', name: 'Comidas' });
+    });
+
+    expect(args.showNotification).toHaveBeenCalled();
+  });
+
+  it('exports a board as PDF wrapped in an array', async () => {
+    const {
+      pdfExportAdapter
+    } = require('../../../Settings/Export/Export.helpers');
+    const args = baseArgs({ section: SECTIONS.MY_BOARDS });
+    const get = renderActions(args);
+    const board = { id: 'b2', name: 'Comidas' };
+
+    await act(async () => {
+      await get().exportBoardToPdf(board);
+    });
+
+    expect(pdfExportAdapter).toHaveBeenCalledWith(
+      [board],
+      expect.anything(),
+      args.intl
+    );
+  });
+
+  it('switches to a board, navigates and closes the dialog', async () => {
+    const history = require('../../../../history').default;
+    const args = baseArgs({ section: SECTIONS.MY_BOARDS });
+    const get = renderActions(args);
+
+    await act(async () => {
+      await get().showBoard({ id: 'b2' });
+    });
+
+    expect(args.switchBoard).toHaveBeenCalledWith('b2');
+    expect(history.replace).toHaveBeenCalledWith('/board/b2');
+    expect(args.onClose).toHaveBeenCalled();
   });
 });
