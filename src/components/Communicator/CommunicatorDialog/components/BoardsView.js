@@ -91,7 +91,7 @@ const LoadingState = ({ classes, viewMode }) => {
   return (
     <Grid container spacing={2}>
       {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
+        <Grid item xs={12} sm={6} md={6} lg={4} key={i}>
           <div className={classes.skeletonCard}>
             <Skeleton variant="rect" height={132} />
             <div className={classes.skeletonBody}>
