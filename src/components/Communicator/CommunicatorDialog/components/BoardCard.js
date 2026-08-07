@@ -5,14 +5,19 @@ import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Chip from '@material-ui/core/Chip';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import LanguageIcon from '@material-ui/icons/Language';
+import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 import BoardThumb from './BoardThumb';
 import BoardStatusIcons from './BoardStatusIcons';
-import BoardActionsBar from './BoardActionsBar';
 import { formatBoardLocale } from './boardLocale';
 import {
   softRadius,
@@ -33,12 +38,23 @@ const useStyles = makeStyles(theme => ({
     ...surfaceInteractive(theme, { lift: true })
   },
   accent: surfaceAccent(theme),
+  selected: {
+    borderColor: theme.palette.primary.main,
+    boxShadow: `0 0 0 2px ${theme.palette.primary.main}`
+  },
+  actionArea: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'stretch'
+  },
   thumb: {
     height: 132,
     flexShrink: 0
   },
   content: {
     flex: 1,
+    width: '100%',
     paddingBottom: theme.spacing(1)
   },
   title: {
@@ -60,25 +76,27 @@ const useStyles = makeStyles(theme => ({
   metaIcon: {
     fontSize: '1rem'
   },
-  author: {
-    color: theme.palette.text.secondary,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    marginTop: theme.spacing(0.25)
+  badge: {
+    marginTop: theme.spacing(0.75)
+  },
+  date: {
+    fontSize: '0.75rem',
+    color: theme.palette.text.hint
   },
   footer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: theme.spacing(0, 1, 1, 2),
+    padding: theme.spacing(1, 1, 1, 2),
     gap: theme.spacing(1),
-    borderTop: `1px solid ${theme.palette.divider}`,
-    paddingTop: theme.spacing(1)
+    borderTop: `1px solid ${theme.palette.divider}`
   },
-  date: {
-    fontSize: '0.75rem',
-    color: theme.palette.text.hint
+  star: {
+    minWidth: 44,
+    minHeight: 44
+  },
+  starActive: {
+    color: theme.palette.warning.main
   },
   busy: busyOverlay(theme)
 }));
@@ -86,62 +104,88 @@ const useStyles = makeStyles(theme => ({
 const BoardCard = ({
   intl,
   board,
-  section,
   communicator,
-  userData,
   activeBoardId,
-  handlers,
-  busy
+  selected,
+  busy,
+  onSelect,
+  onToggleQuickAccess,
+  registerTrigger
 }) => {
   const classes = useStyles();
   const title = board.name || board.id;
   const locale = formatBoardLocale(intl, board.locale);
   const accented =
     communicator.rootBoard === board.id || activeBoardId === board.id;
+  const inQuickAccess = communicator.boards.includes(board.id);
+  const toggleLabel = intl.formatMessage(
+    inQuickAccess ? messages.removeFromQuickAccess : messages.addToQuickAccess
+  );
+
+  const handleToggle = event => {
+    // The whole card is an activation target; the star must not select it.
+    event.stopPropagation();
+    onToggleQuickAccess(board);
+  };
 
   return (
     <Card
       variant="outlined"
-      className={classNames(classes.card, { [classes.accent]: accented })}
+      className={classNames(classes.card, {
+        [classes.accent]: accented,
+        [classes.selected]: selected
+      })}
     >
       {busy && (
         <div className={classes.busy}>
           <CircularProgress size={28} />
         </div>
       )}
-      <BoardThumb board={board} className={classes.thumb} />
-      <CardContent className={classes.content}>
-        <Typography variant="subtitle1" className={classes.title} title={title}>
-          {title}
-        </Typography>
-        <div className={classes.meta}>
-          <Typography variant="caption" component="span">
-            {intl.formatMessage(messages.tilesQty, {
-              qty: board.tiles.length
-            })}
-          </Typography>
-          {locale && (
-            <>
-              <LanguageIcon className={classes.metaIcon} />
-              <Typography variant="caption" component="span">
-                {locale}
-              </Typography>
-            </>
-          )}
-        </div>
-        {board.author && (
+
+      <CardActionArea
+        className={classes.actionArea}
+        aria-current={selected || undefined}
+        ref={node => registerTrigger(board.id, node)}
+        onClick={() => onSelect(board.id)}
+      >
+        <BoardThumb board={board} className={classes.thumb} />
+        <CardContent className={classes.content}>
           <Typography
-            variant="caption"
-            className={classes.author}
-            component="p"
+            variant="subtitle1"
+            className={classes.title}
+            title={title}
           >
-            {intl.formatMessage(messages.author, { author: board.author })}
+            {title}
           </Typography>
-        )}
-        <Typography variant="caption" className={classes.date} component="p">
-          {moment(board.lastEdited).format('DD/MM/YYYY')}
-        </Typography>
-      </CardContent>
+          <div className={classes.meta}>
+            <Typography variant="caption" component="span">
+              {intl.formatMessage(messages.tilesQty, {
+                qty: board.tiles.length
+              })}
+            </Typography>
+            {locale && (
+              <>
+                <LanguageIcon className={classes.metaIcon} aria-hidden="true" />
+                <Typography variant="caption" component="span">
+                  {locale}
+                </Typography>
+              </>
+            )}
+          </div>
+          {inQuickAccess && (
+            <Chip
+              size="small"
+              variant="outlined"
+              className={classes.badge}
+              label={intl.formatMessage(messages.inQuickAccess)}
+            />
+          )}
+          <Typography variant="caption" className={classes.date} component="p">
+            {moment(board.lastEdited).format('DD/MM/YYYY')}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+
       <div className={classes.footer}>
         <BoardStatusIcons
           intl={intl}
@@ -149,29 +193,40 @@ const BoardCard = ({
           communicator={communicator}
           activeBoardId={activeBoardId}
         />
-        <BoardActionsBar
-          intl={intl}
-          board={board}
-          section={section}
-          communicator={communicator}
-          userData={userData}
-          activeBoardId={activeBoardId}
-          handlers={handlers}
-        />
+        <Tooltip title={toggleLabel}>
+          <IconButton
+            size="small"
+            data-testid="quick-access-toggle"
+            className={classNames(classes.star, {
+              [classes.starActive]: inQuickAccess
+            })}
+            aria-label={toggleLabel}
+            aria-pressed={inQuickAccess}
+            onClick={handleToggle}
+          >
+            {inQuickAccess ? <StarIcon /> : <StarBorderIcon />}
+          </IconButton>
+        </Tooltip>
       </div>
     </Card>
   );
 };
 
+BoardCard.defaultProps = {
+  selected: false,
+  busy: false
+};
+
 BoardCard.propTypes = {
   intl: intlShape.isRequired,
   board: PropTypes.object.isRequired,
-  section: PropTypes.string.isRequired,
   communicator: PropTypes.object.isRequired,
-  userData: PropTypes.object,
   activeBoardId: PropTypes.string,
-  handlers: PropTypes.object.isRequired,
-  busy: PropTypes.bool
+  selected: PropTypes.bool,
+  busy: PropTypes.bool,
+  onSelect: PropTypes.func.isRequired,
+  onToggleQuickAccess: PropTypes.func.isRequired,
+  registerTrigger: PropTypes.func.isRequired
 };
 
 export default BoardCard;
