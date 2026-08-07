@@ -25,7 +25,7 @@ exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
       className="makeStyles-content-3"
     >
       <div
-        className="makeStyles-stickyHeader-4"
+        className="makeStyles-header-4"
       >
         <SectionHeader
           intl={
@@ -39,7 +39,7 @@ exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
         />
       </div>
       <div
-        className="makeStyles-boards-5"
+        className="makeStyles-scrollArea-5"
       >
         <QuickAccessTray
           boards={Array []}
