@@ -28,8 +28,8 @@ const SECTION_ICONS = {
 
 const SECTION_LABELS = {
   [SECTIONS.MY_COMMUNICATOR]: {
-    label: 'sectionMyCommunicator',
-    hint: 'sectionMyCommunicatorHint'
+    label: 'sectionQuickAccess',
+    hint: 'sectionQuickAccessHint'
   },
   [SECTIONS.MY_BOARDS]: {
     label: 'sectionMyBoards',

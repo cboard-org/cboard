@@ -2,15 +2,6 @@
 
 exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
 <WithStyles(FullScreenDialog)
-  buttons={
-    <DashboardToolbar
-      intl={
-        Object {
-          "formatMessage": [Function],
-        }
-      }
-    />
-  }
   fullWidth={true}
   onClose={[MockFunction]}
   open={true}
@@ -46,72 +37,38 @@ exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
           section="myCommunicator"
           total={0}
         />
-        <ContentToolbar
-          intl={
-            Object {
-              "formatMessage": [Function],
-            }
-          }
-          onSearchChange={[Function]}
-          onViewModeChange={[Function]}
-          search=""
-          viewMode="grid"
-        />
       </div>
       <div
         className="makeStyles-boards-5"
       >
-        <BoardsView
-          boardProps={
-            Object {
-              "activeBoardId": "board-1",
-              "communicator": Object {
-                "boards": Array [
-                  "board-1",
-                  "board-2",
-                ],
-                "id": "comm-1",
-                "name": "My Communicator",
-                "rootBoard": "board-1",
-              },
-              "handlers": Object {
-                "onAddRemove": [Function],
-                "onCopy": [Function],
-                "onDelete": [Function],
-                "onEdit": [Function],
-                "onPublishToggle": [Function],
-                "onReport": [Function],
-                "onSetRoot": [Function],
-                "onShowInfo": [Function],
-              },
-              "intl": Object {
-                "formatMessage": [Function],
-              },
-              "section": "myCommunicator",
-              "userData": Object {
-                "authToken": "token",
-                "email": "tester@cboard.io",
-                "name": "Tester",
-              },
-            }
-          }
+        <QuickAccessTray
           boards={Array []}
           busyBoardId={null}
-          error={null}
-          hasSearch={false}
+          communicator={
+            Object {
+              "boards": Array [
+                "board-1",
+                "board-2",
+              ],
+              "id": "comm-1",
+              "name": "My Communicator",
+              "rootBoard": "board-1",
+            }
+          }
           intl={
             Object {
               "formatMessage": [Function],
             }
           }
-          loading={false}
-          onPageChange={[Function]}
-          onRetry={[Function]}
-          page={1}
-          totalPages={0}
-          viewMode="grid"
+          onGoToMyBoards={[Function]}
+          onMove={[Function]}
+          onRemove={[Function]}
+          onSetRoot={[Function]}
         />
       </div>
+      <LiveRegion
+        message=""
+      />
       <CommunicatorDialogTour
         communicatorTour={Object {}}
         disableTour={[MockFunction]}

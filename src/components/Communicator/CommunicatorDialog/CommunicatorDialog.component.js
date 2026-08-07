@@ -21,6 +21,11 @@ import SectionHeader from './components/SectionHeader';
 import ContentToolbar from './components/ContentToolbar';
 import BoardsView from './components/BoardsView';
 import CommunicatorDialogTour from './CommunicatorDialogTour.component';
+import useBoardSelection from './hooks/useBoardSelection';
+import BoardDetailsSurface from './components/BoardDetailsSurface';
+import QuickAccessTray from './components/QuickAccessTray';
+import LiveRegion from './components/LiveRegion';
+import { getBoardActions } from './components/boardActions';
 
 import BoardInfoDialog from './dialogs/BoardInfoDialog';
 import ConfirmDialog from './dialogs/ConfirmDialog';
@@ -66,6 +71,12 @@ const useStyles = makeStyles(theme => ({
   },
   boards: {
     padding: theme.spacing(2, 2, 0)
+  },
+  boardsWithPanel: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    padding: theme.spacing(0, 2, 0, 0),
+    minWidth: 0
   }
 }));
 
@@ -103,7 +114,8 @@ const CommunicatorDialog = ({
   verifyAndUpsertCommunicator,
   upsertApiCommunicator,
   showNotification,
-  disableTour
+  disableTour,
+  switchBoard
 }) => {
   const classes = useStyles();
 
@@ -114,6 +126,7 @@ const CommunicatorDialog = ({
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [busyBoardId, setBusyBoardId] = useState(null);
   const [dialog, setDialog] = useState({ type: null, board: null });
+  const [announcement, setAnnouncement] = useState('');
 
   const fetcher = useBoardsFetcher({
     section,
@@ -146,7 +159,16 @@ const CommunicatorDialog = ({
     showNotification,
     refetch: fetcher.refetch,
     removeBoardFromList: fetcher.removeBoardFromList,
-    replaceBoardInList: fetcher.replaceBoardInList
+    replaceBoardInList: fetcher.replaceBoardInList,
+    switchBoard,
+    onClose
+  });
+
+  const selection = useBoardSelection({
+    boards: fetcher.boards,
+    section,
+    search,
+    page: fetcher.page
   });
 
   const debouncedSetSearch = useMemo(
@@ -174,8 +196,18 @@ const CommunicatorDialog = ({
 
   const closeDialog = () => setDialog({ type: null, board: null });
 
-  const runBusy = async (board, fn) => {
+  const announce = message => {
+    setAnnouncement('');
+    // Re-setting the same string would not re-announce; clearing first makes
+    // repeated identical results (two exports in a row) audible.
+    window.setTimeout(() => setAnnouncement(message), 50);
+  };
+
+  const runBusy = async (board, fn, pendingMessage) => {
     setBusyBoardId(board.id);
+    if (pendingMessage) {
+      announce(pendingMessage);
+    }
     try {
       await fn(board);
     } finally {
@@ -184,6 +216,7 @@ const CommunicatorDialog = ({
   };
 
   const handlers = {
+    onShow: board => actions.showBoard(board),
     onSetRoot: board => runBusy(board, actions.setRootBoard),
     onAddRemove: board => runBusy(board, actions.addOrRemoveBoard),
     onShowInfo: board => setDialog({ type: 'info', board }),
@@ -191,6 +224,18 @@ const CommunicatorDialog = ({
     onEdit: board => setDialog({ type: 'edit', board }),
     onDelete: board => setDialog({ type: 'delete', board }),
     onCopy: board => setDialog({ type: 'copy', board }),
+    onExport: board =>
+      runBusy(
+        board,
+        actions.exportBoard,
+        intl.formatMessage(messages.exportingBoard, { name: board.name })
+      ),
+    onExportPdf: board =>
+      runBusy(
+        board,
+        actions.exportBoardToPdf,
+        intl.formatMessage(messages.exportingBoard, { name: board.name })
+      ),
     onPublishToggle: board => {
       if (!board.isPublic && !board.description) {
         setDialog({ type: 'publish', board });
@@ -200,13 +245,29 @@ const CommunicatorDialog = ({
     }
   };
 
-  const boardProps = {
-    intl,
-    section,
-    communicator: currentCommunicator,
-    userData,
-    activeBoardId,
-    handlers
+  const selectedActions = selection.selectedBoard
+    ? getBoardActions({
+        section,
+        board: selection.selectedBoard,
+        communicator: currentCommunicator,
+        userData,
+        activeBoardId,
+        handlers,
+        intl
+      })
+    : [];
+
+  const handleMove = async (boardId, delta, visibleIds) => {
+    await actions.reorderCommunicatorBoards(boardId, delta, visibleIds);
+    const board = communicatorBoards.find(item => item.id === boardId);
+    const nextPosition = visibleIds.indexOf(boardId) + 1 + delta;
+    announce(
+      intl.formatMessage(messages.boardMoved, {
+        name: board ? board.name : boardId,
+        position: nextPosition,
+        total: visibleIds.length
+      })
+    );
   };
 
   return (
@@ -234,31 +295,68 @@ const CommunicatorDialog = ({
               total={fetcher.total}
               onOpenNav={() => setMobileNavOpen(true)}
             />
-            <ContentToolbar
-              intl={intl}
-              search={searchInput}
-              onSearchChange={handleSearchChange}
-              viewMode={viewMode}
-              onViewModeChange={handleViewModeChange}
-            />
+            {section !== SECTIONS.MY_COMMUNICATOR && (
+              <ContentToolbar
+                intl={intl}
+                search={searchInput}
+                onSearchChange={handleSearchChange}
+                viewMode={viewMode}
+                onViewModeChange={handleViewModeChange}
+              />
+            )}
           </div>
 
-          <div className={classes.boards}>
-            <BoardsView
-              intl={intl}
-              boards={fetcher.boards}
-              viewMode={viewMode}
-              loading={fetcher.loading}
-              error={fetcher.error}
-              hasSearch={!!search}
-              page={fetcher.page}
-              totalPages={fetcher.totalPages}
-              onPageChange={fetcher.goToPage}
-              onRetry={fetcher.refetch}
-              busyBoardId={busyBoardId}
-              boardProps={boardProps}
-            />
-          </div>
+          {section === SECTIONS.MY_COMMUNICATOR ? (
+            <div className={classes.boards}>
+              <QuickAccessTray
+                intl={intl}
+                boards={communicatorBoards}
+                communicator={currentCommunicator}
+                busyBoardId={busyBoardId}
+                onSetRoot={board => runBusy(board, actions.setRootBoard)}
+                onRemove={board => runBusy(board, actions.addOrRemoveBoard)}
+                onMove={handleMove}
+                onGoToMyBoards={() => handleSectionChange(SECTIONS.MY_BOARDS)}
+              />
+            </div>
+          ) : (
+            <div className={classes.boardsWithPanel}>
+              <div className={classes.boards}>
+                <BoardsView
+                  intl={intl}
+                  boards={fetcher.boards}
+                  viewMode={viewMode}
+                  loading={fetcher.loading}
+                  error={fetcher.error}
+                  hasSearch={!!search}
+                  page={fetcher.page}
+                  totalPages={fetcher.totalPages}
+                  onPageChange={fetcher.goToPage}
+                  onRetry={fetcher.refetch}
+                  busyBoardId={busyBoardId}
+                  communicator={currentCommunicator}
+                  activeBoardId={activeBoardId}
+                  selectedId={selection.selectedId}
+                  onSelect={selection.select}
+                  onToggleQuickAccess={board =>
+                    runBusy(board, actions.addOrRemoveBoard)
+                  }
+                  registerTrigger={selection.registerTrigger}
+                />
+              </div>
+              <BoardDetailsSurface
+                intl={intl}
+                board={selection.selectedBoard}
+                actions={selectedActions}
+                busy={busyBoardId === selection.selectedId}
+                communicator={currentCommunicator}
+                activeBoardId={activeBoardId}
+                onClose={selection.clear}
+              />
+            </div>
+          )}
+
+          <LiveRegion message={announcement} />
 
           <CommunicatorDialogTour
             communicatorTour={communicatorTour}
@@ -351,7 +449,8 @@ CommunicatorDialog.propTypes = {
   verifyAndUpsertCommunicator: PropTypes.func.isRequired,
   upsertApiCommunicator: PropTypes.func.isRequired,
   showNotification: PropTypes.func.isRequired,
-  disableTour: PropTypes.func.isRequired
+  disableTour: PropTypes.func.isRequired,
+  switchBoard: PropTypes.func.isRequired
 };
 
 export default CommunicatorDialog;

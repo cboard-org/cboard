@@ -56,6 +56,7 @@ const buildProps = (overrides = {}) => ({
   upsertApiCommunicator: jest.fn(),
   showNotification: jest.fn(),
   disableTour: jest.fn(),
+  switchBoard: jest.fn(),
   ...overrides
 });
 
@@ -65,11 +66,10 @@ describe('CommunicatorDialog (dashboard)', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  test('renders the navigation, section header and boards view', () => {
+  test('renders the navigation and section header', () => {
     const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
     expect(wrapper.find('DashboardNav').length).toBe(1);
     expect(wrapper.find('SectionHeader').length).toBe(1);
-    expect(wrapper.find('BoardsView').length).toBe(1);
   });
 
   test('starts on the My Communicator section', () => {
@@ -77,6 +77,32 @@ describe('CommunicatorDialog (dashboard)', () => {
     expect(wrapper.find('DashboardNav').prop('section')).toBe(
       SECTIONS.MY_COMMUNICATOR
     );
+  });
+
+  test('renders the quick access tray on the default section', () => {
+    const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+    expect(wrapper.find('QuickAccessTray').length).toBe(1);
+    expect(wrapper.find('BoardsView').length).toBe(0);
+  });
+
+  test('renders the boards view and details surface on My Boards', () => {
+    const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+    wrapper.find('DashboardNav').prop('onChange')(SECTIONS.MY_BOARDS);
+    expect(wrapper.find('BoardsView').length).toBe(1);
+    expect(wrapper.find('BoardDetailsSurface').length).toBe(1);
+  });
+
+  test('renders a live region', () => {
+    const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+    expect(wrapper.find('LiveRegion').length).toBe(1);
+  });
+
+  test('hides search and the view toggle on quick access', () => {
+    const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+    expect(wrapper.find('ContentToolbar').length).toBe(0);
+
+    wrapper.find('DashboardNav').prop('onChange')(SECTIONS.MY_BOARDS);
+    expect(wrapper.find('ContentToolbar').length).toBe(1);
   });
 
   test('switching section updates the active section', () => {

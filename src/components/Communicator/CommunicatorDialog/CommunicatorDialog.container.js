@@ -15,7 +15,8 @@ import {
   createBoard,
   updateBoard,
   updateApiObjectsNoChild,
-  updateApiBoard
+  updateApiBoard,
+  switchBoard
 } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import { getVisibleBoards } from '../../Board/Board.selectors';
@@ -64,7 +65,8 @@ const mapDispatchToProps = {
   updateApiBoard,
   disableTour,
   verifyAndUpsertCommunicator,
-  upsertApiCommunicator
+  upsertApiCommunicator,
+  switchBoard
 };
 
 export default connect(

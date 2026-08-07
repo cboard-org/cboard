@@ -14,8 +14,8 @@ import messages from '../CommunicatorDialog.messages';
 // the imported `messages` object is undefined there — avoid top-level access).
 const SECTION_LABELS = {
   [SECTIONS.MY_COMMUNICATOR]: {
-    title: 'sectionMyCommunicator',
-    hint: 'sectionMyCommunicatorHint'
+    title: 'sectionQuickAccess',
+    hint: 'sectionQuickAccessHint'
   },
   [SECTIONS.MY_BOARDS]: {
     title: 'sectionMyBoards',

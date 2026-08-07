@@ -354,14 +354,6 @@ export default defineMessages({
     defaultMessage: 'Language'
   },
   // --- Dashboard layout ---
-  sectionMyCommunicator: {
-    id: 'cboard.components.CommunicatorDialog.sectionMyCommunicator',
-    defaultMessage: 'My Communicator'
-  },
-  sectionMyCommunicatorHint: {
-    id: 'cboard.components.CommunicatorDialog.sectionMyCommunicatorHint',
-    defaultMessage: 'Quick access boards and your home board'
-  },
   sectionMyBoards: {
     id: 'cboard.components.CommunicatorDialog.sectionMyBoards',
     defaultMessage: 'My Boards'

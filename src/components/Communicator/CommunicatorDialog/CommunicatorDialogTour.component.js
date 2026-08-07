@@ -152,7 +152,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '.CommunicatorDialog__boardActions',
+      target: '[data-testid="board-details-panel"]',
       placement: 'left',
       content: (
         <div className="CommunicatorDialog__Tour">
@@ -214,7 +214,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '.CommunicatorDialog__boardActions',
+      target: '[data-testid="board-details-panel"]',
       placement: 'left',
       content: (
         <div className="CommunicatorDialog__Tour">
@@ -276,7 +276,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '.CommunicatorDialog__boardActions',
+      target: '[data-testid="board-details-panel"]',
       placement: 'left',
       content: (
         <div className="CommunicatorDialog__Tour">
