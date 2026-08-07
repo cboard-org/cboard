@@ -133,6 +133,7 @@ const CommunicatorDialog = ({
   const [dialog, setDialog] = useState({ type: null, board: null });
   const [announcement, setAnnouncement] = useState('');
   const announceTimer = useRef(null);
+  const scrollAreaRef = useRef(null);
 
   const fetcher = useBoardsFetcher({
     section,
@@ -195,6 +196,19 @@ const CommunicatorDialog = ({
     setSection(nextSection);
     setSearchInput('');
     setSearch('');
+  };
+
+  const handlePageChange = nextPage => {
+    fetcher.goToPage(nextPage);
+    const scrollArea = scrollAreaRef.current;
+    if (!scrollArea) {
+      return;
+    }
+    if (scrollArea.scrollTo) {
+      scrollArea.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      scrollArea.scrollTop = 0;
+    }
   };
 
   const handleViewModeChange = mode => {
@@ -335,7 +349,7 @@ const CommunicatorDialog = ({
               />
             </div>
           ) : (
-            <div className={classes.scrollAreaWithPanel}>
+            <div className={classes.scrollAreaWithPanel} ref={scrollAreaRef}>
               <div className={classes.boards}>
                 <BoardsView
                   intl={intl}
@@ -346,7 +360,7 @@ const CommunicatorDialog = ({
                   hasSearch={!!search}
                   page={fetcher.page}
                   totalPages={fetcher.totalPages}
-                  onPageChange={fetcher.goToPage}
+                  onPageChange={handlePageChange}
                   onRetry={fetcher.refetch}
                   busyBoardId={busyBoardId}
                   communicator={currentCommunicator}
