@@ -5,6 +5,7 @@ import Language from '../../../Settings/Language/Language.messages';
  * Returns a react-intl message descriptor or null when unknown.
  */
 export const getBoardLocaleMessage = lang => {
+  if (!Language) return null;
   const source = lang || navigator.language || '';
   const locale = source.slice(0, 2).toLowerCase();
   return Language[locale] || null;
