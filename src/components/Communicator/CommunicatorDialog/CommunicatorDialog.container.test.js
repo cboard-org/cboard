@@ -1,12 +1,6 @@
 import { mapStateToProps } from './CommunicatorDialog.container';
 import { SYNC_STATUS } from '../../Board/Board.constants';
 
-jest.mock('../../Settings/Export/Export.helpers', () => ({
-  __esModule: true,
-  openboardExportOneAdapter: jest.fn(() => Promise.resolve()),
-  pdfExportAdapter: jest.fn(() => Promise.resolve())
-}));
-
 const createState = (boards, syncMeta = {}) => ({
   board: {
     boards,

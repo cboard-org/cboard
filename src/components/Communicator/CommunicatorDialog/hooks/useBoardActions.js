@@ -4,10 +4,6 @@ import API from '../../../../api';
 import { SECTIONS } from '../CommunicatorDialog.constants';
 import messages from '../CommunicatorDialog.messages';
 import history from '../../../../history';
-import {
-  openboardExportOneAdapter,
-  pdfExportAdapter
-} from '../../../Settings/Export/Export.helpers';
 import { MEDIUM_FONT_SIZE } from '../../../Settings/Export/Export.constants';
 import { moveVisibleBoard } from '../components/quickAccessOrder';
 
@@ -411,6 +407,11 @@ const useBoardActions = ({
   const exportBoard = useCallback(
     async board => {
       try {
+        // Loaded lazily: Export.helpers pulls in pdfmake + vfs_fonts (~1.7MB)
+        // at module scope, which we only want paid for on an actual export.
+        const {
+          openboardExportOneAdapter
+        } = await import('../../../Settings/Export/Export.helpers');
         await openboardExportOneAdapter(board, intl);
         showNotification(
           intl.formatMessage(messages.boardExported, { name: board.name })
@@ -427,6 +428,10 @@ const useBoardActions = ({
   const exportBoardToPdf = useCallback(
     async board => {
       try {
+        // Same lazy-load rationale as exportBoard above.
+        const {
+          pdfExportAdapter
+        } = await import('../../../Settings/Export/Export.helpers');
         await pdfExportAdapter([board], MEDIUM_FONT_SIZE, intl);
         showNotification(
           intl.formatMessage(messages.boardExported, { name: board.name })
