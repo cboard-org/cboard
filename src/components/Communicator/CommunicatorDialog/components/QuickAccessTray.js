@@ -88,7 +88,7 @@ const QuickAccessTray = ({
 
   if (!orderedBoards.length) {
     return (
-      <div className={classes.root}>
+      <div className={classes.root} data-testid="quick-access-tray">
         <div className={classes.empty}>
           <Typography variant="subtitle1">
             {intl.formatMessage(messages.quickAccessEmpty)}
@@ -100,7 +100,7 @@ const QuickAccessTray = ({
   }
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} data-testid="quick-access-tray">
       <Typography
         id={EXPLAINER_ID}
         variant="body2"

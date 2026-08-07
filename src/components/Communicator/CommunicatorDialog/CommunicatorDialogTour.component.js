@@ -152,7 +152,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '[data-testid="board-details-panel"]',
+      target: '[data-testid="quick-access-tray"]',
       placement: 'left',
       content: (
         <div className="CommunicatorDialog__Tour">

@@ -102,6 +102,6 @@ describe('BoardCard', () => {
   });
 
   it('renders no overflow action menu', () => {
-    expect(render().find('BoardActionsBar')).toHaveLength(0);
+    expect(render().find('button[aria-haspopup="true"]')).toHaveLength(0);
   });
 });
