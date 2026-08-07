@@ -9,14 +9,14 @@ export const TAB_INDEXES = {
 // Dashboard sections (replaces the tabs). Each section maps the data source it
 // reads from and the set of board actions it exposes.
 export const SECTIONS = {
-  MY_COMMUNICATOR: 'myCommunicator',
   MY_BOARDS: 'myBoards',
+  MY_COMMUNICATOR: 'myCommunicator',
   COMMUNITY: 'community'
 };
 
 export const SECTION_ORDER = [
-  SECTIONS.MY_COMMUNICATOR,
   SECTIONS.MY_BOARDS,
+  SECTIONS.MY_COMMUNICATOR,
   SECTIONS.COMMUNITY
 ];
 

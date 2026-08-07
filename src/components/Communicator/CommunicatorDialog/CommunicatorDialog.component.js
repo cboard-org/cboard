@@ -124,7 +124,7 @@ const CommunicatorDialog = ({
 }) => {
   const classes = useStyles();
 
-  const [section, setSection] = useState(SECTIONS.MY_COMMUNICATOR);
+  const [section, setSection] = useState(SECTIONS.MY_BOARDS);
   const [viewMode, setViewMode] = useState(readStoredViewMode);
   const [searchInput, setSearchInput] = useState('');
   const [search, setSearch] = useState('');

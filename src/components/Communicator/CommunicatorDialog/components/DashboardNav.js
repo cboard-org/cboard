@@ -21,19 +21,19 @@ export const NAV_WIDTH = 260;
 // Icons are static; message lookups are done at render time so importing this
 // module has no side effects (react-intl is auto-mocked in tests).
 const SECTION_ICONS = {
-  [SECTIONS.MY_COMMUNICATOR]: RecordVoiceOverIcon,
   [SECTIONS.MY_BOARDS]: DashboardIcon,
+  [SECTIONS.MY_COMMUNICATOR]: RecordVoiceOverIcon,
   [SECTIONS.COMMUNITY]: PublicIcon
 };
 
 const SECTION_LABELS = {
-  [SECTIONS.MY_COMMUNICATOR]: {
-    label: 'sectionQuickAccess',
-    hint: 'sectionQuickAccessHint'
-  },
   [SECTIONS.MY_BOARDS]: {
     label: 'sectionMyBoards',
     hint: 'sectionMyBoardsHint'
+  },
+  [SECTIONS.MY_COMMUNICATOR]: {
+    label: 'sectionQuickAccess',
+    hint: 'sectionQuickAccessHint'
   },
   [SECTIONS.COMMUNITY]: {
     label: 'sectionCommunity',
