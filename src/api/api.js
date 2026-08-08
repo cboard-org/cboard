@@ -549,7 +549,8 @@ class API {
     if (isDataURL(tile.sound)) {
       const { url, unrecoverable } = await this.tryUploadDataURL(
         tile.sound,
-        `${tile.id}.mp3`
+        tile.id,
+        true
       );
       return { attempted: true, url, unrecoverable };
     }
