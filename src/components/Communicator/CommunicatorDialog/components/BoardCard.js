@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
+import orange from '@material-ui/core/colors/orange';
 import classNames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import LanguageIcon from '@material-ui/icons/Language';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
@@ -46,7 +45,11 @@ const useStyles = makeStyles(theme => ({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+    // The action area is a <button>, whose UA default centres every line of
+    // text inside it — which left the title and date centred while the meta
+    // row stayed left, reading as three unrelated blocks.
+    textAlign: 'start'
   },
   thumb: {
     height: 132,
@@ -55,7 +58,13 @@ const useStyles = makeStyles(theme => ({
   content: {
     flex: 1,
     width: '100%',
-    paddingBottom: theme.spacing(1)
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    paddingBottom: theme.spacing(1),
+    '&.MuiCardContent-root': {
+      textAlign: 'start'
+    }
   },
   title: {
     fontWeight: 600,
@@ -67,21 +76,14 @@ const useStyles = makeStyles(theme => ({
     WebkitBoxOrient: 'vertical'
   },
   meta: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: theme.spacing(0.5),
     color: theme.palette.text.secondary,
-    marginTop: theme.spacing(0.75)
-  },
-  metaIcon: {
-    fontSize: '1rem'
-  },
-  badge: {
-    marginTop: theme.spacing(0.75)
+    marginTop: theme.spacing(0.5),
+    lineHeight: 1.4
   },
   date: {
-    fontSize: '0.75rem',
-    color: theme.palette.text.hint
+    color: theme.palette.text.hint,
+    marginTop: theme.spacing(0.25),
+    lineHeight: 1.4
   },
   footer: {
     display: 'flex',
@@ -96,7 +98,7 @@ const useStyles = makeStyles(theme => ({
     minHeight: 44
   },
   starActive: {
-    color: theme.palette.warning.main
+    color: theme.palette.type === 'dark' ? orange[300] : orange[900]
   },
   busy: busyOverlay(theme)
 }));
@@ -121,6 +123,10 @@ const BoardCard = ({
   const toggleLabel = intl.formatMessage(
     inQuickAccess ? messages.removeFromQuickAccess : messages.addToQuickAccess
   );
+  const metaParts = [
+    intl.formatMessage(messages.tilesQty, { qty: board.tiles.length }),
+    locale
+  ].filter(Boolean);
 
   const handleToggle = event => {
     // The whole card is an activation target; the star must not select it.
@@ -157,29 +163,9 @@ const BoardCard = ({
           >
             {title}
           </Typography>
-          <div className={classes.meta}>
-            <Typography variant="caption" component="span">
-              {intl.formatMessage(messages.tilesQty, {
-                qty: board.tiles.length
-              })}
-            </Typography>
-            {locale && (
-              <>
-                <LanguageIcon className={classes.metaIcon} aria-hidden="true" />
-                <Typography variant="caption" component="span">
-                  {locale}
-                </Typography>
-              </>
-            )}
-          </div>
-          {inQuickAccess && (
-            <Chip
-              size="small"
-              variant="outlined"
-              className={classes.badge}
-              label={intl.formatMessage(messages.inQuickAccess)}
-            />
-          )}
+          <Typography variant="caption" className={classes.meta} component="p">
+            {metaParts.join('  ·  ')}
+          </Typography>
           <Typography variant="caption" className={classes.date} component="p">
             {moment(board.lastEdited).format('DD/MM/YYYY')}
           </Typography>

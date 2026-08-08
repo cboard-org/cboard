@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
+import orange from '@material-ui/core/colors/orange';
 import classNames from 'classnames';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import Chip from '@material-ui/core/Chip';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import StarIcon from '@material-ui/icons/Star';
@@ -83,7 +83,7 @@ const useStyles = makeStyles(theme => ({
     minHeight: 44
   },
   starActive: {
-    color: theme.palette.warning.main
+    color: theme.palette.type === 'dark' ? orange[300] : orange[900]
   }
 }));
 
@@ -150,14 +150,6 @@ const BoardRow = ({
           </Typography>
         </div>
       </ButtonBase>
-
-      {inQuickAccess && (
-        <Chip
-          size="small"
-          variant="outlined"
-          label={intl.formatMessage(messages.inQuickAccess)}
-        />
-      )}
 
       <div className={classes.status}>
         <BoardStatusIcons

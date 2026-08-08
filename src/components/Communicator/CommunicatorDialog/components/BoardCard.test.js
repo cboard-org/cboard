@@ -2,6 +2,8 @@ import React from 'react';
 import { mount } from 'enzyme';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import IconButton from '@material-ui/core/IconButton';
+import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 import BoardCard from './BoardCard';
 
 jest.mock('../CommunicatorDialog.messages', () => ({
@@ -94,11 +96,17 @@ describe('BoardCard', () => {
     expect(toggle.prop('aria-label')).toBe('addToQuickAccess');
   });
 
-  it('shows a text badge, not just a star, for members', () => {
-    const wrapper = render({
+  it('marks members with a filled star and a pressed toggle, not colour alone', () => {
+    const toggle = render({
       communicator: { rootBoard: 'zzz', boards: ['b2'] }
-    });
-    expect(wrapper.text()).toContain('inQuickAccess');
+    })
+      .find(IconButton)
+      .filterWhere(node => node.prop('data-testid') === 'quick-access-toggle')
+      .first();
+    expect(toggle.prop('aria-pressed')).toBe(true);
+    expect(toggle.prop('aria-label')).toBe('removeFromQuickAccess');
+    expect(toggle.find(StarIcon)).toHaveLength(1);
+    expect(toggle.find(StarBorderIcon)).toHaveLength(0);
   });
 
   it('renders no overflow action menu', () => {
