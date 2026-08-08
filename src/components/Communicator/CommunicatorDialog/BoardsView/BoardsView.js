@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
   pagination: {
     display: 'flex',
     justifyContent: 'center',
-    padding: theme.spacing(3, 0, 1)
+    padding: theme.spacing(2, 0, 2)
   },
   skeletonCard: {
     borderRadius: softRadius(theme),

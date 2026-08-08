@@ -61,7 +61,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
-    paddingBottom: theme.spacing(1),
+    padding: theme.spacing(1.5, 1.5),
+    '&:last-child': {
+      paddingBottom: theme.spacing(1.5)
+    },
     '&.MuiCardContent-root': {
       textAlign: 'start'
     }

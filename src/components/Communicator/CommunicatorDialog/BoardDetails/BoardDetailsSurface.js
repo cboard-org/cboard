@@ -12,24 +12,21 @@ import BoardDetails from './BoardDetails';
 import { softRadius } from '../CommunicatorDialog.styles';
 import messages from '../CommunicatorDialog.messages';
 
-const PANEL_WIDTH = 300;
+const PANEL_WIDTH = 380;
 
 const useStyles = makeStyles(theme => ({
   // Same anatomy as the sheet: the rounded card clips its content and only the
   // body scrolls, so the scrollbar starts below the corner radius instead of
   // being squared off against it.
   panel: {
-    position: 'sticky',
-    top: theme.spacing(2),
     alignSelf: 'flex-start',
     display: 'flex',
     flexDirection: 'column',
     width: PANEL_WIDTH,
     flexShrink: 0,
-    marginLeft: theme.spacing(2),
-    marginTop: theme.spacing(2),
+    margin: theme.spacing(2),
     borderRadius: softRadius(theme),
-    maxHeight: `calc(100% - ${theme.spacing(2)}px)`,
+    maxHeight: `calc(100% - ${theme.spacing(4)}px)`,
     overflow: 'hidden'
   },
   panelHeader: {
@@ -86,7 +83,7 @@ const useStyles = makeStyles(theme => ({
 
 /**
  * Chooses how the details for the selected board are presented:
- * a sticky column beside the list on wide viewports, a bottom sheet on
+ * a self-scrolling column beside the list on wide viewports, a bottom sheet on
  * phones so the board list never gets pushed off screen.
  */
 const BoardDetailsSurface = ({

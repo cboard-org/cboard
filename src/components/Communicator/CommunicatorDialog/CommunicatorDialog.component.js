@@ -67,14 +67,16 @@ const useStyles = makeStyles(theme => ({
   scrollAreaWithPanel: {
     flex: 1,
     minHeight: 0,
-    overflowY: 'auto',
+    overflow: 'hidden',
     display: 'flex',
-    alignItems: 'flex-start',
-    padding: theme.spacing(0, 2, 2, 0)
+    alignItems: 'stretch'
+    // padding: theme.spacing(0, 2, 2, 0)
   },
   boards: {
     flex: 1,
     minWidth: 0,
+    minHeight: 0,
+    overflowY: 'auto',
     padding: theme.spacing(2, 2, 0)
   }
 }));
@@ -342,8 +344,8 @@ const CommunicatorDialog = ({
               />
             </div>
           ) : (
-            <div className={classes.scrollAreaWithPanel} ref={scrollAreaRef}>
-              <div className={classes.boards}>
+            <div className={classes.scrollAreaWithPanel}>
+              <div className={classes.boards} ref={scrollAreaRef}>
                 <BoardsView
                   intl={intl}
                   boards={fetcher.boards}
