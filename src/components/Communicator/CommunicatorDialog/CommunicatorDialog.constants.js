@@ -35,4 +35,6 @@ export const VIEW_MODES = {
 
 export const VIEW_MODE_STORAGE_KEY = 'cboard-communicator-view-mode';
 
+export const NAV_COLLAPSED_STORAGE_KEY = 'cboard-communicator-nav-collapsed';
+
 export const BOARDS_PAGE_LIMIT = 12;

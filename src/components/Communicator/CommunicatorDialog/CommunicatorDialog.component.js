@@ -15,8 +15,7 @@ import messages from './CommunicatorDialog.messages';
 
 import useBoardsFetcher from './hooks/useBoardsFetcher';
 import useBoardActions from './hooks/useBoardActions';
-import DashboardToolbar from './components/DashboardToolbar';
-import DashboardNav, { NAV_WIDTH } from './components/DashboardNav';
+import DashboardNav from './components/DashboardNav';
 import SectionHeader from './components/SectionHeader';
 import ContentToolbar from './components/ContentToolbar';
 import BoardsView from './components/BoardsView';
@@ -39,13 +38,6 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     overflow: 'hidden'
   },
-  nav: {
-    width: NAV_WIDTH,
-    flexShrink: 0,
-    [theme.breakpoints.down('xs')]: {
-      width: 0
-    }
-  },
   content: {
     flex: 1,
     minWidth: 0,
@@ -60,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
     gap: theme.spacing(1, 2),
 
-    padding: theme.spacing(1, 2),
+    padding: theme.spacing(2, 2),
     backgroundColor: theme.palette.background.default,
     borderBottom: `1px solid ${theme.palette.divider}`
   },

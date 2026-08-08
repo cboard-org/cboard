@@ -374,6 +374,14 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.navigation',
     defaultMessage: 'Navigation'
   },
+  expandNavigation: {
+    id: 'cboard.components.CommunicatorDialog.expandNavigation',
+    defaultMessage: 'Expand navigation'
+  },
+  collapseNavigation: {
+    id: 'cboard.components.CommunicatorDialog.collapseNavigation',
+    defaultMessage: 'Collapse navigation'
+  },
   searchBoardsPlaceholder: {
     id: 'cboard.components.CommunicatorDialog.searchBoardsPlaceholder',
     defaultMessage: 'Search by name or author'

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import { alpha, makeStyles } from '@material-ui/core/styles';
@@ -8,21 +8,29 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import Typography from '@material-ui/core/Typography';
-import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import StarIcon from '@material-ui/icons/Star';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PublicIcon from '@material-ui/icons/Public';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-import { SECTIONS, SECTION_ORDER } from '../CommunicatorDialog.constants';
+import {
+  SECTIONS,
+  SECTION_ORDER,
+  NAV_COLLAPSED_STORAGE_KEY
+} from '../CommunicatorDialog.constants';
 import messages from '../CommunicatorDialog.messages';
 
 export const NAV_WIDTH = 260;
+export const NAV_WIDTH_COLLAPSED = 64;
 
 // Icons are static; message lookups are done at render time so importing this
 // module has no side effects (react-intl is auto-mocked in tests).
 const SECTION_ICONS = {
   [SECTIONS.MY_BOARDS]: DashboardIcon,
-  [SECTIONS.MY_COMMUNICATOR]: RecordVoiceOverIcon,
+  [SECTIONS.MY_COMMUNICATOR]: StarIcon,
   [SECTIONS.COMMUNITY]: PublicIcon
 };
 
@@ -41,8 +49,20 @@ const SECTION_LABELS = {
   }
 };
 
+const readStoredCollapsed = () => {
+  try {
+    return window.localStorage.getItem(NAV_COLLAPSED_STORAGE_KEY) === 'true';
+  } catch (e) {
+    return false;
+  }
+};
+
 const useStyles = makeStyles(theme => {
   const dark = theme.palette.type === 'dark';
+  const widthTransition = theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen
+  });
   return {
     docked: {
       height: '100%'
@@ -52,10 +72,15 @@ const useStyles = makeStyles(theme => {
       position: 'relative',
       border: 'none',
       borderRight: `1px solid ${theme.palette.divider}`,
+      overflowX: 'hidden',
+      transition: widthTransition,
       // Subtly recede the sidebar from the content surface in both modes.
       backgroundColor: dark
         ? alpha(theme.palette.common.white, 0.03)
         : theme.palette.grey[50]
+    },
+    drawerPaperCollapsed: {
+      width: NAV_WIDTH_COLLAPSED
     },
     temporaryPaper: {
       width: NAV_WIDTH,
@@ -63,12 +88,15 @@ const useStyles = makeStyles(theme => {
         ? theme.palette.background.paper
         : theme.palette.grey[50]
     },
-    header: {
-      padding: theme.spacing(2, 2, 1),
-      color: theme.palette.text.secondary,
-      fontWeight: 700,
-      letterSpacing: '0.08em',
-      textTransform: 'uppercase'
+    toggleRow: {
+      display: 'flex',
+      justifyContent: 'flex-start',
+      padding: theme.spacing(1.5, 0, 1.5, 0.75)
+    },
+    toggleButton: {
+      '& svg': {
+        fontSize: '1.75rem'
+      }
     },
     list: {
       paddingTop: theme.spacing(0.5),
@@ -104,8 +132,30 @@ const useStyles = makeStyles(theme => {
         }
       }
     },
+    // Padding and icon slot stay identical in both states: margin (8) +
+    // padding (12) + half the icon (12) puts the glyph on the centre line of
+    // the collapsed rail, so it never travels during the width animation.
     itemIcon: {
       minWidth: 40
+    },
+    // The label keeps a fixed width and never wraps, so the shrinking paper
+    // clips it instead of reflowing it; opacity does the visible work.
+    itemText: {
+      flex: '0 0 auto',
+      width: NAV_WIDTH - 88,
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      opacity: 1,
+      transition: theme.transitions.create('opacity', {
+        duration: theme.transitions.duration.enteringScreen,
+        delay: theme.transitions.duration.shortest
+      })
+    },
+    itemTextCollapsed: {
+      opacity: 0,
+      transition: theme.transitions.create('opacity', {
+        duration: theme.transitions.duration.shortest
+      })
     },
     selectedIcon: {
       color: theme.palette.primary.main
@@ -117,47 +167,58 @@ const useStyles = makeStyles(theme => {
   };
 });
 
-const NavList = ({ intl, section, onChange }) => {
+const NavList = ({ intl, section, onChange, collapsed }) => {
   const classes = useStyles();
   return (
-    <>
-      <Typography variant="overline" component="div" className={classes.header}>
-        {intl.formatMessage(messages.navigation)}
-      </Typography>
-      <List className={classes.list} component="nav">
-        {SECTION_ORDER.map(key => {
-          const meta = SECTION_LABELS[key];
-          const Icon = SECTION_ICONS[key];
-          const selected = section === key;
-          return (
-            <ListItem
-              button
-              key={key}
-              id={`CommunicatorDialog__nav-${key}`}
-              selected={selected}
-              className={classes.item}
-              onClick={() => onChange(key)}
-              aria-current={selected ? 'page' : undefined}
+    <List className={classes.list} component="nav">
+      {SECTION_ORDER.map(key => {
+        const meta = SECTION_LABELS[key];
+        const Icon = SECTION_ICONS[key];
+        const selected = section === key;
+        const label = intl.formatMessage(messages[meta.label]);
+        const item = (
+          <ListItem
+            button
+            key={key}
+            id={`CommunicatorDialog__nav-${key}`}
+            selected={selected}
+            className={classes.item}
+            onClick={() => onChange(key)}
+            aria-current={selected ? 'page' : undefined}
+          >
+            <ListItemIcon
+              className={`${classes.itemIcon} ${
+                selected ? classes.selectedIcon : ''
+              }`}
             >
-              <ListItemIcon
-                className={`${classes.itemIcon} ${
-                  selected ? classes.selectedIcon : ''
-                }`}
-              >
-                <Icon />
-              </ListItemIcon>
-              <ListItemText
-                primaryTypographyProps={{
-                  className: selected ? classes.selectedText : undefined
-                }}
-                primary={intl.formatMessage(messages[meta.label])}
-                secondary={intl.formatMessage(messages[meta.hint])}
-              />
-            </ListItem>
-          );
-        })}
-      </List>
-    </>
+              <Icon />
+            </ListItemIcon>
+            <ListItemText
+              className={`${classes.itemText} ${
+                collapsed ? classes.itemTextCollapsed : ''
+              }`}
+              primaryTypographyProps={{
+                noWrap: true,
+                className: selected ? classes.selectedText : undefined
+              }}
+              secondaryTypographyProps={{ noWrap: true }}
+              primary={label}
+              secondary={intl.formatMessage(messages[meta.hint])}
+            />
+          </ListItem>
+        );
+
+        // Collapsed items show only the icon, so the label also goes in a
+        // tooltip (which MUI exposes on keyboard focus too).
+        return collapsed ? (
+          <Tooltip key={key} title={label} placement="right">
+            {item}
+          </Tooltip>
+        ) : (
+          item
+        );
+      })}
+    </List>
   );
 };
 
@@ -169,11 +230,26 @@ const DashboardNav = ({
   onMobileClose
 }) => {
   const classes = useStyles();
+  const [collapsed, setCollapsed] = useState(readStoredCollapsed);
 
   const handleChange = key => {
     onChange(key);
     onMobileClose();
   };
+
+  const handleToggle = () => {
+    const next = !collapsed;
+    setCollapsed(next);
+    try {
+      window.localStorage.setItem(NAV_COLLAPSED_STORAGE_KEY, String(next));
+    } catch (e) {
+      // storage unavailable (private mode) — collapse state stays session-only
+    }
+  };
+
+  const toggleLabel = intl.formatMessage(
+    collapsed ? messages.expandNavigation : messages.collapseNavigation
+  );
 
   return (
     <>
@@ -181,9 +257,34 @@ const DashboardNav = ({
         <Drawer
           variant="permanent"
           open
-          classes={{ docked: classes.docked, paper: classes.drawerPaper }}
+          classes={{
+            docked: classes.docked,
+            paper: `${classes.drawerPaper} ${
+              collapsed ? classes.drawerPaperCollapsed : ''
+            }`
+          }}
         >
-          <NavList intl={intl} section={section} onChange={onChange} />
+          <div className={classes.toggleRow}>
+            <Tooltip title={toggleLabel} placement="right">
+              <IconButton
+                className={classes.toggleButton}
+                onClick={handleToggle}
+                aria-label={toggleLabel}
+                aria-expanded={!collapsed}
+                aria-controls="CommunicatorDialog__nav-list"
+              >
+                {collapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+              </IconButton>
+            </Tooltip>
+          </div>
+          <div id="CommunicatorDialog__nav-list">
+            <NavList
+              intl={intl}
+              section={section}
+              onChange={onChange}
+              collapsed={collapsed}
+            />
+          </div>
         </Drawer>
       </Hidden>
       <Hidden smUp implementation="css">
