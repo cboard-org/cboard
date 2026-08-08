@@ -46,8 +46,8 @@ const renderHook = hookArgs => {
 };
 
 describe('useBoardsFetcher (communicator local source)', () => {
-  it('paginates the communicator boards (10 per page)', () => {
-    const communicatorBoards = makeBoards(12);
+  it('paginates the communicator boards (12 per page)', () => {
+    const communicatorBoards = makeBoards(14);
     const { get } = renderHook({
       section: SECTIONS.MY_COMMUNICATOR,
       search: '',
@@ -56,9 +56,9 @@ describe('useBoardsFetcher (communicator local source)', () => {
       userData: {}
     });
 
-    expect(get().total).toBe(12);
+    expect(get().total).toBe(14);
     expect(get().totalPages).toBe(2);
-    expect(get().boards).toHaveLength(10);
+    expect(get().boards).toHaveLength(12);
 
     act(() => get().goToPage(2));
     expect(get().boards).toHaveLength(2);
