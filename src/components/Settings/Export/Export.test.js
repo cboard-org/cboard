@@ -73,34 +73,62 @@ describe('Export tests', () => {
     const allExportButton = buttons.at(1);
     expect(allExportButton.prop('disabled')).toBe(true);
   });
+});
 
-  test('calls onExportClick when export single board button is clicked with valid selections', () => {
-    const onExportClick = jest.fn();
-    const wrapper = shallow(
-      <Export {...COMPONENT_PROPS} onExportClick={onExportClick} />
-    );
-    wrapper.setState({
-      singleBoard: { id: 'board1', name: 'Test Board' },
-      exportSingleBoard: 'pdf'
-    });
-    wrapper.instance().handleSingleExport();
-    expect(onExportClick).toHaveBeenCalled();
+test('calls onExportClick when export single board button is clicked with valid selections', () => {
+  const onExportClick = jest.fn();
+
+  const wrapper = shallow(
+    <Export {...COMPONENT_PROPS} onExportClick={onExportClick} />
+  );
+
+  wrapper.find('#boards-select').simulate('change', {
+    target: {
+      value: { id: 'board1', name: 'Test Board' }
+    }
   });
 
-  test('calls onExportClick when export all boards button is clicked with valid format', () => {
-    const onExportClick = jest.fn();
-    const wrapper = shallow(
-      <Export {...COMPONENT_PROPS} onExportClick={onExportClick} />
-    );
-    wrapper.setState({ exportAllBoard: 'cboard' });
-    wrapper.instance().handleAllExport();
-    expect(onExportClick).toHaveBeenCalled();
+  wrapper.find('#export-single-select').simulate('change', {
+    target: { value: 'pdf' }
   });
 
-  test('sets boardError when export single is clicked without selecting a board', () => {
-    const wrapper = shallow(<Export {...COMPONENT_PROPS} />);
-    wrapper.setState({ exportSingleBoard: 'pdf' });
-    wrapper.instance().handleSingleExport();
-    expect(wrapper.state('boardError')).toBe(true);
+  const buttons = wrapper.find('WithStyles(ForwardRef(Button))');
+
+  buttons.at(0).simulate('click');
+
+  expect(onExportClick).toHaveBeenCalled();
+});
+
+test('calls onExportClick when export all boards button is clicked with valid format', () => {
+  const onExportClick = jest.fn();
+
+  const wrapper = shallow(
+    <Export {...COMPONENT_PROPS} onExportClick={onExportClick} />
+  );
+
+  wrapper.find('#export-all-select').simulate('change', {
+    target: { value: 'cboard' }
   });
+
+  const buttons = wrapper.find('WithStyles(ForwardRef(Button))');
+
+  buttons.at(1).simulate('click');
+
+  expect(onExportClick).toHaveBeenCalled();
+});
+
+test('sets boardError when export single is clicked without selecting a board', () => {
+  const wrapper = shallow(<Export {...COMPONENT_PROPS} />);
+
+  wrapper.find('#export-single-select').simulate('change', {
+    target: { value: 'pdf' }
+  });
+
+  const buttons = wrapper.find('WithStyles(ForwardRef(Button))');
+
+  buttons.at(0).simulate('click');
+
+  const formControls = wrapper.find('WithStyles(ForwardRef(FormControl))');
+
+  expect(formControls.at(0).prop('error')).toBe(true);
 });
