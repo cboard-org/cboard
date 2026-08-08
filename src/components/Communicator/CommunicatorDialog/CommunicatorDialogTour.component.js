@@ -13,12 +13,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import QueueIcon from '@material-ui/icons/Queue';
 import InfoIcon from '@material-ui/icons/Info';
 import HomeIcon from '@material-ui/icons/Home';
-import ClearIcon from '@material-ui/icons/Clear';
+import StarIcon from '@material-ui/icons/Star';
 import PublicIcon from '@material-ui/icons/Public';
 import KeyIcon from '@material-ui/icons/VpnKey';
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 import DeleteIcon from '@material-ui/icons/Delete';
-import InputIcon from '@material-ui/icons/Input';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 import './CommunicatorDialog.css';
 import messages from './CommunicatorDialog.messages';
@@ -170,7 +170,7 @@ function CommunicatorDialogTour({
               <List>
                 <ListItem alignItems="center">
                   <ListItemIcon>
-                    <ClearIcon />
+                    <StarIcon />
                   </ListItemIcon>
                   <ListItemText
                     primary={intl.formatMessage(
@@ -294,7 +294,7 @@ function CommunicatorDialogTour({
               <List>
                 <ListItem alignItems="center">
                   <ListItemIcon>
-                    <ClearIcon />
+                    <StarIcon />
                   </ListItemIcon>
                   <ListItemText
                     primary={intl.formatMessage(
@@ -304,7 +304,7 @@ function CommunicatorDialogTour({
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
-                    <InputIcon />
+                    <StarBorderIcon />
                   </ListItemIcon>
                   <ListItemText
                     primary={intl.formatMessage(

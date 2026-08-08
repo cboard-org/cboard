@@ -4,7 +4,7 @@ import { intlShape } from 'react-intl';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 import QuickAccessRow from './QuickAccessRow';
 import { softRadius } from './dashboardStyles';
@@ -79,7 +79,7 @@ const QuickAccessTray = ({
       variant="outlined"
       data-testid="go-to-my-boards"
       className={classes.addButton}
-      startIcon={<AddIcon />}
+      startIcon={<StarBorderIcon />}
       onClick={onGoToMyBoards}
     >
       {intl.formatMessage(messages.quickAccessAddFromMyBoards)}

@@ -12,7 +12,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import HomeIcon from '@material-ui/icons/Home';
-import ClearIcon from '@material-ui/icons/Clear';
+import StarIcon from '@material-ui/icons/Star';
 
 import BoardThumb from './BoardThumb';
 import {
@@ -151,7 +151,7 @@ const QuickAccessRow = ({
             disabled={isRoot}
             onClick={onRemove}
           >
-            <ClearIcon />
+            <StarIcon />
           </IconButton>
         </span>
       </Tooltip>

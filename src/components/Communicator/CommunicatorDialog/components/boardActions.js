@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeIcon from '@material-ui/icons/Home';
-import ClearIcon from '@material-ui/icons/Clear';
-import InputIcon from '@material-ui/icons/Input';
+import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 import QueueIcon from '@material-ui/icons/Queue';
 import InfoIcon from '@material-ui/icons/Info';
 import FlagIcon from '@material-ui/icons/Flag';
@@ -63,7 +63,7 @@ export const getBoardActions = ({
     label: inCommunicator
       ? t(messages.removeFromQuickAccess)
       : t(messages.addToQuickAccess),
-    icon: inCommunicator ? <ClearIcon /> : <InputIcon />,
+    icon: inCommunicator ? <StarIcon /> : <StarBorderIcon />,
     disabled: isRoot,
     onClick: () => handlers.onAddRemove(board)
   };
