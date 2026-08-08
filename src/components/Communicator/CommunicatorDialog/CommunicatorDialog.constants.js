@@ -35,4 +35,4 @@ export const VIEW_MODES = {
 
 export const VIEW_MODE_STORAGE_KEY = 'cboard-communicator-view-mode';
 
-export const BOARDS_PAGE_LIMIT = 10;
+export const BOARDS_PAGE_LIMIT = 12;
