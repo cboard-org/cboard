@@ -15,15 +15,15 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
-import BoardThumb from './BoardThumb';
-import BoardStatusIcons from './BoardStatusIcons';
-import { formatBoardLocale } from './boardLocale';
+import BoardThumb from '../shared/BoardThumb';
+import BoardStatusIcons from '../shared/BoardStatusIcons';
+import { formatBoardLocale } from '../utils/boardLocale';
 import {
   softRadius,
   surfaceInteractive,
   surfaceAccent,
   busyOverlay
-} from './dashboardStyles';
+} from '../CommunicatorDialog.styles';
 import messages from '../CommunicatorDialog.messages';
 
 const useStyles = makeStyles(theme => ({

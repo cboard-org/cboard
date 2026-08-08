@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 import QuickAccessRow from './QuickAccessRow';
-import { softRadius } from './dashboardStyles';
+import { softRadius } from '../CommunicatorDialog.styles';
 import messages from '../CommunicatorDialog.messages';
 
 const EXPLAINER_ID = 'CommunicatorDialog__quickAccessExplainer';

@@ -7,9 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
-import BoardThumb from './BoardThumb';
-import BoardStatusIcons from './BoardStatusIcons';
-import { formatBoardLocale } from './boardLocale';
+import BoardThumb from '../shared/BoardThumb';
+import BoardStatusIcons from '../shared/BoardStatusIcons';
+import { formatBoardLocale } from '../utils/boardLocale';
 import PremiumFeature from '../../../PremiumFeature';
 import messages from '../CommunicatorDialog.messages';
 

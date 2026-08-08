@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
 import BoardDetails from './BoardDetails';
-import { softRadius } from './dashboardStyles';
+import { softRadius } from '../CommunicatorDialog.styles';
 import messages from '../CommunicatorDialog.messages';
 
 const PANEL_WIDTH = 300;

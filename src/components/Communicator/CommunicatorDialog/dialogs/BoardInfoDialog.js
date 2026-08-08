@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import { isCordova } from '../../../../cordova-util';
-import { formatBoardLocale } from '../components/boardLocale';
+import { formatBoardLocale } from '../utils/boardLocale';
 import messages from '../CommunicatorDialog.messages';
 
 const getBoardUrl = board =>

@@ -15,16 +15,18 @@ import messages from './CommunicatorDialog.messages';
 
 import useBoardsFetcher from './hooks/useBoardsFetcher';
 import useBoardActions from './hooks/useBoardActions';
-import DashboardNav from './components/DashboardNav';
-import SectionHeader from './components/SectionHeader';
-import ContentToolbar from './components/ContentToolbar';
-import BoardsView from './components/BoardsView';
+import {
+  DashboardNav,
+  SectionHeader,
+  ContentToolbar,
+  LiveRegion
+} from './Dashboard';
+import BoardsView from './BoardsView';
 import CommunicatorDialogTour from './CommunicatorDialogTour.component';
 import useBoardSelection from './hooks/useBoardSelection';
-import BoardDetailsSurface from './components/BoardDetailsSurface';
-import QuickAccessTray from './components/QuickAccessTray';
-import LiveRegion from './components/LiveRegion';
-import { getBoardActions } from './components/boardActions';
+import BoardDetailsSurface from './BoardDetails';
+import QuickAccessTray from './QuickAccess';
+import { getBoardActions } from './utils/boardActions';
 
 import BoardInfoDialog from './dialogs/BoardInfoDialog';
 import ConfirmDialog from './dialogs/ConfirmDialog';
@@ -297,7 +299,6 @@ const CommunicatorDialog = ({
       open={open}
       title={intl.formatMessage(messages.title)}
       onClose={onClose}
-      // buttons={<DashboardToolbar intl={intl} />}
     >
       <div className={classes.dashboard}>
         <DashboardNav

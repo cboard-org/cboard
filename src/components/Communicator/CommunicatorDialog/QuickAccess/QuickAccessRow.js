@@ -14,13 +14,13 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import HomeIcon from '@material-ui/icons/Home';
 import StarIcon from '@material-ui/icons/Star';
 
-import BoardThumb from './BoardThumb';
+import BoardThumb from '../shared/BoardThumb';
 import {
   softRadius,
   surfaceInteractive,
   surfaceAccent,
   busyOverlay
-} from './dashboardStyles';
+} from '../CommunicatorDialog.styles';
 import messages from '../CommunicatorDialog.messages';
 
 const useStyles = makeStyles(theme => ({

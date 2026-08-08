@@ -17,7 +17,10 @@ jest.mock('../CommunicatorDialog.messages', () => ({
   )
 }));
 
-jest.mock('./BoardThumb', () => ({ __esModule: true, default: () => null }));
+jest.mock('../shared/BoardThumb', () => ({
+  __esModule: true,
+  default: () => null
+}));
 
 const intl = { formatMessage: ({ defaultMessage }) => defaultMessage };
 
