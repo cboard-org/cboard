@@ -18,12 +18,12 @@ import Symbol from './Symbol';
 import OutputContainer from './Output';
 import Navbar from './Navbar';
 import EditToolbar from './EditToolbar';
+import FooterEditToolbar from './FooterEditToolbar/index';
 import Tile from './Tile';
 import EmptyBoard from './EmptyBoard';
 import CommunicatorToolbar from '../Communicator/CommunicatorToolbar';
 import { DISPLAY_SIZE_GRID_COLS } from '../Settings/Display/Display.constants';
 import NavigationButtons from '../NavigationButtons';
-import EditGridButtons from '../EditGridButtons';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 
 import { Link } from 'react-router-dom';
@@ -499,22 +499,6 @@ export class Board extends Component {
                     isNavigationButtonsOnTheSide={isNavigationButtonsOnTheSide}
                   />
                 )}
-
-                <EditGridButtons
-                  active={
-                    isFixedBoard && isSelecting && !isSaving ? true : false
-                  }
-                  columns={
-                    board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER
-                  }
-                  rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
-                  onAddRemoveRow={onAddRemoveRow}
-                  onAddRemoveColumn={onAddRemoveColumn}
-                  moveColsButtonToLeft={
-                    navigationSettings.bigScrollButtonsActive &&
-                    isNavigationButtonsOnTheSide
-                  }
-                />
               </div>
             </Scannable>
 
@@ -579,6 +563,15 @@ export class Board extends Component {
               </Button>
             </DialogActions>
           </Dialog>
+          <FooterEditToolbar
+            isSelecting={isSelecting}
+            isFixedBoard={isFixedBoard}
+            active={isFixedBoard && isSelecting && !isSaving ? true : false}
+            columns={board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER}
+            rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
+            onAddRemoveRow={onAddRemoveRow}
+            onAddRemoveColumn={onAddRemoveColumn}
+          />
         </div>
       </Scanner>
     );
