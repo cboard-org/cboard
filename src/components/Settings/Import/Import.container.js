@@ -135,6 +135,10 @@ export class ImportContainer extends PureComponent {
       boardWithNewId.prevId = boardWithNewId.id;
     }
     boardWithNewId.id = shortid.generate();
+    // Clear any imported or foreign email so the board is treated as locally
+    // owned. Otherwise classifyBoardsForPush skips it during sync and it stays
+    // PENDING forever, never reaching the user's account (mirrors the copy flow).
+    boardWithNewId.email = '';
     return boardWithNewId;
   }
 
