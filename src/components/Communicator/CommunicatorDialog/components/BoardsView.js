@@ -15,10 +15,10 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import BoardCard from './BoardCard';
 import BoardRow from './BoardRow';
 import { softRadius } from './dashboardStyles';
-import { VIEW_MODES } from '../CommunicatorDialog.constants';
+import { VIEW_MODES, BOARDS_PAGE_LIMIT } from '../CommunicatorDialog.constants';
 import messages from '../CommunicatorDialog.messages';
 
-const SKELETON_COUNT = 8;
+const SKELETON_COUNT = BOARDS_PAGE_LIMIT;
 
 const useStyles = makeStyles(theme => ({
   stateContainer: {
