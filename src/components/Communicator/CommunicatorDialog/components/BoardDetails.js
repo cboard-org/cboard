@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     gap: theme.spacing(1.5),
-    padding: theme.spacing(2)
+    padding: theme.spacing(1, 2)
   },
   thumb: {
     width: '100%',

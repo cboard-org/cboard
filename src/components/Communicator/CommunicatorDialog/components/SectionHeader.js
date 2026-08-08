@@ -46,6 +46,12 @@ const useStyles = makeStyles(theme => ({
     flex: 1,
     minWidth: 0
   },
+  // Quick Access has no ContentToolbar, so a growing title block would strand
+  // the chip against the far edge of the bar. Shrink-wrap the title instead so
+  // the count stays attached to it.
+  titleBlockInline: {
+    flex: '0 1 auto'
+  },
   title: {
     fontWeight: 700,
     letterSpacing: '-0.01em',
@@ -83,7 +89,11 @@ const SectionHeader = ({ intl, section, total, onOpenNav }) => {
           <MenuIcon />
         </IconButton>
       )}
-      <div className={classes.titleBlock}>
+      <div
+        className={`${classes.titleBlock} ${
+          section === SECTIONS.MY_COMMUNICATOR ? classes.titleBlockInline : ''
+        }`}
+      >
         <Typography variant="h6" component="h2" className={classes.title}>
           {intl.formatMessage(messages[meta.title])}
         </Typography>

@@ -85,6 +85,16 @@ describe('BoardDetailsSurface', () => {
     ).toBe(true);
   });
 
+  it('closes the drawer from the close button', () => {
+    setViewport(true);
+    const onClose = jest.fn();
+    const wrapper = render({ onClose });
+
+    wrapper.find('button[data-testid="close-board-details"]').simulate('click');
+
+    expect(onClose).toHaveBeenCalled();
+  });
+
   it('closes on Escape', () => {
     setViewport(false);
     const onClose = jest.fn();

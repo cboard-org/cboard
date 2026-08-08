@@ -1,10 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { alpha, makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Drawer from '@material-ui/core/Drawer';
 import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 import BoardDetails from './BoardDetails';
 import { softRadius } from './dashboardStyles';
@@ -13,25 +15,72 @@ import messages from '../CommunicatorDialog.messages';
 const PANEL_WIDTH = 300;
 
 const useStyles = makeStyles(theme => ({
+  // Same anatomy as the sheet: the rounded card clips its content and only the
+  // body scrolls, so the scrollbar starts below the corner radius instead of
+  // being squared off against it.
   panel: {
     position: 'sticky',
     top: theme.spacing(2),
     alignSelf: 'flex-start',
+    display: 'flex',
+    flexDirection: 'column',
     width: PANEL_WIDTH,
     flexShrink: 0,
     marginLeft: theme.spacing(2),
     marginTop: theme.spacing(2),
     borderRadius: softRadius(theme),
     maxHeight: `calc(100% - ${theme.spacing(2)}px)`,
-    overflowY: 'auto'
+    overflow: 'hidden'
+  },
+  panelHeader: {
+    flexShrink: 0,
+    height: theme.spacing(1)
+  },
+  panelBody: {
+    flex: 1,
+    minHeight: 0,
+    overflowY: 'auto',
+    overscrollBehavior: 'contain'
   },
   sheet: {
+    display: 'flex',
+    flexDirection: 'column',
     borderTopLeftRadius: softRadius(theme),
     borderTopRightRadius: softRadius(theme),
-    maxHeight: '80vh',
+    maxHeight: '70vh',
+    overflow: 'hidden',
     '@media (prefers-reduced-motion: reduce)': {
       transition: 'none !important'
     }
+  },
+  sheetHeader: {
+    position: 'relative',
+    flexShrink: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 48,
+    padding: theme.spacing(0, 1)
+  },
+  handle: {
+    width: 40,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: alpha(theme.palette.text.primary, 0.2)
+  },
+  closeButton: {
+    position: 'absolute',
+    top: '50%',
+    right: theme.spacing(0.5),
+    transform: 'translateY(-50%)',
+    color: theme.palette.text.secondary
+  },
+  sheetBody: {
+    flex: 1,
+    minHeight: 0,
+    overflowY: 'auto',
+    overscrollBehavior: 'contain',
+    WebkitOverflowScrolling: 'touch'
   }
 }));
 
@@ -93,7 +142,19 @@ const BoardDetailsSurface = ({
         classes={{ paper: classes.sheet }}
         aria-label={intl.formatMessage(messages.boardDetails)}
       >
-        {details}
+        <div className={classes.sheetHeader}>
+          <span className={classes.handle} />
+          <IconButton
+            size="small"
+            data-testid="close-board-details"
+            className={classes.closeButton}
+            aria-label={intl.formatMessage(messages.closeDetails)}
+            onClick={onClose}
+          >
+            <CloseIcon />
+          </IconButton>
+        </div>
+        <div className={classes.sheetBody}>{details}</div>
       </Drawer>
     );
   }
@@ -107,7 +168,8 @@ const BoardDetailsSurface = ({
       aria-label={intl.formatMessage(messages.boardDetails)}
       onKeyDown={handleKeyDown}
     >
-      {details}
+      <div className={classes.panelHeader} />
+      <div className={classes.panelBody}>{details}</div>
     </Paper>
   );
 };
