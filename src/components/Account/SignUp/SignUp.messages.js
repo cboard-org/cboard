@@ -44,5 +44,73 @@ export default defineMessages({
   noConnection: {
     id: 'cboard.components.SignUp.noConnection',
     defaultMessage: 'Unable to connect to the server. Please try again later.'
+  },
+  next: {
+    id: 'cboard.components.SignUp.next',
+    defaultMessage: 'Next'
+  },
+  back: {
+    id: 'cboard.components.SignUp.back',
+    defaultMessage: 'Back'
+  },
+  completeSignUp: {
+    id: 'cboard.components.SignUp.completeSignUp',
+    defaultMessage: 'Complete Sign Up'
+  },
+  role: {
+    id: 'cboard.components.SignUp.role',
+    defaultMessage: 'What is your role?'
+  },
+  roleAACUser: {
+    id: 'cboard.components.SignUp.roleAACUser',
+    defaultMessage: 'AAC User'
+  },
+  roleEducator: {
+    id: 'cboard.components.SignUp.roleEducator',
+    defaultMessage: 'Educator / Teacher'
+  },
+  roleTherapist: {
+    id: 'cboard.components.SignUp.roleTherapist',
+    defaultMessage: 'Therapist / SLP'
+  },
+  roleFamily: {
+    id: 'cboard.components.SignUp.roleFamily',
+    defaultMessage: 'Family Member / Caregiver'
+  },
+  age: {
+    id: 'cboard.components.SignUp.age',
+    defaultMessage: "Communicator's age"
+  },
+  pathology: {
+    id: 'cboard.components.SignUp.pathology',
+    defaultMessage: 'Pathology / diagnosis'
+  },
+  pathologyAutism: {
+    id: 'cboard.components.SignUp.pathologyAutism',
+    defaultMessage: 'Autism'
+  },
+  pathologyCerebralPalsy: {
+    id: 'cboard.components.SignUp.pathologyCerebralPalsy',
+    defaultMessage: 'Cerebral Palsy'
+  },
+  pathologyALS: {
+    id: 'cboard.components.SignUp.pathologyALS',
+    defaultMessage: 'ALS'
+  },
+  pathologyAphasia: {
+    id: 'cboard.components.SignUp.pathologyAphasia',
+    defaultMessage: 'Aphasia'
+  },
+  pathologyDownSyndrome: {
+    id: 'cboard.components.SignUp.pathologyDownSyndrome',
+    defaultMessage: 'Down Syndrome'
+  },
+  pathologyOther: {
+    id: 'cboard.components.SignUp.pathologyOther',
+    defaultMessage: 'Other'
+  },
+  pathologyPreferNotToSay: {
+    id: 'cboard.components.SignUp.pathologyPreferNotToSay',
+    defaultMessage: 'Prefer not to say'
   }
 });

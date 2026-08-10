@@ -31,6 +31,50 @@ jest.mock('./SignUp.messages', () => {
     signMeUp: {
       id: 'cboard.components.SignUp.signMeUp',
       defaultMessage: 'Sign me up'
+    },
+    next: {
+      id: 'cboard.components.SignUp.next',
+      defaultMessage: 'Next'
+    },
+    back: {
+      id: 'cboard.components.SignUp.back',
+      defaultMessage: 'Back'
+    },
+    completeSignUp: {
+      id: 'cboard.components.SignUp.completeSignUp',
+      defaultMessage: 'Complete Sign Up'
+    },
+    role: { id: 'cboard.components.SignUp.role' },
+    roleAACUser: { id: 'cboard.components.SignUp.roleAACUser' },
+    roleEducator: { id: 'cboard.components.SignUp.roleEducator' },
+    roleTherapist: { id: 'cboard.components.SignUp.roleTherapist' },
+    roleFamily: { id: 'cboard.components.SignUp.roleFamily' },
+    age: { id: 'cboard.components.SignUp.age' },
+    pathology: { id: 'cboard.components.SignUp.pathology' },
+    pathologyAutism: { id: 'cboard.components.SignUp.pathologyAutism' },
+    pathologyCerebralPalsy: {
+      id: 'cboard.components.SignUp.pathologyCerebralPalsy'
+    },
+    pathologyALS: { id: 'cboard.components.SignUp.pathologyALS' },
+    pathologyAphasia: { id: 'cboard.components.SignUp.pathologyAphasia' },
+    pathologyDownSyndrome: {
+      id: 'cboard.components.SignUp.pathologyDownSyndrome'
+    },
+    pathologyOther: { id: 'cboard.components.SignUp.pathologyOther' },
+    pathologyPreferNotToSay: {
+      id: 'cboard.components.SignUp.pathologyPreferNotToSay'
+    },
+    agreement: {
+      id: 'cboard.components.SignUp.agreement',
+      defaultMessage: 'agreement'
+    },
+    termsAndConditions: {
+      id: 'cboard.components.SignUp.termsAndConditions',
+      defaultMessage: 'terms'
+    },
+    privacy: {
+      id: 'cboard.components.SignUp.privacy',
+      defaultMessage: 'privacy'
     }
   };
 });
