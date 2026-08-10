@@ -197,9 +197,13 @@ export class Settings extends PureComponent {
   };
 
   handleGoBack = () => {
-    const { history, isDownloadingLang } = this.props;
+    const { history, location, isDownloadingLang } = this.props;
     if (isDownloadingLang) return; //prevent goBack during downloading
-    history.replace('/');
+    if (location.state?.isAccessViewerMode) {
+      history.goBack();
+    } else {
+      history.replace('/');
+    }
   };
 
   enableTour = () => {
