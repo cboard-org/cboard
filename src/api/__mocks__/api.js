@@ -136,13 +136,7 @@ class API {
   }
 
   oAuthLogin(type, query) {
-    return new Promise((resolve, reject) => {
-      if (email === 'error') {
-        reject(new Error({ message: 'not found' }));
-      } else {
-        resolve(userData);
-      }
-    });
+    return Promise.resolve(userData);
   }
 
   async getBoards({

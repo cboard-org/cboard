@@ -1,12 +1,7 @@
 import API from './api';
 import mockAxios from 'jest-mock-axios';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import { getStore } from '../store';
 import { isAndroid } from '../cordova-util';
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
 
 jest.mock('../store');
 jest.mock('../cordova-util', () => ({
