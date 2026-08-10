@@ -47,7 +47,7 @@ export class GridContainer extends PureComponent {
   }
 
   configBigScrollBtns() {
-    const { breakpoints, size, cols, setIsScroll, rows, children } = this.props;
+    const { breakpoints, size, cols, setIsScroll, rows } = this.props;
     const breakPoint = this.getBreakpointFromWidth(breakpoints, size.width);
     const currentLayout = this.generateLayout(cols[breakPoint]);
 

@@ -1,6 +1,7 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
+import ColorSelect from './ColorSelect';
 
 jest.mock('./ColorSelect.messages', () => {
   return {
@@ -18,7 +19,6 @@ jest.mock('./ColorSelect.messages', () => {
     }
   };
 });
-import ColorSelect from './ColorSelect';
 const intl = { formatMessage: () => 'dummy translation' };
 const COLORS = ['#CE93D8', '#2196F3', '#4CAF50', '#E57373'];
 describe('ColorSelect tests', () => {
@@ -33,6 +33,6 @@ describe('ColorSelect tests', () => {
     shallowMatchSnapshot(<ColorSelect {...props} />);
   });
   test('mount renderer', () => {
-    const wrapper = mount(<ColorSelect {...props} />);
+    mount(<ColorSelect {...props} />);
   });
 });

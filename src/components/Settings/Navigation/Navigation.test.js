@@ -88,8 +88,6 @@ describe('Navigation tests', () => {
   test('switch behavior', () => {
     const wrapper = shallow(<Navigation {...COMPONENT_PROPS} />).dive();
 
-    const state = wrapper.state();
-
     const switchElement = wrapper.first('FullScreenDialog');
     switchElement.simulate('onSubmit');
   });
