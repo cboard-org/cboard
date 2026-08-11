@@ -3,7 +3,11 @@ import {
   IS_BROWSING_FROM_SAFARI
 } from '../../constants';
 import moment from 'moment';
-import { SHORT_ID_MAX_LENGTH, DEFAULT_BOARD_EMAIL } from './Board.constants';
+import {
+  SHORT_ID_MAX_LENGTH,
+  DEFAULT_BOARD_EMAIL,
+  DEFAULT_BOARD_NAME
+} from './Board.constants';
 import { DEFAULT_BOARDS } from '../../helpers';
 import messages from './Board.messages';
 import {
@@ -275,13 +279,14 @@ export const isUnloggedCreatedBoard = board =>
  * @returns {string} Board name
  */
 const extractBoardName = board => {
-  if (board.name) return board.name;
+  if (board.name && board.name.trim()) return board.name.trim();
   if (board.nameKey) {
     const splitNameKeyParts = board.nameKey.split('.');
     const NAMEKEY_LAST_INDEX = splitNameKeyParts.length - 1;
-    return splitNameKeyParts[NAMEKEY_LAST_INDEX];
+    const derivedName = splitNameKeyParts[NAMEKEY_LAST_INDEX];
+    if (derivedName && derivedName.trim()) return derivedName.trim();
   }
-  return '';
+  return DEFAULT_BOARD_NAME;
 };
 
 /**
@@ -296,7 +301,7 @@ const extractBoardName = board => {
 export const transformBoardForUser = (board, userEmail, userName, locale) => ({
   ...board,
   email: userEmail,
-  author: userName || userEmail,
+  author: (userName && userName.trim()) || userEmail,
   name: extractBoardName(board),
   isPublic: false,
   locale: locale,
