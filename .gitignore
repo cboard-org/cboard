@@ -31,10 +31,8 @@ nbproject/
 .env.test.local
 .env.production.local
 
-# yarn 
+# package manager logs
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 .env
 

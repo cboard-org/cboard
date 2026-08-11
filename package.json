@@ -15,6 +15,7 @@
   ],
   "homepage": "https://app.cboard.io",
   "private": false,
+  "packageManager": "npm@10.9.2",
   "license": "GPL-3.0-only",
   "dependencies": {
     "@cospired/i18n-iso-languages": "^2.2.0",
@@ -98,6 +99,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
+    "ajv": "8.18.0",
     "babel-plugin-transform-import-meta": "^2.2.1",
     "browserstack-node-sdk": "^1.49.12",
     "decompress-zip": "^0.3.3",
@@ -156,7 +158,7 @@
     "start": "craco start",
     "build": "craco build  --verbose && sw-precache --config=sw-precache-config.js",
     "build-cordova-debug": "craco build --verbose --cordova-debug",
-    "predeploy": "yarn build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "craco test",
     "test:e2e": "playwright test",
@@ -191,7 +193,7 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "resolutions": {
+  "overrides": {
     "js-yaml": "^4.3.0"
   }
 }
