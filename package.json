@@ -26,7 +26,6 @@
     "@microsoft/applicationinsights-web": "^2.8.18",
     "@paypal/react-paypal-js": "^7.8.3",
     "@redux-beacon/google-analytics-gtag": "^1.1.0",
-    "@redux-beacon/logger": "^1.0.0",
     "@redux-beacon/offline-web": "^1.0.0",
     "axios": "^1.19.0",
     "browser-image-resizer": "^2.4.1",
@@ -74,7 +73,6 @@
     "react-intl": "^2.9.0",
     "react-joyride": "^2.9.3",
     "react-markdown": "^5.0.3",
-    "react-media-recorder": "^0.7.1",
     "react-redux": "^5.1.2",
     "react-router-dom": "^5.3.4",
     "react-scannable": "0.0.18",
@@ -115,7 +113,6 @@
     "react-test-renderer": "^17.0.2",
     "redux-mock-store": "^1.5.5",
     "sw-precache": "^5.2.1",
-    "ts-loader": "^9.5.0",
     "typescript": "^4.9.5"
   },
   "husky": {
