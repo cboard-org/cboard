@@ -1,5 +1,4 @@
 import * as i18n from '../i18n';
-import { error } from 'console';
 
 describe('i18n', () => {
   it('should strip Region Code', () => {

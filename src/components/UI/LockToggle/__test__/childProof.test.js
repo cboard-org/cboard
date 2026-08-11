@@ -2,8 +2,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
-import childProof from '../childProof';
-
 jest.mock('../LockToggle.messages', () => ({
   lock: {
     id: 'cboard.components.LockToggle.lock',

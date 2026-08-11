@@ -3,7 +3,6 @@ import * as types from '../Board.constants';
 import { classifyRemoteBoards } from '../Board.utils';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import defaultBoards from '../../../api/boards.json';
 import API from '../../../api/api';
 
 jest.mock('../../../api/api');
@@ -28,7 +27,6 @@ const mockComm = {
   boards: ['root', '12345678901234567']
 };
 
-const [...boards] = defaultBoards.advanced;
 const initialState = {
   board: {
     boards: [mockBoard],

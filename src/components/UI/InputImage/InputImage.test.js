@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallowMatchSnapshot } from '../../../common/test_utils';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import InputImage from './InputImage.component';
 
 jest.mock('../../../api/api');

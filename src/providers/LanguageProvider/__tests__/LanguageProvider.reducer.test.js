@@ -2,7 +2,7 @@ import languageProviderReducer from '../LanguageProvider.reducer';
 import { CHANGE_LANG, SET_LANGS } from '../LanguageProvider.constants';
 import { LOGIN_SUCCESS } from '../../../components/Account/Login/Login.constants';
 import { DEFAULT_LANG } from '../../../components/App/App.constants';
-let mockLanguage, initialState;
+let initialState;
 
 describe('reducer', () => {
   beforeEach(() => {
@@ -15,11 +15,6 @@ describe('reducer', () => {
       downloadingLang: {
         isdownloading: false
       }
-    };
-    mockLanguage = {
-      lang: '',
-      dir: '',
-      langs: []
     };
   });
   it('should return the initial state', () => {

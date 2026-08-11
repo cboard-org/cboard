@@ -6,14 +6,6 @@ import defaultBoards from '../../../api/boards.json';
 
 const mockStore = configureMockStore([thunk]);
 
-const mockBoard = {
-  name: 'tewt',
-  id: '123',
-  tiles: [{ id: '1234', loadBoard: '456456456456456456456' }],
-  isPublic: false,
-  email: 'asd@qwe.com',
-  markToUpdate: true
-};
 const [...boards] = defaultBoards.advanced;
 const communicatorData = {
   author: 'Cboard Team',
