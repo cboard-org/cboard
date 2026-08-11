@@ -1,5 +1,4 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
 import { shallowMatchSnapshot } from '../../common/test_utils';
 import AuthScreen from './AuthScreen.component';
 

@@ -1,4 +1,3 @@
-import * as actions from '../Communicator.actions';
 import communicatorReducer from '../Communicator.reducer';
 import defaultCommunicators from '../../../api/communicators.json';
 import {

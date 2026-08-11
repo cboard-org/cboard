@@ -1,5 +1,3 @@
-import React from 'react';
-import { shallowMatchSnapshot } from '../../../common/test_utils';
 import { FullScreenDialogContent } from './FullScreenDialogContent';
 
 describe('FullScreenDialogContent tests', () => {

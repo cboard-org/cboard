@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { matchSnapshotWithIntlProvider } from '../../../common/test_utils';
 
 import TileEditor from './TileEditor.component';

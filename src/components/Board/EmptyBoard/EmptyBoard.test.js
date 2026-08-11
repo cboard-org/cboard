@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
 
 import EmptyBoard from './EmptyBoard.component';
@@ -16,6 +16,6 @@ describe('EmptyBoard tests', () => {
     shallowMatchSnapshot(<EmptyBoard />);
   });
   test('mount renderer', () => {
-    const wrapper = mount(<EmptyBoard />);
+    mount(<EmptyBoard />);
   });
 });
