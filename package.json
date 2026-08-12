@@ -15,7 +15,7 @@
   ],
   "homepage": "https://app.cboard.io",
   "private": false,
-  "packageManager": "npm@10.9.2",
+  "packageManager": "npm@10.9.8",
   "license": "GPL-3.0-only",
   "dependencies": {
     "@cospired/i18n-iso-languages": "^2.2.0",
