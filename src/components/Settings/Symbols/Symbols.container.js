@@ -30,7 +30,7 @@ export class SymbolsContainer extends PureComponent {
     this.arasaacDownload = {};
   }
 
-  handleOpenDialogs = dialog => {
+  handleOpenDialogs = (dialog) => {
     if (dialog.openDownloadArasaacDialog) {
       this.setState({
         ...this.state,
@@ -54,7 +54,7 @@ export class SymbolsContainer extends PureComponent {
     });
   };
 
-  handleNoConnection = status => {
+  handleNoConnection = (status) => {
     this.setState({
       ...this.state,
       openNoConnectionDialog: status ? true : false
@@ -66,8 +66,7 @@ export class SymbolsContainer extends PureComponent {
       {
         name: 'ARASAAC',
         thumb: 'https://app.cboard.io/symbols/arasaac/arasaac.svg',
-        file:
-          'https://cboardgroupqadiag.blob.core.windows.net/arasaac/arasaac.zip',
+        file: 'https://cboardgroupqadiag.blob.core.windows.net/arasaac/arasaac.zip',
         filename: 'arasaac.zip'
       }
     ];
@@ -101,7 +100,7 @@ export class SymbolsContainer extends PureComponent {
     });
   };
 
-  handleCompleted = async file => {
+  handleCompleted = async (file) => {
     this.setState({
       ...this.state,
       arasaacProcess: 'doing'

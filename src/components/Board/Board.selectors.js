@@ -2,8 +2,8 @@ import { createSelector } from 'reselect';
 import { SYNC_STATUS } from './Board.constants';
 
 const EMPTY_SYNC_META = {};
-const getBoards = state => state.board.boards;
-const getSyncMeta = state => state.board.syncMeta ?? EMPTY_SYNC_META;
+const getBoards = (state) => state.board.boards;
+const getSyncMeta = (state) => state.board.syncMeta ?? EMPTY_SYNC_META;
 
 /**
  * Get all boards that need to be synced with the server
@@ -13,7 +13,7 @@ const getSyncMeta = state => state.board.syncMeta ?? EMPTY_SYNC_META;
 export const getPendingSyncBoards = createSelector(
   [getBoards, getSyncMeta],
   (boards, syncMeta) =>
-    boards.filter(b => syncMeta[b.id]?.status === SYNC_STATUS.PENDING)
+    boards.filter((b) => syncMeta[b.id]?.status === SYNC_STATUS.PENDING)
 );
 
 /**
@@ -21,10 +21,8 @@ export const getPendingSyncBoards = createSelector(
  * @param {Object} state - Redux state
  * @returns {boolean} True if any board needs sync
  */
-export const hasPendingSyncBoards = createSelector(
-  [getSyncMeta],
-  syncMeta =>
-    Object.values(syncMeta).some(m => m.status === SYNC_STATUS.PENDING)
+export const hasPendingSyncBoards = createSelector([getSyncMeta], (syncMeta) =>
+  Object.values(syncMeta).some((m) => m.status === SYNC_STATUS.PENDING)
 );
 
 /**
@@ -34,8 +32,9 @@ export const hasPendingSyncBoards = createSelector(
  */
 export const getPendingSyncBoardsCount = createSelector(
   [getSyncMeta],
-  syncMeta =>
-    Object.values(syncMeta).filter(m => m.status === SYNC_STATUS.PENDING).length
+  (syncMeta) =>
+    Object.values(syncMeta).filter((m) => m.status === SYNC_STATUS.PENDING)
+      .length
 );
 
 /**
@@ -43,12 +42,10 @@ export const getPendingSyncBoardsCount = createSelector(
  * @param {Object} state - Redux state
  * @returns {Array} Board IDs marked as deleted
  */
-export const getDeletedBoardIds = createSelector(
-  [getSyncMeta],
-  syncMeta =>
-    Object.entries(syncMeta)
-      .filter(([, m]) => m.isDeleted)
-      .map(([id]) => id)
+export const getDeletedBoardIds = createSelector([getSyncMeta], (syncMeta) =>
+  Object.entries(syncMeta)
+    .filter(([, m]) => m.isDeleted)
+    .map(([id]) => id)
 );
 
 /**
@@ -60,5 +57,5 @@ export const getDeletedBoardIds = createSelector(
  */
 export const getVisibleBoards = createSelector(
   [getBoards, getSyncMeta],
-  (boards, syncMeta) => boards.filter(b => !syncMeta[b.id]?.isDeleted)
+  (boards, syncMeta) => boards.filter((b) => !syncMeta[b.id]?.isDeleted)
 );

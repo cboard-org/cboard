@@ -13,7 +13,7 @@ export class NavigationContainer extends PureComponent {
     changeLiveMode: PropTypes.func
   };
 
-  updateNavigationSettings = async navigationSettings => {
+  updateNavigationSettings = async (navigationSettings) => {
     try {
       await API.updateSettings({ navigation: navigationSettings });
     } catch (e) {}

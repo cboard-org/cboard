@@ -208,7 +208,7 @@ describe('reducer', () => {
     };
     expect(boardReducer(initialState, deleteApiBoardSuccess)).toEqual({
       ...initialState,
-      boards: [...initialState.boards.filter(board => board.id !== '123')],
+      boards: [...initialState.boards.filter((board) => board.id !== '123')],
       syncMeta: {},
       isFetching: false
     });
@@ -267,7 +267,7 @@ describe('reducer', () => {
     ).toEqual({
       ...initialState,
       boards: [
-        ...initialState.boards.filter(board => board.id !== '123'),
+        ...initialState.boards.filter((board) => board.id !== '123'),
         { ...mockBoard, markToUpdate: false }
       ]
     });
@@ -397,7 +397,7 @@ describe('reducer', () => {
       },
       editTiles
     );
-    const editedBoard = result.boards.find(b => b.id === '123');
+    const editedBoard = result.boards.find((b) => b.id === '123');
     expect(editedBoard.tiles).toEqual([{ id: '1234', loadBoard: '123' }]);
     expect(editedBoard.lastEdited).toBeDefined();
     expect(result.syncMeta['123']).toEqual({
@@ -417,7 +417,7 @@ describe('reducer', () => {
       },
       createTile
     );
-    const updatedBoard = result.boards.find(b => b.id === '123');
+    const updatedBoard = result.boards.find((b) => b.id === '123');
     expect(updatedBoard.tiles).toEqual([
       { id: '1234', loadBoard: '456456456456456456456' },
       { id: '456' }
@@ -440,7 +440,7 @@ describe('reducer', () => {
       },
       deleteTiles
     );
-    const updatedBoard = result.boards.find(b => b.id === '123');
+    const updatedBoard = result.boards.find((b) => b.id === '123');
     expect(updatedBoard.tiles).toEqual([]);
     expect(updatedBoard.lastEdited).toBeDefined();
     expect(result.syncMeta['123']).toEqual({
@@ -460,7 +460,7 @@ describe('reducer', () => {
       },
       deleteBoard
     );
-    const deletedBoard = result.boards.find(b => b.id === '123');
+    const deletedBoard = result.boards.find((b) => b.id === '123');
     expect(deletedBoard).toEqual(mockBoard);
     expect(result.syncMeta['123']).toEqual({
       status: SYNC_STATUS.PENDING,
@@ -677,7 +677,7 @@ describe('reducer', () => {
       expect(result.syncMeta['new-board']).toEqual({
         status: SYNC_STATUS.PENDING
       });
-      const createdBoard = result.boards.find(b => b.id === 'new-board');
+      const createdBoard = result.boards.find((b) => b.id === 'new-board');
       expect(createdBoard.syncStatus).toBeUndefined();
     });
 
@@ -693,7 +693,7 @@ describe('reducer', () => {
       };
       const result = boardReducer(stateWithBoard, updateBoard);
       expect(result.syncMeta[mockBoard.id].status).toBe(SYNC_STATUS.PENDING);
-      const updatedBoard = result.boards.find(b => b.id === mockBoard.id);
+      const updatedBoard = result.boards.find((b) => b.id === mockBoard.id);
       expect(updatedBoard.syncStatus).toBeUndefined();
     });
 
@@ -732,7 +732,7 @@ describe('reducer', () => {
       });
       expect(result.syncMeta['short123']).toBeUndefined();
       const syncedBoard = result.boards.find(
-        b => b.id === 'long-api-id-12345678'
+        (b) => b.id === 'long-api-id-12345678'
       );
       expect(syncedBoard.syncStatus).toBeUndefined();
     });
@@ -748,7 +748,7 @@ describe('reducer', () => {
       };
       const result = boardReducer(stateWithBoard, updateApiBoardSuccess);
       expect(result.syncMeta[mockBoard.id].status).toBe(SYNC_STATUS.SYNCED);
-      const syncedBoard = result.boards.find(b => b.id === mockBoard.id);
+      const syncedBoard = result.boards.find((b) => b.id === mockBoard.id);
       expect(syncedBoard.syncStatus).toBeUndefined();
     });
 
@@ -763,7 +763,7 @@ describe('reducer', () => {
         status: SYNC_STATUS.PENDING,
         isDeleted: true
       });
-      const board = result.boards.find(b => b.id === mockBoard.id);
+      const board = result.boards.find((b) => b.id === mockBoard.id);
       expect(board.isDeleted).toBeUndefined();
     });
 
@@ -826,7 +826,7 @@ describe('reducer', () => {
         boardId: 'localChild'
       };
       const result = boardReducer(stateWithBoards, createApiBoardSuccess);
-      const parent = result.boards.find(b => b.id === 'server-board-id-1234');
+      const parent = result.boards.find((b) => b.id === 'server-board-id-1234');
       // The parent's dangling short reference is rewritten to the new server id
       expect(parent.tiles[0].loadBoard).toBe('new-server-id-98765');
       // and the parent is flagged for re-push so the corrected reference lands
@@ -863,7 +863,7 @@ describe('reducer', () => {
         boardId: 'localChild'
       };
       const result = boardReducer(stateWithBoards, createApiBoardSuccess);
-      const parent = result.boards.find(b => b.id === 'localParent');
+      const parent = result.boards.find((b) => b.id === 'localParent');
       // The parent's short reference is rewritten to the new server id
       expect(parent.tiles[0].loadBoard).toBe('new-server-id-98765');
       // and the not-yet-created local parent is flagged for creation
@@ -913,13 +913,13 @@ describe('reducer', () => {
         boardId: 'localChild'
       };
       const result = boardReducer(stateWithBoards, createApiBoardSuccess);
-      const localParent = result.boards.find(b => b.id === 'localParent');
+      const localParent = result.boards.find((b) => b.id === 'localParent');
       // Reference is handled by the server copy → no redundant create flag/meta
       expect(localParent.shouldCreateBoard).toBeUndefined();
       expect(result.syncMeta['localParent']).toBeUndefined();
       // The server parent is still rewritten and flagged for re-push
       const serverParent = result.boards.find(
-        b => b.id === 'server-parent-id-1234'
+        (b) => b.id === 'server-parent-id-1234'
       );
       expect(serverParent.tiles[0].loadBoard).toBe('new-server-id-98765');
       expect(serverParent.markToUpdate).toBe(true);
@@ -1068,7 +1068,7 @@ describe('reducer', () => {
         SYNC_STATUS.PENDING
       );
       const resolvedParent = afterChild.boards.find(
-        b => b.id === 'server-parent-id-12345'
+        (b) => b.id === 'server-parent-id-12345'
       );
       expect(resolvedParent.tiles[0].loadBoard).toBe('server-child-id-67890');
 

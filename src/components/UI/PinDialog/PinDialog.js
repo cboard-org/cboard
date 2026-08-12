@@ -44,41 +44,38 @@ const PinDialog = ({
   const inputRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(
-    () => {
-      let focusTimeoutId;
+  useEffect(() => {
+    let focusTimeoutId;
 
-      if (open && inputRef.current) {
-        focusTimeoutId = setTimeout(() => {
-          if (inputRef.current) {
-            inputRef.current.focus();
-          }
-        }, 100);
-      }
-      if (open) {
-        setIsVisible(false);
-      }
-
-      return () => {
-        if (focusTimeoutId) {
-          clearTimeout(focusTimeoutId);
+    if (open && inputRef.current) {
+      focusTimeoutId = setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
         }
-      };
-    },
-    [open]
-  );
+      }, 100);
+    }
+    if (open) {
+      setIsVisible(false);
+    }
+
+    return () => {
+      if (focusTimeoutId) {
+        clearTimeout(focusTimeoutId);
+      }
+    };
+  }, [open]);
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
 
-  const handleKeyPress = event => {
+  const handleKeyPress = (event) => {
     if (event.key === 'Enter' && value.length === 4) {
       onSubmit();
     }
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const newValue = event.target.value.replace(/\D/g, '').slice(0, 4);
     onChange(newValue);
   };

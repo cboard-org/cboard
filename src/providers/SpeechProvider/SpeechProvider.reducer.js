@@ -61,7 +61,7 @@ const initialState = {
 
 function updateElevenLabsVoiceSetting(state, settingKey, settingValue) {
   const currentVoice = state.voices.find(
-    v => v.voiceURI === state.options.voiceURI
+    (v) => v.voiceURI === state.options.voiceURI
   );
   const voiceId = currentVoice?.voice_id;
 
@@ -81,7 +81,7 @@ function updateElevenLabsVoiceSetting(state, settingKey, settingValue) {
 
 function resetElevenLabsVoiceSettings(state) {
   const currentVoice = state.voices.find(
-    v => v.voiceURI === state.options.voiceURI
+    (v) => v.voiceURI === state.options.voiceURI
   );
   const voiceId = currentVoice?.voice_id;
 
@@ -120,7 +120,7 @@ function speechProviderReducer(state = initialState, action) {
 
       const currentVoiceURI = state.options.voiceURI;
       const currentVoice = state.voices.find(
-        v => v.voiceURI === currentVoiceURI
+        (v) => v.voiceURI === currentVoiceURI
       );
       const currentVoiceId = currentVoice?.voice_id;
 
@@ -149,7 +149,7 @@ function speechProviderReducer(state = initialState, action) {
         elevenLabsVoiceSettings: savedVoiceSettings
       };
     case RECEIVE_VOICES:
-      const langs = action.voices.map(voice =>
+      const langs = action.voices.map((voice) =>
         normalizeLanguageCode(standardizeLanguageCode(voice.lang))
       );
       //hack just for Alfanum Serbian voices
@@ -168,7 +168,7 @@ function speechProviderReducer(state = initialState, action) {
         langs: [...new Set(langs)].sort()
       };
     case CHANGE_VOICE:
-      const newVoice = state.voices.find(v => v.voiceURI === action.voiceURI);
+      const newVoice = state.voices.find((v) => v.voiceURI === action.voiceURI);
       const newVoiceId = newVoice?.voice_id;
 
       let elevenLabsOptions = {};
@@ -212,7 +212,7 @@ function speechProviderReducer(state = initialState, action) {
       };
     case RECEIVE_TTS_ENGINE:
       const newTtsEngine = state.ttsEngines.find(
-        engine => engine.name === action.ttsEngineName
+        (engine) => engine.name === action.ttsEngineName
       );
       return {
         ...state,
@@ -340,11 +340,11 @@ function speechProviderReducer(state = initialState, action) {
       };
     case LOGOUT: {
       const nonElevenLabsVoices = state.voices.filter(
-        voice => voice.voiceSource !== ELEVEN_LABS
+        (voice) => voice.voiceSource !== ELEVEN_LABS
       );
 
       const currentVoice = state.voices.find(
-        v => v.voiceURI === state.options.voiceURI
+        (v) => v.voiceURI === state.options.voiceURI
       );
       const isCurrentVoiceElevenLabs =
         currentVoice?.voiceSource === ELEVEN_LABS;
@@ -354,7 +354,7 @@ function speechProviderReducer(state = initialState, action) {
         : state.options.voiceURI;
 
       const newVoice = isCurrentVoiceElevenLabs
-        ? nonElevenLabsVoices.find(v => v.voiceURI === newVoiceURI)
+        ? nonElevenLabsVoices.find((v) => v.voiceURI === newVoiceURI)
         : currentVoice;
 
       const newVoiceIsCloud = newVoice?.voiceSource === 'cloud' ? true : null;

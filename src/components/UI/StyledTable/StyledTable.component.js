@@ -26,12 +26,12 @@ const propTypes = {
   data: PropTypes.array.isRequired,
   tableHead: PropTypes.array.isRequired,
   isDense: PropTypes.bool
-}
+};
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
+    color: theme.palette.common.white
   },
   body: {
     fontSize: 13,
@@ -39,21 +39,21 @@ const StyledTableCell = withStyles((theme) => ({
     whiteSpace: 'normal',
     overflowWrap: 'break-word',
     wordWrap: 'break-word'
-  },
+  }
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
     '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
+      backgroundColor: theme.palette.action.hover
+    }
+  }
 }))(TableRow);
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 300,
-  },
+    minWidth: 300
+  }
 });
 
 const StyledTable = ({ data, tableHead, isDense, speak, boards }) => {
@@ -69,11 +69,9 @@ const StyledTable = ({ data, tableHead, isDense, speak, boards }) => {
             tile.label.trim().toLowerCase() === label.trim().toLowerCase()) ||
           (tile.labelKey &&
             tile.labelKey
-              .split()[tile.labelKey.split().length - 1].trim()
-              .toLowerCase() === label
-                .trim()
-                .replace(' ', '')
-                .toLowerCase())
+              .split()
+              [tile.labelKey.split().length - 1].trim()
+              .toLowerCase() === label.trim().replace(' ', '').toLowerCase())
         ) {
           return tile;
         }
@@ -84,12 +82,11 @@ const StyledTable = ({ data, tableHead, isDense, speak, boards }) => {
 
   const handleImageViewClose = () => {
     setImageView(false);
-  }
+  };
   const handleRowAction = (item = {}) => {
     if (item.type === 'sound') {
       speak(item.name || '');
-    }
-    else if (item.type === 'view') {
+    } else if (item.type === 'view') {
       const tile = getTileFromLabel(item.name);
       if (tile) {
         setImageView({ ...tile, name: item.name });
@@ -101,47 +98,57 @@ const StyledTable = ({ data, tableHead, isDense, speak, boards }) => {
     <div className="StyledTable">
       <div className="StyledTable__Container">
         {!imageView && (
-          <Table className="StyledTable__Table" size={isDense ? 'small' : 'medium'}>
+          <Table
+            className="StyledTable__Table"
+            size={isDense ? 'small' : 'medium'}
+          >
             <TableHead>
               <TableRow key="headRow">
-                {tableHead && tableHead.length > 0 && tableHead.map((item, index) => (
-                  <StyledTableCell
-                    key={item}
-                    colSpan={index === 0 ? 3 : 0}
-                    align={index > 0 ? 'right' : 'left'}>
-                    {item}
-                  </StyledTableCell>
-                ))}
+                {tableHead &&
+                  tableHead.length > 0 &&
+                  tableHead.map((item, index) => (
+                    <StyledTableCell
+                      key={item}
+                      colSpan={index === 0 ? 3 : 0}
+                      align={index > 0 ? 'right' : 'left'}
+                    >
+                      {item}
+                    </StyledTableCell>
+                  ))}
               </TableRow>
             </TableHead>
             <TableBody>
-              {data && data.length > 0 && data.map((item, index) => (
-                <StyledTableRow key={item.name}>
-                  <StyledTableCell colSpan="3" component="th" scope="row">
-                    <div className="StyledTable__Table__StyledTableCell__Items">
-                      {item.name}
-                    </div>
-                  </StyledTableCell>
-                  <StyledTableCell align="right">
-                    {item.total > 999
-                      ? (item.total / 1000).toFixed(1) + 'k'
-                      : item.total}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">
-                    <IconButton
-                      className={classes.root}
-                      onClick={() => handleRowAction(item)}
-                    >
-                      {item.type === 'view'
-                        ? <VisibilityIcon color="secondary" />
-                        : <VolumeUpIcon color="secondary" />
-                      }
-                    </IconButton>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
+              {data &&
+                data.length > 0 &&
+                data.map((item, index) => (
+                  <StyledTableRow key={item.name}>
+                    <StyledTableCell colSpan="3" component="th" scope="row">
+                      <div className="StyledTable__Table__StyledTableCell__Items">
+                        {item.name}
+                      </div>
+                    </StyledTableCell>
+                    <StyledTableCell align="right">
+                      {item.total > 999
+                        ? (item.total / 1000).toFixed(1) + 'k'
+                        : item.total}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">
+                      <IconButton
+                        className={classes.root}
+                        onClick={() => handleRowAction(item)}
+                      >
+                        {item.type === 'view' ? (
+                          <VisibilityIcon color="secondary" />
+                        ) : (
+                          <VolumeUpIcon color="secondary" />
+                        )}
+                      </IconButton>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
             </TableBody>
-          </Table>)}
+          </Table>
+        )}
         {imageView && (
           <div className="StyledTable__ImageView">
             <IconButton onClick={handleImageViewClose}>
@@ -157,7 +164,7 @@ const StyledTable = ({ data, tableHead, isDense, speak, boards }) => {
 
 StyledTable.propTypes = propTypes;
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   boards: state.board.boards
 });
 
@@ -166,7 +173,4 @@ const mapDispatchToProps = {
   cancelSpeech
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(StyledTable);
+export default connect(mapStateToProps, mapDispatchToProps)(StyledTable);

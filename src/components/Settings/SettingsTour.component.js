@@ -187,10 +187,10 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
               disableOnInteraction: true
             }}
             className="mySwiper"
-            onSlideChange={swiper => {
+            onSlideChange={(swiper) => {
               handleOnSlideChange('display', swiper.realIndex);
             }}
-            onInit={swiper => {
+            onInit={(swiper) => {
               handleOnSlideChange('display', swiper.realIndex);
             }}
           >
@@ -220,10 +220,10 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
           </h2>
           <Swiper
             watchOverflow={true}
-            onSlideChange={swiper => {
+            onSlideChange={(swiper) => {
               handleOnSlideChange('scanning', swiper.realIndex);
             }}
-            onInit={swiper => {
+            onInit={(swiper) => {
               handleOnSlideChange('scanning', swiper.realIndex);
             }}
           >
@@ -262,10 +262,10 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
               disableOnInteraction: true
             }}
             className="mySwiper"
-            onSlideChange={swiper => {
+            onSlideChange={(swiper) => {
               handleOnSlideChange('navigation', swiper.realIndex);
             }}
-            onInit={swiper => {
+            onInit={(swiper) => {
               handleOnSlideChange('navigation', swiper.realIndex);
             }}
           >
@@ -306,7 +306,7 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
   return (
     <div>
       <Joyride
-        callback={data => {
+        callback={(data) => {
           const { status } = data;
           if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
             disableTour({ isSettingsTourEnabled: false });

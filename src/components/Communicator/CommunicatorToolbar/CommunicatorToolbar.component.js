@@ -68,7 +68,7 @@ class CommunicatorToolbar extends React.Component {
     }
   };
 
-  handleCommunicatorTitleChange = event => {
+  handleCommunicatorTitleChange = (event) => {
     const { value: titleDialogValue } = event.target;
     this.setState({ titleDialogValue });
   };
@@ -94,7 +94,7 @@ class CommunicatorToolbar extends React.Component {
 
   handleNewBoardClick = () => {};
 
-  boardCaption = board => {
+  boardCaption = (board) => {
     // Cordova path cannot be absolute
     if (isCordova() && board.caption && board.caption.search('/') === 0) {
       return `.${board.caption}`;
@@ -132,7 +132,7 @@ class CommunicatorToolbar extends React.Component {
           open={Boolean(this.state.boardsMenu)}
           onClose={this.closeMenu.bind(this)}
         >
-          {boards.map(board => (
+          {boards.map((board) => (
             <ListItem
               className="CommunicatorToolbar__menuitem"
               key={board.id}

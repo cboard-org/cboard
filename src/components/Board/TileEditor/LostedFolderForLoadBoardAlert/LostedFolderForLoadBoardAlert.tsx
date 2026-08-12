@@ -4,9 +4,11 @@ import messages from '../TileEditor.messages';
 
 export interface LostedFolderForLoadBoardAlertProps {
   intl: {
-    formatMessage: (
-      message: { id: string; defaultMessage?: string; description?: string },
-    ) => string;
+    formatMessage: (message: {
+      id: string;
+      defaultMessage?: string;
+      description?: string;
+    }) => string;
   };
 }
 

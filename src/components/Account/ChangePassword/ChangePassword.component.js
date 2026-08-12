@@ -29,11 +29,11 @@ export class ChangePassword extends Component {
     redirectMessage: ''
   };
 
-  sleep = milliseconds => {
-    return new Promise(resolve => setTimeout(resolve, milliseconds));
+  sleep = (milliseconds) => {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
   };
 
-  handleSubmit = values => {
+  handleSubmit = (values) => {
     const {
       match: {
         params: { userid, url }
@@ -48,7 +48,7 @@ export class ChangePassword extends Component {
     });
 
     storePassword(userid, values.password, url)
-      .then(res => {
+      .then((res) => {
         this.setState({
           storePasswordState: res,
           redirectMessage: intl.formatMessage(messages.redirect)
@@ -57,7 +57,7 @@ export class ChangePassword extends Component {
           history.replace('/login-signup');
         });
       })
-      .catch(err => this.setState({ storePasswordState: err }))
+      .catch((err) => this.setState({ storePasswordState: err }))
       .finally(() => this.setState({ isSending: false }));
   };
 
@@ -157,7 +157,4 @@ const mapDispatchToProps = {
   storePassword
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(injectIntl(ChangePassword));
+export default connect(null, mapDispatchToProps)(injectIntl(ChangePassword));

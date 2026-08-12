@@ -34,7 +34,7 @@ const DeleteConfirmationDialog = ({
   const DELETE_ACCOUNT = 'delete-account';
   const [confirmationText, setConfirmationText] = useState('');
 
-  const handleConfirmationChange = e => {
+  const handleConfirmationChange = (e) => {
     setConfirmationText(e.target.value);
   };
 

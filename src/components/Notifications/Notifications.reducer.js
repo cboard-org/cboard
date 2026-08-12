@@ -3,7 +3,7 @@ import {
   HIDE_NOTIFICATION
 } from './Notifications.constants';
 
-const initialState = { message: '', open: false , kind : undefined };
+const initialState = { message: '', open: false, kind: undefined };
 
 function notificationsReducer(state = initialState, action) {
   switch (action.type) {

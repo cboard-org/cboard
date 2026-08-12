@@ -1,4 +1,4 @@
-const OGVPlayer = function() {
+const OGVPlayer = function () {
   this.src = '';
   this.play = () => Promise.resolve();
 };

@@ -85,7 +85,7 @@ class HairColorSelect extends React.Component {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { onChange } = this.props;
 
     onChange(event);
@@ -94,7 +94,7 @@ class HairColorSelect extends React.Component {
     });
   };
 
-  handleClickOutside = event => {
+  handleClickOutside = (event) => {
     if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
       this.setState({
         open: false
@@ -156,7 +156,7 @@ class HairColorSelect extends React.Component {
                 style={radioGroupStyle}
                 onChange={this.handleChange}
               >
-                {this.state.hairColorMenu.map(hairColor => (
+                {this.state.hairColorMenu.map((hairColor) => (
                   <Radio
                     key={hairColor.name}
                     value={hairColor.name}

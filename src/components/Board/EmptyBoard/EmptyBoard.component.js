@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import messages from './EmptyBoard.messages';
 import './EmptyBoard.css';
 
-const styles = theme => ({
+const styles = (theme) => ({
   icon: {
     width: 120,
     height: 120,

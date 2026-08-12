@@ -5,7 +5,7 @@ const localChild = { id: 'local1', tiles: [] };
 const serverChild = { id: 'server-board-id-123456', tiles: [] };
 const defaultBoard = { id: 'root', email: DEFAULT_BOARD_EMAIL, tiles: [] };
 
-const parentLinkingTo = childId => ({
+const parentLinkingTo = (childId) => ({
   id: 'parent1',
   tiles: [{ id: 't1', loadBoard: childId }]
 });

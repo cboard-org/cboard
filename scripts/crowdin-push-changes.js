@@ -57,7 +57,7 @@ const uploadSourceFile = async () => {
     }
   );
   const sourceFile = filesResponse.data.find(
-    item => item.data.name === SOURCE_FILE_NAME
+    (item) => item.data.name === SOURCE_FILE_NAME
   );
 
   if (!sourceFile) {
@@ -84,12 +84,12 @@ const uploadSourceFile = async () => {
   await runMachineTranslation(fileId);
 };
 
-const runMachineTranslation = async fileId => {
+const runMachineTranslation = async (fileId) => {
   // 1. Find the Microsoft MT engine from the account-level engine list
   console.log('\nLooking up Microsoft machine translation engine...');
   const mtListResponse = await machineTranslationApi.listMts({ limit: 100 });
   const microsoftOrgEngine = mtListResponse.data.find(
-    mt =>
+    (mt) =>
       mt.data.type === 'microsoft' ||
       mt.data.name.toLowerCase().includes('microsoft')
   );
@@ -106,15 +106,14 @@ const runMachineTranslation = async fileId => {
 
   // 2. Get project target languages and project-configured MT engines
   console.log('Fetching project configuration...');
-  const projectResponse = await projectsGroupsApi.getProject(
-    CROWDIN_PROJECT_ID
-  );
+  const projectResponse =
+    await projectsGroupsApi.getProject(CROWDIN_PROJECT_ID);
   const targetLanguageIds = projectResponse.data.targetLanguageIds;
   const projectMtEngineIds = (
     (projectResponse.data.mtPreTranslate &&
       projectResponse.data.mtPreTranslate.mts) ||
     []
-  ).map(e => e.mtId);
+  ).map((e) => e.mtId);
 
   console.log(`Found ${targetLanguageIds.length} target languages.`);
 
@@ -143,9 +142,8 @@ const runMachineTranslation = async fileId => {
 
     for (let attempt = 0; attempt <= 1; attempt++) {
       try {
-        const preTranslationResponse = await translationsApi.applyPreTranslation(
-          CROWDIN_PROJECT_ID,
-          {
+        const preTranslationResponse =
+          await translationsApi.applyPreTranslation(CROWDIN_PROJECT_ID, {
             method: 'mt',
             engineId,
             fileIds: [fileId],
@@ -155,8 +153,7 @@ const runMachineTranslation = async fileId => {
             skipApprovedTranslations: true,
             duplicateTranslations: false,
             scope: 'untranslated'
-          }
-        );
+          });
 
         const skipped = targetLanguageIds.length - languagesToTranslate.length;
         console.log(
@@ -177,14 +174,14 @@ const runMachineTranslation = async fileId => {
           attempt === 0 &&
           e.message.match(/Languages \[([^\]]+)\] are not supported/);
         if (match) {
-          const unsupported = match[1].split(',').map(s => s.trim());
+          const unsupported = match[1].split(',').map((s) => s.trim());
           console.log(
             `Engine ${engineId}: ${
               unsupported.length
             } languages not supported — retrying without them...`
           );
           languagesToTranslate = languagesToTranslate.filter(
-            l => !unsupported.includes(l)
+            (l) => !unsupported.includes(l)
           );
           if (languagesToTranslate.length === 0) {
             console.log(
@@ -204,7 +201,7 @@ const runMachineTranslation = async fileId => {
   );
 };
 
-const waitForPreTranslation = async preTranslationId => {
+const waitForPreTranslation = async (preTranslationId) => {
   const POLL_INTERVAL_MS = 5000;
 
   const poll = () =>
@@ -241,7 +238,7 @@ const waitForPreTranslation = async preTranslationId => {
   await poll();
 };
 
-uploadSourceFile().catch(err => {
+uploadSourceFile().catch((err) => {
   console.error('Failed to update remote translations:', err.message || err);
   process.exit(1);
 });

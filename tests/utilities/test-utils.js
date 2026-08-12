@@ -40,10 +40,7 @@ export async function waitForPageReady(page) {
  */
 export async function clickCommunicationButton(page, buttonText) {
   await dismissOverlays(page);
-  await page
-    .locator(`button:has-text("${buttonText}")`)
-    .first()
-    .click();
+  await page.locator(`button:has-text("${buttonText}")`).first().click();
 }
 
 /**

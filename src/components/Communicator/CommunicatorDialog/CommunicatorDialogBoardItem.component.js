@@ -54,9 +54,9 @@ const defaultReportDialogState = {
   success: false
 };
 
-const getFormattedName = lang => {
+const getFormattedName = (lang) => {
   lang = lang || navigator.language;
-  const processLanguage = lang => {
+  const processLanguage = (lang) => {
     const locale = lang.slice(0, 2).toLowerCase();
     const formattedLocale = locale === 'sr-ME' ? 'srme' : locale;
     return <FormattedMessage {...Language[formattedLocale]} />;
@@ -119,14 +119,14 @@ class CommunicatorDialogBoardItem extends React.Component {
     });
   }
 
-  handleBoardDescriptionChange = event => {
+  handleBoardDescriptionChange = (event) => {
     const { value: editBoardDescriptionDialogValue } = event.target;
     this.setState({
       editBoardDescriptionDialogValue: editBoardDescriptionDialogValue
     });
   };
 
-  handleBoardTitleChange = event => {
+  handleBoardTitleChange = (event) => {
     const { value: editBoardTitleDialogValue } = event.target;
     this.setState({ editBoardTitleDialogValue: editBoardTitleDialogValue });
   };
@@ -192,7 +192,7 @@ class CommunicatorDialogBoardItem extends React.Component {
     }
   }
 
-  handleBoardReport = async boardUrl => {
+  handleBoardReport = async (boardUrl) => {
     const {
       boardReport,
       board: { id, name, author, description },
@@ -243,18 +243,18 @@ class CommunicatorDialogBoardItem extends React.Component {
     }
   };
 
-  handleSymbolSearchClick = event => {
+  handleSymbolSearchClick = (event) => {
     this.setState({ isSymbolSearchOpen: true });
   };
 
   handleSymbolSearchChange = ({ image }) => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       this.setState({ imageBoard: image });
       resolve();
     });
   };
 
-  handleSymbolSearchClose = event => {
+  handleSymbolSearchClose = (event) => {
     this.setState({ isSymbolSearchOpen: false });
   };
 
@@ -512,7 +512,7 @@ class CommunicatorDialogBoardItem extends React.Component {
               required={true}
               type="text"
               fullWidth
-              onChange={event =>
+              onChange={(event) =>
                 this.setState({
                   reportDialogState: {
                     ...reportDialogState,

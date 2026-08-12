@@ -3,7 +3,7 @@
 How to read the operational telemetry that ships with the [board sync engine](./sync-engine.md).
 
 Use this doc when you want to answer, from production data: is the rollout reaching users, does
-first sync *complete*, do local boards *graduate* without jamming, and how often does sync throw.
+first sync _complete_, do local boards _graduate_ without jamming, and how often does sync throw.
 It documents the events the engine emits, where they fire, the Kusto queries that interpret them,
 and the alerts that watch them.
 
@@ -19,7 +19,7 @@ This telemetry is read-only instrumentation. That bounds what it delivers:
 - ✅ It tells you, across the fleet, **whether the rollout is reaching users**, whether first
   sync **completes**, whether **graduation** jams, and **how often sync throws**.
 - ❌ It does **not** prevent board data loss. A bad manifest can still mass-delete graduated
-  boards; `Sync_RemoteDeletions` (§4.4) is a smoke detector that fires *after* the delete and
+  boards; `Sync_RemoteDeletions` (§4.4) is a smoke detector that fires _after_ the delete and
   cannot recover an already-purged local board.
 
 If preventing local-board loss becomes a priority, that is a **separate** change (a
@@ -40,56 +40,61 @@ categorical context lives in `properties` (`customDimensions`). Every event and 
 `appVersion` dimension** — cohort by time instead (see §3).
 
 ### `Sync_FirstRun`
+
 The first onboarding sync of a device — fires at the top of `syncBoards()` when `syncMeta` is
 empty but boards exist. (It fires again if that first sync fails before `syncMeta` is written;
 `dcount(user_Id)` in the queries dedupes, so adoption counts stay correct.)
 
-| field | bag | meaning |
-|---|---|---|
-| `totalBoards` | measurements | boards at first sync |
-| `localBoards` | measurements | short-id boards |
-| `serverBoards` | measurements | objectId boards |
+| field          | bag          | meaning              |
+| -------------- | ------------ | -------------------- |
+| `totalBoards`  | measurements | boards at first sync |
+| `localBoards`  | measurements | short-id boards      |
+| `serverBoards` | measurements | objectId boards      |
 
 ### `Sync_Graduation`
+
 Once per cycle, in `classifyBoardsForPush`, whenever any untracked board was seen.
 
-| field | bag | meaning |
-|---|---|---|
-| `untrackedSeen` | measurements | untracked boards entering Pass 2 |
-| `graduated` | measurements | remote exists + same/older → SYNCED, no API call |
-| `pushedNew` | measurements | `needsCreate: true` |
-| `pushedUpdate` | measurements | `needsCreate: false` |
+| field           | bag          | meaning                                          |
+| --------------- | ------------ | ------------------------------------------------ |
+| `untrackedSeen` | measurements | untracked boards entering Pass 2                 |
+| `graduated`     | measurements | remote exists + same/older → SYNCED, no API call |
+| `pushedNew`     | measurements | `needsCreate: true`                              |
+| `pushedUpdate`  | measurements | `needsCreate: false`                             |
 
 ### `Sync_BoardsStarted`
+
 At the top of every board-sync cycle (`syncBoards()`), before PULL classification. Captures the
 inputs the cycle is about to act on, so any later deletion/push anomaly can be replayed against
 the exact manifest snapshot and local state the engine saw — including `manifestWatermark`, which
 directly exposes a stale manifest (a watermark hours old while the device is actively creating
 boards was the signature of the 2026-07-01 incident).
 
-| field | bag | meaning |
-|---|---|---|
-| `manifestWatermark` | properties | newest `lastEdited` in the manifest, compared by parsed time (`"null"` for an empty manifest, or one with no parseable date) |
-| `pendingBefore` | measurements | PENDING boards entering the cycle |
-| `manifestSize` | measurements | boards in the remote manifest |
-| `localBoards` | measurements | total local boards |
-| `localServerBoards` | measurements | local boards with a server id |
-| `untrackedBefore` | measurements | local boards with no `syncMeta` entry |
+| field               | bag          | meaning                                                                                                                      |
+| ------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| `manifestWatermark` | properties   | newest `lastEdited` in the manifest, compared by parsed time (`"null"` for an empty manifest, or one with no parseable date) |
+| `pendingBefore`     | measurements | PENDING boards entering the cycle                                                                                            |
+| `manifestSize`      | measurements | boards in the remote manifest                                                                                                |
+| `localBoards`       | measurements | total local boards                                                                                                           |
+| `localServerBoards` | measurements | local boards with a server id                                                                                                |
+| `untrackedBefore`   | measurements | local boards with no `syncMeta` entry                                                                                        |
 
 ### `Sync_Completed`
+
 On every **board-sync cycle**, success or failure. Scope is the board phase only
 (`syncBoards()`); it does not cover the communicators phase. For the whole sync flight, see
 `Sync_FullRun`.
 
-| field | bag | meaning |
-|---|---|---|
-| `outcome` | properties | `success` \| `failure` |
-| `durationMs` | measurements | wall time of the cycle |
-| `pendingBefore` | measurements | PENDING boards pre-sync |
-| `pendingAfter` | measurements | PENDING boards post-sync |
+| field            | bag          | meaning                                                                                                                                                    |
+| ---------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `outcome`        | properties   | `success` \| `failure`                                                                                                                                     |
+| `durationMs`     | measurements | wall time of the cycle                                                                                                                                     |
+| `pendingBefore`  | measurements | PENDING boards pre-sync                                                                                                                                    |
+| `pendingAfter`   | measurements | PENDING boards post-sync                                                                                                                                   |
 | `untrackedAfter` | measurements | local boards with no `syncMeta` entry post-sync (pairs with `Sync_BoardsStarted.untrackedBefore`; a device where this never reaches 0 is graduation-stuck) |
 
 ### `Sync_FullRun`
+
 On every full sync flight driven by `getApiObjects()` — the top-level entry point that runs the
 board phase (`getApiMyBoards` → `syncBoards`) **and** the communicators phase
 (`getApiMyCommunicators`). Where `Sync_Completed` covers only the board phase, this event reports
@@ -97,15 +102,16 @@ whether the whole path completed, so a communicators-only failure (previously sw
 `console.error`) is now visible. Fires once per call, including when the single-flight guard skips
 the run.
 
-| field | bag | meaning |
-|---|---|---|
-| `outcome` | properties | `success` (both phases ok) \| `failure` (a phase threw) \| `skipped` (guard hit, sync already in progress) |
-| `source` | properties | what triggered the sync (e.g. login, manual `SyncButton`) |
-| `boardsOk` | properties | `"true"` \| `"false"` — did the board phase complete |
-| `communicatorsOk` | properties | `"true"` \| `"false"` — did the communicators phase complete |
-| `durationMs` | measurements | wall time of the full flight (omitted on `skipped`) |
+| field             | bag          | meaning                                                                                                    |
+| ----------------- | ------------ | ---------------------------------------------------------------------------------------------------------- |
+| `outcome`         | properties   | `success` (both phases ok) \| `failure` (a phase threw) \| `skipped` (guard hit, sync already in progress) |
+| `source`          | properties   | what triggered the sync (e.g. login, manual `SyncButton`)                                                  |
+| `boardsOk`        | properties   | `"true"` \| `"false"` — did the board phase complete                                                       |
+| `communicatorsOk` | properties   | `"true"` \| `"false"` — did the communicators phase complete                                               |
+| `durationMs`      | measurements | wall time of the full flight (omitted on `skipped`)                                                        |
 
 ### `Sync_RemoteDeletions` — passive data-loss detector
+
 Once per cycle in `syncBoards()`, after the per-id confirmation pass, **only when
 `boardIdsToDelete` is non-empty**. Every counted deletion carried the double signal — absent from
 the manifest AND absent from a fresh `POST /board/byids` read. This event makes the fleet-wide
@@ -113,15 +119,16 @@ volume of those deletions visible, so an anomalous spike (e.g. the server omitti
 should exist) is caught the day it deploys. It **counts** what the cycle is about to delete — it
 does not stop it.
 
-| field | bag | meaning |
-|---|---|---|
-| `deletedCount` | measurements | boards this cycle will hard-delete via PULL |
-| `manifestSize` | measurements | boards in the remote manifest (`remoteBoards.length`) |
-| `localServerBoards` | measurements | local boards with a server id, pre-delete (deletion denominator) |
-| `manifestWatermark` | properties | newest `lastEdited` in the manifest — a stale watermark alongside deletions is the incident signature |
-| `boardIds` | properties | comma-joined ids being deleted (first 50) — makes post-incident DB verification possible |
+| field               | bag          | meaning                                                                                               |
+| ------------------- | ------------ | ----------------------------------------------------------------------------------------------------- |
+| `deletedCount`      | measurements | boards this cycle will hard-delete via PULL                                                           |
+| `manifestSize`      | measurements | boards in the remote manifest (`remoteBoards.length`)                                                 |
+| `localServerBoards` | measurements | local boards with a server id, pre-delete (deletion denominator)                                      |
+| `manifestWatermark` | properties   | newest `lastEdited` in the manifest — a stale watermark alongside deletions is the incident signature |
+| `boardIds`          | properties   | comma-joined ids being deleted (first 50) — makes post-incident DB verification possible              |
 
 ### `Sync_PushNotFoundDelete`
+
 In the push-loop catch, when a board's push PUT returns **404**, the board is **absent from this
 cycle's manifest**, and a confirmation **`POST /board/byids` read also omits it** — the triple
 signal that hard-deletes it locally (untracked zombies and edit-vs-delete conflicts, see
@@ -129,26 +136,27 @@ signal that hard-deletes it locally (untracked zombies and edit-vs-delete confli
 near-exclusively `tracked: "false"`. Firings for boards that still exist in the DB would mean the
 by-ids confirmation itself is unreliable — investigate server-side before touching the client.
 
-| field | bag | meaning |
-|---|---|---|
-| `boardId` | properties | the board being hard-deleted |
-| `tracked` | properties | `"true"` = had `syncMeta` (edit-vs-delete conflict, local edit lost) \| `"false"` = untracked zombie |
-| `boardLastEdited` | properties | the board's local `lastEdited` |
-| `manifestWatermark` | properties | newest `lastEdited` in the manifest at delete time |
-| `manifestSize` | measurements | boards in the remote manifest |
+| field               | bag          | meaning                                                                                              |
+| ------------------- | ------------ | ---------------------------------------------------------------------------------------------------- |
+| `boardId`           | properties   | the board being hard-deleted                                                                         |
+| `tracked`           | properties   | `"true"` = had `syncMeta` (edit-vs-delete conflict, local edit lost) \| `"false"` = untracked zombie |
+| `boardLastEdited`   | properties   | the board's local `lastEdited`                                                                       |
+| `manifestWatermark` | properties   | newest `lastEdited` in the manifest at delete time                                                   |
+| `manifestSize`      | measurements | boards in the remote manifest                                                                        |
 
 ### Sync exceptions
+
 Several failure paths additionally call `trackSyncException`, each tagged with a `phase` so you can
 tell them apart in the `exceptions` table:
 
-| `phase` | where | was previously |
-|---|---|---|
-| `pullBulkFetch` | bulk board-body fetch catch | `console.error` only (invisible in cloud) |
-| `confirmDeletions` | per-chunk catch in `confirmServerDeletions` — a failing `/board/byids` keeps every candidate (fail-safe) but silently disables remote deletions, so it must be visible | new in this change |
-| `pushBoard` | per-board push catch (also carries `boardId`) | `console.error` only |
-| `syncBoards` | top-level cycle catch | `console.error` only |
-| `getApiMyBoards` | full-path board phase catch in `getApiObjects` (also carries `source`) | `console.error` only |
-| `getApiMyCommunicators` | full-path communicators phase catch in `getApiObjects` (also carries `source`) | `console.error` only |
+| `phase`                 | where                                                                                                                                                                  | was previously                            |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `pullBulkFetch`         | bulk board-body fetch catch                                                                                                                                            | `console.error` only (invisible in cloud) |
+| `confirmDeletions`      | per-chunk catch in `confirmServerDeletions` — a failing `/board/byids` keeps every candidate (fail-safe) but silently disables remote deletions, so it must be visible | new in this change                        |
+| `pushBoard`             | per-board push catch (also carries `boardId`)                                                                                                                          | `console.error` only                      |
+| `syncBoards`            | top-level cycle catch                                                                                                                                                  | `console.error` only                      |
+| `getApiMyBoards`        | full-path board phase catch in `getApiObjects` (also carries `source`)                                                                                                 | `console.error` only                      |
+| `getApiMyCommunicators` | full-path communicators phase catch in `getApiObjects` (also carries `source`)                                                                                         | `console.error` only                      |
 
 These were silent before — surfacing them in the cloud is the highest-value part of this
 telemetry.
@@ -157,16 +165,16 @@ telemetry.
 
 ## 2. Where each signal fires
 
-| Event / signal | File / function |
-|---|---|
-| `Sync_FirstRun` | `Board.actions.js` → `syncBoards()`, after the pre-PULL `getState().board` read |
-| `Sync_Graduation` | `Board.actions.js` → `classifyBoardsForPush`, before the batched `markBoardsSynced` |
-| `Sync_Completed` | `Board.actions.js` → `syncBoards()` success & catch (board phase only) |
-| `Sync_FullRun` | `Board.actions.js` → `getApiObjects()` `finally` (and the early `isSyncing` guard) |
-| `Sync_BoardsStarted` | `Board.actions.js` → `syncBoards()`, first statement inside the cycle `try`, before PULL classification |
-| `Sync_RemoteDeletions` | `Board.actions.js` → `syncBoards()`, after the per-id confirmation pass (`confirmServerDeletions`), guarded by `boardIdsToDelete.length > 0` |
-| `Sync_PushNotFoundDelete` | `Board.actions.js` → `pushLocalChangesToApi` push-loop catch, before the 404 hard delete |
-| `trackSyncException` | `Board.actions.js` → the six sync `catch` blocks (`pullBulkFetch`, `confirmDeletions`, `pushBoard`, `syncBoards`, `getApiMyBoards`, `getApiMyCommunicators`) |
+| Event / signal            | File / function                                                                                                                                              |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Sync_FirstRun`           | `Board.actions.js` → `syncBoards()`, after the pre-PULL `getState().board` read                                                                              |
+| `Sync_Graduation`         | `Board.actions.js` → `classifyBoardsForPush`, before the batched `markBoardsSynced`                                                                          |
+| `Sync_Completed`          | `Board.actions.js` → `syncBoards()` success & catch (board phase only)                                                                                       |
+| `Sync_FullRun`            | `Board.actions.js` → `getApiObjects()` `finally` (and the early `isSyncing` guard)                                                                           |
+| `Sync_BoardsStarted`      | `Board.actions.js` → `syncBoards()`, first statement inside the cycle `try`, before PULL classification                                                      |
+| `Sync_RemoteDeletions`    | `Board.actions.js` → `syncBoards()`, after the per-id confirmation pass (`confirmServerDeletions`), guarded by `boardIdsToDelete.length > 0`                 |
+| `Sync_PushNotFoundDelete` | `Board.actions.js` → `pushLocalChangesToApi` push-loop catch, before the 404 hard delete                                                                     |
+| `trackSyncException`      | `Board.actions.js` → the six sync `catch` blocks (`pullBulkFetch`, `confirmDeletions`, `pushBoard`, `syncBoards`, `getApiMyBoards`, `getApiMyCommunicators`) |
 
 The helper lives in `Board.sync.analytics.js` and is kept in the actions layer because these
 events need computed before/after state and timing that the redux-beacon `eventsMap` can't
@@ -361,13 +369,13 @@ syncEvents
 
 Set up one scheduled log alert (run every 1h, fire when result count > 0) per critical signal:
 
-| Alert | Query basis | Means |
-|---|---|---|
-| **Mass remote deletion** | §4.4 drill-down, any row in last 1h | a cycle deleted many boards against a tiny manifest — the open data-loss shape; investigate the manifest source immediately |
-| **Graduation stuck** | §4.3 with `cyclesStuck >= 2` over last 2h | a user can't onboard their boards |
-| **Sync error spike** | §4.6 `errorRatePct` over threshold | sync is throwing more than baseline |
+| Alert                    | Query basis                               | Means                                                                                                                       |
+| ------------------------ | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **Mass remote deletion** | §4.4 drill-down, any row in last 1h       | a cycle deleted many boards against a tiny manifest — the open data-loss shape; investigate the manifest source immediately |
+| **Graduation stuck**     | §4.3 with `cyclesStuck >= 2` over last 2h | a user can't onboard their boards                                                                                           |
+| **Sync error spike**     | §4.6 `errorRatePct` over threshold        | sync is throwing more than baseline                                                                                         |
 
-> The mass-deletion alert is the highest priority: with no engine guard in place it fires *after*
+> The mass-deletion alert is the highest priority: with no engine guard in place it fires _after_
 > the delete, so treat any trip as a signal to **halt the ramp** and inspect the manifest, not
 > just to observe. If it trips repeatedly, the durable fix is a manifest-sanity guard in the
 > engine, not more watching.
@@ -403,6 +411,7 @@ Operational notes:
 - App Insights / Kusto is the store; don't export — exporting a transient ops signal creates a
   governance obligation.
 - Consider excluding `Sync_*` names from ingestion sampling during the ramp so counts are exact
-  rather than estimated.
+rather than estimated.
 </content>
+
 </invoke>

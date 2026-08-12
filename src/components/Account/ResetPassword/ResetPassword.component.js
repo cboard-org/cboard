@@ -23,16 +23,13 @@ const initialValues = { email: '' };
 export function ResetPassword({ intl, isDialogOpen, onClose, forgot }) {
   const [isSending, setIsSending] = useState(false);
   const [forgotState, setForgotState] = useState({});
-  useEffect(
-    () => {
-      if (isDialogOpen) {
-        setForgotState({});
-      }
-    },
-    [isDialogOpen]
-  );
+  useEffect(() => {
+    if (isDialogOpen) {
+      setForgotState({});
+    }
+  }, [isDialogOpen]);
 
-  const handleSubmit = async values => {
+  const handleSubmit = async (values) => {
     setIsSending(true);
     setForgotState({});
     try {
@@ -125,7 +122,4 @@ const mapDispatchToProps = {
   forgot
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(injectIntl(ResetPassword));
+export default connect(null, mapDispatchToProps)(injectIntl(ResetPassword));

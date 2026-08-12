@@ -16,7 +16,7 @@ const Downloader = ({ files = [], completed, processing, onError }) => {
         {files.map((file, idx) => (
           <DownloadItem
             key={idx}
-            completedFile={blob => completed(blob)}
+            completedFile={(blob) => completed(blob)}
             processing={processing}
             onError={onError}
             {...file}
@@ -42,57 +42,54 @@ const DownloadItem = ({
     loaded: 0
   });
 
-  useEffect(
-    () => {
-      if (downloadInfo.completed || processing !== '') return;
-      const controller = new AbortController();
-      const options = {
-        signal: controller.signal,
-        onDownloadProgress: progressEvent => {
-          const { loaded, total } = progressEvent;
+  useEffect(() => {
+    if (downloadInfo.completed || processing !== '') return;
+    const controller = new AbortController();
+    const options = {
+      signal: controller.signal,
+      onDownloadProgress: (progressEvent) => {
+        const { loaded, total } = progressEvent;
 
-          setDownloadInfo({
-            progress: Math.floor((loaded * 100) / total),
-            loaded,
-            total,
-            completed: false
-          });
-        }
-      };
-
-      Axios.get(file, {
-        responseType: 'blob',
-        ...options
-      })
-        .then(function(response) {
-          setDownloadInfo(info => ({
-            ...info,
-            completed: true
-          }));
-
-          setTimeout(() => {
-            completedFile(
-              new Blob([response.data], {
-                type: response.headers['content-type']
-              })
-            );
-          }, 3000);
-        })
-        .catch(function(err) {
-          console.error('Error downloading file. Error: ' + err.message, err);
-
-          if (err.message === 'canceled') return;
-          onError(err.message);
+        setDownloadInfo({
+          progress: Math.floor((loaded * 100) / total),
+          loaded,
+          total,
+          completed: false
         });
+      }
+    };
 
-      return () => {
-        controller.abort();
-      };
-    },
-    [completedFile, file, onError, downloadInfo.completed, processing]
-  );
+    Axios.get(file, {
+      responseType: 'blob',
+      ...options
+    })
+      .then(function (response) {
+        setDownloadInfo((info) => ({
+          ...info,
+          completed: true
+        }));
 
-  const formatBytes = bytes => `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+        setTimeout(() => {
+          completedFile(
+            new Blob([response.data], {
+              type: response.headers['content-type']
+            })
+          );
+        }, 3000);
+      })
+      .catch(function (err) {
+        console.error('Error downloading file. Error: ' + err.message, err);
+
+        if (err.message === 'canceled') return;
+        onError(err.message);
+      });
+
+    return () => {
+      controller.abort();
+    };
+  }, [completedFile, file, onError, downloadInfo.completed, processing]);
+
+  const formatBytes = (bytes) => `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
 
   return (
     <div>

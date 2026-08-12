@@ -116,7 +116,7 @@ class Import extends React.Component {
                         id="file"
                         type="file"
                         style={{ display: 'none' }}
-                        onChange={e => this.onImportClick(e)}
+                        onChange={(e) => this.onImportClick(e)}
                       />
                     </Button>
                   </div>

@@ -9,7 +9,7 @@ const createState = (boards, syncMeta = {}) => ({
   },
   communicator: {
     activeCommunicatorId: 'comm-1',
-    communicators: [{ id: 'comm-1', boards: boards.map(b => b.id) }]
+    communicators: [{ id: 'comm-1', boards: boards.map((b) => b.id) }]
   },
   language: { lang: 'en-US' },
   app: {

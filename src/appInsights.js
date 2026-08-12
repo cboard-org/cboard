@@ -31,7 +31,7 @@ const initializeAppInsights = () => {
   appInsights.trackPageView();
 };
 // Debug - Register getSubscriber() http request origin
-appInsights.addDependencyInitializer(dependencyTelemetry => {
+appInsights.addDependencyInitializer((dependencyTelemetry) => {
   const requestOrigin =
     dependencyTelemetry?.item?.properties?.requestHeaders?.requestOrigin;
   if (requestOrigin) {

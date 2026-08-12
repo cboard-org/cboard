@@ -12,10 +12,10 @@ import {
 } from './Board.constants';
 
 const getTiles = (boards, boardId, tilesId) => {
-  const board = boards.find(board => board.id === boardId);
+  const board = boards.find((board) => board.id === boardId);
 
   const tiles = board.tiles
-    .filter(tile => tilesId.includes(tile.id))
+    .filter((tile) => tilesId.includes(tile.id))
     .reduce((acc, tile) => {
       const label = tile.label || tile.labelKey || tile.id;
       return acc ? `${acc}, ${label}` : label;
@@ -25,7 +25,7 @@ const getTiles = (boards, boardId, tilesId) => {
 
 const changeBoard = trackEvent((action, prevState, nextState) => {
   const board = nextState.board.boards.find(
-    board => board.id === action.boardId
+    (board) => board.id === action.boardId
   );
   let boardName = 'root';
   if (typeof board !== 'undefined') {

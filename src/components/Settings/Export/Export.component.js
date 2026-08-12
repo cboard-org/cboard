@@ -62,25 +62,25 @@ class Export extends React.Component {
     this.setState({ exportMenu: null });
   }
 
-  handleBoardChange = event => {
+  handleBoardChange = (event) => {
     this.setState({
       boardError: false,
       singleBoard: event.target.value
     });
   };
 
-  handleSizeChange = event => {
+  handleSizeChange = (event) => {
     this.setState({
       boardError: false,
       labelFontSize: event.target.value
     });
   };
 
-  handleSingleBoardChange = event => {
+  handleSingleBoardChange = (event) => {
     this.setState({ exportSingleBoard: event.target.value });
   };
 
-  handleAllBoardChange = event => {
+  handleAllBoardChange = (event) => {
     this.setState({ exportAllBoard: event.target.value });
   };
 
@@ -181,7 +181,7 @@ class Export extends React.Component {
                             onChange={this.handleBoardChange}
                           >
                             {boards.map(
-                              board =>
+                              (board) =>
                                 !board.hidden && (
                                   <MenuItem key={board.id} value={board}>
                                     {board.name ||

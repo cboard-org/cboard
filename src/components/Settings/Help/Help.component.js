@@ -27,9 +27,9 @@ class Help extends React.Component {
   componentDidMount() {
     let markdownPath = '';
     try {
-      markdownPath = require(`../../../translations/help/${
-        this.props.language.lang
-      }.md`);
+      markdownPath = require(
+        `../../../translations/help/${this.props.language.lang}.md`
+      );
     } catch (err) {
       markdownPath = require(`../../../translations/help/en-US.md`);
     } finally {
@@ -44,10 +44,10 @@ class Help extends React.Component {
         req.send();
       } else {
         fetch(markdownPath)
-          .then(response => {
+          .then((response) => {
             return response.text();
           })
-          .then(text => {
+          .then((text) => {
             this.setState({ markdown: text });
           });
       }
@@ -94,7 +94,7 @@ class Help extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   language: state.language
 });
 
@@ -102,7 +102,4 @@ const mapDispatchToProps = {};
 
 Help.propTypes = propTypes;
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Help);
+export default connect(mapStateToProps, mapDispatchToProps)(Help);

@@ -22,17 +22,17 @@ export class ImportContainer extends PureComponent {
 
   async updateLoadBoardsIds(boards, shouldUpdate = false) {
     const updatedBoards = await Promise.all(
-      boards.map(async board => {
+      boards.map(async (board) => {
         const boardsToBeLoaded = {};
         const tilesToBeReplaced = {};
         const tempBoards = this.props.boards
           .concat(boards)
-          .filter(b => b.prevId);
+          .filter((b) => b.prevId);
         let updated = false;
         board.tiles.forEach((tile, i) => {
           if (tile.loadBoard) {
             const boardToBeLoaded = tempBoards.find(
-              tb => tb.prevId && tb.prevId === tile.loadBoard
+              (tb) => tb.prevId && tb.prevId === tile.loadBoard
             );
             if (boardToBeLoaded) {
               tilesToBeReplaced[i] = tile;
@@ -42,7 +42,7 @@ export class ImportContainer extends PureComponent {
         });
 
         const tilesIndexes = Object.keys(tilesToBeReplaced);
-        tilesIndexes.forEach(i => {
+        tilesIndexes.forEach((i) => {
           const tile = board.tiles[i];
 
           if (boardsToBeLoaded[tile.loadBoard]) {
@@ -55,9 +55,8 @@ export class ImportContainer extends PureComponent {
         let boardToBeUpdated = board;
         if (shouldUpdate && updated) {
           try {
-            const { board: sanitized } = await API.uploadBoardLocalMedia(
-              boardToBeUpdated
-            );
+            const { board: sanitized } =
+              await API.uploadBoardLocalMedia(boardToBeUpdated);
             boardToBeUpdated = await API.updateBoard(sanitized);
           } catch (err) {
             console.error(err.message);
@@ -79,7 +78,7 @@ export class ImportContainer extends PureComponent {
       const { email, name: author } = userData;
 
       boardsResponse = await Promise.all(
-        boards.map(async board => {
+        boards.map(async (board) => {
           const boardToCreate = {
             ...board,
             email,
@@ -95,9 +94,8 @@ export class ImportContainer extends PureComponent {
             boardToCreate.name = 'unknow';
           }
           try {
-            const { board: sanitized } = await API.uploadBoardLocalMedia(
-              boardToCreate
-            );
+            const { board: sanitized } =
+              await API.uploadBoardLocalMedia(boardToCreate);
             const response = await API.createBoard(sanitized);
             if (board.id) {
               response.prevId = board.id;
@@ -114,7 +112,7 @@ export class ImportContainer extends PureComponent {
         })
       );
     } else {
-      boardsResponse = boardsResponse.map(board =>
+      boardsResponse = boardsResponse.map((board) =>
         this.prepareLocalBoard(board)
       );
     }
@@ -142,7 +140,7 @@ export class ImportContainer extends PureComponent {
     const { currentCommunicator, pushCommunicator } = this.props;
 
     const communicatorBoards = new Set(
-      currentCommunicator.boards.concat(boards.map(b => b.id))
+      currentCommunicator.boards.concat(boards.map((b) => b.id))
     );
     const communicatorModified = {
       ...currentCommunicator,
@@ -225,7 +223,7 @@ export class ImportContainer extends PureComponent {
 export const mapStateToProps = ({ board, communicator, app }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
-    communicator => communicator.id === activeCommunicatorId
+    (communicator) => communicator.id === activeCommunicatorId
   );
 
   const { userData } = app;

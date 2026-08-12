@@ -7,7 +7,7 @@ import { EMPTY_VOICES } from './providers/SpeechProvider/SpeechProvider.constant
 
 const splitLangRgx = /[_-]+/;
 
-APP_LANGS.forEach(lang => {
+APP_LANGS.forEach((lang) => {
   const locale = lang.slice(0, 2);
   var localeData = null;
   try {
@@ -70,11 +70,11 @@ export function getDefaultLang(langs) {
 }
 
 export function getVoicesLangs(voices) {
-  let langs = [...new Set(voices.map(voice => voice.lang))].sort();
-  langs = langs.map(lang => standardizeLanguageCode(lang));
-  langs = langs.map(lang => normalizeLanguageCode(lang));
+  let langs = [...new Set(voices.map((voice) => voice.lang))].sort();
+  langs = langs.map((lang) => standardizeLanguageCode(lang));
+  langs = langs.map((lang) => normalizeLanguageCode(lang));
   langs = [...new Set(langs)].sort();
-  return langs.filter(lang => APP_LANGS.includes(lang));
+  return langs.filter((lang) => APP_LANGS.includes(lang));
 }
 
 export function getSupportedLangs(voices) {
@@ -97,7 +97,7 @@ export function getSupportedLangs(voices) {
         supportedLangs.push('pt-TL');
       }
       //Delete zu from supportedLangs
-      supportedLangs = supportedLangs.filter(lang => !lang.startsWith('zu-'));
+      supportedLangs = supportedLangs.filter((lang) => !lang.startsWith('zu-'));
     }
   }
   return supportedLangs;
@@ -105,17 +105,17 @@ export function getSupportedLangs(voices) {
 
 export function filterLocalLangs(voices) {
   let localVoices = [
-    ...new Set(voices.filter(voice => voice.voiceSource === 'local'))
+    ...new Set(voices.filter((voice) => voice.voiceSource === 'local'))
   ].sort();
-  let localLangs = localVoices.map(voice => voice.lang);
-  localLangs = localLangs.map(lang => standardizeLanguageCode(lang));
-  localLangs = localLangs.map(lang => normalizeLanguageCode(lang));
+  let localLangs = localVoices.map((voice) => voice.lang);
+  localLangs = localLangs.map((lang) => standardizeLanguageCode(lang));
+  localLangs = localLangs.map((lang) => normalizeLanguageCode(lang));
   localLangs = [...new Set(localLangs)].sort();
   //hack to allow download sr-RS like sr-SP
   if (localLangs.includes('sr-RS')) localLangs.push('sr-SP');
   //Delete zu from localLangs
   return localLangs.filter(
-    lang => APP_LANGS.includes(lang) && !lang.startsWith('zu-')
+    (lang) => APP_LANGS.includes(lang) && !lang.startsWith('zu-')
   );
 }
 
@@ -128,7 +128,7 @@ export function getVoiceURI(language, voices) {
 
   // special case for tetum-language
   if (language === 'pt-TL') {
-    const langs = voices.map(voice => voice.lang);
+    const langs = voices.map((voice) => voice.lang);
     if (langs.includes('pt-PT')) {
       language = 'pt-PT';
     } else if (langs.includes('pt-BR')) {
@@ -137,7 +137,7 @@ export function getVoiceURI(language, voices) {
   }
 
   const nVoice = nVoices.find(
-    voice => voice.lang.substring(0, 2) === language.substring(0, 2)
+    (voice) => voice.lang.substring(0, 2) === language.substring(0, 2)
   );
   return typeof nVoice !== 'undefined' ? nVoice.voiceURI : EMPTY_VOICES;
 }

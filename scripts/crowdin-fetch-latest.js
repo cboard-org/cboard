@@ -21,7 +21,7 @@ const zipFilePath = resolve('./alltx.zip');
 const extractPath = resolve('./downloads');
 const langExtractPath = resolve('./src/translations');
 
-const downloadTranslations = async onComplete => {
+const downloadTranslations = async (onComplete) => {
   console.log('Trying to download latest translation strings...');
 
   // trigger a fresh project build
@@ -37,20 +37,20 @@ const downloadTranslations = async onComplete => {
     buildId
   );
   const allTxZip = fs.createWriteStream(zipFilePath);
-  https.get(download.data.url, function(response) {
+  https.get(download.data.url, function (response) {
     response.pipe(allTxZip);
-    allTxZip.on('finish', function() {
+    allTxZip.on('finish', function () {
       console.log('Translation download complete.');
       allTxZip.close(onComplete);
     });
-    allTxZip.on('error', function(err) {
+    allTxZip.on('error', function (err) {
       console.log('Translation download encountered error!');
       console.log(err);
     });
   });
 };
 
-const waitForBuild = async buildId => {
+const waitForBuild = async (buildId) => {
   const POLL_INTERVAL_MS = 5000;
 
   return new Promise((resolve, reject) => {
@@ -97,14 +97,14 @@ const extractTranslations = () => {
 
   const unzipper = new DecompressZip(zipFilePath);
 
-  unzipper.on('error', function(err) {
+  unzipper.on('error', function (err) {
     console.log('DecompressZip Caught an error:', err);
   });
 
-  unzipper.on('extract', function() {
+  unzipper.on('extract', function () {
     console.log('DecompressZip finished extracting.');
     deleteTemporaryDownloadFile();
-    fs.readdirSync(extractPath).forEach(file => {
+    fs.readdirSync(extractPath).forEach((file) => {
       if (file.endsWith('.json')) {
         fs.copyFileSync(`${extractPath}/${file}`, `${langExtractPath}/${file}`);
       }
@@ -127,7 +127,7 @@ const extractTranslations = () => {
         dest: 'nb-NO'
       }
     ];
-    custom.forEach(data => {
+    custom.forEach((data) => {
       fs.copyFileSync(
         `${extractPath}/${data.source}.json`,
         `${langExtractPath}/${data.dest}.json`

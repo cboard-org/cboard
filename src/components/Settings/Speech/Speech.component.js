@@ -67,7 +67,7 @@ const propTypes = {
   elevenLabsConnectionError: PropTypes.string
 };
 
-const styles = theme => ({
+const styles = (theme) => ({
   container: {
     display: 'flex',
     position: 'relative',
@@ -90,7 +90,7 @@ const styles = theme => ({
   }
 });
 
-const getVoiceLabel = voice => {
+const getVoiceLabel = (voice) => {
   if (!voice) {
     return undefined;
   }
@@ -339,7 +339,7 @@ const Speech = ({
                     label=""
                     name="elevenlabs-api-key"
                     value={elevenLabsApiKey || ''}
-                    onChange={e => {
+                    onChange={(e) => {
                       handleUpdateElevenLabsApiKey(e.target.value || null);
                     }}
                     placeholder="sk-..."

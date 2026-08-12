@@ -127,10 +127,10 @@ describe('actions', () => {
     const user = { email: 'test', password: '1122' };
     store
       .dispatch(actions.login(user, 'local'))
-      .then(data => {
+      .then((data) => {
         expect(data).toEqual();
       })
-      .catch(e => {
+      .catch((e) => {
         throw new Error(e.message);
       });
   });

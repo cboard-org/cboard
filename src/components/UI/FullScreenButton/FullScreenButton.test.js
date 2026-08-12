@@ -31,7 +31,7 @@ describe('FullScreenButton tests', () => {
     const wrapper = mount(
       <FullScreenButton
         disabled={false}
-        intl={{ formatMessage: msg => msg.defaultMessage }}
+        intl={{ formatMessage: (msg) => msg.defaultMessage }}
       />
     );
     const button = wrapper.find('button');

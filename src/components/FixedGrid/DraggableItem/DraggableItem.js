@@ -11,7 +11,7 @@ function DraggableItem(props) {
   const [{ opacity }, drag] = useDrag({
     item: { id, type },
     canDrag: () => !disabled,
-    collect: monitor => ({
+    collect: (monitor) => ({
       opacity: monitor.isDragging() ? 0.4 : 1
     })
   });

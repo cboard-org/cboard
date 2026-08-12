@@ -149,8 +149,8 @@ export class TileEditor extends Component {
   }
 
   updateEditingTile(id, property, value) {
-    return state => {
-      const editingTiles = state.editingTiles.map(b =>
+    return (state) => {
+      const editingTiles = state.editingTiles.map((b) =>
         b.id === id ? { ...b, ...{ [property]: value } } : b
       );
       return { ...state, editingTiles };
@@ -158,7 +158,7 @@ export class TileEditor extends Component {
   }
 
   updateNewTile(property, value) {
-    return state => {
+    return (state) => {
       const tile = { ...state.tile, [property]: value };
       return { ...state, tile };
     };
@@ -196,9 +196,8 @@ export class TileEditor extends Component {
       }
     } else {
       const tileToAdd = this.state.tile;
-      const imageUploadedData = this.state.imageUploadedData[
-        this.state.activeStep
-      ];
+      const imageUploadedData =
+        this.state.imageUploadedData[this.state.activeStep];
       if (imageUploadedData && imageUploadedData.isUploaded) {
         tileToAdd.image = await this.updateTileImgURL(
           imageUploadedData.blob,
@@ -236,8 +235,8 @@ export class TileEditor extends Component {
     return await this.blobToBase64(blob);
   };
 
-  blobToBase64 = async blob => {
-    return new Promise(resolve => {
+  blobToBase64 = async (blob) => {
+    return new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = () => {
         resolve(reader.result);
@@ -281,7 +280,7 @@ export class TileEditor extends Component {
     this.updateTileProperty('image', image);
   };
 
-  handleLoadingStateChange = isLoading => {
+  handleLoadingStateChange = (isLoading) => {
     this.setState({ isLoading: isLoading });
   };
 
@@ -304,7 +303,7 @@ export class TileEditor extends Component {
   };
 
   handleSymbolSearchChange = ({ image, labelKey, label, keyPath }) => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       this.updateTileProperty('labelKey', labelKey);
       this.updateTileProperty('label', label);
       this.updateTileProperty('image', image);
@@ -316,7 +315,7 @@ export class TileEditor extends Component {
     });
   };
 
-  handleSymbolSearchClose = event => {
+  handleSymbolSearchClose = (event) => {
     const { imageUploadedData } = this.state;
     this.setState({ isSymbolSearchOpen: false });
     if (
@@ -327,15 +326,15 @@ export class TileEditor extends Component {
     }
   };
 
-  handleLabelChange = event => {
+  handleLabelChange = (event) => {
     this.updateTileProperty('label', event.target.value);
     this.updateTileProperty('labelKey', '');
   };
 
-  handleVocalizationChange = event => {
+  handleVocalizationChange = (event) => {
     this.updateTileProperty('vocalization', event.target.value);
   };
-  handleSoundChange = sound => {
+  handleSoundChange = (sound) => {
     this.updateTileProperty('sound', sound);
   };
   handleTypeChange = (event, type) => {
@@ -364,7 +363,7 @@ export class TileEditor extends Component {
     });
   };
 
-  handleBack = event => {
+  handleBack = (event) => {
     this.setState({ activeStep: this.state.activeStep - 1 }, () => {
       this.setLinkedBoard();
     });
@@ -372,7 +371,7 @@ export class TileEditor extends Component {
     this.setState({ isEditImageBtnActive: false });
   };
 
-  handleNext = async event => {
+  handleNext = async (event) => {
     this.setState({ activeStep: this.state.activeStep + 1 }, () => {
       this.setLinkedBoard();
     });
@@ -394,7 +393,7 @@ export class TileEditor extends Component {
     );
   }
 
-  handleColorChange = event => {
+  handleColorChange = (event) => {
     const color = event?.target?.value || '';
 
     this.setState({ selectedBackgroundColor: color });
@@ -420,7 +419,7 @@ export class TileEditor extends Component {
     }
   };
 
-  handleBoardsChange = event => {
+  handleBoardsChange = (event) => {
     const board = event ? event.target.value : '';
     this.setState({ linkedBoard: board });
     if (board && board !== NONE_VALUE) {
@@ -446,8 +445,8 @@ export class TileEditor extends Component {
   onImageEditorClose = () => {
     this.setState({ openImageEditor: false });
   };
-  onImageEditorDone = blob => {
-    this.setState(prevState => {
+  onImageEditorDone = (blob) => {
+    this.setState((prevState) => {
       const newArray = [...prevState.imageUploadedData];
       newArray[this.state.activeStep].blob = blob;
       return { imageUploadedData: newArray };
@@ -456,14 +455,14 @@ export class TileEditor extends Component {
     this.updateTileProperty('image', image);
   };
 
-  setLinkedBoard = updatedLoadBoardId => {
+  setLinkedBoard = (updatedLoadBoardId) => {
     const loadBoard =
       updatedLoadBoardId ??
       (this.currentTileProp('linkedBoard') || this.editingTile()
         ? this.currentTileProp('loadBoard')
         : null);
     const linkedBoard =
-      this.props.boards.find(board => board.id === loadBoard) || NONE_VALUE;
+      this.props.boards.find((board) => board.id === loadBoard) || NONE_VALUE;
     this.setState({ linkedBoard: linkedBoard });
   };
 
@@ -475,7 +474,7 @@ export class TileEditor extends Component {
     const buttons = (
       <IconButton
         label={intl.formatMessage(messages.symbolSearch)}
-        onClick={e => this.handleSearchClick(e, currentLabel)}
+        onClick={(e) => this.handleSearchClick(e, currentLabel)}
       >
         <SearchIcon />
       </IconButton>
@@ -500,7 +499,7 @@ export class TileEditor extends Component {
               </MenuItem>
             )}
             {boards.map(
-              board =>
+              (board) =>
                 !board.hidden && (
                   <MenuItem key={board.id} value={board}>
                     {board.name}
@@ -595,7 +594,7 @@ export class TileEditor extends Component {
                       variant="contained"
                       color="primary"
                       startIcon={<SearchIcon />}
-                      onClick={e => this.handleSearchClick(e, currentLabel)}
+                      onClick={(e) => this.handleSearchClick(e, currentLabel)}
                     >
                       {intl.formatMessage(messages.symbols)}
                     </Button>

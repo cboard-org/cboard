@@ -113,7 +113,7 @@ export const createMigratingStorage = (oldStorage, newStorage) => ({
 const migratingStorage = createMigratingStorage(localStorage, localForage);
 
 export const boardMigrations = {
-  0: state => {
+  0: (state) => {
     return {
       ...state,
       board: {
@@ -122,7 +122,7 @@ export const boardMigrations = {
       }
     };
   },
-  1: state => ({
+  1: (state) => ({
     ...state,
     board: {
       ...state.board,
@@ -135,7 +135,7 @@ export const boardMigrations = {
 // rehydrated value is stale by definition and must never come back as true.
 export const boardSyncTransform = createTransform(
   null,
-  outboundState => ({ ...outboundState, isSyncing: false }),
+  (outboundState) => ({ ...outboundState, isSyncing: false }),
   { whitelist: ['board'] }
 );
 

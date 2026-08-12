@@ -5,6 +5,7 @@ This document explains how to set up and use the Cboard Symbols integration in t
 ## Overview
 
 Cboard Symbols is a curated symbol library from the cboard-ai-builder project that has been integrated as a **4th symbol provider** alongside:
+
 - Mulberry (local)
 - Global Symbols (API)
 - ARASAAC (hybrid with IndexedDB)
@@ -16,7 +17,7 @@ Cboard Symbols is a curated symbol library from the cboard-ai-builder project th
 ✅ **6 Skin Tone Variants**: emoji, light, medium-light, medium, medium-dark, dark  
 ✅ **Internationalized Search** - Supports all Cboard languages  
 ✅ **Enabled by Default** - Available to all users immediately  
-✅ **Graceful Degradation** - Falls back silently if API unavailable  
+✅ **Graceful Degradation** - Falls back silently if API unavailable
 
 ## Setup Instructions
 
@@ -29,6 +30,7 @@ openssl rand -base64 32
 ```
 
 Example output:
+
 ```
 aBcDeFgHiJkLmNoPqRsTuVwXyZ1234567890ABCD==
 ```
@@ -109,13 +111,13 @@ Mulberry    ARASAAC   Global       Cboard
 The integration automatically syncs skin tone between ARASAAC and Cboard Symbols:
 
 | ARASAAC Value | Cboard Symbols Value |
-|---------------|---------------------|
-| `white`       | `skin_light`        |
-| `black`       | `skin_dark`         |
-| `mulatto`     | `skin_medium`       |
-| `asian`       | `skin_medium_light` |
-| `aztec`       | `skin_medium_dark`  |
-| (default)     | `skin_emoji`        |
+| ------------- | -------------------- |
+| `white`       | `skin_light`         |
+| `black`       | `skin_dark`          |
+| `mulatto`     | `skin_medium`        |
+| `asian`       | `skin_medium_light`  |
+| `aztec`       | `skin_medium_dark`   |
+| (default)     | `skin_emoji`         |
 
 When a user changes the skin tone slider, both ARASAAC and Cboard Symbols results update automatically.
 
@@ -141,6 +143,7 @@ npm test -- SymbolSearch.component.test.js
 ```
 
 Expected output:
+
 ```
 PASS  src/components/Board/SymbolSearch/SymbolSearch.component.test.js
   SymbolSearch tests
@@ -180,6 +183,7 @@ curl https://cbuilder.cboard.io/api/cboard-symbols/pictograms/en/search/house
 **Symptoms**: Other providers work, but Cboard Symbols returns no results
 
 **Solutions**:
+
 1. Check API key is set in `.env` (both frontend and backend)
 2. Verify keys match exactly (no extra spaces)
 3. Restart both applications after changing `.env`
@@ -191,6 +195,7 @@ curl https://cbuilder.cboard.io/api/cboard-symbols/pictograms/en/search/house
 **Symptoms**: Console shows "Unauthorized - check API key"
 
 **Solutions**:
+
 1. Verify `CBOARD_API_KEY` is set in cboard-ai-builder `.env`
 2. Verify `REACT_APP_CBOARD_SYMBOLS_API_KEY` is set in cboard `.env`
 3. Ensure both keys are identical
@@ -201,11 +206,13 @@ curl https://cbuilder.cboard.io/api/cboard-symbols/pictograms/en/search/house
 **Symptoms**: Browser console shows "blocked by CORS policy"
 
 **Root Causes**:
+
 - Frontend running on different origin than backend expects
 - Missing required headers (e.g., `traceparent`, `request-id`)
 - Backend not running or not accessible
 
 **Solutions**:
+
 1. **Verify ports**: Backend on `localhost:3000`, frontend on `localhost:3001` (or any port)
 2. **Check API key**: Must be set in both `.env` files
 3. **Restart both applications** after changing `.env`
@@ -213,12 +220,14 @@ curl https://cbuilder.cboard.io/api/cboard-symbols/pictograms/en/search/house
 5. **Check backend is running**: Visit `http://localhost:3000` in browser
 
 **How CORS Works** (for reference):
+
 - Backend allows ALL `http://localhost:*` origins (any port) in development
 - Backend allows `https://app.cboard.io` in production
 - Allowed headers include: `X-API-Key`, `Content-Type`, `request-id`, `x-request-id`, `traceparent`, `tracestate`
 - No additional configuration needed - it's automatic!
 
 **Verify CORS Headers** (in browser DevTools → Network tab):
+
 ```
 Response Headers should include:
   Access-Control-Allow-Origin: http://localhost:3001
@@ -231,6 +240,7 @@ Response Headers should include:
 **Symptoms**: Changing skin tone doesn't affect Cboard Symbols
 
 **Solutions**:
+
 1. Verify `mapArasaacToCboardSkinTone()` is imported correctly
 2. Check `fetchCboardSymbolsSuggestions` is called in `handleSkinToneChange`
 3. Verify variant selection logic in suggestions mapping
@@ -240,6 +250,7 @@ Response Headers should include:
 **Symptoms**: Search is slow or times out
 
 **Solutions**:
+
 1. Check network tab in browser DevTools for slow requests
 2. Verify API timeout is set to 10s (see `/cboard/src/api/cboard-symbols.js`)
 3. Check MongoDB indexes in backend (should index `translations.{lang}.normalizedConcept`)
@@ -250,20 +261,24 @@ Response Headers should include:
 ### Backend (cboard-ai-builder)
 
 **New Files**:
+
 - `/src/middleware/apiKey.ts` - API key validation middleware
 - `/API_KEY_SETUP.md` - API key setup documentation
 
 **Modified Files**:
+
 - `/src/app/api/cboard-symbols/pictograms/[language]/search/[searchtext]/route.ts` - Added API key auth
 - `/.env` - Added `CBOARD_API_KEY`
 
 ### Frontend (cboard)
 
 **New Files**:
+
 - `/src/api/cboard-symbols.js` - Cboard Symbols API client
 - `/CBOARD_SYMBOLS_INTEGRATION.md` - This file
 
 **Modified Files**:
+
 - `/src/components/Board/SymbolSearch/SymbolSearch.component.js` - Added Cboard Symbols provider
 - `/src/components/Board/SymbolSearch/SymbolSearch.messages.js` - Added messages
 - `/src/components/Board/SymbolSearch/SymbolSearch.component.test.js` - Added tests
@@ -278,13 +293,16 @@ GET https://cbuilder.cboard.io/api/cboard-symbols/pictograms/{language}/search/{
 ```
 
 **Headers**:
+
 - `X-API-Key` (required): Your API key
 
 **Path Parameters**:
+
 - `language` (string): 2-letter ISO language code (e.g., "en", "es", "pt")
 - `searchtext` (string): URL-encoded search query
 
 **Response** (200):
+
 ```json
 [
   {
@@ -321,6 +339,7 @@ GET https://cbuilder.cboard.io/api/cboard-symbols/pictograms/{language}/search/{
 ```
 
 **Error Responses**:
+
 - `401 Unauthorized`: Invalid or missing API key
 - `404 Not Found`: No results for search query
 - `500 Internal Server Error`: Server error
@@ -328,6 +347,7 @@ GET https://cbuilder.cboard.io/api/cboard-symbols/pictograms/{language}/search/{
 ## Future Enhancements
 
 ### Phase 2 (Future)
+
 - [ ] Add IndexedDB caching for offline support
 - [ ] Display user ratings in search results
 - [ ] Sort by relevance score and user ratings
@@ -335,6 +355,7 @@ GET https://cbuilder.cboard.io/api/cboard-symbols/pictograms/{language}/search/{
 - [ ] Show symbol metadata (author, date)
 
 ### Phase 3 (Future)
+
 - [ ] Allow users to contribute symbols
 - [ ] Add symbol collections/categories
 - [ ] Implement advanced filtering
@@ -344,6 +365,7 @@ GET https://cbuilder.cboard.io/api/cboard-symbols/pictograms/{language}/search/{
 ## Support
 
 For issues or questions:
+
 1. Check this documentation
 2. Review GitHub issues: [cboard-org/cboard](https://github.com/cboard-org/cboard/issues)
 3. Check API setup: `/cboard-ai-builder/API_KEY_SETUP.md`

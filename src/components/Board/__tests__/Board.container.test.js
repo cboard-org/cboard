@@ -16,7 +16,7 @@ const createState = (boards, syncMeta = {}) => ({
   },
   communicator: {
     activeCommunicatorId: 'comm-1',
-    communicators: [{ id: 'comm-1', boards: boards.map(b => b.id) }]
+    communicators: [{ id: 'comm-1', boards: boards.map((b) => b.id) }]
   },
   speech: {
     voices: [],
@@ -83,7 +83,7 @@ describe('Board.container', () => {
   });
 
   describe('handleLockClick (unauthenticated edit modal gating)', () => {
-    const buildInstance = props => {
+    const buildInstance = (props) => {
       const instance = new BoardContainer({
         showPremiumRequired: jest.fn(),
         isSubscriptionRequired: false,

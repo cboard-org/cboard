@@ -1,10 +1,14 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
-  <meta http-equiv="Content-Security-Policy" content="
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
   default-src 'self'
       'unsafe-inline'
       'unsafe-eval'
@@ -16,15 +20,16 @@
       data:;
   img-src * data:  filesystem:  blob:  ;
   connect-src 'self' https://* localhost:* 127.0.0.1:* wss: ws: blob:;
-  ">
+  "
+    />
 
-  <!--
+    <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-  <!--
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -34,44 +39,60 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
 
-  <!-- Add to homescreen for Chrome on Android -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="Cboard">
-  <link rel="icon" sizes="192x192" href="%PUBLIC_URL%/images/touch/chrome-touch-icon-192x192.png">
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Cboard" />
+    <link
+      rel="icon"
+      sizes="192x192"
+      href="%PUBLIC_URL%/images/touch/chrome-touch-icon-192x192.png"
+    />
 
-  <!-- Add to homescreen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Cboard">
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/touch/apple-touch-icon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/images/touch/touch-icon-iphone-retina.png">
-  <link rel="apple-touch-icon" sizes="167x167" href="%PUBLIC_URL%/images/touch/touch-icon-ipad-retina.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Cboard" />
+    <link
+      rel="apple-touch-icon"
+      href="%PUBLIC_URL%/images/touch/apple-touch-icon.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="%PUBLIC_URL%/images/touch/touch-icon-iphone-retina.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="167x167"
+      href="%PUBLIC_URL%/images/touch/touch-icon-ipad-retina.png"
+    />
 
-  <!-- Color the status bar on mobile devices -->
-  <meta name="theme-color" content="#000000">
-  
-  <!-- Block indexing on search engines -->
-  <meta name="robots" content="noindex">
+    <!-- Color the status bar on mobile devices -->
+    <meta name="theme-color" content="#000000" />
 
+    <!-- Block indexing on search engines -->
+    <meta name="robots" content="noindex" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-60S79265FY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-60S79265FY"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
 
-    gtag('config', 'G-60S79265FY');
-  </script>
+      gtag('config', 'G-60S79265FY');
+    </script>
 
-  <title>Cboard - AAC Communication Board</title>
-</head>
+    <title>Cboard - AAC Communication Board</title>
+  </head>
 
-<body>
-  <noscript>
-    You need to enable JavaScript to run this app.
-  </noscript>
-  <div id="root"></div>
-</body>
-
+  <body>
+    <noscript> You need to enable JavaScript to run this app. </noscript>
+    <div id="root"></div>
+  </body>
 </html>
