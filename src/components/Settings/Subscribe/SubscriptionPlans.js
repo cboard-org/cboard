@@ -84,7 +84,7 @@ const SubscriptionPlans = ({
 
   let plans = [];
   if (!(isAndroid() || isIOS()) && products) {
-    products.forEach(product => {
+    products.forEach((product) => {
       if (product.paypalId) plans.push(product);
     });
   } else {
@@ -96,7 +96,7 @@ const SubscriptionPlans = ({
     subscription.status
   );
 
-  const subscriptionStatus = (function() {
+  const subscriptionStatus = (function () {
     if (error.showError) return ERROR;
     if (status === UNVERIFIED) return UNVERIFIED;
     if (isOnTrialPeriod && !isSubscribed && status !== PROCCESING)
@@ -221,7 +221,7 @@ const SubscriptionPlans = ({
         justifyContent="space-around"
       >
         {status !== SUSPENDED &&
-          plans.map(product => {
+          plans.map((product) => {
             return [
               <Grid
                 key={product.id}
@@ -266,7 +266,7 @@ const SubscriptionPlans = ({
                         {...(!isLogged
                           ? { component: Link, to: '/login-signup' }
                           : {
-                              onClick: function() {
+                              onClick: function () {
                                 onSubscribe(product);
                               }
                             })}
@@ -280,7 +280,7 @@ const SubscriptionPlans = ({
                         variant="contained"
                         fullWidth={true}
                         color="primary"
-                        onClick={function() {
+                        onClick={function () {
                           window.cordova.plugins.DefaultBrowser.open(
                             'https://app.cboard.io/settings/subscribe'
                           );
@@ -312,10 +312,10 @@ const SubscriptionPlans = ({
                             plan_id: product.paypalId
                           });
                         }}
-                        onClick={function(data, actions) {
+                        onClick={function (data, actions) {
                           onPaypalAction('onClick', product, data);
                         }}
-                        onApprove={function(data, actions) {
+                        onApprove={function (data, actions) {
                           // In theory we could get transaction details doing:
                           // actions.subscription.get().then(details=>{
                           //   console.log(details);
@@ -325,10 +325,10 @@ const SubscriptionPlans = ({
                           // See https://stackoverflow.com/questions/59609198/how-to-get-user-information-after-subscription
                           onPaypalAction('onApprove', product, data);
                         }}
-                        onCancel={function(data, actions) {
+                        onCancel={function (data, actions) {
                           onPaypalAction('onCancel', product, data);
                         }}
-                        onError={function(data, actions) {
+                        onError={function (data, actions) {
                           onPaypalAction('onError', product, data);
                         }}
                       />
@@ -339,7 +339,7 @@ const SubscriptionPlans = ({
                       <FormattedMessage {...messages.includedFeatures} />
                     </Typography>
                     <List disablePadding style={{ padding: '5px' }}>
-                      {INCLUDED_FEATURES.map(feature => {
+                      {INCLUDED_FEATURES.map((feature) => {
                         return [
                           <ListItem key={feature}>
                             <ListItemIcon className={classes.icon}>
@@ -348,9 +348,9 @@ const SubscriptionPlans = ({
                             <ListItemText
                               primary={
                                 <FormattedMessage
-                                  {...messages[feature] || {
+                                  {...(messages[feature] || {
                                     ...messages.fallback
-                                  }}
+                                  })}
                                 />
                               }
                               secondary={null}

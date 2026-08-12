@@ -56,7 +56,4 @@ const mapDispatchToProps = {
   hideLoginRequired
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginRequiredModal);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginRequiredModal);

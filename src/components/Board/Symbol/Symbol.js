@@ -45,7 +45,7 @@ function Symbol(props) {
   const [src, setSrc] = useState(image ? formatSrc(image) : '');
   const objectUrlRef = useRef(null);
 
-  const fetchArasaacImagefromIndexedDB = useCallback(async id => {
+  const fetchArasaacImagefromIndexedDB = useCallback(async (id) => {
     if (!id) return null;
 
     try {
@@ -57,54 +57,49 @@ function Symbol(props) {
     }
   }, []);
 
-  useEffect(
-    () => {
-      let cancelled = false;
+  useEffect(() => {
+    let cancelled = false;
 
-      async function getSrc() {
-        const imageFromIndexedDb = await fetchArasaacImagefromIndexedDB(
-          keyPath
-        );
+    async function getSrc() {
+      const imageFromIndexedDb = await fetchArasaacImagefromIndexedDB(keyPath);
 
-        if (cancelled) return;
+      if (cancelled) return;
 
-        if (imageFromIndexedDb) {
-          const blob = new Blob([imageFromIndexedDb.data], {
-            type: imageFromIndexedDb.type
-          });
-          const url = URL.createObjectURL(blob);
-          setSrc(url);
+      if (imageFromIndexedDb) {
+        const blob = new Blob([imageFromIndexedDb.data], {
+          type: imageFromIndexedDb.type
+        });
+        const url = URL.createObjectURL(blob);
+        setSrc(url);
 
-          if (objectUrlRef.current) {
-            URL.revokeObjectURL(objectUrlRef.current);
-          }
-          objectUrlRef.current = url;
-          return;
-        }
-
-        if (image) {
-          setSrc(formatSrc(image));
-          return;
-        }
-
-        setSrc('');
-      }
-      getSrc();
-
-      return () => {
-        cancelled = true;
         if (objectUrlRef.current) {
           URL.revokeObjectURL(objectUrlRef.current);
-          objectUrlRef.current = null;
         }
-      };
-    },
-    [fetchArasaacImagefromIndexedDB, image, keyPath]
-  );
+        objectUrlRef.current = url;
+        return;
+      }
+
+      if (image) {
+        setSrc(formatSrc(image));
+        return;
+      }
+
+      setSrc('');
+    }
+    getSrc();
+
+    return () => {
+      cancelled = true;
+      if (objectUrlRef.current) {
+        URL.revokeObjectURL(objectUrlRef.current);
+        objectUrlRef.current = null;
+      }
+    };
+  }, [fetchArasaacImagefromIndexedDB, image, keyPath]);
 
   const symbolClassName = classNames('Symbol', className);
 
-  const handleKeyPress = event => {
+  const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault(); //prevent new line in next textArea
       return;

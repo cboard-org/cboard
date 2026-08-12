@@ -154,7 +154,7 @@ describe('reducer', () => {
 
     const result = communicatorReducer(stateWithLocal, action);
 
-    const updated = result.communicators.find(c => c.id === serverComm.id);
+    const updated = result.communicators.find((c) => c.id === serverComm.id);
     expect(updated).toBeDefined();
     expect(updated.email).toBe(serverComm.email);
     expect(updated.author).toBe(serverComm.author);

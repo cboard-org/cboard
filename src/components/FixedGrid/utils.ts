@@ -33,8 +33,8 @@ export function moveOrderItem(
   position: { row: number; column: number },
   order: GridOrder
 ) {
-  const mappedOrder = order.map(row => {
-    return row.map(cell => {
+  const mappedOrder = order.map((row) => {
+    return row.map((cell) => {
       return cell;
     });
   });
@@ -64,13 +64,13 @@ export function sortGrid({
   columns: number;
   rows: number;
   order: GridOrder;
-  items: { id: string;[key: string]: any }[];
+  items: { id: string; [key: string]: any }[];
 }) {
   const grid = createMatrix(rows, columns);
   const itemsToSort = [...items];
 
   iterateGridItems(order, (id, rowIndex, columnIndex) => {
-    const itemIndex = itemsToSort.findIndex(item => item.id === id);
+    const itemIndex = itemsToSort.findIndex((item) => item.id === id);
     const itemExists = itemIndex > -1;
 
     const exceedsBoundaries = rowIndex >= rows || columnIndex >= columns;
@@ -98,14 +98,15 @@ function iterateGridItems(
 function fillEmptyGridCells(grid: any[][], items: any[]) {
   const itemQueue = [...items];
 
-  return grid.map(row =>
-    row.map(item => {
+  return grid.map((row) =>
+    row.map((item) => {
       return item || itemQueue.shift();
     })
   );
 }
 
-export function getNewOrder({ columns,
+export function getNewOrder({
+  columns,
   rows,
   order,
   items
@@ -113,28 +114,30 @@ export function getNewOrder({ columns,
   columns: number;
   rows: number;
   order: GridOrder;
-  items: { id: string;[key: string]: any }[];
+  items: { id: string; [key: string]: any }[];
 }): string[][] {
   const grid = sortGrid({ columns, rows, order, items });
   iterateGridItems(grid, (tile, rowIndex, columnIndex) => {
     grid[rowIndex][columnIndex] = tile?.id;
-  })
+  });
   return grid;
 }
 
 export function removeOrderItems(ids: string, order: GridOrder): GridOrder {
-  return order.map(row => row.map(id => (id && ids.includes(id) ? null : id)));
+  return order.map((row) =>
+    row.map((id) => (id && ids.includes(id) ? null : id))
+  );
 }
 
 function getDeprecatedOrderedPages({
   tileItems,
-  order,
+  order
 }: {
   tileItems: Array<TileItem>;
   order: GridOrder;
 }): TileItem[][] {
   const firstPageItemsInOrder = order.map((row) =>
-    row.map((id) => tileItems.find((item) => item.id === id) || null),
+    row.map((id) => tileItems.find((item) => item.id === id) || null)
   );
 
   const firstPageIds = order.flat();
@@ -142,7 +145,7 @@ function getDeprecatedOrderedPages({
   const unorderedTiles = tileItems.filter((item) => !orderedIds.has(item.id));
   const fillEmptyPositionsWithUnorderedTilesForOldBoards = ({
     firstPageItemsInOrder,
-    unorderedTiles,
+    unorderedTiles
   }: {
     firstPageItemsInOrder: (TileItem | null)[][];
     unorderedTiles: Array<TileItem>;
@@ -150,10 +153,10 @@ function getDeprecatedOrderedPages({
     let index = 0;
     const deprecatedFirstPageItemsInOrder = firstPageItemsInOrder.map((row) =>
       row.map((item) => {
-      if (item) return item;
-      index++;
+        if (item) return item;
+        index++;
         return unorderedTiles[index - 1] || null;
-      }),
+      })
     );
     const deprecatedFirstPage = deprecatedFirstPageItemsInOrder
       .flat()
@@ -162,29 +165,29 @@ function getDeprecatedOrderedPages({
 
     return { deprecatedFirstPage, restOfTiles };
   };
-  
+
   const { deprecatedFirstPage, restOfTiles } =
     fillEmptyPositionsWithUnorderedTilesForOldBoards({
       firstPageItemsInOrder,
-      unorderedTiles,
+      unorderedTiles
     });
 
   const size = firstPageIds.length;
   const restOfPages = lodash.chunk(restOfTiles, size);
-  
+
   return [deprecatedFirstPage, ...restOfPages];
 }
 
 export function getTilesListForNewOrder({
   tileItems,
-  order,
+  order
 }: {
   tileItems: Array<TileItem>;
   order: GridOrder;
 }): TileItem[] {
   const newPages = getDeprecatedOrderedPages({
     order,
-    tileItems,
+    tileItems
   });
   const tilesListForNewOrder = newPages.flat();
   return tilesListForNewOrder;

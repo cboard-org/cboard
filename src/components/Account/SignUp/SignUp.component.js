@@ -27,14 +27,11 @@ function SignUp(props) {
 
   const isButtonDisabled = isSigningUp || !!signUpStatus.success;
 
-  useEffect(
-    () => {
-      if (isDialogOpen) {
-        setSignUpStatus({});
-      }
-    },
-    [isDialogOpen]
-  );
+  useEffect(() => {
+    if (isDialogOpen) {
+      setSignUpStatus({});
+    }
+  }, [isDialogOpen]);
 
   async function handleSubmit(values) {
     const { passwordConfirm, ...formValues } = values;

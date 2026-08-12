@@ -49,14 +49,8 @@ export class App extends Component {
   };
 
   render() {
-    const {
-      lang,
-      dir,
-      isFirstVisit,
-      isLogged,
-      dark,
-      isDownloadingLang
-    } = this.props;
+    const { lang, dir, isFirstVisit, isLogged, dark, isDownloadingLang } =
+      this.props;
 
     return (
       <div className={classNames('App', { 'is-dark': dark })}>

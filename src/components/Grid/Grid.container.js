@@ -60,9 +60,9 @@ export class GridContainer extends PureComponent {
   }
 
   getBreakpointFromWidth(breakpoints, width) {
-    const sortBreakpoints = breakpoints => {
+    const sortBreakpoints = (breakpoints) => {
       let keys = Object.keys(breakpoints);
-      return keys.sort(function(a, b) {
+      return keys.sort(function (a, b) {
         return breakpoints[a] - breakpoints[b];
       });
     };
@@ -117,7 +117,7 @@ export class GridContainer extends PureComponent {
   generateLayouts() {
     const { breakpoints, cols } = this.props;
     const layouts = {};
-    Object.keys(breakpoints).forEach(bp => {
+    Object.keys(breakpoints).forEach((bp) => {
       layouts[bp] = this.generateLayout(cols[bp]);
     });
 
@@ -133,15 +133,8 @@ export class GridContainer extends PureComponent {
   };
 
   render() {
-    const {
-      size,
-      cols,
-      gap,
-      edit,
-      breakpoints,
-      children,
-      onLayoutChange
-    } = this.props;
+    const { size, cols, gap, edit, breakpoints, children, onLayoutChange } =
+      this.props;
     return (
       <div className={classNames('Grid', { dragging: this.state.dragging })}>
         <ResponsiveReactGridLayout

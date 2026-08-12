@@ -17,25 +17,22 @@ function OfflineNotificationModal({ isConnected, isLoggedIn }) {
   const hasBeenShownRef = useRef(false);
   const prevConnectedRef = useRef(null);
 
-  useEffect(
-    () => {
-      if (prevConnectedRef.current === null) {
-        prevConnectedRef.current = isConnected;
-        return;
-      }
-
-      const wentOffline =
-        prevConnectedRef.current === true && isConnected === false;
-
-      if (wentOffline && !hasBeenShownRef.current && isLoggedIn) {
-        setOpen(true);
-        hasBeenShownRef.current = true;
-      }
-
+  useEffect(() => {
+    if (prevConnectedRef.current === null) {
       prevConnectedRef.current = isConnected;
-    },
-    [isConnected, isLoggedIn]
-  );
+      return;
+    }
+
+    const wentOffline =
+      prevConnectedRef.current === true && isConnected === false;
+
+    if (wentOffline && !hasBeenShownRef.current && isLoggedIn) {
+      setOpen(true);
+      hasBeenShownRef.current = true;
+    }
+
+    prevConnectedRef.current = isConnected;
+  }, [isConnected, isLoggedIn]);
 
   const handleClose = () => {
     setOpen(false);
@@ -69,7 +66,7 @@ function OfflineNotificationModal({ isConnected, isLoggedIn }) {
   );
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isConnected: state.app.isConnected,
   isLoggedIn: isLogged(state)
 });

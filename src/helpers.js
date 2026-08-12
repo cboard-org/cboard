@@ -6,15 +6,15 @@ export const DEFAULT_BOARDS = {
   picSeePal: picSeePal
 };
 
-export const deepCopy = obj => JSON.parse(JSON.stringify(obj));
+export const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
 
-export const isDataURL = str =>
+export const isDataURL = (str) =>
   typeof str === 'string' && str.startsWith('data:');
 
-export const isLocalFileURL = str =>
+export const isLocalFileURL = (str) =>
   typeof str === 'string' && /^(file|cdvfile):/i.test(str);
 
-export const dataURLtoBlob = dataurl => {
+export const dataURLtoBlob = (dataurl) => {
   const arr = dataurl.split(',');
   const type = arr[0].match(/:(.*?);/)[1];
   const bstr = atob(arr[1]);
@@ -28,7 +28,7 @@ export const dataURLtoBlob = dataurl => {
   return new Blob([u8arr], { type });
 };
 
-export const convertMediaUrlToCDN = imageUrl => {
+export const convertMediaUrlToCDN = (imageUrl) => {
   const CBOARD_PRODUCTION_BLOB_CONTAINER_HOSTNAME =
     'cboardgroupdiag483.blob.core.windows.net';
   const PROTOCOL_LENGHT = 8;
@@ -36,7 +36,7 @@ export const convertMediaUrlToCDN = imageUrl => {
     CBOARD_PRODUCTION_BLOB_CONTAINER_HOSTNAME,
     PROTOCOL_LENGHT
   );
-  const cboardBlobUsingCDN = imageUrl => {
+  const cboardBlobUsingCDN = (imageUrl) => {
     const CDN_HOSTNAME = 'cdncboard.azureedge.net';
     return imageUrl.replace(
       CBOARD_PRODUCTION_BLOB_CONTAINER_HOSTNAME,

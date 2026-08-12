@@ -48,7 +48,7 @@ export class SubscribeContainer extends PureComponent {
     updatePlans();
   }
 
-  handleChange = name => event => {
+  handleChange = (name) => (event) => {
     this.setState({
       ...this.state,
       [name]: event.target.value
@@ -63,7 +63,7 @@ export class SubscribeContainer extends PureComponent {
     updatePlans();
   };
 
-  handleCancelSubscription = async ownedProduct => {
+  handleCancelSubscription = async (ownedProduct) => {
     const { updateIsSubscribed, updatePlans } = this.props;
     try {
       this.setState({ cancelSubscriptionStatus: 'cancelling' });
@@ -79,7 +79,7 @@ export class SubscribeContainer extends PureComponent {
     }
   };
 
-  handleError = e => {
+  handleError = (e) => {
     const { updateSubscriptionError, updateSubscription } = this.props;
 
     updateSubscriptionError({
@@ -115,12 +115,8 @@ export class SubscribeContainer extends PureComponent {
 
   handlePaypalApprove = async (product, data) => {
     const { updateSubscription } = this.props;
-    const {
-      facilitatorAccessToken,
-      orderID,
-      paymentSource,
-      subscriptionID
-    } = data;
+    const { facilitatorAccessToken, orderID, paymentSource, subscriptionID } =
+      data;
     const transaction = {
       className: 'Transaction',
       subscriptionId: subscriptionID,
@@ -200,7 +196,7 @@ export class SubscribeContainer extends PureComponent {
       let offers, offer;
       if (isAndroid() || isIOS()) {
         const storeProducts = await window.CdvPurchase.store.products;
-        const prod = storeProducts.find(p => {
+        const prod = storeProducts.find((p) => {
           return p.id === product.subscriptionId;
         });
 
@@ -211,8 +207,8 @@ export class SubscribeContainer extends PureComponent {
           await window.CdvPurchase.store.update();
           offers = prod.offers;
           const findCallback = isAndroid()
-            ? offer => offer.tags[0] === product.tag
-            : offer => offer.productId === product.subscriptionId;
+            ? (offer) => offer.tags[0] === product.tag
+            : (offer) => offer.productId === product.subscriptionId;
           offer = offers.find(findCallback);
         } catch (err) {
           console.error('Cannot subscribe product. Error: ', err.message);
@@ -221,9 +217,9 @@ export class SubscribeContainer extends PureComponent {
         }
       }
 
-      const filterInAppPurchaseIOSTransactions = uniqueReceipt =>
+      const filterInAppPurchaseIOSTransactions = (uniqueReceipt) =>
         uniqueReceipt.transactions.filter(
-          transaction => transaction.transactionId !== 'appstore.application'
+          (transaction) => transaction.transactionId !== 'appstore.application'
         );
 
       try {
@@ -251,9 +247,8 @@ export class SubscribeContainer extends PureComponent {
           }
           if (isIOS()) {
             //IOS have a unique receipt here => 'lastReceipt'
-            const inAppPurchaseTransactions = filterInAppPurchaseIOSTransactions(
-              localReceipts[0]
-            );
+            const inAppPurchaseTransactions =
+              filterInAppPurchaseIOSTransactions(localReceipts[0]);
 
             const lastTransaction = inAppPurchaseTransactions.slice(-1)[0];
             if (
@@ -299,9 +294,8 @@ export class SubscribeContainer extends PureComponent {
             }
           }
           if (isIOS()) {
-            const localInAppPurchaseTransactions = filterInAppPurchaseIOSTransactions(
-              localReceipts[0]
-            );
+            const localInAppPurchaseTransactions =
+              filterInAppPurchaseIOSTransactions(localReceipts[0]);
 
             if (localInAppPurchaseTransactions.length) {
               this.handleError({
@@ -363,7 +357,7 @@ export class SubscribeContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const userIsLogged = isLogged(state);
   const user = getUser(state);
   const location = userIsLogged

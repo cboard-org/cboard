@@ -97,7 +97,7 @@ function getActiveCommunicator(getState) {
   const activeCommunicator =
     communicators[
       communicators.findIndex(
-        communicator => communicator.id === activeCommunicatorId
+        (communicator) => communicator.id === activeCommunicatorId
       )
     ];
   return activeCommunicator;
@@ -127,7 +127,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
     const activeCommunicator = checkUserCommunicator();
 
-    const fallbackInitialDefaultBoardsIncluded = activeCommunicator => {
+    const fallbackInitialDefaultBoardsIncluded = (activeCommunicator) => {
       const oldUserHomeBoard = activeCommunicator.rootBoard;
 
       const boardAlreadyIncludedData = {
@@ -141,15 +141,15 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       return initialDefaultBoardsIncluded;
     };
 
-    const hasValidDefaultBoardsIncluded = !!activeCommunicator
-      .defaultBoardsIncluded?.length;
+    const hasValidDefaultBoardsIncluded =
+      !!activeCommunicator.defaultBoardsIncluded?.length;
 
     const defaultBoardsIncluded = hasValidDefaultBoardsIncluded
       ? activeCommunicator.defaultBoardsIncluded
       : fallbackInitialDefaultBoardsIncluded(activeCommunicator);
 
     const defaultBoardsNamesIncluded = defaultBoardsIncluded?.map(
-      includedBoardObject => includedBoardObject.nameOnJSON
+      (includedBoardObject) => includedBoardObject.nameOnJSON
     ) || [BOARD_ALREADY_INCLUDED_NAME];
 
     const updatedHomeBoard = defaultBoardsIncluded?.filter(
@@ -174,7 +174,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       }
     };
 
-    const switchActiveBoard = homeBoardId => {
+    const switchActiveBoard = (homeBoardId) => {
       if (homeBoardId) {
         const goTo = `/board/${homeBoardId}`;
 
@@ -183,7 +183,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       }
     };
 
-    const replaceHomeBoard = async homeBoardId => {
+    const replaceHomeBoard = async (homeBoardId) => {
       const {
         communicator: {
           communicators: updatedCommunicators,
@@ -195,7 +195,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       const userData = app?.userData;
 
       const activeCommunicator = updatedCommunicators.filter(
-        communicator => communicator.id === activeCommunicatorId
+        (communicator) => communicator.id === activeCommunicatorId
       )[0];
 
       const communicatorWithRootBoardReplaced = {
@@ -234,7 +234,7 @@ export function replaceDefaultHomeBoardIfIsNescesary(prev, current) {
     const activeCommunicator = getActiveCommunicator(getState);
     const defaultBoardsIncluded = activeCommunicator.defaultBoardsIncluded;
 
-    const updatedValue = defaultBoardsIncluded?.map(defaultBoard => {
+    const updatedValue = defaultBoardsIncluded?.map((defaultBoard) => {
       if (defaultBoard.homeBoard === prev) defaultBoard.homeBoard = current;
       return defaultBoard;
     });
@@ -394,10 +394,10 @@ export function changeOutput(output) {
 }
 
 export function improvePhrase(output) {
-  const fetchImprovePhrase = async language => {
+  const fetchImprovePhrase = async (language) => {
     const MIN_TILES_TO_IMPROVE = 1;
     if (output.length <= MIN_TILES_TO_IMPROVE) return '';
-    const labels = output.map(symbol => symbol.label);
+    const labels = output.map((symbol) => symbol.label);
     const phrase = labels.join(' '); //this.handlePhraseToShare();
     const improvedPhrase = await API.improvePhrase({ phrase, language });
     return improvedPhrase.phrase;
@@ -466,7 +466,7 @@ export function createApiBoardFailure(message) {
 }
 
 export function updateApiBoardSuccess(board) {
-  return dispatch => {
+  return (dispatch) => {
     const { isLocalUpdateNeeded, ...boardData } = board ?? {};
 
     if (!board || Object.keys(boardData).length === 0) {
@@ -550,7 +550,7 @@ export function downloadImageFailure(message) {
 }
 
 export function getApiMyBoards() {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(getApiMyBoardsStarted());
     try {
       const res = await API.getBoardsSync();
@@ -613,11 +613,11 @@ export function applyRemoteChangesToState({
   return async (dispatch, getState) => {
     const preFetchSyncMeta = getState().board.syncMeta;
 
-    boardIdsToDelete.forEach(boardId => {
+    boardIdsToDelete.forEach((boardId) => {
       dispatch(deleteApiBoardSuccess({ id: boardId }));
     });
 
-    const idsToFetch = [...boardsToAdd, ...boardsToUpdate].map(b => b.id);
+    const idsToFetch = [...boardsToAdd, ...boardsToUpdate].map((b) => b.id);
     if (idsToFetch.length === 0) return;
 
     let bodiesById;
@@ -626,7 +626,7 @@ export function applyRemoteChangesToState({
       if (!Array.isArray(res?.data)) {
         throw new Error('Bulk board fetch returned an unexpected shape');
       }
-      bodiesById = new Map(res.data.map(b => [b.id, b]));
+      bodiesById = new Map(res.data.map((b) => [b.id, b]));
     } catch (e) {
       // Transient/server failure: defer adds & updates to the next sync. The
       // deletions above are already applied (server-confirmed) and the
@@ -642,7 +642,7 @@ export function applyRemoteChangesToState({
     // window between the manifest and this fetch) resolves to null and is
     // skipped — it self-heals on the next sync.
     const postFetchSyncMeta = getState().board.syncMeta;
-    const resolveBody = boardId => {
+    const resolveBody = (boardId) => {
       const body = bodiesById.get(boardId) ?? null;
       if (!body) return null;
       const wasPending =
@@ -654,13 +654,15 @@ export function applyRemoteChangesToState({
     };
 
     // New boards on the server: add the ones we got bodies for.
-    const addedBoards = boardsToAdd.map(b => resolveBody(b.id)).filter(Boolean);
+    const addedBoards = boardsToAdd
+      .map((b) => resolveBody(b.id))
+      .filter(Boolean);
     if (addedBoards.length > 0) {
       dispatch(addBoards(addedBoards));
     }
 
     // Changed boards on the server: update the ones we got bodies for.
-    boardsToUpdate.forEach(b => {
+    boardsToUpdate.forEach((b) => {
       const body = resolveBody(b.id);
       if (body) {
         dispatch(updateBoard(body, true)); //sets syncStatus to SYNCED
@@ -691,7 +693,7 @@ function classifyBoardsForPush({
   const boardsToGraduate = [];
 
   // Helper to transform default/offline boards to belong to the current user
-  const transformAndTrack = board => {
+  const transformAndTrack = (board) => {
     if (!hasDefaultOrNoEmail(board)) return false;
     const transformedBoard = transformBoardForUser(
       board,
@@ -719,7 +721,7 @@ function classifyBoardsForPush({
 
   // Untracked boards (no syncMeta entry) that belong to the current user
   // or were created when the user was unlogged (empty email) or have the default email.
-  const remoteBoardMap = new Map(remoteBoards.map(b => [b.id, b]));
+  const remoteBoardMap = new Map(remoteBoards.map((b) => [b.id, b]));
 
   let untrackedSeen = 0;
   let pushedNew = 0;
@@ -781,15 +783,15 @@ const MAX_BOARDS_BY_IDS = 3000;
  * confirmed — the server filters them out, so their absence proves nothing.
  */
 async function confirmServerDeletions(boardIds) {
-  const verifiableIds = boardIds.filter(id => OBJECT_ID_REGEX.test(id));
+  const verifiableIds = boardIds.filter((id) => OBJECT_ID_REGEX.test(id));
   const confirmedIds = [];
   for (let i = 0; i < verifiableIds.length; i += MAX_BOARDS_BY_IDS) {
     const chunk = verifiableIds.slice(i, i + MAX_BOARDS_BY_IDS);
     try {
       const res = await API.getBoardsByIds(chunk);
       if (!Array.isArray(res?.data)) continue;
-      const existingIds = new Set(res.data.map(b => b.id));
-      confirmedIds.push(...chunk.filter(id => !existingIds.has(id)));
+      const existingIds = new Set(res.data.map((b) => b.id));
+      confirmedIds.push(...chunk.filter((id) => !existingIds.has(id)));
     } catch (e) {
       console.error('Deletion confirmation failed; keeping boards:', e);
       trackSyncException(e, { phase: 'confirmDeletions' });
@@ -835,23 +837,23 @@ export function pushLocalChangesToApi(remoteBoards = []) {
     // verifyAndUpsertCommunicator re-stamps lastEdited on every dispatch (via
     // EDIT_COMMUNICATOR), so re-running it on an already-owned communicator
     // would bump lastEdited and risk a spurious PUT on the next sync.
-    if (boardsToSync.some(b => b.needsCreate)) {
+    if (boardsToSync.some((b) => b.needsCreate)) {
       const { communicators, activeCommunicatorId } = getState().communicator;
       const activeCommunicator = communicators.find(
-        c => c.id === activeCommunicatorId
+        (c) => c.id === activeCommunicatorId
       );
       if (activeCommunicator && activeCommunicator.email !== userEmail) {
         dispatch(verifyAndUpsertCommunicator(activeCommunicator));
       }
     }
 
-    const remoteBoardIds = new Set(remoteBoards.map(remote => remote.id));
+    const remoteBoardIds = new Set(remoteBoards.map((remote) => remote.id));
 
     // PUSH: Create/update boards
     for (const { boardId, needsCreate } of boardsToSync) {
       // Re-read board from current state to avoid stale references
       // (prior iterations may have mutated state via CREATE_API_BOARD_SUCCESS)
-      const board = getState().board.boards.find(b => b.id === boardId);
+      const board = getState().board.boards.find((b) => b.id === boardId);
       if (!board) continue;
 
       try {
@@ -955,11 +957,8 @@ export function syncBoards(remoteBoards) {
       }
 
       // 1. Classify boards for PULL (remote changes + remote deletion candidates)
-      const {
-        boardsToAdd,
-        boardsToUpdate,
-        boardIdsToVerifyDeletion
-      } = classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
+      const { boardsToAdd, boardsToUpdate, boardIdsToVerifyDeletion } =
+        classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
 
       const boardIdsToDelete = await confirmServerDeletions(
         boardIdsToVerifyDeletion
@@ -1037,10 +1036,9 @@ export function syncBoards(remoteBoards) {
 }
 
 export function sanitizeBoardMedia(board) {
-  return async dispatch => {
-    const { board: sanitized, hadFailure } = await API.uploadBoardLocalMedia(
-      board
-    );
+  return async (dispatch) => {
+    const { board: sanitized, hadFailure } =
+      await API.uploadBoardLocalMedia(board);
     if (sanitized !== board) {
       dispatch(updateBoard(sanitized));
     }
@@ -1052,7 +1050,7 @@ export function sanitizeBoardMedia(board) {
 }
 
 export function createApiBoard(boardData, boardId) {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(createApiBoardStarted());
     boardData = {
       ...boardData,
@@ -1065,11 +1063,11 @@ export function createApiBoard(boardData, boardId) {
       throw new Error(err.message);
     }
     return API.createBoard(boardData)
-      .then(res => {
+      .then((res) => {
         dispatch(createApiBoardSuccess(res, boardId));
         return res;
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(createApiBoardFailure(err.message));
         throw new Error(err.message);
       });
@@ -1077,7 +1075,7 @@ export function createApiBoard(boardData, boardId) {
 }
 
 export function updateApiBoard(boardData) {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(updateApiBoardStarted());
     try {
       boardData = await dispatch(sanitizeBoardMedia(boardData));
@@ -1086,11 +1084,11 @@ export function updateApiBoard(boardData) {
       throw new Error(err.message);
     }
     return API.updateBoard(boardData)
-      .then(res => {
+      .then((res) => {
         dispatch(updateApiBoardSuccess(res));
         return res;
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(updateApiBoardFailure(err.message));
         throw err;
       });
@@ -1098,13 +1096,13 @@ export function updateApiBoard(boardData) {
 }
 
 export function upsertApiBoard(boardData) {
-  return dispatch => {
+  return (dispatch) => {
     if (isLocalBoard(boardData)) {
       return dispatch(createApiBoard(boardData, boardData.id))
-        .then(res => {
+        .then((res) => {
           return res;
         })
-        .catch(e => {
+        .catch((e) => {
           throw new Error(e.message);
         });
     } else {
@@ -1114,15 +1112,15 @@ export function upsertApiBoard(boardData) {
 }
 
 export function deleteApiBoard(boardId) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(deleteApiBoardStarted());
 
     return API.deleteBoard(boardId)
-      .then(res => {
+      .then((res) => {
         dispatch(deleteApiBoardSuccess(res));
         return res;
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(deleteApiBoardFailure(err.message));
         throw err;
       });
@@ -1188,7 +1186,7 @@ export function downloadImages() {
           typeof boards[i].caption !== 'undefined' &&
           isUrl(boards[i].caption)
         ) {
-          const img = images.find(image => image.id === boards[i].id);
+          const img = images.find((image) => image.id === boards[i].id);
           if (!img) {
             const element = await storeImage(
               boards[i].caption,
@@ -1205,7 +1203,7 @@ export function downloadImages() {
             isUrl(boards[i].tiles[j].image)
           ) {
             const img = images.find(
-              image => image.id === boards[i].tiles[j].id
+              (image) => image.id === boards[i].tiles[j].id
             );
             if (!img) {
               const element = await storeImage(
@@ -1267,7 +1265,7 @@ export function updateApiObjectsNoChild(
     //create - update parent board
     const action = createParentBoard ? createApiBoard : updateApiBoard;
     return await dispatch(action(parentBoard, parentBoard.id))
-      .then(res => {
+      .then((res) => {
         const updatedParentBoardId = res.id;
         //add new boards to the active communicator
         if (parentBoard.id !== updatedParentBoardId) {
@@ -1285,7 +1283,7 @@ export function updateApiObjectsNoChild(
 
         //check if parent board is the root board of the communicator
         const comm = getState().communicator.communicators.find(
-          communicator =>
+          (communicator) =>
             communicator.id === getState().communicator.activeCommunicatorId
         );
         if (comm.rootBoard === parentBoard.id) {
@@ -1298,11 +1296,11 @@ export function updateApiObjectsNoChild(
             await dispatch(updateApiMarkedBoards());
             return updatedParentBoardId;
           })
-          .catch(e => {
+          .catch((e) => {
             throw new Error(e.message);
           });
       })
-      .catch(e => {
+      .catch((e) => {
         throw new Error(e.message);
       });
   };
@@ -1311,7 +1309,7 @@ export function updateApiMarkedBoards() {
   return async (dispatch, getState) => {
     const allBoards = [...getState().board.boards];
     for await (const board of allBoards) {
-      const boardsIds = getState().board.boards?.map(board => board.id);
+      const boardsIds = getState().board.boards?.map((board) => board.id);
       if (!boardsIds.includes(board.id)) continue;
 
       if (
@@ -1374,11 +1372,11 @@ export function updateApiObjects(
   return (dispatch, getState) => {
     //create child board
     return dispatch(createApiBoard(childBoard, childBoard.id))
-      .then(res => {
+      .then((res) => {
         const updatedChildBoardId = res.id;
         //create - update parent board
         const updateTilesParentBoard = () =>
-          parentBoard.tiles.map(tile => {
+          parentBoard.tiles.map((tile) => {
             if (tile.loadBoard === childBoard.id)
               return { ...tile, loadBoard: updatedChildBoardId };
             return tile;
@@ -1391,7 +1389,7 @@ export function updateApiObjects(
         };
         const action = createParentBoard ? createApiBoard : updateApiBoard;
         return dispatch(action(updatedParentBoard, parentBoard.id))
-          .then(res => {
+          .then((res) => {
             const updatedParentBoardId = res.id;
             //add new boards to the active communicator
             dispatch(
@@ -1412,7 +1410,7 @@ export function updateApiObjects(
 
             //check if parent board is the root board of the communicator
             const comm = getState().communicator.communicators.find(
-              communicator =>
+              (communicator) =>
                 communicator.id === getState().communicator.activeCommunicatorId
             );
             if (comm.rootBoard === parentBoard.id) {
@@ -1425,15 +1423,15 @@ export function updateApiObjects(
                 dispatch(updateApiMarkedBoards());
                 return updatedParentBoardId;
               })
-              .catch(e => {
+              .catch((e) => {
                 throw new Error(e.message);
               });
           })
-          .catch(e => {
+          .catch((e) => {
             throw new Error(e.message);
           });
       })
-      .catch(e => {
+      .catch((e) => {
         throw new Error(e.message);
       });
   };

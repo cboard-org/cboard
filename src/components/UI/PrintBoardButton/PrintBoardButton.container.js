@@ -34,7 +34,7 @@ class PrintBoardButtonContainer extends React.Component {
     this.setState({ loading: true });
     const { boardData, intl, showNotification } = this.props;
     const currentBoard = boardData.boards.find(
-      board => board.id === boardData.activeBoardId
+      (board) => board.id === boardData.activeBoardId
     );
 
     const { pdfExportAdapter } = await this.exportHelpers;
@@ -73,7 +73,7 @@ PrintBoardButtonContainer.propTypes = {
   disabled: PropTypes.bool
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   boardData: state.board
 });
 

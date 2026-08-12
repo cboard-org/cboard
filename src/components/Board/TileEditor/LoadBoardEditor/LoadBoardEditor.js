@@ -32,7 +32,7 @@ import moment from 'moment';
 import { isCordova } from '../../../../cordova-util';
 import { debounce } from 'lodash';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'sticky'
   },
@@ -154,13 +154,8 @@ const BoardInfoContent = ({ intl, pageBoards, selectedBoardId }) => {
 const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const {
-    pageBoards,
-    totalPages,
-    loading,
-    error,
-    fetchBoards
-  } = useAllBoardsFetcher();
+  const { pageBoards, totalPages, loading, error, fetchBoards } =
+    useAllBoardsFetcher();
   const [currentPage, setCurrentPage] = React.useState(1);
 
   const BoardsList = ({ onItemClick }) => {
@@ -199,12 +194,11 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
     fetchBoards({ page, search: searchValue ?? null });
   };
 
-  const [openConfirmationDialog, setOpenConfirmationDialog] = React.useState(
-    false
-  );
+  const [openConfirmationDialog, setOpenConfirmationDialog] =
+    React.useState(false);
   const [selectedBoardId, setSelectedBoardId] = React.useState(null);
 
-  const handleOnItemClick = boardId => {
+  const handleOnItemClick = (boardId) => {
     setSelectedBoardId(boardId);
     setOpenConfirmationDialog(true);
   };
@@ -212,7 +206,7 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
   const [searchValue, setSearchValue] = React.useState('');
   const debounceSearch = useMemo(
     () =>
-      debounce(value => {
+      debounce((value) => {
         setSearchValue(value);
         setCurrentPage(1);
         fetchBoards({ page: 1, search: value });
@@ -220,7 +214,7 @@ const LoadBoardEditor = ({ intl, onLoadBoardChange, isLostedFolder }) => {
     [fetchBoards]
   );
 
-  const onSearchChange = e => {
+  const onSearchChange = (e) => {
     const searchValue = e.target.value;
     debounceSearch(searchValue);
   };

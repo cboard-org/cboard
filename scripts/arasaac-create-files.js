@@ -32,14 +32,14 @@ const locales = [
 
 console.log('Fetching symbol data from ARASAAC API .....');
 
-locales.forEach(async locale => {
+locales.forEach(async (locale) => {
   const pictosPath = `pictograms/all/${locale}`;
   let jsonData = [];
   try {
-    https.get(ARASAAC_BASE_PATH_API + pictosPath, res => {
+    https.get(ARASAAC_BASE_PATH_API + pictosPath, (res) => {
       let data = [];
 
-      res.on('data', chunk => {
+      res.on('data', (chunk) => {
         data.push(chunk);
       });
 
@@ -47,9 +47,9 @@ locales.forEach(async locale => {
         console.log('. . . SUCCESS Fetching symbol data for locale ' + locale);
         jsonData = JSON.parse(Buffer.concat(data).toString());
         const result = [];
-        jsonData.forEach(element => {
+        jsonData.forEach((element) => {
           var keywords = [];
-          element['keywords'].forEach(kw => {
+          element['keywords'].forEach((kw) => {
             keywords.push(kw['keyword']);
           });
           const picto = {
@@ -62,7 +62,7 @@ locales.forEach(async locale => {
         writeFile(
           './src/api/arasaac/' + locale + '.json',
           JSON.stringify(result),
-          error => {
+          (error) => {
             if (error) {
               console.log('An error has occurred ', error);
               return;

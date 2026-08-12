@@ -61,8 +61,8 @@ function DownloadingLangErrorDialog(props) {
           {ttsError
             ? intl.formatMessage(messages.ttsErrorAlert)
             : firstClick
-            ? intl.formatMessage(messages.searchVoiceAlert)
-            : intl.formatMessage(messages.langErrorAlert)}
+              ? intl.formatMessage(messages.searchVoiceAlert)
+              : intl.formatMessage(messages.langErrorAlert)}
         </DialogContentText>
         {continueOnline && (
           <DialogContentText id="continue-online-description">

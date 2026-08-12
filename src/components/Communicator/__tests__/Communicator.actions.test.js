@@ -222,7 +222,7 @@ describe('actions', () => {
 
     const dispatchedTypes = storeNoUser
       .getActions()
-      .map(a => a.type)
+      .map((a) => a.type)
       .filter(Boolean);
     // Should NOT contain any API push action
     expect(dispatchedTypes).not.toContain('CREATE_API_COMMUNICATOR_STARTED');

@@ -25,12 +25,10 @@ function GridBase(props) {
 
   const gridClassName = classNames(styles.root, className);
 
-  const grid = useMemo(() => utils.sortGrid({ columns, rows, order, items }), [
-    columns,
-    rows,
-    order,
-    items
-  ]);
+  const grid = useMemo(
+    () => utils.sortGrid({ columns, rows, order, items }),
+    [columns, rows, order, items]
+  );
 
   let itemIndex = 0;
 
@@ -46,7 +44,7 @@ function GridBase(props) {
                 key={columnIndex}
                 id={idWithPosition}
                 accept={'grid-item'}
-                onDrop={item => {
+                onDrop={(item) => {
                   const position = { row: rowIndex, column: columnIndex };
 
                   onItemDrop(item, position);

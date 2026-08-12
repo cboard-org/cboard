@@ -21,7 +21,7 @@ const propTypes = {
 const FullScreenButton = ({ disabled, intl }) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
-  const requestFullscreen = useCallback(element => {
+  const requestFullscreen = useCallback((element) => {
     if (element.requestFullscreen) {
       element.requestFullscreen();
     } else if (element.mozRequestFullScreen) {
@@ -43,22 +43,16 @@ const FullScreenButton = ({ disabled, intl }) => {
     setIsFullScreen(false);
   }, []);
 
-  const toggleFullscreen = useCallback(
-    () => {
-      if (isFullScreen) {
-        return exitFullscreen();
-      }
-      return requestFullscreen(window.document.documentElement);
-    },
-    [isFullScreen, requestFullscreen, exitFullscreen]
-  );
+  const toggleFullscreen = useCallback(() => {
+    if (isFullScreen) {
+      return exitFullscreen();
+    }
+    return requestFullscreen(window.document.documentElement);
+  }, [isFullScreen, requestFullscreen, exitFullscreen]);
 
-  const handleClick = useCallback(
-    () => {
-      toggleFullscreen();
-    },
-    [toggleFullscreen]
-  );
+  const handleClick = useCallback(() => {
+    toggleFullscreen();
+  }, [toggleFullscreen]);
 
   useEffect(() => {
     const events = [
@@ -74,14 +68,14 @@ const FullScreenButton = ({ disabled, intl }) => {
         document.webkitFullscreenElement;
       setIsFullScreen(!!fullScreenElement);
     };
-    events.forEach(event =>
+    events.forEach((event) =>
       document.addEventListener(event, handleFullScreenChange)
     );
 
     handleFullScreenChange();
 
     return () => {
-      events.forEach(event =>
+      events.forEach((event) =>
         document.removeEventListener(event, handleFullScreenChange)
       );
     };

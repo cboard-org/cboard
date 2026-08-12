@@ -38,7 +38,7 @@ const findBoards = (boards, criteria, page, search = '') => {
   let result = boards;
   for (let [key, value] of Object.entries(criteria)) {
     result = result.filter(
-      board =>
+      (board) =>
         (board.hasOwnProperty(key) && board[key] === value) ||
         !board.hasOwnProperty(key)
     );
@@ -46,7 +46,7 @@ const findBoards = (boards, criteria, page, search = '') => {
   if (search) {
     let re = new RegExp(search);
     result = result.filter(
-      board => re.test(board.name) || re.test(board.author)
+      (board) => re.test(board.name) || re.test(board.author)
     );
   }
   return {
@@ -218,7 +218,7 @@ class CommunicatorDialogContainer extends React.Component {
   async communicatorBoardsAction(board) {
     // If Communicator Tab is selected, the board should be removed from the Communicator
     const communicatorBoards = this.props.communicatorBoards.filter(
-      cb => cb.id !== board.id
+      (cb) => cb.id !== board.id
     );
     await this.updateCommunicatorBoards(communicatorBoards);
     this.setState({ boards: communicatorBoards });
@@ -253,7 +253,7 @@ class CommunicatorDialogContainer extends React.Component {
     }
     if (records) {
       //get the list of next boards in records
-      let nextBoardsRecords = records.map(entry => entry.next);
+      let nextBoardsRecords = records.map((entry) => entry.next);
       if (nextBoardsRecords.includes(board.id)) {
         return;
       }
@@ -319,7 +319,7 @@ class CommunicatorDialogContainer extends React.Component {
           if (!err.respose || err.response?.status === 404) {
             //look for this board in available boards
             const localBoard = availableBoards.find(
-              b => b.id === tile.loadBoard
+              (b) => b.id === tile.loadBoard
             );
             if (localBoard) {
               await this.createBoardsRecursively(localBoard, records);
@@ -333,10 +333,10 @@ class CommunicatorDialogContainer extends React.Component {
   updateBoardReferences(board, newBoard, records) {
     const { availableBoards, updateBoard } = this.props;
     //get the list of prev boards in records, but remove the current board
-    let prevBoardsRecords = records.map(entry => entry.prev);
-    prevBoardsRecords = prevBoardsRecords.filter(id => id !== newBoard.id);
+    let prevBoardsRecords = records.map((entry) => entry.prev);
+    prevBoardsRecords = prevBoardsRecords.filter((id) => id !== newBoard.id);
     //look for reference to the original board id
-    availableBoards.forEach(b => {
+    availableBoards.forEach((b) => {
       b.tiles.forEach((tile, index) => {
         if (
           //general case: tile can contains reference to the board
@@ -360,7 +360,7 @@ class CommunicatorDialogContainer extends React.Component {
           tile.loadBoard &&
           prevBoardsRecords.includes(tile.loadBoard)
         ) {
-          const el = records.find(e => e.prev === tile.loadBoard);
+          const el = records.find((e) => e.prev === tile.loadBoard);
           b.tiles.splice(index, 1, {
             ...tile,
             loadBoard: el.next
@@ -378,7 +378,7 @@ class CommunicatorDialogContainer extends React.Component {
   async addOrRemoveAction(board) {
     // If All My Boards Tab is selected, the board should be added/removed to/from the Communicator
     let communicatorBoards = [...this.props.communicatorBoards];
-    const boardIndex = communicatorBoards.findIndex(b => b.id === board.id);
+    const boardIndex = communicatorBoards.findIndex((b) => b.id === board.id);
     if (boardIndex >= 0) {
       communicatorBoards.splice(boardIndex, 1);
       this.props.showNotification(
@@ -396,7 +396,7 @@ class CommunicatorDialogContainer extends React.Component {
     // Need to fetch board if its not locally available
     if (
       boardIndex < 0 &&
-      this.props.availableBoards.findIndex(b => b.id === board.id) < 0
+      this.props.availableBoards.findIndex((b) => b.id === board.id) < 0
     ) {
       let boards = [];
       try {
@@ -412,7 +412,7 @@ class CommunicatorDialogContainer extends React.Component {
 
     const updatedCommunicatorData = {
       ...currentCommunicator,
-      boards: boards.map(cb => cb.id)
+      boards: boards.map((cb) => cb.id)
     };
 
     try {
@@ -429,7 +429,7 @@ class CommunicatorDialogContainer extends React.Component {
       isPublic: !board.isPublic
     };
     const sBoards = this.state.boards;
-    const index = sBoards.findIndex(b => board.id === b.id);
+    const index = sBoards.findIndex((b) => board.id === b.id);
     sBoards.splice(index, 1, boardData);
     replaceBoard(board, boardData);
     this.setState({
@@ -499,7 +499,7 @@ class CommunicatorDialogContainer extends React.Component {
       if (comm.boards.includes(board.id)) {
         const filteredCommunicator = {
           ...comm,
-          boards: comm.boards.filter(b => b !== board.id)
+          boards: comm.boards.filter((b) => b !== board.id)
         };
 
         try {
@@ -511,7 +511,7 @@ class CommunicatorDialogContainer extends React.Component {
     }
 
     const sBoards = this.state.boards;
-    const index = sBoards.findIndex(b => board.id === b.id);
+    const index = sBoards.findIndex((b) => board.id === b.id);
     sBoards.splice(index, 1);
     this.setState({
       boards: sBoards
@@ -523,7 +523,7 @@ class CommunicatorDialogContainer extends React.Component {
     const { updateBoard, updateApiBoard, userData } = this.props;
     updateBoard(board);
     const sBoards = this.state.boards;
-    const index = sBoards.findIndex(b => board.id === b.id);
+    const index = sBoards.findIndex((b) => board.id === b.id);
     sBoards.splice(index, 1, board);
     this.setState({
       boards: sBoards
@@ -539,7 +539,9 @@ class CommunicatorDialogContainer extends React.Component {
 
   render() {
     const limit = this.state.page * BOARDS_PAGE_LIMIT;
-    const communicatorBoardsIds = this.props.communicatorBoards.map(b => b.id);
+    const communicatorBoardsIds = this.props.communicatorBoards.map(
+      (b) => b.id
+    );
     const dialogProps = {
       ...this.props,
       ...this.state,
@@ -570,17 +572,17 @@ export const mapStateToProps = (
 ) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
-    communicator => communicator.id === activeCommunicatorId
+    (communicator) => communicator.id === activeCommunicatorId
   );
 
   const visibleBoards = getVisibleBoards({ board });
   const communicatorBoards = visibleBoards.filter(
-    board => currentCommunicator.boards.indexOf(board.id) >= 0
+    (board) => currentCommunicator.boards.indexOf(board.id) >= 0
   );
 
   const { userData, displaySettings } = app;
   const cboardBoards = visibleBoards.filter(
-    board => board.email === 'support@cboard.io'
+    (board) => board.email === 'support@cboard.io'
   );
   const communicatorTour = app.liveHelp.communicatorTour || {
     isCommBoardsEnabled: true,

@@ -1,0 +1,19 @@
+# Dependencies, build artifacts, and tool output
+node_modules/
+build/
+coverage/
+.husky/_/
+log/
+test-results/
+playwright-report/
+blob-report/
+
+# Generated or third-party content
+package-lock.json
+.agents/skills/
+.claude/skills/
+public/ogv/
+public/symbols/
+src/vfs_fonts.js
+src/translations/
+**/*.snap

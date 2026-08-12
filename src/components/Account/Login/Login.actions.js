@@ -20,7 +20,7 @@ import tts from '../../../providers/SpeechProvider/tts';
 import { appInsights } from '../../../appInsights';
 
 export function loginSuccess(payload) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: LOGIN_SUCCESS,
       payload
@@ -72,7 +72,7 @@ export function logout() {
     console.error(err);
   }
 
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(updateNavigationSettings({ improvePhraseActive: false }));
     dispatch(setUnloggedUserLocation(null));
     dispatch(updateUnloggedUserLocation());
@@ -108,7 +108,7 @@ export function login({ email, password, activatedData }, type = 'local') {
     const deviceVoiceLanguageCode = deviceVoiceLang?.substring(0, 2);
 
     if (voices.length) {
-      const uris = voices.map(v => {
+      const uris = voices.map((v) => {
         return v.voiceURI;
       });
 
@@ -116,7 +116,7 @@ export function login({ email, password, activatedData }, type = 'local') {
         const userVoiceUri = loginData.settings.speech.voiceURI; //ATENTION speech options on DB is under Speech directly. on state is under options
 
         const userVoiceLanguage = voices.filter(
-          voice => voice.voiceURI === userVoiceUri
+          (voice) => voice.voiceURI === userVoiceUri
         )[0]?.lang;
 
         const userVoiceLanguageCode = userVoiceLanguage?.substring(0, 2);
@@ -155,7 +155,7 @@ export function login({ email, password, activatedData }, type = 'local') {
       }
       //if the api stored voice is unavailable. Set default voice
       const defaultVoiceLanguage = voices.filter(
-        voice => voice.voiceURI === defaultVoiceUri
+        (voice) => voice.voiceURI === defaultVoiceUri
       )[0]?.lang;
       dispatch(changeVoice(defaultVoiceUri, defaultVoiceLanguage));
       return;

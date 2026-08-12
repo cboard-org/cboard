@@ -47,7 +47,7 @@ export function upsertCommunicator(communicator) {
       communicator: { communicators }
     } = getState();
     const action =
-      communicators.findIndex(c => c.id === communicator.id) >= 0
+      communicators.findIndex((c) => c.id === communicator.id) >= 0
         ? editCommunicator
         : createCommunicator;
 
@@ -63,7 +63,7 @@ export function upsertApiCommunicator(communicator) {
     const SHORT_ID_MAX_LENGTH = 15;
 
     // If the communicator is not on the local state return
-    if (!communicators.find(c => c.id === communicator.id))
+    if (!communicators.find((c) => c.id === communicator.id))
       return Promise.reject({
         message: 'Communicator not found on local state'
       });
@@ -71,11 +71,11 @@ export function upsertApiCommunicator(communicator) {
     return communicator.id.length < SHORT_ID_MAX_LENGTH ||
       communicator.id === defaultCommunicatorID
       ? dispatch(createApiCommunicator(communicator, communicator.id)).catch(
-          error => {
+          (error) => {
             throw new Error(error);
           }
         )
-      : dispatch(updateApiCommunicator(communicator)).catch(error => {
+      : dispatch(updateApiCommunicator(communicator)).catch((error) => {
           throw new Error(error);
         });
   };
@@ -192,9 +192,9 @@ export function verifyAndUpsertCommunicator(
       app: { userData }
     } = getState();
 
-    const getActiveCommunicator = getState => {
+    const getActiveCommunicator = (getState) => {
       return getState().communicator.communicators.find(
-        c => c.id === getState().communicator.activeCommunicatorId
+        (c) => c.id === getState().communicator.activeCommunicatorId
       );
     };
 
@@ -213,13 +213,12 @@ export function verifyAndUpsertCommunicator(
       updatedCommunicatorData.id = shortid.generate();
       updatedCommunicatorData.boards = [...communicator.boards];
 
-      const hasValidDefaultBoardsIncluded = !!communicator.defaultBoardsIncluded
-        ?.length;
+      const hasValidDefaultBoardsIncluded =
+        !!communicator.defaultBoardsIncluded?.length;
 
       if (hasValidDefaultBoardsIncluded) {
-        updatedCommunicatorData.defaultBoardsIncluded = communicator.defaultBoardsIncluded.map(
-          item => ({ ...item })
-        );
+        updatedCommunicatorData.defaultBoardsIncluded =
+          communicator.defaultBoardsIncluded.map((item) => ({ ...item }));
       }
     }
 
@@ -255,7 +254,7 @@ export function pushCommunicator(communicator, { changeActive = true } = {}) {
  */
 
 export function getApiMyCommunicators() {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(getApiMyCommunicatorsStarted());
     try {
       const res = await API.getCommunicators();
@@ -277,18 +276,18 @@ export function getApiMyCommunicators() {
 }
 
 export function createApiCommunicator(communicatorData, communicatorId) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(createApiCommunicatorStarted());
     communicatorData = {
       ...communicatorData,
       isPublic: false
     };
     return API.createCommunicator(communicatorData)
-      .then(res => {
+      .then((res) => {
         dispatch(createApiCommunicatorSuccess(res, communicatorId));
         return res;
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(createApiCommunicatorFailure(err.message));
         throw new Error(err.message);
       });
@@ -296,14 +295,14 @@ export function createApiCommunicator(communicatorData, communicatorId) {
 }
 
 export function updateApiCommunicator(communicatorData) {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(updateApiCommunicatorStarted());
     return API.updateCommunicator(communicatorData)
-      .then(res => {
+      .then((res) => {
         dispatch(updateApiCommunicatorSuccess(res));
         return res;
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(updateApiCommunicatorFailure(err.message));
         throw new Error(err.message);
       });
@@ -339,9 +338,9 @@ export function syncCommunicators(remoteCommunicators) {
     }
     return local;
   };
-  const getActiveCommunicator = getState => {
+  const getActiveCommunicator = (getState) => {
     return getState().communicator.communicators.find(
-      c => c.id === getState().communicator.activeCommunicatorId
+      (c) => c.id === getState().communicator.activeCommunicatorId
     );
   };
 
@@ -352,7 +351,7 @@ export function syncCommunicators(remoteCommunicators) {
 
     for (const remote of remoteCommunicators) {
       const localIndex = localCommunicators.findIndex(
-        local => local.id === remote.id
+        (local) => local.id === remote.id
       );
 
       if (localIndex !== -1) {
@@ -391,7 +390,7 @@ export function syncCommunicators(remoteCommunicators) {
       updatedCommunicators.length &&
       lastRemoteSavedCommunicatorId &&
       updatedCommunicators.findIndex(
-        communicator => communicator.id === lastRemoteSavedCommunicatorId
+        (communicator) => communicator.id === lastRemoteSavedCommunicatorId
       ) !== -1;
 
     dispatch({

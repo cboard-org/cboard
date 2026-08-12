@@ -27,7 +27,7 @@ const Notifications = ({
   open,
   kind
 }) => {
-  const childrenDependKind = kind => {
+  const childrenDependKind = (kind) => {
     if (!kind) return null;
     if (kind === 'refresh')
       return (

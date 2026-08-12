@@ -90,7 +90,7 @@ function withChildProof(WrappedComponent) {
       }
     }
 
-    handleClick = event => {
+    handleClick = (event) => {
       const { onClick, onLockTick } = this.props;
 
       this.tickLock(() => {

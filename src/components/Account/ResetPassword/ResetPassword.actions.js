@@ -26,7 +26,7 @@ export function forgotApiSuccess(board) {
 }
 
 export function forgot({ email }) {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(forgotApiStarted());
       const res = await API.forgot(email);

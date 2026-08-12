@@ -53,10 +53,10 @@ export class Settings extends PureComponent {
       if (isAndroid()) {
         window.FirebasePlugin.unregister();
         window.facebookConnectPlugin.logout(
-          function(msg) {
+          function (msg) {
             console.log('disconnect facebook msg' + msg);
           },
-          function(msg) {
+          function (msg) {
             console.log('error facebook disconnect msg' + msg);
           }
         );

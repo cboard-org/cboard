@@ -44,7 +44,7 @@ let navigationSettings = INITIAL_NAVIGATION_SETTINGS;
 
 const COMPONENT_PROPS = {
   navigationSettings,
-  updateNavigationSettings: payload => {
+  updateNavigationSettings: (payload) => {
     navigationSettings = { ...navigationSettings, ...payload };
   },
   changeLiveMode: () => {},

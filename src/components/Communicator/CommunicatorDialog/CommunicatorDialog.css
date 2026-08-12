@@ -226,9 +226,13 @@
 }
 
 .CommunicatorDialogButtons__searchInput
-  [class*='MuiInput-underline-']:hover:not([class^='MuiInput-disabled']):not([class^='MuiInput-focused']):not([class^='MuiInput-error']):before,
+  [class*='MuiInput-underline-']:hover:not([class^='MuiInput-disabled']):not(
+    [class^='MuiInput-focused']
+  ):not([class^='MuiInput-error']):before,
 .CommunicatorDialogButtons__searchInput
-  [class*='MuiInput-underline-']:hover:not([class^='MuiInput-disabled']):not([class^='MuiInput-focused']):not([class^='MuiInput-error']):after {
+  [class*='MuiInput-underline-']:hover:not([class^='MuiInput-disabled']):not(
+    [class^='MuiInput-focused']
+  ):not([class^='MuiInput-error']):after {
   border-bottom-color: #fff;
 }
 

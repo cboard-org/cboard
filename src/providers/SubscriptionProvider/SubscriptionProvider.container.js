@@ -45,7 +45,7 @@ export class SubscriptionProvider extends Component {
     if (isAndroid() || isIOS()) this.configInAppPurchasePlugin();
   }
 
-  componentDidUpdate = async prevProps => {
+  componentDidUpdate = async (prevProps) => {
     const {
       isLogged,
       updateIsSubscribed,
@@ -62,7 +62,7 @@ export class SubscriptionProvider extends Component {
   };
 
   configPurchaseValidator = () => {
-    const transformReceipt = receipt => {
+    const transformReceipt = (receipt) => {
       const receiptTransaction = receipt.transaction;
       const receiptData = JSON.parse(receipt.transaction.receipt);
       const {
@@ -91,7 +91,7 @@ export class SubscriptionProvider extends Component {
           quantity: quantity,
           autoRenewing: autoRenewing,
           acknowledged: acknowledged,
-          productIds: receipt.products.map(product => product.id),
+          productIds: receipt.products.map((product) => product.id),
           signature: receiptTransaction.signature,
           receipt: receiptTransaction.receipt
         },
@@ -104,7 +104,7 @@ export class SubscriptionProvider extends Component {
       return transaction;
     };
 
-    window.CdvPurchase.store.validator = async function(receipt, callback) {
+    window.CdvPurchase.store.validator = async function (receipt, callback) {
       try {
         const transaction = isIOS()
           ? receipt.transaction
@@ -147,12 +147,12 @@ export class SubscriptionProvider extends Component {
 
     window.CdvPurchase.store
       .when()
-      .productUpdated(product => {})
-      .receiptUpdated(receipt => {})
-      .approved(receipt => {
+      .productUpdated((product) => {})
+      .receiptUpdated((receipt) => {})
+      .approved((receipt) => {
         if (isLogged) window.CdvPurchase.store.verify(receipt);
       })
-      .unverified(response => {
+      .unverified((response) => {
         if (isIOS()) {
           const networError =
             response.payload.message ===
@@ -188,7 +188,7 @@ export class SubscriptionProvider extends Component {
           });
         }
       })
-      .verified(async receipt => {
+      .verified(async (receipt) => {
         const state = receipt.collection[0]?.subscriptionState;
         if ([ACTIVE, CANCELED, IN_GRACE_PERIOD].includes(state)) {
           updateSubscription({
@@ -215,7 +215,7 @@ export class SubscriptionProvider extends Component {
           window.CdvPurchase.store.finish(receipt);
         }
       })
-      .finished(receipt => {});
+      .finished((receipt) => {});
   };
 
   render() {
@@ -225,7 +225,7 @@ export class SubscriptionProvider extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isInFreeCountry: state.subscription.isInFreeCountry,
   isSubscribed: state.subscription.isSubscribed,
   expiryDate: state.subscription.expiryDate,

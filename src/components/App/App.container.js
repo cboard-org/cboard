@@ -252,7 +252,7 @@ export class AppContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   dir: state.language.dir,
   isFirstVisit: isFirstVisit(state),
   isLogged: isLogged(state),

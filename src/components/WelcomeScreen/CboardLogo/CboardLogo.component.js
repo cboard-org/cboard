@@ -15,17 +15,14 @@ const imageViolet = isCordova()
   ? './images/logo-violet.svg'
   : '/images/logo-violet.svg';
 
-const CboardLogo = props => {
+const CboardLogo = (props) => {
   const [showLogo, setShowLogo] = useState(false);
   const [violetLogo, setVioletLogo] = useState(false);
 
-  useEffect(
-    () => {
-      setShowLogo(true);
-      if (!!props.isViolet) setVioletLogo(true);
-    },
-    [props.isViolet]
-  );
+  useEffect(() => {
+    setShowLogo(true);
+    if (!!props.isViolet) setVioletLogo(true);
+  }, [props.isViolet]);
 
   return (
     <CSSTransition

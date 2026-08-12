@@ -110,9 +110,9 @@ class Language extends React.Component {
   componentDidMount() {
     let markdownPath = '';
     try {
-      markdownPath = require(`../../../translations/moreLanguages/${
-        this.props.language.lang
-      }.md`);
+      markdownPath = require(
+        `../../../translations/moreLanguages/${this.props.language.lang}.md`
+      );
     } catch (err) {
       markdownPath = require(`../../../translations/moreLanguages/en-US.md`);
     } finally {
@@ -127,10 +127,10 @@ class Language extends React.Component {
         req.send();
       } else {
         fetch(markdownPath)
-          .then(response => {
+          .then((response) => {
             return response.text();
           })
-          .then(text => {
+          .then((text) => {
             this.setState({ markdown: text });
           });
       }
@@ -204,7 +204,7 @@ class Language extends React.Component {
     const { avaliableAndDownloadablesLangs } = this.props.downloadablesLangs;
 
     const isDownloadable = avaliableAndDownloadablesLangs.filter(
-      downloadableLang => {
+      (downloadableLang) => {
         return downloadableLang.lang === lang;
       }
     )[0];
@@ -218,11 +218,11 @@ class Language extends React.Component {
           label="download"
           onClick={
             sameTts
-              ? event => onDownloadLocalVoiceClick(event, isDownloadable)
+              ? (event) => onDownloadLocalVoiceClick(event, isDownloadable)
               : isDownloadable.ttsAvailable
-              ? async event =>
-                  await langOnAvailableTtsClick(event, isDownloadable, true)
-              : event => onDownloadableLangClick(event, isDownloadable)
+                ? async (event) =>
+                    await langOnAvailableTtsClick(event, isDownloadable, true)
+                : (event) => onDownloadableLangClick(event, isDownloadable)
           }
         >
           {!sameTts && isDownloadable?.ttsAvailable
@@ -248,7 +248,7 @@ class Language extends React.Component {
     const { langs } = this.props;
     const locale = lang.slice(0, 2).toLowerCase();
     const showLangCode =
-      langs.filter(langCode => langCode.slice(0, 2).toLowerCase() === locale)
+      langs.filter((langCode) => langCode.slice(0, 2).toLowerCase() === locale)
         .length > 1;
     const langCode = showLangCode ? `(${lang})` : '';
     let nativeName = `${ISO6391.getNativeName(locale)} ${langCode}`;
@@ -292,7 +292,7 @@ class Language extends React.Component {
       avaliableAndDownloadablesLangs
     } = downloadablesLangs;
 
-    const ttsEnginesNames = ttsEngines.map(tts => tts.name);
+    const ttsEnginesNames = ttsEngines.map((tts) => tts.name);
 
     const langItems = langs.map((lang, index, array) => {
       const isLocalLang = localLangs.includes(lang);
@@ -339,7 +339,7 @@ class Language extends React.Component {
             divider={index !== array.length - 1}
             onClick={
               availableTts
-                ? async event =>
+                ? async (event) =>
                     await langOnAvailableTtsClick(
                       event,
                       {
@@ -373,7 +373,7 @@ class Language extends React.Component {
                   variant="outlined"
                   color="primary"
                   label="find voice"
-                  onClick={async event =>
+                  onClick={async (event) =>
                     await langOnAvailableTtsClick(
                       event,
                       {
@@ -395,7 +395,7 @@ class Language extends React.Component {
                   variant="outlined"
                   color="primary"
                   label={<FormattedMessage {...messages.download} />}
-                  onClick={event =>
+                  onClick={(event) =>
                     sameTts
                       ? onDownloadLocalVoiceClick(event, {
                           marketId,
@@ -580,7 +580,7 @@ class Language extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   language: state.language
 });
 

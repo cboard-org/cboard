@@ -41,7 +41,7 @@ export function trackSyncException(error, properties = {}) {
 /** Count boards currently marked PENDING (not deleted) in a syncMeta map. */
 export function countPendingBoards(syncMeta = {}) {
   return Object.values(syncMeta).filter(
-    meta => meta?.status === SYNC_STATUS.PENDING && !meta?.isDeleted
+    (meta) => meta?.status === SYNC_STATUS.PENDING && !meta?.isDeleted
   ).length;
 }
 
@@ -55,7 +55,7 @@ export function countPendingBoards(syncMeta = {}) {
  */
 export function countUntrackedBoards(boards = [], syncMeta = {}, userEmail) {
   return boards.filter(
-    board =>
+    (board) =>
       syncMeta[board.id] == null &&
       (board.email === userEmail || isUnloggedCreatedBoard(board))
   ).length;

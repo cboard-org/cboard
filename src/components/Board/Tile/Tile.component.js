@@ -35,7 +35,7 @@ const propTypes = {
 
 const defaultProps = {};
 
-const Tile = props => {
+const Tile = (props) => {
   const {
     backgroundColor,
     borderColor,

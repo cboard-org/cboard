@@ -109,13 +109,15 @@ function tileReducer(board, action) {
     case DELETE_TILES:
       return {
         ...board,
-        tiles: board.tiles.filter(tile => action.tiles.indexOf(tile.id) === -1)
+        tiles: board.tiles.filter(
+          (tile) => action.tiles.indexOf(tile.id) === -1
+        )
       };
     case EDIT_TILES:
       return {
         ...board,
         tiles: board.tiles.map(
-          tile => action.tiles.find(s => s.id === tile.id) || tile
+          (tile) => action.tiles.find((s) => s.id === tile.id) || tile
         )
       };
     default:
@@ -138,15 +140,15 @@ function boardReducer(state = initialState, action) {
       }
 
       if (action.payload.discardLocalChanges) {
-        const remoteBoards = (action.payload.boards || []).map(b =>
+        const remoteBoards = (action.payload.boards || []).map((b) =>
           deepCopy(b)
         );
-        const remoteIds = new Set(remoteBoards.map(b => b.id));
+        const remoteIds = new Set(remoteBoards.map((b) => b.id));
         const defaults = deepCopy(initialBoardsState).filter(
-          b => !remoteIds.has(b.id)
+          (b) => !remoteIds.has(b.id)
         );
         const allBoards = [...defaults, ...remoteBoards];
-        const allIds = new Set(allBoards.map(b => b.id));
+        const allIds = new Set(allBoards.map((b) => b.id));
         const discardActiveBoardId = allIds.has(activeBoardId)
           ? activeBoardId
           : 'root';
@@ -162,10 +164,12 @@ function boardReducer(state = initialState, action) {
         };
       }
 
-      const remoteBoards = (action.payload.boards || []).map(b => deepCopy(b));
-      const existingIds = new Set(state.boards.map(b => b.id));
+      const remoteBoards = (action.payload.boards || []).map((b) =>
+        deepCopy(b)
+      );
+      const existingIds = new Set(state.boards.map((b) => b.id));
       const newBoards = remoteBoards.filter(
-        b => b?.id && !existingIds.has(b.id)
+        (b) => b?.id && !existingIds.has(b.id)
       );
       const addedSyncMeta = newBoards.reduce((acc, b) => {
         acc[b.id] = {
@@ -190,9 +194,9 @@ function boardReducer(state = initialState, action) {
       };
 
     case ADD_BOARDS: {
-      const existingIds = new Set(state.boards.map(b => b.id));
+      const existingIds = new Set(state.boards.map((b) => b.id));
       const newBoards = action.boards.filter(
-        b => b != null && b.id && !existingIds.has(b.id)
+        (b) => b != null && b.id && !existingIds.has(b.id)
       );
       const addedSyncMeta = newBoards.reduce((acc, b) => {
         acc[b.id] = {
@@ -222,7 +226,7 @@ function boardReducer(state = initialState, action) {
     }
     case CHANGE_BOARD:
       const taBoards = [...state.boards];
-      const taBoard = taBoards.find(item => item.id === action.boardId);
+      const taBoard = taBoards.find((item) => item.id === action.boardId);
       if (!taBoard) {
         return { ...state };
       }
@@ -236,7 +240,7 @@ function boardReducer(state = initialState, action) {
     case UPDATE_BOARD: {
       const updateBoards = [...state.boards];
       const oldBoard = updateBoards.find(
-        item => item.id === action.boardData.id
+        (item) => item.id === action.boardData.id
       );
       const index = updateBoards.indexOf(oldBoard);
       if (index !== -1) {
@@ -265,13 +269,13 @@ function boardReducer(state = initialState, action) {
       let syncMeta = state.syncMeta;
 
       if (prev.id !== current.id) {
-        const boardIndex = boards.findIndex(b => b.id === prev.id);
+        const boardIndex = boards.findIndex((b) => b.id === prev.id);
         /* On create a parent board the prev board doesn't exist with a short Id
         because is already replaced by a long one */
         if (boardIndex >= 0) {
           boards[boardIndex] = current;
         }
-        const nhIndex = nH.findIndex(bId => bId === prev.id);
+        const nhIndex = nH.findIndex((bId) => bId === prev.id);
         if (nhIndex >= 0) {
           nH[nhIndex] = current.id;
         }
@@ -280,7 +284,7 @@ function boardReducer(state = initialState, action) {
           syncMeta = removeSyncMeta(syncMeta, prev.id);
         }
       } else {
-        const boardIndex = boards.findIndex(b => b.id === current.id);
+        const boardIndex = boards.findIndex((b) => b.id === current.id);
         if (boardIndex >= 0) {
           boards[boardIndex] = current;
         }
@@ -365,7 +369,7 @@ function boardReducer(state = initialState, action) {
         ...state,
         syncMeta: deletedSyncMeta,
         navHistory: state.navHistory.filter(
-          id => !boardIdsToDelete.includes(id)
+          (id) => !boardIdsToDelete.includes(id)
         )
       };
     }
@@ -375,7 +379,7 @@ function boardReducer(state = initialState, action) {
     case EDIT_TILES:
       return {
         ...state,
-        boards: state.boards.map(board =>
+        boards: state.boards.map((board) =>
           board.id !== action.boardId
             ? board
             : { ...tileReducer(board, action), lastEdited: moment().format() }
@@ -387,7 +391,7 @@ function boardReducer(state = initialState, action) {
     case FOCUS_TILE:
       return {
         ...state,
-        boards: state.boards.map(board =>
+        boards: state.boards.map((board) =>
           board.id !== action.boardId
             ? board
             : { ...board, focusedTileId: action.tileId }
@@ -396,7 +400,7 @@ function boardReducer(state = initialState, action) {
     case UNMARK_BOARD:
       return {
         ...state,
-        boards: state.boards.map(board =>
+        boards: state.boards.map((board) =>
           board.id !== action.boardId
             ? board
             : { ...board, markToUpdate: false }
@@ -405,7 +409,7 @@ function boardReducer(state = initialState, action) {
     case UNMARK_SHOULD_CREATE_API_BOARD:
       return {
         ...state,
-        boards: state.boards.map(board =>
+        boards: state.boards.map((board) =>
           board.id !== action.boardId
             ? board
             : { ...board, shouldCreateBoard: false }
@@ -441,15 +445,15 @@ function boardReducer(state = initialState, action) {
       }
 
       // Pass 2: immutably produce new boards; collect PENDING ids alongside flag decisions
-      const updatedBoards = state.boards.map(board => {
+      const updatedBoards = state.boards.map((board) => {
         const tileNeedsUpdate = board.tiles?.some(
-          t => t != null && t.loadBoard === action.boardId
+          (t) => t != null && t.loadBoard === action.boardId
         );
 
         let newBoard = board;
 
         if (tileNeedsUpdate) {
-          const newTiles = board.tiles.map(tile =>
+          const newTiles = board.tiles.map((tile) =>
             tile != null && tile.loadBoard === action.boardId
               ? { ...tile, loadBoard: action.board.id }
               : tile
@@ -476,10 +480,10 @@ function boardReducer(state = initialState, action) {
       });
 
       // Pass 3: apply shouldCreateBoard where needed; collect PENDING ids alongside flag decisions
-      const finalBoards = updatedBoards.map(board => {
+      const finalBoards = updatedBoards.map((board) => {
         if (!boardsToMarkForCreation.includes(board.id)) return board;
-        const boardTileIds = board.tiles?.map(t => t.id) ?? [];
-        const alreadyOnDb = boardTileIds.some(id =>
+        const boardTileIds = board.tiles?.map((t) => t.id) ?? [];
+        const alreadyOnDb = boardTileIds.some((id) =>
           tilesToUpdateIds.includes(id)
         );
         if (alreadyOnDb) return board;
@@ -493,7 +497,7 @@ function boardReducer(state = initialState, action) {
           status: SYNC_STATUS.PENDING
         });
       }
-      const createdBoard = finalBoards.find(b => b.id === action.board.id);
+      const createdBoard = finalBoards.find((b) => b.id === action.board.id);
       const createdStillPending = hasUnsyncedChildReference(
         createdBoard,
         finalBoards
@@ -522,12 +526,14 @@ function boardReducer(state = initialState, action) {
         isFetching: true
       };
     case UPDATE_API_BOARD_SUCCESS: {
-      const pushedBoard = state.boards.find(b => b.id === action.boardData.id);
+      const pushedBoard = state.boards.find(
+        (b) => b.id === action.boardData.id
+      );
       const stillPending = hasUnsyncedChildReference(pushedBoard, state.boards);
       return {
         ...state,
         isFetching: false,
-        boards: state.boards.map(board =>
+        boards: state.boards.map((board) =>
           board.id === action.boardData.id
             ? { ...board, lastEdited: action.boardData.lastEdited }
             : board
@@ -568,7 +574,7 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        boards: state.boards.filter(board => board.id !== action.board.id),
+        boards: state.boards.filter((board) => board.id !== action.board.id),
         syncMeta: removeSyncMeta(state.syncMeta, action.board.id)
       };
     case DELETE_API_BOARD_FAILURE:

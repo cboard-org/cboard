@@ -131,7 +131,7 @@ function BoardTour({
     <div>
       {isLocked && isRootBoardTourEnabled && (
         <Joyride
-          callback={data => {
+          callback={(data) => {
             const { status } = data;
             if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
               if (isRootBoardTourEnabled) {
@@ -156,7 +156,7 @@ function BoardTour({
       )}
       {!isLocked && isUnlockedTourEnabled && (
         <Joyride
-          callback={data => {
+          callback={(data) => {
             const { status } = data;
             if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
               if (isUnlockedTourEnabled) {

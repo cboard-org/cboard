@@ -6,15 +6,15 @@ import API from '../../../api';
 
 function toCamelCase(scString = '') {
   const find = /(_\w)/g;
-  const convertFn = matches => matches[1].toUpperCase();
+  const convertFn = (matches) => matches[1].toUpperCase();
 
   return scString.replace(find, convertFn);
 }
 
 async function readZip(file) {
-  const zipBlob = await new Promise(resolve => {
+  const zipBlob = await new Promise((resolve) => {
     const reader = new FileReader();
-    reader.onload = event => {
+    reader.onload = (event) => {
       if (event.target.readyState === 2) {
         try {
           resolve(new Blob([reader.result]));
@@ -31,7 +31,7 @@ async function readZip(file) {
   }
 
   const filePath = URL.createObjectURL(zipBlob);
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     JSZipUtils.getBinaryContent(filePath, (err, data) => {
       if (err) {
         resolve(err);
@@ -69,7 +69,7 @@ function obfButtonToCboardButton(button) {
 
 async function getTilesData(obfBoard, boards = {}, images = {}) {
   const tiles = await Promise.all(
-    obfBoard.buttons.map(async button => {
+    obfBoard.buttons.map(async (button) => {
       const tileButton = obfButtonToCboardButton(button);
 
       if (button['load_board']) {
@@ -81,7 +81,7 @@ async function getTilesData(obfBoard, boards = {}, images = {}) {
 
       if (button['image_id']) {
         let imageID = button['image_id'];
-        let image = obfBoard.images.find(image => image.id === imageID);
+        let image = obfBoard.images.find((image) => image.id === imageID);
 
         if (image) {
           let imageData = image.data || null;
@@ -112,10 +112,10 @@ async function getTilesData(obfBoard, boards = {}, images = {}) {
         }
       }
 
-      const extKeys = Object.keys(button).filter(k =>
+      const extKeys = Object.keys(button).filter((k) =>
         k.startsWith(CBOARD_EXT_PREFIX)
       );
-      extKeys.forEach(key => {
+      extKeys.forEach((key) => {
         const tileKey = toCamelCase(key.slice(CBOARD_EXT_PREFIX.length));
         tileButton[tileKey] = button[key];
       });
@@ -145,10 +145,10 @@ async function obfToCboard(obfBoard, boards = {}, images = {}, allBoards = []) {
     board = { ...board, isFixed: true, grid: obfBoard.grid };
   }
 
-  const extKeys = Object.keys(obfBoard).filter(k =>
+  const extKeys = Object.keys(obfBoard).filter((k) =>
     k.startsWith(CBOARD_EXT_PREFIX)
   );
-  extKeys.forEach(key => {
+  extKeys.forEach((key) => {
     const tileKey = toCamelCase(key.slice(CBOARD_EXT_PREFIX.length));
     board[tileKey] = obfBoard[key];
   });
@@ -167,7 +167,7 @@ async function obfToCboard(obfBoard, boards = {}, images = {}, allBoards = []) {
 
 function getBoardsIds(boards) {
   const allBoardsIds = [];
-  boards.forEach(board => {
+  boards.forEach((board) => {
     if (typeof board.id !== 'undefined') {
       allBoardsIds.push(board.id);
     }
@@ -181,13 +181,13 @@ function getBoardsIds(boards) {
 export async function cboardImportAdapter(file, intl, allBoards) {
   const reader = new FileReader();
   return new Promise((resolve, reject) => {
-    reader.onload = async event => {
+    reader.onload = async (event) => {
       if (event.target.readyState === 2) {
         try {
           const boards = JSON.parse(reader.result);
           const allBoardsIds = getBoardsIds(allBoards);
           const fboards = boards.filter(
-            board =>
+            (board) =>
               (typeof board.ext_cboard_hidden === 'undefined' ||
                 !board.ext_cboard_hidden) &&
               board.id !== 'root' &&
@@ -211,16 +211,16 @@ export async function obzImportAdapter(file, intl, allBoards) {
 
   const keys = Object.keys(zipFile.files);
   const boardKeys = keys.filter(
-    k => !zipFile.files[k].dir && k.endsWith(IMPORT_PATHS.boards)
+    (k) => !zipFile.files[k].dir && k.endsWith(IMPORT_PATHS.boards)
   );
   const imageKeys = keys.filter(
-    k => !zipFile.files[k].dir && k.startsWith(IMPORT_PATHS.images)
+    (k) => !zipFile.files[k].dir && k.startsWith(IMPORT_PATHS.images)
   );
   const boards = {};
   const images = {};
   const allBoardsIds = getBoardsIds(allBoards);
   await Promise.all(
-    keys.map(async k => {
+    keys.map(async (k) => {
       const isBoard = boardKeys.indexOf(k) >= 0;
 
       if (!isBoard && imageKeys.indexOf(k) < 0) {
@@ -266,8 +266,8 @@ export async function obzImportAdapter(file, intl, allBoards) {
 
 export async function obfImportAdapter(file, intl, allBoards) {
   const reader = new FileReader();
-  const jsonFile = await new Promise(resolve => {
-    reader.onload = event => {
+  const jsonFile = await new Promise((resolve) => {
+    reader.onload = (event) => {
       if (event.target.readyState === 2) {
         try {
           const jsonFile = JSON.parse(reader.result);
@@ -303,14 +303,14 @@ export async function requestQuota(json) {
         await new Promise((resolve, reject) => {
           navigator.webkitPersistentStorage.requestQuota(
             size * 2,
-            grantedSize => {
+            (grantedSize) => {
               if (grantedSize >= size) {
                 resolve();
               } else {
                 reject(`Granted size is below the limit: ${grantedSize}`);
               }
             },
-            err => reject(`Request quota error: ${err}`)
+            (err) => reject(`Request quota error: ${err}`)
           );
         });
       } catch (e) {

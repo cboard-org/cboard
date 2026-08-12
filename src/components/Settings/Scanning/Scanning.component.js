@@ -69,7 +69,7 @@ class Scanning extends React.Component {
     });
   };
 
-  changeSelect = property => event => {
+  changeSelect = (property) => (event) => {
     this.setState({
       [property]: event.target.value
     });

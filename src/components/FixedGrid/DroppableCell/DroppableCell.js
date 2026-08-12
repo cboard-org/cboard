@@ -11,7 +11,7 @@ function DroppableCell(props) {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept,
     drop: onDrop,
-    collect: monitor => ({
+    collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop()
     })

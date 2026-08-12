@@ -72,7 +72,7 @@ const AccessViewer = ({
   }, []);
 
   const handleLayoutChange = useCallback(
-    currentLayout => {
+    (currentLayout) => {
       if (!navigationSettings.bigScrollButtonsActive) return;
       const cols =
         currentLayout.reduce((max, item) => (item.x > max ? item.x : max), 0) +
@@ -91,64 +91,61 @@ const AccessViewer = ({
     boardHistory.length > 0 ? boardHistory[boardHistory.length - 1] : null;
 
   // Load all boards in a single request on mount; clear output on enter and leave
-  useEffect(
-    () => {
-      changeOutput([]);
+  useEffect(() => {
+    changeOutput([]);
 
-      const loadAllBoards = async () => {
-        try {
-          setLoading(true);
-          setError(null);
+    const loadAllBoards = async () => {
+      try {
+        setLoading(true);
+        setError(null);
 
-          const response = await getAccessBoard(slug, code);
+        const response = await getAccessBoard(slug, code);
 
-          if (!response.boards || response.boards.length === 0) {
-            setError('error');
-            setLoading(false);
-            return;
-          }
-
-          // Index boards by id for instant lookup
-          const boardsMap = {};
-          response.boards.forEach(board => {
-            boardsMap[board.id] = board;
-          });
-
-          const rootBoard = boardsMap[response.rootBoardId];
-          if (!rootBoard) {
-            setError('error');
-            setLoading(false);
-            return;
-          }
-
-          setClient(response.client);
-          setAllBoards(boardsMap);
-          setBoardHistory([rootBoard]);
+        if (!response.boards || response.boards.length === 0) {
+          setError('error');
           setLoading(false);
-        } catch (err) {
-          setLoading(false);
-          if (err.response?.status === 404) {
-            setError('invalid');
-          } else if (err.response?.status === 403) {
-            setError('forbidden');
-          } else {
-            setError('error');
-          }
+          return;
         }
-      };
 
-      loadAllBoards();
+        // Index boards by id for instant lookup
+        const boardsMap = {};
+        response.boards.forEach((board) => {
+          boardsMap[board.id] = board;
+        });
 
-      return () => {
-        cancelSpeech();
-        changeOutput([]);
-      };
-    },
-    [slug, code, cancelSpeech, changeOutput]
-  );
+        const rootBoard = boardsMap[response.rootBoardId];
+        if (!rootBoard) {
+          setError('error');
+          setLoading(false);
+          return;
+        }
+
+        setClient(response.client);
+        setAllBoards(boardsMap);
+        setBoardHistory([rootBoard]);
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+        if (err.response?.status === 404) {
+          setError('invalid');
+        } else if (err.response?.status === 403) {
+          setError('forbidden');
+        } else {
+          setError('error');
+        }
+      }
+    };
+
+    loadAllBoards();
+
+    return () => {
+      cancelSpeech();
+      changeOutput([]);
+    };
+  }, [slug, code, cancelSpeech, changeOutput]);
 
   const handleTileClick = useCallback(
-    clickedTile => {
+    (clickedTile) => {
       const tile = {
         ...clickedTile,
         label: resolveTileLabel(clickedTile, intl)
@@ -164,8 +161,8 @@ const AccessViewer = ({
         changeOutput,
         isLiveMode,
         generateId: shortid.generate,
-        onNavigate: nextBoardId => {
-          setBoardHistory(prev => [...prev, allBoards[nextBoardId]]);
+        onNavigate: (nextBoardId) => {
+          setBoardHistory((prev) => [...prev, allBoards[nextBoardId]]);
         },
         onBoardNotFound: () => {}
       });
@@ -181,30 +178,24 @@ const AccessViewer = ({
     ]
   );
 
-  const handleRequestPreviousBoard = useCallback(
-    () => {
-      if (boardHistory.length > 1) {
-        setBoardHistory(prev => prev.slice(0, -1));
-      }
-    },
-    [boardHistory.length]
-  );
+  const handleRequestPreviousBoard = useCallback(() => {
+    if (boardHistory.length > 1) {
+      setBoardHistory((prev) => prev.slice(0, -1));
+    }
+  }, [boardHistory.length]);
 
-  const handleRequestToRootBoard = useCallback(
-    () => {
-      if (boardHistory.length > 1) {
-        setBoardHistory(prev => [prev[0]]);
-      }
-    },
-    [boardHistory.length]
-  );
+  const handleRequestToRootBoard = useCallback(() => {
+    if (boardHistory.length > 1) {
+      setBoardHistory((prev) => [prev[0]]);
+    }
+  }, [boardHistory.length]);
 
   const handleLockClick = useCallback(() => {
-    setIsLocked(prev => !prev);
+    setIsLocked((prev) => !prev);
   }, []);
 
   const handleLockNotify = useCallback(
-    countdown => {
+    (countdown) => {
       notifyLockCountdown({
         countdown,
         intl,
@@ -215,13 +206,10 @@ const AccessViewer = ({
     [intl, showNotification, hideNotification]
   );
 
-  const handleCloseClick = useCallback(
-    () => {
-      cancelSpeech();
-      history.push(isLogged ? '/' : '/login-signup');
-    },
-    [isLogged, history, cancelSpeech]
-  );
+  const handleCloseClick = useCallback(() => {
+    cancelSpeech();
+    history.push(isLogged ? '/' : '/login-signup');
+  }, [isLogged, history, cancelSpeech]);
 
   if (loading) {
     return (
@@ -297,7 +285,7 @@ const AccessViewer = ({
             setIsScroll={setIsScroll}
             isScroll={isScroll}
             totalRows={totalRows}
-            navHistory={boardHistory.map(b => b.id)}
+            navHistory={boardHistory.map((b) => b.id)}
             onLayoutChange={handleLayoutChange}
           />
         </div>
@@ -310,7 +298,7 @@ AccessViewer.propTypes = {
   intl: intlShape.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isLogged: isLoggedSelector(state),
   output: state.board.output,
   isLiveMode: state.board.isLiveMode,

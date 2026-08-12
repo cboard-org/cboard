@@ -103,7 +103,7 @@ function About({ history, onClose }) {
             <FormattedMessage {...messages.thanksBody} />
           </Typography>
           <div className="imageContainer">
-            {itemData.map(item => (
+            {itemData.map((item) => (
               <img src={item.img} alt={item.title} className="imageItem" />
             ))}
           </div>

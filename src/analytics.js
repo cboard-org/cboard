@@ -4,7 +4,7 @@ import offlineWeb from '@redux-beacon/offline-web';
 import boardEventsMap from './components/Board/Board.analytics';
 import speechEventsMap from './providers/SpeechProvider/SpeechProvider.analytics';
 
-const isConnected = state => state.app.isConnected;
+const isConnected = (state) => state.app.isConnected;
 const offlineStorage = offlineWeb(isConnected);
 
 const eventsMap = {

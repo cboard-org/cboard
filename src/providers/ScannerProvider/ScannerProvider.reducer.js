@@ -19,9 +19,11 @@ function scannerProviderReducer(state = initialState, action) {
       const settings = action.payload.settings || {};
       const { scanning } = settings || {};
 
-      const active = scanning && scanning.active ? scanning.active : state.active;
+      const active =
+        scanning && scanning.active ? scanning.active : state.active;
       const delay = scanning && scanning.delay ? scanning.delay : state.delay;
-      const strategy = scanning && scanning.strategy ? scanning.strategy : state.strategy;
+      const strategy =
+        scanning && scanning.strategy ? scanning.strategy : state.strategy;
 
       return {
         ...state,

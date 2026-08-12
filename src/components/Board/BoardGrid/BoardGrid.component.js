@@ -52,7 +52,7 @@ const BoardGrid = ({
     navigationSettings.navigationButtonsStyle ===
       NAVIGATION_BUTTONS_STYLE_SIDES;
 
-  const handleTileClickWithScroll = tile => {
+  const handleTileClickWithScroll = (tile) => {
     if (tile.loadBoard && !isSelecting) {
       const containerRef = board.isFixed
         ? fixedBoardContainerRef
@@ -64,8 +64,8 @@ const BoardGrid = ({
     onTileClick(tile);
   };
 
-  const renderTiles = tiles =>
-    tiles.map(tileToRender => {
+  const renderTiles = (tiles) =>
+    tiles.map((tileToRender) => {
       const tile = {
         ...tileToRender,
         label: resolveTileLabel(tileToRender, intl)
@@ -79,7 +79,7 @@ const BoardGrid = ({
             backgroundColor={tile.backgroundColor}
             borderColor={tile.borderColor}
             variant={variant}
-            onClick={e => {
+            onClick={(e) => {
               e.stopPropagation();
               handleTileClickWithScroll(tile);
             }}
@@ -105,7 +105,7 @@ const BoardGrid = ({
       );
     });
 
-  const renderTileFixedBoard = tileToRender => {
+  const renderTileFixedBoard = (tileToRender) => {
     const tile = {
       ...tileToRender,
       label: resolveTileLabel(tileToRender, intl)
@@ -118,7 +118,7 @@ const BoardGrid = ({
         backgroundColor={tile.backgroundColor}
         borderColor={tile.borderColor}
         variant={variant}
-        onClick={e => {
+        onClick={(e) => {
           e.stopPropagation();
           handleTileClickWithScroll(tile);
         }}
@@ -169,7 +169,7 @@ const BoardGrid = ({
               navigationSettings.bigScrollButtonsActive &&
               isNavigationButtonsOnTheSide
           })}
-          onKeyUp={e => {
+          onKeyUp={(e) => {
             if (e.keyCode === keycode('esc')) {
               onRequestPreviousBoard();
             }

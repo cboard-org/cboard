@@ -125,7 +125,7 @@ export class Board extends Component {
     }
   }
 
-  handleTileFocus = tileId => {
+  handleTileFocus = (tileId) => {
     const { onFocusTile, board } = this.props;
     onFocusTile(tileId, board.id);
   };
@@ -140,7 +140,7 @@ export class Board extends Component {
     });
   };
 
-  handleBoardTitleChange = event => {
+  handleBoardTitleChange = (event) => {
     const { value: titleDialogValue } = event.target;
     this.setState({ titleDialogValue });
   };

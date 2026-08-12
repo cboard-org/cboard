@@ -66,10 +66,10 @@ const initialState = {
   unauthEditModalDismissed: false
 };
 
-const getKeysFromApiUserDataResponse = payload => {
+const getKeysFromApiUserDataResponse = (payload) => {
   const newUser = {};
   if (!payload) return newUser;
-  USER_DATA_PROPERTIES.forEach(prop => {
+  USER_DATA_PROPERTIES.forEach((prop) => {
     if (payload[prop] !== undefined) newUser[prop] = payload[prop];
   });
   return newUser;

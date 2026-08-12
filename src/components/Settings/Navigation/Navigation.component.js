@@ -47,7 +47,7 @@ class Navigation extends React.Component {
   }
 
   togglePinCodeVisibility = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       pinCodeVisible: !prevState.pinCodeVisible
     }));
   };
@@ -71,12 +71,12 @@ class Navigation extends React.Component {
   };
 
   togglePinLock = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       pinLockEnabled: !prevState.pinLockEnabled
     }));
   };
 
-  handlePinCodeChange = event => {
+  handlePinCodeChange = (event) => {
     const value = event.target.value.replace(/\D/g, '').slice(0, 4);
     this.setState({ pinCode: value });
   };
@@ -140,7 +140,7 @@ class Navigation extends React.Component {
   renderNavigationButtonsLocationSelect() {
     const name = 'navigationButtonsStyle';
     const actualButtonsStyle = NAVIGATION_BUTTONS_STYLES.filter(
-      style => style.value === this.state[name]
+      (style) => style.value === this.state[name]
     )[0];
 
     return (
@@ -152,16 +152,16 @@ class Navigation extends React.Component {
           value={
             actualButtonsStyle?.value || NAVIGATION_BUTTONS_STYLES[0].value
           }
-          onChange={e => this.onNavigationSettingsChange(name, e)}
+          onChange={(e) => this.onNavigationSettingsChange(name, e)}
           disabled={
             !(
               this.state.bigScrollButtonsActive || this.state.caBackButtonActive
             )
           }
         >
-          {NAVIGATION_BUTTONS_STYLES.map(style => (
+          {NAVIGATION_BUTTONS_STYLES.map((style) => (
             <MenuItem key={style?.value} value={style?.value}>
-              {<FormattedMessage {...messages[(style?.name)]} />}
+              {<FormattedMessage {...messages[style?.name]} />}
             </MenuItem>
           ))}
         </Select>

@@ -60,7 +60,7 @@ let scanningSettings = INITIAL_SCANNING_SETTINGS;
 
 const COMPONENT_PROPS = {
   scanningSettings,
-  updateScanningSettings: payload => {
+  updateScanningSettings: (payload) => {
     scanningSettings = { ...scanningSettings, ...payload };
   },
   onClose: () => {}

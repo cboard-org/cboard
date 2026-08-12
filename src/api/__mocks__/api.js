@@ -76,7 +76,7 @@ class API {
   getBoardsByIds(ids = []) {
     return Promise.resolve({
       total: ids.length,
-      data: ids.map(id => ({ ...mockBoard, id }))
+      data: ids.map((id) => ({ ...mockBoard, id }))
     });
   }
 

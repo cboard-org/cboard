@@ -27,7 +27,7 @@ const props = {
   isDialogOpen: false,
   onClose: jest.fn(),
   intl: {
-    formatMessage: msg => msg
+    formatMessage: (msg) => msg
   },
   onResetPasswordClick: jest.fn()
 };

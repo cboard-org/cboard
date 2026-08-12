@@ -23,7 +23,7 @@ const LOCAL_COMMUNICATOR_ID = 'cboard_default';
 
 const FILE_NOT_FOUND_ERR = 1;
 const FILE_ENCODING_ERR = 5;
-const isUnrecoverableFileError = error =>
+const isUnrecoverableFileError = (error) =>
   !!error &&
   (error.code === FILE_NOT_FOUND_ERR || error.code === FILE_ENCODING_ERR);
 export let improvePhraseAbortController;
@@ -52,7 +52,7 @@ const getAuthToken = () => {
 
 const getQueryParameters = (obj = {}) => {
   return Object.keys(obj)
-    .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(obj[k])}`)
+    .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(obj[k])}`)
     .join('&');
 };
 
@@ -63,8 +63,8 @@ class API {
       ...config
     });
     this.axiosInstance.interceptors.response.use(
-      response => response,
-      error => {
+      (response) => response,
+      (error) => {
         if (
           error.response?.status === 403 &&
           error.config?.baseURL === BASE_URL
@@ -72,10 +72,10 @@ class API {
           if (isAndroid()) {
             window.FirebasePlugin.unregister();
             window.facebookConnectPlugin.logout(
-              function(msg) {
+              function (msg) {
                 console.log('disconnect facebook msg' + msg);
               },
-              function(msg) {
+              function (msg) {
                 console.log('error facebook disconnect msg' + msg);
               }
             );
@@ -121,9 +121,8 @@ class API {
   async arasaacPictogramsSearch(locale, searchText) {
     const pictogSearchTextPath = `${ARASAAC_BASE_PATH_API}pictograms/${locale}/search/${searchText}`;
     try {
-      const { status, data } = await this.axiosInstance.get(
-        pictogSearchTextPath
-      );
+      const { status, data } =
+        await this.axiosInstance.get(pictogSearchTextPath);
       if (status === 200) return data;
       return [];
     } catch (err) {
@@ -150,9 +149,8 @@ class API {
     }
     const pictogSearchTextPath = `${GLOBALSYMBOLS_BASE_PATH_API}labels/search/?query=${searchText}&language=${language}&language_iso_format=639-3&limit=20`;
     try {
-      const { status, data } = await this.axiosInstance.get(
-        pictogSearchTextPath
-      );
+      const { status, data } =
+        await this.axiosInstance.get(pictogSearchTextPath);
       if (status === 200) return data;
       return [];
     } catch (err) {
@@ -505,16 +503,16 @@ class API {
     }
 
     if (isLocalFileURL(tile.image) && isAndroid()) {
-      const resolved = await new Promise(resolve => {
+      const resolved = await new Promise((resolve) => {
         window.resolveLocalFileSystemURL(
           tile.image,
-          fileEntry => {
+          (fileEntry) => {
             fileEntry.file(
-              file => resolve({ file }),
-              error => resolve({ error })
+              (file) => resolve({ file }),
+              (error) => resolve({ error })
             );
           },
-          error => resolve({ error })
+          (error) => resolve({ error })
         );
       });
       if (!resolved.file) {
@@ -573,7 +571,7 @@ class API {
   async uploadBoardLocalMedia(board) {
     const tiles = board?.tiles || [];
     const targets = tiles.filter(
-      tile =>
+      (tile) =>
         isDataURL(tile?.image) ||
         isLocalFileURL(tile?.image) ||
         isDataURL(tile?.sound)
@@ -599,7 +597,7 @@ class API {
       ? this.uploadBoardCaptionMedia(board)
       : null;
 
-    const uploadTarget = async tile => {
+    const uploadTarget = async (tile) => {
       try {
         const [image, sound] = await Promise.all([
           this.uploadTileImageMedia(tile),
@@ -607,8 +605,8 @@ class API {
         ]);
 
         const update = {};
-        applyMedia(image, url => (update.image = url));
-        applyMedia(sound, url => (update.sound = url));
+        applyMedia(image, (url) => (update.image = url));
+        applyMedia(sound, (url) => (update.sound = url));
 
         if (Object.keys(update).length) {
           tileUpdates[tile.id] = update;
@@ -625,14 +623,14 @@ class API {
 
     const sanitizedBoard = {
       ...board,
-      tiles: tiles.map(tile => {
-        const update = tileUpdates[(tile?.id)];
+      tiles: tiles.map((tile) => {
+        const update = tileUpdates[tile?.id];
         return update ? { ...tile, ...update } : tile;
       })
     };
 
     if (captionPromise) {
-      applyMedia(await captionPromise, url => (sanitizedBoard.caption = url));
+      applyMedia(await captionPromise, (url) => (sanitizedBoard.caption = url));
     }
 
     return { board: sanitizedBoard, hadFailure };

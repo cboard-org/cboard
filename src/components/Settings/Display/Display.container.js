@@ -7,7 +7,7 @@ import Display from './Display.component';
 import API from '../../../api';
 
 export class DisplayContainer extends PureComponent {
-  updateDisplaySettings = async displaySettings => {
+  updateDisplaySettings = async (displaySettings) => {
     try {
       await API.updateSettings({ display: displaySettings });
     } catch (e) {}

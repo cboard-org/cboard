@@ -329,7 +329,7 @@ describe('actions', () => {
   });
   it('check getApiObjects', () => {
     const store = mockStore(initialState);
-    store.dispatch(actions.getApiObjects()).then(data => {
+    store.dispatch(actions.getApiObjects()).then((data) => {
       expect(data).toEqual();
     });
   });
@@ -345,7 +345,7 @@ describe('actions', () => {
     const store = mockStore(initialState);
     store
       .dispatch(actions.createApiBoard(mockBoard, '12345678901234567'))
-      .then(data => {
+      .then((data) => {
         const actions = store.getActions();
         const dataResp = {
           board: mockBoard,
@@ -355,7 +355,7 @@ describe('actions', () => {
         expect(actions[1]).toEqual(dataResp);
         expect(data).toEqual(mockBoard);
       })
-      .catch(e => {
+      .catch((e) => {
         throw new Error(e.message);
       });
   });
@@ -366,7 +366,7 @@ describe('actions', () => {
       .then(() => {
         throw new Error('An error was expected');
       })
-      .catch(e => {
+      .catch((e) => {
         const actions = store.getActions();
         const dataResp = {
           message: '[object Object]',
@@ -379,10 +379,10 @@ describe('actions', () => {
     const store = mockStore(initialState);
     store
       .dispatch(actions.updateApiBoard(mockBoard))
-      .then(data => {
+      .then((data) => {
         expect(data).toEqual(mockBoard);
       })
-      .catch(e => {
+      .catch((e) => {
         throw new Error(e.message);
       });
   });
@@ -393,7 +393,7 @@ describe('actions', () => {
       .then(() => {
         throw new Error('An error was expected');
       })
-      .catch(e => {
+      .catch((e) => {
         const actions = store.getActions();
         const dataResp = {
           message: '[object Object]',
@@ -406,10 +406,10 @@ describe('actions', () => {
     const store = mockStore(initialState);
     store
       .dispatch(actions.deleteApiBoard('12345678901234567'))
-      .then(data => {
+      .then((data) => {
         expect(data).toEqual(mockBoard);
       })
-      .catch(e => {
+      .catch((e) => {
         throw new Error(e.message);
       });
   });
@@ -420,7 +420,7 @@ describe('actions', () => {
       .then(() => {
         throw new Error('An error was expected');
       })
-      .catch(e => {
+      .catch((e) => {
         const actions = store.getActions();
         const dataResp = {
           message: '[object Object]',
@@ -431,7 +431,7 @@ describe('actions', () => {
   });
   it('check updateApiObjectsNoChild', () => {
     const store = mockStore(initialState);
-    store.dispatch(actions.updateApiObjectsNoChild(mockBoard)).then(data => {
+    store.dispatch(actions.updateApiObjectsNoChild(mockBoard)).then((data) => {
       expect(data).toEqual('12345678901234567');
     });
   });
@@ -439,7 +439,7 @@ describe('actions', () => {
     const store = mockStore(initialState);
     store
       .dispatch(actions.updateApiObjectsNoChild(mockBoard, true))
-      .then(data => {
+      .then((data) => {
         expect(data).toEqual('12345678901234567');
       });
   });
@@ -447,7 +447,7 @@ describe('actions', () => {
     const store = mockStore(initialState);
     store
       .dispatch(actions.updateApiObjectsNoChild(mockBoard, true, true))
-      .then(data => {
+      .then((data) => {
         expect(data).toEqual('12345678901234567');
       });
   });
@@ -455,7 +455,7 @@ describe('actions', () => {
     const store = mockStore(initialState);
     store
       .dispatch(actions.updateApiObjects(mockBoard, mockBoard))
-      .then(data => {
+      .then((data) => {
         expect(data).toEqual('12345678901234567');
       });
   });
@@ -463,7 +463,7 @@ describe('actions', () => {
     const store = mockStore(initialState);
     store
       .dispatch(actions.updateApiObjects(mockBoard, mockBoard, true))
-      .then(data => {
+      .then((data) => {
         expect(data).toEqual('12345678901234567');
       });
   });
@@ -471,7 +471,7 @@ describe('actions', () => {
     const store = mockStore(initialState);
     store
       .dispatch(actions.updateApiObjects(mockBoard, mockBoard, true, true))
-      .then(data => {
+      .then((data) => {
         expect(data).toEqual('12345678901234567');
       });
   });
@@ -528,7 +528,7 @@ describe('syncFinished', () => {
 });
 
 describe('getApiObjects concurrency guard', () => {
-  const buildState = isSyncing => ({
+  const buildState = (isSyncing) => ({
     ...initialState,
     board: { ...initialState.board, isSyncing }
   });
@@ -552,7 +552,7 @@ describe('getApiObjects concurrency guard', () => {
 
     await store.dispatch(actions.getApiObjects());
 
-    const dispatched = store.getActions().map(action => action.type);
+    const dispatched = store.getActions().map((action) => action.type);
     expect(dispatched[0]).toBe(types.SYNC_STARTED);
     expect(dispatched).toContain(types.SYNC_FINISHED);
   });
@@ -565,7 +565,7 @@ describe('getApiObjects concurrency guard', () => {
 
     await store.dispatch(actions.getApiObjects());
 
-    const dispatched = store.getActions().map(action => action.type);
+    const dispatched = store.getActions().map((action) => action.type);
     expect(dispatched[0]).toBe(types.SYNC_STARTED);
     expect(dispatched).toContain(types.SYNC_FINISHED);
   });
@@ -578,7 +578,7 @@ describe('getApiObjects concurrency guard', () => {
 
     await store.dispatch(actions.getApiObjects());
 
-    const dispatched = store.getActions().map(action => action.type);
+    const dispatched = store.getActions().map((action) => action.type);
     expect(dispatched[0]).toBe(types.SYNC_STARTED);
     expect(dispatched).toContain(types.SYNC_FINISHED);
   });
@@ -746,7 +746,7 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const actionTypes = storeWithBoards.getActions().map((a) => a.type);
 
     // Should only dispatch for boardWithPendingSync
     expect(actionTypes).toContain(types.UPDATE_API_BOARD_STARTED);
@@ -764,7 +764,7 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const actionTypes = storeWithBoards.getActions().map((a) => a.type);
 
     // Should dispatch CREATE_API_BOARD_STARTED for short ID boards
     expect(actionTypes).toContain(types.CREATE_API_BOARD_STARTED);
@@ -782,7 +782,7 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const actionTypes = storeWithBoards.getActions().map((a) => a.type);
 
     expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
     expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
@@ -805,7 +805,7 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const actionTypes = storeWithBoards.getActions().map((a) => a.type);
 
     // Should dispatch DELETE_API_BOARD_STARTED instead of UPDATE
     expect(actionTypes).toContain(types.DELETE_API_BOARD_STARTED);
@@ -826,7 +826,7 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const actionTypes = storeWithBoards.getActions().map((a) => a.type);
 
     // Should dispatch DELETE_API_BOARD_SUCCESS directly (hard delete)
     expect(actionTypes).toContain(types.DELETE_API_BOARD_SUCCESS);
@@ -850,7 +850,7 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi(remoteBoards));
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const actionTypes = storeWithBoards.getActions().map((a) => a.type);
 
     expect(actionTypes).toContain(types.UPDATE_API_BOARD_STARTED);
   });
@@ -872,7 +872,7 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi(remoteBoards));
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const actionTypes = storeWithBoards.getActions().map((a) => a.type);
 
     // Should not push to API
     expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
@@ -882,7 +882,7 @@ describe('pushLocalChangesToApi', () => {
     expect(actionTypes).toContain(types.MARK_BOARDS_SYNCED);
     const markAction = storeWithBoards
       .getActions()
-      .find(a => a.type === types.MARK_BOARDS_SYNCED);
+      .find((a) => a.type === types.MARK_BOARDS_SYNCED);
     expect(markAction.boardIds).toContain('12345678901234567890');
   });
 
@@ -900,7 +900,7 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi(remoteBoards));
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const actionTypes = storeWithBoards.getActions().map((a) => a.type);
 
     expect(actionTypes).toContain(types.CREATE_API_BOARD_STARTED);
   });
@@ -922,7 +922,7 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi(remoteBoards));
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const actionTypes = storeWithBoards.getActions().map((a) => a.type);
 
     expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
     expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
@@ -936,7 +936,7 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const actionTypes = storeWithBoards.getActions().map((a) => a.type);
 
     expect(actionTypes).not.toContain(types.DELETE_API_BOARD_STARTED);
     expect(actionTypes).not.toContain(types.DELETE_API_BOARD_SUCCESS);
@@ -957,7 +957,7 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const actionTypes = storeWithBoards.getActions().map((a) => a.type);
 
     expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
     expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
@@ -981,7 +981,7 @@ describe('pushLocalChangesToApi', () => {
     });
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
-    const actionTypes = storeWithBoards.getActions().map(a => a.type);
+    const actionTypes = storeWithBoards.getActions().map((a) => a.type);
 
     expect(actionTypes).not.toContain(types.UPDATE_API_BOARD_STARTED);
     expect(actionTypes).not.toContain(types.CREATE_API_BOARD_STARTED);
@@ -1006,11 +1006,11 @@ describe('pushLocalChangesToApi', () => {
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
     const allActions = storeWithBoards.getActions();
-    const actionTypes = allActions.map(a => a.type);
+    const actionTypes = allActions.map((a) => a.type);
 
     // Should transform the board (update local state with user's email)
     expect(actionTypes).toContain(types.UPDATE_BOARD);
-    const updateAction = allActions.find(a => a.type === types.UPDATE_BOARD);
+    const updateAction = allActions.find((a) => a.type === types.UPDATE_BOARD);
     expect(updateAction.boardData.email).toBe('asd@qwe.com');
     expect(updateAction.boardData.isPublic).toBe(false);
 
@@ -1037,11 +1037,11 @@ describe('pushLocalChangesToApi', () => {
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
     const allActions = storeWithBoards.getActions();
-    const actionTypes = allActions.map(a => a.type);
+    const actionTypes = allActions.map((a) => a.type);
 
     // Should transform the board (update local state with user's email)
     expect(actionTypes).toContain(types.UPDATE_BOARD);
-    const updateAction = allActions.find(a => a.type === types.UPDATE_BOARD);
+    const updateAction = allActions.find((a) => a.type === types.UPDATE_BOARD);
     expect(updateAction.boardData.email).toBe('asd@qwe.com');
 
     // Should CREATE on API (transformed boards are created, not updated)
@@ -1065,11 +1065,11 @@ describe('pushLocalChangesToApi', () => {
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
     const allActions = storeWithBoards.getActions();
-    const actionTypes = allActions.map(a => a.type);
+    const actionTypes = allActions.map((a) => a.type);
 
     // Should transform the board (update local state with user's email)
     expect(actionTypes).toContain(types.UPDATE_BOARD);
-    const updateAction = allActions.find(a => a.type === types.UPDATE_BOARD);
+    const updateAction = allActions.find((a) => a.type === types.UPDATE_BOARD);
     expect(updateAction.boardData.email).toBe('asd@qwe.com');
 
     // Should CREATE on API (transformed boards are created, not updated)
@@ -1094,7 +1094,7 @@ describe('pushLocalChangesToApi', () => {
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
     const allActions = storeWithBoards.getActions();
-    const actionTypes = allActions.map(a => a.type);
+    const actionTypes = allActions.map((a) => a.type);
 
     // Should NOT transform or sync the board
     expect(actionTypes).not.toContain(types.UPDATE_BOARD);
@@ -1120,11 +1120,11 @@ describe('pushLocalChangesToApi', () => {
 
     await storeWithBoards.dispatch(actions.pushLocalChangesToApi());
     const allActions = storeWithBoards.getActions();
-    const actionTypes = allActions.map(a => a.type);
+    const actionTypes = allActions.map((a) => a.type);
 
     // Should transform the board (update local state with user's email)
     expect(actionTypes).toContain(types.UPDATE_BOARD);
-    const updateAction = allActions.find(a => a.type === types.UPDATE_BOARD);
+    const updateAction = allActions.find((a) => a.type === types.UPDATE_BOARD);
     expect(updateAction.boardData.email).toBe('asd@qwe.com');
 
     // Should CREATE on API (transformed boards are created, not updated)
@@ -1162,7 +1162,7 @@ describe('pushLocalChangesToApi', () => {
       return {
         deleteSuccess: store
           .getActions()
-          .find(a => a.type === types.DELETE_API_BOARD_SUCCESS),
+          .find((a) => a.type === types.DELETE_API_BOARD_SUCCESS),
         getBoardsByIds
       };
     };
@@ -1198,7 +1198,10 @@ describe('pushLocalChangesToApi', () => {
         },
         syncMeta: { [serverBoardId]: { status: types.SYNC_STATUS.PENDING } },
         remoteBoards: [
-          { id: '098765432109876543210987', lastEdited: '2024-01-02T00:00:00Z' }
+          {
+            id: '098765432109876543210987',
+            lastEdited: '2024-01-02T00:00:00Z'
+          }
         ],
         serverBoards: []
       });
@@ -1256,11 +1259,15 @@ describe('applyRemoteChangesToState', () => {
     const API = require('../../../api/api').default;
     const fullBoards = {
       'new-board-1': { id: 'new-board-1', name: 'New Board', tiles: [] },
-      'new-board-2': { id: 'new-board-2', name: 'Another New Board', tiles: [] }
+      'new-board-2': {
+        id: 'new-board-2',
+        name: 'Another New Board',
+        tiles: []
+      }
     };
     // A single bulk request returns every requested body.
-    API.getBoardsByIds = jest.fn(ids =>
-      Promise.resolve({ data: ids.map(id => fullBoards[id]) })
+    API.getBoardsByIds = jest.fn((ids) =>
+      Promise.resolve({ data: ids.map((id) => fullBoards[id]) })
     );
 
     const store = mockStore(initialState);
@@ -1274,7 +1281,9 @@ describe('applyRemoteChangesToState', () => {
         boardIdsToDelete: []
       })
     );
-    const addAction = store.getActions().find(a => a.type === types.ADD_BOARDS);
+    const addAction = store
+      .getActions()
+      .find((a) => a.type === types.ADD_BOARDS);
 
     expect(API.getBoardsByIds).toHaveBeenCalledTimes(1);
     expect(API.getBoardsByIds).toHaveBeenCalledWith([
@@ -1291,11 +1300,11 @@ describe('applyRemoteChangesToState', () => {
   it('should fetch full bodies in one request and dispatch updateBoard for each changed board', async () => {
     const API = require('../../../api/api').default;
     const fullBoards = {
-      '1': { id: '1', name: 'Updated Board 1', tiles: [] },
-      '2': { id: '2', name: 'Updated Board 2', tiles: [] }
+      1: { id: '1', name: 'Updated Board 1', tiles: [] },
+      2: { id: '2', name: 'Updated Board 2', tiles: [] }
     };
-    API.getBoardsByIds = jest.fn(ids =>
-      Promise.resolve({ data: ids.map(id => fullBoards[id]) })
+    API.getBoardsByIds = jest.fn((ids) =>
+      Promise.resolve({ data: ids.map((id) => fullBoards[id]) })
     );
 
     const store = mockStore(initialState);
@@ -1310,7 +1319,7 @@ describe('applyRemoteChangesToState', () => {
     );
     const updateActions = store
       .getActions()
-      .filter(a => a.type === types.UPDATE_BOARD);
+      .filter((a) => a.type === types.UPDATE_BOARD);
 
     expect(API.getBoardsByIds).toHaveBeenCalledTimes(1);
     expect(updateActions).toHaveLength(2);
@@ -1326,7 +1335,7 @@ describe('applyRemoteChangesToState', () => {
         boardIdsToDelete: []
       })
     );
-    const actionTypes = store.getActions().map(a => a.type);
+    const actionTypes = store.getActions().map((a) => a.type);
 
     expect(actionTypes).not.toContain(types.ADD_BOARDS);
   });
@@ -1378,7 +1387,7 @@ describe('applyRemoteChangesToState', () => {
 
     expect(API.getBoard).not.toHaveBeenCalled();
     expect(
-      dispatchedActions.filter(a => a.type === types.UPDATE_BOARD)
+      dispatchedActions.filter((a) => a.type === types.UPDATE_BOARD)
     ).toHaveLength(0);
     expect(dispatchedActions).toContainEqual({
       type: types.DELETE_API_BOARD_SUCCESS,
@@ -1409,7 +1418,9 @@ describe('applyRemoteChangesToState', () => {
       board: { id: '12345678901234567890' }
     });
     // Adds/updates are deferred to the next sync, not partially applied.
-    expect(dispatchedActions.map(a => a.type)).not.toContain(types.ADD_BOARDS);
+    expect(dispatchedActions.map((a) => a.type)).not.toContain(
+      types.ADD_BOARDS
+    );
   });
 });
 
@@ -1419,7 +1430,7 @@ describe('syncBoards', () => {
     const remoteBoards = [];
 
     await store.dispatch(actions.syncBoards(remoteBoards));
-    const actionTypes = store.getActions().map(a => a.type);
+    const actionTypes = store.getActions().map((a) => a.type);
 
     expect(actionTypes[0]).toBe(types.SYNC_BOARDS_STARTED);
     expect(actionTypes).toContain(types.SYNC_BOARDS_SUCCESS);
@@ -1438,7 +1449,7 @@ describe('syncBoards', () => {
         { id: remoteBoard.id, lastEdited: '2024-01-01T00:00:00Z' }
       ])
     );
-    const actionTypes = store.getActions().map(a => a.type);
+    const actionTypes = store.getActions().map((a) => a.type);
 
     // PULL: should add the new remote board
     expect(actionTypes).toContain(types.ADD_BOARDS);
@@ -1485,7 +1496,7 @@ describe('syncBoards', () => {
     await store.dispatch(actions.syncBoards(remoteBoards));
     const updateActions = store
       .getActions()
-      .filter(a => a.type === types.UPDATE_BOARD);
+      .filter((a) => a.type === types.UPDATE_BOARD);
 
     expect(updateActions).toHaveLength(1);
   });
@@ -1555,7 +1566,7 @@ describe('syncBoards', () => {
       '123456789012345678901234'
     ]);
     expect(
-      dispatchedActions.filter(a => a.type === types.DELETE_API_BOARD_SUCCESS)
+      dispatchedActions.filter((a) => a.type === types.DELETE_API_BOARD_SUCCESS)
     ).toHaveLength(0);
   });
 
@@ -1590,10 +1601,10 @@ describe('syncBoards', () => {
       '123456789012345678901234'
     ]);
     expect(
-      dispatchedActions.filter(a => a.type === types.DELETE_API_BOARD_SUCCESS)
+      dispatchedActions.filter((a) => a.type === types.DELETE_API_BOARD_SUCCESS)
     ).toHaveLength(0);
     expect(
-      dispatchedActions.find(a => a.type === types.SYNC_BOARDS_SUCCESS)
+      dispatchedActions.find((a) => a.type === types.SYNC_BOARDS_SUCCESS)
     ).toBeDefined();
   });
 
@@ -1626,10 +1637,10 @@ describe('syncBoards', () => {
       '123456789012345678901234'
     ]);
     expect(
-      dispatchedActions.filter(a => a.type === types.DELETE_API_BOARD_SUCCESS)
+      dispatchedActions.filter((a) => a.type === types.DELETE_API_BOARD_SUCCESS)
     ).toHaveLength(0);
     expect(
-      dispatchedActions.find(a => a.type === types.SYNC_BOARDS_SUCCESS)
+      dispatchedActions.find((a) => a.type === types.SYNC_BOARDS_SUCCESS)
     ).toBeDefined();
   });
 
@@ -1660,7 +1671,7 @@ describe('syncBoards', () => {
 
     expect(API.getBoardsByIds).not.toHaveBeenCalled();
     expect(
-      dispatchedActions.filter(a => a.type === types.DELETE_API_BOARD_SUCCESS)
+      dispatchedActions.filter((a) => a.type === types.DELETE_API_BOARD_SUCCESS)
     ).toHaveLength(0);
   });
 
@@ -1675,7 +1686,7 @@ describe('syncBoards', () => {
       ...initialState,
       board: {
         ...initialState.board,
-        boards: ids.map(id => ({
+        boards: ids.map((id) => ({
           ...mockBoard,
           id,
           lastEdited: '2024-01-01T00:00:00Z'
@@ -1694,7 +1705,7 @@ describe('syncBoards', () => {
     expect(API.getBoardsByIds.mock.calls[1][0]).toHaveLength(1);
     const deletions = store
       .getActions()
-      .filter(a => a.type === types.DELETE_API_BOARD_SUCCESS);
+      .filter((a) => a.type === types.DELETE_API_BOARD_SUCCESS);
     expect(deletions).toHaveLength(3001);
   });
 
@@ -1712,7 +1723,7 @@ describe('syncBoards', () => {
     });
 
     await store.dispatch(actions.syncBoards([pendingBoard]));
-    const actionTypes = store.getActions().map(a => a.type);
+    const actionTypes = store.getActions().map((a) => a.type);
 
     expect(actionTypes).toContain(types.UPDATE_API_BOARD_STARTED);
   });
@@ -1729,7 +1740,7 @@ describe('syncBoards', () => {
     });
 
     await store.dispatch(actions.syncBoards([]));
-    const actionTypes = store.getActions().map(a => a.type);
+    const actionTypes = store.getActions().map((a) => a.type);
 
     expect(actionTypes).toContain(types.CREATE_API_BOARD_STARTED);
   });
@@ -1751,7 +1762,7 @@ describe('syncBoards', () => {
     });
 
     await store.dispatch(actions.syncBoards([]));
-    const actionTypes = store.getActions().map(a => a.type);
+    const actionTypes = store.getActions().map((a) => a.type);
 
     expect(actionTypes).toContain(types.DELETE_API_BOARD_STARTED);
   });
@@ -1783,7 +1794,7 @@ describe('syncBoards', () => {
     });
 
     await store.dispatch(actions.syncBoards([newRemoteBoard]));
-    const actionTypes = store.getActions().map(a => a.type);
+    const actionTypes = store.getActions().map((a) => a.type);
 
     const addBoardsIndex = actionTypes.indexOf(types.ADD_BOARDS);
     const pushIndex = actionTypes.indexOf(types.UPDATE_API_BOARD_STARTED);
@@ -1805,7 +1816,7 @@ describe('getApiMyBoards', () => {
 
     const store = mockStore(initialState);
     await store.dispatch(actions.getApiMyBoards());
-    const actionTypes = store.getActions().map(a => a.type);
+    const actionTypes = store.getActions().map((a) => a.type);
 
     expect(actionTypes).toContain(types.SYNC_BOARDS_STARTED);
   });
@@ -1816,7 +1827,7 @@ describe('getApiMyBoards', () => {
 
     const store = mockStore(initialState);
     await store.dispatch(actions.getApiMyBoards());
-    const actionTypes = store.getActions().map(a => a.type);
+    const actionTypes = store.getActions().map((a) => a.type);
 
     expect(actionTypes).not.toContain(types.SYNC_BOARDS_STARTED);
   });
@@ -1922,7 +1933,7 @@ describe('createApiBoard sanitization', () => {
 
     expect(API.createBoard).toHaveBeenCalledWith(sanitized);
     const payload = API.createBoard.mock.calls[0][0];
-    payload.tiles.forEach(tile => {
+    payload.tiles.forEach((tile) => {
       expect(tile.image.startsWith('data:')).toBe(false);
       expect(/^(file|cdvfile):/i.test(tile.image)).toBe(false);
     });

@@ -1,4 +1,4 @@
-export const formatDuration = iso => {
+export const formatDuration = (iso) => {
   if (!iso) return '';
   const l = iso.length;
   const n = iso.slice(1, l - 1);
@@ -14,7 +14,7 @@ export const formatDuration = iso => {
   }
 };
 
-export const formatTitle = title => {
+export const formatTitle = (title) => {
   if (!title) return '';
   return title.replace('(Cboard AAC)', '');
 };

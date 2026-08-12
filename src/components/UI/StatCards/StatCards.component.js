@@ -10,14 +10,13 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import './StatCards.css';
 
-
 const propTypes = {
   classes: PropTypes.object.isRequired,
   onDetailsClick: PropTypes.func.isRequired,
   data: PropTypes.object
-}
+};
 
-const styles = theme => ({
+const styles = (theme) => ({
   icon: {
     fontSize: '44px',
     opacity: 0.6,
@@ -35,7 +34,7 @@ const StatCards = ({ classes, data, onDetailsClick }) => {
               <SpellCheckIcon className={classes.icon} />
               <div className="StatCards__Card__Items__Text">
                 <small className="StatCards__Card__Items__Text__Label">
-                {data.words['title']}
+                  {data.words['title']}
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
                   {data.words['total']}
@@ -55,7 +54,7 @@ const StatCards = ({ classes, data, onDetailsClick }) => {
               <RecordVoiceOverIcon className={classes.icon} />
               <div className="StatCards__Card__Items__Text">
                 <small className="StatCards__Card__Items__Text__Label">
-                {data.phrases['title']}
+                  {data.phrases['title']}
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
                   {data.phrases['total']}
@@ -75,7 +74,7 @@ const StatCards = ({ classes, data, onDetailsClick }) => {
               <ViewModuleIcon className={classes.icon} />
               <div className="StatCards__Card__Items__Text">
                 <small className="StatCards__Card__Items__Text__Label">
-                {data.boards['title']}
+                  {data.boards['title']}
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
                   {data.boards['total']}
@@ -95,7 +94,7 @@ const StatCards = ({ classes, data, onDetailsClick }) => {
               <EditIcon className={classes.icon} />
               <div className="StatCards__Card__Items__Text">
                 <small className="StatCards__Card__Items__Text__Label">
-                {data.editions['title']}
+                  {data.editions['title']}
                 </small>
                 <h6 className="StatCards__Card__Items__Text__Value">
                   {data.editions['total']}

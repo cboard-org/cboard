@@ -19,7 +19,7 @@ ogv.OGVLoader.base = process.env.PUBLIC_URL + '/ogv';
  * Extracted from Board.container.js playAudio method.
  * @param {string} src - Audio file URL
  */
-export const playTileAudio = async src => {
+export const playTileAudio = async (src) => {
   const safariNeedHelp =
     (IS_BROWSING_FROM_SAFARI || IS_BROWSING_FROM_APPLE_TOUCH) &&
     src.endsWith('.ogg');
@@ -57,8 +57,8 @@ export const vocalizeTile = (tile, speak, options = {}) => {
  */
 export const findNextBoard = (tile, boards) => {
   return (
-    boards.find(b => b.id === tile.loadBoard) ||
-    boards.find(b => b.name === tile.label) ||
+    boards.find((b) => b.id === tile.loadBoard) ||
+    boards.find((b) => b.name === tile.label) ||
     null
   );
 };
@@ -68,7 +68,7 @@ export const findNextBoard = (tile, boards) => {
  * @param {Function} generateId - Function that returns a unique id string
  * @returns {Object} Live tile object with a unique id
  */
-export const createLiveTile = generateId => ({
+export const createLiveTile = (generateId) => ({
   backgroundColor: 'rgb(255, 241, 118)',
   id: generateId(),
   image: '',
@@ -229,18 +229,18 @@ export const scrollBoardToTop = (boardRef, isFixed = false) => {
  * typically 7-12 chars so this is safe in practice.
  */
 const DEFAULT_BOARD_IDS = new Set(
-  [...DEFAULT_BOARDS.advanced, ...DEFAULT_BOARDS.picSeePal].map(b => b.id)
+  [...DEFAULT_BOARDS.advanced, ...DEFAULT_BOARDS.picSeePal].map((b) => b.id)
 );
 
 /**
  * Returns true if the board is a known default board (shipped with the app)
  * that still belongs to the default email.
  */
-export const isDefaultBoard = board =>
+export const isDefaultBoard = (board) =>
   DEFAULT_BOARD_IDS.has(board.id) && board.email === DEFAULT_BOARD_EMAIL;
 
-export const isLocalBoard = board => board.id.length < SHORT_ID_MAX_LENGTH;
-export const isServerBoard = board => board.id.length >= SHORT_ID_MAX_LENGTH;
+export const isLocalBoard = (board) => board.id.length < SHORT_ID_MAX_LENGTH;
+export const isServerBoard = (board) => board.id.length >= SHORT_ID_MAX_LENGTH;
 
 /**
  * Returns true if `board` has a folder tile whose `loadBoard` points to a board
@@ -253,19 +253,19 @@ export const hasUnsyncedChildReference = (board, boards = []) => {
   if (!board || !Array.isArray(board.tiles)) return false;
   const unsyncedLocalIds = new Set(
     boards
-      .filter(b => b && isLocalBoard(b) && !isDefaultBoard(b))
-      .map(b => b.id)
+      .filter((b) => b && isLocalBoard(b) && !isDefaultBoard(b))
+      .map((b) => b.id)
   );
   if (unsyncedLocalIds.size === 0) return false;
   return board.tiles.some(
-    tile => tile && tile.loadBoard && unsyncedLocalIds.has(tile.loadBoard)
+    (tile) => tile && tile.loadBoard && unsyncedLocalIds.has(tile.loadBoard)
   );
 };
 
-export const hasDefaultOrNoEmail = board =>
+export const hasDefaultOrNoEmail = (board) =>
   !board.email || board.email === DEFAULT_BOARD_EMAIL;
 
-export const isUnloggedCreatedBoard = board =>
+export const isUnloggedCreatedBoard = (board) =>
   !isDefaultBoard(board) && hasDefaultOrNoEmail(board);
 
 /**
@@ -274,7 +274,7 @@ export const isUnloggedCreatedBoard = board =>
  * @param {Object} board - Board object
  * @returns {string} Board name
  */
-const extractBoardName = board => {
+const extractBoardName = (board) => {
   if (board.name) return board.name;
   if (board.nameKey) {
     const splitNameKeyParts = board.nameKey.split('.');
@@ -316,8 +316,8 @@ export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
   const boardsToUpdate = [];
   const boardIdsToVerifyDeletion = [];
 
-  const remoteBoardIds = new Set(remoteBoards.map(b => b.id));
-  const localBoardMap = new Map(localBoards.map(b => [b.id, b]));
+  const remoteBoardIds = new Set(remoteBoards.map((b) => b.id));
+  const localBoardMap = new Map(localBoards.map((b) => [b.id, b]));
 
   for (const remote of remoteBoards) {
     const local = localBoardMap.get(remote.id);

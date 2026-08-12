@@ -94,7 +94,7 @@ const SubscriptionInfo = ({
         <div className="Subscribe__Info__Table__Container">
           <Table aria-label="simple table">
             <TableBody>
-              {Object.entries(subscription).map(row => (
+              {Object.entries(subscription).map((row) => (
                 <TableRow key={row[LABEL]}>
                   <TableCell component="th" scope="row">
                     {row[LABEL] !== 'paymentLabel' ? (

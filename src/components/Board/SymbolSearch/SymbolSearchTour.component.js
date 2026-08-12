@@ -82,7 +82,7 @@ function SymbolSearchTour({ intl, disableTour, isSymbolSearchTourEnabled }) {
   return (
     <div>
       <Joyride
-        callback={data => {
+        callback={(data) => {
           const { status } = data;
           if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
             disableTour({ isSymbolSearchTourEnabled: false });

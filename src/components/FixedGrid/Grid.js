@@ -32,15 +32,14 @@ function Grid(props) {
     ...other
   } = props;
 
-  const pages = useMemo(() => chunks(items, other.rows * other.columns), [
-    items,
-    other.rows,
-    other.columns
-  ]);
+  const pages = useMemo(
+    () => chunks(items, other.rows * other.columns),
+    [items, other.rows, other.columns]
+  );
 
   const gridClassName = classNames(styles.grid, className);
 
-  const findPressedArrow = event => {
+  const findPressedArrow = (event) => {
     const code = event.code;
     const right = code === 'ArrowRight';
     const left = code === 'ArrowLeft';
@@ -53,8 +52,8 @@ function Grid(props) {
     return { right, left, up, down };
   };
 
-  const setFocusPositionFromFocusedButton = buttonElement => {
-    const setFocusPositionFromId = id => {
+  const setFocusPositionFromFocusedButton = (buttonElement) => {
+    const setFocusPositionFromId = (id) => {
       const divider = '-';
       const positionArrayXY = id.split(divider);
       const xPosition = parseInt(positionArrayXY[0]);
@@ -69,11 +68,11 @@ function Grid(props) {
     }
   };
 
-  const handleOnKeyDown = event => {
+  const handleOnKeyDown = (event) => {
     const keycode = event.code;
 
-    const manageArrows = event => {
-      const setFocusPosition = pressedArrow => {
+    const manageArrows = (event) => {
+      const setFocusPosition = (pressedArrow) => {
         const { columns, rows } = other;
         const totalRows = pages.length * rows;
         const { right, left, up, down } = pressedArrow;
@@ -163,7 +162,7 @@ function Grid(props) {
   };
 
   useEffect(() => {
-    const manageKeyDown = event => {
+    const manageKeyDown = (event) => {
       if (findPressedArrow(event)) {
         const focusIsNotOnTile = () => {
           const activeElement = document.activeElement;
@@ -172,7 +171,7 @@ function Grid(props) {
           );
           if (
             activeElementChildsArray.find(
-              element => element.className === 'Symbol'
+              (element) => element.className === 'Symbol'
             )
           )
             return false;
@@ -199,16 +198,13 @@ function Grid(props) {
     };
   }, []);
 
-  useEffect(
-    () => {
-      if (isBigScrollBtns) {
-        const isScroll = pages.length > 1 ? true : false;
-        const totalRows = pages.length * other.rows;
-        setIsScroll(isScroll, totalRows);
-      }
-    },
-    [items, pages, setIsScroll, other.rows, isBigScrollBtns]
-  );
+  useEffect(() => {
+    if (isBigScrollBtns) {
+      const isScroll = pages.length > 1 ? true : false;
+      const totalRows = pages.length * other.rows;
+      setIsScroll(isScroll, totalRows);
+    }
+  }, [items, pages, setIsScroll, other.rows, isBigScrollBtns]);
 
   return (
     <div

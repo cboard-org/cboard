@@ -1022,8 +1022,8 @@ export class Cboard {
       fieldType === 'login'
         ? this.passwordField
         : fieldType === 'create'
-        ? this.createPasswordField
-        : this.confirmPasswordField;
+          ? this.createPasswordField
+          : this.confirmPasswordField;
     await expect(field).toHaveAttribute('type', expectedType);
   }
 
@@ -1160,10 +1160,7 @@ export class Cboard {
         await button.click();
       }
     } catch {
-      this.page
-        .locator('button:has-text("Unlock")')
-        .first()
-        .click();
+      this.page.locator('button:has-text("Unlock")').first().click();
     }
   }
 
@@ -1398,10 +1395,7 @@ export class Cboard {
 
   // Font Family settings
   get fontFamilyDropdown() {
-    return this.page
-      .getByLabel('Font family')
-      .getByRole('button')
-      .first();
+    return this.page.getByLabel('Font family').getByRole('button').first();
   }
 
   // Font Size settings
@@ -1941,7 +1935,7 @@ export class Cboard {
       this.scanningTab.isVisible().catch(() => false)
     ]);
 
-    const anyTabVisible = settingsTabsVisible.some(visible => visible);
+    const anyTabVisible = settingsTabsVisible.some((visible) => visible);
     expect(anyTabVisible).toBe(true);
   }
 
@@ -3967,8 +3961,8 @@ export class Cboard {
     const targetButton = backspaceVisible
       ? buttons.backspace
       : clearVisible
-      ? buttons.clear
-      : null;
+        ? buttons.clear
+        : null;
 
     if (targetButton) {
       const className = (await targetButton.getAttribute('class')) || '';
