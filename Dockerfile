@@ -1,5 +1,5 @@
 # Stage 1 - the build process
-FROM node:22.14.0 AS build-deps
+FROM node:22.23.2 AS build-deps
 WORKDIR /usr/src/app
 COPY package.json package-lock.json .npmrc ./
 RUN npm ci
