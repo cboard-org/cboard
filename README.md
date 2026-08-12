@@ -35,11 +35,11 @@ To add support to a new language, [follow this guide](https://github.com/cboard-
 
 #### Pulling translations from CrowdIn
 
-In order to pull the latest translations from CrowdIn into the codebase, you can run `yarn translations:pull`. This will update all language files such as `en.json` as well as the central `cboard.json` file. Please note that this requires the CrowdIn API key to be available in the `.private` config file. Refer to [Secrets Management](#secrets-management). After the script completes, changes to the translation files will need to be committed to the repo by the usual process.
+In order to pull the latest translations from CrowdIn into the codebase, you can run `npm run translations:pull`. This will update all language files such as `en.json` as well as the central `cboard.json` file. Please note that this requires the CrowdIn API key to be available in the `.private` config file. Refer to [Secrets Management](#secrets-management). After the script completes, changes to the translation files will need to be committed to the repo by the usual process.
 
 ## Getting Started
 
-### `yarn start`
+### `npm start`
 
 Runs the app in development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -47,14 +47,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will see the build errors and lint warnings in the console.
 
-### `yarn test`
+### `npm test`
 
 Runs the test watcher in an interactive mode.<br>
 By default, runs tests related to files changed since the last commit.
 
 [Read more about testing.](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#running-tests)
 
-### `yarn build`
+### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -64,7 +64,7 @@ By default, it also [includes a service worker](https://github.com/facebookincub
 
 Cboard is ready to be deployed.
 
-### `yarn build-cordova-debug`
+### `npm run build-cordova-debug`
 
 Use this to produce non-minified build for use in debugging within Cordova. It uses `craco` & `craco.config` to customize webpack operation without ejecting react.
 
@@ -84,9 +84,9 @@ Runs the cboard:latest Docker image on port 5000.
 
 Some external services have APIs we need to access, and these require API keys. To prevent open disclosure of these keys in the public repository, while still tracking them with the code, we encrypt some secrets into a GPG file. These files are `env/local-private.gpg` and `env/prod-private.gpg`.
 
-In order to access the secrets, you must request the `ENCRYPTION_KEY` from @shaycojo and then run the decrypt script: `ENCRYPTION_KEY={key-goes-here} yarn decrypt:local` (or `prod`), which will create the file `.private/local.js` with the secrets in plain text where the scripts can access them. **The files in `.private` should never be committed to the repository.**
+In order to access the secrets, you must request the `ENCRYPTION_KEY` from @shaycojo and then run the decrypt script: `ENCRYPTION_KEY={key-goes-here} npm run decrypt:local` (or `prod`), which will create the file `.private/local.js` with the secrets in plain text where the scripts can access them. **The files in `.private` should never be committed to the repository.**
 
-If you need to add or change a secret, make the change to the `.private/local.js` file, and then run the encryption script: `ENCRYPTION_KEY={key-goes-here} yarn encrypt:local` (or `prod`).
+If you need to add or change a secret, make the change to the `.private/local.js` file, and then run the encryption script: `ENCRYPTION_KEY={key-goes-here} npm run encrypt:local` (or `prod`).
 
 _Note: These keys/secrets are *not* required to run or develop Cboard._ They are used with scripts by some team members.
 
