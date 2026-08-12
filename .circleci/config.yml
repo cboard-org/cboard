@@ -20,11 +20,14 @@ jobs:
             - npm-packages-v1-{{ .Branch }}-
             - npm-packages-v1-
       # Install dependencies and save the npm cache
-      - run: npm ci
+      - run: HUSKY=0 npm ci
       - save_cache:
           paths:
             - ~/.npm
           key: npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run:
+          name: Check formatting
+          command: npm run format:check
       # run tests
       - run:
           name: Run Unit Tests
@@ -43,7 +46,7 @@ jobs:
             - npm-packages-v1-{{ .Branch }}-
             - npm-packages-v1-
       # Install dependencies and save the npm cache
-      - run: npm ci
+      - run: HUSKY=0 npm ci
       - save_cache:
           paths:
             - ~/.npm
@@ -100,7 +103,7 @@ jobs:
       # Install dependencies and save the npm cache
       - run:
           name: Install dependencies
-          command: npm ci
+          command: HUSKY=0 npm ci
       - save_cache:
           paths:
             - ~/.npm
