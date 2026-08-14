@@ -3,14 +3,8 @@ import PropTypes from 'prop-types';
 import Joyride, { STATUS } from 'react-joyride';
 import messages from './SymbolSearch.messages';
 import { FormattedMessage, intlShape } from 'react-intl';
-import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper/core';
-import 'swiper/swiper.min.css';
-import 'swiper/components/navigation/navigation.min.css';
-import 'swiper/components/pagination/pagination.min.css';
 
 import './SymbolSearch.css';
-
-SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 const propTypes = {
   isSymbolSearchTourEnabled: PropTypes.bool.isRequired,

@@ -4,15 +4,15 @@ import Joyride, { STATUS } from 'react-joyride';
 import messages from './Settings.messages';
 import { FormattedMessage, intlShape } from 'react-intl';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper/core';
-import 'swiper/swiper.min.css';
-import 'swiper/components/navigation/navigation.min.css';
-import 'swiper/components/pagination/pagination.min.css';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 import './Settings.css';
 import { isCordova } from '../../cordova-util';
 
-SwiperCore.use([Navigation, Pagination, Autoplay]);
+const swiperModules = [Navigation, Pagination, Autoplay];
 
 const propTypes = {
   isSettingsTourEnabled: PropTypes.bool.isRequired,
@@ -180,6 +180,7 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
             {tooltipSwiperText.title}
           </h2>
           <Swiper
+            modules={swiperModules}
             navigation={true}
             pagination={true}
             autoplay={{
@@ -219,6 +220,7 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
             {tooltipSwiperText.title}
           </h2>
           <Swiper
+            modules={swiperModules}
             watchOverflow={true}
             onSlideChange={(swiper) => {
               handleOnSlideChange('scanning', swiper.realIndex);
@@ -255,6 +257,7 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
             {tooltipSwiperText.title}
           </h2>
           <Swiper
+            modules={swiperModules}
             navigation={true}
             pagination={true}
             autoplay={{
