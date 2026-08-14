@@ -57,7 +57,7 @@ const initAzureSynthesizer = () => {
   );
 };
 
-const initElevenLabsSynthesizer = apiKey => {
+const initElevenLabsSynthesizer = (apiKey) => {
   const getStoreApiKey = () => {
     const store = getStore();
     if (!store) {
@@ -95,7 +95,7 @@ const playQueue = () => {
   if (speakQueue.length) {
     const blob = new Blob([speakQueue[0].audioData], { type: 'audio/wav' });
     audioElement.src = window.URL.createObjectURL(blob);
-    audioElement.play().catch(err => {
+    audioElement.play().catch((err) => {
       console.error(err);
     });
     audioElement.onended = () => {
@@ -137,7 +137,7 @@ const tts = {
 
   getVoiceByVoiceURI(VoiceURI) {
     const voices = getStateVoices();
-    return voices.find(voice => voice.voiceURI === VoiceURI);
+    return voices.find((voice) => voice.voiceURI === VoiceURI);
   },
 
   isConnected() {
@@ -145,7 +145,7 @@ const tts = {
   },
 
   getLocalVoiceByVoiceURI(VoiceURI) {
-    return platformVoices.find(voice => voice.voiceURI === VoiceURI);
+    return platformVoices.find((voice) => voice.voiceURI === VoiceURI);
   },
 
   _getPlatformVoices() {
@@ -175,7 +175,7 @@ const tts = {
 
     try {
       const voices = await elevenLabsSynthesizer.getElevenLabsPersonalVoices();
-      return voices.map(voice => ({
+      return voices.map((voice) => ({
         voiceURI: voice.voice_id,
         lang: voice.labels?.language || 'en-US',
         name: voice.name,
@@ -198,7 +198,7 @@ const tts = {
     }
   },
   async getPlatformVoicesAsync() {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const VOICES_TIMEOUT = 7000;
 
       const resolveWithVoices = () => {
@@ -232,15 +232,12 @@ const tts = {
   },
 
   async getVoices() {
-    const [
-      azureResult,
-      elevenLabsResult,
-      platformResult
-    ] = await Promise.allSettled([
-      this.fetchAzureVoices(),
-      this.fetchElevenLabsVoices(),
-      this.getPlatformVoicesAsync()
-    ]);
+    const [azureResult, elevenLabsResult, platformResult] =
+      await Promise.allSettled([
+        this.fetchAzureVoices(),
+        this.fetchElevenLabsVoices(),
+        this.getPlatformVoicesAsync()
+      ]);
 
     const azureVoices =
       azureResult.status === 'fulfilled' && Array.isArray(azureResult.value)
@@ -281,7 +278,7 @@ const tts = {
         }
       }, 7000);
 
-      synth.setEngine(ttsEngineName, function(voicesData) {
+      synth.setEngine(ttsEngineName, function (voicesData) {
         if (callbackExecuted) return;
         callbackExecuted = true;
         clearTimeout(timeoutId);
@@ -341,7 +338,7 @@ const tts = {
 
       const MAX_RETRIES = 2;
 
-      const isRetryableError = error => {
+      const isRetryableError = (error) => {
         const message = error.message.toLowerCase();
         const retryableErrors = [
           'rate limit',
@@ -355,10 +352,10 @@ const tts = {
           '504'
         ];
 
-        return retryableErrors.some(errorType => message.includes(errorType));
+        return retryableErrors.some((errorType) => message.includes(errorType));
       };
 
-      const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
       const store = getStore();
       const {
@@ -387,11 +384,12 @@ const tts = {
             await delay(backoffMs);
           }
 
-          const audioBlob = await elevenLabsSynthesizer.synthesizeSpeechElevenLabs(
-            text,
-            voiceURI,
-            elevenLabsSettings
-          );
+          const audioBlob =
+            await elevenLabsSynthesizer.synthesizeSpeechElevenLabs(
+              text,
+              voiceURI,
+              elevenLabsSettings
+            );
           clearTimeout(speakAlertTimeoutId);
 
           const result = {
@@ -428,7 +426,8 @@ const tts = {
 
         if (platformVoices.length && voice.lang) {
           const fallbackVoice = platformVoices.find(
-            v => v.lang && v.lang.substring(0, 2) === voice.lang.substring(0, 2)
+            (v) =>
+              v.lang && v.lang.substring(0, 2) === voice.lang.substring(0, 2)
           );
 
           if (fallbackVoice) {
@@ -461,7 +460,7 @@ const tts = {
       );
       azureSynthesizer.speakTextAsync(
         text,
-        function(result) {
+        function (result) {
           result.endCallback = onend;
           clearTimeout(speakAlertTimeoutId);
           if (
@@ -484,7 +483,7 @@ const tts = {
             initAzureSynthesizer();
           }
         },
-        function(err) {
+        function (err) {
           console.error(err);
           onend({ error: true });
           azureSynthesizer.close();

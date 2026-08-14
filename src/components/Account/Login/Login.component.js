@@ -33,17 +33,14 @@ export function Login({
   const [isLogging, setIsLogging] = useState(false);
   const [loginStatus, setLoginStatus] = useState({});
 
-  useEffect(
-    () => {
-      if (isDialogOpen) {
-        setLoginStatus({});
-        setIsLogging(false);
-      }
-    },
-    [isDialogOpen]
-  );
+  useEffect(() => {
+    if (isDialogOpen) {
+      setLoginStatus({});
+      setIsLogging(false);
+    }
+  }, [isDialogOpen]);
 
-  const handleSubmit = async values => {
+  const handleSubmit = async (values) => {
     setIsLogging(true);
     setLoginStatus({});
     try {
@@ -134,7 +131,4 @@ const mapDispatchToProps = {
   login
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(injectIntl(Login));
+export default connect(null, mapDispatchToProps)(injectIntl(Login));

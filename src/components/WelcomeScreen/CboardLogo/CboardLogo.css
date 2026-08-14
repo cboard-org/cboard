@@ -15,5 +15,7 @@
 .transition-enter-active {
   opacity: 1;
   transform: translateX(0);
-  transition: opacity 5000ms, transform 5000ms;
+  transition:
+    opacity 5000ms,
+    transform 5000ms;
 }

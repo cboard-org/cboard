@@ -35,13 +35,13 @@ class VoiceRecorder extends Component {
   startRecording = () => {
     navigator.mediaDevices
       .getUserMedia({ audio: true })
-      .then(stream => {
+      .then((stream) => {
         this.mediaRecorder = new window.MediaRecorder(stream);
         this.mediaRecorder.start();
         this.setState({ isRecording: true });
         mediaStream = stream;
       })
-      .catch(function(err) {
+      .catch(function (err) {
         console.log(err.message);
       });
   };
@@ -49,12 +49,12 @@ class VoiceRecorder extends Component {
   stopRecording = () => {
     this.mediaRecorder.stop();
     try {
-      if (mediaStream) mediaStream.getTracks().forEach(track => track.stop());
+      if (mediaStream) mediaStream.getTracks().forEach((track) => track.stop());
     } catch (error) {
       console.error('Error during stop recording', error);
     }
 
-    this.mediaRecorder.ondataavailable = event => {
+    this.mediaRecorder.ondataavailable = (event) => {
       this.chunks = event.data;
       this.setState({ isRecording: false });
     };
@@ -78,7 +78,7 @@ class VoiceRecorder extends Component {
     };
   };
 
-  playAudio = src => {
+  playAudio = (src) => {
     const audio = new Audio();
     audio.src = src;
     audio.addEventListener('ended', () => {

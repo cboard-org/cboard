@@ -38,6 +38,24 @@ export default defineMessages({
     defaultMessage:
       'The symbol search allows you to find symbols from various libraries to use for your board tiles.'
   },
+  skinToneOptionsTitle: {
+    id: 'cboard.components.SymbolSearch.skinToneOptionsTitle',
+    defaultMessage: 'Skin tone'
+  },
+  skinToneOptionsDesc: {
+    id: 'cboard.components.SymbolSearch.skinToneOptionsDesc',
+    defaultMessage:
+      'You can customize the skin tone symbols to better represent yourself and others. These options currently only apply to Cboard Symbols and ARASAAC symbols.'
+  },
+  hairColorOptionsTitle: {
+    id: 'cboard.components.SymbolSearch.hairColorOptionsTitle',
+    defaultMessage: 'Hair color'
+  },
+  hairColorOptionsDesc: {
+    id: 'cboard.components.SymbolSearch.hairColorOptionsDesc',
+    defaultMessage:
+      'You can also customize the hair color of symbols. These options currently only apply to ARASAAC symbols.'
+  },
   cboardSymbols: {
     id: 'cboard.components.SymbolSearch.cboardSymbols',
     defaultMessage: 'Cboard Symbols'

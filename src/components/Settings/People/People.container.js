@@ -21,7 +21,7 @@ export class PeopleContainer extends PureComponent {
     birthdate: this.props.user.birthdate
   };
 
-  handleChange = name => event => {
+  handleChange = (name) => (event) => {
     this.setState({
       ...this.state,
       [name]: event.target.value
@@ -51,10 +51,10 @@ export class PeopleContainer extends PureComponent {
     if (isAndroid()) {
       window.FirebasePlugin.unregister();
       window.facebookConnectPlugin.logout(
-        function(msg) {
+        function (msg) {
           console.log('disconnect facebook msg' + msg);
         },
-        function(msg) {
+        function (msg) {
           console.log('error facebook disconnect msg' + msg);
         }
       );
@@ -93,7 +93,7 @@ export class PeopleContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const userIsLogged = isLogged(state);
   const user = getUser(state);
   const location = userIsLogged
@@ -117,7 +117,4 @@ const mapDispatchToProps = {
   updateUserData: updateUserData
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PeopleContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(PeopleContainer);

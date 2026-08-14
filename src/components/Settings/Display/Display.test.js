@@ -48,7 +48,7 @@ const COMPONENT_PROPS = {
     fontSize: DISPLAY_SIZE_STANDARD
   },
   intl: {
-    formatMessage: msg => msg
+    formatMessage: (msg) => msg
   },
   onClose: () => {},
   updateDisplaySettings: jest.fn()

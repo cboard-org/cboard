@@ -74,7 +74,7 @@ export class SpeechProvider extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   ttsEngine: state.speech.ttsEngine,
   elevenLabsApiKey: state.speech.elevenLabsApiKey
 });
@@ -88,7 +88,4 @@ const mapDispatchToProps = {
   setCurrentVoiceSource
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SpeechProvider);
+export default connect(mapStateToProps, mapDispatchToProps)(SpeechProvider);

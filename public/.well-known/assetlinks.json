@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.unicef.cboard",
       "sha256_cert_fingerprints": [
-        "0C:E6:E3:49:2D:58:75:83:72:D9:23:00:F6:76:1C:1D:CE:50:47:25:9C:E3:B5:00:67:A0:0E:06:B8:B8:D8:9D"
+        "0C:E6:E3:49:2D:58:75:83:72:D9:23:00:F6:76:1C:1D:CE:50:47:25:9C:E3:B5:00:67:A0:0E:06:B8:B8:D8:9D",
+        "AA:48:E8:76:0E:10:A0:2F:14:82:AE:E8:45:2F:7E:93:E3:C2:3F:8C:CA:4B:5E:83:73:AA:CE:7C:53:04:4A:1E"
       ]
     }
   }

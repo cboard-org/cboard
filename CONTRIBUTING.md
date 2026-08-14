@@ -6,12 +6,12 @@ Please take a moment to review this document in order to make the contribution p
 
 Following these guidelines helps to communicate that you respect the time of the developers managing and developing this open source project. In return, they should reciprocate that respect in addressing your issue or assessing patches and features.
 
-## Ways of contributing 
+## Ways of contributing
 
-- As a developer 
-- As a translator 
+- As a developer
+- As a translator
 - As a manual tester
-- As an automation tester 
+- As an automation tester
 
 **We're using Discord to collaborate, join us at: https://discord.gg/TEH8uxh**
 
@@ -31,9 +31,9 @@ Please **ask first** if somebody else is already working on this or the core dev
 
 1. Clone the repo with `git clone https://github.com/cboard-org/cboard.git`
 
-2. Run `yarn install` in the root `cboard` folder.
+2. Run `npm ci` in the root `cboard` folder.
 
-Once it is done, you can modify any file locally and run `yarn start`, `yarn test` or `yarn run build`.
+Once it is done, you can modify any file locally and run `npm start`, `npm test` or `npm run build`.
 
 ## As a translator
 
@@ -46,14 +46,15 @@ Help us make Cboard available in your country!
 
 We track all of the project issues using Github:
 https://github.com/cboard-org/cboard/issues
- 
+
 Our issue tracker is quite active, typically we got two-three bugs/week, then active tester participation is highly appreciated in order to clarify, reproduce, and track the bugs.
 **We need help on writing a test plan!**
-We have never written a test plan for cboard and it feels really bad. We will appreciate people that is able to design and create a comprehensive test plan covering all of the features and functions of the applications that are available in the Cboard system. 
+We have never written a test plan for cboard and it feels really bad. We will appreciate people that is able to design and create a comprehensive test plan covering all of the features and functions of the applications that are available in the Cboard system.
 
-## As an automation tester 
-If you are proficient with automation testing, we will be happy if you can help us!. 
-We have developed a little automation framework based on [Webdriver.io](https://webdriver.io/), that runs using the cloud service provided by [Browserstack](https://www.browserstack.com/). Here you can find the repository to start collaborating: 
+## As an automation tester
+
+If you are proficient with automation testing, we will be happy if you can help us!.
+We have developed a little automation framework based on [Webdriver.io](https://webdriver.io/), that runs using the cloud service provided by [Browserstack](https://www.browserstack.com/). Here you can find the repository to start collaborating:
 https://github.com/cboard-org/cboard-webdriverio
 
 ## Financial contributions
@@ -61,22 +62,18 @@ https://github.com/cboard-org/cboard-webdriverio
 We also welcome financial contributions in full transparency on our [open collective](https://opencollective.com/cboard).
 Anyone can file an expense. If the expense makes sense for the development of the community, it will be "merged" in the ledger of our open collective by the core contributors and the person who filed the expense will be reimbursed.
 
-
 ## Credits
-
 
 ### Contributors
 
 Thank you to all the people who have already contributed to cboard!
 <a href="graphs/contributors"><img src="https://opencollective.com/cboard/contributors.svg?width=890" /></a>
 
-
 ### Backers
 
 Thank you to all our backers! [[Become a backer](https://opencollective.com/cboard#backer)]
 
 <a href="https://opencollective.com/cboard#backers" target="_blank"><img src="https://opencollective.com/cboard/backers.svg?width=890"></a>
-
 
 ### Sponsors
 

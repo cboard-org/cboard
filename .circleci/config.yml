@@ -9,45 +9,48 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: cimg/node:22.14.0
+      - image: cimg/node:22.23.2
     working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
           keys:
             # when lock file changes, use increasingly general patterns to restore cache
-            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-v1-{{ .Branch }}-
-            - yarn-packages-v1-
-      # Install and save node_modules to cache
-      - run: yarn install --cache-folder ~/.cache/yarn
+            - npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - npm-packages-v1-{{ .Branch }}-
+            - npm-packages-v1-
+      # Install dependencies and save the npm cache
+      - run: HUSKY=0 npm ci
       - save_cache:
           paths:
-            - ~/.cache/yarn
-          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - ~/.npm
+          key: npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run:
+          name: Check formatting
+          command: npm run format:check
       # run tests
       - run:
           name: Run Unit Tests
-          command: yarn test --silent --updateSnapshot --runInBand --no-watchman --testPathPattern="/Board|Communicator|App|Settings|Account|UI/"
+          command: npm test -- --silent --updateSnapshot --runInBand --no-watchman --testPathPattern="/Board|Communicator|App|Settings|Account|UI/"
   image:
     docker:
       # specify the version you desire here
-      - image: cimg/node:22.14.0
+      - image: cimg/node:22.23.2
     working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
           keys:
             # when lock file changes, use increasingly general patterns to restore cache
-            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-v1-{{ .Branch }}-
-            - yarn-packages-v1-
-      # Install and save node_modules to cache
-      - run: yarn install --cache-folder ~/.cache/yarn
+            - npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - npm-packages-v1-{{ .Branch }}-
+            - npm-packages-v1-
+      # Install dependencies and save the npm cache
+      - run: HUSKY=0 npm ci
       - save_cache:
           paths:
-            - ~/.cache/yarn
-          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - ~/.npm
+          key: npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
       # Build Docker Image
       # https://circleci.com/docs/2.0/building-docker-images/#overview
       - setup_remote_docker: # (2)
@@ -94,22 +97,22 @@ jobs:
       - restore_cache:
           keys:
             # when lock file changes, use increasingly general patterns to restore cache
-            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-v1-{{ .Branch }}-
-            - yarn-packages-v1-
-      # Install and save node_modules to cache
+            - npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - npm-packages-v1-{{ .Branch }}-
+            - npm-packages-v1-
+      # Install dependencies and save the npm cache
       - run:
           name: Install dependencies
-          command: yarn install --cache-folder ~/.cache/yarn
+          command: HUSKY=0 npm ci
       - save_cache:
           paths:
-            - ~/.cache/yarn
-          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - ~/.npm
+          key: npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
       # run tests
       - run:
           name: Run E2E Tests
           command: |
-            yarn test:e2e-browserstack
+            npm run test:e2e-browserstack
           when: always
       - discord/status:
           fail_only: false

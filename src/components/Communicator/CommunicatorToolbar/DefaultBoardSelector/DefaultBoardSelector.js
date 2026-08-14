@@ -23,7 +23,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} unmountOnExit />;
 });
 
-const DefaultBoardSelector = props => {
+const DefaultBoardSelector = (props) => {
   const [open, setOpen] = useState(false);
 
   const defaultConfirmationState = {
@@ -45,7 +45,7 @@ const DefaultBoardSelector = props => {
     setOpen(false);
   };
 
-  const onOptionClick = defaultBoardName => {
+  const onOptionClick = (defaultBoardName) => {
     setConfirmation({
       isConfirming: true,
       boardNameSelected: defaultBoardName

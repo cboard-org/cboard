@@ -53,10 +53,10 @@ export class Settings extends PureComponent {
       if (isAndroid()) {
         window.FirebasePlugin.unregister();
         window.facebookConnectPlugin.logout(
-          function(msg) {
+          function (msg) {
             console.log('disconnect facebook msg' + msg);
           },
-          function(msg) {
+          function (msg) {
             console.log('error facebook disconnect msg' + msg);
           }
         );
@@ -197,9 +197,13 @@ export class Settings extends PureComponent {
   };
 
   handleGoBack = () => {
-    const { history, isDownloadingLang } = this.props;
+    const { history, location, isDownloadingLang } = this.props;
     if (isDownloadingLang) return; //prevent goBack during downloading
-    history.replace('/');
+    if (location.state?.isAccessViewerMode) {
+      history.goBack();
+    } else {
+      history.replace('/');
+    }
   };
 
   enableTour = () => {

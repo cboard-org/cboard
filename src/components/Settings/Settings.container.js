@@ -23,7 +23,7 @@ export class SettingsContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isLogged: isLogged(state),
   user: getUser(state),
   isSettingsTourEnabled: state.app.liveHelp.isSettingsTourEnabled,

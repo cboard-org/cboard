@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
 
 import FullScreenButton from './FullScreenButton';
@@ -31,7 +31,7 @@ describe('FullScreenButton tests', () => {
     const wrapper = mount(
       <FullScreenButton
         disabled={false}
-        intl={{ formatMessage: msg => msg.defaultMessage }}
+        intl={{ formatMessage: (msg) => msg.defaultMessage }}
       />
     );
     const button = wrapper.find('button');

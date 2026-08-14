@@ -1,21 +1,21 @@
-import React from 'react';
-import { withRouter } from 'react-router';
-import { connect } from 'react-redux';
-import { injectIntl } from 'react-intl';
-import CommunicatorToolbar from './CommunicatorToolbar.component';
-import CommunicatorDialog from '../CommunicatorDialog';
+import React from "react";
+import { withRouter } from "react-router";
+import { connect } from "react-redux";
+import { injectIntl } from "react-intl";
+import CommunicatorToolbar from "./CommunicatorToolbar.component";
+import CommunicatorDialog from "../CommunicatorDialog";
 import {
   switchBoard,
   replaceBoard,
   changeDefaultBoard
-} from '../../Board/Board.actions';
-import { showNotification } from '../../Notifications/Notifications.actions';
-import { getVisibleBoards } from '../../Board/Board.selectors';
+} from "../../Board/Board.actions";
+import { showNotification } from "../../Notifications/Notifications.actions";
+import { getVisibleBoards } from "../../Board/Board.selectors";
 import {
   importCommunicator,
   deleteCommunicator,
-  verifyAndUpsertCommunicator
-} from '../Communicator.actions';
+  pushCommunicator
+} from "../Communicator.actions";
 
 class CommunicatorContainer extends React.Component {
   constructor(props) {
@@ -35,28 +35,17 @@ class CommunicatorContainer extends React.Component {
   }
 
   editCommunicatorTitle = async name => {
-    const {
-      currentCommunicator,
-      verifyAndUpsertCommunicator,
-      upsertApiCommunicator,
-      userData
-    } = this.props;
+    const { currentCommunicator, pushCommunicator } = this.props;
 
     const updatedCommunicatorData = {
       ...currentCommunicator,
       name
     };
 
-    const upsertedCommunicator = verifyAndUpsertCommunicator(
-      updatedCommunicatorData
-    );
-
-    if ('name' in userData && 'email' in userData) {
-      try {
-        await upsertApiCommunicator(upsertedCommunicator);
-      } catch (err) {
-        console.error('Error upserting communicator', err);
-      }
+    try {
+      await pushCommunicator(updatedCommunicatorData);
+    } catch (err) {
+      console.error("Error upserting communicator", err);
     }
   };
 
@@ -115,7 +104,7 @@ export const mapStateToProps = (
 
 const mapDispatchToProps = {
   importCommunicator,
-  verifyAndUpsertCommunicator,
+  pushCommunicator,
   deleteCommunicator,
   showNotification,
   switchBoard,

@@ -85,6 +85,15 @@ export default defineMessages({
     id: 'cboard.components.Settings.Subscribe.on_hold',
     defaultMessage: 'Your subscription expired on: {e}'
   },
+  suspended: {
+    id: 'cboard.components.Settings.Subscribe.suspended',
+    defaultMessage:
+      'Your PayPal subscription was suspended due to failed payments. Fix your payment on PayPal to reactivate it.'
+  },
+  fixPaymentOnPaypal: {
+    id: 'cboard.components.Settings.Subscribe.fixPaymentOnPaypal',
+    defaultMessage: 'Fix Payment on PayPal'
+  },
   not_subscribed: {
     id: 'cboard.components.Settings.Subscribe.not_subscribed',
     defaultMessage: 'You are not subscribed. '

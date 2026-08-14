@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { Scannable } from 'react-scannable';
 
-import Symbol from '../Symbol';
 import Tile from './Tile.component';
 
 it('renders without crashing', () => {
@@ -87,12 +86,11 @@ it('on tile folder select', () => {
 it('on tile click and props', () => {
   const props = {
     id: '42',
-    variant: 'button',
     borderColor: '#fffff',
     backgroundColor: '#fffff',
     variant: 'folder',
     onClick: jest.fn(),
     onSelect: jest.fn()
   };
-  const wrapper = shallow(<Tile {...props} />);
+  shallow(<Tile {...props} />);
 });

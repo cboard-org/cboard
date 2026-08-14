@@ -76,7 +76,7 @@ export class SpeechContainer extends Component {
     }
   }
 
-  validateElevenLabsApiKey = debounce(async apiKey => {
+  validateElevenLabsApiKey = debounce(async (apiKey) => {
     const { changeElevenLabsApiKey, getVoices } = this.props;
 
     if (!apiKey) {
@@ -127,7 +127,7 @@ export class SpeechContainer extends Component {
     }
   }, 500);
 
-  handleUpdateElevenLabsApiKey = apiKey => {
+  handleUpdateElevenLabsApiKey = (apiKey) => {
     this.setState({ elevenLabsApiKeyInput: apiKey || '' });
     this.validateElevenLabsApiKey(apiKey);
   };
@@ -139,7 +139,7 @@ export class SpeechContainer extends Component {
     speak(text);
   }, 500);
 
-  handleClickListItem = event => {
+  handleClickListItem = (event) => {
     this.setState({ isVoiceOpen: true, anchorEl: event.currentTarget });
   };
 
@@ -201,7 +201,7 @@ export class SpeechContainer extends Component {
         options: { voiceURI }
       }
     } = this.props;
-    const voice = voices.find(v => v.voiceURI === voiceURI);
+    const voice = voices.find((v) => v.voiceURI === voiceURI);
     return voice?.voiceSource === ELEVEN_LABS ? voice : null;
   };
 
@@ -266,10 +266,10 @@ export class SpeechContainer extends Component {
     } = this.props;
 
     const langVoices = voices.filter(
-      voice => voice.lang.slice(0, 2) === lang.slice(0, 2)
+      (voice) => voice.lang.slice(0, 2) === lang.slice(0, 2)
     );
     // typically, voice should be found
-    let voice = voices.find(v => voiceURI === v.voiceURI);
+    let voice = voices.find((v) => voiceURI === v.voiceURI);
     // handle exceptional cases
     if (!voice && voices && voices.length) {
       // rare case
@@ -312,7 +312,7 @@ export class SpeechContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   lang: state.language.lang,
   voices: state.speech.voices,
   speech: state.speech,

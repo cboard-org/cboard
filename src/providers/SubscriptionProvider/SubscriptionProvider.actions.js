@@ -15,6 +15,7 @@ import {
   SHOW_LOGIN_REQUIRED,
   HIDE_LOGIN_REQUIRED,
   UNVERIFIED,
+  SUSPENDED,
   DAYS_TO_TRY
 } from './SubscriptionProvider.constants';
 import API from '../../api';
@@ -105,9 +106,9 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
           (isAndroid() || isIOS()) &&
           state.subscription.status === PROCCESING
         ) {
-          const filterInAppPurchaseIOSTransactions = uniqueReceipt =>
+          const filterInAppPurchaseIOSTransactions = (uniqueReceipt) =>
             uniqueReceipt.transactions.filter(
-              transaction =>
+              (transaction) =>
                 transaction.transactionId !== 'appstore.application'
             );
 
@@ -161,7 +162,7 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
           ) {
             try {
               const product = state.subscription.products.find(
-                product => product.subscriptionId === transaction.productId
+                (product) => product.subscriptionId === transaction.productId
               );
 
               const newProduct = {
@@ -210,12 +211,19 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
         if (transaction?.expiryDate) {
           expiryDate = transaction.expiryDate;
         }
+        const paypalFixPaymentUrl =
+          status.toLowerCase() === SUSPENDED
+            ? transaction?.nativePurchase?.links?.find(
+                (l) => l.rel === 'approve'
+              )?.href || null
+            : null;
         dispatch(
           updateSubscription({
             ownedProduct,
             status: status.toLowerCase(),
             isSubscribed,
-            expiryDate
+            expiryDate,
+            paypalFixPaymentUrl
           })
         );
       }
@@ -304,7 +312,7 @@ export function updatePlans() {
       // get just subscriptions with active plans
       const plans = getActivePlans(data);
       const iosProducts = isIOS() ? window.CdvPurchase.store.products : null;
-      const products = plans.map(plan => {
+      const products = plans.map((plan) => {
         const price = iosProducts
           ? getIOSPrice(iosProducts, plan.subscriptionId)
           : getPrice(plan.countries, locationCode);
@@ -333,14 +341,14 @@ export function updatePlans() {
   function getPrice(countries, country) {
     let price = '';
     if (countries)
-      countries.forEach(element => {
+      countries.forEach((element) => {
         if (element.regionCode === country) price = element.price;
       });
     return price;
   }
 
   function getIOSPrice(iosProducts, productId) {
-    const product = iosProducts.find(product => product.id === productId);
+    const product = iosProducts.find((product) => product.id === productId);
     const units = product.raw.priceMicros / 1000000;
     return {
       currencyCode: product?.raw?.currency,
@@ -351,9 +359,9 @@ export function updatePlans() {
   function getActivePlans(subscriptions) {
     let plans = [];
     if (subscriptions)
-      subscriptions.forEach(subscription => {
+      subscriptions.forEach((subscription) => {
         if (subscription.plans)
-          subscription.plans.forEach(plan => {
+          subscription.plans.forEach((plan) => {
             if (plan.status.toLowerCase() === 'active') {
               plan.subscriptionName = subscription.name;
               plan.subscriptionId = subscription.subscriptionId;

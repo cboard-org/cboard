@@ -16,6 +16,7 @@ import NotFound from '../NotFound';
 import Settings from '../Settings';
 import WelcomeScreen from '../WelcomeScreen';
 import Analytics from '../Analytics';
+import AccessViewer from '../AccessViewer';
 import './App.css';
 import LoginRequiredModal from '../LoggedInFeature/LoginRequiredModal';
 
@@ -48,14 +49,8 @@ export class App extends Component {
   };
 
   render() {
-    const {
-      lang,
-      dir,
-      isFirstVisit,
-      isLogged,
-      dark,
-      isDownloadingLang
-    } = this.props;
+    const { lang, dir, isFirstVisit, isLogged, dark, isDownloadingLang } =
+      this.props;
 
     return (
       <div className={classNames('App', { 'is-dark': dark })}>
@@ -65,6 +60,7 @@ export class App extends Component {
 
         <Notifications />
         <Switch>
+          <Route path="/access/:slug/:code" component={AccessViewer} />
           <RedirectIfLogged
             component={AuthScreen}
             isLogged={isLogged}

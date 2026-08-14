@@ -46,15 +46,14 @@ const propTypes = {
   topUsed: PropTypes.object.isRequired
 };
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     color: 'white',
     padding: '0px'
-  },
+  }
 });
 
 export class Analytics extends PureComponent {
-
   constructor(props) {
     super(props);
 
@@ -73,11 +72,11 @@ export class Analytics extends PureComponent {
     history.replace('/');
   };
 
-  handleDaysChange = event => {
+  handleDaysChange = (event) => {
     this.props.onDaysChange(event.target.value);
   };
 
-  handleDetailsDialogOpen = name => event => {
+  handleDetailsDialogOpen = (name) => (event) => {
     switch (name) {
       case 'boards':
         this.setState({ detailsData: this.props.totals.boards['rows'] });
@@ -97,10 +96,10 @@ export class Analytics extends PureComponent {
     }
     this.setState({
       openDetailsDialog: true
-    })
+    });
   };
 
-  getDates = range => {
+  getDates = (range) => {
     const days = [];
     const dateEnd = moment();
     const dateStart = moment().subtract(range, 'days');
@@ -148,7 +147,8 @@ export class Analytics extends PureComponent {
             <Grid
               container
               direction="row"
-              className="Analytics__Graph__Select">
+              className="Analytics__Graph__Select"
+            >
               <Grid item className="Analytics__Graph__Select__Item">
                 <FormControl variant="outlined">
                   <Select
@@ -159,15 +159,29 @@ export class Analytics extends PureComponent {
                     onChange={this.handleDaysChange}
                     value={days}
                   >
-                    <MenuItem value={10}>{intl.formatMessage(messages.tenDaysUsage)}</MenuItem>
-                    <MenuItem value={20}>{intl.formatMessage(messages.twentyDaysUsage)}</MenuItem>
-                    <MenuItem value={30}>{intl.formatMessage(messages.thirtyDaysUsage)}</MenuItem>
-                    <MenuItem value={60}>{intl.formatMessage(messages.sixtyDaysUsage)}</MenuItem>
+                    <MenuItem value={10}>
+                      {intl.formatMessage(messages.tenDaysUsage)}
+                    </MenuItem>
+                    <MenuItem value={20}>
+                      {intl.formatMessage(messages.twentyDaysUsage)}
+                    </MenuItem>
+                    <MenuItem value={30}>
+                      {intl.formatMessage(messages.thirtyDaysUsage)}
+                    </MenuItem>
+                    <MenuItem value={60}>
+                      {intl.formatMessage(messages.sixtyDaysUsage)}
+                    </MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
               <Grid item className="Analytics__Graph__Select__Item">
-                {isFetching && (<CircularProgress size={30} thickness={4} className={classes.root} />)}
+                {isFetching && (
+                  <CircularProgress
+                    size={30}
+                    thickness={4}
+                    className={classes.root}
+                  />
+                )}
               </Grid>
             </Grid>
             <ModifiedAreaChart
@@ -193,7 +207,10 @@ export class Analytics extends PureComponent {
           <div className="Analytics__Metrics">
             <Grid container spacing={3}>
               <Grid item lg={8} md={8} sm={12} xs={12}>
-                <StatCards onDetailsClick={this.handleDetailsDialogOpen.bind(this)} data={totals} />
+                <StatCards
+                  onDetailsClick={this.handleDetailsDialogOpen.bind(this)}
+                  data={totals}
+                />
                 <TableCard
                   data={topUsed.symbols}
                   tableHead={tablesHead}
@@ -227,9 +244,12 @@ export class Analytics extends PureComponent {
             aria-describedby="details-desc"
           >
             <DialogContent className={classes.root}>
-              <DialogContentText id="details-dialog-desc">
-              </DialogContentText>
-              <StyledTable data={this.state.detailsData} tableHead={tablesHead} isDense={true} />
+              <DialogContentText id="details-dialog-desc"></DialogContentText>
+              <StyledTable
+                data={this.state.detailsData}
+                tableHead={tablesHead}
+                isDense={true}
+              />
             </DialogContent>
             <DialogActions>
               <Button

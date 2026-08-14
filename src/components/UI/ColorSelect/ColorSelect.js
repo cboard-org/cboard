@@ -58,16 +58,16 @@ class ColorSelect extends React.Component {
     };
   }
 
-  handleColorSchemeChange = event => {
+  handleColorSchemeChange = (event) => {
     const selectedScheme = event.target.value;
     this.setState({ colorMenu: selectedScheme });
   };
 
-  handleHueChange = hue => {
+  handleHueChange = (hue) => {
     this.props.onChange({ target: { value: hue.hex } });
   };
 
-  handleRadioItemChange = event => {
+  handleRadioItemChange = (event) => {
     const selectedColor = event.target.value;
     this.props.onChange({ target: { value: selectedColor } });
   };
@@ -115,7 +115,7 @@ class ColorSelect extends React.Component {
               />
             </div>
           ) : (
-            this.state.colorMenu.colors?.map(color => (
+            this.state.colorMenu.colors?.map((color) => (
               <Radio
                 key={color}
                 value={color}

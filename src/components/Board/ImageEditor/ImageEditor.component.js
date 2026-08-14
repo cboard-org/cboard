@@ -81,7 +81,7 @@ class ImageEditor extends PureComponent {
         imageSmoothingQuality: 'high'
       })
       .toBlob(
-        blob => {
+        (blob) => {
           this.props.onImageEditorDone(blob);
         },
         'image/png',
@@ -168,7 +168,7 @@ class ImageEditor extends PureComponent {
               guides={true}
               dragMode="move"
               autoCrop={false}
-              onInitialized={instance => {
+              onInitialized={(instance) => {
                 this.setState({ cropper: instance });
               }}
             />

@@ -37,7 +37,7 @@ describe('Import tests', () => {
     let tree = toJson(wrapper);
     expect(tree).toMatchSnapshot();
 
-    wrapper.instance().onImportClick = jest.fn(type => {
+    wrapper.instance().onImportClick = jest.fn((type) => {
       wrapper.setState({ loading: true });
     });
 

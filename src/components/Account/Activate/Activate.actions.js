@@ -6,7 +6,7 @@ import { API_URL } from '../../../constants';
 export function activate(url) {
   return axios
     .post(`${API_URL}user/activate/${url}`)
-    .then(response => {
+    .then((response) => {
       return { ...response.data, success: true };
     })
     .catch(get('response.data'));

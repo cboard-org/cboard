@@ -38,7 +38,7 @@ const backgroundImage = isCordova()
   ? './images/bg/waves.png'
   : '/images/bg/waves.png';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {},
   WelcomeScreen: {
     height: '100%',
@@ -71,7 +71,7 @@ export class WelcomeScreen extends Component {
     classes: PropTypes.object.isRequired
   };
 
-  handleKeyboardDidShow = event => {
+  handleKeyboardDidShow = (event) => {
     this.setState({
       keyboard: { isKeyboardOpen: true, keyboardHeight: event.keyboardHeight }
     });
@@ -83,7 +83,7 @@ export class WelcomeScreen extends Component {
     });
   };
 
-  handleActiveView = activeView => {
+  handleActiveView = (activeView) => {
     this.setState({
       activeView
     });
@@ -106,12 +106,12 @@ export class WelcomeScreen extends Component {
       const FirebasePlugin = window.FirebasePlugin;
       FirebasePlugin.authenticateUserWithGoogle(
         GOOGLE_FIREBASE_WEB_CLIENT_ID,
-        function(credential) {
+        function (credential) {
           window.location.hash = `#/login/googleidtoken/callback?id_token=${
             credential.idToken
           }`;
         },
-        function(error) {
+        function (error) {
           alert(intl.formatMessage(messages.loginErrorAndroid));
           console.error('Failed to authenticate with Google: ' + error);
         }
@@ -126,12 +126,12 @@ export class WelcomeScreen extends Component {
     if (isAndroid() || isIOS()) {
       window.facebookConnectPlugin.login(
         ['email'],
-        function(userData) {
-          window.facebookConnectPlugin.getAccessToken(function(accesToken) {
+        function (userData) {
+          window.facebookConnectPlugin.getAccessToken(function (accesToken) {
             window.location.hash = `#/login/facebooktoken/callback?access_token=${accesToken}`;
           });
         },
-        function(msg) {
+        function (msg) {
           alert(intl.formatMessage(messages.loginErrorAndroid));
           console.log(msg);
         }
@@ -146,12 +146,12 @@ export class WelcomeScreen extends Component {
     if (isIOS()) {
       window.cordova.plugins.SignInWithApple.signin(
         { requestedScopes: [0, 1] },
-        function(succ) {
+        function (succ) {
           window.location.hash = `#/login/apple/callback?${
             succ.authorizationCode
           }`;
         },
-        function(err) {
+        function (err) {
           alert(intl.formatMessage(messages.loginErrorAndroid));
           console.error(err);
         }

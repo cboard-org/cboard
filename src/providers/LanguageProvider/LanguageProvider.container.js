@@ -46,18 +46,14 @@ export class LanguageProvider extends Component {
   }
 
   fetchMessages(lang) {
-    const {
-      platformLangs,
-      changeLang,
-      setLangs,
-      showNotification
-    } = this.props;
+    const { platformLangs, changeLang, setLangs, showNotification } =
+      this.props;
 
     //reset state. This is necessary due that messages is a file import
     this.setState({ messages: null });
 
     importTranslation(lang)
-      .then(messages => {
+      .then((messages) => {
         this.setState({ messages });
       })
       .catch(() => {
@@ -87,7 +83,7 @@ export class LanguageProvider extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   lang: state.language.lang,
   platformLangs: state.speech.langs
 });
@@ -98,7 +94,4 @@ const mapDispatchToProps = {
   showNotification
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LanguageProvider);
+export default connect(mapStateToProps, mapDispatchToProps)(LanguageProvider);

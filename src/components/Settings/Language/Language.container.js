@@ -28,7 +28,7 @@ import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
 const downloadablesTts = require('./downloadablesTts.json');
 
 const sortLangs = (activeLang, langs = [], localLangs = []) => {
-  const cloudLangs = langs.filter(lang => !localLangs.includes(lang));
+  const cloudLangs = langs.filter((lang) => !localLangs.includes(lang));
   let sortedLangs = localLangs.concat(cloudLangs);
   const activeLangIndex = sortedLangs.indexOf(activeLang);
   if (activeLangIndex > 0) {
@@ -106,7 +106,7 @@ export class LanguageContainer extends Component {
     }
   };
 
-  initArasaacDB = async lang => {
+  initArasaacDB = async (lang) => {
     const arasaacDB = getArasaacDB();
     arasaacDB.initTextStore(lang.slice(0, 2));
   };
@@ -122,11 +122,11 @@ export class LanguageContainer extends Component {
     history.push('/settings');
   };
 
-  handleLangClick = lang => {
+  handleLangClick = (lang) => {
     this.setState({ selectedLang: lang });
   };
 
-  handleSetTtsEngine = async engineName => {
+  handleSetTtsEngine = async (engineName) => {
     const { setTtsEngine, getVoices, updateLangSpeechStatus } = this.props;
     try {
       await setTtsEngine(engineName);
@@ -142,8 +142,8 @@ export class LanguageContainer extends Component {
     const { lang: appLang, localLangs } = this.props;
     const continueOnline =
       avaliableAndDownloadablesLangs
-        .map(langTtsData => langTtsData.lang)
-        .filter(availableLang => !localLangs.includes(availableLang))
+        .map((langTtsData) => langTtsData.lang)
+        .filter((availableLang) => !localLangs.includes(availableLang))
         .includes(downloadingLangData.lang) &&
       appLang !== downloadingLangData.lang
         ? true
@@ -168,8 +168,8 @@ export class LanguageContainer extends Component {
     const { localLangs, lang: appLang } = this.props;
     const continueOnline =
       avaliableAndDownloadablesLangs
-        .map(langTtsData => langTtsData.lang)
-        .filter(availableLang => !localLangs.includes(availableLang))
+        .map((langTtsData) => langTtsData.lang)
+        .filter((availableLang) => !localLangs.includes(availableLang))
         .includes(downloadingLangData.lang) &&
       appLang !== downloadingLangData.lang
         ? true
@@ -193,7 +193,7 @@ export class LanguageContainer extends Component {
     });
   };
 
-  onDialogAcepted = downloadingLangData => {
+  onDialogAcepted = (downloadingLangData) => {
     const { marketId, lang, ttsName, continueOnline } = downloadingLangData;
     this.setState({ openDialog: { open: false, downloadingLangData: {} } });
     const downloadingLangState = {
@@ -216,16 +216,16 @@ export class LanguageContainer extends Component {
   };
 
   prepareDownloadablesLenguages = () => {
-    const getDownloadablesLenguages = downloadablesTts => {
-      const formatLangObject = downloadablesLangs => {
-        return downloadablesLangs.map(langObject => {
+    const getDownloadablesLenguages = (downloadablesTts) => {
+      const formatLangObject = (downloadablesLangs) => {
+        return downloadablesLangs.map((langObject) => {
           //const code = ISO6391.getCode(langObject.lang);
           const { lang } = langObject;
           const code = lang.slice(0, 2).toLowerCase();
           langObject.langCode = code;
           langObject.nativeName = ISO6391.getNativeName(code);
           const showLangCode =
-            downloadablesLangs.filter(language => language.langCode === code)
+            downloadablesLangs.filter((language) => language.langCode === code)
               .length > 1;
 
           const langFullCode = showLangCode ? `(${lang})` : '';
@@ -233,11 +233,11 @@ export class LanguageContainer extends Component {
           return langObject;
         });
       };
-      const downloadablesLangsArray = downloadablesTts.map(tts => {
+      const downloadablesLangsArray = downloadablesTts.map((tts) => {
         return { langs: tts.langs, marketId: tts.marketId, ttsName: tts.name };
       });
-      const identifiedLangsArray = downloadablesLangsArray.map(langObject =>
-        langObject.langs.map(language => {
+      const identifiedLangsArray = downloadablesLangsArray.map((langObject) =>
+        langObject.langs.map((language) => {
           return {
             lang: language,
             marketId: langObject.marketId,
@@ -253,16 +253,16 @@ export class LanguageContainer extends Component {
       return formatLangObject(downloadablesLangs);
     };
 
-    const filterAvailablesAndDownloadablesLangs = downloadablesLangs => {
+    const filterAvailablesAndDownloadablesLangs = (downloadablesLangs) => {
       const { ttsEngines } = this.props;
       const { langs } = this.props;
-      const ttsEnginesNames = ttsEngines.map(tts => tts.name);
+      const ttsEnginesNames = ttsEngines.map((tts) => tts.name);
 
       const availableAndDownloadableLang = downloadablesLangs.filter(
         ({ lang, ttsName }) => langs.includes(lang)
       );
 
-      return availableAndDownloadableLang.map(item => {
+      return availableAndDownloadableLang.map((item) => {
         item.ttsAvailable = ttsEnginesNames.includes(item.ttsName);
         return item;
       });
@@ -273,15 +273,14 @@ export class LanguageContainer extends Component {
       availableAndDownloadables
     ) => {
       return downloadables.filter(
-        downloadableLang =>
+        (downloadableLang) =>
           !availableAndDownloadables.includes(downloadableLang)
       );
     };
 
     const downloadablesLangsList = getDownloadablesLenguages(downloadablesTts);
-    const avaliableAndDownloadablesLangs = filterAvailablesAndDownloadablesLangs(
-      downloadablesLangsList
-    );
+    const avaliableAndDownloadablesLangs =
+      filterAvailablesAndDownloadablesLangs(downloadablesLangsList);
     const downloadablesOnly = filterDownloadablesOnlyLangs(
       downloadablesLangsList,
       avaliableAndDownloadablesLangs
@@ -318,8 +317,8 @@ export class LanguageContainer extends Component {
 
     const continueOnline =
       avaliableAndDownloadablesLangs
-        .map(langTtsData => langTtsData.lang)
-        .filter(availableLang => !localLangs.includes(availableLang))
+        .map((langTtsData) => langTtsData.lang)
+        .filter((availableLang) => !localLangs.includes(availableLang))
         .includes(downloadingLangData.lang) && appLang !== lang
         ? true
         : false;
@@ -404,11 +403,8 @@ export class LanguageContainer extends Component {
   };
 
   lookDownloadingLang = async () => {
-    const {
-      isDiferentTts,
-      engineName,
-      selectedLang
-    } = this.props.downloadingLang;
+    const { isDiferentTts, engineName, selectedLang } =
+      this.props.downloadingLang;
 
     const {
       setDownloadingLang,
@@ -419,7 +415,7 @@ export class LanguageContainer extends Component {
       showNotification
     } = this.props;
 
-    const ttsEnginesNames = ttsEngines.map(tts => tts.name);
+    const ttsEnginesNames = ttsEngines.map((tts) => tts.name);
     if (!ttsEnginesNames.includes(engineName)) {
       this.setState({
         downloadingLangError: {
@@ -497,7 +493,7 @@ export class LanguageContainer extends Component {
     if (this.props.langsFetched) this.refreshDownloadLanguage();
   };
 
-  componentDidUpdate = async prevProps => {
+  componentDidUpdate = async (prevProps) => {
     const isdownloading = this.props.downloadingLang?.isdownloading;
     const langsFetched = this.props.langsFetched;
 
@@ -564,7 +560,7 @@ export class LanguageContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   lang: state.language.lang,
   langsFetched: state.language.langsFetched,
   langs: state.language.langs,
@@ -585,7 +581,4 @@ const mapDispatchToProps = {
   showNotification
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LanguageContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LanguageContainer);

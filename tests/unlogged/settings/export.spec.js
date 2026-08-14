@@ -6,8 +6,6 @@ test.describe('Cboard - Export Settings', () => {
   test.beforeEach(async ({ page }) => {
     cboard = createCboard(page);
     await cboard.goto();
-
-    // Navigate to settings and Export tab
     await cboard.navigateToSettings();
     await cboard.clickSettingsTab('Export');
   });
@@ -16,16 +14,8 @@ test.describe('Cboard - Export Settings', () => {
     await cboard.verifyExportSettingsUI();
   });
 
-  test('should show single board export section', async ({ page }) => {
-    await cboard.verifySingleBoardExportSection();
-  });
-
   test('should show single board export controls', async ({ page }) => {
     await cboard.verifySingleBoardExportControls();
-  });
-
-  test('should show all boards export section', async ({ page }) => {
-    await cboard.verifyAllBoardsExportSection();
   });
 
   test('should show all boards export controls', async ({ page }) => {
@@ -40,68 +30,17 @@ test.describe('Cboard - Export Settings', () => {
     await cboard.verifyPdfFontSizeControl();
   });
 
-  test('should allow board selection for single export', async ({ page }) => {
-    await cboard.clickBoardsDropdown();
-
-    // This should open dropdown with available boards
-    // Note: Specific boards depend on user's boards
-  });
-
-  test('should allow format selection for single board export', async ({
-    page
-  }) => {
-    await cboard.clickSingleExportFormat();
-
-    // This should open dropdown with format options (Cboard, OpenBoard, PDF)
-    // Note: Specific options depend on implementation
-  });
-
-  test('should allow format selection for all boards export', async ({
-    page
-  }) => {
-    await cboard.clickAllBoardsExportFormat();
-
-    // This should open dropdown with format options (Cboard, OpenBoard, PDF)
-    // Note: Specific options depend on implementation
-  });
-
-  test('should show single board export action button disabled by default', async ({
-    page
-  }) => {
-    // Export button requires both a board and a format to be selected
-    await cboard.verifySingleExportButtonDisabled();
-  });
-
-  test('should show all boards export action button disabled by default', async ({
-    page
-  }) => {
-    // Export button requires a format to be selected
-    await cboard.verifyAllBoardsExportButtonDisabled();
-  });
-
   test('should enable single board export button after board and format selection', async ({
     page
   }) => {
-    // Single export requires both a board AND a format
     await cboard.selectSingleBoardFormat('Cboard');
-    // Still disabled — board not selected yet
     await cboard.verifySingleExportButtonDisabled();
     await cboard.selectSingleBoard('Cboard Classic Home');
     await cboard.verifySingleExportButtonEnabled();
   });
 
-  test('should enable all boards export button after format selection', async ({
-    page
-  }) => {
-    await cboard.selectAllBoardsFormat('Cboard');
-    await cboard.verifyAllBoardsExportButtonEnabled();
-  });
-
   test('should allow PDF font size modification', async ({ page }) => {
     await cboard.clickPdfFontSize();
-
-    // This should open dropdown with font size options
-    // Note: Specific sizes depend on implementation
   });
 
   test('should provide helpful format documentation links', async ({
@@ -110,26 +49,58 @@ test.describe('Cboard - Export Settings', () => {
     await cboard.verifyFormatDocumentationLinks();
   });
 
-  test('should explain export behavior differences by format', async ({
-    page
-  }) => {
-    await cboard.verifyExportBehaviorExplanations();
-  });
-
   test('should support navigation back to main settings', async ({ page }) => {
     await cboard.goBackFromExport();
   });
 
-  test('should maintain PDF settings section organization', async ({
+  test('should not auto-trigger export when selecting all-boards format — only the Export button initiates loading', async ({
     page
   }) => {
-    await cboard.verifyPdfSettingsOrganization();
+    await cboard.selectAllBoardsFormat('Cboard');
+    await cboard.verifyAllBoardsExportButtonEnabled();
+    await cboard.verifyAllBoardsNoLoadingSpinner();
   });
 
-  test('should use page object methods to verify export settings elements', async ({
+  test('should keep single board export button disabled when a board is selected but no format is chosen', async ({
     page
   }) => {
-    // Use page object methods to verify export settings
-    await cboard.verifyExportSettingsElements();
+    await cboard.selectSingleBoard('Cboard Classic Home');
+    await cboard.verifySingleExportButtonDisabled();
+  });
+
+  test('should render single-board and all-boards exports as separate visual sections', async ({
+    page
+  }) => {
+    await cboard.verifyExportSectionsAreSeparated();
+  });
+
+  test('should download a single board in Cboard format and verify the file name', async ({
+    page
+  }) => {
+    await cboard.selectSingleBoard('Cboard Classic Home');
+    await cboard.selectSingleBoardFormat('Cboard');
+    const download = await cboard.triggerSingleBoardExportAndWaitForDownload();
+    await cboard.verifyDownloadedFileName(download, 'board.json');
+    await cboard.verifyDownloadedCboardFile(download);
+  });
+
+  test('should download a single board in OpenBoard format and verify the file name', async ({
+    page
+  }) => {
+    await cboard.selectSingleBoard('Cboard Classic Home');
+    await cboard.selectSingleBoardFormat('OpenBoard');
+    const download = await cboard.triggerSingleBoardExportAndWaitForDownload();
+    await cboard.verifyDownloadedFileName(download, 'board.obf');
+    await cboard.verifyDownloadedOpenBoardFile(download);
+  });
+
+  test('should download a single board in PDF format and verify the file name', async ({
+    page
+  }) => {
+    await cboard.selectSingleBoard('Cboard Classic Home');
+    await cboard.selectSingleBoardFormat('PDF');
+    const download = await cboard.triggerSingleBoardExportAndWaitForDownload();
+    await cboard.verifyDownloadedFileName(download, 'board.pdf');
+    await cboard.verifyDownloadedPdfFile(download);
   });
 });

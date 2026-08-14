@@ -8,10 +8,10 @@ export const isElectron = () =>
 
 export const isIOS = () => isCordova() && window.cordova.platformId === 'ios';
 
-export const onCordovaReady = onReady =>
+export const onCordovaReady = (onReady) =>
   document.addEventListener('deviceready', onReady, false);
 
-export const onAndroidPause = onPause =>
+export const onAndroidPause = (onPause) =>
   document.addEventListener('pause', onPause, false);
 
 export const manageKeyboardEvents = ({
@@ -28,11 +28,35 @@ export const manageKeyboardEvents = ({
   window.removeEventListener('keyboardDidHide', onHide, false);
 };
 
-export const onCvaResume = onResume =>
+export const onCvaResume = (onResume) =>
   document.addEventListener('resume', onResume, false);
 
-export const cleanUpCvaOnResume = onResume => {
+export const cleanUpCvaOnResume = (onResume) => {
   document.removeEventListener('resume', onResume, false);
+};
+
+export const initDeepLinking = (history) => {
+  if (!window.IonicDeeplink) {
+    return;
+  }
+
+  window.IonicDeeplink.route(
+    {
+      '/access/:slug/:code': { target: 'access' },
+      '/board/:id': { target: 'board' }
+    },
+    (match) => {
+      if (match.$route.target === 'access') {
+        history.push(`/access/${match.$args.slug}/${match.$args.code}`);
+      }
+      if (match.$route.target === 'board') {
+        history.push(`/board/${match.$args.id}`);
+      }
+    },
+    (nomatch) => {
+      console.log('Deep link no match:', nomatch.$link);
+    }
+  );
 };
 
 export const initCordovaPlugins = () => {
@@ -147,7 +171,7 @@ const configFacebookPlugin = () => {
 
 export const cvaTrackEvent = (category, action, label) => {
   try {
-    const convertEventToNewNomenclature = name => {
+    const convertEventToNewNomenclature = (name) => {
       const inLowerCase = name.toLowerCase();
       const event_name = inLowerCase.replace(/\s/g, '_');
       return event_name;
@@ -168,39 +192,39 @@ export const cvaTrackEvent = (category, action, label) => {
   }
 };
 
-export const readCvaFile = async name => {
+export const readCvaFile = async (name) => {
   if (isCordova()) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       window.requestFileSystem(
         window.LocalFileSystem.PERSISTENT,
         0,
-        function(fs) {
+        function (fs) {
           fs.root.getFile(
             name,
             { create: false, exclusive: false },
-            function(fileEntry) {
+            function (fileEntry) {
               fileEntry.file(
-                function(file) {
+                function (file) {
                   var reader = new FileReader();
-                  reader.onloadend = function() {
+                  reader.onloadend = function () {
                     console.log('Successful file read: ' + this.result);
                     resolve(this.result);
                   };
                   reader.readAsText(file);
                 },
-                function(err) {
+                function (err) {
                   console.log(err);
                   reject(err);
                 }
               );
             },
-            function(err) {
+            function (err) {
               console.log(err);
               reject(err);
             }
           );
         },
-        function(err) {
+        function (err) {
           console.log(err);
           reject(err);
         }
@@ -209,14 +233,23 @@ export const readCvaFile = async name => {
   }
 };
 
+export const cvaFileToBlob = (file, fallbackType) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () =>
+      resolve(new Blob([reader.result], { type: file.type || fallbackType }));
+    reader.onerror = () => reject(reader.error);
+    reader.readAsArrayBuffer(file);
+  });
+
 export const writeCvaFile = async (name, blob) => {
   if (isCordova()) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       window.requestFileSystem(
         window.LocalFileSystem.PERSISTENT,
         0,
-        function(fs) {
-          const extractFileName = nameWithDirectory => {
+        function (fs) {
+          const extractFileName = (nameWithDirectory) => {
             const nameParts = nameWithDirectory.split('/');
             const lastIndex = nameParts.length - 1;
             return nameParts[lastIndex];
@@ -225,16 +258,16 @@ export const writeCvaFile = async (name, blob) => {
           fs.root.getFile(
             fileName,
             { create: true, exclusive: false },
-            function(fileEntry) {
+            function (fileEntry) {
               writeFile(fileEntry, blob, resolve, reject);
             },
-            function(err) {
+            function (err) {
               console.log(err);
               reject(err);
             }
           );
         },
-        function(err) {
+        function (err) {
           console.log(err);
           reject(err);
         }
@@ -244,12 +277,12 @@ export const writeCvaFile = async (name, blob) => {
 };
 
 const writeFile = (fileEntry, dataObj, resolve, reject) => {
-  fileEntry.createWriter(function(fileWriter) {
-    fileWriter.onwriteend = function() {
+  fileEntry.createWriter(function (fileWriter) {
+    fileWriter.onwriteend = function () {
       console.log('File write success');
       resolve(fileEntry);
     };
-    fileWriter.onerror = function(e) {
+    fileWriter.onerror = function (e) {
       console.log('Failed file write: ' + e.toString());
       reject(e);
     };
@@ -264,12 +297,12 @@ const writeFile = (fileEntry, dataObj, resolve, reject) => {
 export const fileCvaOpen = (filePath, type) => {
   if (isCordova()) {
     window.cordova.plugins.fileOpener2.open(filePath, type, {
-      error: function(e) {
+      error: function (e) {
         console.log(
           'Error status: ' + e.status + ' - Error message: ' + e.message
         );
       },
-      success: function() {
+      success: function () {
         console.log('file opened successfully');
       }
     });
@@ -281,23 +314,23 @@ export const requestCvaWritePermissions = () => {
     var permissions = window.cordova.plugins.permissions;
     permissions.checkPermission(
       permissions.WRITE_EXTERNAL_STORAGE,
-      function(status) {
+      function (status) {
         console.log('Has WRITE_EXTERNAL_STORAGE:', status.hasPermission);
         if (!status.hasPermission) {
           permissions.requestPermission(
             permissions.WRITE_EXTERNAL_STORAGE,
-            function(status) {
+            function (status) {
               console.log(
                 'success requesting WRITE_EXTERNAL_STORAGE permission'
               );
             },
-            function(err) {
+            function (err) {
               console.warn('No permissions granted for WRITE_EXTERNAL_STORAGE');
             }
           );
         }
       },
-      function(err) {
+      function (err) {
         console.log(err);
       }
     );
@@ -319,11 +352,11 @@ export const requestCvaPermissions = async () => {
         const { hasPermission } = await new Promise((resolve, reject) => {
           permissions.checkPermission(
             permissions[permission],
-            function(status) {
+            function (status) {
               console.log(`Has ${permission}:`, status.hasPermission);
               resolve(status);
             },
-            function(err) {
+            function (err) {
               console.log(err);
               resolve({ hasPermission: false });
             }
@@ -333,13 +366,13 @@ export const requestCvaPermissions = async () => {
           await new Promise((resolve, reject) => {
             permissions.requestPermission(
               permissions[permission],
-              function(status) {
+              function (status) {
                 console.log(`Success requesting ${permission} permission`);
                 if (!status.hasPermission)
                   console.log(`No permissions granted for ${permission}`);
                 resolve(status);
               },
-              function(err) {
+              function (err) {
                 console.log(`No permissions granted for ${permission}`);
                 reject(err);
               }

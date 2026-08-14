@@ -12,6 +12,14 @@
   padding-bottom: 1em;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75em;
+}
+
 @media (max-width: 480px), (max-height: 400px) {
   .content {
     margin: 2em 1em;

@@ -40,7 +40,7 @@ class OAuthLoginContainer extends React.Component {
     if (!this.checkUser()) {
       this.props
         .login({ email: this.type, password: this.query }, this.type)
-        .catch(error => {
+        .catch((error) => {
           this.handleError();
         });
     }
@@ -78,7 +78,7 @@ class OAuthLoginContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: getUser(state)
 });
 

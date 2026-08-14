@@ -8,44 +8,38 @@ import '../NavigationButtons/NavigationButtons.css';
 const BOTTOM_OFFSET = 7;
 const TOP_OFFSET = 5;
 
-const ScrollButtons = props => {
+const ScrollButtons = (props) => {
   const [isScrollTop, setScrollTop] = useState(false);
   const [isScrollDown, setScrollDown] = useState(false);
 
-  useEffect(
-    () => {
-      const bc = props.boardContainer.current;
-      const checkScrollLimits = event => {
-        const scrollTop = bc.scrollTop <= TOP_OFFSET;
-        const scrollDown =
+  useEffect(() => {
+    const bc = props.boardContainer.current;
+    const checkScrollLimits = (event) => {
+      const scrollTop = bc.scrollTop <= TOP_OFFSET;
+      const scrollDown =
           Math.round(bc.scrollHeight - bc.scrollTop - bc.clientHeight) - BOTTOM_OFFSET <= 0; // prettier-ignore
-        setScrollTop(scrollTop);
-        setScrollDown(scrollDown);
-      };
+      setScrollTop(scrollTop);
+      setScrollDown(scrollDown);
+    };
 
-      setTimeout(() => {
-        checkScrollLimits();
-      }, 1);
-      bc.addEventListener('scroll', checkScrollLimits);
+    setTimeout(() => {
+      checkScrollLimits();
+    }, 1);
+    bc.addEventListener('scroll', checkScrollLimits);
 
-      return () => {
-        bc.removeEventListener('scroll', () => {});
-      };
-    },
-    [props.boardId, props.boardContainer, props.totalRows]
-  );
+    return () => {
+      bc.removeEventListener('scroll', () => {});
+    };
+  }, [props.boardId, props.boardContainer, props.totalRows]);
 
-  useEffect(
-    () => {
-      const boardContainer = props.boardContainer.current;
-      if (isScrollTop) {
-        boardContainer.scrollBy(0, -TOP_OFFSET);
-        return;
-      }
-      if (isScrollDown) boardContainer.scrollBy(0, BOTTOM_OFFSET);
-    },
-    [isScrollDown, isScrollTop, props.boardContainer]
-  );
+  useEffect(() => {
+    const boardContainer = props.boardContainer.current;
+    if (isScrollTop) {
+      boardContainer.scrollBy(0, -TOP_OFFSET);
+      return;
+    }
+    if (isScrollDown) boardContainer.scrollBy(0, BOTTOM_OFFSET);
+  }, [isScrollDown, isScrollTop, props.boardContainer]);
 
   const boardContainer = props.boardContainer.current;
 
@@ -55,15 +49,15 @@ const ScrollButtons = props => {
     return isScrollDown && !isScrollTop && !isFixedBoard ? step - 7 : step;
   };
 
-  const scrollUp = event => {
+  const scrollUp = (event) => {
     scroll(-step());
   };
 
-  const scrollDown = event => {
+  const scrollDown = (event) => {
     scroll(step());
   };
 
-  const scroll = step => {
+  const scroll = (step) => {
     boardContainer.scrollBy(0, step);
   };
 

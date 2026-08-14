@@ -1,6 +1,6 @@
 import { isLogged } from '../../components/App/App.selectors';
 
-export const isSubscriptionRequired = state => {
+export const isSubscriptionRequired = (state) => {
   if (!isLogged(state)) {
     return false;
   }

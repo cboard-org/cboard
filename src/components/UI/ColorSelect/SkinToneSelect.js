@@ -74,7 +74,7 @@ class SkinToneSelect extends React.Component {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { onChange } = this.props;
 
     onChange(event);
@@ -83,7 +83,7 @@ class SkinToneSelect extends React.Component {
     });
   };
 
-  handleClickOutside = event => {
+  handleClickOutside = (event) => {
     if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
       this.setState({
         open: false
@@ -143,7 +143,7 @@ class SkinToneSelect extends React.Component {
                 style={radioGroupStyle}
                 onChange={this.handleChange}
               >
-                {this.state.skinToneMenu.map(skinTone => (
+                {this.state.skinToneMenu.map((skinTone) => (
                   <Radio
                     key={skinTone.name}
                     value={skinTone.name}

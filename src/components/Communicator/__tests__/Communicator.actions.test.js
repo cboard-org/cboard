@@ -6,14 +6,6 @@ import defaultBoards from '../../../api/boards.json';
 
 const mockStore = configureMockStore([thunk]);
 
-const mockBoard = {
-  name: 'tewt',
-  id: '123',
-  tiles: [{ id: '1234', loadBoard: '456456456456456456456' }],
-  isPublic: false,
-  email: 'asd@qwe.com',
-  markToUpdate: true
-};
 const [...boards] = defaultBoards.advanced;
 const communicatorData = {
   author: 'Cboard Team',
@@ -213,5 +205,27 @@ describe('actions', () => {
     expect(actions.updateApiCommunicator(communicatorData)).toBeDefined();
     expect(actions.createApiCommunicator(communicatorData, 'id')).toBeDefined();
     expect(actions.getApiMyCommunicators()).toBeDefined();
+    expect(actions.pushCommunicator(communicatorData)).toBeDefined();
+  });
+
+  it('pushCommunicator should not call upsertApiCommunicator when user is not logged in', async () => {
+    const storeNoUser = mockStore({
+      ...initialState,
+      app: { userData: {} },
+      communicator: {
+        communicators: [communicatorData],
+        activeCommunicatorId: communicatorData.id
+      }
+    });
+
+    await storeNoUser.dispatch(actions.pushCommunicator(communicatorData));
+
+    const dispatchedTypes = storeNoUser
+      .getActions()
+      .map((a) => a.type)
+      .filter(Boolean);
+    // Should NOT contain any API push action
+    expect(dispatchedTypes).not.toContain('CREATE_API_COMMUNICATOR_STARTED');
+    expect(dispatchedTypes).not.toContain('UPDATE_API_COMMUNICATOR_STARTED');
   });
 });

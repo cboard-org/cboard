@@ -18,6 +18,7 @@ export const IN_GRACE_PERIOD = 'in_grace_period';
 export const PAUSED = 'paused';
 export const EXPIRED = 'expired';
 export const ON_HOLD = 'on_hold';
+export const SUSPENDED = 'suspended';
 export const UNVERIFIED = 'unverified';
 
 export const DAYS_TO_TRY = 15;

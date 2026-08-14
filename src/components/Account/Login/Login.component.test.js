@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { shallowMatchSnapshot } from '../../../common/test_utils';
+import { shallow } from 'enzyme';
 import { Login } from './Login.component';
 
 jest.mock('./Login.messages', () => {
@@ -24,12 +23,11 @@ jest.mock('./Login.messages', () => {
   };
 });
 
-const mockLoginfn = jest.fn();
 const props = {
   isDialogOpen: false,
   onClose: jest.fn(),
   intl: {
-    formatMessage: msg => msg
+    formatMessage: (msg) => msg
   },
   onResetPasswordClick: jest.fn()
 };

@@ -113,23 +113,23 @@ export class SymbolSearch extends PureComponent {
 
   get isSkinToneDisabled() {
     const isArasaacEnabled = this.state.symbolSets.some(
-      opt => opt.id === SymbolSets.arasaac && opt.enabled
+      (opt) => opt.id === SymbolSets.arasaac && opt.enabled
     );
     const isCboardEnabled = this.state.symbolSets.some(
-      opt => opt.id === SymbolSets.cboard && opt.enabled
+      (opt) => opt.id === SymbolSets.cboard && opt.enabled
     );
     return !isArasaacEnabled && !isCboardEnabled;
   }
 
   get isHairColorDisabled() {
     const isArasaacEnabled = this.state.symbolSets.some(
-      opt => opt.id === SymbolSets.arasaac && opt.enabled
+      (opt) => opt.id === SymbolSets.arasaac && opt.enabled
     );
     return !isArasaacEnabled;
   }
 
   translateSymbols(symbols = []) {
-    return symbols.map(symbol => {
+    return symbols.map((symbol) => {
       const translatedId = this.props.intl
         .formatMessage({ id: symbol.id })
         .replace(/[\u0591-\u05C7]/g, '') // todo: not on every locale - strip hebrew niqqud
@@ -149,7 +149,7 @@ export class SymbolSearch extends PureComponent {
     const inputLength = inputValue.length;
     let count = 0;
 
-    return this.symbols.filter(symbol => {
+    return this.symbols.filter((symbol) => {
       if (count >= maxSuggestions) {
         return false;
       }
@@ -175,7 +175,7 @@ export class SymbolSearch extends PureComponent {
     });
   }
 
-  fetchArasaacSuggestions = async searchText => {
+  fetchArasaacSuggestions = async (searchText) => {
     const {
       intl: { locale }
     } = this.props;
@@ -194,7 +194,7 @@ export class SymbolSearch extends PureComponent {
       if (imagesFromDB.length) {
         const suggestions = [
           ...this.state.suggestions.filter(
-            suggestion => !suggestion.fromArasaac
+            (suggestion) => !suggestion.fromArasaac
           )
         ];
         const arasaacSuggestions = imagesFromDB.map(({ src, label, id }) => {
@@ -220,7 +220,7 @@ export class SymbolSearch extends PureComponent {
         if (data.length) {
           const suggestions = [
             ...this.state.suggestions.filter(
-              suggestion => !suggestion.fromArasaac
+              (suggestion) => !suggestion.fromArasaac
             )
           ];
           const arasaacSuggestions = data.map(
@@ -255,7 +255,7 @@ export class SymbolSearch extends PureComponent {
     }
   };
 
-  fetchGlobalsymbolsSuggestions = async searchText => {
+  fetchGlobalsymbolsSuggestions = async (searchText) => {
     const {
       intl: { locale }
     } = this.props;
@@ -271,12 +271,12 @@ export class SymbolSearch extends PureComponent {
       if (data.length) {
         const suggestions = [
           ...this.state.suggestions.filter(
-            suggestion => !suggestion.fromGlobalsymbols
+            (suggestion) => !suggestion.fromGlobalsymbols
           )
         ];
         let globalsymbolsSuggestions = [];
-        data.forEach(function(element) {
-          const fixEspecialCharacters = text => {
+        data.forEach(function (element) {
+          const fixEspecialCharacters = (text) => {
             if (!text) return '';
             const utf8String = text
               .replace(/Ã¡/g, '\u00E1') // Replace á
@@ -327,7 +327,7 @@ export class SymbolSearch extends PureComponent {
     }
   };
 
-  fetchCboardSymbolsSuggestions = async searchText => {
+  fetchCboardSymbolsSuggestions = async (searchText) => {
     const {
       intl: { locale }
     } = this.props;
@@ -350,14 +350,14 @@ export class SymbolSearch extends PureComponent {
       if (data.length) {
         const suggestions = [
           ...this.state.suggestions.filter(
-            suggestion => !suggestion.fromCboardSymbols
+            (suggestion) => !suggestion.fromCboardSymbols
           )
         ];
 
-        const cboardSuggestions = data.map(pictogram => {
+        const cboardSuggestions = data.map((pictogram) => {
           // Select appropriate variant based on synced skin tone
           const variant = pictogram.variants?.find(
-            v => v.skinTone === cboardSkinTone
+            (v) => v.skinTone === cboardSkinTone
           );
           const imageUrl = variant?.url || pictogram.url;
 
@@ -429,9 +429,8 @@ export class SymbolSearch extends PureComponent {
 
     const fetchArasaacImageUrl = async () => {
       const suggestionImageReq = `${suggestion.src}&url=true`;
-      const imageArasaacUrl = await API.arasaacPictogramsGetImageUrl(
-        suggestionImageReq
-      );
+      const imageArasaacUrl =
+        await API.arasaacPictogramsGetImageUrl(suggestionImageReq);
 
       // return static url when cannot retrive the image from arasaac server
       if (!imageArasaacUrl.length && suggestion.keyPath)
@@ -485,8 +484,8 @@ export class SymbolSearch extends PureComponent {
     return <div {...containerProps}>{children}</div>;
   }
 
-  handleChangeOption = opt => {
-    const newSymbolSets = this.state.symbolSets.map(option => {
+  handleChangeOption = (opt) => {
+    const newSymbolSets = this.state.symbolSets.map((option) => {
       if (option.id === opt.id) {
         return { ...option, enabled: !option.enabled };
       }
@@ -502,7 +501,7 @@ export class SymbolSearch extends PureComponent {
     );
   };
 
-  handleSkinToneChange = event => {
+  handleSkinToneChange = (event) => {
     const newSkin = event ? event.target.value : defaultSkin;
     this.setState(
       {
@@ -514,7 +513,7 @@ export class SymbolSearch extends PureComponent {
     );
   };
 
-  handleHairColorChange = event => {
+  handleHairColorChange = (event) => {
     const newHair = event ? event.target.value : defaultHair;
     this.setState(
       {
@@ -531,13 +530,8 @@ export class SymbolSearch extends PureComponent {
   }
 
   render() {
-    const {
-      disableTour,
-      intl,
-      isSymbolSearchTourEnabled,
-      open,
-      onClose
-    } = this.props;
+    const { disableTour, intl, isSymbolSearchTourEnabled, open, onClose } =
+      this.props;
 
     const clearButton =
       this.state.value.length > 0 ? (

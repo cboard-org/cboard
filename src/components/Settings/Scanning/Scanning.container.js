@@ -14,7 +14,7 @@ export class ScanningContainer extends PureComponent {
   updateScannerSettings = async (scanningSettings) => {
     try {
       await API.updateSettings({ scanning: scanningSettings });
-    } catch (e) { }
+    } catch (e) {}
     this.props.updateScannerSettings(scanningSettings);
   };
 

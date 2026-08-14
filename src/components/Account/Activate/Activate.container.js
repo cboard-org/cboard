@@ -13,42 +13,33 @@ function ActivateContainer() {
   const { url } = useParams();
   const history = useHistory();
 
-  const redirectToLogin = useCallback(
-    () => {
-      setTimeout(() => {
-        history.replace('/login-signup');
-      }, 2000);
-    },
-    [history]
-  );
+  const redirectToLogin = useCallback(() => {
+    setTimeout(() => {
+      history.replace('/login-signup');
+    }, 2000);
+  }, [history]);
 
-  const handleError = useCallback(
-    () => {
-      setIsErrorActivating(true);
-      redirectToLogin();
-    },
-    [redirectToLogin]
-  );
+  const handleError = useCallback(() => {
+    setIsErrorActivating(true);
+    redirectToLogin();
+  }, [redirectToLogin]);
 
-  useEffect(
-    () => {
-      const activateAccount = async () => {
-        setIsActivating(true);
-        try {
-          const status = await activate(url);
-          if (!status.success) {
-            throw new Error('Activation failed');
-          }
-          redirectToLogin();
-        } catch (error) {
-          handleError();
+  useEffect(() => {
+    const activateAccount = async () => {
+      setIsActivating(true);
+      try {
+        const status = await activate(url);
+        if (!status.success) {
+          throw new Error('Activation failed');
         }
-        setIsActivating(false);
-      };
-      activateAccount();
-    },
-    [url, redirectToLogin, handleError]
-  );
+        redirectToLogin();
+      } catch (error) {
+        handleError();
+      }
+      setIsActivating(false);
+    };
+    activateAccount();
+  }, [url, redirectToLogin, handleError]);
 
   return (
     <div className="Activate">

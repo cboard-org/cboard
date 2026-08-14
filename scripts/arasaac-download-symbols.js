@@ -14,14 +14,14 @@ async function downloadFile(fileUrl, outputLocationPath) {
     method: 'get',
     url: fileUrl,
     responseType: 'stream'
-  }).then(response => {
+  }).then((response) => {
     //ensure that the user can call `then()` only when the file has
     //been downloaded entirely.
 
     return new Promise((resolve, reject) => {
       response.data.pipe(writer);
       let error = null;
-      writer.on('error', err => {
+      writer.on('error', (err) => {
         error = err;
         writer.close();
         reject(err);
@@ -38,22 +38,25 @@ async function downloadFile(fileUrl, outputLocationPath) {
 }
 
 for (let i = 1; i < Math.trunc(jsonData.length / 100); i++) {
-  (function(ind) {
-    setTimeout(function() {
-      for (let j = (i - 1) * 100; j < i * 100; j++) {
-        const picto = jsonData[j];
-        console.log(j);
-        try {
-          const apipath = ARASAAC_BASE_PATH_API + pictosPath + picto['id'];
-          console.log(apipath);
-          const path = './src/api/arasaac/symbols/' + picto['id'] + '.png';
-          downloadFile(apipath, path).then(console.log('ok!'));
-        } catch (err) {
-          console.log('ERROR Failed to fetch symbol data');
-          console.log(err.message);
-          return;
+  (function (ind) {
+    setTimeout(
+      function () {
+        for (let j = (i - 1) * 100; j < i * 100; j++) {
+          const picto = jsonData[j];
+          console.log(j);
+          try {
+            const apipath = ARASAAC_BASE_PATH_API + pictosPath + picto['id'];
+            console.log(apipath);
+            const path = './src/api/arasaac/symbols/' + picto['id'] + '.png';
+            downloadFile(apipath, path).then(console.log('ok!'));
+          } catch (err) {
+            console.log('ERROR Failed to fetch symbol data');
+            console.log(err.message);
+            return;
+          }
         }
-      }
-    }, 1000 + 7000 * ind);
+      },
+      1000 + 7000 * ind
+    );
   })(i);
 }

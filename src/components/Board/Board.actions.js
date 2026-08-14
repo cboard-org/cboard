@@ -44,6 +44,9 @@ import {
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
   SYNC_BOARDS_FAILURE,
+  SYNC_STARTED,
+  SYNC_FINISHED,
+  MARK_BOARDS_SYNCED,
   SYNC_STATUS,
   SET_IS_SAVING
 } from './Board.constants';
@@ -72,8 +75,13 @@ import { isAndroid, writeCvaFile } from '../../cordova-util';
 import { DEFAULT_BOARDS } from '../../helpers';
 import history from './../../history';
 import { improvePhraseAbortController } from '../../api/api';
-
-const BOARDS_PAGE_LIMIT = 500;
+import {
+  trackSyncEvent,
+  trackSyncException,
+  countPendingBoards,
+  countUntrackedBoards,
+  getManifestWatermark
+} from './Board.sync.analytics';
 
 export function addBoards(boards) {
   return {
@@ -89,7 +97,7 @@ function getActiveCommunicator(getState) {
   const activeCommunicator =
     communicators[
       communicators.findIndex(
-        communicator => communicator.id === activeCommunicatorId
+        (communicator) => communicator.id === activeCommunicatorId
       )
     ];
   return activeCommunicator;
@@ -119,7 +127,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
 
     const activeCommunicator = checkUserCommunicator();
 
-    const fallbackInitialDefaultBoardsIncluded = activeCommunicator => {
+    const fallbackInitialDefaultBoardsIncluded = (activeCommunicator) => {
       const oldUserHomeBoard = activeCommunicator.rootBoard;
 
       const boardAlreadyIncludedData = {
@@ -133,15 +141,15 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       return initialDefaultBoardsIncluded;
     };
 
-    const hasValidDefaultBoardsIncluded = !!activeCommunicator
-      .defaultBoardsIncluded?.length;
+    const hasValidDefaultBoardsIncluded =
+      !!activeCommunicator.defaultBoardsIncluded?.length;
 
     const defaultBoardsIncluded = hasValidDefaultBoardsIncluded
       ? activeCommunicator.defaultBoardsIncluded
       : fallbackInitialDefaultBoardsIncluded(activeCommunicator);
 
     const defaultBoardsNamesIncluded = defaultBoardsIncluded?.map(
-      includedBoardObject => includedBoardObject.nameOnJSON
+      (includedBoardObject) => includedBoardObject.nameOnJSON
     ) || [BOARD_ALREADY_INCLUDED_NAME];
 
     const updatedHomeBoard = defaultBoardsIncluded?.filter(
@@ -166,7 +174,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       }
     };
 
-    const switchActiveBoard = homeBoardId => {
+    const switchActiveBoard = (homeBoardId) => {
       if (homeBoardId) {
         const goTo = `/board/${homeBoardId}`;
 
@@ -175,7 +183,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       }
     };
 
-    const replaceHomeBoard = async homeBoardId => {
+    const replaceHomeBoard = async (homeBoardId) => {
       const {
         communicator: {
           communicators: updatedCommunicators,
@@ -187,7 +195,7 @@ export function changeDefaultBoard(selectedBoardNameOnJson) {
       const userData = app?.userData;
 
       const activeCommunicator = updatedCommunicators.filter(
-        communicator => communicator.id === activeCommunicatorId
+        (communicator) => communicator.id === activeCommunicatorId
       )[0];
 
       const communicatorWithRootBoardReplaced = {
@@ -226,7 +234,7 @@ export function replaceDefaultHomeBoardIfIsNescesary(prev, current) {
     const activeCommunicator = getActiveCommunicator(getState);
     const defaultBoardsIncluded = activeCommunicator.defaultBoardsIncluded;
 
-    const updatedValue = defaultBoardsIncluded?.map(defaultBoard => {
+    const updatedValue = defaultBoardsIncluded?.map((defaultBoard) => {
       if (defaultBoard.homeBoard === prev) defaultBoard.homeBoard = current;
       return defaultBoard;
     });
@@ -255,6 +263,16 @@ export function updateBoard(boardData, fromRemote = false) {
     type: UPDATE_BOARD,
     boardData,
     fromRemote
+  };
+}
+/**
+ * Batch-mark untracked boards as SYNCED (graduation) without touching board data.
+ * Used to onboard untracked boards into the sync system in a single dispatch.
+ */
+export function markBoardsSynced(boardIds) {
+  return {
+    type: MARK_BOARDS_SYNCED,
+    boardIds
   };
 }
 export function deleteBoard(boardId) {
@@ -376,10 +394,10 @@ export function changeOutput(output) {
 }
 
 export function improvePhrase(output) {
-  const fetchImprovePhrase = async language => {
+  const fetchImprovePhrase = async (language) => {
     const MIN_TILES_TO_IMPROVE = 1;
     if (output.length <= MIN_TILES_TO_IMPROVE) return '';
-    const labels = output.map(symbol => symbol.label);
+    const labels = output.map((symbol) => symbol.label);
     const phrase = labels.join(' '); //this.handlePhraseToShare();
     const improvedPhrase = await API.improvePhrase({ phrase, language });
     return improvedPhrase.phrase;
@@ -448,7 +466,7 @@ export function createApiBoardFailure(message) {
 }
 
 export function updateApiBoardSuccess(board) {
-  return dispatch => {
+  return (dispatch) => {
     const { isLocalUpdateNeeded, ...boardData } = board ?? {};
 
     if (!board || Object.keys(boardData).length === 0) {
@@ -532,10 +550,10 @@ export function downloadImageFailure(message) {
 }
 
 export function getApiMyBoards() {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(getApiMyBoardsStarted());
     try {
-      const res = await API.getMyBoards({ limit: BOARDS_PAGE_LIMIT });
+      const res = await API.getBoardsSync();
       dispatch(getApiMyBoardsSuccess(res));
       if (res?.data && Array.isArray(res.data)) {
         try {
@@ -565,9 +583,27 @@ export function syncBoardsFailure(error) {
   return { type: SYNC_BOARDS_FAILURE, error: error.message || error };
 }
 
+export function syncStarted() {
+  return { type: SYNC_STARTED };
+}
+
+export function syncFinished() {
+  return { type: SYNC_FINISHED };
+}
+
 /**
  * PULL: Apply remote changes to local Redux state.
- * Adds new remote boards and updates boards where remote is newer.
+ *
+ * Classification runs against the lightweight sync manifest ({ id, lastEdited }
+ * only), which is the authoritative list of the boards that exist on the
+ * server (getBoardsSync returns the complete, unpaged set).
+ *
+ * - Deletions: the received boardIdsToDelete are candidates whose deletion the
+ *   server already confirmed by id (see syncBoards), so they are removed
+ *   locally directly.
+ * - Adds / updates: the full bodies (with tiles) for every new/changed board
+ *   are fetched in a single getBoardsByIds() request, then applied from the
+ *   resulting in-memory map. One request regardless of how many boards changed.
  */
 export function applyRemoteChangesToState({
   boardsToAdd,
@@ -575,44 +611,63 @@ export function applyRemoteChangesToState({
   boardIdsToDelete = []
 }) {
   return async (dispatch, getState) => {
-    if (boardsToAdd.length > 0) {
-      dispatch(addBoards(boardsToAdd));
-    }
-    for (const board of boardsToUpdate) {
-      const fromRemote = true; //sets syncStatus to SYNCED
-      dispatch(updateBoard(board, fromRemote));
-    }
-
     const preFetchSyncMeta = getState().board.syncMeta;
 
-    // Verify boards that appear deleted on server (concurrent)
-    await Promise.all(
-      boardIdsToDelete.map(async boardId => {
-        try {
-          const res = await API.getBoard(boardId);
-          if (res) {
-            const postFetchMeta = getState().board.syncMeta;
-            const wasPending =
-              preFetchSyncMeta[boardId]?.status === SYNC_STATUS.PENDING;
-            const isNowPending =
-              postFetchMeta[boardId]?.status === SYNC_STATUS.PENDING;
-            // User edited the board while we were verifying — skip overwrite
-            if (!wasPending && isNowPending) return;
-            dispatch(updateBoard(res, true));
-          }
-        } catch (e) {
-          if (e.response?.status === 404) {
-            dispatch(deleteApiBoardSuccess({ id: boardId }));
-          } else {
-            console.error(
-              'Failed to verify board deletion on server:',
-              boardId,
-              e
-            );
-          }
-        }
-      })
-    );
+    boardIdsToDelete.forEach((boardId) => {
+      dispatch(deleteApiBoardSuccess({ id: boardId }));
+    });
+
+    const idsToFetch = [...boardsToAdd, ...boardsToUpdate].map((b) => b.id);
+    if (idsToFetch.length === 0) return;
+
+    let bodiesById;
+    try {
+      const res = await API.getBoardsByIds(idsToFetch);
+      if (!Array.isArray(res?.data)) {
+        throw new Error('Bulk board fetch returned an unexpected shape');
+      }
+      bodiesById = new Map(res.data.map((b) => [b.id, b]));
+    } catch (e) {
+      // Transient/server failure: defer adds & updates to the next sync. The
+      // deletions above are already applied (server-confirmed) and the
+      // PUSH phase can still upload local edits, so we don't abort the cycle.
+      console.error('Bulk board body fetch failed; deferring adds/updates:', e);
+      trackSyncException(e, { phase: 'pullBulkFetch' });
+      return;
+    }
+
+    // Resolve a fetched body, honoring a concurrent local edit: if the user
+    // marked the board PENDING while we were fetching, skip overwriting their
+    // changes. A requested id missing from the response (deleted in the race
+    // window between the manifest and this fetch) resolves to null and is
+    // skipped — it self-heals on the next sync.
+    const postFetchSyncMeta = getState().board.syncMeta;
+    const resolveBody = (boardId) => {
+      const body = bodiesById.get(boardId) ?? null;
+      if (!body) return null;
+      const wasPending =
+        preFetchSyncMeta[boardId]?.status === SYNC_STATUS.PENDING;
+      const isNowPending =
+        postFetchSyncMeta[boardId]?.status === SYNC_STATUS.PENDING;
+      if (!wasPending && isNowPending) return null;
+      return body;
+    };
+
+    // New boards on the server: add the ones we got bodies for.
+    const addedBoards = boardsToAdd
+      .map((b) => resolveBody(b.id))
+      .filter(Boolean);
+    if (addedBoards.length > 0) {
+      dispatch(addBoards(addedBoards));
+    }
+
+    // Changed boards on the server: update the ones we got bodies for.
+    boardsToUpdate.forEach((b) => {
+      const body = resolveBody(b.id);
+      if (body) {
+        dispatch(updateBoard(body, true)); //sets syncStatus to SYNCED
+      }
+    });
   };
 }
 
@@ -635,9 +690,10 @@ function classifyBoardsForPush({
 }) {
   const boardsToSync = [];
   const boardsToDelete = [];
+  const boardsToGraduate = [];
 
   // Helper to transform default/offline boards to belong to the current user
-  const transformAndTrack = board => {
+  const transformAndTrack = (board) => {
     if (!hasDefaultOrNoEmail(board)) return false;
     const transformedBoard = transformBoardForUser(
       board,
@@ -665,23 +721,38 @@ function classifyBoardsForPush({
 
   // Untracked boards (no syncMeta entry) that belong to the current user
   // or were created when the user was unlogged (empty email) or have the default email.
-  const remoteBoardMap = new Map(remoteBoards.map(b => [b.id, b]));
+  const remoteBoardMap = new Map(remoteBoards.map((b) => [b.id, b]));
+
+  let untrackedSeen = 0;
+  let pushedNew = 0;
+  let pushedUpdate = 0;
 
   for (const b of boards) {
     if (syncMeta[b.id] || (b.email !== userEmail && !isUnloggedCreatedBoard(b)))
       continue;
 
+    untrackedSeen++;
+
     const remote = remoteBoardMap.get(b.id);
     if (remote && moment(b.lastEdited).isSameOrBefore(remote.lastEdited)) {
-      // Graduate to SYNCED without pushing
-      dispatch(updateBoard(b, true));
+      // Graduate to SYNCED without pushing (board data is unchanged)
+      boardsToGraduate.push(b.id);
       continue;
     }
 
-    const wasTransformed = transformAndTrack(b);
-    boardsToSync.push({
-      boardId: b.id,
-      needsCreate: wasTransformed || isLocalBoard(b)
+    const needsCreate = transformAndTrack(b) || isLocalBoard(b);
+    needsCreate ? pushedNew++ : pushedUpdate++;
+    boardsToSync.push({ boardId: b.id, needsCreate });
+  }
+
+  if (untrackedSeen > 0) {
+    trackSyncEvent('Sync_Graduation', {
+      measurements: {
+        untrackedSeen,
+        graduated: boardsToGraduate.length,
+        pushedNew,
+        pushedUpdate
+      }
     });
   }
 
@@ -692,7 +763,41 @@ function classifyBoardsForPush({
     }
   }
 
+  // Graduate untracked boards to SYNCED in a single batched dispatch.
+  if (boardsToGraduate.length > 0) {
+    dispatch(markBoardsSynced(boardsToGraduate));
+  }
+
   return { boardsToSync, boardsToDelete };
+}
+
+const OBJECT_ID_REGEX = /^[0-9a-fA-F]{24}$/;
+// Mirrors the server's request cap on POST /board/byids; a lower server cap
+// would 400 every over-sized chunk and (safely) confirm nothing.
+const MAX_BOARDS_BY_IDS = 3000;
+
+/**
+ * Returns the subset of boardIds whose deletion the server confirms: ids
+ * absent from a fresh getBoardsByIds read. Any error or unexpected shape
+ * confirms nothing for that chunk. Ids that are not valid ObjectIds are never
+ * confirmed — the server filters them out, so their absence proves nothing.
+ */
+async function confirmServerDeletions(boardIds) {
+  const verifiableIds = boardIds.filter((id) => OBJECT_ID_REGEX.test(id));
+  const confirmedIds = [];
+  for (let i = 0; i < verifiableIds.length; i += MAX_BOARDS_BY_IDS) {
+    const chunk = verifiableIds.slice(i, i + MAX_BOARDS_BY_IDS);
+    try {
+      const res = await API.getBoardsByIds(chunk);
+      if (!Array.isArray(res?.data)) continue;
+      const existingIds = new Set(res.data.map((b) => b.id));
+      confirmedIds.push(...chunk.filter((id) => !existingIds.has(id)));
+    } catch (e) {
+      console.error('Deletion confirmation failed; keeping boards:', e);
+      trackSyncException(e, { phase: 'confirmDeletions' });
+    }
+  }
+  return confirmedIds;
 }
 
 /**
@@ -727,21 +832,28 @@ export function pushLocalChangesToApi(remoteBoards = []) {
       dispatch
     });
 
-    if (boardsToSync.some(b => b.needsCreate)) {
+    // If any board needs to be created, ensure the active communicator is owned
+    // by the logged-in user before any push runs. Guard on email inequality:
+    // verifyAndUpsertCommunicator re-stamps lastEdited on every dispatch (via
+    // EDIT_COMMUNICATOR), so re-running it on an already-owned communicator
+    // would bump lastEdited and risk a spurious PUT on the next sync.
+    if (boardsToSync.some((b) => b.needsCreate)) {
       const { communicators, activeCommunicatorId } = getState().communicator;
       const activeCommunicator = communicators.find(
-        c => c.id === activeCommunicatorId
+        (c) => c.id === activeCommunicatorId
       );
       if (activeCommunicator && activeCommunicator.email !== userEmail) {
         dispatch(verifyAndUpsertCommunicator(activeCommunicator));
       }
     }
 
+    const remoteBoardIds = new Set(remoteBoards.map((remote) => remote.id));
+
     // PUSH: Create/update boards
     for (const { boardId, needsCreate } of boardsToSync) {
       // Re-read board from current state to avoid stale references
       // (prior iterations may have mutated state via CREATE_API_BOARD_SUCCESS)
-      const board = getState().board.boards.find(b => b.id === boardId);
+      const board = getState().board.boards.find((b) => b.id === boardId);
       if (!board) continue;
 
       try {
@@ -757,7 +869,26 @@ export function pushLocalChangesToApi(remoteBoards = []) {
           await dispatch(updateApiBoard(board));
         }
       } catch (e) {
+        if (
+          !needsCreate &&
+          e.response?.status === 404 &&
+          !remoteBoardIds.has(board.id) &&
+          (await confirmServerDeletions([board.id])).length > 0
+        ) {
+          trackSyncEvent('Sync_PushNotFoundDelete', {
+            properties: {
+              boardId: board.id,
+              tracked: String(getState().board.syncMeta[board.id] != null),
+              boardLastEdited: String(board.lastEdited),
+              manifestWatermark: String(getManifestWatermark(remoteBoards))
+            },
+            measurements: { manifestSize: remoteBoards.length }
+          });
+          dispatch(deleteApiBoardSuccess({ id: board.id }));
+          continue;
+        }
         console.error('Failed to push board to API:', board.id, e);
+        trackSyncException(e, { phase: 'pushBoard', boardId: board.id });
       }
     }
 
@@ -791,15 +922,61 @@ export function syncBoards(remoteBoards) {
   return async (dispatch, getState) => {
     dispatch(syncBoardsStarted());
 
-    try {
-      const { boards: localBoards, syncMeta } = getState().board;
+    const startedAt = Date.now();
+    const userEmail = getState().app?.userData?.email;
+    const { boards: localBoards, syncMeta } = getState().board;
+    const pendingBefore = countPendingBoards(syncMeta);
 
-      // 1. Classify boards for PULL (remote changes + remote deletions)
-      const {
-        boardsToAdd,
-        boardsToUpdate,
-        boardIdsToDelete
-      } = classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
+    const manifestWatermark = String(getManifestWatermark(remoteBoards));
+    const localServerBoards = localBoards.filter(isServerBoard).length;
+
+    try {
+      trackSyncEvent('Sync_BoardsStarted', {
+        properties: { manifestWatermark },
+        measurements: {
+          pendingBefore,
+          manifestSize: remoteBoards.length,
+          localBoards: localBoards.length,
+          localServerBoards,
+          untrackedBefore: countUntrackedBoards(
+            localBoards,
+            syncMeta,
+            userEmail
+          )
+        }
+      });
+
+      if (Object.keys(syncMeta).length === 0 && localBoards.length > 0) {
+        trackSyncEvent('Sync_FirstRun', {
+          measurements: {
+            totalBoards: localBoards.length,
+            localBoards: localBoards.length - localServerBoards,
+            serverBoards: localServerBoards
+          }
+        });
+      }
+
+      // 1. Classify boards for PULL (remote changes + remote deletion candidates)
+      const { boardsToAdd, boardsToUpdate, boardIdsToVerifyDeletion } =
+        classifyRemoteBoards(localBoards, remoteBoards, syncMeta);
+
+      const boardIdsToDelete = await confirmServerDeletions(
+        boardIdsToVerifyDeletion
+      );
+
+      if (boardIdsToDelete.length > 0) {
+        trackSyncEvent('Sync_RemoteDeletions', {
+          properties: {
+            manifestWatermark,
+            boardIds: boardIdsToDelete.slice(0, 50).join(',')
+          },
+          measurements: {
+            deletedCount: boardIdsToDelete.length,
+            manifestSize: remoteBoards.length,
+            localServerBoards
+          }
+        });
+      }
 
       // 2. PULL: Apply remote changes to local state (includes remote deletions)
       await dispatch(
@@ -820,28 +997,77 @@ export function syncBoards(remoteBoards) {
       await dispatch(pushLocalChangesToApi(remoteBoards));
 
       dispatch(syncBoardsSuccess());
+      const successState = getState().board;
+      trackSyncEvent('Sync_Completed', {
+        properties: { outcome: 'success' },
+        measurements: {
+          durationMs: Date.now() - startedAt,
+          pendingBefore,
+          pendingAfter: countPendingBoards(successState.syncMeta),
+          untrackedAfter: countUntrackedBoards(
+            successState.boards,
+            successState.syncMeta,
+            userEmail
+          )
+        }
+      });
       return { success: true };
     } catch (error) {
       console.error('Sync boards failed:', error);
       dispatch(syncBoardsFailure(error));
+      const failureState = getState().board;
+      trackSyncEvent('Sync_Completed', {
+        properties: { outcome: 'failure' },
+        measurements: {
+          durationMs: Date.now() - startedAt,
+          pendingBefore,
+          pendingAfter: countPendingBoards(failureState.syncMeta),
+          untrackedAfter: countUntrackedBoards(
+            failureState.boards,
+            failureState.syncMeta,
+            userEmail
+          )
+        }
+      });
+      trackSyncException(error, { phase: 'syncBoards' });
       return { success: false, error };
     }
   };
 }
 
+export function sanitizeBoardMedia(board) {
+  return async (dispatch) => {
+    const { board: sanitized, hadFailure } =
+      await API.uploadBoardLocalMedia(board);
+    if (sanitized !== board) {
+      dispatch(updateBoard(sanitized));
+    }
+    if (hadFailure) {
+      throw new Error('media upload failed');
+    }
+    return sanitized;
+  };
+}
+
 export function createApiBoard(boardData, boardId) {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(createApiBoardStarted());
     boardData = {
       ...boardData,
       isPublic: false
     };
+    try {
+      boardData = await dispatch(sanitizeBoardMedia(boardData));
+    } catch (err) {
+      dispatch(createApiBoardFailure(err.message));
+      throw new Error(err.message);
+    }
     return API.createBoard(boardData)
-      .then(res => {
+      .then((res) => {
         dispatch(createApiBoardSuccess(res, boardId));
         return res;
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(createApiBoardFailure(err.message));
         throw new Error(err.message);
       });
@@ -849,28 +1075,34 @@ export function createApiBoard(boardData, boardId) {
 }
 
 export function updateApiBoard(boardData) {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(updateApiBoardStarted());
+    try {
+      boardData = await dispatch(sanitizeBoardMedia(boardData));
+    } catch (err) {
+      dispatch(updateApiBoardFailure(err.message));
+      throw new Error(err.message);
+    }
     return API.updateBoard(boardData)
-      .then(res => {
+      .then((res) => {
         dispatch(updateApiBoardSuccess(res));
         return res;
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(updateApiBoardFailure(err.message));
-        throw new Error(err.message);
+        throw err;
       });
   };
 }
 
 export function upsertApiBoard(boardData) {
-  return dispatch => {
+  return (dispatch) => {
     if (isLocalBoard(boardData)) {
       return dispatch(createApiBoard(boardData, boardData.id))
-        .then(res => {
+        .then((res) => {
           return res;
         })
-        .catch(e => {
+        .catch((e) => {
           throw new Error(e.message);
         });
     } else {
@@ -880,15 +1112,15 @@ export function upsertApiBoard(boardData) {
 }
 
 export function deleteApiBoard(boardId) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(deleteApiBoardStarted());
 
     return API.deleteBoard(boardId)
-      .then(res => {
+      .then((res) => {
         dispatch(deleteApiBoardSuccess(res));
         return res;
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(deleteApiBoardFailure(err.message));
         throw err;
       });
@@ -898,19 +1130,47 @@ export function deleteApiBoard(boardId) {
 /*
  * Thunk asynchronous functions
  */
-export function getApiObjects() {
-  return dispatch => {
-    return dispatch(getApiMyBoards())
-      .then(res => {
-        return dispatch(getApiMyCommunicators())
-          .then(res => {})
-          .catch(err => {
-            console.error(err.message);
-          });
-      })
-      .catch(err => {
-        console.error(err.message);
+export function getApiObjects(source = 'Unknown') {
+  return async (dispatch, getState) => {
+    if (getState().board.isSyncing) {
+      console.log(`Sync skipped - already in progress (${source})`);
+      trackSyncEvent('Sync_FullRun', {
+        properties: { source, outcome: 'skipped' }
       });
+      return Promise.resolve();
+    }
+    console.log(`Sync dispatched - ${source}`);
+    dispatch(syncStarted());
+
+    const startedAt = Date.now();
+    let boardsOk = false;
+    let communicatorsOk = false;
+
+    try {
+      await dispatch(getApiMyBoards());
+      boardsOk = true;
+      try {
+        await dispatch(getApiMyCommunicators());
+        communicatorsOk = true;
+      } catch (err) {
+        console.error(err.message);
+        trackSyncException(err, { phase: 'getApiMyCommunicators', source });
+      }
+    } catch (err) {
+      console.error(err.message);
+      trackSyncException(err, { phase: 'getApiMyBoards', source });
+    } finally {
+      dispatch(syncFinished());
+      trackSyncEvent('Sync_FullRun', {
+        properties: {
+          source,
+          outcome: boardsOk && communicatorsOk ? 'success' : 'failure',
+          boardsOk: String(boardsOk),
+          communicatorsOk: String(communicatorsOk)
+        },
+        measurements: { durationMs: Date.now() - startedAt }
+      });
+    }
   };
 }
 
@@ -926,7 +1186,7 @@ export function downloadImages() {
           typeof boards[i].caption !== 'undefined' &&
           isUrl(boards[i].caption)
         ) {
-          const img = images.find(image => image.id === boards[i].id);
+          const img = images.find((image) => image.id === boards[i].id);
           if (!img) {
             const element = await storeImage(
               boards[i].caption,
@@ -943,7 +1203,7 @@ export function downloadImages() {
             isUrl(boards[i].tiles[j].image)
           ) {
             const img = images.find(
-              image => image.id === boards[i].tiles[j].id
+              (image) => image.id === boards[i].tiles[j].id
             );
             if (!img) {
               const element = await storeImage(
@@ -1005,7 +1265,7 @@ export function updateApiObjectsNoChild(
     //create - update parent board
     const action = createParentBoard ? createApiBoard : updateApiBoard;
     return await dispatch(action(parentBoard, parentBoard.id))
-      .then(res => {
+      .then((res) => {
         const updatedParentBoardId = res.id;
         //add new boards to the active communicator
         if (parentBoard.id !== updatedParentBoardId) {
@@ -1023,7 +1283,7 @@ export function updateApiObjectsNoChild(
 
         //check if parent board is the root board of the communicator
         const comm = getState().communicator.communicators.find(
-          communicator =>
+          (communicator) =>
             communicator.id === getState().communicator.activeCommunicatorId
         );
         if (comm.rootBoard === parentBoard.id) {
@@ -1036,11 +1296,11 @@ export function updateApiObjectsNoChild(
             await dispatch(updateApiMarkedBoards());
             return updatedParentBoardId;
           })
-          .catch(e => {
+          .catch((e) => {
             throw new Error(e.message);
           });
       })
-      .catch(e => {
+      .catch((e) => {
         throw new Error(e.message);
       });
   };
@@ -1049,8 +1309,8 @@ export function updateApiMarkedBoards() {
   return async (dispatch, getState) => {
     const allBoards = [...getState().board.boards];
     for await (const board of allBoards) {
-      const boardsIds = getState().board.boards?.map(board => board.id);
-      if (!boardsIds.includes(board.id)) return;
+      const boardsIds = getState().board.boards?.map((board) => board.id);
+      if (!boardsIds.includes(board.id)) continue;
 
       if (
         isServerBoard(board) &&
@@ -1112,11 +1372,11 @@ export function updateApiObjects(
   return (dispatch, getState) => {
     //create child board
     return dispatch(createApiBoard(childBoard, childBoard.id))
-      .then(res => {
+      .then((res) => {
         const updatedChildBoardId = res.id;
         //create - update parent board
         const updateTilesParentBoard = () =>
-          parentBoard.tiles.map(tile => {
+          parentBoard.tiles.map((tile) => {
             if (tile.loadBoard === childBoard.id)
               return { ...tile, loadBoard: updatedChildBoardId };
             return tile;
@@ -1129,7 +1389,7 @@ export function updateApiObjects(
         };
         const action = createParentBoard ? createApiBoard : updateApiBoard;
         return dispatch(action(updatedParentBoard, parentBoard.id))
-          .then(res => {
+          .then((res) => {
             const updatedParentBoardId = res.id;
             //add new boards to the active communicator
             dispatch(
@@ -1150,7 +1410,7 @@ export function updateApiObjects(
 
             //check if parent board is the root board of the communicator
             const comm = getState().communicator.communicators.find(
-              communicator =>
+              (communicator) =>
                 communicator.id === getState().communicator.activeCommunicatorId
             );
             if (comm.rootBoard === parentBoard.id) {
@@ -1163,15 +1423,15 @@ export function updateApiObjects(
                 dispatch(updateApiMarkedBoards());
                 return updatedParentBoardId;
               })
-              .catch(e => {
+              .catch((e) => {
                 throw new Error(e.message);
               });
           })
-          .catch(e => {
+          .catch((e) => {
             throw new Error(e.message);
           });
       })
-      .catch(e => {
+      .catch((e) => {
         throw new Error(e.message);
       });
   };

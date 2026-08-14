@@ -37,7 +37,7 @@ export class SettingsSection extends PureComponent {
           }
         >
           {settings
-            .filter(item =>
+            .filter((item) =>
               (isAndroid() || isIOS()) && item.text.defaultMessage === 'Donate'
                 ? false
                 : true

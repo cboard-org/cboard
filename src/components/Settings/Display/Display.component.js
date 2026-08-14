@@ -76,7 +76,7 @@ class Display extends React.Component {
   renderFontFamilySelect() {
     const name = 'fontFamily';
     const actualFont = FONTS_FAMILIES.filter(
-      font => font.fontName === this.state[name]
+      (font) => font.fontName === this.state[name]
     )[0];
 
     return (
@@ -86,10 +86,10 @@ class Display extends React.Component {
           id={name}
           name={name}
           value={actualFont?.fontName || DEFAULT_FONT_FAMILY}
-          onChange={e => this.onDisplaySettingsChange(name, e)}
+          onChange={(e) => this.onDisplaySettingsChange(name, e)}
           style={{ fontFamily: actualFont?.fontFamily }}
         >
-          {FONTS_FAMILIES.map(font => (
+          {FONTS_FAMILIES.map((font) => (
             <MenuItem
               key={font?.fontName}
               value={font?.fontName}
@@ -111,7 +111,7 @@ class Display extends React.Component {
           id={name}
           name={name}
           value={this.state[name]}
-          onChange={e => this.onDisplaySettingsChange(name, e)}
+          onChange={(e) => this.onDisplaySettingsChange(name, e)}
         >
           <MenuItem
             value={

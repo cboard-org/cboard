@@ -50,7 +50,7 @@ export class ExportContainer extends PureComponent {
           );
         } else {
           const currentBoard = boards.filter(
-            board => board.id === activeBoardId
+            (board) => board.id === activeBoardId
           );
           await EXPORT_HELPERS[exportConfig.callback](
             currentBoard,
@@ -74,7 +74,7 @@ export class ExportContainer extends PureComponent {
           );
         } else {
           const currentBoard = boards.filter(
-            board => board.id === activeBoardId
+            (board) => board.id === activeBoardId
           );
           await EXPORT_HELPERS[exportConfig.callback](
             currentBoard,
@@ -120,7 +120,7 @@ export class ExportContainer extends PureComponent {
   }
 }
 
-export const mapStateToProps = state => ({
+export const mapStateToProps = (state) => ({
   boards: getVisibleBoards(state),
   activeBoardId: state.board.activeBoardId
 });

@@ -8,6 +8,7 @@ import {
   DISABLE_TOUR,
   ENABLE_ALL_TOURS,
   SET_UNLOGGED_USER_LOCATION,
+  SET_UNAUTH_EDIT_MODAL_DISMISSED,
   USER_DATA_PROPERTIES
 } from './App.constants';
 import { LOGIN_SUCCESS, LOGOUT } from '../Account/Login/Login.constants';
@@ -61,13 +62,14 @@ const initialState = {
   symbolsSettings: {
     arasaacActive: false
   },
-  userData: {}
+  userData: {},
+  unauthEditModalDismissed: false
 };
 
-const getKeysFromApiUserDataResponse = payload => {
+const getKeysFromApiUserDataResponse = (payload) => {
   const newUser = {};
   if (!payload) return newUser;
-  USER_DATA_PROPERTIES.forEach(prop => {
+  USER_DATA_PROPERTIES.forEach((prop) => {
     if (payload[prop] !== undefined) newUser[prop] = payload[prop];
   });
   return newUser;
@@ -167,7 +169,13 @@ function appReducer(state = initialState, action) {
     case LOGOUT:
       return {
         ...state,
-        userData: {}
+        userData: {},
+        unauthEditModalDismissed: false,
+        navigationSettings: {
+          ...state.navigationSettings,
+          pinLockEnabled: false,
+          pinCode: ''
+        }
       };
     case UPDATE_USER_DATA:
       return {
@@ -180,6 +188,11 @@ function appReducer(state = initialState, action) {
       return {
         ...state,
         unloggedUserLocation: action.location
+      };
+    case SET_UNAUTH_EDIT_MODAL_DISMISSED:
+      return {
+        ...state,
+        unauthEditModalDismissed: action.payload
       };
     default:
       return state;

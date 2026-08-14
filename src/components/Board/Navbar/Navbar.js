@@ -56,13 +56,13 @@ export class Navbar extends React.Component {
     }
   };
 
-  onScannableFocus = property => () => {
+  onScannableFocus = (property) => () => {
     if (!this.state[property]) {
       this.setState({ [property]: true });
     }
   };
 
-  onScannableBlur = property => () => {
+  onScannableBlur = (property) => () => {
     if (this.state[property]) {
       this.setState({ [property]: false });
     }

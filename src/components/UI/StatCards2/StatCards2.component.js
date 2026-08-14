@@ -20,7 +20,7 @@ const StatCards2 = ({ categoryTotals }) => {
               <NavigationIcon />
             </Fab>
             <h4 className="StatCards2__Card__Items__text">
-            {categoryTotals.navigation.title}
+              {categoryTotals.navigation.title}
             </h4>
           </div>
           <h1 className="StatCards2__Card__Value">
@@ -35,11 +35,11 @@ const StatCards2 = ({ categoryTotals }) => {
               <RecordVoiceOverIcon />
             </Fab>
             <h4 className="StatCards2__Card__Items__text">
-            {categoryTotals.speech.title}
+              {categoryTotals.speech.title}
             </h4>
           </div>
           <h1 className="StatCards2__Card__Value">
-          {categoryTotals.speech.value}
+            {categoryTotals.speech.value}
           </h1>
         </Card>
       </Grid>
@@ -50,11 +50,11 @@ const StatCards2 = ({ categoryTotals }) => {
               <EditIcon />
             </Fab>
             <h4 className="StatCards2__Card__Items__text">
-            {categoryTotals.edit.title}
+              {categoryTotals.edit.title}
             </h4>
           </div>
           <h1 className="StatCards2__Card__Value">
-          {categoryTotals.edit.value}
+            {categoryTotals.edit.value}
           </h1>
         </Card>
       </Grid>

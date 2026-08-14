@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
 import FullScreenDialog from './FullScreenDialog';
 
@@ -26,7 +26,6 @@ const props = {
   title: 'test',
   onClose: jest.fn(),
   onSubmit: jest.fn(),
-  disableSubmit: false,
   transition: 'up'
 };
 
@@ -36,6 +35,6 @@ describe('FullScreenDialog tests', () => {
   });
   test('check transition', () => {
     const fade = { ...props, transition: 'fade' };
-    const wrapper = shallow(<FullScreenDialog {...fade} />);
+    shallow(<FullScreenDialog {...fade} />);
   });
 });

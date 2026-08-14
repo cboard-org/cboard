@@ -1,10 +1,10 @@
 # Stage 1 - the build process
-FROM node:22.14.0 as build-deps
+FROM node:22.23.2 AS build-deps
 WORKDIR /usr/src/app
-COPY package.json yarn.lock ./
-RUN yarn install
+COPY package.json package-lock.json .npmrc ./
+RUN HUSKY=0 npm ci
 COPY . ./
-RUN NODE_OPTIONS="--max-old-space-size=4192" yarn build
+RUN NODE_OPTIONS="--max-old-space-size=4192" npm run build
 
 # Stage 2 - the production environment
 FROM nginx:stable-alpine

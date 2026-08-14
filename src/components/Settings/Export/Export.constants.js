@@ -101,8 +101,7 @@ export const FONTS = {
   NotoSansJP: {
     normal:
       'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansJP-Regular.ttf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansJP-Regular.ttf'
+    bold: 'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansJP-Regular.ttf'
   },
   NotoSansKR: {
     normal:
@@ -116,8 +115,7 @@ export const FONTS = {
   NotoSansSC: {
     normal:
       'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansSC-Regular.otf',
-    bold:
-      'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansSC-Regular.otf'
+    bold: 'https://cboardgroupqadiag.blob.core.windows.net/fonts/NotoSansSC-Regular.otf'
   },
   NotoSerifBengali: {
     normal: 'NotoSerifBengali-Regular.ttf',

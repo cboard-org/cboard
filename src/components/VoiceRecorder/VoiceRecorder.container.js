@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import VoiceRecorder from './VoiceRecorder.component';
 
-const VoiceRecorderContainer = props => <VoiceRecorder {...props} />;
+const VoiceRecorderContainer = (props) => <VoiceRecorder {...props} />;
 
 const mapStateToProps = ({ app: { userData } }, ownProps) => ({
   ...ownProps,

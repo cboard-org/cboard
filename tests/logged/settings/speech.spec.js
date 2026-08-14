@@ -7,35 +7,27 @@ test.describe('Cboard - Speech Settings (Logged In)', () => {
   test.beforeEach(async ({ page }) => {
     cboard = createCboard(page);
 
-    // Login before accessing settings
     await cboard.gotoLoginSignup();
 
-    // Use test credentials configured in playwright.config.ts
-    // These are set as default values in the configuration file
-    const testEmail = process.env.TEST_USER_EMAIL; // Set in playwright.config.ts: 'anything@cboard.io'
-    const testPassword = process.env.TEST_USER_PASSWORD; // Set in playwright.config.ts: 'lote10mza126'
+    const testEmail = process.env.TEST_USER_EMAIL;
+    const testPassword = process.env.TEST_USER_PASSWORD;
 
     try {
       await cboard.attemptLogin(testEmail, testPassword);
-      // Wait for successful login and redirect
+
       await cboard.page.waitForTimeout(2000);
 
-      // Check if we're logged in by looking for user-specific elements
-      // If login failed, we'll continue as guest user for now
       try {
         await cboard.page.waitForURL(/\/board/, { timeout: 5000 });
       } catch (urlError) {
-        // Login might have failed, continue as guest
         console.log('Login may have failed, continuing as guest user');
         await cboard.goto();
       }
     } catch (loginError) {
-      // If login fails, continue as guest user
       console.log('Login failed, continuing as guest user');
       await cboard.goto();
     }
 
-    // Navigate to speech settings
     await cboard.navigateToSettings();
     await cboard.clickSettingsTab('Speech');
   });
@@ -221,14 +213,11 @@ test.describe('Cboard - Speech Settings (Logged In)', () => {
     await cboard.testVoiceSelectionErrorHandling();
   });
 
-  // Additional logged-in user specific tests
   test('should save speech settings to user profile', async ({ page }) => {
-    // Test that speech settings are saved to the user's profile
     await cboard.testLocalVoiceSelection();
     await cboard.adjustPitchSlider(75);
     await cboard.adjustRateSlider(25);
 
-    // Save settings
     try {
       await cboard.speechSaveButton.click();
       await cboard.page.waitForTimeout(1000);
@@ -236,44 +225,36 @@ test.describe('Cboard - Speech Settings (Logged In)', () => {
       console.log('Save button not found or not needed');
     }
 
-    // Verify settings persist across page reloads
     await cboard.testVoiceSelectionPersistence();
   });
 
   test('should allow user-specific ElevenLabs API key storage', async ({
     page
   }) => {
-    // Test that logged-in users can store their own API keys
     await cboard.verifyElevenLabsApiKeyField();
     await cboard.setElevenLabsApiKey();
 
-    // Get the current API key value
     const apiKeyField = cboard.page.getByRole('textbox', { name: 'sk-' });
     const initialValue = await apiKeyField.inputValue();
 
-    // Reload page and verify API key persists for logged-in user
     await cboard.page.reload();
     await cboard.page.waitForLoadState('domcontentloaded');
     await cboard.page.waitForTimeout(2000);
 
-    // Navigate to speech settings again (since page was reloaded)
     try {
       await cboard.navigateToSettings();
       await cboard.clickSettingsTab('Speech');
     } catch (error) {
-      // If navigation fails, try direct navigation
       await cboard.goto();
       await cboard.navigateToSettings();
       await cboard.clickSettingsTab('Speech');
     }
 
-    // Check if API key field retains the value (for logged-in users)
     const updatedApiKeyField = cboard.page.getByRole('textbox', {
       name: 'sk-'
     });
     const persistedValue = await updatedApiKeyField.inputValue();
 
-    // For logged-in users, the API key might be saved
     if (
       persistedValue &&
       persistedValue.startsWith('sk_') &&
@@ -284,7 +265,6 @@ test.describe('Cboard - Speech Settings (Logged In)', () => {
       console.log(
         'API key not persisted - may require user account features or additional implementation'
       );
-      // This is not necessarily a failure - it depends on whether the feature is implemented
     }
   });
 });

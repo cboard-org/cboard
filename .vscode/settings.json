@@ -1,11 +1,11 @@
 {
   "editor.formatOnSave": true,
   "chat.tools.terminal.autoApprove": {
-    "/^yarn test --watchAll=false --forceExit --testPathPattern=\"/Board\\|Communicator\\|App\\|Settings\\|Account\\|UI/\" 2>&1$/": {
+    "/^npm test -- --watchAll=false --forceExit --testPathPattern=\"/Board\\|Communicator\\|App\\|Settings\\|Account\\|UI/\" 2>&1$/": {
       "approve": true,
       "matchCommandLine": true
     },
-    "/^yarn test --watchAll=false --forceExit --updateSnapshot --testPathPattern=\"/Board\\|Communicator\\|App\\|Settings\\|Account\\|UI/\" 2>&1 \\| Select-Object -Last 15$/": {
+    "/^npm test -- --watchAll=false --forceExit --updateSnapshot --testPathPattern=\"/Board\\|Communicator\\|App\\|Settings\\|Account\\|UI/\" 2>&1 \\| Select-Object -Last 15$/": {
       "approve": true,
       "matchCommandLine": true
     }

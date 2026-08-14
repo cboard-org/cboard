@@ -34,19 +34,26 @@ const initialState = {
 
 function communicatorReducer(state = initialState, action) {
   const activeCommunicator = state.communicators.find(
-    communicator => communicator.id === state.activeCommunicatorId
+    (communicator) => communicator.id === state.activeCommunicatorId
   );
   switch (action.type) {
-    case LOGIN_SUCCESS:
+    case LOGIN_SUCCESS: {
       const userCommunicators = action.payload.communicators || [];
       const activeCommunicatorId = userCommunicators.length
         ? userCommunicators[userCommunicators.length - 1].id
         : state.activeCommunicatorId;
+      const remoteIds = new Set(userCommunicators.map((c) => c.id));
+      const base = (
+        action.payload.discardLocalChanges
+          ? deepCopy(defaultCommunicators)
+          : state.communicators
+      ).filter((c) => !remoteIds.has(c.id));
       return {
         ...state,
         activeCommunicatorId,
-        communicators: state.communicators.concat(userCommunicators)
+        communicators: base.concat(userCommunicators)
       };
+    }
 
     case LOGOUT:
       return {
@@ -72,7 +79,7 @@ function communicatorReducer(state = initialState, action) {
 
     case EDIT_COMMUNICATOR:
       const communicatorIndex = state.communicators.findIndex(
-        c => c.id === action.payload.id
+        (c) => c.id === action.payload.id
       );
       let newState = { ...state };
 
@@ -170,8 +177,8 @@ function communicatorReducer(state = initialState, action) {
             homeBoard: 'root'
           };
 
-          const hasValidDefaultBoardsIncluded = !!activeCommunicator
-            .defaultBoardsIncluded?.length;
+          const hasValidDefaultBoardsIncluded =
+            !!activeCommunicator.defaultBoardsIncluded?.length;
 
           const defaultBoardsIncluded = hasValidDefaultBoardsIncluded
             ? [
@@ -181,9 +188,8 @@ function communicatorReducer(state = initialState, action) {
             : [BOARD_ALREADY_INCLUDED_DATA, action.defaultBoardData];
 
           const updatedCommunicators = [...state.communicators];
-          updatedCommunicators[
-            index
-          ].defaultBoardsIncluded = defaultBoardsIncluded;
+          updatedCommunicators[index].defaultBoardsIncluded =
+            defaultBoardsIncluded;
           updatedCommunicators[index].lastEdited = moment().format();
 
           return {
@@ -212,7 +218,8 @@ function communicatorReducer(state = initialState, action) {
       return { ...state };
 
     case CREATE_API_COMMUNICATOR_SUCCESS:
-      // need to check if it was the active communicator as well
+      // need to check if it was the active communicator as well.
+
       return {
         ...state,
         isFetching: false,
@@ -220,11 +227,13 @@ function communicatorReducer(state = initialState, action) {
           state.activeCommunicatorId === action.communicatorId
             ? action.communicator.id
             : state.activeCommunicatorId,
-        communicators: state.communicators.map(communicator =>
+        communicators: state.communicators.map((communicator) =>
           communicator.id === action.communicatorId
             ? {
                 ...communicator,
                 id: action.communicator.id,
+                email: action.communicator.email,
+                author: action.communicator.author,
                 lastEdited: action.communicator.lastEdited
               }
             : communicator
@@ -244,7 +253,7 @@ function communicatorReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        communicators: state.communicators.map(communicator =>
+        communicators: state.communicators.map((communicator) =>
           communicator.id === action.communicator.id
             ? {
                 ...communicator,

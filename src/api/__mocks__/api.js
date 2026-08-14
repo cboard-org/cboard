@@ -73,6 +73,20 @@ class API {
     });
   }
 
+  getBoardsByIds(ids = []) {
+    return Promise.resolve({
+      total: ids.length,
+      data: ids.map((id) => ({ ...mockBoard, id }))
+    });
+  }
+
+  getBoardsSync() {
+    return Promise.resolve({
+      total: 1,
+      data: [{ id: mockBoard.id, lastEdited: mockBoard.lastEdited }]
+    });
+  }
+
   createBoard(board) {
     return new Promise((resolve, reject) => {
       if (board.hasOwnProperty('error')) {
@@ -112,18 +126,17 @@ class API {
       }
     });
   }
+
+  async uploadBoardLocalMedia(board) {
+    return { board, hadFailure: false };
+  }
+
   async arasaacPictogramsSearch(locale, searchText) {
     return [];
   }
 
   oAuthLogin(type, query) {
-    return new Promise((resolve, reject) => {
-      if (email === 'error') {
-        reject(new Error({ message: 'not found' }));
-      } else {
-        resolve(userData);
-      }
-    });
+    return Promise.resolve(userData);
   }
 
   async getBoards({

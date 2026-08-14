@@ -12,11 +12,10 @@ interface ParsedZip {
 }
 
 async function parseZip(zip: JSZip): Promise<ParsedZip> {
-
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const parsedZip: ParsedZip = {
       data: [],
-      symbols: [],
+      symbols: []
     };
 
     let counter = 0;
@@ -43,15 +42,15 @@ async function parseZip(zip: JSZip): Promise<ParsedZip> {
             return {
               ...item,
               kw: item.kw.map((kw: string | undefined) =>
-                kw ? kw.trim().toLowerCase() : '',
-              ),
+                kw ? kw.trim().toLowerCase() : ''
+              )
             };
-          },
+          }
         );
 
         parsedZip.data.push({
           data,
-          id,
+          id
         });
       }
 

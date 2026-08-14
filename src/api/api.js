@@ -9,12 +9,23 @@ import {
   AZURE_SPEECH_SUBSCR_KEY
 } from '../constants';
 import { getStore } from '../store';
-import { dataURLtoFile } from '../helpers';
+import {
+  convertMediaUrlToCDN,
+  dataURLtoBlob,
+  isDataURL,
+  isLocalFileURL
+} from '../helpers';
 import { logout } from '../components/Account/Login/Login.actions.js';
-import { isAndroid } from '../cordova-util';
+import { cvaFileToBlob, isAndroid } from '../cordova-util';
 
 const BASE_URL = API_URL;
 const LOCAL_COMMUNICATOR_ID = 'cboard_default';
+
+const FILE_NOT_FOUND_ERR = 1;
+const FILE_ENCODING_ERR = 5;
+const isUnrecoverableFileError = (error) =>
+  !!error &&
+  (error.code === FILE_NOT_FOUND_ERR || error.code === FILE_ENCODING_ERR);
 export let improvePhraseAbortController;
 
 const getUserData = () => {
@@ -41,7 +52,7 @@ const getAuthToken = () => {
 
 const getQueryParameters = (obj = {}) => {
   return Object.keys(obj)
-    .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(obj[k])}`)
+    .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(obj[k])}`)
     .join('&');
 };
 
@@ -52,8 +63,8 @@ class API {
       ...config
     });
     this.axiosInstance.interceptors.response.use(
-      response => response,
-      error => {
+      (response) => response,
+      (error) => {
         if (
           error.response?.status === 403 &&
           error.config?.baseURL === BASE_URL
@@ -61,10 +72,10 @@ class API {
           if (isAndroid()) {
             window.FirebasePlugin.unregister();
             window.facebookConnectPlugin.logout(
-              function(msg) {
+              function (msg) {
                 console.log('disconnect facebook msg' + msg);
               },
-              function(msg) {
+              function (msg) {
                 console.log('error facebook disconnect msg' + msg);
               }
             );
@@ -110,9 +121,8 @@ class API {
   async arasaacPictogramsSearch(locale, searchText) {
     const pictogSearchTextPath = `${ARASAAC_BASE_PATH_API}pictograms/${locale}/search/${searchText}`;
     try {
-      const { status, data } = await this.axiosInstance.get(
-        pictogSearchTextPath
-      );
+      const { status, data } =
+        await this.axiosInstance.get(pictogSearchTextPath);
       if (status === 200) return data;
       return [];
     } catch (err) {
@@ -139,9 +149,8 @@ class API {
     }
     const pictogSearchTextPath = `${GLOBALSYMBOLS_BASE_PATH_API}labels/search/?query=${searchText}&language=${language}&language_iso_format=639-3&limit=20`;
     try {
-      const { status, data } = await this.axiosInstance.get(
-        pictogSearchTextPath
-      );
+      const { status, data } =
+        await this.axiosInstance.get(pictogSearchTextPath);
       if (status === 200) return data;
       return [];
     } catch (err) {
@@ -253,6 +262,44 @@ class API {
     const url = `/board/byemail/${email}?${query}`;
 
     const { data } = await this.axiosInstance.get(url, { headers });
+    return data;
+  }
+
+  // Fetch the full bodies of a specific set of boards in a single request.
+  // POST (not GET) because the id list can be large enough to blow past URL
+  // length limits on a fresh-device sync.
+  async getBoardsByIds(ids = []) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { data } = await this.axiosInstance.post(
+      `/board/byids`,
+      { ids },
+      { headers }
+    );
+    return data;
+  }
+
+  async getBoardsSync() {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const { email } = getUserData();
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { data } = await this.axiosInstance.get(`/board/sync/${email}`, {
+      headers
+    });
     return data;
   }
 
@@ -416,15 +463,177 @@ class API {
     return data;
   }
 
-  async uploadFromDataURL(dataURL, filename, checkExtension = false) {
-    const file = dataURLtoFile(dataURL, filename, checkExtension);
-
-    let url = null;
+  async tryUploadDataURL(dataURL, filename, checkExtension = false) {
+    let blob;
     try {
-      url = await this.uploadFile(file, filename);
-    } catch (e) {}
+      blob = dataURLtoBlob(dataURL);
+    } catch (e) {
+      return { url: null, unrecoverable: true };
+    }
+    let name = filename;
+    if (checkExtension) {
+      const extension = (blob.type.split('/')[1] || 'png').toLowerCase();
+      name = `${filename}.${extension}`;
+    }
+    try {
+      const url = await this.uploadFile(blob, name);
+      return { url, unrecoverable: false };
+    } catch (e) {
+      return { url: null, unrecoverable: false };
+    }
+  }
 
+  async uploadFromDataURL(dataURL, filename, checkExtension = false) {
+    const { url } = await this.tryUploadDataURL(
+      dataURL,
+      filename,
+      checkExtension
+    );
     return url;
+  }
+
+  async uploadTileImageMedia(tile) {
+    if (isDataURL(tile.image)) {
+      const { url, unrecoverable } = await this.tryUploadDataURL(
+        tile.image,
+        tile.id,
+        true
+      );
+      return { attempted: true, url, unrecoverable };
+    }
+
+    if (isLocalFileURL(tile.image) && isAndroid()) {
+      const resolved = await new Promise((resolve) => {
+        window.resolveLocalFileSystemURL(
+          tile.image,
+          (fileEntry) => {
+            fileEntry.file(
+              (file) => resolve({ file }),
+              (error) => resolve({ error })
+            );
+          },
+          (error) => resolve({ error })
+        );
+      });
+      if (!resolved.file) {
+        return {
+          attempted: true,
+          url: null,
+          unrecoverable: isUnrecoverableFileError(resolved.error)
+        };
+      }
+
+      let realBlob;
+      try {
+        realBlob = await cvaFileToBlob(resolved.file, 'image/png');
+      } catch (e) {
+        return { attempted: true, url: null, unrecoverable: true };
+      }
+
+      try {
+        const segments = tile.image.split('/');
+        const name = segments[segments.length - 1] || tile.id;
+        const url = await this.uploadFile(realBlob, name);
+        return { attempted: true, url, unrecoverable: false };
+      } catch (e) {
+        return { attempted: true, url: null, unrecoverable: false };
+      }
+    }
+
+    return { attempted: false, url: null, unrecoverable: false };
+  }
+
+  async uploadTileSoundMedia(tile) {
+    if (isDataURL(tile.sound)) {
+      const { url, unrecoverable } = await this.tryUploadDataURL(
+        tile.sound,
+        `${tile.id}.mp3`
+      );
+      return { attempted: true, url, unrecoverable };
+    }
+
+    return { attempted: false, url: null, unrecoverable: false };
+  }
+
+  async uploadBoardCaptionMedia(board) {
+    if (isDataURL(board?.caption)) {
+      const { url, unrecoverable } = await this.tryUploadDataURL(
+        board.caption,
+        board.id,
+        true
+      );
+      return { attempted: true, url, unrecoverable };
+    }
+
+    return { attempted: false, url: null, unrecoverable: false };
+  }
+
+  async uploadBoardLocalMedia(board) {
+    const tiles = board?.tiles || [];
+    const targets = tiles.filter(
+      (tile) =>
+        isDataURL(tile?.image) ||
+        isLocalFileURL(tile?.image) ||
+        isDataURL(tile?.sound)
+    );
+
+    const captionIsTarget = isDataURL(board?.caption);
+
+    if (!targets.length && !captionIsTarget) {
+      return { board, hadFailure: false };
+    }
+
+    const tileUpdates = {};
+    let hadFailure = false;
+
+    const applyMedia = (result, apply) => {
+      if (!result.attempted) return;
+      if (result.url) apply(result.url);
+      else if (result.unrecoverable) apply('');
+      else hadFailure = true;
+    };
+
+    const captionPromise = captionIsTarget
+      ? this.uploadBoardCaptionMedia(board)
+      : null;
+
+    const uploadTarget = async (tile) => {
+      try {
+        const [image, sound] = await Promise.all([
+          this.uploadTileImageMedia(tile),
+          this.uploadTileSoundMedia(tile)
+        ]);
+
+        const update = {};
+        applyMedia(image, (url) => (update.image = url));
+        applyMedia(sound, (url) => (update.sound = url));
+
+        if (Object.keys(update).length) {
+          tileUpdates[tile.id] = update;
+        }
+      } catch (e) {
+        hadFailure = true;
+      }
+    };
+
+    const CONCURRENCY = 5;
+    for (let i = 0; i < targets.length; i += CONCURRENCY) {
+      await Promise.all(targets.slice(i, i + CONCURRENCY).map(uploadTarget));
+    }
+
+    const sanitizedBoard = {
+      ...board,
+      tiles: tiles.map((tile) => {
+        const update = tileUpdates[tile?.id];
+        return update ? { ...tile, ...update } : tile;
+      })
+    };
+
+    if (captionPromise) {
+      applyMedia(await captionPromise, (url) => (sanitizedBoard.caption = url));
+    }
+
+    return { board: sanitizedBoard, hadFailure };
   }
 
   async uploadFile(file, filename) {
@@ -444,7 +653,8 @@ class API {
       headers
     });
 
-    return response.data.url;
+    const url = response.data.url;
+    return (url && convertMediaUrlToCDN(url)) || url;
   }
 
   async createCommunicator(communicator) {

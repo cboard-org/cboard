@@ -57,25 +57,24 @@ class InputImage extends Component {
     const { setIsLoadingImage } = this.props;
     try {
       const imageURL = await window.cordova.plugins.safMediastore.selectFile();
-      const imageName = await window.cordova.plugins.safMediastore.getFileName(
-        imageURL
-      );
+      const imageName =
+        await window.cordova.plugins.safMediastore.getFileName(imageURL);
       setIsLoadingImage(true);
       const file = await new Promise((resolve, reject) => {
         window.resolveLocalFileSystemURL(
           imageURL,
-          fileEntry => {
+          (fileEntry) => {
             fileEntry.file(
-              file => {
+              (file) => {
                 resolve(file);
               },
-              err => {
+              (err) => {
                 console.error(err);
                 resolve(null);
               }
             );
           },
-          err => {
+          (err) => {
             console.error(err);
             resolve(null);
           }
@@ -91,7 +90,7 @@ class InputImage extends Component {
     setIsLoadingImage(false);
   };
 
-  handleChange = async event => {
+  handleChange = async (event) => {
     const { setIsLoadingImage } = this.props;
     setIsLoadingImage(true);
     const file = event.target.files[0];

@@ -53,33 +53,31 @@ import {
   addBoardCommunicator,
   verifyAndUpsertCommunicator
 } from '../Communicator/Communicator.actions';
-import { disableTour } from '../App/App.actions';
+import { disableTour, setUnauthEditModalDismissed } from '../App/App.actions';
+import { isLogged, isUnauthEditModalDismissed } from '../App/App.selectors';
 import { showPremiumRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
 import { isSubscriptionRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.selectors';
+import UnauthenticatedEditModal from '../LoggedInFeature/UnauthenticatedEditModal';
 import TileEditor from './TileEditor';
 import messages from './Board.messages';
 import Board from './Board.component';
 import API from '../../api';
-import {
-  SCANNING_METHOD_AUTOMATIC,
-  SCANNING_METHOD_MANUAL
-} from '../Settings/Scanning/Scanning.constants';
 import { NOTIFICATION_DELAY } from '../Notifications/Notifications.constants';
 import { EMPTY_VOICES } from '../../providers/SpeechProvider/SpeechProvider.constants';
 import { DEFAULT_ROWS_NUMBER, DEFAULT_COLUMNS_NUMBER } from './Board.constants';
 import { getVisibleBoards } from './Board.selectors';
 import PremiumFeature from '../PremiumFeature';
 import {
-  IS_BROWSING_FROM_APPLE_TOUCH,
-  IS_BROWSING_FROM_SAFARI
-} from '../../constants';
+  scrollBoardToTop,
+  processTileClick,
+  getScannerStrategyNotificationMessages,
+  computeScrollState,
+  notifyLockCountdown
+} from './Board.utils';
 import LoadingIcon from '../UI/LoadingIcon';
 import PinDialog from '../UI/PinDialog';
 import { resolveTileLabel } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
-
-const ogv = require('ogv');
-ogv.OGVLoader.base = process.env.PUBLIC_URL + '/ogv';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -189,7 +187,16 @@ export class BoardContainer extends Component {
     isSymbolSearchTourEnabled: PropTypes.bool,
     disableTour: PropTypes.func,
     isLiveMode: PropTypes.bool,
-    changeDefaultBoard: PropTypes.func
+    changeDefaultBoard: PropTypes.func,
+    /**
+     * Whether the unauthenticated edit modal has already been dismissed
+     * for the current logged-out session
+     */
+    unauthEditModalDismissed: PropTypes.bool,
+    /**
+     * Persist that the unauthenticated edit modal was dismissed
+     */
+    setUnauthEditModalDismissed: PropTypes.func
   };
 
   state = {
@@ -208,7 +215,8 @@ export class BoardContainer extends Component {
     isCbuilderBoard: false,
     pinDialogOpen: false,
     pinAttempt: '',
-    pinError: false
+    pinError: false,
+    showUnauthEditModal: false
   };
   constructor(props) {
     super(props);
@@ -235,25 +243,25 @@ export class BoardContainer extends Component {
 
     if (id && board && id === board.id) {
       //active board = requested board, use that board
-      boardExists = boards.find(b => b.id === board.id);
+      boardExists = boards.find((b) => b.id === board.id);
     } else if (id && board && id !== board.id) {
       //active board != requested board, use requested if exist otherwise use active
-      boardExists = boards.find(b => b.id === id);
+      boardExists = boards.find((b) => b.id === id);
       if (!boardExists) {
         try {
           const remoteBoard = await this.tryRemoteBoard(id);
           if (remoteBoard) {
             boardExists = remoteBoard;
           } else {
-            boardExists = boards.find(b => b.id === board.id);
+            boardExists = boards.find((b) => b.id === board.id);
           }
         } catch (err) {
-          boardExists = boards.find(b => b.id === board.id);
+          boardExists = boards.find((b) => b.id === board.id);
         }
       }
     } else if (id && !board) {
       //no active board but requested board, use requested
-      boardExists = boards.find(b => b.id === id);
+      boardExists = boards.find((b) => b.id === id);
       if (!boardExists) {
         try {
           boardExists = await this.tryRemoteBoard(id);
@@ -263,17 +271,17 @@ export class BoardContainer extends Component {
       }
     } else if (!id && !!board) {
       //no requested board, use active board
-      boardExists = boards.find(b => b.id === board.id);
+      boardExists = boards.find((b) => b.id === board.id);
     } else {
       //neither requested nor active board, use communicator root board
-      boardExists = boards.find(b => b.id === communicator.rootBoard);
+      boardExists = boards.find((b) => b.id === communicator.rootBoard);
     }
 
     if (!boardExists) {
       // try the root board
-      boardExists = boards.find(b => b.id === communicator.rootBoard);
+      boardExists = boards.find((b) => b.id === communicator.rootBoard);
       if (!boardExists) {
-        boardExists = boards.find(b => b.id !== '');
+        boardExists = boards.find((b) => b.id !== '');
       }
     }
     const boardId = boardExists.id;
@@ -297,7 +305,9 @@ export class BoardContainer extends Component {
         historyRemoveBoard
       } = this.props;
 
-      const boardExists = boards.find(b => b.id === nextProps.match.params.id);
+      const boardExists = boards.find(
+        (b) => b.id === nextProps.match.params.id
+      );
       if (boardExists) {
         // Was a browser back action?
         if (
@@ -329,7 +339,7 @@ export class BoardContainer extends Component {
   }
 
   toggleSelectMode() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       isSelecting: !prevState.isSelecting,
       isSelectAll: false,
       selectedTileIds: []
@@ -338,7 +348,7 @@ export class BoardContainer extends Component {
 
   selectAllTiles() {
     const { board } = this.props;
-    const allTileIds = board.tiles.map(tile => tile.id);
+    const allTileIds = board.tiles.map((tile) => tile.id);
 
     this.setState({
       selectedTileIds: allTileIds
@@ -419,16 +429,7 @@ export class BoardContainer extends Component {
     return dataURL;
   }
 
-  async playAudio(src) {
-    const safariNeedHelp =
-      (IS_BROWSING_FROM_SAFARI || IS_BROWSING_FROM_APPLE_TOUCH) &&
-      src.endsWith('.ogg');
-    const audio = safariNeedHelp ? new ogv.OGVPlayer() : new Audio();
-    audio.src = src;
-    await audio.play();
-  }
-
-  handleEditBoardTitle = name => {
+  handleEditBoardTitle = (name) => {
     const { board, updateBoard } = this.props;
     const titledBoard = {
       ...board,
@@ -439,7 +440,7 @@ export class BoardContainer extends Component {
     this.saveApiBoardOperation(processedBoard);
   };
 
-  saveApiBoardOperation = async board => {
+  saveApiBoardOperation = async (board) => {
     const {
       userData,
       communicator,
@@ -527,7 +528,7 @@ export class BoardContainer extends Component {
     this.saveApiBoardOperation(processedBoard);
   };
 
-  getDefaultOrdering = tiles => {
+  getDefaultOrdering = (tiles) => {
     let order = [];
     let tilesIndex = 0;
     for (var i = 0; i < DEFAULT_ROWS_NUMBER; i++) {
@@ -548,7 +549,7 @@ export class BoardContainer extends Component {
     this.setState({ tileEditorOpen: false });
   };
 
-  handleEditTileEditorSubmit = tiles => {
+  handleEditTileEditorSubmit = (tiles) => {
     const { board, editTiles, userData } = this.props;
     this.updateIfFeaturedBoard(board);
     editTiles(tiles, board.id);
@@ -560,7 +561,7 @@ export class BoardContainer extends Component {
     this.toggleSelectMode();
   };
 
-  handleAddTileEditorSubmit = async tile => {
+  handleAddTileEditorSubmit = async (tile) => {
     const {
       userData,
       createTile,
@@ -604,7 +605,7 @@ export class BoardContainer extends Component {
     }
   };
 
-  updateIfFeaturedBoard = board => {
+  updateIfFeaturedBoard = (board) => {
     const { userData, updateBoard, intl, lang } = this.props;
     let boardData = {
       ...board
@@ -631,7 +632,7 @@ export class BoardContainer extends Component {
     return boardData;
   };
 
-  nameFromKey = board => {
+  nameFromKey = (board) => {
     let nameFromKey = undefined;
     if (board.nameKey) {
       const nameKeyArray = board.nameKey.split('.');
@@ -731,9 +732,9 @@ export class BoardContainer extends Component {
       return -1;
     });
 
-    const tilesIds = currentLayout.map(gridTile => gridTile.i);
-    const tiles = tilesIds.map(t => {
-      return board.tiles.find(tile => {
+    const tilesIds = currentLayout.map((gridTile) => gridTile.i);
+    const tiles = tilesIds.map((t) => {
+      return board.tiles.find((tile) => {
         if (!tile) {
           return false;
         }
@@ -743,13 +744,15 @@ export class BoardContainer extends Component {
 
     if (navigationSettings.bigScrollButtonsActive) {
       const cols =
-        currentLayout.reduce(function(valorAnterior, item) {
+        currentLayout.reduce(function (valorAnterior, item) {
           if (item.x > valorAnterior) return item.x;
           return valorAnterior;
         }, 0) + 1;
-      const rows = 3;
-      const isScroll = currentLayout.length / cols > rows ? true : false;
-      const totalRows = Math.ceil(currentLayout.length / cols);
+      const { isScroll, totalRows } = computeScrollState(
+        currentLayout.length,
+        cols,
+        3
+      );
       this.setIsScroll(isScroll, totalRows);
     }
 
@@ -783,11 +786,8 @@ export class BoardContainer extends Component {
   };
 
   handleLockClick = () => {
-    const {
-      showPremiumRequired,
-      isSubscriptionRequired,
-      setIsSaving
-    } = this.props;
+    const { showPremiumRequired, isSubscriptionRequired, setIsSaving } =
+      this.props;
     const { pinLockEnabled, pinCode } = this.props.navigationSettings || {};
 
     const hasValidPinCode =
@@ -804,8 +804,17 @@ export class BoardContainer extends Component {
       return;
     }
 
+    if (
+      this.state.isLocked &&
+      !this.props.isLogged &&
+      !this.props.unauthEditModalDismissed
+    ) {
+      this.setState({ showUnauthEditModal: true });
+      return;
+    }
+
     this.setState(
-      prevState => ({
+      (prevState) => ({
         isLocked: !prevState.isLocked,
         isSaving: false,
         isSelecting: false,
@@ -831,12 +840,12 @@ export class BoardContainer extends Component {
       this.selectAllTiles();
     }
 
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       isSelectAll: !prevState.isSelectAll
     }));
   };
 
-  handleTileClick = clickedTile => {
+  handleTileClick = (clickedTile) => {
     const tile = {
       ...clickedTile,
       label: resolveTileLabel(clickedTile, this.props.intl)
@@ -855,55 +864,28 @@ export class BoardContainer extends Component {
       boards,
       showNotification,
       navigationSettings,
-      isLiveMode
+      isLiveMode,
+      output
     } = this.props;
-    const hasAction = tile.action && tile.action.startsWith('+');
 
-    const say = () => {
-      if (tile.sound) {
-        this.playAudio(tile.sound);
-      } else {
-        const toSpeak = !hasAction ? tile.vocalization || tile.label : null;
-        if (toSpeak) {
-          speak(toSpeak);
-        }
-      }
-    };
-
-    if (tile.loadBoard) {
-      const nextBoard =
-        boards.find(b => b.id === tile.loadBoard) ||
-        // If the board id is invalid, try falling back to a board
-        // with the right name.
-        boards.find(b => b.name === tile.label);
-      if (nextBoard) {
-        changeBoard(nextBoard.id);
-        this.props.history.push(nextBoard.id);
-        if (navigationSettings.vocalizeFolders) {
-          say();
-        }
-      } else {
+    processTileClick({
+      tile,
+      boards,
+      output,
+      navigationSettings,
+      speak,
+      changeBoard,
+      changeOutput,
+      clickSymbol,
+      isLiveMode,
+      generateId: shortid.generate,
+      onNavigate: (nextBoardId) => {
+        this.props.history.push(nextBoardId);
+      },
+      onBoardNotFound: () => {
         showNotification(intl.formatMessage(messages.boardMissed));
       }
-    } else {
-      clickSymbol(tile.label);
-      if (!navigationSettings.quietBuilderMode) {
-        say();
-      }
-      if (isLiveMode) {
-        const liveTile = {
-          backgroundColor: 'rgb(255, 241, 118)',
-          id: shortid.generate(),
-          image: '',
-          label: '',
-          labelKey: '',
-          type: 'live'
-        };
-        changeOutput([...this.props.output, tile, liveTile]);
-      } else {
-        changeOutput([...this.props.output, tile]);
-      }
-    }
+    });
   };
 
   handleAddTile = (tile, boardId) => {
@@ -929,7 +911,7 @@ export class BoardContainer extends Component {
     this.toggleSelectMode();
   };
 
-  handleLockNotify = countdown => {
+  handleLockNotify = (countdown) => {
     const { intl, showNotification, hideNotification } = this.props;
     const { quickUnlockActive, pinLockEnabled, pinCode } =
       this.props.navigationSettings || {};
@@ -952,23 +934,11 @@ export class BoardContainer extends Component {
       return;
     }
 
-    if (countdown > 3) {
-      return;
-    }
-
-    if (!countdown) {
-      hideNotification();
-      return;
-    }
-
-    const clicksToUnlock = `${countdown} ${intl.formatMessage(
-      messages.clicksToUnlock
-    )}`;
-
-    hideNotification();
-    // HACK: refactor Notification container
-    setTimeout(() => {
-      showNotification(clicksToUnlock);
+    notifyLockCountdown({
+      countdown,
+      intl,
+      showNotification,
+      hideNotification
     });
   };
 
@@ -980,7 +950,7 @@ export class BoardContainer extends Component {
     });
   };
 
-  handlePinChange = value => {
+  handlePinChange = (value) => {
     this.setState({
       pinAttempt: value,
       pinError: false
@@ -1021,15 +991,16 @@ export class BoardContainer extends Component {
       showNotification,
       intl
     } = this.props;
-    const messagesKeyMap = {
-      [SCANNING_METHOD_MANUAL]: messages.scannerManualStrategy,
-      [SCANNING_METHOD_AUTOMATIC]: messages.scannerAutomaticStrategy
-    };
-    showNotification(intl.formatMessage(messagesKeyMap[strategy]));
 
-    if (!isMobile.any) {
+    const { strategyMessage, deactivateMessage, showDeactivate } =
+      getScannerStrategyNotificationMessages(strategy, isMobile.any);
+
+    if (strategyMessage) {
+      showNotification(intl.formatMessage(strategyMessage));
+    }
+    if (showDeactivate) {
       setTimeout(() => {
-        showNotification(intl.formatMessage(messages.scannerHowToDeactivate));
+        showNotification(intl.formatMessage(deactivateMessage));
       }, NOTIFICATION_DELAY);
     }
   };
@@ -1108,16 +1079,16 @@ export class BoardContainer extends Component {
       let uTiles = [];
       if (deletedTilesiIds) {
         uTiles = board.tiles.filter(
-          cTile => !deletedTilesiIds.includes(cTile.id)
+          (cTile) => !deletedTilesiIds.includes(cTile.id)
         );
       }
       if (editedTiles) {
         uTiles = board.tiles.map(
-          cTile => editedTiles.find(s => s.id === cTile.id) || cTile
+          (cTile) => editedTiles.find((s) => s.id === cTile.id) || cTile
         );
       }
       if (tile && tile.type !== 'board') {
-        uTiles = board.tiles.find(t => t.id === tile.id)
+        uTiles = board.tiles.find((t) => t.id === tile.id)
           ? [...board.tiles]
           : [...board.tiles, tile];
       }
@@ -1177,20 +1148,20 @@ export class BoardContainer extends Component {
       if (tile && tile.type === 'board') {
         //child becomes parent
         updateApiObjectsNoChild(childBoardData, true)
-          .then(parentBoardId => {
+          .then((parentBoardId) => {
             switchBoard(parentBoardId);
             this.props.history.replace(`/board/${parentBoardId}`, []);
             this.setState({ isSaving: false });
             this.props.setIsSaving(false);
           })
-          .catch(e => {
+          .catch((e) => {
             this.setState({ isSaving: false });
             this.props.setIsSaving(false);
           });
       } else {
         if (!createChildBoard) {
           updateApiObjectsNoChild(parentBoardData, createParentBoard)
-            .then(parentBoardId => {
+            .then((parentBoardId) => {
               if (createParentBoard) {
                 replaceBoard(
                   { ...parentBoardData },
@@ -1201,13 +1172,13 @@ export class BoardContainer extends Component {
               this.setState({ isSaving: false });
               this.props.setIsSaving(false);
             })
-            .catch(e => {
+            .catch((e) => {
               this.setState({ isSaving: false });
               this.props.setIsSaving(false);
             });
         } else {
           updateApiObjects(childBoardData, parentBoardData, createParentBoard)
-            .then(parentBoardId => {
+            .then((parentBoardId) => {
               if (createParentBoard) {
                 /* Here the parentBoardData is not updated with the values
                 that updatedApiObjects store on the API. Inside the boards are already updated
@@ -1221,7 +1192,7 @@ export class BoardContainer extends Component {
               this.setState({ isSaving: false });
               this.props.setIsSaving(false);
             })
-            .catch(e => {
+            .catch((e) => {
               this.setState({ isSaving: false });
               this.props.setIsSaving(false);
             });
@@ -1245,22 +1216,14 @@ export class BoardContainer extends Component {
   };
 
   scrollToTop = () => {
-    if (this.boardRef && !this.state.isSelecting) {
-      const boardComponentRef = this.props.board.isFixed
-        ? 'fixedBoardContainerRef'
-        : 'boardContainerRef';
-      this.boardRef.current[boardComponentRef].current.scrollTop = 0;
+    if (!this.state.isSelecting) {
+      scrollBoardToTop(this.boardRef, this.props.board?.isFixed);
     }
   };
 
   handleCopyRemoteBoard = async () => {
-    const {
-      intl,
-      showNotification,
-      history,
-      switchBoard,
-      setIsSaving
-    } = this.props;
+    const { intl, showNotification, history, switchBoard, setIsSaving } =
+      this.props;
     try {
       this.setState({
         isSaving: true
@@ -1308,7 +1271,7 @@ export class BoardContainer extends Component {
     }
     if (records) {
       //get the list of next boards in records
-      let nextBoardsRecords = records.map(entry => entry.next);
+      let nextBoardsRecords = records.map((entry) => entry.next);
       if (nextBoardsRecords.includes(board.id)) {
         return null;
       }
@@ -1373,7 +1336,7 @@ export class BoardContainer extends Component {
         } catch (err) {
           if (!err.respose || err.response?.status === 404) {
             //look for this board in available boards
-            const localBoard = boards.find(b => b.id === tile.loadBoard);
+            const localBoard = boards.find((b) => b.id === tile.loadBoard);
             if (localBoard) {
               await this.createBoardsRecursively(localBoard, records);
             }
@@ -1387,10 +1350,10 @@ export class BoardContainer extends Component {
   updateBoardReferences(board, newBoard, records) {
     const { boards, updateBoard } = this.props;
     //get the list of prev boards in records, but remove the current board
-    let prevBoardsRecords = records.map(entry => entry.prev);
-    prevBoardsRecords = prevBoardsRecords.filter(id => id !== newBoard.id);
+    let prevBoardsRecords = records.map((entry) => entry.prev);
+    prevBoardsRecords = prevBoardsRecords.filter((id) => id !== newBoard.id);
     //look for reference to the original board id
-    boards.forEach(b => {
+    boards.forEach((b) => {
       b.tiles.forEach((tile, index) => {
         if (
           //general case: tile can contains reference to the board
@@ -1414,7 +1377,7 @@ export class BoardContainer extends Component {
           tile.loadBoard &&
           prevBoardsRecords.includes(tile.loadBoard)
         ) {
-          const el = records.find(e => e.prev === tile.loadBoard);
+          const el = records.find((e) => e.prev === tile.loadBoard);
           b.tiles.splice(index, 1, {
             ...tile,
             loadBoard: el.next
@@ -1460,13 +1423,8 @@ export class BoardContainer extends Component {
   };
 
   handlePasteTiles = async () => {
-    const {
-      board,
-      intl,
-      createTile,
-      showNotification,
-      setIsSaving
-    } = this.props;
+    const { board, intl, createTile, showNotification, setIsSaving } =
+      this.props;
     try {
       this.setState({ isSaving: true });
       setIsSaving(true);
@@ -1493,14 +1451,8 @@ export class BoardContainer extends Component {
   };
 
   async pasteBoardsRecursively(folderTile, parentBoardId, firstPastedFolderId) {
-    const {
-      createBoard,
-      userData,
-      updateBoard,
-      createApiBoard,
-      boards,
-      intl
-    } = this.props;
+    const { createBoard, userData, updateBoard, createApiBoard, boards, intl } =
+      this.props;
 
     //prevent shit
     if (!folderTile || !folderTile.loadBoard) {
@@ -1508,7 +1460,7 @@ export class BoardContainer extends Component {
     }
 
     let newBoard = {
-      ...boards.find(b => b.id === folderTile.loadBoard),
+      ...boards.find((b) => b.id === folderTile.loadBoard),
       isPublic: false,
       id: shortid.generate(),
       hidden: false,
@@ -1545,8 +1497,8 @@ export class BoardContainer extends Component {
         console.error(err.message);
       }
     }
-    const parentBoard = boards.find(b => b.id === parentBoardId);
-    const newTiles = parentBoard.tiles.map(tile =>
+    const parentBoard = boards.find((b) => b.id === parentBoardId);
+    const newTiles = parentBoard.tiles.map((tile) =>
       tile && tile.id === folderTile.id
         ? { ...tile, loadBoard: newBoard.id }
         : tile
@@ -1577,7 +1529,7 @@ export class BoardContainer extends Component {
     for await (const tile of newBoard.tiles) {
       if (tile && tile.loadBoard && !tile.linkedBoard) {
         //look for this board in available boards
-        const newBoardToCopy = boards.find(b => b.id === tile.loadBoard);
+        const newBoardToCopy = boards.find((b) => b.id === tile.loadBoard);
         if (newBoardToCopy) {
           await this.pasteBoardsRecursively(
             tile,
@@ -1592,8 +1544,8 @@ export class BoardContainer extends Component {
 
   selectedTiles = () => {
     return this.state.selectedTileIds
-      ? this.state.selectedTileIds.map(selectedTileId => {
-          const tiles = this.props.board.tiles.filter(tile => {
+      ? this.state.selectedTileIds.map((selectedTileId) => {
+          const tiles = this.props.board.tiles.filter((tile) => {
             return tile.id === selectedTileId;
           })[0];
 
@@ -1602,8 +1554,8 @@ export class BoardContainer extends Component {
       : [];
   };
 
-  handleAddApiBoard = async boardId => {
-    if (!this.props.boards.find(board => board.id === boardId)) {
+  handleAddApiBoard = async (boardId) => {
+    if (!this.props.boards.find((board) => board.id === boardId)) {
       try {
         const board = await API.getBoard(boardId);
         this.props.addBoards([board]);
@@ -1634,8 +1586,8 @@ export class BoardContainer extends Component {
 
     const disableBackButton = navHistory.length === 1;
     const editingTiles = this.state.tileEditorOpen
-      ? this.state.selectedTileIds.map(selectedTileId => {
-          const tiles = board.tiles.filter(tile => {
+      ? this.state.selectedTileIds.map((selectedTileId) => {
+          const tiles = board.tiles.filter((tile) => {
             return tile.id === selectedTileId;
           })[0];
 
@@ -1803,7 +1755,7 @@ export class BoardContainer extends Component {
           onEditSubmit={this.handleEditTileEditorSubmit}
           onAddSubmit={this.handleAddTileEditorSubmit}
           boards={this.props.boards.filter(
-            board =>
+            (board) =>
               board !== null &&
               board.id !== null &&
               this.props.communicator.boards.includes(board.id)
@@ -1813,6 +1765,34 @@ export class BoardContainer extends Component {
           onAddApiBoard={this.handleAddApiBoard}
           isSymbolSearchTourEnabled={this.props.isSymbolSearchTourEnabled}
           disableTour={this.props.disableTour}
+        />
+        <UnauthenticatedEditModal
+          open={this.state.showUnauthEditModal}
+          onClose={() => this.setState({ showUnauthEditModal: false })}
+          onContinue={() => {
+            const {
+              showPremiumRequired,
+              isSubscriptionRequired,
+              setIsSaving,
+              setUnauthEditModalDismissed
+            } = this.props;
+            setUnauthEditModalDismissed(true);
+            this.setState(
+              {
+                showUnauthEditModal: false,
+                isLocked: false,
+                isSaving: false,
+                isSelecting: false,
+                selectedTileIds: []
+              },
+              () => {
+                setIsSaving(false);
+                if (isSubscriptionRequired) {
+                  showPremiumRequired({ showTryPeriodFinishedMessages: true });
+                }
+              }
+            );
+          }}
         />
         <PinDialog
           open={this.state.pinDialogOpen}
@@ -1827,7 +1807,7 @@ export class BoardContainer extends Component {
   }
 }
 
-export const mapStateToProps = state => {
+export const mapStateToProps = (state) => {
   const {
     board,
     communicator,
@@ -1845,7 +1825,7 @@ export const mapStateToProps = state => {
   } = state;
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
-    communicator => communicator.id === activeCommunicatorId
+    (communicator) => communicator.id === activeCommunicatorId
   );
   const activeBoardId = board.activeBoardId;
   const emptyVoiceAlert =
@@ -1855,7 +1835,7 @@ export const mapStateToProps = state => {
   const offlineVoiceAlert = !isConnected && speech.options.isCloud;
   return {
     communicator: currentCommunicator,
-    board: getVisibleBoards(state).find(board => board.id === activeBoardId),
+    board: getVisibleBoards(state).find((board) => board.id === activeBoardId),
     boards: getVisibleBoards(state),
     output: board.output,
     isLiveMode: board.isLiveMode,
@@ -1872,7 +1852,9 @@ export const mapStateToProps = state => {
     isUnlockedTourEnabled: liveHelp.isUnlockedTourEnabled,
     isPremiumRequiredModalOpen: premiumRequiredModalState?.open,
     improvedPhrase: board.improvedPhrase,
-    isSubscriptionRequired: isSubscriptionRequired(state)
+    isSubscriptionRequired: isSubscriptionRequired(state),
+    isLogged: isLogged(state),
+    unauthEditModalDismissed: isUnauthEditModalDismissed(state)
   };
 };
 
@@ -1907,7 +1889,8 @@ const mapDispatchToProps = {
   changeDefaultBoard,
   verifyAndUpsertCommunicator,
   showPremiumRequired,
-  setIsSaving
+  setIsSaving,
+  setUnauthEditModalDismissed
 };
 
 export default connect(

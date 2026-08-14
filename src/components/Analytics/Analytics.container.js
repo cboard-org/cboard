@@ -97,9 +97,9 @@ export class AnalyticsContainer extends Component {
     try {
       const { boards } = this.props;
       const images = boards
-        .map(board => {
+        .map((board) => {
           return isArray(board.tiles)
-            ? board.tiles.map(tile => (tile ? tile.image : 'invalid'))
+            ? board.tiles.map((tile) => (tile ? tile.image : 'invalid'))
             : [];
         })
         .reduce(
@@ -107,8 +107,8 @@ export class AnalyticsContainer extends Component {
           []
         );
       const sources = ['arasaac', 'mulberry', 'cboard', 'globalsymbols'];
-      const summary = images.reduce(function(all, image) {
-        sources.forEach(source => {
+      const summary = images.reduce(function (all, image) {
+        sources.forEach((source) => {
           try {
             if (image.match(source)) {
               if (source in all) {
@@ -154,7 +154,7 @@ export class AnalyticsContainer extends Component {
         if (isCordova()) {
           resolve(this.getGaClientIdFromCookie());
         } else if (typeof window.gtag !== 'undefined') {
-          window.gtag('get', 'G-60S79265FY', 'client_id', client_id => {
+          window.gtag('get', 'G-60S79265FY', 'client_id', (client_id) => {
             resolve(client_id);
           });
         } else {
@@ -189,13 +189,13 @@ export class AnalyticsContainer extends Component {
         report.reports.length >= 1 &&
         report.reports[0].data['rows']
       ) {
-        const data = report.reports[0].data.rows.map(row => {
+        const data = report.reports[0].data.rows.map((row) => {
           return {
             index: parseInt(row.dimensions[1]),
             value: parseInt(row.metrics[0].values[0]) / 60
           };
         });
-        data.forEach(value => {
+        data.forEach((value) => {
           template[value.index] = value.value;
         });
         usage = {
@@ -297,7 +297,7 @@ export class AnalyticsContainer extends Component {
       report.reports.length >= index &&
       report.reports[index].data['rows']
     ) {
-      rows = report.reports[index].data['rows'].slice(0, max).map(row => {
+      rows = report.reports[index].data['rows'].slice(0, max).map((row) => {
         return {
           name: row['dimensions'][1],
           total: row['metrics'][0]['values'][0],
@@ -369,11 +369,7 @@ export class AnalyticsContainer extends Component {
             tile.labelKey
               .split()
               [tile.labelKey.split().length - 1].trim()
-              .toLowerCase() ===
-              label
-                .trim()
-                .replace(' ', '')
-                .toLowerCase())
+              .toLowerCase() === label.trim().replace(' ', '').toLowerCase())
         ) {
           return tile;
         }
@@ -382,7 +378,7 @@ export class AnalyticsContainer extends Component {
     return undefined;
   }
 
-  onDaysChange = async days => {
+  onDaysChange = async (days) => {
     const { intl, showNotification } = this.props;
     this.setState({ isFetching: true });
     try {
@@ -424,7 +420,7 @@ export class AnalyticsContainer extends Component {
   }
 }
 
-export const mapStateToProps = state => ({
+export const mapStateToProps = (state) => ({
   isLogged: isLogged(state),
   user: getUser(state),
   boards: getVisibleBoards(state)

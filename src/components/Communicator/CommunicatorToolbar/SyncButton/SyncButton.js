@@ -169,7 +169,7 @@ SyncButton.defaultProps = {
   onSyncClick: () => {}
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isOnline: state.app.isConnected,
   isSyncing: state.board.isSyncing,
   isFetching: state.board.isFetching,
@@ -178,7 +178,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onSyncClick: getApiObjects
+  onSyncClick: () => getApiObjects('Sync button')
 };
 
 export default connect(

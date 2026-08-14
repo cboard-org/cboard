@@ -6,30 +6,29 @@ export const DEFAULT_BOARDS = {
   picSeePal: picSeePal
 };
 
-export const deepCopy = obj => JSON.parse(JSON.stringify(obj));
+export const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
 
-export const dataURLtoFile = (dataurl, filename, checkExtension = false) => {
-  // https://stackoverflow.com/a/38936042
+export const isDataURL = (str) =>
+  typeof str === 'string' && str.startsWith('data:');
+
+export const isLocalFileURL = (str) =>
+  typeof str === 'string' && /^(file|cdvfile):/i.test(str);
+
+export const dataURLtoBlob = (dataurl) => {
   const arr = dataurl.split(',');
   const type = arr[0].match(/:(.*?);/)[1];
   const bstr = atob(arr[1]);
   let n = bstr.length;
   const u8arr = new Uint8Array(n);
 
-  let name = filename;
-  if (checkExtension) {
-    const extension = type.split('/')[1].toLowerCase();
-    name = `${name}.${extension}`;
-  }
-
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n);
   }
 
-  return new File([u8arr], name, { type });
+  return new Blob([u8arr], { type });
 };
 
-export const convertImageUrlToCatchable = imageUrl => {
+export const convertMediaUrlToCDN = (imageUrl) => {
   const CBOARD_PRODUCTION_BLOB_CONTAINER_HOSTNAME =
     'cboardgroupdiag483.blob.core.windows.net';
   const PROTOCOL_LENGHT = 8;
@@ -37,7 +36,7 @@ export const convertImageUrlToCatchable = imageUrl => {
     CBOARD_PRODUCTION_BLOB_CONTAINER_HOSTNAME,
     PROTOCOL_LENGHT
   );
-  const cboardBlobUsingCDN = imageUrl => {
+  const cboardBlobUsingCDN = (imageUrl) => {
     const CDN_HOSTNAME = 'cdncboard.azureedge.net';
     return imageUrl.replace(
       CBOARD_PRODUCTION_BLOB_CONTAINER_HOSTNAME,

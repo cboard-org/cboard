@@ -1,6 +1,7 @@
 import createReducer, {
   createMigratingStorage,
-  boardMigrations
+  boardMigrations,
+  boardSyncTransform
 } from '../reducers';
 
 describe('reducers', () => {
@@ -108,6 +109,38 @@ describe('createMigratingStorage', () => {
       expect(newStorage.removeItem).toHaveBeenCalledWith('persist:root');
       expect(oldStorage.removeItem).not.toHaveBeenCalled();
     });
+  });
+});
+
+describe('boardSyncTransform', () => {
+  it('resets a persisted isSyncing flag on rehydrate', () => {
+    const persistedBoard = {
+      isSyncing: true,
+      boards: [{ id: 'board-1' }],
+      syncMeta: { 'board-1': { status: 'SYNCED' } }
+    };
+
+    const result = boardSyncTransform.out(persistedBoard, 'board');
+
+    expect(result.isSyncing).toBe(false);
+    expect(result.boards).toEqual(persistedBoard.boards);
+    expect(result.syncMeta).toEqual(persistedBoard.syncMeta);
+  });
+
+  it('leaves other state slices untouched on rehydrate', () => {
+    const persistedApp = { userData: { id: 'user-1' } };
+
+    const result = boardSyncTransform.out(persistedApp, 'app');
+
+    expect(result).toBe(persistedApp);
+  });
+
+  it('persists board state unchanged on write', () => {
+    const boardState = { isSyncing: true, boards: [] };
+
+    const result = boardSyncTransform.in(boardState, 'board');
+
+    expect(result).toBe(boardState);
   });
 });
 

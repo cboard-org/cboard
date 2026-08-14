@@ -30,7 +30,7 @@ function PremiumFeature({
   lastUpdated,
   isLoginRequired = false
 }) {
-  const captured = event => {
+  const captured = (event) => {
     if (isUpdateSubscriberStatusNeeded(lastUpdated)) {
       const requestOrigin = 'Function: captured - Component: PremiumFeature';
       updateIsSubscribed(requestOrigin);
@@ -58,7 +58,7 @@ function PremiumFeature({
   );
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isLogged: isLogged(state),
   isOnTrialPeriod: state.subscription.isOnTrialPeriod,
   isSubscribed: state.subscription.isSubscribed,
@@ -74,7 +74,4 @@ const mapDispatchToProps = {
   showLoginRequired
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PremiumFeature);
+export default connect(mapStateToProps, mapDispatchToProps)(PremiumFeature);

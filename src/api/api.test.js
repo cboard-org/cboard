@@ -1,12 +1,13 @@
 import API from './api';
 import mockAxios from 'jest-mock-axios';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
 import { getStore } from '../store';
+import { isAndroid } from '../cordova-util';
 
 jest.mock('../store');
+jest.mock('../cordova-util', () => ({
+  ...jest.requireActual('../cordova-util'),
+  isAndroid: jest.fn(() => false)
+}));
 
 const mockBoard = {
   name: 'tewt',
@@ -36,9 +37,7 @@ describe('Cboard API calls', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
     //call method
-    API.getLanguage('es-ES')
-      .then(thenFn)
-      .catch(catchFn);
+    API.getLanguage('es-ES').then(thenFn).catch(catchFn);
     let responseObj = { data: 'fake!' };
     mockAxios.mockResponse(responseObj);
   });
@@ -46,9 +45,7 @@ describe('Cboard API calls', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
     //call method
-    API.getLanguage('es-ES')
-      .then(thenFn)
-      .catch(catchFn);
+    API.getLanguage('es-ES').then(thenFn).catch(catchFn);
     let responseObj = { status: 500, data: 'fake!' };
     mockAxios.mockResponse(responseObj);
   });
@@ -56,72 +53,56 @@ describe('Cboard API calls', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
     //call method
-    API.getMyBoards(1, 10)
-      .then(thenFn)
-      .catch(catchFn);
+    API.getMyBoards(1, 10).then(thenFn).catch(catchFn);
     mockAxios.mockResponse(mockBoard);
   });
   it('fetches results from get boards api', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
     //call method
-    API.getBoards()
-      .then(thenFn)
-      .catch(catchFn);
+    API.getBoards().then(thenFn).catch(catchFn);
     mockAxios.mockResponse(mockBoard);
   });
   it('fetches results from get board api', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
     //call method
-    API.getBoard(mockBoard.id)
-      .then(thenFn)
-      .catch(catchFn);
+    API.getBoard(mockBoard.id).then(thenFn).catch(catchFn);
     mockAxios.mockResponse(mockBoard);
   });
   it('fetches results from get communicators api', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
     //call method
-    API.getCommunicators()
-      .then(thenFn)
-      .catch(catchFn);
+    API.getCommunicators().then(thenFn).catch(catchFn);
     mockAxios.mockResponse(mockComm);
   });
   it('fetches results from updateSettings api', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
     //call method
-    API.updateSettings()
-      .then(thenFn)
-      .catch(catchFn);
+    API.updateSettings().then(thenFn).catch(catchFn);
     mockAxios.mockResponse(mockComm);
   });
   it('fetches results from createBoard api', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
     //call method
-    API.createBoard(mockBoard)
-      .then(thenFn)
-      .catch(catchFn);
+    API.createBoard(mockBoard).then(thenFn).catch(catchFn);
     mockAxios.mockResponse(mockBoard);
   });
   it('fetches results from createCommunicator  api', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
     //call method
-    API.createCommunicator(mockComm)
-      .then(thenFn)
-      .catch(catchFn);
+    API.createCommunicator(mockComm).then(thenFn).catch(catchFn);
     mockAxios.mockResponse(mockComm);
   });
   it('fetches results from arasaacPictogramsSearch api', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
     //call method
-    API.arasaacPictogramsSearch('es', 'perro')
-      .then(thenFn)
-      .catch(catchFn);
+    API.arasaacPictogramsSearch('es', 'perro').then(thenFn).catch(catchFn);
     // simulating a server response
     let responseObj = { data: 'fake!' };
     mockAxios.mockResponse(responseObj);
@@ -130,9 +111,7 @@ describe('Cboard API calls', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
     //call method
-    API.arasaacPictogramsSearch('es', 'perro')
-      .then(thenFn)
-      .catch(catchFn);
+    API.arasaacPictogramsSearch('es', 'perro').then(thenFn).catch(catchFn);
     // simulating a server response
     let responseObj = { status: 500, data: 'fake!' };
     mockAxios.mockResponse(responseObj);
@@ -141,9 +120,7 @@ describe('Cboard API calls', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
     //call method
-    API.deleteBoard(mockBoard)
-      .then(thenFn)
-      .catch(catchFn);
+    API.deleteBoard(mockBoard).then(thenFn).catch(catchFn);
     mockAxios.mockResponse(mockBoard);
   });
   it('fetches results from login  api', () => {
@@ -154,27 +131,21 @@ describe('Cboard API calls', () => {
       password: '123456'
     };
     //call method
-    API.login(user)
-      .then(thenFn)
-      .catch(catchFn);
+    API.login(user).then(thenFn).catch(catchFn);
     mockAxios.mockResponse(user);
   });
   it('fetches results from updateBoard api', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
     //call method
-    API.updateBoard(mockBoard)
-      .then(thenFn)
-      .catch(catchFn);
+    API.updateBoard(mockBoard).then(thenFn).catch(catchFn);
     mockAxios.mockResponse(mockBoard);
   });
   it('fetches results from updateCommunicator api', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
     //call method
-    API.updateCommunicator(mockComm)
-      .then(thenFn)
-      .catch(catchFn);
+    API.updateCommunicator(mockComm).then(thenFn).catch(catchFn);
     mockAxios.mockResponse(mockComm);
   });
   it('fetches results from uploadFromDataURL api', () => {
@@ -182,11 +153,358 @@ describe('Cboard API calls', () => {
       thenFn = jest.fn();
     //call method
     const dataUrl = 'data:text/plain;charset=utf-8;base64,dGVzdGluZw==';
-    API.uploadFromDataURL(dataUrl, 'test.txt')
-      .then(thenFn)
-      .catch(catchFn);
+    API.uploadFromDataURL(dataUrl, 'test.txt').then(thenFn).catch(catchFn);
     mockAxios.mockResponse(mockBoard);
   });
+  describe('uploadBoardLocalMedia', () => {
+    afterEach(() => {
+      jest.restoreAllMocks();
+      isAndroid.mockReturnValue(false);
+    });
+
+    it('returns the board untouched when no tiles have local images', async () => {
+      const board = {
+        id: 'b1',
+        tiles: [
+          { id: 't1', image: 'https://cdn.example.com/a.png' },
+          { id: 't2' }
+        ]
+      };
+      const uploadFromDataURL = jest.spyOn(API, 'uploadFromDataURL');
+      const uploadFile = jest.spyOn(API, 'uploadFile');
+
+      const result = await API.uploadBoardLocalMedia(board);
+
+      expect(result).toEqual({ board, hadFailure: false });
+      expect(uploadFromDataURL).not.toHaveBeenCalled();
+      expect(uploadFile).not.toHaveBeenCalled();
+    });
+
+    it('replaces base64 and file images with uploaded urls on success', async () => {
+      isAndroid.mockReturnValue(true);
+      const file = new File(['x'], 'img.png');
+      window.resolveLocalFileSystemURL = jest.fn((url, success) =>
+        success({ file: (cb) => cb(file) })
+      );
+      jest.spyOn(API, 'tryUploadDataURL').mockResolvedValue({
+        url: 'https://cdn.example.com/base64.png',
+        unrecoverable: false
+      });
+      jest
+        .spyOn(API, 'uploadFile')
+        .mockResolvedValue('https://cdn.example.com/file.png');
+
+      const board = {
+        id: 'b1',
+        tiles: [
+          { id: 't1', image: 'data:image/png;base64,iVBORw0KGgo=' },
+          { id: 't2', image: 'file:///storage/emulated/0/img.png' },
+          { id: 't3', image: 'https://cdn.example.com/keep.png' }
+        ]
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(false);
+      expect(sanitized.tiles[0].image).toBe(
+        'https://cdn.example.com/base64.png'
+      );
+      expect(sanitized.tiles[1].image).toBe('https://cdn.example.com/file.png');
+      expect(sanitized.tiles[2].image).toBe('https://cdn.example.com/keep.png');
+    });
+
+    it('commits successes and flags hadFailure on partial failure', async () => {
+      jest
+        .spyOn(API, 'tryUploadDataURL')
+        .mockResolvedValueOnce({
+          url: 'https://cdn.example.com/ok.png',
+          unrecoverable: false
+        })
+        .mockResolvedValueOnce({ url: null, unrecoverable: false });
+
+      const board = {
+        id: 'b1',
+        tiles: [
+          { id: 't1', image: 'data:image/png;base64,AAAA' },
+          { id: 't2', image: 'data:image/png;base64,BBBB' }
+        ]
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(true);
+      expect(sanitized.tiles[0].image).toBe('https://cdn.example.com/ok.png');
+      expect(sanitized.tiles[1].image).toBe('data:image/png;base64,BBBB');
+    });
+
+    it('leaves file images untouched on non-android platforms', async () => {
+      isAndroid.mockReturnValue(false);
+      const uploadFile = jest.spyOn(API, 'uploadFile');
+
+      const board = {
+        id: 'b1',
+        tiles: [{ id: 't1', image: 'file:///storage/emulated/0/img.png' }]
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(false);
+      expect(uploadFile).not.toHaveBeenCalled();
+      expect(sanitized.tiles[0].image).toBe(
+        'file:///storage/emulated/0/img.png'
+      );
+    });
+
+    it('replaces base64 sounds with uploaded urls on success', async () => {
+      jest.spyOn(API, 'tryUploadDataURL').mockResolvedValue({
+        url: 'https://cdn.example.com/sound.mp3',
+        unrecoverable: false
+      });
+
+      const board = {
+        id: 'b1',
+        tiles: [
+          { id: 't1', sound: 'data:audio/mp3;base64,AAAA' },
+          { id: 't2', sound: 'https://cdn.example.com/keep.mp3' }
+        ]
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(false);
+      expect(API.tryUploadDataURL).toHaveBeenCalledWith(
+        'data:audio/mp3;base64,AAAA',
+        't1.mp3'
+      );
+      expect(sanitized.tiles[0].sound).toBe(
+        'https://cdn.example.com/sound.mp3'
+      );
+      expect(sanitized.tiles[1].sound).toBe('https://cdn.example.com/keep.mp3');
+    });
+
+    it('replaces both image and sound on the same tile', async () => {
+      jest
+        .spyOn(API, 'tryUploadDataURL')
+        .mockResolvedValueOnce({
+          url: 'https://cdn.example.com/img.png',
+          unrecoverable: false
+        })
+        .mockResolvedValueOnce({
+          url: 'https://cdn.example.com/sound.mp3',
+          unrecoverable: false
+        });
+
+      const board = {
+        id: 'b1',
+        tiles: [
+          {
+            id: 't1',
+            image: 'data:image/png;base64,AAAA',
+            sound: 'data:audio/mp3;base64,BBBB'
+          }
+        ]
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(false);
+      expect(sanitized.tiles[0].image).toBe('https://cdn.example.com/img.png');
+      expect(sanitized.tiles[0].sound).toBe(
+        'https://cdn.example.com/sound.mp3'
+      );
+    });
+
+    it('commits successes and flags hadFailure when a sound upload fails', async () => {
+      jest
+        .spyOn(API, 'tryUploadDataURL')
+        .mockResolvedValue({ url: null, unrecoverable: false });
+
+      const board = {
+        id: 'b1',
+        tiles: [{ id: 't1', sound: 'data:audio/mp3;base64,AAAA' }]
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(true);
+      expect(sanitized.tiles[0].sound).toBe('data:audio/mp3;base64,AAAA');
+    });
+
+    it('clears media and does not flag failure when it cannot be retrieved', async () => {
+      jest
+        .spyOn(API, 'tryUploadDataURL')
+        .mockResolvedValue({ url: null, unrecoverable: true });
+
+      const board = {
+        id: 'b1',
+        tiles: [
+          { id: 't1', image: 'data:image/png;base64,@@@' },
+          { id: 't2', sound: 'data:audio/mp3;base64,@@@' }
+        ]
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(false);
+      expect(sanitized.tiles[0].image).toBe('');
+      expect(sanitized.tiles[1].sound).toBe('');
+    });
+
+    it('clears a not-found file image and does not flag failure', async () => {
+      isAndroid.mockReturnValue(true);
+      window.resolveLocalFileSystemURL = jest.fn((url, success, error) =>
+        error({ code: 1 })
+      );
+      const uploadFile = jest.spyOn(API, 'uploadFile');
+
+      const board = {
+        id: 'b1',
+        tiles: [{ id: 't1', image: 'file:///storage/emulated/0/gone.png' }]
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(false);
+      expect(uploadFile).not.toHaveBeenCalled();
+      expect(sanitized.tiles[0].image).toBe('');
+    });
+
+    it('keeps a file image and flags failure on a transient resolve error', async () => {
+      isAndroid.mockReturnValue(true);
+      window.resolveLocalFileSystemURL = jest.fn((url, success, error) =>
+        error({ code: 2 })
+      );
+      const uploadFile = jest.spyOn(API, 'uploadFile');
+
+      const board = {
+        id: 'b1',
+        tiles: [{ id: 't1', image: 'file:///storage/emulated/0/img.png' }]
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(true);
+      expect(uploadFile).not.toHaveBeenCalled();
+      expect(sanitized.tiles[0].image).toBe(
+        'file:///storage/emulated/0/img.png'
+      );
+    });
+
+    it('uploads a base64 caption and rewrites it to the url on success', async () => {
+      jest.spyOn(API, 'tryUploadDataURL').mockResolvedValue({
+        url: 'https://cdn.example.com/caption.png',
+        unrecoverable: false
+      });
+
+      const board = {
+        id: 'b1',
+        tiles: [],
+        caption: 'data:image/png;base64,iVBORw0KGgo='
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(false);
+      expect(API.tryUploadDataURL).toHaveBeenCalledWith(
+        'data:image/png;base64,iVBORw0KGgo=',
+        'b1',
+        true
+      );
+      expect(sanitized.caption).toBe('https://cdn.example.com/caption.png');
+    });
+
+    it('leaves a non-data-url caption untouched and does not upload', async () => {
+      const uploadFile = jest.spyOn(API, 'uploadFile');
+      const tryUploadDataURL = jest.spyOn(API, 'tryUploadDataURL');
+
+      const board = {
+        id: 'b1',
+        tiles: [],
+        caption: 'https://cdn.example.com/existing.png'
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(false);
+      expect(uploadFile).not.toHaveBeenCalled();
+      expect(tryUploadDataURL).not.toHaveBeenCalled();
+      expect(sanitized.caption).toBe('https://cdn.example.com/existing.png');
+    });
+
+    it('clears a caption and does not flag failure when it is unrecoverable', async () => {
+      jest
+        .spyOn(API, 'tryUploadDataURL')
+        .mockResolvedValue({ url: null, unrecoverable: true });
+
+      const board = {
+        id: 'b1',
+        tiles: [],
+        caption: 'data:image/png;base64,@@@'
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(false);
+      expect(sanitized.caption).toBe('');
+    });
+
+    it('keeps the caption and flags hadFailure on a transient caption upload failure', async () => {
+      jest
+        .spyOn(API, 'tryUploadDataURL')
+        .mockResolvedValue({ url: null, unrecoverable: false });
+
+      const board = {
+        id: 'b1',
+        tiles: [],
+        caption: 'data:image/png;base64,AAAA'
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(true);
+      expect(sanitized.caption).toBe('data:image/png;base64,AAAA');
+    });
+
+    it('uploads both a base64 tile image and a base64 caption', async () => {
+      jest
+        .spyOn(API, 'tryUploadDataURL')
+        .mockImplementation(async (dataURL) => ({
+          url:
+            dataURL === 'data:image/png;base64,AAAA'
+              ? 'https://cdn.example.com/tile.png'
+              : 'https://cdn.example.com/caption.png',
+          unrecoverable: false
+        }));
+
+      const board = {
+        id: 'b1',
+        tiles: [{ id: 't1', image: 'data:image/png;base64,AAAA' }],
+        caption: 'data:image/png;base64,BBBB'
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(false);
+      expect(API.tryUploadDataURL).toHaveBeenCalledTimes(2);
+      expect(sanitized.tiles[0].image).toBe('https://cdn.example.com/tile.png');
+      expect(sanitized.caption).toBe('https://cdn.example.com/caption.png');
+    });
+  });
+
   it('fetches results from unauthorized api', () => {
     let catchFn = jest.fn(),
       thenFn = jest.fn();
@@ -194,40 +512,22 @@ describe('Cboard API calls', () => {
     store.getState().app.userData = null;
 
     //call method
-    API.getMyBoards()
-      .then(thenFn)
-      .catch(catchFn);
+    API.getMyBoards().then(thenFn).catch(catchFn);
     //call method
-    API.updateBoard(mockBoard)
-      .then(thenFn)
-      .catch(catchFn);
+    API.updateBoard(mockBoard).then(thenFn).catch(catchFn);
     //call method
-    API.createBoard(mockBoard)
-      .then(thenFn)
-      .catch(catchFn);
+    API.createBoard(mockBoard).then(thenFn).catch(catchFn);
     //call method
-    API.deleteBoard('1234')
-      .then(thenFn)
-      .catch(catchFn);
+    API.deleteBoard('1234').then(thenFn).catch(catchFn);
     //call method
-    API.getCommunicators()
-      .then(thenFn)
-      .catch(catchFn);
+    API.getCommunicators().then(thenFn).catch(catchFn);
     //call method
-    API.updateSettings()
-      .then(thenFn)
-      .catch(catchFn);
+    API.updateSettings().then(thenFn).catch(catchFn);
     //call method
-    API.updateCommunicator(mockComm)
-      .then(thenFn)
-      .catch(catchFn);
+    API.updateCommunicator(mockComm).then(thenFn).catch(catchFn);
     //call method
-    API.createCommunicator(mockComm)
-      .then(thenFn)
-      .catch(catchFn);
+    API.createCommunicator(mockComm).then(thenFn).catch(catchFn);
     const dataUrl = 'data:text/plain;charset=utf-8;base64,dGVzdGluZw==';
-    API.uploadFromDataURL(dataUrl, 'test.txt')
-      .then(thenFn)
-      .catch(catchFn);
+    API.uploadFromDataURL(dataUrl, 'test.txt').then(thenFn).catch(catchFn);
   });
 });

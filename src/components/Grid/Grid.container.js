@@ -7,6 +7,7 @@ import 'react-grid-layout/css/styles.css';
 
 import './Grid.css';
 import { GRID_BREAKPOINTS } from './Grid.constants';
+import { computeScrollState } from '../Board/Board.utils';
 
 const colsRowsShape = PropTypes.shape({
   lg: PropTypes.number,
@@ -46,20 +47,22 @@ export class GridContainer extends PureComponent {
   }
 
   configBigScrollBtns() {
-    const { breakpoints, size, cols, setIsScroll, rows, children } = this.props;
+    const { breakpoints, size, cols, setIsScroll, rows } = this.props;
     const breakPoint = this.getBreakpointFromWidth(breakpoints, size.width);
     const currentLayout = this.generateLayout(cols[breakPoint]);
 
-    const isScroll =
-      currentLayout.length / cols[breakPoint] > rows[breakPoint] ? true : false;
-    const totalRows = Math.ceil(children.length / cols[breakPoint]);
+    const { isScroll, totalRows } = computeScrollState(
+      currentLayout.length,
+      cols[breakPoint],
+      rows[breakPoint]
+    );
     setIsScroll(isScroll, totalRows);
   }
 
   getBreakpointFromWidth(breakpoints, width) {
-    const sortBreakpoints = breakpoints => {
+    const sortBreakpoints = (breakpoints) => {
       let keys = Object.keys(breakpoints);
-      return keys.sort(function(a, b) {
+      return keys.sort(function (a, b) {
         return breakpoints[a] - breakpoints[b];
       });
     };
@@ -114,7 +117,7 @@ export class GridContainer extends PureComponent {
   generateLayouts() {
     const { breakpoints, cols } = this.props;
     const layouts = {};
-    Object.keys(breakpoints).forEach(bp => {
+    Object.keys(breakpoints).forEach((bp) => {
       layouts[bp] = this.generateLayout(cols[bp]);
     });
 
@@ -130,15 +133,8 @@ export class GridContainer extends PureComponent {
   };
 
   render() {
-    const {
-      size,
-      cols,
-      gap,
-      edit,
-      breakpoints,
-      children,
-      onLayoutChange
-    } = this.props;
+    const { size, cols, gap, edit, breakpoints, children, onLayoutChange } =
+      this.props;
     return (
       <div className={classNames('Grid', { dragging: this.state.dragging })}>
         <ResponsiveReactGridLayout

@@ -68,12 +68,12 @@ export function getTtsEngines() {
 }
 
 export function setTtsEngine(selectedTtsEngineName) {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(requestTtsEngine());
     try {
       const engineAvailable = tts
         .getTtsEngines()
-        .map(tts => tts.name)
+        .map((tts) => tts.name)
         .includes(selectedTtsEngineName);
       const engineName = engineAvailable
         ? selectedTtsEngineName
@@ -113,7 +113,7 @@ export function updateLangSpeechStatus(voices) {
       if (
         getState().speech.options.lang.substring(0, 2) !== lang.substring(0, 2)
       ) {
-        const uris = voices.map(v => {
+        const uris = voices.map((v) => {
           return v.voiceURI;
         });
         let voiceURI = '';
@@ -145,7 +145,7 @@ export function getTtsDefaultEngine() {
 export function changeVoice(voiceURI, lang) {
   return (dispatch, getState) => {
     const isCloud =
-      getState().speech.voices.find(v => v.voiceURI === voiceURI)
+      getState().speech.voices.find((v) => v.voiceURI === voiceURI)
         ?.voiceSource === 'cloud';
     if (isCloud) dispatch(showNotification('', 'cloudVoiceIsSeted'));
     dispatch({
@@ -193,7 +193,7 @@ export function getVoices() {
     try {
       const localizeSerbianVoicesNames = (voiceName, voiceLang) => {
         if (voiceLang?.startsWith('sr')) {
-          const getNativeNameOfDialect = lang => {
+          const getNativeNameOfDialect = (lang) => {
             if (lang === 'sr-ME') return 'Crnogorski jezik';
             if (lang === 'sr-SP') return 'Српски језик';
             if (lang === 'sr-RS') return 'Srpski jezik';
@@ -206,9 +206,9 @@ export function getVoices() {
       const pvoices = await tts.getVoices();
 
       const elevenLabsVoices = pvoices.filter(
-        v => v.voiceSource === 'elevenlabs'
+        (v) => v.voiceSource === 'elevenlabs'
       );
-      const otherVoices = pvoices.filter(v => v.voiceSource !== 'elevenlabs');
+      const otherVoices = pvoices.filter((v) => v.voiceSource !== 'elevenlabs');
 
       let allVoices = [];
 
@@ -226,7 +226,7 @@ export function getVoices() {
 
       // some TTS engines do return invalid voices, so we filter them
       const regex = new RegExp('^[a-zA-Z]{2,}-$', 'g');
-      const fvoices = allVoices.filter(voice => !regex.test(voice.lang));
+      const fvoices = allVoices.filter((voice) => !regex.test(voice.lang));
       voices = fvoices.map(
         ({
           voiceURI,
@@ -297,7 +297,7 @@ function endSpeech() {
 }
 
 export function cancelSpeech() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: CANCEL_SPEECH,
       isSpeaking: false
@@ -325,7 +325,7 @@ export function speak(text, onend = () => {}) {
       text,
       {
         ...options,
-        onend: event => {
+        onend: (event) => {
           onend();
           dispatch(endSpeech());
           if (event?.error) dispatch(showNotification('', 'cloudSpeakError'));

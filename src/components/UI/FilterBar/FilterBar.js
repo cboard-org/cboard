@@ -12,7 +12,7 @@ function FilterBar(props) {
   return (
     <div className="FilterBar">
       <FormGroup className="FilterBar__FormGroup" row>
-        {options.map(opt => {
+        {options.map((opt) => {
           return (
             <FormControlLabel
               control={

@@ -1,12 +1,13 @@
-import { connect } from 'react-redux';
-import { injectIntl } from 'react-intl';
+import { connect } from "react-redux";
+import { injectIntl } from "react-intl";
 
-import CommunicatorDialog from './CommunicatorDialog.component';
+import CommunicatorDialog from "./CommunicatorDialog.component";
 import {
   addBoardCommunicator,
   verifyAndUpsertCommunicator,
-  upsertApiCommunicator
-} from '../Communicator.actions';
+  upsertApiCommunicator,
+  pushCommunicator
+} from "../Communicator.actions";
 import {
   deleteBoard,
   deleteApiBoard,
@@ -17,10 +18,10 @@ import {
   updateApiObjectsNoChild,
   updateApiBoard,
   switchBoard
-} from '../../Board/Board.actions';
-import { showNotification } from '../../Notifications/Notifications.actions';
-import { getVisibleBoards } from '../../Board/Board.selectors';
-import { disableTour } from '../../App/App.actions';
+} from "../../Board/Board.actions";
+import { showNotification } from "../../Notifications/Notifications.actions";
+import { getVisibleBoards } from "../../Board/Board.selectors";
+import { disableTour } from "../../App/App.actions";
 
 export const mapStateToProps = ({ board, communicator, language, app }) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;

@@ -8,6 +8,15 @@ const mockStore = configureMockStore(middlewares);
 
 jest.mock('../../../api/api');
 
+jest.mock('../../../appInsights', () => ({
+  appInsights: {
+    setAuthenticatedUserContext: jest.fn(),
+    clearAuthenticatedUserContext: jest.fn()
+  }
+}));
+
+const { appInsights } = require('../../../appInsights');
+
 const mockBoard = {
   name: 'tewt',
   id: '12345678901234567',
@@ -118,10 +127,10 @@ describe('actions', () => {
     const user = { email: 'test', password: '1122' };
     store
       .dispatch(actions.login(user, 'local'))
-      .then(data => {
+      .then((data) => {
         expect(data).toEqual();
       })
-      .catch(e => {
+      .catch((e) => {
         throw new Error(e.message);
       });
   });
@@ -388,4 +397,24 @@ it('should set google analytics user id after login - ANDROID IOS', async () => 
 
   await store.dispatch(actions.login(user, 'local'));
   expect(window.FirebasePlugin.setUserId).toHaveBeenCalledWith(userData.id);
+});
+
+it('should set App Insights authenticated user context with the user id on login', async () => {
+  appInsights.setAuthenticatedUserContext.mockClear();
+  const store = mockStore(initialState);
+
+  store.dispatch(actions.loginSuccess(userData));
+
+  expect(appInsights.setAuthenticatedUserContext).toHaveBeenCalledWith(
+    userData.id
+  );
+});
+
+it('should clear App Insights authenticated user context on logout', async () => {
+  appInsights.clearAuthenticatedUserContext.mockClear();
+  const store = mockStore(initialState);
+
+  await store.dispatch(actions.logout());
+
+  expect(appInsights.clearAuthenticatedUserContext).toHaveBeenCalled();
 });

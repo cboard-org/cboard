@@ -44,7 +44,7 @@ let navigationSettings = INITIAL_NAVIGATION_SETTINGS;
 
 const COMPONENT_PROPS = {
   navigationSettings,
-  updateNavigationSettings: payload => {
+  updateNavigationSettings: (payload) => {
     navigationSettings = { ...navigationSettings, ...payload };
   },
   changeLiveMode: () => {},
@@ -87,8 +87,6 @@ describe('Navigation tests', () => {
   });
   test('switch behavior', () => {
     const wrapper = shallow(<Navigation {...COMPONENT_PROPS} />).dive();
-
-    const state = wrapper.state();
 
     const switchElement = wrapper.first('FullScreenDialog');
     switchElement.simulate('onSubmit');

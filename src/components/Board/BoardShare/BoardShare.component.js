@@ -38,14 +38,14 @@ function shareBoardOnFacebook(url, intl) {
     quote: intl.formatMessage(messages.subject)
   };
 
-  const errorFunction = msg => {
+  const errorFunction = (msg) => {
     if (msg.errorCode !== '4201')
       alert(intl.formatMessage(messages.cannotShare));
   };
 
   window.facebookConnectPlugin.logout(
     function succcesFunction(msg) {},
-    function(msg) {
+    function (msg) {
       console.log('error facebook disconnect msg' + msg);
     }
   );
@@ -56,10 +56,10 @@ function shareBoardOnFacebook(url, intl) {
       window.facebookConnectPlugin.showDialog(
         shareData,
         function succcesFunction() {},
-        msg => errorFunction(msg)
+        (msg) => errorFunction(msg)
       );
     },
-    msg => errorFunction(msg)
+    (msg) => errorFunction(msg)
   );
 }
 

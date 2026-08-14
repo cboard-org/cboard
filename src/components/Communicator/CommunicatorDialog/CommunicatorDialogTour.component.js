@@ -354,7 +354,7 @@ function CommunicatorDialogTour({
       {selectedTab === TAB_INDEXES.PUBLIC_BOARDS &&
         communicatorTour.isPublicBoardsEnabled && (
           <Joyride
-            callback={data => {
+            callback={(data) => {
               const { status } = data;
               if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
                 disableTour({
@@ -385,7 +385,7 @@ function CommunicatorDialogTour({
       {selectedTab === TAB_INDEXES.MY_BOARDS &&
         communicatorTour.isAllMyBoardsEnabled && (
           <Joyride
-            callback={data => {
+            callback={(data) => {
               const { status } = data;
               if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
                 disableTour({
@@ -416,7 +416,7 @@ function CommunicatorDialogTour({
       {selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS &&
         communicatorTour.isCommBoardsEnabled && (
           <Joyride
-            callback={data => {
+            callback={(data) => {
               const { status } = data;
               if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
                 disableTour({
