@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CardContent } from '@material-ui/core';
 import { Card, CardMedia, Typography } from '@material-ui/core';
 
-import { isCordova } from '../../../../cordova-util';
+import { isPackagedApp } from '../../../../cordova-util';
 import styles from './DefaultBoardSelector.module.css';
 
 import messages from '../CommunicatorToolbar.messages';
@@ -15,7 +15,7 @@ const DefaultBoardOption = ({ rootBoard, onClick, intl }) => {
 
   // Cordova path cannot be absolute
   const image =
-    isCordova() && rootBoard.caption && rootBoard.caption.search('/') === 0
+    isPackagedApp() && rootBoard.caption && rootBoard.caption.search('/') === 0
       ? `.${rootBoard.caption}`
       : rootBoard.caption;
 

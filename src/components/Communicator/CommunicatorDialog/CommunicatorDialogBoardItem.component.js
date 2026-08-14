@@ -36,7 +36,7 @@ import LanguageIcon from '@material-ui/icons/Language';
 import IconButton from '../../UI/IconButton';
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import messages from './CommunicatorDialog.messages';
-import { isCordova } from '../../../cordova-util';
+import { isCordova, isPackagedApp } from '../../../cordova-util';
 import InputImage from '../../UI/InputImage';
 import SymbolSearch from '../../Board/SymbolSearch';
 import PremiumFeature from '../../PremiumFeature';
@@ -374,11 +374,11 @@ class CommunicatorDialogBoardItem extends React.Component {
       (selectedTab === TAB_INDEXES.COMMUNICATOR_BOARDS && !!userData.authToken);
     // Cordova path cannot be absolute
     const boardCaption =
-      isCordova() && board.caption && board.caption.search('/') === 0
+      isPackagedApp() && board.caption && board.caption.search('/') === 0
         ? `.${board.caption}`
         : board.caption;
     const imageBoard =
-      isCordova() &&
+      isPackagedApp() &&
       this.state.imageBoard &&
       this.state.imageBoard.search('/') === 0
         ? `.${this.state.imageBoard}`
