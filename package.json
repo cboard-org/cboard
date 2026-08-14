@@ -88,7 +88,7 @@
     "reselect": "5.1.1",
     "shortid": "^2.2.17",
     "source-map-explorer": "^2.5.3",
-    "swiper": "12.1.4",
+    "swiper": "12.2.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
