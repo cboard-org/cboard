@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 
-import { isCordova } from '../../../cordova-util';
+import { isPackagedApp } from '../../../cordova-util';
 
 import './CboardLogo.css';
 
-// Cordova path cannot be absolute
-const imageWhite = isCordova()
+// Packaged-app asset paths must be relative (served over file://).
+const imageWhite = isPackagedApp()
   ? './images/logo-white-slogan.png'
   : '/images/logo-white-slogan.png';
 
-const imageViolet = isCordova()
+const imageViolet = isPackagedApp()
   ? './images/logo-violet.svg'
   : '/images/logo-violet.svg';
 
