@@ -57,7 +57,7 @@ const readStoredCollapsed = () => {
   }
 };
 
-const useStyles = makeStyles(theme => {
+const useStyles = makeStyles((theme) => {
   const dark = theme.palette.type === 'dark';
   const widthTransition = theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
@@ -171,7 +171,7 @@ const NavList = ({ intl, section, onChange, collapsed }) => {
   const classes = useStyles();
   return (
     <List className={classes.list} component="nav">
-      {SECTION_ORDER.map(key => {
+      {SECTION_ORDER.map((key) => {
         const meta = SECTION_LABELS[key];
         const Icon = SECTION_ICONS[key];
         const selected = section === key;
@@ -232,7 +232,7 @@ const DashboardNav = ({
   const classes = useStyles();
   const [collapsed, setCollapsed] = useState(readStoredCollapsed);
 
-  const handleChange = key => {
+  const handleChange = (key) => {
     onChange(key);
     onMobileClose();
   };

@@ -26,7 +26,7 @@ import {
 } from '../CommunicatorDialog.styles';
 import messages from '../CommunicatorDialog.messages';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: {
     position: 'relative',
     display: 'flex',
@@ -131,7 +131,7 @@ const BoardCard = ({
     locale
   ].filter(Boolean);
 
-  const handleToggle = event => {
+  const handleToggle = (event) => {
     // The whole card is an activation target; the star must not select it.
     event.stopPropagation();
     onToggleQuickAccess(board);
@@ -154,7 +154,7 @@ const BoardCard = ({
       <CardActionArea
         className={classes.actionArea}
         aria-current={selected || undefined}
-        ref={node => registerTrigger(board.id, node)}
+        ref={(node) => registerTrigger(board.id, node)}
         onClick={() => onSelect(board.id)}
       >
         <BoardThumb board={board} className={classes.thumb} />

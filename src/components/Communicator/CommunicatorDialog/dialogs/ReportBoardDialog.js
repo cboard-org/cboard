@@ -15,7 +15,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 import messages from '../CommunicatorDialog.messages';
 
-const getBoardUrl = board =>
+const getBoardUrl = (board) =>
   `${window.location.origin}/${window.location.pathname.split('/')[1]}/${
     board.id
   }`;
@@ -33,17 +33,14 @@ const ReportBoardDialog = ({
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  useEffect(
-    () => {
-      if (open) {
-        setReason('');
-        setLoading(false);
-        setError(false);
-        setSuccess(false);
-      }
-    },
-    [open]
-  );
+  useEffect(() => {
+    if (open) {
+      setReason('');
+      setLoading(false);
+      setError(false);
+      setSuccess(false);
+    }
+  }, [open]);
 
   if (!board) return null;
 
@@ -135,7 +132,7 @@ const ReportBoardDialog = ({
               required
               label={intl.formatMessage(messages.boardReport)}
               value={reason}
-              onChange={event => setReason(event.target.value)}
+              onChange={(event) => setReason(event.target.value)}
             />
             {error && (
               <Typography color="error" variant="body2">

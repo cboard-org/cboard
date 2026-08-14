@@ -52,10 +52,7 @@ const render = (props = {}) =>
 describe('BoardCard', () => {
   it('calls onSelect when activated', () => {
     const onSelect = jest.fn();
-    render({ onSelect })
-      .find(CardActionArea)
-      .first()
-      .simulate('click');
+    render({ onSelect }).find(CardActionArea).first().simulate('click');
     expect(onSelect).toHaveBeenCalledWith('b2');
   });
 
@@ -70,10 +67,7 @@ describe('BoardCard', () => {
 
   it('leaves aria-current off unselected cards', () => {
     expect(
-      render()
-        .find(CardActionArea)
-        .first()
-        .prop('aria-current')
+      render().find(CardActionArea).first().prop('aria-current')
     ).toBeUndefined();
   });
 
@@ -84,7 +78,7 @@ describe('BoardCard', () => {
 
     render({ onSelect, onToggleQuickAccess })
       .find(IconButton)
-      .filterWhere(node => node.prop('data-testid') === 'quick-access-toggle')
+      .filterWhere((node) => node.prop('data-testid') === 'quick-access-toggle')
       .first()
       .simulate('click', { stopPropagation });
 
@@ -94,7 +88,7 @@ describe('BoardCard', () => {
   it('labels the toggle Add when the board is not in quick access', () => {
     const toggle = render()
       .find(IconButton)
-      .filterWhere(node => node.prop('data-testid') === 'quick-access-toggle')
+      .filterWhere((node) => node.prop('data-testid') === 'quick-access-toggle')
       .first();
     expect(toggle.prop('aria-label')).toBe('addToQuickAccess');
   });
@@ -104,7 +98,7 @@ describe('BoardCard', () => {
       communicator: { rootBoard: 'zzz', boards: ['b2'] }
     })
       .find(IconButton)
-      .filterWhere(node => node.prop('data-testid') === 'quick-access-toggle')
+      .filterWhere((node) => node.prop('data-testid') === 'quick-access-toggle')
       .first();
     expect(toggle.prop('aria-pressed')).toBe(true);
     expect(toggle.prop('aria-label')).toBe('removeFromQuickAccess');

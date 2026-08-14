@@ -17,7 +17,7 @@ import LoadingIcon from '../../../UI/LoadingIcon';
 import { isCordova } from '../../../../cordova-util';
 import messages from '../CommunicatorDialog.messages';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   imageBlock: {
     display: 'flex',
     flexDirection: 'column',
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const resolveCaption = caption =>
+const resolveCaption = (caption) =>
   isCordova() && caption && caption.search('/') === 0 ? `.${caption}` : caption;
 
 const EditBoardDialog = ({
@@ -51,21 +51,18 @@ const EditBoardDialog = ({
   const [loading, setLoading] = useState(false);
   const [symbolSearchOpen, setSymbolSearchOpen] = useState(false);
 
-  useEffect(
-    () => {
-      if (open && board) {
-        setName(board.name || '');
-        setDescription(board.description || '');
-        setImage(null);
-      }
-    },
-    [open, board]
-  );
+  useEffect(() => {
+    if (open && board) {
+      setName(board.name || '');
+      setDescription(board.description || '');
+      setImage(null);
+    }
+  }, [open, board]);
 
   if (!board) return null;
 
   const handleSymbolSearchChange = ({ image: searchImage }) =>
-    new Promise(resolve => {
+    new Promise((resolve) => {
       setImage(searchImage);
       resolve();
     });
@@ -110,7 +107,7 @@ const EditBoardDialog = ({
             fullWidth
             label={intl.formatMessage(messages.boardInfoName)}
             value={name}
-            onChange={event => setName(event.target.value)}
+            onChange={(event) => setName(event.target.value)}
           />
           <TextField
             margin="dense"
@@ -119,7 +116,7 @@ const EditBoardDialog = ({
             rowsMax={6}
             label={intl.formatMessage(messages.boardDescription)}
             value={description}
-            onChange={event => setDescription(event.target.value)}
+            onChange={(event) => setDescription(event.target.value)}
           />
 
           <div className={classes.imageBlock}>
@@ -138,7 +135,7 @@ const EditBoardDialog = ({
               >
                 {intl.formatMessage(messages.imageSearch)}
               </Button>
-              <InputImage onChange={img => setImage(img)} />
+              <InputImage onChange={(img) => setImage(img)} />
             </div>
           </div>
         </DialogContent>

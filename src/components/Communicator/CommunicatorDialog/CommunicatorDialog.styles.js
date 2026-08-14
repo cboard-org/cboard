@@ -8,9 +8,9 @@ import { alpha } from '@material-ui/core/styles';
  */
 
 // Softer, more modern corner than the default 4px.
-export const softRadius = theme => (theme.shape.borderRadius || 4) * 2;
+export const softRadius = (theme) => (theme.shape.borderRadius || 4) * 2;
 
-const surfaceTransition = theme =>
+const surfaceTransition = (theme) =>
   theme.transitions.create(['box-shadow', 'border-color', 'transform'], {
     duration: theme.transitions.duration.shorter
   });
@@ -36,7 +36,7 @@ export const surfaceInteractive = (theme, { lift = false } = {}) => ({
  * Accent border used when a board is the communicator root or the active
  * board, so its status reads at a glance without extra chrome.
  */
-export const surfaceAccent = theme => ({
+export const surfaceAccent = (theme) => ({
   borderColor: alpha(theme.palette.primary.main, 0.6),
   boxShadow: `inset 3px 0 0 0 ${theme.palette.primary.main}`
 });
@@ -45,7 +45,7 @@ export const surfaceAccent = theme => ({
  * Theme-aware busy overlay. The previous hard-coded white wash was invisible
  * (and wrong) in dark mode.
  */
-export const busyOverlay = theme => ({
+export const busyOverlay = (theme) => ({
   position: 'absolute',
   inset: 0,
   display: 'flex',

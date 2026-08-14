@@ -5,7 +5,7 @@ import ViewModuleIcon from '@material-ui/icons/ViewModule';
 
 import { isCordova } from '../../../../cordova-util';
 
-const useStyles = makeStyles(theme => {
+const useStyles = makeStyles((theme) => {
   const dark = theme.palette.type === 'dark';
   return {
     root: {
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => {
   };
 });
 
-const resolveCaption = caption => {
+const resolveCaption = (caption) => {
   if (isCordova() && caption && caption.search('/') === 0) {
     return `.${caption}`;
   }

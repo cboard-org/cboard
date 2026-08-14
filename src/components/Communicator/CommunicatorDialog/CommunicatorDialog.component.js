@@ -34,7 +34,7 @@ import EditBoardDialog from './dialogs/EditBoardDialog';
 import PublishBoardDialog from './dialogs/PublishBoardDialog';
 import ReportBoardDialog from './dialogs/ReportBoardDialog';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   dashboard: {
     display: 'flex',
     height: '100%',
@@ -175,7 +175,7 @@ const CommunicatorDialog = ({
   });
 
   const debouncedSetSearch = useMemo(
-    () => debounce(value => setSearch(value), 400),
+    () => debounce((value) => setSearch(value), 400),
     []
   );
 
@@ -183,18 +183,18 @@ const CommunicatorDialog = ({
 
   useEffect(() => () => window.clearTimeout(announceTimer.current), []);
 
-  const handleSearchChange = value => {
+  const handleSearchChange = (value) => {
     setSearchInput(value);
     debouncedSetSearch(value);
   };
 
-  const handleSectionChange = nextSection => {
+  const handleSectionChange = (nextSection) => {
     setSection(nextSection);
     setSearchInput('');
     setSearch('');
   };
 
-  const handlePageChange = nextPage => {
+  const handlePageChange = (nextPage) => {
     fetcher.goToPage(nextPage);
     const scrollArea = scrollAreaRef.current;
     if (!scrollArea) {
@@ -207,14 +207,14 @@ const CommunicatorDialog = ({
     }
   };
 
-  const handleViewModeChange = mode => {
+  const handleViewModeChange = (mode) => {
     setViewMode(mode);
     window.localStorage.setItem(VIEW_MODE_STORAGE_KEY, mode);
   };
 
   const closeDialog = () => setDialog({ type: null, board: null });
 
-  const announce = message => {
+  const announce = (message) => {
     setAnnouncement('');
     // Re-setting the same string would not re-announce; clearing first makes
     // repeated identical results (two exports in a row) audible.
@@ -235,32 +235,32 @@ const CommunicatorDialog = ({
     } finally {
       // A slower action finishing later must not clear the spinner of a
       // different board the user has since started acting on.
-      setBusyBoardId(current => (current === board.id ? null : current));
+      setBusyBoardId((current) => (current === board.id ? null : current));
     }
   };
 
   const handlers = {
-    onShow: board => actions.showBoard(board),
-    onSetRoot: board => runBusy(board, actions.setRootBoard),
-    onAddRemove: board => runBusy(board, actions.addOrRemoveBoard),
-    onShowInfo: board => setDialog({ type: 'info', board }),
-    onReport: board => setDialog({ type: 'report', board }),
-    onEdit: board => setDialog({ type: 'edit', board }),
-    onDelete: board => setDialog({ type: 'delete', board }),
-    onCopy: board => setDialog({ type: 'copy', board }),
-    onExport: board =>
+    onShow: (board) => actions.showBoard(board),
+    onSetRoot: (board) => runBusy(board, actions.setRootBoard),
+    onAddRemove: (board) => runBusy(board, actions.addOrRemoveBoard),
+    onShowInfo: (board) => setDialog({ type: 'info', board }),
+    onReport: (board) => setDialog({ type: 'report', board }),
+    onEdit: (board) => setDialog({ type: 'edit', board }),
+    onDelete: (board) => setDialog({ type: 'delete', board }),
+    onCopy: (board) => setDialog({ type: 'copy', board }),
+    onExport: (board) =>
       runBusy(
         board,
         actions.exportBoard,
         intl.formatMessage(messages.exportingBoard, { name: board.name })
       ),
-    onExportPdf: board =>
+    onExportPdf: (board) =>
       runBusy(
         board,
         actions.exportBoardToPdf,
         intl.formatMessage(messages.exportingBoard, { name: board.name })
       ),
-    onPublishToggle: board => {
+    onPublishToggle: (board) => {
       if (!board.isPublic && !board.description) {
         setDialog({ type: 'publish', board });
       } else {
@@ -283,7 +283,7 @@ const CommunicatorDialog = ({
 
   const handleMove = async (boardId, delta, visibleIds) => {
     await actions.reorderCommunicatorBoards(boardId, delta, visibleIds);
-    const board = communicatorBoards.find(item => item.id === boardId);
+    const board = communicatorBoards.find((item) => item.id === boardId);
     const nextPosition = visibleIds.indexOf(boardId) + 1 + delta;
     announce(
       intl.formatMessage(messages.boardMoved, {
@@ -337,8 +337,8 @@ const CommunicatorDialog = ({
                 boards={communicatorBoards}
                 communicator={currentCommunicator}
                 busyBoardId={busyBoardId}
-                onSetRoot={board => runBusy(board, actions.setRootBoard)}
-                onRemove={board => runBusy(board, actions.addOrRemoveBoard)}
+                onSetRoot={(board) => runBusy(board, actions.setRootBoard)}
+                onRemove={(board) => runBusy(board, actions.addOrRemoveBoard)}
                 onMove={handleMove}
                 onGoToMyBoards={() => handleSectionChange(SECTIONS.MY_BOARDS)}
               />
@@ -362,7 +362,7 @@ const CommunicatorDialog = ({
                   activeBoardId={activeBoardId}
                   selectedId={selection.selectedId}
                   onSelect={selection.select}
-                  onToggleQuickAccess={board =>
+                  onToggleQuickAccess={(board) =>
                     runBusy(board, actions.addOrRemoveBoard)
                   }
                   registerTrigger={selection.registerTrigger}

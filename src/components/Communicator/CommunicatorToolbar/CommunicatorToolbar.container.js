@@ -1,21 +1,21 @@
-import React from "react";
-import { withRouter } from "react-router";
-import { connect } from "react-redux";
-import { injectIntl } from "react-intl";
-import CommunicatorToolbar from "./CommunicatorToolbar.component";
-import CommunicatorDialog from "../CommunicatorDialog";
+import React from 'react';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import { injectIntl } from 'react-intl';
+import CommunicatorToolbar from './CommunicatorToolbar.component';
+import CommunicatorDialog from '../CommunicatorDialog';
 import {
   switchBoard,
   replaceBoard,
   changeDefaultBoard
-} from "../../Board/Board.actions";
-import { showNotification } from "../../Notifications/Notifications.actions";
-import { getVisibleBoards } from "../../Board/Board.selectors";
+} from '../../Board/Board.actions';
+import { showNotification } from '../../Notifications/Notifications.actions';
+import { getVisibleBoards } from '../../Board/Board.selectors';
 import {
   importCommunicator,
   deleteCommunicator,
   pushCommunicator
-} from "../Communicator.actions";
+} from '../Communicator.actions';
 
 class CommunicatorContainer extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class CommunicatorContainer extends React.Component {
     this.setState({ openDialog: false });
   }
 
-  editCommunicatorTitle = async name => {
+  editCommunicatorTitle = async (name) => {
     const { currentCommunicator, pushCommunicator } = this.props;
 
     const updatedCommunicatorData = {
@@ -45,7 +45,7 @@ class CommunicatorContainer extends React.Component {
     try {
       await pushCommunicator(updatedCommunicatorData);
     } catch (err) {
-      console.error("Error upserting communicator", err);
+      console.error('Error upserting communicator', err);
     }
   };
 
@@ -77,19 +77,19 @@ export const mapStateToProps = (
 ) => {
   const activeCommunicatorId = communicator.activeCommunicatorId;
   const currentCommunicator = communicator.communicators.find(
-    communicator => communicator.id === activeCommunicatorId
+    (communicator) => communicator.id === activeCommunicatorId
   );
   const activeBoardId = board.activeBoardId;
   const visibleBoards = getVisibleBoards({ board }).filter(
-    board => board !== null && board.id !== null
+    (board) => board !== null && board.id !== null
   );
   // Render in the order stored on the communicator so the toolbar matches the
   // Quick access tray. Ids with no visible board (deleted, not yet synced) are
   // skipped rather than rendered as holes.
   const boards = currentCommunicator.boards
-    .map(boardId => visibleBoards.find(board => board.id === boardId))
+    .map((boardId) => visibleBoards.find((board) => board.id === boardId))
     .filter(Boolean);
-  const currentBoard = boards.find(board => board.id === activeBoardId);
+  const currentBoard = boards.find((board) => board.id === activeBoardId);
 
   return {
     communicators: communicator.communicators,

@@ -14,29 +14,23 @@ const useBoardSelection = ({ boards, section, search, page }) => {
 
   // Any change of context invalidates the selection: the panel would
   // otherwise keep describing a board that is no longer on screen.
-  useEffect(
-    () => {
-      setSelectedId(null);
-    },
-    [section, search, page]
-  );
+  useEffect(() => {
+    setSelectedId(null);
+  }, [section, search, page]);
 
   const selectedBoard = useMemo(
-    () => boards.find(board => board.id === selectedId) || null,
+    () => boards.find((board) => board.id === selectedId) || null,
     [boards, selectedId]
   );
 
   // The board was deleted, filtered out, or paged away.
-  useEffect(
-    () => {
-      if (selectedId && !selectedBoard) {
-        setSelectedId(null);
-      }
-    },
-    [selectedId, selectedBoard]
-  );
+  useEffect(() => {
+    if (selectedId && !selectedBoard) {
+      setSelectedId(null);
+    }
+  }, [selectedId, selectedBoard]);
 
-  const select = useCallback(boardId => setSelectedId(boardId), []);
+  const select = useCallback((boardId) => setSelectedId(boardId), []);
 
   const registerTrigger = useCallback((boardId, node) => {
     if (node) {
@@ -46,16 +40,13 @@ const useBoardSelection = ({ boards, section, search, page }) => {
     }
   }, []);
 
-  const clear = useCallback(
-    () => {
-      const trigger = triggers.current[selectedId];
-      setSelectedId(null);
-      if (trigger && typeof trigger.focus === 'function') {
-        trigger.focus();
-      }
-    },
-    [selectedId]
-  );
+  const clear = useCallback(() => {
+    const trigger = triggers.current[selectedId];
+    setSelectedId(null);
+    if (trigger && typeof trigger.focus === 'function') {
+      trigger.focus();
+    }
+  }, [selectedId]);
 
   return { selectedId, selectedBoard, select, clear, registerTrigger };
 };

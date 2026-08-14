@@ -41,7 +41,7 @@ export const getBoardActions = ({
   const inCommunicator = communicator.boards.includes(board.id);
   const hasAuth = !!(userData && userData.authToken);
   const isOwnBoard = !!(userData && userData.email === board.email);
-  const t = msg => intl.formatMessage(msg);
+  const t = (msg) => intl.formatMessage(msg);
 
   const infoAction = {
     key: 'info',

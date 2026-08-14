@@ -15,12 +15,12 @@ import { isCordova } from '../../../../cordova-util';
 import { formatBoardLocale } from '../utils/boardLocale';
 import messages from '../CommunicatorDialog.messages';
 
-const getBoardUrl = board =>
+const getBoardUrl = (board) =>
   `${window.location.origin}/${window.location.pathname.split('/')[1]}/${
     board.id
   }`;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   list: {
     display: 'grid',
     gridTemplateColumns: 'auto 1fr',

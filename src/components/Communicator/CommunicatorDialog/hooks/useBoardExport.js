@@ -4,13 +4,12 @@ import { MEDIUM_FONT_SIZE } from '../../../Settings/Export/Export.constants';
 
 const useBoardExport = ({ intl, showNotification }) => {
   const exportBoard = useCallback(
-    async board => {
+    async (board) => {
       try {
         // Loaded lazily: Export.helpers pulls in pdfmake + vfs_fonts (~1.7MB)
         // at module scope, which we only want paid for on an actual export.
-        const {
-          openboardExportOneAdapter
-        } = await import('../../../Settings/Export/Export.helpers');
+        const { openboardExportOneAdapter } =
+          await import('../../../Settings/Export/Export.helpers');
         await openboardExportOneAdapter(board, intl);
         showNotification(
           intl.formatMessage(messages.boardExported, { name: board.name })
@@ -25,12 +24,11 @@ const useBoardExport = ({ intl, showNotification }) => {
   );
 
   const exportBoardToPdf = useCallback(
-    async board => {
+    async (board) => {
       try {
         // Same lazy-load rationale as exportBoard above.
-        const {
-          pdfExportAdapter
-        } = await import('../../../Settings/Export/Export.helpers');
+        const { pdfExportAdapter } =
+          await import('../../../Settings/Export/Export.helpers');
         await pdfExportAdapter([board], MEDIUM_FONT_SIZE, intl);
         showNotification(
           intl.formatMessage(messages.boardExported, { name: board.name })

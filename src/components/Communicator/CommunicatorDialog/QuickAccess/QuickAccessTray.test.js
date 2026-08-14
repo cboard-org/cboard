@@ -47,14 +47,11 @@ const render = (props = {}) =>
     />
   );
 
-const namesOf = wrapper =>
-  wrapper.find('QuickAccessRow').map(row => row.prop('board').name);
+const namesOf = (wrapper) =>
+  wrapper.find('QuickAccessRow').map((row) => row.prop('board').name);
 
 const moveButtons = (wrapper, index) =>
-  wrapper
-    .find('QuickAccessRow')
-    .at(index)
-    .find(IconButton);
+  wrapper.find('QuickAccessRow').at(index).find(IconButton);
 
 describe('QuickAccessTray', () => {
   it('renders rows in communicator order', () => {
@@ -78,14 +75,14 @@ describe('QuickAccessTray', () => {
 
   it('disables Move up on the first row', () => {
     const up = moveButtons(render(), 0).filterWhere(
-      node => node.prop('data-testid') === 'move-up'
+      (node) => node.prop('data-testid') === 'move-up'
     );
     expect(up.first().prop('disabled')).toBe(true);
   });
 
   it('disables Move down on the last row', () => {
     const down = moveButtons(render(), 2).filterWhere(
-      node => node.prop('data-testid') === 'move-down'
+      (node) => node.prop('data-testid') === 'move-down'
     );
     expect(down.first().prop('disabled')).toBe(true);
   });
@@ -93,7 +90,7 @@ describe('QuickAccessTray', () => {
   it('reports a move with the id, the direction and the visible ids', () => {
     const onMove = jest.fn();
     moveButtons(render({ onMove }), 1)
-      .filterWhere(node => node.prop('data-testid') === 'move-up')
+      .filterWhere((node) => node.prop('data-testid') === 'move-up')
       .first()
       .simulate('click');
 
@@ -105,7 +102,7 @@ describe('QuickAccessTray', () => {
     const wrapper = render({ onGoToMyBoards });
     wrapper
       .find('button')
-      .filterWhere(node => node.prop('data-testid') === 'go-to-my-boards')
+      .filterWhere((node) => node.prop('data-testid') === 'go-to-my-boards')
       .first()
       .simulate('click');
     expect(onGoToMyBoards).toHaveBeenCalled();

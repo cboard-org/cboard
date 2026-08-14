@@ -68,9 +68,9 @@ describe('BoardDetails', () => {
   it('renders one button per action with a visible label', () => {
     const buttons = render()
       .find(Button)
-      .filterWhere(node => !!node.prop('data-action-key'));
+      .filterWhere((node) => !!node.prop('data-action-key'));
     expect(buttons).toHaveLength(3);
-    expect(buttons.map(node => node.text())).toEqual(
+    expect(buttons.map((node) => node.text())).toEqual(
       expect.arrayContaining(['Show', 'Clone', 'Delete'])
     );
   });
@@ -78,14 +78,14 @@ describe('BoardDetails', () => {
   it('disables an action marked disabled', () => {
     const clone = render()
       .find(Button)
-      .filterWhere(node => node.prop('data-action-key') === 'clone');
+      .filterWhere((node) => node.prop('data-action-key') === 'clone');
     expect(clone.prop('disabled')).toBe(true);
   });
 
   it('disables every action while busy', () => {
     const show = render({ busy: true })
       .find(Button)
-      .filterWhere(node => node.prop('data-action-key') === 'show');
+      .filterWhere((node) => node.prop('data-action-key') === 'show');
     expect(show.prop('disabled')).toBe(true);
   });
 
@@ -97,7 +97,7 @@ describe('BoardDetails', () => {
 
     wrapper
       .find(Button)
-      .filterWhere(node => node.prop('data-action-key') === 'show')
+      .filterWhere((node) => node.prop('data-action-key') === 'show')
       .simulate('click');
 
     expect(onClick).toHaveBeenCalled();

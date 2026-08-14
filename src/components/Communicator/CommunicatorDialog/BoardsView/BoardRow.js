@@ -25,7 +25,7 @@ import {
 } from '../CommunicatorDialog.styles';
 import messages from '../CommunicatorDialog.messages';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   row: {
     position: 'relative',
     display: 'flex',
@@ -115,7 +115,7 @@ const BoardRow = ({
     moment(board.lastEdited).format('DD/MM/YYYY')
   ].filter(Boolean);
 
-  const handleToggle = event => {
+  const handleToggle = (event) => {
     event.stopPropagation();
     onToggleQuickAccess(board);
   };
@@ -137,7 +137,7 @@ const BoardRow = ({
       <ButtonBase
         className={classes.trigger}
         aria-current={selected || undefined}
-        ref={node => registerTrigger(board.id, node)}
+        ref={(node) => registerTrigger(board.id, node)}
         onClick={() => onSelect(board.id)}
       >
         <BoardThumb board={board} className={classes.thumb} />

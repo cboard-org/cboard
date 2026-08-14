@@ -33,9 +33,9 @@ const useBoardCrud = ({
 }) => {
   const updateBoardReferences = useCallback(
     (board, newBoard, records) => {
-      let prevBoardsRecords = records.map(entry => entry.prev);
-      prevBoardsRecords = prevBoardsRecords.filter(id => id !== newBoard.id);
-      availableBoards.forEach(b => {
+      let prevBoardsRecords = records.map((entry) => entry.prev);
+      prevBoardsRecords = prevBoardsRecords.filter((id) => id !== newBoard.id);
+      availableBoards.forEach((b) => {
         b.tiles.forEach((tile, index) => {
           if (tile && tile.loadBoard && tile.loadBoard === board.id) {
             b.tiles.splice(index, 1, { ...tile, loadBoard: newBoard.id });
@@ -50,7 +50,7 @@ const useBoardCrud = ({
             tile.loadBoard &&
             prevBoardsRecords.includes(tile.loadBoard)
           ) {
-            const el = records.find(e => e.prev === tile.loadBoard);
+            const el = records.find((e) => e.prev === tile.loadBoard);
             b.tiles.splice(index, 1, { ...tile, loadBoard: el.next });
             try {
               updateBoard(b);
@@ -70,7 +70,7 @@ const useBoardCrud = ({
         return;
       }
       if (records) {
-        const nextBoardsRecords = records.map(entry => entry.next);
+        const nextBoardsRecords = records.map((entry) => entry.next);
         if (nextBoardsRecords.includes(board.id)) {
           return;
         }
@@ -130,7 +130,7 @@ const useBoardCrud = ({
           } catch (err) {
             if (!err.respose || err.response?.status === 404) {
               const localBoard = availableBoards.find(
-                b => b.id === tile.loadBoard
+                (b) => b.id === tile.loadBoard
               );
               if (localBoard) {
                 await createBoardsRecursively(localBoard, records);
@@ -154,7 +154,7 @@ const useBoardCrud = ({
   );
 
   const copyBoard = useCallback(
-    async board => {
+    async (board) => {
       try {
         await createBoardsRecursively(board);
         showNotification(intl.formatMessage(messages.boardAddedToCommunicator));
@@ -167,7 +167,7 @@ const useBoardCrud = ({
   );
 
   const publishBoard = useCallback(
-    async board => {
+    async (board) => {
       const boardData = { ...board, isPublic: !board.isPublic };
       replaceBoard(board, boardData);
       replaceBoardInList(boardData);
@@ -191,7 +191,7 @@ const useBoardCrud = ({
   );
 
   const deleteMyBoard = useCallback(
-    async board => {
+    async (board) => {
       deleteBoard(board.id);
 
       if (isLoggedIn(userData)) {
@@ -204,11 +204,10 @@ const useBoardCrud = ({
         if (comm.boards.includes(board.id)) {
           const filteredCommunicator = {
             ...comm,
-            boards: comm.boards.filter(b => b !== board.id)
+            boards: comm.boards.filter((b) => b !== board.id)
           };
-          const upsertedCommunicator = verifyAndUpsertCommunicator(
-            filteredCommunicator
-          );
+          const upsertedCommunicator =
+            verifyAndUpsertCommunicator(filteredCommunicator);
           if (isLoggedIn(userData)) {
             try {
               await upsertApiCommunicator(upsertedCommunicator);
@@ -236,7 +235,7 @@ const useBoardCrud = ({
   );
 
   const updateMyBoard = useCallback(
-    async board => {
+    async (board) => {
       updateBoard(board);
       replaceBoardInList(board);
       if (isLoggedIn(userData)) {
@@ -249,7 +248,7 @@ const useBoardCrud = ({
   );
 
   const boardReport = useCallback(
-    async reportedBoardData => {
+    async (reportedBoardData) => {
       reportedBoardData.whistleblower.language = language.lang;
       await API.boardReport(reportedBoardData);
     },

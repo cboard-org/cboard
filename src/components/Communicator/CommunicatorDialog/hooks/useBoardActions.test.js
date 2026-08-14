@@ -39,17 +39,17 @@ const Harness = ({ hookArgs, onResult }) => {
   return null;
 };
 
-const renderActions = hookArgs => {
+const renderActions = (hookArgs) => {
   let latest;
   act(() => {
     mount(
-      <Harness hookArgs={hookArgs} onResult={result => (latest = result)} />
+      <Harness hookArgs={hookArgs} onResult={(result) => (latest = result)} />
     );
   });
   return () => latest;
 };
 
-const baseArgs = overrides => ({
+const baseArgs = (overrides) => ({
   section: SECTIONS.MY_COMMUNICATOR,
   intl,
   userData: {}, // not logged in -> skips API calls
@@ -67,7 +67,7 @@ const baseArgs = overrides => ({
   updateApiBoard: jest.fn(),
   updateApiObjectsNoChild: jest.fn(),
   addBoardCommunicator: jest.fn(),
-  verifyAndUpsertCommunicator: jest.fn(x => x),
+  verifyAndUpsertCommunicator: jest.fn((x) => x),
   upsertApiCommunicator: jest.fn(),
   showNotification: jest.fn(),
   refetch: jest.fn(),

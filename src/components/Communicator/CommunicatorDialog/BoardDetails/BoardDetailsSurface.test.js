@@ -24,8 +24,8 @@ jest.mock('../shared/BoardThumb', () => ({
 
 const intl = { formatMessage: ({ defaultMessage }) => defaultMessage };
 
-const setViewport = matches => {
-  window.matchMedia = jest.fn().mockImplementation(query => ({
+const setViewport = (matches) => {
+  window.matchMedia = jest.fn().mockImplementation((query) => ({
     matches,
     media: query,
     addListener: jest.fn(),
@@ -76,16 +76,8 @@ describe('BoardDetailsSurface', () => {
 
   it('opens the drawer only when a board is selected', () => {
     setViewport(true);
-    expect(
-      render({ board: null })
-        .find(Drawer)
-        .prop('open')
-    ).toBe(false);
-    expect(
-      render()
-        .find(Drawer)
-        .prop('open')
-    ).toBe(true);
+    expect(render({ board: null }).find(Drawer).prop('open')).toBe(false);
+    expect(render().find(Drawer).prop('open')).toBe(true);
   });
 
   it('closes the drawer from the close button', () => {

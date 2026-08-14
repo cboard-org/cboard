@@ -29,12 +29,9 @@ const PublishBoardDialog = ({
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
 
-  useEffect(
-    () => {
-      if (open) setDescription(board ? board.description || '' : '');
-    },
-    [open, board]
-  );
+  useEffect(() => {
+    if (open) setDescription(board ? board.description || '' : '');
+  }, [open, board]);
 
   if (!board) return null;
 
@@ -77,7 +74,7 @@ const PublishBoardDialog = ({
           rowsMax={6}
           label={intl.formatMessage(messages.boardDescription)}
           value={description}
-          onChange={event => setDescription(event.target.value)}
+          onChange={(event) => setDescription(event.target.value)}
         />
       </DialogContent>
       <DialogActions>

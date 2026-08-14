@@ -13,7 +13,7 @@ import { formatBoardLocale } from '../utils/boardLocale';
 import PremiumFeature from '../../../PremiumFeature';
 import messages from '../CommunicatorDialog.messages';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -139,7 +139,7 @@ const BoardDetails = ({
       <Divider />
 
       <div className={classes.actions}>
-        {actions.map(action => (
+        {actions.map((action) => (
           <ActionButton
             key={action.key}
             action={action}

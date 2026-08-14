@@ -23,7 +23,7 @@ import {
 } from '../CommunicatorDialog.styles';
 import messages from '../CommunicatorDialog.messages';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   row: {
     position: 'relative',
     display: 'flex',
@@ -72,7 +72,7 @@ const QuickAccessRow = ({
 }) => {
   const classes = useStyles();
   const title = board.name || board.id;
-  const t = msg => intl.formatMessage(msg);
+  const t = (msg) => intl.formatMessage(msg);
 
   return (
     <Paper

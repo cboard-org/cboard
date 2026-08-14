@@ -43,7 +43,7 @@ const build = (overrides = {}) =>
     ...overrides
   });
 
-const keysOf = actions => actions.map(action => action.key);
+const keysOf = (actions) => actions.map((action) => action.key);
 
 describe('getBoardActions', () => {
   it('returns a flat array', () => {
@@ -71,12 +71,12 @@ describe('getBoardActions', () => {
   });
 
   it('ships clone disabled because the handler is not implemented yet', () => {
-    const clone = build().find(action => action.key === 'clone');
+    const clone = build().find((action) => action.key === 'clone');
     expect(clone.disabled).toBe(true);
   });
 
   it('gives every action a label', () => {
-    build().forEach(action => {
+    build().forEach((action) => {
       expect(typeof action.label).toBe('string');
       expect(action.label.length).toBeGreaterThan(0);
     });
@@ -84,7 +84,7 @@ describe('getBoardActions', () => {
 
   it('disables delete for the root board', () => {
     const actions = build({ board: { id: 'b1', tiles: [] } });
-    expect(actions.find(a => a.key === 'delete').disabled).toBe(true);
+    expect(actions.find((a) => a.key === 'delete').disabled).toBe(true);
   });
 
   it('disables delete for the active board', () => {
@@ -92,16 +92,16 @@ describe('getBoardActions', () => {
       board: { id: 'b9', tiles: [] },
       activeBoardId: 'b9'
     });
-    expect(actions.find(a => a.key === 'delete').disabled).toBe(true);
+    expect(actions.find((a) => a.key === 'delete').disabled).toBe(true);
   });
 
   it('marks delete as destructive', () => {
-    expect(build().find(a => a.key === 'delete').destructive).toBe(true);
+    expect(build().find((a) => a.key === 'delete').destructive).toBe(true);
   });
 
   it('disables setRoot when the user is not authenticated', () => {
     const actions = build({ userData: {} });
-    expect(actions.find(a => a.key === 'setRoot').disabled).toBe(true);
+    expect(actions.find((a) => a.key === 'setRoot').disabled).toBe(true);
   });
 
   it('lists the quick access toggle as Remove when the board is a member', () => {
@@ -109,7 +109,7 @@ describe('getBoardActions', () => {
       board: { id: 'b1', tiles: [] },
       communicator: { rootBoard: 'zzz', boards: ['b1'] }
     });
-    expect(actions.find(a => a.key === 'addRemove').label).toBe(
+    expect(actions.find((a) => a.key === 'addRemove').label).toBe(
       'removeFromQuickAccess'
     );
   });
@@ -124,7 +124,7 @@ describe('getBoardActions', () => {
       section: SECTIONS.COMMUNITY,
       board: { id: 'b2', email: 'me@cboard.io' }
     });
-    expect(actions.find(a => a.key === 'copy').disabled).toBe(true);
+    expect(actions.find((a) => a.key === 'copy').disabled).toBe(true);
   });
 
   it('exposes setRoot, remove and info in the Quick access section', () => {

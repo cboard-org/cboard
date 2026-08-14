@@ -81,7 +81,7 @@ const useBoardActions = ({
   const exportActions = useBoardExport({ intl, showNotification });
 
   const showBoard = useCallback(
-    async board => {
+    async (board) => {
       switchBoard(board.id);
       history.replace(`/board/${board.id}`);
       onClose();

@@ -8,17 +8,20 @@ const Harness = ({ hookArgs, onResult }) => {
   return null;
 };
 
-const render = initialArgs => {
+const render = (initialArgs) => {
   let latest;
   let wrapper;
   act(() => {
     wrapper = mount(
-      <Harness hookArgs={initialArgs} onResult={result => (latest = result)} />
+      <Harness
+        hookArgs={initialArgs}
+        onResult={(result) => (latest = result)}
+      />
     );
   });
   return {
     get: () => latest,
-    setArgs: nextArgs => {
+    setArgs: (nextArgs) => {
       act(() => {
         wrapper.setProps({ hookArgs: nextArgs });
       });

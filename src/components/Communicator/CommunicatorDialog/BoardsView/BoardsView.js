@@ -20,7 +20,7 @@ import messages from '../CommunicatorDialog.messages';
 
 const SKELETON_COUNT = BOARDS_PAGE_LIMIT;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   stateContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -178,7 +178,7 @@ const BoardsView = ({
     <>
       {viewMode === VIEW_MODES.GRID ? (
         <Grid container spacing={2}>
-          {boards.map(board => (
+          {boards.map((board) => (
             <Grid item xs={12} sm={6} md={6} lg={4} key={board.id}>
               <BoardCard
                 intl={intl}
@@ -196,7 +196,7 @@ const BoardsView = ({
         </Grid>
       ) : (
         <div className={classes.list}>
-          {boards.map(board => (
+          {boards.map((board) => (
             <BoardRow
               key={board.id}
               intl={intl}

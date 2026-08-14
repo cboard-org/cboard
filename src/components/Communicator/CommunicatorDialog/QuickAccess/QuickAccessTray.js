@@ -12,7 +12,7 @@ import messages from '../CommunicatorDialog.messages';
 
 const EXPLAINER_ID = 'CommunicatorDialog__quickAccessExplainer';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -66,12 +66,12 @@ const QuickAccessTray = ({
   const orderedBoards = useMemo(
     () =>
       communicator.boards
-        .map(boardId => boards.find(board => board.id === boardId))
+        .map((boardId) => boards.find((board) => board.id === boardId))
         .filter(Boolean),
     [communicator.boards, boards]
   );
 
-  const visibleIds = orderedBoards.map(board => board.id);
+  const visibleIds = orderedBoards.map((board) => board.id);
 
   const addButton = (
     <Button

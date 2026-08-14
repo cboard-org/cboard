@@ -27,7 +27,7 @@ describe('CommunicatorToolbar.container mapStateToProps', () => {
 
     const props = mapStateToProps(state, {});
 
-    expect(props.boards.map(b => b.id)).toEqual(['b3', 'b1', 'b2']);
+    expect(props.boards.map((b) => b.id)).toEqual(['b3', 'b1', 'b2']);
   });
 
   it('skips communicator ids that have no visible board', () => {
@@ -38,6 +38,6 @@ describe('CommunicatorToolbar.container mapStateToProps', () => {
 
     const props = mapStateToProps(state, {});
 
-    expect(props.boards.map(b => b.id)).toEqual(['b3', 'b1']);
+    expect(props.boards.map((b) => b.id)).toEqual(['b3', 'b1']);
   });
 });

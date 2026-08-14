@@ -13,7 +13,7 @@ jest.mock('../../../../api', () => ({
   }
 }));
 
-const makeBoards = n =>
+const makeBoards = (n) =>
   Array.from({ length: n }, (_, i) => ({
     id: `board-${i}`,
     name: `Board ${i}`,
@@ -27,9 +27,9 @@ const Harness = ({ hookArgs, onResult }) => {
   return null;
 };
 
-const renderHook = hookArgs => {
+const renderHook = (hookArgs) => {
   let latest;
-  const onResult = result => {
+  const onResult = (result) => {
     latest = result;
   };
   let wrapper;
@@ -38,7 +38,7 @@ const renderHook = hookArgs => {
   });
   return {
     get: () => latest,
-    rerender: nextArgs =>
+    rerender: (nextArgs) =>
       act(() => {
         wrapper.setProps({ hookArgs: nextArgs });
       })
@@ -106,6 +106,6 @@ describe('useBoardsFetcher (communicator local source)', () => {
     expect(get().boards).toHaveLength(3);
     act(() => get().removeBoardFromList('board-1'));
     expect(get().boards).toHaveLength(2);
-    expect(get().boards.find(b => b.id === 'board-1')).toBeUndefined();
+    expect(get().boards.find((b) => b.id === 'board-1')).toBeUndefined();
   });
 });

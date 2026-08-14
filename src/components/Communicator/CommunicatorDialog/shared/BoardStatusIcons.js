@@ -10,7 +10,7 @@ import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 
 import messages from '../CommunicatorDialog.messages';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -68,7 +68,7 @@ const BoardStatusIcons = ({ intl, board, communicator, activeBoardId }) => {
 
   return (
     <span className={classes.root}>
-      {items.map(item => (
+      {items.map((item) => (
         <Tooltip
           key={item.key}
           title={item.title}

@@ -14,7 +14,7 @@ import messages from '../CommunicatorDialog.messages';
 
 const PANEL_WIDTH = 380;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   // Same anatomy as the sheet: the rounded card clips its content and only the
   // body scrolls, so the scrollbar starts below the corner radius instead of
   // being squared off against it.
@@ -103,16 +103,13 @@ const BoardDetailsSurface = ({
   // Explicit activation: once a board is chosen, focus moves into the details
   // so keyboard and screen reader users land on the actions, not back at the
   // top of the list.
-  useEffect(
-    () => {
-      if (board && headingRef.current) {
-        headingRef.current.focus();
-      }
-    },
-    [board]
-  );
+  useEffect(() => {
+    if (board && headingRef.current) {
+      headingRef.current.focus();
+    }
+  }, [board]);
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event) => {
     if (event.key === 'Escape') {
       onClose();
     }

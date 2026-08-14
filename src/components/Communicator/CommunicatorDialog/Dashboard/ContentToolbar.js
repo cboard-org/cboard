@@ -17,7 +17,7 @@ import messages from '../CommunicatorDialog.messages';
 
 const FIELD_HEIGHT = 40;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -107,7 +107,7 @@ const ContentToolbar = ({
         </div>
         <InputBase
           value={search}
-          onChange={event => onSearchChange(event.target.value)}
+          onChange={(event) => onSearchChange(event.target.value)}
           placeholder={intl.formatMessage(messages.searchBoardsPlaceholder)}
           classes={{ root: classes.inputRoot, input: classes.inputInput }}
           inputProps={{ 'aria-label': intl.formatMessage(messages.search) }}

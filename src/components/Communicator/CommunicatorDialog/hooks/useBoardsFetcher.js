@@ -11,7 +11,7 @@ const filterLocalBoards = (boards, criteria, page, search = '') => {
   let result = boards;
   for (const [key, value] of Object.entries(criteria)) {
     result = result.filter(
-      board =>
+      (board) =>
         (board.hasOwnProperty(key) && board[key] === value) ||
         !board.hasOwnProperty(key)
     );
@@ -19,7 +19,7 @@ const filterLocalBoards = (boards, criteria, page, search = '') => {
   if (search) {
     const re = new RegExp(search, 'i');
     result = result.filter(
-      board => re.test(board.name) || re.test(board.author)
+      (board) => re.test(board.name) || re.test(board.author)
     );
   }
   return {
@@ -114,37 +114,32 @@ const useBoardsFetcher = ({
   }, []);
 
   // Section or search change always resets to page 1 and refetches.
-  useEffect(
-    () => {
-      setPage(1);
-      doFetch(1, search, section);
-    },
-    [doFetch, search, section]
-  );
+  useEffect(() => {
+    setPage(1);
+    doFetch(1, search, section);
+  }, [doFetch, search, section]);
 
   const goToPage = useCallback(
-    newPage => {
+    (newPage) => {
       setPage(newPage);
       doFetch(newPage, search, section);
     },
     [doFetch, search, section]
   );
 
-  const refetch = useCallback(() => doFetch(page, search, section), [
-    doFetch,
-    page,
-    search,
-    section
-  ]);
+  const refetch = useCallback(
+    () => doFetch(page, search, section),
+    [doFetch, page, search, section]
+  );
 
-  const removeBoardFromList = useCallback(id => {
-    setBoards(prev => prev.filter(board => board.id !== id));
-    setTotal(prev => Math.max(prev - 1, 0));
+  const removeBoardFromList = useCallback((id) => {
+    setBoards((prev) => prev.filter((board) => board.id !== id));
+    setTotal((prev) => Math.max(prev - 1, 0));
   }, []);
 
-  const replaceBoardInList = useCallback(updated => {
-    setBoards(prev =>
-      prev.map(board => (board.id === updated.id ? updated : board))
+  const replaceBoardInList = useCallback((updated) => {
+    setBoards((prev) =>
+      prev.map((board) => (board.id === updated.id ? updated : board))
     );
   }, []);
 

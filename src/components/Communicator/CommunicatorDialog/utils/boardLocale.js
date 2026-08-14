@@ -4,7 +4,7 @@ import Language from '../../../Settings/Language/Language.messages';
  * Resolves the localized language name for a board's locale.
  * Returns a react-intl message descriptor or null when unknown.
  */
-export const getBoardLocaleMessage = lang => {
+export const getBoardLocaleMessage = (lang) => {
   if (!Language) return null;
   const source = lang || navigator.language || '';
   const locale = source.slice(0, 2).toLowerCase();
