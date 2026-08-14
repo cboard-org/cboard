@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { isCordova } from '../../../cordova-util';
+import { isPackagedApp } from '../../../cordova-util';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import messages from '../Board.messages';
 
@@ -26,7 +26,7 @@ const propTypes = {
 };
 
 function formatSrc(src) {
-  return isCordova() && src?.startsWith('/') ? `.${src}` : src;
+  return isPackagedApp() && src?.startsWith('/') ? `.${src}` : src;
 }
 
 function Symbol(props) {
