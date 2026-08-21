@@ -5,8 +5,7 @@ import CommunicatorDialog from './CommunicatorDialog.component';
 import {
   addBoardCommunicator,
   verifyAndUpsertCommunicator,
-  upsertApiCommunicator,
-  pushCommunicator
+  upsertApiCommunicator
 } from '../Communicator.actions';
 import {
   deleteBoard,
