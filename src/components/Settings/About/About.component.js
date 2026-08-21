@@ -11,16 +11,16 @@ import FullScreenDialog, {
 } from '../../UI/FullScreenDialog';
 import CboardLogo from '../../WelcomeScreen/CboardLogo';
 import './About.css';
-import { isCordova } from '../../../cordova-util';
+import { isPackagedApp } from '../../../cordova-util';
 
 const itemData = [
   {
-    img: (isCordova() ? '.' : '') + '/images/sponsers/unicef.png',
+    img: (isPackagedApp() ? '.' : '') + '/images/sponsers/unicef.png',
     title: 'UNICEF',
     author: 'UNICEF'
   },
   {
-    img: (isCordova() ? '.' : '') + '/images/sponsers/microsoft.png',
+    img: (isPackagedApp() ? '.' : '') + '/images/sponsers/microsoft.png',
     title: 'Microsoft',
     author: 'Microsoft'
   }

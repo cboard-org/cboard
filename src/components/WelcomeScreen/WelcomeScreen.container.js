@@ -22,10 +22,10 @@ import CboardLogo from './CboardLogo/CboardLogo.component';
 import './WelcomeScreen.css';
 import { API_URL, GOOGLE_FIREBASE_WEB_CLIENT_ID } from '../../constants';
 import {
-  isCordova,
   isAndroid,
   isElectron,
   isIOS,
+  isPackagedApp,
   manageKeyboardEvents
 } from '../../cordova-util';
 
@@ -33,8 +33,8 @@ const SocialBtnStyle = {
   borderRadius: '15px'
 };
 
-// Cordova path cannot be absolute
-const backgroundImage = isCordova()
+// Packaged-app asset paths must be relative (served over file://).
+const backgroundImage = isPackagedApp()
   ? './images/bg/waves.png'
   : '/images/bg/waves.png';
 

@@ -26,4 +26,4 @@ CUSTOM_TAG_1: 'Playwright Test Run'
 # Use CUSTOM_TAG_<N> and set more build tags as you need.
 debug: true
 consoleLogs: info
-playwrightVersion: 1.50.0
+playwrightVersion: 1.56.1

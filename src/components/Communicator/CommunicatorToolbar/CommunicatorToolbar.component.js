@@ -17,7 +17,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import FormDialog from '../../UI/FormDialog';
 import messages from './CommunicatorToolbar.messages';
 import './CommunicatorToolbar.css';
-import { isCordova } from '../../../cordova-util';
+import { isPackagedApp } from '../../../cordova-util';
 import DefaultBoardSelector from './DefaultBoardSelector';
 import SyncButton from './SyncButton';
 
@@ -96,7 +96,7 @@ class CommunicatorToolbar extends React.Component {
 
   boardCaption = (board) => {
     // Cordova path cannot be absolute
-    if (isCordova() && board.caption && board.caption.search('/') === 0) {
+    if (isPackagedApp() && board.caption && board.caption.search('/') === 0) {
       return `.${board.caption}`;
     } else {
       return board.caption;
