@@ -2,6 +2,7 @@
 
 exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
 <WithStyles(FullScreenDialog)
+  disableAppBarElevation={true}
   fullWidth={true}
   onClose={[MockFunction]}
   open={true}
@@ -19,13 +20,13 @@ exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
       mobileOpen={false}
       onChange={[Function]}
       onMobileClose={[Function]}
-      section="myCommunicator"
+      section="myBoards"
     />
     <main
-      className="makeStyles-content-3"
+      className="makeStyles-content-2"
     >
       <div
-        className="makeStyles-header-4"
+        className="makeStyles-header-3"
       >
         <SectionHeader
           intl={
@@ -34,16 +35,66 @@ exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
             }
           }
           onOpenNav={[Function]}
-          section="myCommunicator"
+          section="myBoards"
           total={0}
+        />
+        <ContentToolbar
+          intl={
+            Object {
+              "formatMessage": [Function],
+            }
+          }
+          onSearchChange={[Function]}
+          onViewModeChange={[Function]}
+          search=""
+          viewMode="grid"
         />
       </div>
       <div
-        className="makeStyles-scrollArea-5"
+        className="makeStyles-scrollAreaWithPanel-5"
       >
-        <QuickAccessTray
-          boards={Array []}
-          busyBoardId={null}
+        <div
+          className="makeStyles-boards-6"
+        >
+          <BoardsView
+            activeBoardId="board-1"
+            boards={Array []}
+            busyBoardId={null}
+            communicator={
+              Object {
+                "boards": Array [
+                  "board-1",
+                  "board-2",
+                ],
+                "id": "comm-1",
+                "name": "My Communicator",
+                "rootBoard": "board-1",
+              }
+            }
+            error={null}
+            hasSearch={false}
+            intl={
+              Object {
+                "formatMessage": [Function],
+              }
+            }
+            loading={false}
+            onPageChange={[Function]}
+            onRetry={[Function]}
+            onSelect={[Function]}
+            onToggleQuickAccess={[Function]}
+            page={1}
+            registerTrigger={[Function]}
+            selectedId={null}
+            totalPages={0}
+            viewMode="grid"
+          />
+        </div>
+        <BoardDetailsSurface
+          actions={Array []}
+          activeBoardId="board-1"
+          board={null}
+          busy={true}
           communicator={
             Object {
               "boards": Array [
@@ -60,10 +111,7 @@ exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
               "formatMessage": [Function],
             }
           }
-          onGoToMyBoards={[Function]}
-          onMove={[Function]}
-          onRemove={[Function]}
-          onSetRoot={[Function]}
+          onClose={[Function]}
         />
       </div>
       <LiveRegion
@@ -77,7 +125,7 @@ exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
             "formatMessage": [Function],
           }
         }
-        selectedTab={0}
+        selectedTab={2}
       />
     </main>
   </div>

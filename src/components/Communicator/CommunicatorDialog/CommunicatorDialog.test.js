@@ -72,22 +72,22 @@ describe('CommunicatorDialog (dashboard)', () => {
     expect(wrapper.find('SectionHeader').length).toBe(1);
   });
 
-  test('starts on the My Communicator section', () => {
+  test('starts on the My Boards section', () => {
     const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
     expect(wrapper.find('DashboardNav').prop('section')).toBe(
-      SECTIONS.MY_COMMUNICATOR
+      SECTIONS.MY_BOARDS
     );
   });
 
-  test('renders the quick access tray on the default section', () => {
+  test('renders the quick access tray on My Communicator', () => {
     const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+    wrapper.find('DashboardNav').prop('onChange')(SECTIONS.MY_COMMUNICATOR);
     expect(wrapper.find('QuickAccessTray').length).toBe(1);
     expect(wrapper.find('BoardsView').length).toBe(0);
   });
 
-  test('renders the boards view and details surface on My Boards', () => {
+  test('renders the boards view and details surface on the default section', () => {
     const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
-    wrapper.find('DashboardNav').prop('onChange')(SECTIONS.MY_BOARDS);
     expect(wrapper.find('BoardsView').length).toBe(1);
     expect(wrapper.find('BoardDetailsSurface').length).toBe(1);
   });
@@ -99,10 +99,10 @@ describe('CommunicatorDialog (dashboard)', () => {
 
   test('hides search and the view toggle on quick access', () => {
     const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
-    expect(wrapper.find('ContentToolbar').length).toBe(0);
-
-    wrapper.find('DashboardNav').prop('onChange')(SECTIONS.MY_BOARDS);
     expect(wrapper.find('ContentToolbar').length).toBe(1);
+
+    wrapper.find('DashboardNav').prop('onChange')(SECTIONS.MY_COMMUNICATOR);
+    expect(wrapper.find('ContentToolbar').length).toBe(0);
   });
 
   test('switching section updates the active section', () => {
