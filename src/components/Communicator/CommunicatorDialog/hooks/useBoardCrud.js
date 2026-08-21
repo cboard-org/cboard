@@ -181,8 +181,14 @@ const useBoardCrud = ({
 
       if (isLoggedIn(userData)) {
         try {
-          const boardResponse = await API.updateBoard(boardData);
-          replaceBoard(boardData, boardResponse);
+          const { board: sanitized } =
+            await API.uploadBoardLocalMedia(boardData);
+          if (sanitized !== boardData) {
+            replaceBoard(boardData, sanitized);
+            replaceBoardInList(sanitized);
+          }
+          const boardResponse = await API.updateBoard(sanitized);
+          replaceBoard(sanitized, boardResponse);
           replaceBoardInList(boardResponse);
         } catch (err) {}
       }

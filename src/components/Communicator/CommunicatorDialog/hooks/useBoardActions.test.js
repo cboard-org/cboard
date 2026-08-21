@@ -9,7 +9,8 @@ jest.mock('../../../../api', () => ({
   default: {
     getBoard: jest.fn(),
     boardReport: jest.fn(),
-    updateBoard: jest.fn()
+    updateBoard: jest.fn(),
+    uploadBoardLocalMedia: jest.fn()
   }
 }));
 
@@ -215,5 +216,42 @@ describe('useBoardActions', () => {
     expect(args.switchBoard).toHaveBeenCalledWith('b2');
     expect(history.replace).toHaveBeenCalledWith('/board/b2');
     expect(args.onClose).toHaveBeenCalled();
+  });
+
+  it('uploads local media before sending the published board', async () => {
+    const API = require('../../../../api').default;
+    const board = {
+      id: 'b2',
+      name: 'Comidas',
+      isPublic: false,
+      tiles: [{ id: 't1', image: 'data:image/png;base64,AAA' }]
+    };
+    const sanitized = {
+      ...board,
+      isPublic: true,
+      tiles: [{ id: 't1', image: 'https://cdn.cboard.io/t1.png' }]
+    };
+    const persisted = { ...sanitized, _id: 'srv1' };
+    API.uploadBoardLocalMedia.mockResolvedValueOnce({
+      board: sanitized,
+      hadFailure: false
+    });
+    API.updateBoard.mockResolvedValueOnce(persisted);
+
+    const args = baseArgs({
+      section: SECTIONS.MY_BOARDS,
+      userData: { name: 'Tester', email: 'tester@cboard.io' }
+    });
+    const get = renderActions(args);
+
+    await act(async () => {
+      await get().publishBoard(board);
+    });
+
+    expect(API.uploadBoardLocalMedia).toHaveBeenCalledWith(
+      expect.objectContaining({ id: 'b2', isPublic: true })
+    );
+    expect(API.updateBoard).toHaveBeenCalledWith(sanitized);
+    expect(args.replaceBoardInList).toHaveBeenLastCalledWith(persisted);
   });
 });
