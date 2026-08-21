@@ -1,421 +1,211 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CommunicatorDialog tests default renderer 1`] = `
+exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
 <WithStyles(FullScreenDialog)
-  buttons={
-    <CommunicatorDialogButtons
+  disableAppBarElevation={true}
+  fullWidth={true}
+  onClose={[MockFunction]}
+  open={true}
+  title="title"
+>
+  <div
+    className="makeStyles-dashboard-1"
+  >
+    <DashboardNav
       intl={
         Object {
           "formatMessage": [Function],
         }
       }
-      onSearch={[Function]}
+      mobileOpen={false}
+      onChange={[Function]}
+      onMobileClose={[Function]}
+      section="myBoards"
     />
-  }
-  disableSubmit={true}
-  onClose={[Function]}
-  open={false}
-  title="cboard.components.CommunicatorDialog.title"
->
-  <WithStyles(ForwardRef(Paper))
-    className=""
-  >
-    <FullScreenDialogContent
-      className="CommunicatorDialog__container"
+    <main
+      className="makeStyles-content-2"
     >
-      <WithStyles(ForwardRef(Tabs))
-        className="CommunicatorDialog__tabs"
-        fixed="top"
-        onChange={[Function]}
-        scrollButtons="off"
-        value={0}
-        variant="scrollable"
-      >
-        <WithStyles(ForwardRef(Tab))
-          className="active"
-          id="CommunicatorDialog__BoardBtn"
-          label="cboard.components.CommunicatorDialog.communicatorBoards"
-        />
-        <WithStyles(ForwardRef(Tab))
-          className=""
-          id="CommunicatorDialog__PublicBoardsBtn"
-          label="cboard.components.CommunicatorDialog.allBoards"
-        />
-        <WithStyles(ForwardRef(Tab))
-          className=""
-          disabled={false}
-          id="CommunicatorDialog__AllMyBoardsBtn"
-          label="cboard.components.CommunicatorDialog.myBoards"
-        />
-      </WithStyles(ForwardRef(Tabs))>
       <div
-        className="CommunicatorDialog__content"
+        className="makeStyles-header-3"
       >
-        <React.Fragment>
-          <div
-            className="CommunicatorDialog__communicatorData"
-          >
-            <React.Fragment>
-              <div
-                className="CommunicatorDialog__communicatorData__title"
-              >
-                cboard.components.CommunicatorDialog.title
-              </div>
-              <div
-                className="CommunicatorDialog__communicatorData__boardsQty"
-              >
-                cboard.components.CommunicatorDialog.boardsQty
-              </div>
-            </React.Fragment>
-          </div>
-          <div
-            className="CommunicatorDialog__boards"
-          >
-            <div
-              className="CommunicatorDialog__boards__emptyMessage"
-            >
-              <FormattedMessage
-                values={Object {}}
-              />
-            </div>
-            <CommunicatorDialogTour
-              communicatorTour={Object {}}
-              disableTour={[MockFunction]}
-              intl={
-                Object {
-                  "formatMessage": [Function],
-                }
-              }
-              selectedTab={0}
-            />
-          </div>
-        </React.Fragment>
+        <SectionHeader
+          intl={
+            Object {
+              "formatMessage": [Function],
+            }
+          }
+          onOpenNav={[Function]}
+          section="myBoards"
+          total={0}
+        />
+        <ContentToolbar
+          intl={
+            Object {
+              "formatMessage": [Function],
+            }
+          }
+          onSearchChange={[Function]}
+          onViewModeChange={[Function]}
+          search=""
+          viewMode="grid"
+        />
       </div>
-    </FullScreenDialogContent>
-  </WithStyles(ForwardRef(Paper))>
-</WithStyles(FullScreenDialog)>
-`;
-
-exports[`CommunicatorDialog tests loading behavior 1`] = `
-<WithStyles(FullScreenDialog)
-  buttons={
-    <CommunicatorDialogButtons
-      intl={
-        Object {
-          "formatMessage": [Function],
-        }
-      }
-      onSearch={[Function]}
-    />
-  }
-  disableSubmit={true}
-  onClose={[Function]}
-  open={false}
-  title="cboard.components.CommunicatorDialog.title"
->
-  <WithStyles(ForwardRef(Paper))
-    className=""
-  >
-    <FullScreenDialogContent
-      className="CommunicatorDialog__container"
-    >
-      <WithStyles(ForwardRef(Tabs))
-        className="CommunicatorDialog__tabs"
-        fixed="top"
-        onChange={[Function]}
-        scrollButtons="off"
-        value={0}
-        variant="scrollable"
-      >
-        <WithStyles(ForwardRef(Tab))
-          className="active"
-          id="CommunicatorDialog__BoardBtn"
-          label="cboard.components.CommunicatorDialog.communicatorBoards"
-        />
-        <WithStyles(ForwardRef(Tab))
-          className=""
-          id="CommunicatorDialog__PublicBoardsBtn"
-          label="cboard.components.CommunicatorDialog.allBoards"
-        />
-        <WithStyles(ForwardRef(Tab))
-          className=""
-          disabled={false}
-          id="CommunicatorDialog__AllMyBoardsBtn"
-          label="cboard.components.CommunicatorDialog.myBoards"
-        />
-      </WithStyles(ForwardRef(Tabs))>
       <div
-        className="CommunicatorDialog__content"
+        className="makeStyles-scrollAreaWithPanel-5"
       >
         <div
-          className="CommunicatorDialog__communicatorData"
+          className="makeStyles-boards-6"
         >
-          <div
-            className="CommunicatorDialog__communicatorData__title"
-          >
-            cboard.components.CommunicatorDialog.title
-          </div>
-          <div
-            className="CommunicatorDialog__communicatorData__boardsQty"
-          >
-            cboard.components.CommunicatorDialog.boardsQty
-          </div>
-        </div>
-        <div
-          className="CommunicatorDialog__boards"
-        >
-          <div
-            className="CommunicatorDialog__boards__emptyMessage"
-          >
-            <FormattedMessage
-              values={Object {}}
-            />
-          </div>
-          <CommunicatorDialogTour
-            communicatorTour={Object {}}
-            disableTour={[MockFunction]}
+          <BoardsView
+            activeBoardId="board-1"
+            boards={Array []}
+            busyBoardId={null}
+            communicator={
+              Object {
+                "boards": Array [
+                  "board-1",
+                  "board-2",
+                ],
+                "id": "comm-1",
+                "name": "My Communicator",
+                "rootBoard": "board-1",
+              }
+            }
+            error={null}
+            hasSearch={false}
             intl={
               Object {
                 "formatMessage": [Function],
               }
             }
-            selectedTab={0}
+            loading={false}
+            onPageChange={[Function]}
+            onRetry={[Function]}
+            onSelect={[Function]}
+            onToggleQuickAccess={[Function]}
+            page={1}
+            registerTrigger={[Function]}
+            selectedId={null}
+            totalPages={0}
+            viewMode="grid"
           />
         </div>
-      </div>
-    </FullScreenDialogContent>
-  </WithStyles(ForwardRef(Paper))>
-</WithStyles(FullScreenDialog)>
-`;
-
-exports[`CommunicatorDialog tests loading behavior 2`] = `
-<WithStyles(FullScreenDialog)
-  buttons={
-    <CommunicatorDialogButtons
-      intl={
-        Object {
-          "formatMessage": [Function],
-        }
-      }
-      onSearch={[Function]}
-    />
-  }
-  disableSubmit={true}
-  onClose={[Function]}
-  open={false}
-  title="cboard.components.CommunicatorDialog.title"
->
-  <WithStyles(ForwardRef(Paper))
-    className=""
-  >
-    <FullScreenDialogContent
-      className="CommunicatorDialog__container"
-    >
-      <WithStyles(ForwardRef(Tabs))
-        className="CommunicatorDialog__tabs"
-        fixed="top"
-        onChange={[Function]}
-        scrollButtons="off"
-        value={1}
-        variant="scrollable"
-      >
-        <WithStyles(ForwardRef(Tab))
-          className=""
-          id="CommunicatorDialog__BoardBtn"
-          label="cboard.components.CommunicatorDialog.communicatorBoards"
-        />
-        <WithStyles(ForwardRef(Tab))
-          className="active"
-          id="CommunicatorDialog__PublicBoardsBtn"
-          label="cboard.components.CommunicatorDialog.allBoards"
-        />
-        <WithStyles(ForwardRef(Tab))
-          className=""
-          disabled={false}
-          id="CommunicatorDialog__AllMyBoardsBtn"
-          label="cboard.components.CommunicatorDialog.myBoards"
-        />
-      </WithStyles(ForwardRef(Tabs))>
-      <div
-        className="CommunicatorDialog__content"
-      >
-        <WithStyles(ForwardRef(CircularProgress))
-          className="CommunicatorDialog__spinner"
-          size={35}
-          thickness={7}
-        />
-      </div>
-    </FullScreenDialogContent>
-  </WithStyles(ForwardRef(Paper))>
-</WithStyles(FullScreenDialog)>
-`;
-
-exports[`CommunicatorDialog tests tabs behavior 1`] = `
-<WithStyles(FullScreenDialog)
-  buttons={
-    <CommunicatorDialogButtons
-      intl={
-        Object {
-          "formatMessage": [Function],
-        }
-      }
-      onSearch={[Function]}
-    />
-  }
-  disableSubmit={true}
-  onClose={[Function]}
-  open={false}
-  title="cboard.components.CommunicatorDialog.title"
->
-  <WithStyles(ForwardRef(Paper))
-    className=""
-  >
-    <FullScreenDialogContent
-      className="CommunicatorDialog__container"
-    >
-      <WithStyles(ForwardRef(Tabs))
-        className="CommunicatorDialog__tabs"
-        fixed="top"
-        onChange={[Function]}
-        scrollButtons="off"
-        value={0}
-        variant="scrollable"
-      >
-        <WithStyles(ForwardRef(Tab))
-          className="active"
-          id="CommunicatorDialog__BoardBtn"
-          label="cboard.components.CommunicatorDialog.communicatorBoards"
-        />
-        <WithStyles(ForwardRef(Tab))
-          className=""
-          id="CommunicatorDialog__PublicBoardsBtn"
-          label="cboard.components.CommunicatorDialog.allBoards"
-        />
-        <WithStyles(ForwardRef(Tab))
-          className=""
-          disabled={false}
-          id="CommunicatorDialog__AllMyBoardsBtn"
-          label="cboard.components.CommunicatorDialog.myBoards"
-        />
-      </WithStyles(ForwardRef(Tabs))>
-      <div
-        className="CommunicatorDialog__content"
-      >
-        <div
-          className="CommunicatorDialog__communicatorData"
-        >
-          <div
-            className="CommunicatorDialog__communicatorData__title"
-          >
-            cboard.components.CommunicatorDialog.title
-          </div>
-          <div
-            className="CommunicatorDialog__communicatorData__boardsQty"
-          >
-            cboard.components.CommunicatorDialog.boardsQty
-          </div>
-        </div>
-        <div
-          className="CommunicatorDialog__boards"
-        >
-          <div
-            className="CommunicatorDialog__boards__emptyMessage"
-          >
-            <FormattedMessage
-              values={Object {}}
-            />
-          </div>
-          <CommunicatorDialogTour
-            communicatorTour={Object {}}
-            disableTour={[MockFunction]}
-            intl={
-              Object {
-                "formatMessage": [Function],
-              }
+        <BoardDetailsSurface
+          actions={Array []}
+          activeBoardId="board-1"
+          board={null}
+          busy={true}
+          communicator={
+            Object {
+              "boards": Array [
+                "board-1",
+                "board-2",
+              ],
+              "id": "comm-1",
+              "name": "My Communicator",
+              "rootBoard": "board-1",
             }
-            selectedTab={0}
-          />
-        </div>
-      </div>
-    </FullScreenDialogContent>
-  </WithStyles(ForwardRef(Paper))>
-</WithStyles(FullScreenDialog)>
-`;
-
-exports[`CommunicatorDialog tests tabs behavior 2`] = `
-<WithStyles(FullScreenDialog)
-  buttons={
-    <CommunicatorDialogButtons
-      intl={
-        Object {
-          "formatMessage": [Function],
-        }
-      }
-      onSearch={[Function]}
-    />
-  }
-  disableSubmit={true}
-  onClose={[Function]}
-  open={false}
-  title="cboard.components.CommunicatorDialog.title"
->
-  <WithStyles(ForwardRef(Paper))
-    className=""
-  >
-    <FullScreenDialogContent
-      className="CommunicatorDialog__container"
-    >
-      <WithStyles(ForwardRef(Tabs))
-        className="CommunicatorDialog__tabs"
-        fixed="top"
-        onChange={[Function]}
-        scrollButtons="off"
-        value={1}
-        variant="scrollable"
-      >
-        <WithStyles(ForwardRef(Tab))
-          className=""
-          id="CommunicatorDialog__BoardBtn"
-          label="cboard.components.CommunicatorDialog.communicatorBoards"
-        />
-        <WithStyles(ForwardRef(Tab))
-          className="active"
-          id="CommunicatorDialog__PublicBoardsBtn"
-          label="cboard.components.CommunicatorDialog.allBoards"
-        />
-        <WithStyles(ForwardRef(Tab))
-          className=""
-          disabled={false}
-          id="CommunicatorDialog__AllMyBoardsBtn"
-          label="cboard.components.CommunicatorDialog.myBoards"
-        />
-      </WithStyles(ForwardRef(Tabs))>
-      <div
-        className="CommunicatorDialog__content"
-      >
-        <div
-          className="CommunicatorDialog__boards"
-        >
-          <div
-            className="CommunicatorDialog__boards__emptyMessage"
-          >
-            <FormattedMessage
-              values={Object {}}
-            />
-          </div>
-          <CommunicatorDialogTour
-            communicatorTour={Object {}}
-            disableTour={[MockFunction]}
-            intl={
-              Object {
-                "formatMessage": [Function],
-              }
+          }
+          intl={
+            Object {
+              "formatMessage": [Function],
             }
-            selectedTab={1}
-          />
-        </div>
+          }
+          onClose={[Function]}
+        />
       </div>
-    </FullScreenDialogContent>
-  </WithStyles(ForwardRef(Paper))>
+      <LiveRegion
+        message=""
+      />
+      <CommunicatorDialogTour
+        communicatorTour={Object {}}
+        disableTour={[MockFunction]}
+        intl={
+          Object {
+            "formatMessage": [Function],
+          }
+        }
+        selectedTab={2}
+      />
+    </main>
+  </div>
+  <BoardInfoDialog
+    board={null}
+    intl={
+      Object {
+        "formatMessage": [Function],
+      }
+    }
+    onClose={[Function]}
+    open={false}
+  />
+  <ConfirmDialog
+    description="deleteBoardDescription"
+    intl={
+      Object {
+        "formatMessage": [Function],
+      }
+    }
+    onClose={[Function]}
+    onConfirm={[Function]}
+    open={false}
+    title="deleteBoard"
+  />
+  <ConfirmDialog
+    description="copyBoardDescription"
+    intl={
+      Object {
+        "formatMessage": [Function],
+      }
+    }
+    onClose={[Function]}
+    onConfirm={[Function]}
+    open={false}
+    premium={true}
+    title="copyBoard"
+  />
+  <PublishBoardDialog
+    board={null}
+    intl={
+      Object {
+        "formatMessage": [Function],
+      }
+    }
+    onClose={[Function]}
+    onPublish={[Function]}
+    onUpdateBoard={[Function]}
+    open={false}
+  />
+  <EditBoardDialog
+    board={null}
+    disableTour={[MockFunction]}
+    intl={
+      Object {
+        "formatMessage": [Function],
+      }
+    }
+    isSymbolSearchTourEnabled={false}
+    onClose={[Function]}
+    onUpdateBoard={[Function]}
+    open={false}
+  />
+  <ReportBoardDialog
+    board={null}
+    intl={
+      Object {
+        "formatMessage": [Function],
+      }
+    }
+    onClose={[Function]}
+    onReport={[Function]}
+    open={false}
+    userData={
+      Object {
+        "authToken": "token",
+        "email": "tester@cboard.io",
+        "name": "Tester",
+      }
+    }
+  />
 </WithStyles(FullScreenDialog)>
 `;
