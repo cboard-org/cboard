@@ -301,6 +301,7 @@ const CommunicatorDialog = ({
   return (
     <FullScreenDialog
       fullWidth
+      fullHeight
       disableAppBarElevation
       open={open}
       title={intl.formatMessage(messages.title)}

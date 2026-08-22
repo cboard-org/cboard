@@ -3,6 +3,7 @@
 exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
 <WithStyles(FullScreenDialog)
   disableAppBarElevation={true}
+  fullHeight={true}
   fullWidth={true}
   onClose={[MockFunction]}
   open={true}

@@ -19,6 +19,7 @@ FullScreenDialog.propTypes = {
   disableAppBarElevation: PropTypes.bool,
   open: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  fullHeight: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   onClose: PropTypes.func,
   onSubmit: PropTypes.func,
@@ -59,6 +60,9 @@ const styles = {
     margin: '0 auto'
   },
   contentFullWidth: {
+    margin: '0 auto'
+  },
+  contentFullHeight: {
     margin: '0 auto',
     height: '100%'
   }
@@ -99,7 +103,8 @@ function FullScreenDialog(props) {
     onClose,
     onSubmit,
     transition = transitions.UP,
-    fullWidth
+    fullWidth,
+    fullHeight
   } = props;
 
   const theme = useTheme();
@@ -150,7 +155,15 @@ function FullScreenDialog(props) {
         </Toolbar>
       </AppBar>
       <div className={dark ? classes.containerDark : classes.container}>
-        <div className={fullWidth ? classes.contentFullWidth : classes.content}>
+        <div
+          className={
+            fullHeight
+              ? classes.contentFullHeight
+              : fullWidth
+                ? classes.contentFullWidth
+                : classes.content
+          }
+        >
           {children}
         </div>
       </div>
