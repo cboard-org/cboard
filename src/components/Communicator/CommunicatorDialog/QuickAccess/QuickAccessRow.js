@@ -64,6 +64,7 @@ const QuickAccessRow = ({
   isRoot,
   isFirst,
   isLast,
+  hasAuth,
   busy,
   onSetRoot,
   onRemove,
@@ -133,7 +134,7 @@ const QuickAccessRow = ({
             data-testid="set-root"
             className={classes.control}
             aria-label={`${t(messages.menuRootBoardOption)}: ${title}`}
-            disabled={isRoot}
+            disabled={isRoot || !hasAuth}
             onClick={onSetRoot}
           >
             <HomeIcon />
@@ -165,6 +166,7 @@ QuickAccessRow.propTypes = {
   isRoot: PropTypes.bool,
   isFirst: PropTypes.bool,
   isLast: PropTypes.bool,
+  hasAuth: PropTypes.bool,
   busy: PropTypes.bool,
   onSetRoot: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,

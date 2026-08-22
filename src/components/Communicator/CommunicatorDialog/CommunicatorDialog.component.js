@@ -336,6 +336,7 @@ const CommunicatorDialog = ({
                 boards={communicatorBoards}
                 communicator={currentCommunicator}
                 busyBoardId={busyBoardId}
+                hasAuth={!!(userData && userData.authToken)}
                 onSetRoot={(board) => runBusy(board, actions.setRootBoard)}
                 onRemove={(board) => runBusy(board, actions.addOrRemoveBoard)}
                 onMove={handleMove}

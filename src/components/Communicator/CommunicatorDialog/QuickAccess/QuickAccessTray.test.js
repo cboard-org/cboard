@@ -39,6 +39,7 @@ const render = (props = {}) =>
       communicator={{ rootBoard: 'b1', boards: ['b3', 'b1', 'b2'] }}
       activeBoardId={null}
       busyBoardId={null}
+      hasAuth={true}
       onSetRoot={jest.fn()}
       onRemove={jest.fn()}
       onMove={jest.fn()}
@@ -106,5 +107,22 @@ describe('QuickAccessTray', () => {
       .first()
       .simulate('click');
     expect(onGoToMyBoards).toHaveBeenCalled();
+  });
+
+  it('disables set as home board when the user is not logged in', () => {
+    const setRoot = render({ hasAuth: false })
+      .find(IconButton)
+      .filterWhere((node) => node.prop('data-testid') === 'set-root');
+
+    expect(setRoot.length).toBe(3);
+    setRoot.forEach((node) => expect(node.prop('disabled')).toBe(true));
+  });
+
+  it('enables set as home board for non-root rows when logged in', () => {
+    const setRoot = render()
+      .find(IconButton)
+      .filterWhere((node) => node.prop('data-testid') === 'set-root');
+
+    expect(setRoot.at(0).prop('disabled')).toBe(false);
   });
 });
