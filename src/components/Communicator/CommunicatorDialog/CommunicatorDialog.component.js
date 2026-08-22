@@ -82,10 +82,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const readStoredViewMode = () => {
-  const stored =
-    typeof window !== 'undefined' &&
-    window.localStorage.getItem(VIEW_MODE_STORAGE_KEY);
-  return stored === VIEW_MODES.LIST ? VIEW_MODES.LIST : VIEW_MODES.GRID;
+  try {
+    const stored = window.localStorage.getItem(VIEW_MODE_STORAGE_KEY);
+    return stored === VIEW_MODES.LIST ? VIEW_MODES.LIST : VIEW_MODES.GRID;
+  } catch (e) {
+    return VIEW_MODES.GRID;
+  }
 };
 
 const CommunicatorDialog = ({
@@ -209,7 +211,9 @@ const CommunicatorDialog = ({
 
   const handleViewModeChange = (mode) => {
     setViewMode(mode);
-    window.localStorage.setItem(VIEW_MODE_STORAGE_KEY, mode);
+    try {
+      window.localStorage.setItem(VIEW_MODE_STORAGE_KEY, mode);
+    } catch (e) {}
   };
 
   const closeDialog = () => setDialog({ type: null, board: null });

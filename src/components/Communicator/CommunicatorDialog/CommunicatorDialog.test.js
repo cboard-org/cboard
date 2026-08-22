@@ -130,4 +130,18 @@ describe('CommunicatorDialog (dashboard)', () => {
     expect(wrapper.find('BoardsView').prop('hasSearch')).toBe(false);
     jest.useRealTimers();
   });
+
+  test('opens with the default view mode when storage is unavailable', () => {
+    const getItem = jest
+      .spyOn(window.localStorage.__proto__, 'getItem')
+      .mockImplementation(() => {
+        throw new Error('blocked');
+      });
+
+    expect(() =>
+      shallow(<CommunicatorDialog {...buildProps()} />)
+    ).not.toThrow();
+
+    getItem.mockRestore();
+  });
 });
