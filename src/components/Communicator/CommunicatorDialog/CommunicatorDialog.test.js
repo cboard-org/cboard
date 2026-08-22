@@ -115,4 +115,19 @@ describe('CommunicatorDialog (dashboard)', () => {
       SECTIONS.COMMUNITY
     );
   });
+
+  test('drops a pending search when the section changes', () => {
+    jest.useFakeTimers();
+    const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+
+    wrapper.find('ContentToolbar').prop('onSearchChange')('abc');
+    wrapper.find('DashboardNav').prop('onChange')(SECTIONS.COMMUNITY);
+
+    jest.advanceTimersByTime(1000);
+    wrapper.update();
+
+    expect(wrapper.find('ContentToolbar').prop('search')).toBe('');
+    expect(wrapper.find('BoardsView').prop('hasSearch')).toBe(false);
+    jest.useRealTimers();
+  });
 });

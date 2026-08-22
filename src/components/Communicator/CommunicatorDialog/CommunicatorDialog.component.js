@@ -188,6 +188,7 @@ const CommunicatorDialog = ({
   };
 
   const handleSectionChange = (nextSection) => {
+    debouncedSetSearch.cancel();
     setSection(nextSection);
     setSearchInput('');
     setSearch('');
