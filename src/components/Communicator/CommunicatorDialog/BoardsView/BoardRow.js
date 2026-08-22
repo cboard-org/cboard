@@ -101,8 +101,8 @@ const BoardRow = ({
   const classes = useStyles();
   const title = board.name || board.id;
   const locale = formatBoardLocale(intl, board.locale);
-  const accented =
-    communicator.rootBoard === board.id || activeBoardId === board.id;
+  const isRoot = communicator.rootBoard === board.id;
+  const accented = isRoot || activeBoardId === board.id;
   const inQuickAccess = communicator.boards.includes(board.id);
   const toggleLabel = intl.formatMessage(
     inQuickAccess ? messages.removeFromQuickAccess : messages.addToQuickAccess
@@ -161,18 +161,21 @@ const BoardRow = ({
       </div>
 
       <Tooltip title={toggleLabel}>
-        <IconButton
-          size="small"
-          data-testid="quick-access-toggle"
-          className={classNames(classes.star, {
-            [classes.starActive]: inQuickAccess
-          })}
-          aria-label={toggleLabel}
-          aria-pressed={inQuickAccess}
-          onClick={handleToggle}
-        >
-          {inQuickAccess ? <StarIcon /> : <StarBorderIcon />}
-        </IconButton>
+        <span>
+          <IconButton
+            size="small"
+            data-testid="quick-access-toggle"
+            className={classNames(classes.star, {
+              [classes.starActive]: inQuickAccess
+            })}
+            aria-label={toggleLabel}
+            aria-pressed={inQuickAccess}
+            disabled={isRoot}
+            onClick={handleToggle}
+          >
+            {inQuickAccess ? <StarIcon /> : <StarBorderIcon />}
+          </IconButton>
+        </span>
       </Tooltip>
     </Paper>
   );
