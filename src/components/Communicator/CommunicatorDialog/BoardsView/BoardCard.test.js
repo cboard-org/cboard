@@ -109,4 +109,16 @@ describe('BoardCard', () => {
   it('renders no overflow action menu', () => {
     expect(render().find('button[aria-haspopup="true"]')).toHaveLength(0);
   });
+
+  it('disables the quick access star on the root board', () => {
+    const wrapper = render({
+      communicator: { rootBoard: 'b2', boards: ['b2'] }
+    });
+    expect(
+      wrapper
+        .find('[data-testid="quick-access-toggle"]')
+        .first()
+        .prop('disabled')
+    ).toBe(true);
+  });
 });
