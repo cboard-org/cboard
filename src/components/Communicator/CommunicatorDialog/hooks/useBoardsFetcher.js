@@ -144,6 +144,12 @@ const useBoardsFetcher = ({
     [doFetch, page, search, section]
   );
 
+  useEffect(() => {
+    if (!loading && page > 1 && boards.length === 0 && total > 0) {
+      goToPage(page - 1);
+    }
+  }, [loading, page, boards.length, total, goToPage]);
+
   const removeBoardFromList = useCallback((id) => {
     setBoards((prev) => prev.filter((board) => board.id !== id));
     setTotal((prev) => Math.max(prev - 1, 0));

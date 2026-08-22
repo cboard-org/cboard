@@ -150,4 +150,23 @@ describe('useBoardsFetcher (communicator local source)', () => {
     expect(get().boards.map((board) => board.id)).toEqual(['fast']);
     expect(get().loading).toBe(false);
   });
+
+  it('steps back a page when the last board on it is removed', () => {
+    const communicatorBoards = makeBoards(13);
+    const { get } = renderHook({
+      section: SECTIONS.MY_COMMUNICATOR,
+      search: '',
+      communicatorBoards,
+      availableBoards: [],
+      userData: {}
+    });
+
+    act(() => get().goToPage(2));
+    expect(get().boards).toHaveLength(1);
+
+    act(() => get().removeBoardFromList('board-12'));
+
+    expect(get().page).toBe(1);
+    expect(get().boards).toHaveLength(12);
+  });
 });
