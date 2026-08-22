@@ -16,7 +16,6 @@ const useCommunicatorBoards = ({
   intl,
   userData,
   currentCommunicator,
-  communicatorBoards,
   availableBoards,
   addBoards,
   verifyAndUpsertCommunicator,
@@ -49,32 +48,27 @@ const useCommunicatorBoards = ({
     ]
   );
 
-  const updateCommunicatorBoards = useCallback(
-    async (boards) => persistCommunicatorBoardIds(boards.map((cb) => cb.id)),
-    [persistCommunicatorBoardIds]
-  );
-
   const addOrRemoveFromCommunicator = useCallback(
     async (board) => {
-      const nextCommunicatorBoards = [...communicatorBoards];
-      const boardIndex = nextCommunicatorBoards.findIndex(
-        (b) => b.id === board.id
-      );
-      if (boardIndex >= 0) {
-        nextCommunicatorBoards.splice(boardIndex, 1);
-        showNotification(
-          intl.formatMessage(messages.boardRemovedFromCommunicator)
-        );
-      } else {
-        nextCommunicatorBoards.push(board);
-        showNotification(intl.formatMessage(messages.boardAddedToCommunicator));
-      }
+      const currentIds = currentCommunicator.boards;
+      const isMember = currentIds.includes(board.id);
+      const nextIds = isMember
+        ? currentIds.filter((id) => id !== board.id)
+        : [...currentIds, board.id];
 
-      await updateCommunicatorBoards(nextCommunicatorBoards);
+      showNotification(
+        intl.formatMessage(
+          isMember
+            ? messages.boardRemovedFromCommunicator
+            : messages.boardAddedToCommunicator
+        )
+      );
+
+      await persistCommunicatorBoardIds(nextIds);
 
       // Fetch board if it's not locally available.
       if (
-        boardIndex < 0 &&
+        !isMember &&
         availableBoards.findIndex((b) => b.id === board.id) < 0
       ) {
         const boards = [];
@@ -86,9 +80,9 @@ const useCommunicatorBoards = ({
       }
     },
     [
-      communicatorBoards,
+      currentCommunicator,
       availableBoards,
-      updateCommunicatorBoards,
+      persistCommunicatorBoardIds,
       addBoards,
       showNotification,
       intl
@@ -98,10 +92,9 @@ const useCommunicatorBoards = ({
   const addOrRemoveBoard = useCallback(
     async (board) => {
       if (section === SECTIONS.MY_COMMUNICATOR) {
-        const nextCommunicatorBoards = communicatorBoards.filter(
-          (cb) => cb.id !== board.id
+        await persistCommunicatorBoardIds(
+          currentCommunicator.boards.filter((id) => id !== board.id)
         );
-        await updateCommunicatorBoards(nextCommunicatorBoards);
         refetch();
         return;
       }
@@ -109,8 +102,8 @@ const useCommunicatorBoards = ({
     },
     [
       section,
-      communicatorBoards,
-      updateCommunicatorBoards,
+      currentCommunicator,
+      persistCommunicatorBoardIds,
       addOrRemoveFromCommunicator,
       refetch
     ]

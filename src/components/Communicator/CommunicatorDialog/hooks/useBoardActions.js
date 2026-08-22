@@ -20,7 +20,6 @@ const useBoardActions = ({
   language,
   communicators,
   currentCommunicator,
-  communicatorBoards,
   availableBoards,
   // dispatchers
   createBoard,
@@ -47,7 +46,6 @@ const useBoardActions = ({
     intl,
     userData,
     currentCommunicator,
-    communicatorBoards,
     availableBoards,
     addBoards,
     verifyAndUpsertCommunicator,

@@ -146,7 +146,6 @@ const CommunicatorDialog = ({
     language,
     communicators,
     currentCommunicator,
-    communicatorBoards,
     availableBoards,
     createBoard,
     updateBoard,

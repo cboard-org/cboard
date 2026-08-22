@@ -57,7 +57,6 @@ const baseArgs = (overrides) => ({
   language: { lang: 'en-US' },
   communicators: [],
   currentCommunicator: { id: 'c1', boards: ['b1', 'b2'], rootBoard: 'b1' },
-  communicatorBoards: [{ id: 'b1' }, { id: 'b2' }],
   availableBoards: [{ id: 'b1' }, { id: 'b2' }],
   createBoard: jest.fn(),
   updateBoard: jest.fn(),
@@ -253,5 +252,69 @@ describe('useBoardActions', () => {
     );
     expect(API.updateBoard).toHaveBeenCalledWith(sanitized);
     expect(args.replaceBoardInList).toHaveBeenLastCalledWith(persisted);
+  });
+
+  it('keeps the communicator order when a board is starred off', async () => {
+    const args = baseArgs({
+      section: SECTIONS.MY_BOARDS,
+      currentCommunicator: {
+        id: 'c1',
+        boards: ['b2', 'b1', 'b3'],
+        rootBoard: 'b2'
+      },
+      availableBoards: [{ id: 'b1' }, { id: 'b2' }, { id: 'b3' }]
+    });
+    const get = renderActions(args);
+
+    await act(async () => {
+      await get().addOrRemoveBoard({ id: 'b3' });
+    });
+
+    expect(args.verifyAndUpsertCommunicator).toHaveBeenCalledWith(
+      expect.objectContaining({ boards: ['b2', 'b1'] })
+    );
+  });
+
+  it('keeps ids with no local board when a board is starred on', async () => {
+    const args = baseArgs({
+      section: SECTIONS.MY_BOARDS,
+      currentCommunicator: {
+        id: 'c1',
+        boards: ['b1', 'not-local'],
+        rootBoard: 'b1'
+      },
+      availableBoards: [{ id: 'b1' }, { id: 'b2' }]
+    });
+    const get = renderActions(args);
+
+    await act(async () => {
+      await get().addOrRemoveBoard({ id: 'b2' });
+    });
+
+    expect(args.verifyAndUpsertCommunicator).toHaveBeenCalledWith(
+      expect.objectContaining({ boards: ['b1', 'not-local', 'b2'] })
+    );
+  });
+
+  it('keeps ids with no local board when a board is removed from the tray', async () => {
+    const args = baseArgs({
+      section: SECTIONS.MY_COMMUNICATOR,
+      currentCommunicator: {
+        id: 'c1',
+        boards: ['b2', 'not-local', 'b1'],
+        rootBoard: 'b2'
+      },
+      availableBoards: [{ id: 'b1' }, { id: 'b2' }]
+    });
+    const get = renderActions(args);
+
+    await act(async () => {
+      await get().addOrRemoveBoard({ id: 'b1' });
+    });
+
+    expect(args.verifyAndUpsertCommunicator).toHaveBeenCalledWith(
+      expect.objectContaining({ boards: ['b2', 'not-local'] })
+    );
+    expect(args.refetch).toHaveBeenCalled();
   });
 });
