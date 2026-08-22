@@ -108,4 +108,46 @@ describe('useBoardsFetcher (communicator local source)', () => {
     expect(get().boards).toHaveLength(2);
     expect(get().boards.find((b) => b.id === 'board-1')).toBeUndefined();
   });
+
+  it('ignores a slow response that a newer request has superseded', async () => {
+    const API = require('../../../../api').default;
+    let resolveSlow;
+    API.getMyBoards
+      .mockImplementationOnce(
+        () =>
+          new Promise((resolve) => {
+            resolveSlow = resolve;
+          })
+      )
+      .mockResolvedValueOnce({
+        data: [{ id: 'fast', name: 'Fast' }],
+        total: 1
+      });
+
+    const { get, rerender } = renderHook({
+      section: SECTIONS.MY_BOARDS,
+      search: 'slow',
+      communicatorBoards: [],
+      availableBoards: [],
+      userData: { email: 'tester@cboard.io' }
+    });
+
+    await act(async () => {
+      rerender({
+        section: SECTIONS.MY_BOARDS,
+        search: 'fast',
+        communicatorBoards: [],
+        availableBoards: [],
+        userData: { email: 'tester@cboard.io' }
+      });
+    });
+
+    await act(async () => {
+      resolveSlow({ data: [{ id: 'slow', name: 'Slow' }], total: 1 });
+      await Promise.resolve();
+    });
+
+    expect(get().boards.map((board) => board.id)).toEqual(['fast']);
+    expect(get().loading).toBe(false);
+  });
 });

@@ -53,7 +53,11 @@ const useBoardsFetcher = ({
   availableBoardsRef.current = availableBoards;
   userDataRef.current = userData;
 
+  const requestIdRef = useRef(0);
+
   const doFetch = useCallback(async (pageArg, searchArg, sectionArg) => {
+    const requestId = requestIdRef.current + 1;
+    requestIdRef.current = requestId;
     setLoading(true);
     setError(null);
     try {
@@ -102,14 +106,22 @@ const useBoardsFetcher = ({
         default:
           break;
       }
+      if (requestIdRef.current !== requestId) {
+        return;
+      }
       setBoards(result.data || []);
       setTotal(result.total || 0);
     } catch (err) {
+      if (requestIdRef.current !== requestId) {
+        return;
+      }
       setError(err);
       setBoards([]);
       setTotal(0);
     } finally {
-      setLoading(false);
+      if (requestIdRef.current === requestId) {
+        setLoading(false);
+      }
     }
   }, []);
 
