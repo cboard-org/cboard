@@ -102,12 +102,14 @@ const BoardDetailsSurface = ({
 
   // Explicit activation: once a board is chosen, focus moves into the details
   // so keyboard and screen reader users land on the actions, not back at the
-  // top of the list.
+  // top of the list. Keyed on the id so a re-fetched board object does not
+  // steal focus back from the control the user just used.
+  const selectedBoardId = board && board.id;
   useEffect(() => {
-    if (board && headingRef.current) {
+    if (selectedBoardId && headingRef.current) {
       headingRef.current.focus();
     }
-  }, [board]);
+  }, [selectedBoardId]);
 
   const handleKeyDown = (event) => {
     if (event.key === 'Escape') {

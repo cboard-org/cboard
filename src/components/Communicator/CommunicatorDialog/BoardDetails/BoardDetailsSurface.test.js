@@ -42,8 +42,12 @@ const board = {
   lastEdited: '2026-01-01T00:00:00.000Z'
 };
 
-const render = (props = {}) =>
-  mount(
+let plainWrappers = [];
+let attachedWrappers = [];
+let attachedNodes = [];
+
+const render = (props = {}) => {
+  const wrapper = mount(
     <BoardDetailsSurface
       intl={intl}
       board={board}
@@ -53,9 +57,56 @@ const render = (props = {}) =>
       {...props}
     />
   );
+  plainWrappers.push(wrapper);
+  return wrapper;
+};
+
+const renderAttached = (props = {}) => {
+  const host = document.createElement('div');
+  document.body.appendChild(host);
+  attachedNodes.push(host);
+  const wrapper = mount(
+    <BoardDetailsSurface
+      intl={intl}
+      board={board}
+      actions={[]}
+      busy={false}
+      onClose={jest.fn()}
+      {...props}
+    />,
+    { attachTo: host }
+  );
+  attachedWrappers.push(wrapper);
+  return wrapper;
+};
+
+const appendOutsideButton = () => {
+  const outside = document.createElement('button');
+  document.body.appendChild(outside);
+  attachedNodes.push(outside);
+  return outside;
+};
 
 describe('BoardDetailsSurface', () => {
   afterEach(() => {
+    plainWrappers.forEach((wrapper) => {
+      if (wrapper.length) {
+        wrapper.unmount();
+      }
+    });
+    plainWrappers = [];
+    attachedWrappers.forEach((wrapper) => {
+      if (wrapper.length) {
+        wrapper.detach();
+      }
+    });
+    attachedWrappers = [];
+    attachedNodes.forEach((node) => {
+      if (node.parentNode) {
+        node.parentNode.removeChild(node);
+      }
+    });
+    attachedNodes = [];
     delete window.matchMedia;
   });
 
@@ -103,5 +154,27 @@ describe('BoardDetailsSurface', () => {
       });
 
     expect(onClose).toHaveBeenCalled();
+  });
+
+  it('does not re-take focus when the selected board object is replaced', () => {
+    setViewport(false);
+    const outside = appendOutsideButton();
+    const wrapper = renderAttached();
+
+    outside.focus();
+    wrapper.setProps({ board: { ...board, isPublic: true } });
+
+    expect(document.activeElement).toBe(outside);
+  });
+
+  it('moves focus into the details when a different board is selected', () => {
+    setViewport(false);
+    const outside = appendOutsideButton();
+    const wrapper = renderAttached();
+
+    outside.focus();
+    wrapper.setProps({ board: { ...board, id: 'b2', name: 'Escuela' } });
+
+    expect(document.activeElement.tagName).toBe('H2');
   });
 });
