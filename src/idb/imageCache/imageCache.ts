@@ -10,8 +10,8 @@ export interface CachedImage {
 // callers cache an image, they don't decide when it was last used
 export type ImageToCache = Omit<CachedImage, 'lastUsed'>;
 
-interface ImageCacheDB extends DBSchema {
-  images: {
+interface MediaDB extends DBSchema {
+  cached: {
     key: string;
     value: CachedImage;
     indexes: { byLastUsed: number };
@@ -20,15 +20,23 @@ interface ImageCacheDB extends DBSchema {
     key: string;
     value: number;
   };
+  // media recorded or uploaded while offline, which must survive until it syncs.
+  // Separate from `cached` so eviction can never reach it. Created empty in v1 so
+  // the first writer needs no version bump; out-of-line keys leave it its shape.
+  local: {
+    key: string;
+    value: unknown;
+  };
 }
 
 const TOTAL_BYTES_KEY = 'totalBytes';
 
-const dbPromise = openDB<ImageCacheDB>('cboard-image-cache', 1, {
-  upgrade(db: IDBPDatabase<ImageCacheDB>): void {
-    const images = db.createObjectStore('images', { keyPath: 'url' });
-    images.createIndex('byLastUsed', 'lastUsed');
+const dbPromise = openDB<MediaDB>('cboard-media', 1, {
+  upgrade(db: IDBPDatabase<MediaDB>): void {
+    const cached = db.createObjectStore('cached', { keyPath: 'url' });
+    cached.createIndex('byLastUsed', 'lastUsed');
     db.createObjectStore('meta');
+    db.createObjectStore('local');
   }
 });
 
@@ -41,11 +49,11 @@ export async function getCachedImage(
 ): Promise<CachedImage | undefined> {
   try {
     const db = await dbPromise;
-    const cached = await db.get('images', url);
+    const cached = await db.get('cached', url);
 
     if (cached && Date.now() - cached.lastUsed > TOUCH_AFTER_MS) {
       try {
-        await db.put('images', { ...cached, lastUsed: Date.now() });
+        await db.put('cached', { ...cached, lastUsed: Date.now() });
       } catch (error) {
         // a failed touch costs eviction order, not the hit we already have
         console.error('Failed to touch cached image:', error);
@@ -105,11 +113,11 @@ export async function putCachedImage(image: ImageToCache): Promise<void> {
       return;
     }
 
-    const tx = db.transaction(['images', 'meta'], 'readwrite');
-    const images = tx.objectStore('images');
+    const tx = db.transaction(['cached', 'meta'], 'readwrite');
+    const cached = tx.objectStore('cached');
     const used = (await tx.objectStore('meta').get(TOTAL_BYTES_KEY)) ?? 0;
     // an already cached url is replaced, not added, so only the delta counts
-    const replaced = (await images.get(image.url))?.data.byteLength ?? 0;
+    const replaced = (await cached.get(image.url))?.data.byteLength ?? 0;
     let total = used - replaced + image.data.byteLength;
 
     if (total > budget) {
@@ -118,7 +126,7 @@ export async function putCachedImage(image: ImageToCache): Promise<void> {
           'symbols, which will load from the network only.'
       );
 
-      let cursor = await images.index('byLastUsed').openCursor();
+      let cursor = await cached.index('byLastUsed').openCursor();
       while (cursor && total > budget * EVICT_TO_SHARE) {
         // the image being written is already accounted for above
         if (cursor.value.url !== image.url) {
@@ -129,7 +137,7 @@ export async function putCachedImage(image: ImageToCache): Promise<void> {
       }
     }
 
-    await images.put({ ...image, lastUsed: Date.now() });
+    await cached.put({ ...image, lastUsed: Date.now() });
     await tx.objectStore('meta').put(total, TOTAL_BYTES_KEY);
     await tx.done;
   } catch (error) {
