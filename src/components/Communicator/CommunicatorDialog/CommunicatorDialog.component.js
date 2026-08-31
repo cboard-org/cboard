@@ -76,6 +76,8 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     minWidth: 0,
     minHeight: 0,
+    display: 'flex',
+    flexDirection: 'column',
     overflowY: 'auto',
     padding: theme.spacing(2, 2, 0)
   }

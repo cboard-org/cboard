@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
+import classNames from 'classnames';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -21,6 +22,19 @@ import messages from '../CommunicatorDialog.messages';
 const SKELETON_COUNT = BOARDS_PAGE_LIMIT;
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+    minHeight: 0
+  },
+  bottomSpace: {
+    paddingBottom: theme.spacing(2)
+  },
+  gridBottomSpace: {
+    marginBottom: 0,
+    paddingBottom: theme.spacing(1)
+  },
   stateContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -55,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
   pagination: {
     display: 'flex',
     justifyContent: 'center',
+    marginTop: 'auto',
     padding: theme.spacing(2, 0, 2)
   },
   skeletonCard: {
@@ -131,6 +146,8 @@ const BoardsView = ({
   registerTrigger
 }) => {
   const classes = useStyles();
+  const showPagination = totalPages > 1;
+  const isGrid = viewMode === VIEW_MODES.GRID;
 
   if (loading) {
     return <LoadingState classes={classes} viewMode={viewMode} />;
@@ -175,9 +192,15 @@ const BoardsView = ({
   }
 
   return (
-    <>
-      {viewMode === VIEW_MODES.GRID ? (
-        <Grid container spacing={2}>
+    <div className={classes.root}>
+      {isGrid ? (
+        <Grid
+          container
+          spacing={2}
+          className={classNames({
+            [classes.gridBottomSpace]: !showPagination
+          })}
+        >
           {boards.map((board) => (
             <Grid item xs={12} sm={6} md={6} lg={4} key={board.id}>
               <BoardCard
@@ -195,7 +218,11 @@ const BoardsView = ({
           ))}
         </Grid>
       ) : (
-        <div className={classes.list}>
+        <div
+          className={classNames(classes.list, {
+            [classes.bottomSpace]: !showPagination
+          })}
+        >
           {boards.map((board) => (
             <BoardRow
               key={board.id}
@@ -213,7 +240,7 @@ const BoardsView = ({
         </div>
       )}
 
-      {totalPages > 1 && (
+      {showPagination && (
         <div className={classes.pagination}>
           <Pagination
             count={totalPages}
@@ -224,7 +251,7 @@ const BoardsView = ({
           />
         </div>
       )}
-    </>
+    </div>
   );
 };
 
