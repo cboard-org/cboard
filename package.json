@@ -59,7 +59,7 @@
     "ogv": "^1.9.0",
     "pdfmake": "^0.2.23",
     "prop-types": "^15.8.1",
-    "query-string": "^6.14.1",
+    "query-string": "^9.5.0",
     "ramda": "^0.29.1",
     "react": "^17.0.2",
     "react-autosuggest": "^10.1.0",
