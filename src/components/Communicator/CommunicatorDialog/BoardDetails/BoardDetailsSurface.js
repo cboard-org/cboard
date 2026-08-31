@@ -5,6 +5,7 @@ import { alpha, makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Drawer from '@material-ui/core/Drawer';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -15,26 +16,43 @@ import messages from '../CommunicatorDialog.messages';
 const PANEL_WIDTH = 380;
 
 const useStyles = makeStyles((theme) => ({
-  // Same anatomy as the sheet: the rounded card clips its content and only the
-  // body scrolls, so the scrollbar starts below the corner radius instead of
-  // being squared off against it.
+  // Flush full-height rail rather than a floating card: only the inner edge is
+  // drawn, so the panel reads as part of the dashboard chrome, and just the
+  // body scrolls.
   panel: {
-    alignSelf: 'flex-start',
+    alignSelf: 'stretch',
     display: 'flex',
     flexDirection: 'column',
     width: PANEL_WIDTH,
     flexShrink: 0,
-    margin: theme.spacing(2),
-    borderRadius: softRadius(theme),
-    maxHeight: `calc(100% - ${theme.spacing(4)}px)`,
+    height: '100%',
+    borderWidth: 0,
+    borderLeftWidth: 1,
+    borderRadius: 0,
+    backgroundColor: theme.palette.background.default,
     overflow: 'hidden'
   },
   panelHeader: {
     flexShrink: 0,
-    height: theme.spacing(1)
+    display: 'flex',
+    alignItems: 'center',
+    gap: theme.spacing(1),
+    minHeight: 48,
+    padding: theme.spacing(0, 0.5, 0, 2),
+    borderBottom: `1px solid ${theme.palette.divider}`
+  },
+  panelTitle: {
+    flex: 1,
+    minWidth: 0,
+    fontWeight: 550,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    outline: 'none'
   },
   panelBody: {
     flex: 1,
+    paddingBottom: theme.spacing(1),
     minHeight: 0,
     overflowY: 'auto',
     overscrollBehavior: 'contain'
@@ -117,7 +135,7 @@ const BoardDetailsSurface = ({
     }
   };
 
-  const details = (
+  const details = (hideTitle) => (
     <BoardDetails
       intl={intl}
       board={board}
@@ -126,7 +144,20 @@ const BoardDetailsSurface = ({
       communicator={communicator}
       activeBoardId={activeBoardId}
       headingRef={headingRef}
+      hideTitle={hideTitle}
     />
+  );
+
+  const closeButton = (className) => (
+    <IconButton
+      size="small"
+      data-testid="close-board-details"
+      className={className}
+      aria-label={intl.formatMessage(messages.closeDetails)}
+      onClick={onClose}
+    >
+      <CloseIcon />
+    </IconButton>
   );
 
   if (isNarrow) {
@@ -140,17 +171,9 @@ const BoardDetailsSurface = ({
       >
         <div className={classes.sheetHeader}>
           <span className={classes.handle} />
-          <IconButton
-            size="small"
-            data-testid="close-board-details"
-            className={classes.closeButton}
-            aria-label={intl.formatMessage(messages.closeDetails)}
-            onClick={onClose}
-          >
-            <CloseIcon />
-          </IconButton>
+          {closeButton(classes.closeButton)}
         </div>
-        <div className={classes.sheetBody}>{details}</div>
+        <div className={classes.sheetBody}>{details(false)}</div>
       </Drawer>
     );
   }
@@ -164,8 +187,22 @@ const BoardDetailsSurface = ({
       aria-label={intl.formatMessage(messages.boardDetails)}
       onKeyDown={handleKeyDown}
     >
-      <div className={classes.panelHeader} />
-      <div className={classes.panelBody}>{details}</div>
+      <div className={classes.panelHeader}>
+        <Typography
+          variant="subtitle1"
+          component="h2"
+          className={classes.panelTitle}
+          title={board ? board.name || board.id : undefined}
+          tabIndex={-1}
+          ref={headingRef}
+        >
+          {board
+            ? board.name || board.id
+            : intl.formatMessage(messages.boardDetails)}
+        </Typography>
+        {board && closeButton()}
+      </div>
+      <div className={classes.panelBody}>{details(true)}</div>
     </Paper>
   );
 };

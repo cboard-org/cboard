@@ -87,7 +87,8 @@ const BoardDetails = ({
   busy,
   communicator,
   activeBoardId,
-  headingRef
+  headingRef,
+  hideTitle
 }) => {
   const classes = useStyles();
 
@@ -114,15 +115,17 @@ const BoardDetails = ({
       <BoardThumb board={board} className={classes.thumb} />
 
       <div>
-        <Typography
-          variant="h6"
-          component="h2"
-          className={classes.title}
-          tabIndex={-1}
-          ref={headingRef}
-        >
-          {title}
-        </Typography>
+        {!hideTitle && (
+          <Typography
+            variant="h6"
+            component="h2"
+            className={classes.title}
+            tabIndex={-1}
+            ref={headingRef}
+          >
+            {title}
+          </Typography>
+        )}
         <Typography variant="caption" component="p" className={classes.meta}>
           {metaParts.join('  ·  ')}
         </Typography>
@@ -154,7 +157,8 @@ const BoardDetails = ({
 
 BoardDetails.defaultProps = {
   actions: [],
-  busy: false
+  busy: false,
+  hideTitle: false
 };
 
 BoardDetails.propTypes = {
@@ -164,7 +168,8 @@ BoardDetails.propTypes = {
   busy: PropTypes.bool,
   communicator: PropTypes.object,
   activeBoardId: PropTypes.string,
-  headingRef: PropTypes.object
+  headingRef: PropTypes.object,
+  hideTitle: PropTypes.bool
 };
 
 export default BoardDetails;
