@@ -22,6 +22,7 @@ import API from '../../api';
 import { isLogged } from '../../components/App/App.selectors';
 import { isAndroid, isIOS } from '../../cordova-util';
 import { formatTitle } from '../../components/Settings/Subscribe/Subscribe.helpers';
+import { normalizeStatus } from './SubscriptionProvider.helpers';
 import { updateNavigationSettings } from '../../components/App/App.actions';
 import { IS_PRODUCTION } from '../../constants';
 
@@ -220,7 +221,7 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
         dispatch(
           updateSubscription({
             ownedProduct,
-            status: status.toLowerCase(),
+            status: normalizeStatus(status),
             isSubscribed,
             expiryDate,
             paypalFixPaymentUrl
