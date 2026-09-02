@@ -236,6 +236,7 @@ exports[`Scanning tests default renderer 1`] = `
             <WithStyles(ForwardRef(Switch))
               checked={false}
               color="secondary"
+              disabled={true}
               onChange={[Function]}
               value="eyeControlActive"
             />
@@ -257,6 +258,7 @@ exports[`Scanning tests default renderer 1`] = `
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <WithStyles(ForwardRef(Select))
+              disabled={true}
               inputProps={
                 Object {
                   "id": "eye-control-dwell",
@@ -340,6 +342,7 @@ exports[`Scanning tests default renderer 1`] = `
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <WithStyles(ForwardRef(Select))
+              disabled={true}
               inputProps={
                 Object {
                   "id": "eye-control-sensitivity",
@@ -391,6 +394,7 @@ exports[`Scanning tests default renderer 1`] = `
             <WithStyles(ForwardRef(Switch))
               checked={true}
               color="secondary"
+              disabled={true}
               onChange={[Function]}
               value="eyeControlShowPreview"
             />
@@ -643,6 +647,7 @@ exports[`Scanning tests options behavior 1`] = `
             <WithStyles(ForwardRef(Switch))
               checked={false}
               color="secondary"
+              disabled={true}
               onChange={[Function]}
               value="eyeControlActive"
             />
@@ -664,6 +669,7 @@ exports[`Scanning tests options behavior 1`] = `
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <WithStyles(ForwardRef(Select))
+              disabled={true}
               inputProps={
                 Object {
                   "id": "eye-control-dwell",
@@ -752,6 +758,7 @@ exports[`Scanning tests options behavior 1`] = `
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <WithStyles(ForwardRef(Select))
+              disabled={true}
               inputProps={
                 Object {
                   "id": "eye-control-sensitivity",
@@ -806,6 +813,7 @@ exports[`Scanning tests options behavior 1`] = `
             <WithStyles(ForwardRef(Switch))
               checked={true}
               color="secondary"
+              disabled={true}
               onChange={[Function]}
               value="eyeControlShowPreview"
             />
@@ -1058,6 +1066,7 @@ exports[`Scanning tests options behavior 2`] = `
             <WithStyles(ForwardRef(Switch))
               checked={false}
               color="secondary"
+              disabled={false}
               onChange={[Function]}
               value="eyeControlActive"
             />
@@ -1079,6 +1088,7 @@ exports[`Scanning tests options behavior 2`] = `
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <WithStyles(ForwardRef(Select))
+              disabled={true}
               inputProps={
                 Object {
                   "id": "eye-control-dwell",
@@ -1167,6 +1177,7 @@ exports[`Scanning tests options behavior 2`] = `
           />
           <WithStyles(ForwardRef(ListItemSecondaryAction))>
             <WithStyles(ForwardRef(Select))
+              disabled={true}
               inputProps={
                 Object {
                   "id": "eye-control-sensitivity",
@@ -1221,6 +1232,7 @@ exports[`Scanning tests options behavior 2`] = `
             <WithStyles(ForwardRef(Switch))
               checked={true}
               color="secondary"
+              disabled={true}
               onChange={[Function]}
               value="eyeControlShowPreview"
             />

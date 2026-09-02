@@ -68,6 +68,10 @@ export default defineMessages({
     defaultMessage:
       'Use the webcam to select the highlighted item with a deliberate blink. All processing happens on your device.'
   },
+  eyeControlRequiresScanning: {
+    id: 'cboard.components.Settings.Scanning.eyeControlRequiresScanning',
+    defaultMessage: 'Enable scanning first to use eye control.'
+  },
   eyeControlDwell: {
     id: 'cboard.components.Settings.Scanning.eyeControlDwell',
     defaultMessage: 'Blink hold time'

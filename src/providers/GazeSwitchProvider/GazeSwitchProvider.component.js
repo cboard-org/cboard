@@ -50,13 +50,18 @@ class GazeSwitchProvider extends React.Component {
 
   videoRef = React.createRef();
 
+  // Eye control only runs while scanning is also active.
+  get isEnabled() {
+    return !!(this.props.active && this.props.scannerActive);
+  }
+
   componentDidMount() {
     this.controller = new GazeController(this.controllerOptions());
     this.controller.onStatus = (status) => this.setState({ status });
     this.controller.onProgress = (progress) => this.setState({ progress });
     this.controller.onSwitch = this.handleSwitch;
 
-    if (this.props.active) {
+    if (this.isEnabled) {
       this.startController();
     }
   }
@@ -67,9 +72,10 @@ class GazeSwitchProvider extends React.Component {
       this.controller.setOptions(this.controllerOptions());
     }
 
-    if (!prevProps.active && this.props.active) {
+    const wasEnabled = !!(prevProps.active && prevProps.scannerActive);
+    if (!wasEnabled && this.isEnabled) {
       this.startController();
-    } else if (prevProps.active && !this.props.active) {
+    } else if (wasEnabled && !this.isEnabled) {
       this.controller.stop();
       this.setState({ progress: 0 });
     }
@@ -101,17 +107,14 @@ class GazeSwitchProvider extends React.Component {
   };
 
   render() {
-    const { active, scannerActive, showPreview } = this.props;
+    const { showPreview } = this.props;
     const { status, progress } = this.state;
 
-    if (!active) {
+    if (!this.isEnabled) {
       return null;
     }
 
-    const statusMessage =
-      !scannerActive && status === GAZE_STATUS.READY
-        ? messages.scannerInactive
-        : STATUS_MESSAGE[status] || messages.loading;
+    const statusMessage = STATUS_MESSAGE[status] || messages.loading;
 
     return (
       <div className="GazeSwitchWidget" role="status" aria-live="polite">

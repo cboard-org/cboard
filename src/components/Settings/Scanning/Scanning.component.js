@@ -70,8 +70,13 @@ class Scanning extends React.Component {
   }
 
   toggleScanner = () => {
-    this.setState({
-      active: !this.state.active
+    this.setState((prevState) => {
+      const active = !prevState.active;
+      // Eye control (and its preview) depend on scanning being enabled.
+      const gaze = active
+        ? prevState.gaze
+        : { ...prevState.gaze, active: false, showPreview: false };
+      return { active, gaze };
     });
   };
 
@@ -82,9 +87,14 @@ class Scanning extends React.Component {
   };
 
   toggleGaze = (property) => () => {
-    this.setState((prevState) => ({
-      gaze: { ...prevState.gaze, [property]: !prevState.gaze[property] }
-    }));
+    this.setState((prevState) => {
+      const gaze = { ...prevState.gaze, [property]: !prevState.gaze[property] };
+      // Camera preview only applies while blink selection is enabled.
+      if (property === 'active' && !gaze.active) {
+        gaze.showPreview = false;
+      }
+      return { gaze };
+    });
   };
 
   changeGazeSelect = (property) => (event) => {
@@ -203,13 +213,18 @@ class Scanning extends React.Component {
                   className="Scanning__ListItemText"
                   primary={<FormattedMessage {...messages.eyeControlEnable} />}
                   secondary={
-                    <FormattedMessage {...messages.eyeControlEnableSecondary} />
+                    <FormattedMessage
+                      {...(this.state.active
+                        ? messages.eyeControlEnableSecondary
+                        : messages.eyeControlRequiresScanning)}
+                    />
                   }
                 />
                 <ListItemSecondaryAction>
                   <Switch
                     checked={!!this.state.gaze.active}
                     onChange={this.toggleGaze('active')}
+                    disabled={!this.state.active}
                     value="eyeControlActive"
                     color="secondary"
                   />
@@ -227,6 +242,7 @@ class Scanning extends React.Component {
                   <Select
                     value={this.state.gaze.dwellMs}
                     onChange={this.changeGazeSelect('dwellMs')}
+                    disabled={!this.state.gaze.active}
                     inputProps={{
                       name: 'dwellMs',
                       id: 'eye-control-dwell'
@@ -259,6 +275,7 @@ class Scanning extends React.Component {
                   <Select
                     value={this.state.gaze.blinkThreshold}
                     onChange={this.changeGazeSelect('blinkThreshold')}
+                    disabled={!this.state.gaze.active}
                     inputProps={{
                       name: 'blinkThreshold',
                       id: 'eye-control-sensitivity'
@@ -288,6 +305,7 @@ class Scanning extends React.Component {
                   <Switch
                     checked={!!this.state.gaze.showPreview}
                     onChange={this.toggleGaze('showPreview')}
+                    disabled={!this.state.gaze.active}
                     value="eyeControlShowPreview"
                     color="secondary"
                   />
