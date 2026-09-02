@@ -2,7 +2,7 @@
  * GazeController: on-device eye/blink detection used as a virtual switch.
  *
  * Phase 1 of the eye-tracking feature. It runs Google MediaPipe FaceLandmarker
- * entirely in the browser (WASM/WebGPU) — no video ever leaves the device — and
+ * entirely in the browser (WASM/WebGL) — no video ever leaves the device — and
  * turns a deliberate, sustained blink into a single "switch" activation. That
  * activation is what higher layers translate into a Cboard scanner selection.
  *
@@ -11,14 +11,14 @@
  * model (ONNX Runtime Web / WebGPU) without changing this public interface.
  */
 
-// Loaded from CDN at runtime so the WASM assets don't need to be bundled/copied
-// by CRA. webpackIgnore keeps webpack from trying to resolve the URL at build.
-const TASKS_VISION_URL =
-  'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs';
-const WASM_BASE_URL =
-  'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm';
-const FACE_MODEL_URL =
-  'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task';
+import { FaceLandmarker, FilesetResolver } from '@mediapipe/tasks-vision';
+
+// WASM runtime and model are self-hosted under public/mediapipe so the feature
+// works offline and inside the Cordova-packaged app (no CDN, no cross-origin
+// module loading). PUBLIC_URL matches how the app already loads OGV assets.
+const ASSET_BASE = `${process.env.PUBLIC_URL || ''}/mediapipe`;
+const WASM_BASE_URL = `${ASSET_BASE}/wasm`;
+const FACE_MODEL_URL = `${ASSET_BASE}/face_landmarker.task`;
 
 export const GAZE_STATUS = {
   IDLE: 'idle',
@@ -79,24 +79,10 @@ export default class GazeController {
     this._setStatus(GAZE_STATUS.LOADING);
 
     try {
-      const vision = await import(/* webpackIgnore: true */ TASKS_VISION_URL);
-      const { FaceLandmarker, FilesetResolver } = vision;
-
       const filesetResolver =
         await FilesetResolver.forVisionTasks(WASM_BASE_URL);
 
-      this.faceLandmarker = await FaceLandmarker.createFromOptions(
-        filesetResolver,
-        {
-          baseOptions: {
-            modelAssetPath: FACE_MODEL_URL,
-            delegate: 'GPU'
-          },
-          outputFaceBlendshapes: true,
-          runningMode: 'VIDEO',
-          numFaces: 1
-        }
-      );
+      this.faceLandmarker = await this._createLandmarker(filesetResolver);
 
       this.stream = await navigator.mediaDevices.getUserMedia({
         video: this.options.video,
@@ -110,6 +96,26 @@ export default class GazeController {
     } catch (err) {
       this._setStatus(GAZE_STATUS.ERROR, err && err.message);
       this.stop();
+    }
+  }
+
+  // Prefer the GPU (WebGL) delegate; fall back to CPU where GPU is unavailable
+  // (some packaged WebViews), so init doesn't hard-fail.
+  async _createLandmarker(filesetResolver) {
+    const options = (delegate) => ({
+      baseOptions: { modelAssetPath: FACE_MODEL_URL, delegate },
+      outputFaceBlendshapes: true,
+      runningMode: 'VIDEO',
+      numFaces: 1
+    });
+
+    try {
+      return await FaceLandmarker.createFromOptions(
+        filesetResolver,
+        options('GPU')
+      );
+    } catch (gpuErr) {
+      return FaceLandmarker.createFromOptions(filesetResolver, options('CPU'));
     }
   }
 
