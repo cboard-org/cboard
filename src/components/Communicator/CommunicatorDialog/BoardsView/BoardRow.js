@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: softRadius(theme),
     ...surfaceInteractive(theme)
   },
+  rowNoStar: {
+    paddingRight: theme.spacing(2)
+  },
   accent: surfaceAccent(theme),
   thumb: {
     width: 64,
@@ -125,6 +128,7 @@ const BoardRow = ({
     <Paper
       variant="outlined"
       className={classNames(classes.row, {
+        [classes.rowNoStar]: !showQuickAccess,
         [classes.accent]: accented,
         [classes.selected]: selected
       })}

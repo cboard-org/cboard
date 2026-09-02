@@ -96,6 +96,9 @@ const useStyles = makeStyles((theme) => ({
     gap: theme.spacing(1),
     borderTop: `1px solid ${theme.palette.divider}`
   },
+  footerNoStar: {
+    padding: theme.spacing(2)
+  },
   star: {
     minWidth: 44,
     minHeight: 44
@@ -176,7 +179,11 @@ const BoardCard = ({
         </CardContent>
       </CardActionArea>
 
-      <div className={classes.footer}>
+      <div
+        className={classNames(classes.footer, {
+          [classes.footerNoStar]: !showQuickAccess
+        })}
+      >
         <BoardStatusIcons
           intl={intl}
           board={board}
