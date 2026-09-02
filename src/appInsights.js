@@ -21,7 +21,9 @@ export const appInsights = new ApplicationInsights({
       'pagead2.googlesyndication.com',
       'eastus.tts.speech.microsoft.com',
       'cbuilder.cboard.io',
-      'cbuilder.qa.cboard.io'
+      'cbuilder.qa.cboard.io',
+      'cdn.jsdelivr.net',
+      'storage.googleapis.com'
     ]
   }
 });
