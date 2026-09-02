@@ -1,7 +1,8 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { debounce } from 'lodash';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
@@ -9,7 +10,7 @@ import {
   SECTIONS,
   VIEW_MODES,
   VIEW_MODE_STORAGE_KEY,
-  SECTION_TO_TAB
+  SECTION_TOUR_FLAGS
 } from './CommunicatorDialog.constants';
 import messages from './CommunicatorDialog.messages';
 
@@ -123,6 +124,9 @@ const CommunicatorDialog = ({
   switchBoard
 }) => {
   const classes = useStyles();
+  const theme = useTheme();
+  // Matches the breakpoint BoardDetailsSurface switches on.
+  const isNarrow = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [section, setSection] = useState(SECTIONS.MY_BOARDS);
   const [viewMode, setViewMode] = useState(readStoredViewMode);
@@ -176,6 +180,31 @@ const CommunicatorDialog = ({
     search,
     page: fetcher.page
   });
+
+  const tourFlag = SECTION_TOUR_FLAGS[section];
+  const isTourEnabled = !!communicatorTour[tourFlag];
+  const isTourReady = !fetcher.loading;
+
+  // The details step describes the actions in the panel, which only appear
+  // once a board is chosen — so the tour opens on the first board rather than
+  // pointing at the empty placeholder. Not on a phone: there the details are a
+  // bottom sheet that would cover the rest of the tour, and its step is
+  // dropped anyway because the docked panel is not rendered.
+  useEffect(() => {
+    const hasDetailsPanel = section !== SECTIONS.MY_COMMUNICATOR && !isNarrow;
+    if (
+      hasDetailsPanel &&
+      isTourEnabled &&
+      isTourReady &&
+      !selection.selectedId
+    ) {
+      const [first] = fetcher.boards;
+      if (first) {
+        selection.select(first.id);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTourEnabled, isTourReady, section, isNarrow]);
 
   const debouncedSetSearch = useMemo(
     () => debounce((value) => setSearch(value), 400),
@@ -374,6 +403,7 @@ const CommunicatorDialog = ({
                   onToggleQuickAccess={(board) =>
                     runBusy(board, actions.addOrRemoveBoard)
                   }
+                  showQuickAccess={section !== SECTIONS.COMMUNITY}
                   registerTrigger={selection.registerTrigger}
                 />
               </div>
@@ -390,15 +420,18 @@ const CommunicatorDialog = ({
           )}
 
           <LiveRegion message={announcement} />
-
-          <CommunicatorDialogTour
-            communicatorTour={communicatorTour}
-            selectedTab={SECTION_TO_TAB[section]}
-            disableTour={disableTour}
-            intl={intl}
-          />
         </main>
       </div>
+
+      {/* Outside the dashboard's overflow-hidden columns so Joyride's inline
+          tooltip is not clipped by them. */}
+      <CommunicatorDialogTour
+        communicatorTour={communicatorTour}
+        section={section}
+        ready={isTourReady}
+        disableTour={disableTour}
+        intl={intl}
+      />
 
       <BoardInfoDialog
         intl={intl}

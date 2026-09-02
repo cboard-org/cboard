@@ -118,18 +118,19 @@ exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
       <LiveRegion
         message=""
       />
-      <CommunicatorDialogTour
-        communicatorTour={Object {}}
-        disableTour={[MockFunction]}
-        intl={
-          Object {
-            "formatMessage": [Function],
-          }
-        }
-        selectedTab={2}
-      />
     </main>
   </div>
+  <CommunicatorDialogTour
+    communicatorTour={Object {}}
+    disableTour={[MockFunction]}
+    intl={
+      Object {
+        "formatMessage": [Function],
+      }
+    }
+    ready={true}
+    section="myBoards"
+  />
   <BoardInfoDialog
     board={null}
     intl={
