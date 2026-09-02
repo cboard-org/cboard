@@ -115,6 +115,7 @@ const BoardCard = ({
   busy,
   onSelect,
   onToggleQuickAccess,
+  showQuickAccess,
   registerTrigger
 }) => {
   const classes = useStyles();
@@ -182,23 +183,25 @@ const BoardCard = ({
           communicator={communicator}
           activeBoardId={activeBoardId}
         />
-        <Tooltip title={toggleLabel}>
-          <span>
-            <IconButton
-              size="small"
-              data-testid="quick-access-toggle"
-              className={classNames(classes.star, {
-                [classes.starActive]: inQuickAccess
-              })}
-              aria-label={toggleLabel}
-              aria-pressed={inQuickAccess}
-              disabled={isRoot}
-              onClick={handleToggle}
-            >
-              {inQuickAccess ? <StarIcon /> : <StarBorderIcon />}
-            </IconButton>
-          </span>
-        </Tooltip>
+        {showQuickAccess && (
+          <Tooltip title={toggleLabel}>
+            <span>
+              <IconButton
+                size="small"
+                data-testid="quick-access-toggle"
+                className={classNames(classes.star, {
+                  [classes.starActive]: inQuickAccess
+                })}
+                aria-label={toggleLabel}
+                aria-pressed={inQuickAccess}
+                disabled={isRoot}
+                onClick={handleToggle}
+              >
+                {inQuickAccess ? <StarIcon /> : <StarBorderIcon />}
+              </IconButton>
+            </span>
+          </Tooltip>
+        )}
       </div>
     </Card>
   );
@@ -206,7 +209,8 @@ const BoardCard = ({
 
 BoardCard.defaultProps = {
   selected: false,
-  busy: false
+  busy: false,
+  showQuickAccess: true
 };
 
 BoardCard.propTypes = {
@@ -218,6 +222,7 @@ BoardCard.propTypes = {
   busy: PropTypes.bool,
   onSelect: PropTypes.func.isRequired,
   onToggleQuickAccess: PropTypes.func.isRequired,
+  showQuickAccess: PropTypes.bool,
   registerTrigger: PropTypes.func.isRequired
 };
 

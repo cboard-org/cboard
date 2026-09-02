@@ -143,6 +143,7 @@ const BoardsView = ({
   selectedId,
   onSelect,
   onToggleQuickAccess,
+  showQuickAccess,
   registerTrigger
 }) => {
   const classes = useStyles();
@@ -212,6 +213,7 @@ const BoardsView = ({
                 busy={busyBoardId === board.id}
                 onSelect={onSelect}
                 onToggleQuickAccess={onToggleQuickAccess}
+                showQuickAccess={showQuickAccess}
                 registerTrigger={registerTrigger}
               />
             </Grid>
@@ -234,6 +236,7 @@ const BoardsView = ({
               busy={busyBoardId === board.id}
               onSelect={onSelect}
               onToggleQuickAccess={onToggleQuickAccess}
+              showQuickAccess={showQuickAccess}
               registerTrigger={registerTrigger}
             />
           ))}
@@ -272,6 +275,7 @@ BoardsView.propTypes = {
   selectedId: PropTypes.string,
   onSelect: PropTypes.func.isRequired,
   onToggleQuickAccess: PropTypes.func.isRequired,
+  showQuickAccess: PropTypes.bool,
   registerTrigger: PropTypes.func.isRequired
 };
 
