@@ -205,6 +205,7 @@ const BoardGrid = ({
               setIsScroll={setIsScroll}
               isBigScrollBtns={navigationSettings.bigScrollButtonsActive}
               isNavigationButtonsOnTheSide={isNavigationButtonsOnTheSide}
+              rowScanning={scannerSettings.active && !isSelecting}
             />
           )}
 

@@ -207,6 +207,200 @@ exports[`Scanning tests default renderer 1`] = `
           />
         </div>
       </div>
+      <WithStyles(ForwardRef(List))
+        subheader={
+          <WithStyles(ForwardRef(ListSubheader))
+            disableSticky={true}
+          >
+            <FormattedMessage
+              values={Object {}}
+            />
+          </WithStyles(ForwardRef(ListSubheader))>
+        }
+      >
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Switch))
+              checked={false}
+              color="secondary"
+              disabled={true}
+              onChange={[Function]}
+              value="eyeControlActive"
+            />
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Select))
+              disabled={true}
+              inputProps={
+                Object {
+                  "id": "eye-control-dwell",
+                  "name": "dwellMs",
+                }
+              }
+              onChange={[Function]}
+              value={500}
+            >
+              <WithStyles(ForwardRef(MenuItem))
+                value={300}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 300,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                value={400}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 400,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                value={500}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 500,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                value={700}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 700,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                value={1000}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 1000,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+            </WithStyles(ForwardRef(Select))>
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Select))
+              disabled={true}
+              inputProps={
+                Object {
+                  "id": "eye-control-sensitivity",
+                  "name": "blinkThreshold",
+                }
+              }
+              onChange={[Function]}
+              value={0.5}
+            >
+              <WithStyles(ForwardRef(MenuItem))
+                value={0.65}
+              >
+                <FormattedMessage
+                  values={Object {}}
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                value={0.5}
+              >
+                <FormattedMessage
+                  values={Object {}}
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                value={0.35}
+              >
+                <FormattedMessage
+                  values={Object {}}
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+            </WithStyles(ForwardRef(Select))>
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Switch))
+              checked={true}
+              color="secondary"
+              disabled={true}
+              onChange={[Function]}
+              value="eyeControlShowPreview"
+            />
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+      </WithStyles(ForwardRef(List))>
     </WithStyles(ForwardRef(Paper))>
   </WithStyles(FullScreenDialog)>
 </div>
@@ -424,6 +618,208 @@ exports[`Scanning tests options behavior 1`] = `
           />
         </div>
       </div>
+      <WithStyles(ForwardRef(List))
+        subheader={
+          <WithStyles(ForwardRef(ListSubheader))
+            disableSticky={true}
+          >
+            <FormattedMessage
+              values={Object {}}
+            />
+          </WithStyles(ForwardRef(ListSubheader))>
+        }
+      >
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Switch))
+              checked={false}
+              color="secondary"
+              disabled={true}
+              onChange={[Function]}
+              value="eyeControlActive"
+            />
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Select))
+              disabled={true}
+              inputProps={
+                Object {
+                  "id": "eye-control-dwell",
+                  "name": "dwellMs",
+                }
+              }
+              onChange={[Function]}
+              value={500}
+            >
+              <WithStyles(ForwardRef(MenuItem))
+                key="300"
+                value={300}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 300,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                key="400"
+                value={400}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 400,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                key="500"
+                value={500}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 500,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                key="700"
+                value={700}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 700,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                key="1000"
+                value={1000}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 1000,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+            </WithStyles(ForwardRef(Select))>
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Select))
+              disabled={true}
+              inputProps={
+                Object {
+                  "id": "eye-control-sensitivity",
+                  "name": "blinkThreshold",
+                }
+              }
+              onChange={[Function]}
+              value={0.5}
+            >
+              <WithStyles(ForwardRef(MenuItem))
+                key="0.65"
+                value={0.65}
+              >
+                <FormattedMessage
+                  values={Object {}}
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                key="0.5"
+                value={0.5}
+              >
+                <FormattedMessage
+                  values={Object {}}
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                key="0.35"
+                value={0.35}
+              >
+                <FormattedMessage
+                  values={Object {}}
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+            </WithStyles(ForwardRef(Select))>
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Switch))
+              checked={true}
+              color="secondary"
+              disabled={true}
+              onChange={[Function]}
+              value="eyeControlShowPreview"
+            />
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+      </WithStyles(ForwardRef(List))>
     </WithStyles(ForwardRef(Paper))>
   </WithStyles(FullScreenDialog)>
 </div>
@@ -641,6 +1037,208 @@ exports[`Scanning tests options behavior 2`] = `
           />
         </div>
       </div>
+      <WithStyles(ForwardRef(List))
+        subheader={
+          <WithStyles(ForwardRef(ListSubheader))
+            disableSticky={true}
+          >
+            <FormattedMessage
+              values={Object {}}
+            />
+          </WithStyles(ForwardRef(ListSubheader))>
+        }
+      >
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Switch))
+              checked={false}
+              color="secondary"
+              disabled={false}
+              onChange={[Function]}
+              value="eyeControlActive"
+            />
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Select))
+              disabled={true}
+              inputProps={
+                Object {
+                  "id": "eye-control-dwell",
+                  "name": "dwellMs",
+                }
+              }
+              onChange={[Function]}
+              value={500}
+            >
+              <WithStyles(ForwardRef(MenuItem))
+                key="300"
+                value={300}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 300,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                key="400"
+                value={400}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 400,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                key="500"
+                value={500}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 500,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                key="700"
+                value={700}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 700,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                key="1000"
+                value={1000}
+              >
+                <FormattedMessage
+                  values={
+                    Object {
+                      "value": 1000,
+                    }
+                  }
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+            </WithStyles(ForwardRef(Select))>
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Select))
+              disabled={true}
+              inputProps={
+                Object {
+                  "id": "eye-control-sensitivity",
+                  "name": "blinkThreshold",
+                }
+              }
+              onChange={[Function]}
+              value={0.5}
+            >
+              <WithStyles(ForwardRef(MenuItem))
+                key="0.65"
+                value={0.65}
+              >
+                <FormattedMessage
+                  values={Object {}}
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                key="0.5"
+                value={0.5}
+              >
+                <FormattedMessage
+                  values={Object {}}
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+              <WithStyles(ForwardRef(MenuItem))
+                key="0.35"
+                value={0.35}
+              >
+                <FormattedMessage
+                  values={Object {}}
+                />
+              </WithStyles(ForwardRef(MenuItem))>
+            </WithStyles(ForwardRef(Select))>
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            className="Scanning__ListItemText"
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Switch))
+              checked={true}
+              color="secondary"
+              disabled={true}
+              onChange={[Function]}
+              value="eyeControlShowPreview"
+            />
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
+      </WithStyles(ForwardRef(List))>
     </WithStyles(ForwardRef(Paper))>
   </WithStyles(FullScreenDialog)>
 </div>

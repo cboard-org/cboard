@@ -1,0 +1,89 @@
+.GazeSwitchWidget {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1400;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(33, 33, 33, 0.85);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  font-size: 13px;
+  max-width: 220px;
+  pointer-events: none;
+}
+
+.GazeSwitchWidget__preview {
+  position: relative;
+  width: 64px;
+  height: 48px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #000;
+  flex: 0 0 auto;
+}
+
+.GazeSwitchWidget__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Mirror so it reads like a mirror to the user. */
+  transform: scaleX(-1);
+}
+
+.GazeSwitchWidget__video--hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.GazeSwitchWidget__progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  background: #7cd992;
+  transition: width 60ms linear;
+}
+
+.GazeSwitchWidget__body {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.GazeSwitchWidget__title {
+  font-weight: 600;
+}
+
+.GazeSwitchWidget__status {
+  opacity: 0.85;
+  font-size: 12px;
+}
+
+.GazeSwitchWidget__dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  background: #999;
+}
+
+.GazeSwitchWidget__dot--ready {
+  background: #7cd992;
+}
+
+.GazeSwitchWidget__dot--loading {
+  background: #f0c040;
+}
+
+.GazeSwitchWidget__dot--error,
+.GazeSwitchWidget__dot--no-face {
+  background: #e57373;
+}
