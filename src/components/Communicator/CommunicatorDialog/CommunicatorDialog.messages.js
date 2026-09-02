@@ -114,6 +114,22 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.activeBoard',
     defaultMessage: 'Active Board'
   },
+  statusPublic: {
+    id: 'cboard.components.CommunicatorDialog.statusPublic',
+    defaultMessage: 'Public'
+  },
+  statusPrivate: {
+    id: 'cboard.components.CommunicatorDialog.statusPrivate',
+    defaultMessage: 'Private'
+  },
+  statusRoot: {
+    id: 'cboard.components.CommunicatorDialog.statusRoot',
+    defaultMessage: 'Root'
+  },
+  statusActive: {
+    id: 'cboard.components.CommunicatorDialog.statusActive',
+    defaultMessage: 'Active'
+  },
   copyBoard: {
     id: 'cboard.components.CommunicatorDialog.copyBoard',
     defaultMessage: 'Copy Board into your communicator'

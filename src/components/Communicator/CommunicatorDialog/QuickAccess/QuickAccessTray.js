@@ -53,6 +53,7 @@ const QuickAccessTray = ({
   intl,
   boards,
   communicator,
+  activeBoardId,
   busyBoardId,
   hasAuth,
   onSetRoot,
@@ -120,6 +121,7 @@ const QuickAccessTray = ({
               intl={intl}
               board={board}
               isRoot={communicator.rootBoard === board.id}
+              isActive={activeBoardId === board.id}
               isFirst={index === 0}
               isLast={index === orderedBoards.length - 1}
               hasAuth={hasAuth}
@@ -142,6 +144,7 @@ QuickAccessTray.propTypes = {
   intl: intlShape.isRequired,
   boards: PropTypes.array.isRequired,
   communicator: PropTypes.object.isRequired,
+  activeBoardId: PropTypes.string,
   busyBoardId: PropTypes.string,
   hasAuth: PropTypes.bool,
   onSetRoot: PropTypes.func.isRequired,

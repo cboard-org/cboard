@@ -343,6 +343,7 @@ const CommunicatorDialog = ({
                 intl={intl}
                 boards={communicatorBoards}
                 communicator={currentCommunicator}
+                activeBoardId={activeBoardId}
                 busyBoardId={busyBoardId}
                 hasAuth={!!(userData && userData.authToken)}
                 onSetRoot={(board) => runBusy(board, actions.setRootBoard)}

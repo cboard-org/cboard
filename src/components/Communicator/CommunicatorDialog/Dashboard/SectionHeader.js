@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import TonalChip from '../../../UI/TonalChip';
 import { SECTIONS } from '../CommunicatorDialog.constants';
 import messages from '../CommunicatorDialog.messages';
 
@@ -65,11 +65,7 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap'
   },
   chip: {
-    flexShrink: 0,
-    fontWeight: 600,
-    color: theme.palette.primary.main,
-    borderColor: alpha(theme.palette.primary.main, 0.4),
-    backgroundColor: alpha(theme.palette.primary.main, 0.08)
+    flexShrink: 0
   }
 }));
 
@@ -101,9 +97,7 @@ const SectionHeader = ({ intl, section, total, onOpenNav }) => {
           {intl.formatMessage(messages[meta.hint])}
         </Typography>
       </div>
-      <Chip
-        size="small"
-        variant="outlined"
+      <TonalChip
         className={classes.chip}
         label={intl.formatMessage(messages.boardsQty, { qty: total })}
       />

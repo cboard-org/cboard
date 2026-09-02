@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
 import BoardThumb from '../shared/BoardThumb';
-import BoardStatusIcons from '../shared/BoardStatusIcons';
+import BoardStatusChips from '../shared/BoardStatusChips';
 import { formatBoardLocale } from '../utils/boardLocale';
 import PremiumFeature from '../../../PremiumFeature';
 import messages from '../CommunicatorDialog.messages';
@@ -29,8 +29,20 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontWeight: 600
   },
+  header: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: theme.spacing(1)
+  },
   meta: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
     color: theme.palette.text.secondary
+  },
+  separator: {
+    margin: theme.spacing(0, 0.75),
+    opacity: 0.5
   },
   actions: {
     display: 'flex',
@@ -114,7 +126,7 @@ const BoardDetails = ({
     <div className={classes.root}>
       <BoardThumb board={board} className={classes.thumb} />
 
-      <div>
+      <div className={classes.header}>
         {!hideTitle && (
           <Typography
             variant="h6"
@@ -127,14 +139,23 @@ const BoardDetails = ({
           </Typography>
         )}
         <Typography variant="caption" component="p" className={classes.meta}>
-          {metaParts.join('  ·  ')}
+          {metaParts.map((part, index) => (
+            <React.Fragment key={part}>
+              {index > 0 && (
+                <span className={classes.separator} aria-hidden="true">
+                  ·
+                </span>
+              )}
+              {part}
+            </React.Fragment>
+          ))}
         </Typography>
         {communicator && (
-          <BoardStatusIcons
+          <BoardStatusChips
             intl={intl}
             board={board}
-            communicator={communicator}
-            activeBoardId={activeBoardId}
+            isRoot={communicator.rootBoard === board.id}
+            isActive={activeBoardId === board.id}
           />
         )}
       </div>

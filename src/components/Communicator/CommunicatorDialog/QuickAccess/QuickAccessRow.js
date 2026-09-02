@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -15,6 +14,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import StarIcon from '@material-ui/icons/Star';
 
 import BoardThumb from '../shared/BoardThumb';
+import BoardStatusChips from '../shared/BoardStatusChips';
 import {
   softRadius,
   surfaceInteractive,
@@ -43,7 +43,10 @@ const useStyles = makeStyles((theme) => ({
   },
   main: {
     flex: 1,
-    minWidth: 0
+    minWidth: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: theme.spacing(0.5)
   },
   title: {
     fontWeight: 600,
@@ -62,6 +65,7 @@ const QuickAccessRow = ({
   intl,
   board,
   isRoot,
+  isActive,
   isFirst,
   isLast,
   hasAuth,
@@ -78,6 +82,7 @@ const QuickAccessRow = ({
   return (
     <Paper
       variant="outlined"
+      data-testid="quick-access-row"
       className={classNames(classes.row, { [classes.accent]: isRoot })}
     >
       {busy && (
@@ -92,9 +97,13 @@ const QuickAccessRow = ({
         <Typography className={classes.title} title={title}>
           {title}
         </Typography>
-        {isRoot && (
-          <Chip size="small" variant="outlined" label={t(messages.rootBoard)} />
-        )}
+        <BoardStatusChips
+          intl={intl}
+          board={board}
+          isRoot={isRoot}
+          isActive={isActive}
+          showVisibility={false}
+        />
       </div>
 
       <Tooltip title={t(messages.moveUp)}>
@@ -164,6 +173,7 @@ QuickAccessRow.propTypes = {
   intl: intlShape.isRequired,
   board: PropTypes.object.isRequired,
   isRoot: PropTypes.bool,
+  isActive: PropTypes.bool,
   isFirst: PropTypes.bool,
   isLast: PropTypes.bool,
   hasAuth: PropTypes.bool,

@@ -3,12 +3,8 @@ import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import { makeStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
-import PublicIcon from '@material-ui/icons/Public';
-import KeyIcon from '@material-ui/icons/VpnKey';
-import HomeIcon from '@material-ui/icons/Home';
-import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 
-import messages from '../CommunicatorDialog.messages';
+import { getBoardStatusItems } from './boardStatusItems';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     gap: theme.spacing(0.5)
   },
   icon: {
-    fontSize: '1.1rem'
+    fontSize: '1.3rem'
   },
   // Semantic colors so each status reads on its own instead of a uniform green.
   public: {
@@ -39,32 +35,17 @@ const BoardStatusIcons = ({ intl, board, communicator, activeBoardId }) => {
   const isRoot = communicator.rootBoard === board.id;
   const isActive = activeBoardId === board.id;
 
-  const items = [
-    {
-      key: 'visibility',
-      title: board.isPublic
-        ? intl.formatMessage(messages.publicBoard)
-        : intl.formatMessage(messages.privateBoard),
-      icon: board.isPublic ? <PublicIcon /> : <KeyIcon />,
-      colorClass: board.isPublic ? classes.public : classes.private
-    }
-  ];
-  if (isRoot) {
-    items.push({
-      key: 'root',
-      title: intl.formatMessage(messages.rootBoard),
-      icon: <HomeIcon />,
-      colorClass: classes.root_
-    });
-  }
-  if (isActive) {
-    items.push({
-      key: 'active',
-      title: intl.formatMessage(messages.activeBoard),
-      icon: <RemoveRedEyeIcon />,
-      colorClass: classes.active
-    });
-  }
+  const items = getBoardStatusItems(intl, {
+    isPublic: board.isPublic,
+    isRoot,
+    isActive
+  });
+  const tones = {
+    public: classes.public,
+    private: classes.private,
+    root: classes.root_,
+    active: classes.active
+  };
 
   return (
     <span className={classes.root}>
@@ -75,7 +56,7 @@ const BoardStatusIcons = ({ intl, board, communicator, activeBoardId }) => {
           name="CommunicatorDialog__PropertyOption"
         >
           {React.cloneElement(item.icon, {
-            className: `${classes.icon} ${item.colorClass}`,
+            className: `${classes.icon} ${tones[item.tone]}`,
             'aria-label': item.title
           })}
         </Tooltip>
