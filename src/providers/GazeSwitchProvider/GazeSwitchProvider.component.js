@@ -96,8 +96,13 @@ class GazeSwitchProvider extends React.Component {
   async startController() {
     if (this.videoRef.current) {
       // Android WebView needs the runtime CAMERA permission before getUserMedia;
-      // it never prompts on its own like the browser does.
-      await requestCvaCameraPermission();
+      // it never prompts on its own like the browser does. Skip the expensive
+      // MediaPipe init when permission is denied, since getUserMedia would fail.
+      const hasCameraPermission = await requestCvaCameraPermission();
+      if (!hasCameraPermission) {
+        this.setState({ status: GAZE_STATUS.ERROR });
+        return;
+      }
       this.controller.start(this.videoRef.current);
     }
   }
