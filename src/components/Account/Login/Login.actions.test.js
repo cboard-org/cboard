@@ -15,7 +15,16 @@ jest.mock('../../../appInsights', () => ({
   }
 }));
 
+// isCordova is now derived from the URL protocol at module load, so window.cordova
+// no longer toggles it. Mock the util to drive the packaged-app branches in tests.
+jest.mock('../../../cordova-util', () => ({
+  ...jest.requireActual('../../../cordova-util'),
+  isCordova: jest.fn(() => false),
+  isElectron: jest.fn(() => false)
+}));
+
 const { appInsights } = require('../../../appInsights');
+const cordovaUtil = require('../../../cordova-util');
 
 const mockBoard = {
   name: 'tewt',
@@ -385,8 +394,8 @@ it('should set google analytics user id after login - WEB', async () => {
 });
 
 it('should set google analytics user id after login - ANDROID IOS', async () => {
-  window.cordova = jest.fn(() => true);
-  window.cordova.platformId = 'notElectron';
+  cordovaUtil.isCordova.mockReturnValue(true);
+  cordovaUtil.isElectron.mockReturnValue(false);
   window.FirebasePlugin = {
     setUserId: jest.fn(),
     logEvent: jest.fn()
@@ -397,6 +406,8 @@ it('should set google analytics user id after login - ANDROID IOS', async () => 
 
   await store.dispatch(actions.login(user, 'local'));
   expect(window.FirebasePlugin.setUserId).toHaveBeenCalledWith(userData.id);
+
+  cordovaUtil.isCordova.mockReturnValue(false);
 });
 
 it('should set App Insights authenticated user context with the user id on login', async () => {
