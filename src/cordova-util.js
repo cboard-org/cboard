@@ -4,7 +4,9 @@
 export const isPackagedApp = () =>
   window.location.protocol !== 'http:' && window.location.protocol !== 'https:';
 
-export const isCordova = isPackagedApp();
+const IS_PACKAGED_APP = isPackagedApp();
+
+export const isCordova = () => IS_PACKAGED_APP;
 
 export const isAndroid = () =>
   isCordova() && window.cordova.platformId === 'android';
