@@ -12,6 +12,7 @@
  */
 
 import { FaceLandmarker, FilesetResolver } from '@mediapipe/tasks-vision';
+import { isPackagedApp } from '../../cordova-util';
 
 // WASM runtime and model are self-hosted under public/mediapipe so the feature
 // works offline and inside the Cordova-packaged app (no CDN, no cross-origin
@@ -19,6 +20,28 @@ import { FaceLandmarker, FilesetResolver } from '@mediapipe/tasks-vision';
 const ASSET_BASE = `${process.env.PUBLIC_URL || ''}/mediapipe`;
 const WASM_BASE_URL = `${ASSET_BASE}/wasm`;
 const FACE_MODEL_URL = `${ASSET_BASE}/face_landmarker.task`;
+
+// Packaged apps serve assets over file:// (Android) or other non-web schemes
+// that the Fetch API refuses, so MediaPipe's default fetch-based asset loading
+// fails. XMLHttpRequest can still read the bundled files, so load them as
+// ArrayBuffers and hand MediaPipe a blob URL / in-memory buffer instead.
+function loadArrayBuffer(url) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'arraybuffer';
+    xhr.onload = () => {
+      // file:// responses report status 0 on success.
+      if (xhr.status === 0 || (xhr.status >= 200 && xhr.status < 300)) {
+        resolve(xhr.response);
+      } else {
+        reject(new Error(`Failed to load ${url} (status ${xhr.status})`));
+      }
+    };
+    xhr.onerror = () => reject(new Error(`Failed to load ${url}`));
+    xhr.send();
+  });
+}
 
 export const GAZE_STATUS = {
   IDLE: 'idle',
@@ -50,6 +73,8 @@ export default class GazeController {
     this.faceLandmarker = null;
     this.rafId = null;
     this.lastVideoTime = -1;
+    this.modelAssetBuffer = null;
+    this._blobUrls = [];
 
     this.status = GAZE_STATUS.IDLE;
     this.eyesClosedSince = null;
@@ -82,6 +107,18 @@ export default class GazeController {
       const filesetResolver =
         await FilesetResolver.forVisionTasks(WASM_BASE_URL);
 
+      if (isPackagedApp()) {
+        filesetResolver.wasmBinaryPath = await this._toBlobUrl(
+          filesetResolver.wasmBinaryPath,
+          'application/wasm'
+        );
+        if (!this.modelAssetBuffer) {
+          this.modelAssetBuffer = new Uint8Array(
+            await loadArrayBuffer(FACE_MODEL_URL)
+          );
+        }
+      }
+
       this.faceLandmarker = await this._createLandmarker(filesetResolver);
 
       this.stream = await navigator.mediaDevices.getUserMedia({
@@ -102,8 +139,11 @@ export default class GazeController {
   // Prefer the GPU (WebGL) delegate; fall back to CPU where GPU is unavailable
   // (some packaged WebViews), so init doesn't hard-fail.
   async _createLandmarker(filesetResolver) {
+    const modelAsset = this.modelAssetBuffer
+      ? { modelAssetBuffer: this.modelAssetBuffer }
+      : { modelAssetPath: FACE_MODEL_URL };
     const options = (delegate) => ({
-      baseOptions: { modelAssetPath: FACE_MODEL_URL, delegate },
+      baseOptions: { ...modelAsset, delegate },
       outputFaceBlendshapes: true,
       runningMode: 'VIDEO',
       numFaces: 1
@@ -117,6 +157,13 @@ export default class GazeController {
     } catch (gpuErr) {
       return FaceLandmarker.createFromOptions(filesetResolver, options('CPU'));
     }
+  }
+
+  async _toBlobUrl(url, type) {
+    const buffer = await loadArrayBuffer(url);
+    const blobUrl = URL.createObjectURL(new Blob([buffer], { type }));
+    this._blobUrls.push(blobUrl);
+    return blobUrl;
   }
 
   stop() {
@@ -139,6 +186,8 @@ export default class GazeController {
     if (this.video) {
       this.video.srcObject = null;
     }
+    this._blobUrls.forEach((blobUrl) => URL.revokeObjectURL(blobUrl));
+    this._blobUrls = [];
     this.eyesClosedSince = null;
     this.triggeredThisClosure = false;
     this.lastVideoTime = -1;

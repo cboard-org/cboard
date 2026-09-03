@@ -347,6 +347,34 @@ export const requestCvaWritePermissions = () => {
   }
 };
 
+// getUserMedia video inside the Android WebView is denied unless the app holds
+// the runtime CAMERA permission, and unlike the browser it never shows a native
+// prompt on its own. Request it explicitly before starting eye control.
+// Resolves to true when the camera may be used (web/iOS handle their own prompt).
+export const requestCvaCameraPermission = async () => {
+  if (!isAndroid()) return true;
+
+  const permissions = window.cordova?.plugins?.permissions;
+  if (!permissions) return true;
+
+  const hasCameraPermission = await new Promise((resolve) => {
+    permissions.checkPermission(
+      permissions.CAMERA,
+      (status) => resolve(!!status.hasPermission),
+      () => resolve(false)
+    );
+  });
+  if (hasCameraPermission) return true;
+
+  return new Promise((resolve) => {
+    permissions.requestPermission(
+      permissions.CAMERA,
+      (status) => resolve(!!status.hasPermission),
+      () => resolve(false)
+    );
+  });
+};
+
 export const requestCvaPermissions = async () => {
   if (isAndroid()) {
     var permissions = window.cordova.plugins.permissions;
