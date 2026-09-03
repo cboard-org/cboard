@@ -1643,7 +1643,7 @@ export class Cboard {
   }
 
   get enableScanningCheckbox() {
-    return this.page.locator('input[type="checkbox"]');
+    return this.page.locator('input[value="active"]');
   }
 
   get timeDelayDropdown() {
@@ -1660,6 +1660,31 @@ export class Cboard {
 
   get scanMethodInput() {
     return this.page.locator('input[value="automatic"]');
+  }
+
+  // === EYE CONTROL (SCANNING) ===
+  get eyeControlHeading() {
+    return this.page.getByText('Eye control', { exact: true });
+  }
+
+  get eyeControlBlinkSwitch() {
+    return this.page.locator('input[value="eyeControlActive"]');
+  }
+
+  get eyeControlShowPreviewSwitch() {
+    return this.page.locator('input[value="eyeControlShowPreview"]');
+  }
+
+  get eyeControlDwellDropdown() {
+    return this.page.getByRole('button', { name: '500 ms' });
+  }
+
+  get eyeControlSensitivityDropdown() {
+    return this.page.getByRole('button', { name: 'Medium' });
+  }
+
+  get eyeControlRequiresScanningText() {
+    return this.page.getByText('Enable scanning first to use eye control.');
   }
 
   get scanningEnabledSwitch() {
@@ -1994,7 +2019,7 @@ export class Cboard {
   }
 
   async verifyEnableScanningToggle() {
-    await expect(this.page.locator('text=Enable')).toBeVisible();
+    await expect(this.page.getByText('Enable', { exact: true })).toBeVisible();
     await expect(
       this.page.locator('text=Start scanning boards immediately')
     ).toBeVisible();
@@ -2105,6 +2130,65 @@ export class Cboard {
     await expect(this.scanningHeading).toBeVisible();
     await expect(this.enableScanningCheckbox).toBeVisible();
     await expect(this.timeDelayDropdown).toBeVisible();
+  }
+
+  // === EYE CONTROL (SCANNING) ACTIONS ===
+  async verifyEyeControlSection() {
+    await expect(this.eyeControlHeading).toBeVisible();
+    await expect(
+      this.page.getByText('Select with a blink', { exact: true })
+    ).toBeVisible();
+    await expect(this.eyeControlBlinkSwitch).toBeVisible();
+  }
+
+  async verifyEyeControlDisabledWhenScanningOff() {
+    // Scanning is disabled by default, so eye control must be unavailable.
+    await expect(this.enableScanningCheckbox).not.toBeChecked();
+    await expect(this.eyeControlBlinkSwitch).toBeDisabled();
+    await expect(this.eyeControlDwellDropdown).toHaveClass(/Mui-disabled/);
+    await expect(this.eyeControlSensitivityDropdown).toHaveClass(
+      /Mui-disabled/
+    );
+    await expect(this.eyeControlShowPreviewSwitch).toBeDisabled();
+    await expect(this.eyeControlRequiresScanningText).toBeVisible();
+  }
+
+  async verifyEyeControlEnabledAfterScanning() {
+    // Enabling scanning should make the blink toggle available.
+    if (!(await this.enableScanningCheckbox.isChecked())) {
+      await this.enableScanningCheckbox.click();
+    }
+    await expect(this.eyeControlBlinkSwitch).toBeEnabled();
+
+    // Enabling blink selection should unlock the dwell/sensitivity/preview options.
+    await this.eyeControlBlinkSwitch.click();
+    await expect(this.eyeControlBlinkSwitch).toBeChecked();
+    await expect(this.eyeControlDwellDropdown).not.toHaveClass(/Mui-disabled/);
+    await expect(this.eyeControlSensitivityDropdown).not.toHaveClass(
+      /Mui-disabled/
+    );
+    await expect(this.eyeControlShowPreviewSwitch).toBeEnabled();
+  }
+
+  async verifyEyeControlDwellAndSensitivitySettings() {
+    await expect(
+      this.page.getByText('Blink hold time', { exact: true })
+    ).toBeVisible();
+    await expect(
+      this.page.locator(
+        'text=How long to keep the eyes closed to make a selection'
+      )
+    ).toBeVisible();
+    await expect(
+      this.page.getByText('Sensitivity', { exact: true })
+    ).toBeVisible();
+    await expect(
+      this.page.locator(
+        'text=How strongly the eyes must close to count as a blink'
+      )
+    ).toBeVisible();
+    await expect(this.eyeControlDwellDropdown).toBeVisible();
+    await expect(this.eyeControlSensitivityDropdown).toBeVisible();
   }
 
   // === SPEECH SETTINGS ACTIONS ===
