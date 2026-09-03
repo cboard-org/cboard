@@ -8,13 +8,15 @@ const IS_PACKAGED_APP = isPackagedApp();
 
 export const isCordova = () => IS_PACKAGED_APP;
 
+// window.cordova may not be set yet even when isCordova() is true (before
+// deviceready), so guard the platformId access.
 export const isAndroid = () =>
-  isCordova() && window.cordova.platformId === 'android';
+  isCordova() && window.cordova?.platformId === 'android';
 
 export const isElectron = () =>
-  isCordova() && window.cordova.platformId === 'electron';
+  isCordova() && window.cordova?.platformId === 'electron';
 
-export const isIOS = () => isCordova() && window.cordova.platformId === 'ios';
+export const isIOS = () => isCordova() && window.cordova?.platformId === 'ios';
 
 export const onCordovaReady = (onReady) =>
   document.addEventListener('deviceready', onReady, false);
