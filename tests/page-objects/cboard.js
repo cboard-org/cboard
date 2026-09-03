@@ -1675,14 +1675,6 @@ export class Cboard {
     return this.page.locator('input[value="eyeControlShowPreview"]');
   }
 
-  get eyeControlDwellInput() {
-    return this.page.locator('#eye-control-dwell');
-  }
-
-  get eyeControlSensitivityInput() {
-    return this.page.locator('#eye-control-sensitivity');
-  }
-
   get eyeControlDwellDropdown() {
     return this.page.getByRole('button', { name: '500 ms' });
   }
@@ -2153,8 +2145,10 @@ export class Cboard {
     // Scanning is disabled by default, so eye control must be unavailable.
     await expect(this.enableScanningCheckbox).not.toBeChecked();
     await expect(this.eyeControlBlinkSwitch).toBeDisabled();
-    await expect(this.eyeControlDwellInput).toBeDisabled();
-    await expect(this.eyeControlSensitivityInput).toBeDisabled();
+    await expect(this.eyeControlDwellDropdown).toHaveClass(/Mui-disabled/);
+    await expect(this.eyeControlSensitivityDropdown).toHaveClass(
+      /Mui-disabled/
+    );
     await expect(this.eyeControlShowPreviewSwitch).toBeDisabled();
     await expect(this.eyeControlRequiresScanningText).toBeVisible();
   }
@@ -2169,8 +2163,10 @@ export class Cboard {
     // Enabling blink selection should unlock the dwell/sensitivity/preview options.
     await this.eyeControlBlinkSwitch.click();
     await expect(this.eyeControlBlinkSwitch).toBeChecked();
-    await expect(this.eyeControlDwellInput).toBeEnabled();
-    await expect(this.eyeControlSensitivityInput).toBeEnabled();
+    await expect(this.eyeControlDwellDropdown).not.toHaveClass(/Mui-disabled/);
+    await expect(this.eyeControlSensitivityDropdown).not.toHaveClass(
+      /Mui-disabled/
+    );
     await expect(this.eyeControlShowPreviewSwitch).toBeEnabled();
   }
 
