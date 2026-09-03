@@ -35,7 +35,7 @@ const KNOWN_STATUSES = [
  * Falls back to NOT_SUBSCRIBED for any unrecognized value so the user
  * is never locked out of purchasing.
  */
-export const normalizeStatus = status => {
+export const normalizeStatus = (status) => {
   const lowered = typeof status === 'string' ? status.toLowerCase() : '';
   const aliased = STATUS_ALIASES[lowered] || lowered;
   return KNOWN_STATUSES.includes(aliased) ? aliased : NOT_SUBSCRIBED;
