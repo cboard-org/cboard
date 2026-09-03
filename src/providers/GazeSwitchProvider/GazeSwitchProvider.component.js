@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
 import GazeController, { GAZE_STATUS } from './GazeController';
+import { requestCvaCameraPermission } from '../../cordova-util';
 import messages from './GazeSwitchProvider.messages';
 import './GazeSwitchProvider.css';
 
@@ -92,8 +93,16 @@ class GazeSwitchProvider extends React.Component {
     return { blinkThreshold, dwellMs, cooldownMs };
   }
 
-  startController() {
+  async startController() {
     if (this.videoRef.current) {
+      // Android WebView needs the runtime CAMERA permission before getUserMedia;
+      // it never prompts on its own like the browser does. Skip the expensive
+      // MediaPipe init when permission is denied, since getUserMedia would fail.
+      const hasCameraPermission = await requestCvaCameraPermission();
+      if (!hasCameraPermission) {
+        this.setState({ status: GAZE_STATUS.ERROR });
+        return;
+      }
       this.controller.start(this.videoRef.current);
     }
   }
