@@ -1,22 +1,18 @@
-// Reliable at module-load time.
-// Packaged apps are served over a non-web scheme (Electron and
+export const isCordova = () => !!window.cordova;
+
+export const isAndroid = () =>
+  isCordova() && window.cordova.platformId === 'android';
+
+export const isElectron = () =>
+  isCordova() && window.cordova.platformId === 'electron';
+
+export const isIOS = () => isCordova() && window.cordova.platformId === 'ios';
+
+// Reliable at module-load time (unlike isCordova, which needs window.cordova to
+// be set first): packaged apps are served over a non-web scheme (Electron and
 // Android file://, iOS app://localhost).
 export const isPackagedApp = () =>
   window.location.protocol !== 'http:' && window.location.protocol !== 'https:';
-
-const IS_PACKAGED_APP = isPackagedApp();
-
-export const isCordova = () => IS_PACKAGED_APP;
-
-// window.cordova may not be set yet even when isCordova() is true (before
-// deviceready), so guard the platformId access.
-export const isAndroid = () =>
-  isCordova() && window.cordova?.platformId === 'android';
-
-export const isElectron = () =>
-  isCordova() && window.cordova?.platformId === 'electron';
-
-export const isIOS = () => isCordova() && window.cordova?.platformId === 'ios';
 
 export const onCordovaReady = (onReady) =>
   document.addEventListener('deviceready', onReady, false);
