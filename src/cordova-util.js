@@ -1,8 +1,5 @@
 export const isCordova = () => !!window.cordova;
 
-export const isAndroid = () =>
-  isCordova() && window.cordova.platformId === 'android';
-
 export const isElectron = () =>
   isCordova() && window.cordova.platformId === 'electron';
 
@@ -13,6 +10,9 @@ export const isIOS = () => isCordova() && window.cordova.platformId === 'ios';
 // Android file://, iOS app://localhost).
 export const isPackagedApp = () =>
   window.location.protocol !== 'http:' && window.location.protocol !== 'https:';
+
+export const isAndroid = () =>
+  isPackagedApp() && window.cordova.platformId === 'android';
 
 export const onCordovaReady = (onReady) =>
   document.addEventListener('deviceready', onReady, false);
