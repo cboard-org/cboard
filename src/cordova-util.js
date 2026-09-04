@@ -12,7 +12,7 @@ export const isPackagedApp = () =>
   window.location.protocol !== 'http:' && window.location.protocol !== 'https:';
 
 export const isAndroid = () =>
-  isPackagedApp() && window.cordova.platformId === 'android';
+  isPackagedApp() && isCordova() && window.cordova.platformId === 'android';
 
 export const onCordovaReady = (onReady) =>
   document.addEventListener('deviceready', onReady, false);
