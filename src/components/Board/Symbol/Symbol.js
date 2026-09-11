@@ -9,6 +9,8 @@ import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
 import { Typography } from '@material-ui/core';
 import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
+import { getCachedImage } from '../../../idb/media/imageCache';
+import { storeRemoteImage } from '../../../idb/media/remoteImageLoader';
 
 const propTypes = {
   /**
@@ -22,11 +24,81 @@ const propTypes = {
   labelpos: PropTypes.string,
   type: PropTypes.string,
   onWrite: PropTypes.func,
-  intl: PropTypes.object
+  intl: PropTypes.object,
+  /**
+   * Keep a remote image on-device so it still renders offline. Opt-in, and only for
+   * images already committed to a board: anywhere a user merely browses images
+   * (search results, tile editor previews) every image passed through would be
+   * stored forever. A tile saved in the editor is cached once the board renders it.
+   */
+  cacheRemoteImage: PropTypes.bool
 };
 
 function formatSrc(src) {
   return isPackagedApp() && src?.startsWith('/') ? `.${src}` : src;
+}
+
+const isRemote = (src) => /^https?:\/\//.test(src ?? '');
+
+async function getStoredImage(image, keyPath) {
+  if (keyPath) {
+    try {
+      const media = await getArasaacDB().getImageById(keyPath);
+      if (media) return media;
+    } catch (error) {
+      console.error('Failed to fetch Arasaac image from Indexed DB:', error);
+    }
+  }
+
+  return isRemote(image) ? getCachedImage(image) : undefined;
+}
+
+function SymbolImage({ image, keyPath, cacheRemoteImage }) {
+  const [src, setSrc] = useState(image ? formatSrc(image) : '');
+  const blobUrl = useRef(null);
+  const mounted = useRef(true);
+
+  useEffect(
+    () => () => {
+      mounted.current = false;
+      if (blobUrl.current) URL.revokeObjectURL(blobUrl.current);
+    },
+    []
+  );
+
+  const showStoredImage = useCallback(async () => {
+    if (blobUrl.current) return;
+
+    const media = await getStoredImage(image, keyPath);
+
+    if (!media || blobUrl.current || !mounted.current) return;
+
+    blobUrl.current = URL.createObjectURL(
+      new Blob([media.data], { type: media.type })
+    );
+    setSrc(blobUrl.current);
+  }, [image, keyPath]);
+
+  useEffect(() => {
+    if (!image && keyPath) showStoredImage();
+  }, [image, keyPath, showStoredImage]);
+
+  const handleLoad = () => {
+    if (blobUrl.current || !cacheRemoteImage || !isRemote(image)) return;
+    storeRemoteImage(image);
+  };
+
+  if (!src) return null;
+
+  return (
+    <img
+      className="Symbol__image"
+      src={src}
+      alt=""
+      onError={showStoredImage}
+      onLoad={handleLoad}
+    />
+  );
 }
 
 function Symbol(props) {
@@ -39,63 +111,9 @@ function Symbol(props) {
     onWrite,
     intl,
     image,
+    cacheRemoteImage,
     ...other
   } = props;
-
-  const [src, setSrc] = useState(image ? formatSrc(image) : '');
-  const objectUrlRef = useRef(null);
-
-  const fetchArasaacImagefromIndexedDB = useCallback(async (id) => {
-    if (!id) return null;
-
-    try {
-      const arasaacDB = getArasaacDB();
-      return await arasaacDB.getImageById(id);
-    } catch (error) {
-      console.error('Failed to fetch Arasaac image from Indexed DB:', error);
-      return null;
-    }
-  }, []);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    async function getSrc() {
-      const imageFromIndexedDb = await fetchArasaacImagefromIndexedDB(keyPath);
-
-      if (cancelled) return;
-
-      if (imageFromIndexedDb) {
-        const blob = new Blob([imageFromIndexedDb.data], {
-          type: imageFromIndexedDb.type
-        });
-        const url = URL.createObjectURL(blob);
-        setSrc(url);
-
-        if (objectUrlRef.current) {
-          URL.revokeObjectURL(objectUrlRef.current);
-        }
-        objectUrlRef.current = url;
-        return;
-      }
-
-      if (image) {
-        setSrc(formatSrc(image));
-        return;
-      }
-
-      setSrc('');
-    }
-    getSrc();
-
-    return () => {
-      cancelled = true;
-      if (objectUrlRef.current) {
-        URL.revokeObjectURL(objectUrlRef.current);
-        objectUrlRef.current = null;
-      }
-    };
-  }, [fetchArasaacImagefromIndexedDB, image, keyPath]);
 
   const symbolClassName = classNames('Symbol', className);
 
@@ -107,7 +125,7 @@ function Symbol(props) {
   };
 
   return (
-    <div className={symbolClassName} image={src} {...other}>
+    <div className={symbolClassName} {...other}>
       {props.type === 'live' && (
         <OutlinedInput
           id="outlined-live-input"
@@ -136,7 +154,12 @@ function Symbol(props) {
         )}
 
       <div className="Symbol__image-container">
-        {src && <img className="Symbol__image" src={src} alt="" />}
+        <SymbolImage
+          key={image || keyPath}
+          image={image}
+          keyPath={keyPath}
+          cacheRemoteImage={cacheRemoteImage}
+        />
       </div>
 
       {props.type !== 'live' &&

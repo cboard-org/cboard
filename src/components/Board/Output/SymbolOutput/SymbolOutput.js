@@ -130,6 +130,7 @@ class SymbolOutput extends PureComponent {
                 label={label}
                 type={type}
                 labelpos="Below"
+                cacheRemoteImage
                 onWrite={onWriteSymbol(index)}
                 intl={intl}
               />
