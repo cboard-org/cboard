@@ -188,6 +188,6 @@
     "not op_mini all"
   ],
   "overrides": {
-    "js-yaml": "^4.3.1"
+    "js-yaml": "^4.3.2"
   }
 }
