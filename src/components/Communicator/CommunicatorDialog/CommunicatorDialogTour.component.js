@@ -13,12 +13,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import QueueIcon from '@material-ui/icons/Queue';
 import InfoIcon from '@material-ui/icons/Info';
 import HomeIcon from '@material-ui/icons/Home';
-import ClearIcon from '@material-ui/icons/Clear';
+import StarIcon from '@material-ui/icons/Star';
 import PublicIcon from '@material-ui/icons/Public';
 import KeyIcon from '@material-ui/icons/VpnKey';
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 import DeleteIcon from '@material-ui/icons/Delete';
-import InputIcon from '@material-ui/icons/Input';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 import './CommunicatorDialog.css';
 import messages from './CommunicatorDialog.messages';
@@ -65,7 +65,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '#CommunicatorDialog__BoardBtn',
+      target: '#CommunicatorDialog__nav-myCommunicator',
       content: (
         <div>
           <FormattedMessage {...messages.walkthroughBoards} />
@@ -74,7 +74,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '#CommunicatorDialog__PublicBoardsBtn',
+      target: '#CommunicatorDialog__nav-community',
       content: (
         <div>
           <FormattedMessage {...messages.walkthroughPublicBoards} />
@@ -83,7 +83,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '#CommunicatorDialog__AllMyBoardsBtn',
+      target: '#CommunicatorDialog__nav-myBoards',
       content: (
         <div>
           <FormattedMessage {...messages.walkthroughAllMyBoards} />
@@ -92,7 +92,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '.CommunicatorDialogButtons__searchButton',
+      target: '#CommunicatorDialog__search',
       content: <FormattedMessage {...messages.walkthroughSearch} />
     },
     {
@@ -152,7 +152,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '.CommunicatorDialog__boards__item__actions',
+      target: '[data-testid="quick-access-tray"]',
       placement: 'left',
       content: (
         <div className="CommunicatorDialog__Tour">
@@ -170,7 +170,7 @@ function CommunicatorDialogTour({
               <List>
                 <ListItem alignItems="center">
                   <ListItemIcon>
-                    <ClearIcon />
+                    <StarIcon />
                   </ListItemIcon>
                   <ListItemText
                     primary={intl.formatMessage(
@@ -214,7 +214,7 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '.CommunicatorDialog__boards__item__actions',
+      target: '[data-testid="board-details-panel"]',
       placement: 'left',
       content: (
         <div className="CommunicatorDialog__Tour">
@@ -275,22 +275,8 @@ function CommunicatorDialogTour({
       )
     },
     {
-      target: '#CommunicatorDialog__boards__item__image__Btn',
       hideCloseButton: true,
-      content: (
-        <FormattedMessage {...messages.walkthroughAllMyBoardsEditBoardImage} />
-      )
-    },
-    {
-      target: '.CommunicatorDialog__boards__item__edit-title',
-      hideCloseButton: true,
-      content: (
-        <FormattedMessage {...messages.walkthroughAllMyBoardsEditBoardName} />
-      )
-    },
-    {
-      hideCloseButton: true,
-      target: '.CommunicatorDialog__boards__item__actions',
+      target: '[data-testid="board-details-panel"]',
       placement: 'left',
       content: (
         <div className="CommunicatorDialog__Tour">
@@ -308,7 +294,7 @@ function CommunicatorDialogTour({
               <List>
                 <ListItem alignItems="center">
                   <ListItemIcon>
-                    <ClearIcon />
+                    <StarIcon />
                   </ListItemIcon>
                   <ListItemText
                     primary={intl.formatMessage(
@@ -318,7 +304,7 @@ function CommunicatorDialogTour({
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
-                    <InputIcon />
+                    <StarBorderIcon />
                   </ListItemIcon>
                   <ListItemText
                     primary={intl.formatMessage(
