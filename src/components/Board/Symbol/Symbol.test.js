@@ -14,6 +14,18 @@ global.URL.createObjectURL = () => `blob:test/${++blobUrlCount}`;
 global.URL.revokeObjectURL = () => {};
 
 const srcOf = (wrapper) => wrapper.update().find('.Symbol__image').prop('src');
+const imageCount = (wrapper) => wrapper.update().find('.Symbol__image').length;
+const isHidden = (wrapper) =>
+  wrapper.update().find('.Symbol__image').prop('style')?.visibility ===
+  'hidden';
+
+const setOnLine = (value) =>
+  Object.defineProperty(window.navigator, 'onLine', {
+    value,
+    configurable: true
+  });
+
+afterEach(() => setOnLine(true));
 
 it('renders without crashing', () => {
   shallow(<Symbol label="dummy label" labelpos="Below" />);
@@ -96,7 +108,7 @@ it('serves the cached copy when the image fails to load', async () => {
   wrapper.unmount();
 });
 
-it('keeps the network url when a failed image is not cached', async () => {
+it('takes a failed image off screen when nothing is stored', async () => {
   const img = 'https://globalsymbols.com/missing.png';
   global.fetch = jest.fn();
 
@@ -104,21 +116,76 @@ it('keeps the network url when a failed image is not cached', async () => {
   wrapper.find('.Symbol__image').simulate('error');
   await flush();
 
-  expect(srcOf(wrapper)).toEqual(img);
+  expect(imageCount(wrapper)).toEqual(0);
   wrapper.unmount();
 });
 
-it('keeps the url when a repeatedly failing image has nothing stored', async () => {
-  const img = 'https://globalsymbols.com/broken.png';
-  global.fetch = jest.fn();
+it('does not hide an image that can reach the network', () => {
+  const img = 'https://globalsymbols.com/online.png';
 
   const wrapper = mount(<Symbol label="dummy label" image={img} />);
-  const image = wrapper.find('.Symbol__image');
-  image.simulate('error');
-  image.simulate('error');
-  await flush();
+
+  expect(isHidden(wrapper)).toBe(false);
+  wrapper.unmount();
+});
+
+it('hides a remote image offline until it loads', () => {
+  const img = 'https://globalsymbols.com/offline-hit.png';
+  setOnLine(false);
+
+  const wrapper = mount(<Symbol label="dummy label" image={img} />);
+  expect(srcOf(wrapper)).toEqual(img);
+  expect(isHidden(wrapper)).toBe(true);
+
+  wrapper.find('.Symbol__image').simulate('load');
 
   expect(srcOf(wrapper)).toEqual(img);
+  expect(isHidden(wrapper)).toBe(false);
+  wrapper.unmount();
+});
+
+it('never shows a remote image offline that has to come from storage', async () => {
+  const img = 'https://globalsymbols.com/offline-miss.png';
+  await putCachedImage({
+    url: img,
+    type: 'image/png',
+    data: new ArrayBuffer(8)
+  });
+  global.fetch = jest.fn();
+  setOnLine(false);
+
+  const wrapper = mount(<Symbol label="dummy label" image={img} />);
+  expect(isHidden(wrapper)).toBe(true);
+
+  wrapper.find('.Symbol__image').simulate('error');
+  await flush();
+
+  expect(srcOf(wrapper)).toMatch(/^blob:/);
+  expect(isHidden(wrapper)).toBe(false);
+  wrapper.unmount();
+});
+
+it('takes a failed image off screen offline when nothing is stored', async () => {
+  const img = 'https://globalsymbols.com/offline-broken.png';
+  global.fetch = jest.fn();
+  setOnLine(false);
+
+  const wrapper = mount(<Symbol label="dummy label" image={img} />);
+  wrapper.find('.Symbol__image').simulate('error');
+  await flush();
+
+  expect(imageCount(wrapper)).toEqual(0);
+  wrapper.unmount();
+});
+
+it('keeps a local image on screen while offline', () => {
+  const img = '/symbols/mulberry/apple.svg';
+  setOnLine(false);
+
+  const wrapper = mount(<Symbol label="dummy label" image={img} />);
+
+  expect(srcOf(wrapper)).toEqual(img);
+  expect(isHidden(wrapper)).toBe(false);
   wrapper.unmount();
 });
 
