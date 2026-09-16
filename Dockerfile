@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json .npmrc ./
 RUN HUSKY=0 npm ci
 COPY . ./
-RUN NODE_OPTIONS="--max-old-space-size=4192" npm run build
+RUN NODE_OPTIONS="--max-old-space-size=7168" npm run build
 
 # Stage 2 - the production environment
 FROM nginx:stable-alpine

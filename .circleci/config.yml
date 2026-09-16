@@ -36,6 +36,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: cimg/node:22.23.2
+    resource_class: large
     working_directory: ~/repo
     steps:
       - checkout
