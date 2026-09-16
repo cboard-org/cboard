@@ -47,6 +47,10 @@ jest.mock('../People/People.messages', () => {
     logout: {
       id: 'cboard.components.Settings.People.logout',
       defaultMessage: 'Logout'
+    },
+    login: {
+      id: 'cboard.components.Settings.People.login',
+      defaultMessage: 'Login'
     }
   };
 });
@@ -56,6 +60,7 @@ describe('People tests', () => {
   const onSubmitPeople = jest.fn();
   const onClose = jest.fn();
   const logout = jest.fn();
+  const login = jest.fn();
   test('default renderer', () => {
     shallowMatchSnapshot(
       <People
@@ -64,6 +69,7 @@ describe('People tests', () => {
         onChangePeople={onChangePeople}
         onSubmitPeople={onSubmitPeople}
         logout={logout}
+        login={login}
       />
     );
   });

@@ -4,12 +4,8 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import TextField from '@material-ui/core/TextField';
-
+import { Grid, Box, Typography } from '@material-ui/core';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './People.messages';
 import UserIcon from '../../UI/UserIcon';
@@ -26,6 +22,10 @@ const propTypes = {
    * Callback fired when clicking the logout button
    */
   logout: PropTypes.func.isRequired,
+  /**
+   * flag for user
+   */
+  login: PropTypes.func.isRequired,
   /**
    * flag for user
    */
@@ -56,10 +56,10 @@ const People = ({
   onClose,
   isLogged,
   logout,
+  login,
   name,
   email,
-  birthdate,
-  location: { country, countryCode },
+  location: { country },
   onChangePeople,
   onSubmitPeople,
   onDeleteAccount
@@ -95,126 +95,118 @@ const People = ({
         disableSubmit={!isLogged}
       >
         <Paper>
-          <List>
-            <ListItem>
-              <div className="Settings__UserIcon__Container">
-                <UserIcon />
-              </div>
-              <ListItemText primary={name} />
-              <ListItemSecondaryAction className="Settings--secondaryAction">
+          <Box px={2} py={2}>
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              mb={4}
+            >
+              <UserIcon />
+              <Box display="flex" justifyContent="center" width="100%">
                 <Button
-                  disabled={!isLogged}
                   variant="outlined"
                   color="primary"
-                  onClick={logout}
+                  onClick={isLogged ? logout : login}
                   component={Link}
-                  to="/"
+                  to={isLogged ? '/' : '/login-signup'}
                 >
-                  <FormattedMessage {...messages.logout} />
+                  <FormattedMessage
+                    {...(isLogged ? messages.logout : messages.login)}
+                  />
                 </Button>
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem>
-              <ListItemText
-                primary={<FormattedMessage {...messages.name} />}
-                secondary={<FormattedMessage {...messages.nameSecondary} />}
-              />
-              <ListItemSecondaryAction className="Settings--secondaryAction">
+              </Box>
+            </Box>
+
+            <Grid container spacing={2} alignItems="center" mb={3}>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="subtitle1">
+                  <FormattedMessage {...messages.name} />
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  <FormattedMessage {...messages.nameSecondary} />
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6}>
                 <TextField
+                  fullWidth
                   disabled={!isLogged}
                   id="user-name"
                   label={<FormattedMessage {...messages.name} />}
                   value={name}
-                  margin="normal"
                   onChange={onChangePeople('name')}
                 />
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem>
-              <ListItemText
-                primary={<FormattedMessage {...messages.email} />}
-                secondary={<FormattedMessage {...messages.emailSecondary} />}
-              />
-              <ListItemSecondaryAction className="Settings--secondaryAction">
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={2} alignItems="center" mb={3}>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="subtitle1">
+                  <FormattedMessage {...messages.email} />
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  <FormattedMessage {...messages.emailSecondary} />
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6}>
                 <TextField
-                  className="Settings--secondaryAction--textField"
-                  disabled={true} // Replace with `{!isLogged}` untill fix issue #140 on cboard-api
-                  id="user-email"
+                  fullWidth
+                  disabled
                   label={<FormattedMessage {...messages.email} />}
                   value={email}
-                  margin="normal"
                   onChange={onChangePeople('email')}
                 />
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem>
-              <ListItemText
-                primary={<FormattedMessage {...messages.birthdate} />}
-                secondary={
-                  <FormattedMessage {...messages.birthdateSecondary} />
-                }
-              />
-              <ListItemSecondaryAction className="Settings--secondaryAction">
-                <TextField
-                  className="Settings--secondaryAction--textField"
-                  disabled={!isLogged}
-                  id="user-birthdate"
-                  label={<FormattedMessage {...messages.birthdate} />}
-                  type="date"
-                  value={birthdate}
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  onChange={onChangePeople('birthdate')}
-                />
-              </ListItemSecondaryAction>
-            </ListItem>
+              </Grid>
+            </Grid>
+
             {country && (
-              <ListItem>
-                <ListItemText
-                  primary={<FormattedMessage {...messages.location} />}
-                />
-                <ListItemSecondaryAction className="Settings--secondaryAction">
+              <Grid container spacing={2} alignItems="center" mb={3}>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="subtitle1">
+                    <FormattedMessage {...messages.location} />
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
                   <TextField
-                    className="Settings--secondaryAction--textField"
-                    disabled={true}
-                    id="user-location"
+                    fullWidth
+                    disabled
                     label={<FormattedMessage {...messages.location} />}
                     value={country}
-                    margin="normal"
-                    country-code={countryCode}
                   />
-                </ListItemSecondaryAction>
-              </ListItem>
+                </Grid>
+              </Grid>
             )}
+
             {isLogged && (
-              <ListItem>
-                <ListItemText
-                  primary={
+              <Grid container spacing={2} alignItems="center" mt={5}>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="subtitle1">
                     <FormattedMessage {...messages.deleteAccountPrimary} />
-                  }
-                  secondary={
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
                     <FormattedMessage {...messages.deleteAccountSecondary} />
-                  }
-                  className={'list_item_left'}
-                />
-                <ListItemSecondaryAction className="Settings--secondaryAction">
-                  <Button
-                    variant="outlined"
-                    color="secondary"
-                    startIcon={<DeleteIcon />}
-                    className={'delete_button'}
-                    onClick={() => {
-                      setOpenDeleteConfirmation(true);
-                    }}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Box
+                    display="flex"
+                    justifyContent={{ xs: 'center', sm: 'flex-end' }}
                   >
-                    <FormattedMessage {...messages.deleteAccountPrimary} />
-                  </Button>
-                </ListItemSecondaryAction>
-              </ListItem>
+                    <Button
+                      variant="outlined"
+                      color="secondary"
+                      startIcon={<DeleteIcon />}
+                      onClick={() => setOpenDeleteConfirmation(true)}
+                    >
+                      <FormattedMessage {...messages.deleteAccountPrimary} />
+                    </Button>
+                  </Box>
+                </Grid>
+              </Grid>
             )}
-          </List>
+          </Box>
         </Paper>
+
         <DeleteConfirmationDialog
           open={openDeleteConfirmation}
           handleClose={handleCloseDeleteDialog}
