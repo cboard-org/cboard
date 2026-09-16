@@ -122,13 +122,31 @@ function parseStringValue(raw) {
     while (i < raw.length && /\s/.test(raw[i])) i++;
     if (raw[i] !== '+') break;
   }
-  // unescape
+  // Resolve the JS escape sequences that were preserved from the source string.
   const joined = parts.join('');
-  try {
-    return JSON.parse('"' + joined.replace(/"/g, '\\"') + '"');
-  } catch (e) {
-    return joined;
-  }
+  return joined.replace(/\\(u[0-9a-fA-F]{4}|x[0-9a-fA-F]{2}|.)/g, (_, esc) => {
+    switch (esc[0]) {
+      case 'n':
+        return '\n';
+      case 't':
+        return '\t';
+      case 'r':
+        return '\r';
+      case 'b':
+        return '\b';
+      case 'f':
+        return '\f';
+      case 'v':
+        return '\v';
+      case '0':
+        return '\0';
+      case 'u':
+      case 'x':
+        return String.fromCodePoint(parseInt(esc.slice(1), 16));
+      default:
+        return esc;
+    }
+  });
 }
 
 const files = walk(srcDir);
