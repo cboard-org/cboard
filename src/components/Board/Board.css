@@ -20,7 +20,8 @@
   display: none;
 }
 
-.Board__output button[class*='MuiButtonBase-'].scanner__focused {
+.Board__output button[class*='MuiButtonBase-'].scanner__focused,
+.BoardPagination button.scanner__focused {
   outline: 4px solid rgba(255, 0, 0, 1);
 }
 

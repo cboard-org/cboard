@@ -210,6 +210,8 @@ test('switch scanning selects Next page and continues scanning the new page', as
     await page.keyboard.press('Tab');
   }
   await expect(next).toHaveClass(/scanner__focused/);
+  await expect(next).toHaveCSS('outline-style', 'solid');
+  await expect(next).toHaveCSS('outline-width', '4px');
   await page.keyboard.press('Enter');
   await expect(page.getByRole('status')).toHaveText('Page 2 of 7');
   const previous = page.getByRole('button', {
