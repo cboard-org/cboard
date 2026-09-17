@@ -49,6 +49,48 @@ exports[`Navigation tests switchs behavior 1`] = `
       <WithStyles(ForwardRef(List))>
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
+            primary={
+              <FormattedMessage
+                defaultMessage="Board navigation mode"
+                id="boardNavigationMode"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(Select))
+            className="Navigation__mode-select"
+            inputProps={
+              Object {
+                "aria-label": "Board navigation mode",
+              }
+            }
+            onChange={[Function]}
+            value="scroll"
+          >
+            <WithStyles(ForwardRef(MenuItem))
+              value="scroll"
+            >
+              <FormattedMessage
+                values={Object {}}
+              />
+            </WithStyles(ForwardRef(MenuItem))>
+            <WithStyles(ForwardRef(MenuItem))
+              value="pagination"
+            >
+              <FormattedMessage
+                values={Object {}}
+              />
+            </WithStyles(ForwardRef(MenuItem))>
+          </WithStyles(ForwardRef(Select))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(Divider)) />
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
             className="Navigation__ListItemText"
             primary={
               <FormattedMessage
@@ -428,6 +470,48 @@ exports[`Navigation tests switchs behavior 2`] = `
   >
     <WithStyles(ForwardRef(Paper))>
       <WithStyles(ForwardRef(List))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            primary={
+              <FormattedMessage
+                defaultMessage="Board navigation mode"
+                id="boardNavigationMode"
+                values={Object {}}
+              />
+            }
+            secondary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(Select))
+            className="Navigation__mode-select"
+            inputProps={
+              Object {
+                "aria-label": "Board navigation mode",
+              }
+            }
+            onChange={[Function]}
+            value="scroll"
+          >
+            <WithStyles(ForwardRef(MenuItem))
+              value="scroll"
+            >
+              <FormattedMessage
+                values={Object {}}
+              />
+            </WithStyles(ForwardRef(MenuItem))>
+            <WithStyles(ForwardRef(MenuItem))
+              value="pagination"
+            >
+              <FormattedMessage
+                values={Object {}}
+              />
+            </WithStyles(ForwardRef(MenuItem))>
+          </WithStyles(ForwardRef(Select))>
+        </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(Divider)) />
         <WithStyles(ForwardRef(ListItem))>
           <WithStyles(ForwardRef(ListItemText))
             className="Navigation__ListItemText"

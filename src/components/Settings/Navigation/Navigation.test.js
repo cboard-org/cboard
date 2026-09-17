@@ -7,6 +7,10 @@ import { NAVIGATION_BUTTONS_STYLE_SIDES } from './Navigation.constants';
 
 jest.mock('./Navigation.messages', () => {
   return {
+    boardNavigationMode: {
+      id: 'boardNavigationMode',
+      defaultMessage: 'Board navigation mode'
+    },
     navigation: {
       id: 'cboard.components.Settings.Navigation.navigation',
       defaultMessage: 'Navigation'
@@ -91,4 +95,21 @@ describe('Navigation tests', () => {
     const switchElement = wrapper.first('FullScreenDialog');
     switchElement.simulate('onSubmit');
   });
+});
+
+test('defaults to scroll and submits the chosen navigation mode through existing settings', () => {
+  const updateNavigationSettings = jest.fn();
+  const wrapper = shallow(
+    <Navigation
+      {...COMPONENT_PROPS}
+      updateNavigationSettings={updateNavigationSettings}
+    />
+  ).dive();
+  const select = () => wrapper.find('WithStyles(ForwardRef(Select))').at(0);
+  expect(select().prop('value')).toBe('scroll');
+  select().simulate('change', { target: { value: 'pagination' } });
+  wrapper.instance().onSubmit();
+  expect(updateNavigationSettings).toHaveBeenCalledWith(
+    expect.objectContaining({ boardNavigationMode: 'pagination' })
+  );
 });

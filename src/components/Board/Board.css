@@ -99,3 +99,35 @@
   overflow-x: hidden;
   flex: 1 1;
 }
+
+.BoardGridContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+}
+
+.Board__tiles--paginated {
+  overflow: hidden;
+  min-height: 0;
+  overscroll-behavior: none;
+}
+
+.BoardPagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px;
+  flex-shrink: 0;
+}
+
+.BoardPagination button {
+  min-height: 48px;
+  flex: 1;
+}
+
+.BoardPagination [role='status'] {
+  text-align: center;
+}

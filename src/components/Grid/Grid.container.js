@@ -6,7 +6,12 @@ import { Responsive as ResponsiveReactGridLayout } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 
 import './Grid.css';
-import { GRID_BREAKPOINTS } from './Grid.constants';
+import {
+  GRID_BREAKPOINTS,
+  GRID_DEFAULT_ROWS,
+  GRID_GAP,
+  GRID_MIN_ROW_HEIGHT
+} from './Grid.constants';
 import { computeScrollState } from '../Board/Board.utils';
 
 const colsRowsShape = PropTypes.shape({
@@ -25,14 +30,17 @@ export class GridContainer extends PureComponent {
     gap: PropTypes.number,
     children: PropTypes.node,
     edit: PropTypes.bool,
+    paginated: PropTypes.bool,
     onLayoutChange: PropTypes.func
   };
 
   static defaultProps = {
     cols: { lg: 6, md: 6, sm: 5, xs: 4, xxs: 3 },
-    rows: { lg: 3, md: 3, sm: 3, xs: 3, xxs: 3 },
+    rows: Object.fromEntries(
+      Object.keys(GRID_BREAKPOINTS).map((key) => [key, GRID_DEFAULT_ROWS])
+    ),
     breakpoints: GRID_BREAKPOINTS,
-    gap: 10,
+    gap: GRID_GAP,
     edit: false
   };
 
@@ -60,20 +68,10 @@ export class GridContainer extends PureComponent {
   }
 
   getBreakpointFromWidth(breakpoints, width) {
-    const sortBreakpoints = (breakpoints) => {
-      let keys = Object.keys(breakpoints);
-      return keys.sort(function (a, b) {
-        return breakpoints[a] - breakpoints[b];
-      });
-    };
-
-    const sorted = sortBreakpoints(breakpoints);
-    let matching = sorted[0];
-    for (let i = 1, len = sorted.length; i < len; i++) {
-      let breakpointName = sorted[i];
-      if (width > breakpoints[breakpointName]) matching = breakpointName;
-    }
-    return matching;
+    return ResponsiveReactGridLayout.utils.getBreakpointFromWidth(
+      breakpoints,
+      width
+    );
   }
 
   calcRowHeight(height) {
@@ -98,7 +96,15 @@ export class GridContainer extends PureComponent {
         break;
       }
     }
-    return rowHeight < 80 ? 80 : rowHeight;
+    if (this.props.paginated) {
+      const breakpoint = this.getBreakpointFromWidth(
+        this.props.breakpoints,
+        this.props.size.width
+      );
+      const rows = this.props.rows[breakpoint];
+      return Math.max(1, (height - this.props.gap * (rows + 1)) / rows);
+    }
+    return Math.max(GRID_MIN_ROW_HEIGHT, rowHeight);
   }
 
   generateLayout(cols) {
