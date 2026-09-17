@@ -172,7 +172,7 @@ test('scroll remains the default and settings persist the selected mode', async 
   await expect(page.locator('#BoardTilesContainer .Tile')).toHaveCount(40);
   await expect(page.locator('.BoardPagination')).toHaveCount(0);
   await page.evaluate(() => {
-    history.pushState({}, '', '/settings/navigation');
+    window.history.pushState({}, '', '/settings/navigation');
     window.dispatchEvent(new PopStateEvent('popstate'));
   });
   await page.getByRole('button', { name: 'Board navigation mode' }).click();
