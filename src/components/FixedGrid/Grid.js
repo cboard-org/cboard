@@ -23,6 +23,7 @@ const focusPosition = {
 function Grid(props) {
   const {
     className,
+    page: visiblePage,
     items,
     style,
     setIsScroll,
@@ -69,16 +70,20 @@ function Grid(props) {
   };
 
   const handleOnKeyDown = (event) => {
+    setFocusPositionFromFocusedButton(event.target);
     const keycode = event.code;
 
-    const manageArrows = (event) => {
+    const manageArrows = (event, attempts = 0) => {
+      if (attempts >= other.rows * other.columns * pages.length) return;
       const setFocusPosition = (pressedArrow) => {
         const { columns, rows } = other;
-        const totalRows = pages.length * rows;
+        const firstRow = visiblePage === undefined ? 0 : visiblePage * rows;
+        const totalRows =
+          visiblePage === undefined ? pages.length * rows : firstRow + rows;
         const { right, left, up, down } = pressedArrow;
         const rightLimit = focusPosition.x >= columns - 1;
         const leftLimit = focusPosition.x <= 0;
-        const topLimit = focusPosition.y <= 0;
+        const topLimit = focusPosition.y <= firstRow;
         const bottomLimit = focusPosition.y >= totalRows - 1;
         if (right) {
           if (rightLimit) {
@@ -106,7 +111,7 @@ function Grid(props) {
         }
         if (down) {
           if (bottomLimit) {
-            focusPosition.y = 0;
+            focusPosition.y = firstRow;
             return;
           }
           focusPosition.y = focusPosition.y + 1;
@@ -132,11 +137,14 @@ function Grid(props) {
 
         if (isAvailableTile()) return;
       }
-      manageArrows({
-        code: keycode,
-        preventDefault: event.preventDefault,
-        repeat: false
-      });
+      manageArrows(
+        {
+          code: keycode,
+          preventDefault: event.preventDefault,
+          repeat: false
+        },
+        attempts + 1
+      );
     };
 
     const manageTabs = () => {
@@ -196,7 +204,7 @@ function Grid(props) {
     return () => {
       window.removeEventListener('keydown', manageKeyDown);
     };
-  }, []);
+  }, [visiblePage]);
 
   useEffect(() => {
     if (isBigScrollBtns) {
@@ -209,6 +217,7 @@ function Grid(props) {
   return (
     <div
       className={classNames(styles.root, {
+        [styles.paginated]: visiblePage !== undefined,
         FixedGridScrollButtonsOnTheSides:
           isNavigationButtonsOnTheSide && isBigScrollBtns
       })}
@@ -217,15 +226,18 @@ function Grid(props) {
       ref={props.fixedRef}
     >
       {pages.length > 0 ? (
-        pages.map((pageItems, i) => (
-          <GridBase
-            {...other}
-            className={gridClassName}
-            items={pageItems}
-            key={i}
-            page={i}
-          />
-        ))
+        pages.map(
+          (pageItems, i) =>
+            (visiblePage === undefined || visiblePage === i) && (
+              <GridBase
+                {...other}
+                className={gridClassName}
+                items={pageItems}
+                key={i}
+                page={i}
+              />
+            )
+        )
       ) : (
         <GridBase {...other} className={gridClassName} page={0} />
       )}
@@ -234,6 +246,8 @@ function Grid(props) {
 }
 
 Grid.propTypes = {
+  /** If set, render only this zero-based page without scrolling. */
+  page: PropTypes.number,
   /**
    * Number of columns.
    */

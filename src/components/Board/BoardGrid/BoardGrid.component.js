@@ -1,4 +1,6 @@
 import React from 'react';
+import useBoardPagination from './useBoardPagination';
+import BoardPagination from './BoardPagination';
 import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import { Scannable } from 'react-scannable';
@@ -47,6 +49,17 @@ const BoardGrid = ({
   navHistory
 }) => {
   const cols = DISPLAY_SIZE_GRID_COLS[displaySettings.uiSize];
+  // Editing keeps the full board so drag/drop and selection retain their existing semantics.
+  const paginated =
+    navigationSettings.boardNavigationMode === 'pagination' && !isSelecting;
+  const { page, pageCount, pageSize, rows, setPage } = useBoardPagination(
+    boardContainerRef,
+    board,
+    cols,
+    paginated
+  );
+  const bigScrollButtonsActive =
+    navigationSettings.bigScrollButtonsActive && !paginated;
   const isNavigationButtonsOnTheSide =
     navigationSettings.navigationButtonsStyle === undefined ||
     navigationSettings.navigationButtonsStyle ===
@@ -144,7 +157,11 @@ const BoardGrid = ({
     );
   };
 
-  const tiles = renderTiles(board.tiles);
+  const visibleTiles =
+    paginated && !board.isFixed
+      ? board.tiles.slice(page * pageSize, (page + 1) * pageSize)
+      : board.tiles;
+  const tiles = renderTiles(visibleTiles);
 
   return (
     <div className="BoardSideButtonsContainer">
@@ -163,72 +180,91 @@ const BoardGrid = ({
           isNavigationButtonsOnTheSide={isNavigationButtonsOnTheSide}
         />
       )}
-      <Scannable>
-        <div
-          id="BoardTilesContainer"
-          className={classNames('Board__tiles', {
-            ScrollButtonsOnTheSides:
-              navigationSettings.bigScrollButtonsActive &&
-              isNavigationButtonsOnTheSide
-          })}
-          onKeyUp={(e) => {
-            if (e.keyCode === keycode('esc')) {
-              onRequestPreviousBoard();
-            }
-          }}
-          ref={boardContainerRef}
-        >
-          {!board.isFixed &&
-            (tiles.length ? (
-              <Grid
-                board={board}
-                edit={isSelecting && !isSaving}
-                cols={cols}
-                onLayoutChange={onLayoutChange}
-                setIsScroll={setIsScroll}
-                isBigScrollBtns={navigationSettings.bigScrollButtonsActive}
-              >
-                {tiles}
-              </Grid>
-            ) : (
-              <EmptyBoard />
-            ))}
+      <div className="BoardGridContent">
+        <Scannable>
+          <div
+            id="BoardTilesContainer"
+            className={classNames('Board__tiles', {
+              'Board__tiles--paginated': paginated,
+              ScrollButtonsOnTheSides:
+                bigScrollButtonsActive && isNavigationButtonsOnTheSide
+            })}
+            onKeyUp={(e) => {
+              if (e.keyCode === keycode('esc')) {
+                onRequestPreviousBoard();
+              }
+            }}
+            ref={boardContainerRef}
+          >
+            {!board.isFixed &&
+              (tiles.length ? (
+                <Grid
+                  board={board}
+                  paginated={paginated}
+                  rows={
+                    paginated
+                      ? Object.fromEntries(
+                          Object.keys(cols).map((key) => [key, rows])
+                        )
+                      : undefined
+                  }
+                  edit={isSelecting && !isSaving}
+                  cols={cols}
+                  onLayoutChange={paginated ? undefined : onLayoutChange}
+                  setIsScroll={setIsScroll}
+                  isBigScrollBtns={bigScrollButtonsActive}
+                >
+                  {tiles}
+                </Grid>
+              ) : (
+                <EmptyBoard />
+              ))}
 
-          {board.isFixed && (
-            <FixedGrid
-              order={board.grid ? board.grid.order : []}
-              items={board.tiles}
+            {board.isFixed && (
+              <FixedGrid
+                page={paginated ? page : undefined}
+                order={board.grid ? board.grid.order : []}
+                items={board.tiles}
+                columns={
+                  board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER
+                }
+                rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
+                dragAndDropEnabled={isSelecting}
+                renderItem={renderTileFixedBoard}
+                onItemDrop={onTileDrop}
+                fixedRef={fixedBoardContainerRef}
+                setIsScroll={setIsScroll}
+                isBigScrollBtns={bigScrollButtonsActive}
+                isNavigationButtonsOnTheSide={isNavigationButtonsOnTheSide}
+                rowScanning={scannerSettings.active && !isSelecting}
+              />
+            )}
+
+            <EditGridButtons
+              active={isFixedBoard && isSelecting && !isSaving ? true : false}
               columns={board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER}
               rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
-              dragAndDropEnabled={isSelecting}
-              renderItem={renderTileFixedBoard}
-              onItemDrop={onTileDrop}
-              fixedRef={fixedBoardContainerRef}
-              setIsScroll={setIsScroll}
-              isBigScrollBtns={navigationSettings.bigScrollButtonsActive}
-              isNavigationButtonsOnTheSide={isNavigationButtonsOnTheSide}
-              rowScanning={scannerSettings.active && !isSelecting}
+              onAddRemoveRow={onAddRemoveRow}
+              onAddRemoveColumn={onAddRemoveColumn}
+              moveColsButtonToLeft={
+                bigScrollButtonsActive && isNavigationButtonsOnTheSide
+              }
             />
-          )}
-
-          <EditGridButtons
-            active={isFixedBoard && isSelecting && !isSaving ? true : false}
-            columns={board.grid ? board.grid.columns : DEFAULT_COLUMNS_NUMBER}
-            rows={board.grid ? board.grid.rows : DEFAULT_ROWS_NUMBER}
-            onAddRemoveRow={onAddRemoveRow}
-            onAddRemoveColumn={onAddRemoveColumn}
-            moveColsButtonToLeft={
-              navigationSettings.bigScrollButtonsActive &&
-              isNavigationButtonsOnTheSide
-            }
+          </div>
+        </Scannable>
+        {paginated && (
+          <BoardPagination
+            page={page}
+            pageCount={pageCount}
+            onChange={setPage}
           />
-        </div>
-      </Scannable>
+        )}
+      </div>
 
-      {navigationSettings.bigScrollButtonsActive && (
+      {bigScrollButtonsActive && (
         <ScrollButtons
           active={
-            navigationSettings.bigScrollButtonsActive &&
+            bigScrollButtonsActive &&
             (!isSaving || isNavigationButtonsOnTheSide) &&
             !scannerSettings.active &&
             (isScroll || isNavigationButtonsOnTheSide)
