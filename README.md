@@ -22,16 +22,30 @@ This video shows Srna. She is one of the children who have received the Cboard C
 
 ## Translations
 
-The app supports 40 languages.
-Languages were machine translated and require proofreading: if you want to help proofread, please use our translation management platform: https://crowdin.com/project/cboard
+Cboard is available in +50 languages, but almost all of them were machine translated and have never been reviewed by a human speaker. There are no official translators on the team: for most languages, the first person to proofread them is a volunteer from the community or a special translator chosen for that language.
 
-**You do not need to be a programmer!**
+**You do not need to be a programmer!** Machine translation gets the words roughly right and the meaning often wrong — a speaker who knows the language and sees the app in context produces something no automatic translation can match. For a child using Cboard to communicate, that difference is the difference between a board that makes sense and one that does not.
 
-Translations play a major role in this project and they contribute a lot for the inclusion of children, specially in non developed countries. Please consider collaborating with us!
+Ongoing translation work is tracked in [issue #89](https://github.com/cboard-org/cboard/issues/89) — comment there to claim a language or to ask for one to be added.
+
+### Contributing as a translator
+
+Translation happens on [Crowdin](https://crowdin.com/project/cboard), our localization platform. No installation and no code required.
+
+1. Create a free [Crowdin account](https://crowdin.com/join).
+2. Open the [Cboard project](https://crowdin.com/project/cboard) and join it, selecting the language you want to work on. If your language is not listed, ask for it in [issue #89](https://github.com/cboard-org/cboard/issues/89).
+3. Say on [issue #89](https://github.com/cboard-org/cboard/issues/89) which language you are taking, so two people don't review the same strings, and ask there for **proofreader** rights on it. Do this before you start: only proofreaders can approve strings, and approved strings are the ones shipped to the app.
+4. **Translate** empty strings and **proofread** the existing machine-translated ones. Watch for context: many strings are symbol labels (single words that must read as a child would say them), others are settings and buttons. Crowdin shows the source string.
+5. **Approve** each string as you review it, so your pass through the language leaves nothing to redo later.
+6. Work in manageable batches — a partially reviewed language is already an improvement, and approved strings reach users on the next release.
+
+A maintainer pulls approved translations into the codebase periodically, so there is nothing else you need to do to publish your work.
 
 ### Translations for developers
 
-To add support to a new language, [follow this guide](https://github.com/cboard-org/cboard/wiki/How-to-Add-a-New-Language).
+#### Adding a new language
+
+To add support to a new language, [follow this guide](https://github.com/cboard-org/cboard/wiki/How-to-Add-a-New-Language). The language must also exist in the Crowdin project. If it doesn't, ask a maintainer on [issue #89](https://github.com/cboard-org/cboard/issues/89) to add it.
 
 #### Pulling translations from CrowdIn
 
