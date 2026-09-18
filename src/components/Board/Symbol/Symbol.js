@@ -54,9 +54,12 @@ async function getStoredImage(image, keyPath) {
 }
 
 function SymbolImage({ image, keyPath, cacheRemoteImage }) {
-  const [src, setSrc] = useState(image ? formatSrc(image) : '');
+  const remoteSrc = image ? formatSrc(image) : '';
+  const [src, setSrc] = useState(remoteSrc);
+  const [loaded, setLoaded] = useState(false);
   const blobUrl = useRef(null);
   const mounted = useRef(true);
+  const hideUntilLoaded = useRef(isRemote(image) && !navigator.onLine).current;
 
   useEffect(
     () => () => {
@@ -80,13 +83,16 @@ function SymbolImage({ image, keyPath, cacheRemoteImage }) {
   }, [image, keyPath]);
 
   useEffect(() => {
-    if (!image && keyPath) showStoredImage();
-  }, [image, keyPath, showStoredImage]);
+    if (!src) showStoredImage();
+  }, [src, showStoredImage]);
 
   const handleLoad = () => {
+    if (hideUntilLoaded && !loaded) setLoaded(true);
     if (blobUrl.current || !cacheRemoteImage || !isRemote(image)) return;
     storeRemoteImage(image);
   };
+
+  const handleError = () => setSrc('');
 
   if (!src) return null;
 
@@ -95,7 +101,12 @@ function SymbolImage({ image, keyPath, cacheRemoteImage }) {
       className="Symbol__image"
       src={src}
       alt=""
-      onError={showStoredImage}
+      style={
+        hideUntilLoaded && !loaded && src === remoteSrc
+          ? { visibility: 'hidden' }
+          : undefined
+      }
+      onError={handleError}
       onLoad={handleLoad}
     />
   );
