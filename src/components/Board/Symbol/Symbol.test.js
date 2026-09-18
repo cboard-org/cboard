@@ -3,15 +3,26 @@ import { act } from 'react-dom/test-utils';
 import { shallow, mount } from 'enzyme';
 import Symbol from './Symbol';
 import { getCachedImage, putCachedImage } from '../../../idb/media/imageCache';
+import { clearStoredImageUrls } from '../../../idb/media/storedImageUrls';
 
 // IndexedDB open + get resolve over several macrotasks, not just microtasks
 const flush = () =>
   act(async () => await new Promise((resolve) => setTimeout(resolve, 50)));
 
-// jsdom implements neither
-let blobUrlCount = 0;
-global.URL.createObjectURL = () => `blob:test/${++blobUrlCount}`;
-global.URL.revokeObjectURL = () => {};
+// jsdom implements neither. Reassigned fresh each test (rather than once at
+// module scope) because CRA's jest preset resets mock state -- including a
+// plain jest.fn's implementation -- before every test.
+let blobUrlCount;
+
+beforeEach(() => {
+  blobUrlCount = 0;
+  global.URL.createObjectURL = jest.fn(() => `blob:test/${++blobUrlCount}`);
+  global.URL.revokeObjectURL = jest.fn();
+});
+
+afterEach(() => {
+  clearStoredImageUrls();
+});
 
 const srcOf = (wrapper) => wrapper.update().find('.Symbol__image').prop('src');
 
@@ -96,7 +107,7 @@ it('serves the cached copy when the image fails to load', async () => {
   wrapper.unmount();
 });
 
-it('keeps the network url when a failed image is not cached', async () => {
+it('hides the tile when a failed image is not cached', async () => {
   const img = 'https://globalsymbols.com/missing.png';
   global.fetch = jest.fn();
 
@@ -104,11 +115,13 @@ it('keeps the network url when a failed image is not cached', async () => {
   wrapper.find('.Symbol__image').simulate('error');
   await flush();
 
-  expect(srcOf(wrapper)).toEqual(img);
+  // nothing to fall back to, and the src will never change again on its own,
+  // so a broken icon would stay broken forever: hide it instead
+  expect(wrapper.update().find('.Symbol__image')).toHaveLength(0);
   wrapper.unmount();
 });
 
-it('keeps the url when a repeatedly failing image has nothing stored', async () => {
+it('hides the tile after a repeatedly failing image with nothing stored', async () => {
   const img = 'https://globalsymbols.com/broken.png';
   global.fetch = jest.fn();
 
@@ -118,7 +131,7 @@ it('keeps the url when a repeatedly failing image has nothing stored', async () 
   image.simulate('error');
   await flush();
 
-  expect(srcOf(wrapper)).toEqual(img);
+  expect(wrapper.update().find('.Symbol__image')).toHaveLength(0);
   wrapper.unmount();
 });
 
@@ -153,6 +166,84 @@ it('drops the cached copy as soon as the image prop changes', async () => {
 
   wrapper.setProps({ image: next });
   expect(srcOf(wrapper)).toEqual(next);
+  wrapper.unmount();
+});
+
+it('reuses the memoized blob url across a remount of the same tile', async () => {
+  const img = 'https://globalsymbols.com/remount.png';
+  await putCachedImage({
+    url: img,
+    type: 'image/png',
+    data: new ArrayBuffer(8)
+  });
+  global.fetch = jest.fn();
+
+  const first = mount(<Symbol label="dummy label" image={img} />);
+  first.find('.Symbol__image').simulate('error');
+  await flush();
+  const firstSrc = srcOf(first);
+  expect(firstSrc).toMatch(/^blob:/);
+  first.unmount();
+
+  // released, not revoked: the same lookup should not run again
+  expect(global.URL.revokeObjectURL).not.toHaveBeenCalled();
+  global.URL.createObjectURL.mockClear();
+
+  const second = mount(<Symbol label="dummy label" image={img} />);
+  second.find('.Symbol__image').simulate('error');
+  await flush();
+
+  expect(srcOf(second)).toEqual(firstSrc);
+  expect(global.URL.createObjectURL).not.toHaveBeenCalled();
+  second.unmount();
+});
+
+it('collapses two tiles sharing a url in one tick into a single blob url', async () => {
+  const img = 'https://globalsymbols.com/shared-tick.png';
+  await putCachedImage({
+    url: img,
+    type: 'image/png',
+    data: new ArrayBuffer(8)
+  });
+  global.fetch = jest.fn();
+
+  const a = mount(<Symbol label="a" image={img} />);
+  const b = mount(<Symbol label="b" image={img} />);
+  a.find('.Symbol__image').simulate('error');
+  b.find('.Symbol__image').simulate('error');
+  await flush();
+
+  expect(global.URL.createObjectURL).toHaveBeenCalledTimes(1);
+  const blobSrc = srcOf(a);
+  expect(blobSrc).toMatch(/^blob:/);
+  expect(srcOf(b)).toEqual(blobSrc);
+
+  a.unmount();
+  expect(global.URL.revokeObjectURL).not.toHaveBeenCalled();
+
+  expect(srcOf(b)).toEqual(blobSrc);
+  b.unmount();
+
+  // both tiles released, but nothing evicted it yet: still nothing to revoke
+  expect(global.URL.revokeObjectURL).not.toHaveBeenCalled();
+});
+
+it('drops a memoized miss and repaints a blank tile once back online', async () => {
+  const img = 'https://globalsymbols.com/reconnect.png';
+  global.fetch = jest.fn();
+
+  const wrapper = mount(<Symbol label="dummy label" image={img} />);
+  wrapper.find('.Symbol__image').simulate('error');
+  await flush();
+
+  // nothing stored: the tile goes blank
+  expect(wrapper.update().find('.Symbol__image')).toHaveLength(0);
+
+  await act(async () => {
+    window.dispatchEvent(new Event('online'));
+  });
+
+  expect(srcOf(wrapper)).toEqual(img);
   wrapper.unmount();
 });
 

@@ -1,9 +1,14 @@
 import { getCachedImage, putCachedImage } from './imageCache';
+import { dropStoredImageMiss } from './storedImageUrls';
 import { storeRemoteImage } from './remoteImageLoader';
 
 jest.mock('./imageCache', () => ({
   getCachedImage: jest.fn(),
   putCachedImage: jest.fn()
+}));
+
+jest.mock('./storedImageUrls', () => ({
+  dropStoredImageMiss: jest.fn()
 }));
 
 const image = (url = 'https://example.com/symbol.png') => ({
@@ -48,6 +53,18 @@ it('fetches and stores an image that is not cached yet', async () => {
     type: fetched.type,
     data: fetched.data
   });
+  expect(dropStoredImageMiss).toHaveBeenCalledWith(fetched.url);
+});
+
+it('does not drop a memoized miss when the fetch fails', async () => {
+  const url = 'https://example.com/still-broken.png';
+  getCachedImage.mockResolvedValue(undefined);
+  global.fetch.mockResolvedValue(errorResponse(404));
+
+  await storeRemoteImage(url);
+
+  expect(putCachedImage).not.toHaveBeenCalled();
+  expect(dropStoredImageMiss).not.toHaveBeenCalled();
 });
 
 it('skips the IndexedDB read once a url has been handled', async () => {

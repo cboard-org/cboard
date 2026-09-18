@@ -8,8 +8,11 @@ import messages from '../Board.messages';
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
 import { Typography } from '@material-ui/core';
-import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
-import { getCachedImage } from '../../../idb/media/imageCache';
+import {
+  getStoredImageUrl,
+  releaseStoredImageUrl,
+  isRemote
+} from '../../../idb/media/storedImageUrls';
 import { storeRemoteImage } from '../../../idb/media/remoteImageLoader';
 
 const propTypes = {
@@ -38,53 +41,54 @@ function formatSrc(src) {
   return isPackagedApp() && src?.startsWith('/') ? `.${src}` : src;
 }
 
-const isRemote = (src) => /^https?:\/\//.test(src ?? '');
-
-async function getStoredImage(image, keyPath) {
-  if (keyPath) {
-    try {
-      const media = await getArasaacDB().getImageById(keyPath);
-      if (media) return media;
-    } catch (error) {
-      console.error('Failed to fetch Arasaac image from Indexed DB:', error);
-    }
-  }
-
-  return isRemote(image) ? getCachedImage(image) : undefined;
-}
-
 function SymbolImage({ image, keyPath, cacheRemoteImage }) {
   const [src, setSrc] = useState(image ? formatSrc(image) : '');
-  const blobUrl = useRef(null);
   const mounted = useRef(true);
+  // Holds the promise once acquired, so a retry within the same mount (e.g. a
+  // second onError) reuses it instead of acquiring -- and reading IndexedDB
+  // -- a second time.
+  const acquired = useRef(null);
 
   useEffect(
     () => () => {
       mounted.current = false;
-      if (blobUrl.current) URL.revokeObjectURL(blobUrl.current);
+      if (acquired.current) releaseStoredImageUrl(image, keyPath);
     },
-    []
+    [image, keyPath]
   );
 
   const showStoredImage = useCallback(async () => {
-    if (blobUrl.current) return;
+    if (!acquired.current) acquired.current = getStoredImageUrl(image, keyPath);
 
-    const media = await getStoredImage(image, keyPath);
-
-    if (!media || blobUrl.current || !mounted.current) return;
-
-    blobUrl.current = URL.createObjectURL(
-      new Blob([media.data], { type: media.type })
-    );
-    setSrc(blobUrl.current);
+    const url = await acquired.current;
+    // A hit paints the stored copy; a miss hides the tile rather than leave a
+    // broken icon behind forever, since nothing will make this <img> retry on
+    // its own once its src stops changing.
+    if (mounted.current) setSrc(url ?? '');
   }, [image, keyPath]);
 
   useEffect(() => {
     if (!image && keyPath) showStoredImage();
   }, [image, keyPath, showStoredImage]);
 
+  // A tile that goes blank offline never gets another chance to load: its src
+  // does not change again, so onError cannot re-fire on its own. Reconnecting
+  // is the only other trigger that can repaint it with the remote url.
+  useEffect(() => {
+    if (!isRemote(image)) return undefined;
+
+    const handleOnline = () => {
+      if (!src) setSrc(formatSrc(image));
+    };
+
+    window.addEventListener('online', handleOnline);
+    return () => window.removeEventListener('online', handleOnline);
+  }, [image, src]);
+
   const handleLoad = () => {
-    if (blobUrl.current || !cacheRemoteImage || !isRemote(image)) return;
+    if (!cacheRemoteImage || !isRemote(image) || src !== formatSrc(image)) {
+      return;
+    }
     storeRemoteImage(image);
   };
 
