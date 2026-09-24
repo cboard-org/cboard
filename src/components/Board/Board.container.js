@@ -297,6 +297,9 @@ export class BoardContainer extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.match.params.id !== nextProps.match.params.id) {
+      if (nextProps.board?.id === nextProps.match.params.id) {
+        return;
+      }
       const {
         navHistory,
         boards,

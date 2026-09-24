@@ -127,4 +127,88 @@ describe('Board.container', () => {
       expect(typeof instance.setState.mock.calls[0][0]).toBe('function');
     });
   });
+
+  describe('UNSAFE_componentWillReceiveProps (browser back detection)', () => {
+    const boards = [{ id: 'root' }, { id: 'food' }, { id: 'soup' }];
+
+    const buildInstance = (props) => {
+      const instance = new BoardContainer({
+        boards,
+        navHistory: ['root', 'food', 'soup'],
+        board: { id: 'soup' },
+        match: { params: { id: 'soup' } },
+        changeBoard: jest.fn(),
+        previousBoard: jest.fn(),
+        historyRemoveBoard: jest.fn(),
+        ...props
+      });
+      instance.scrollToTop = jest.fn();
+      return instance;
+    };
+
+    const nextPropsFor = (instance, { urlId, activeId, navHistory }) => ({
+      ...instance.props,
+      match: { params: { id: urlId } },
+      board: activeId ? { id: activeId } : undefined,
+      navHistory: navHistory || instance.props.navHistory
+    });
+
+    it('does not pop again when the in-app back arrow already moved Redux to the previous board', () => {
+      const instance = buildInstance();
+
+      instance.UNSAFE_componentWillReceiveProps(
+        nextPropsFor(instance, {
+          urlId: 'food',
+          activeId: 'food',
+          navHistory: ['root', 'food']
+        })
+      );
+
+      expect(instance.props.previousBoard).not.toHaveBeenCalled();
+      expect(instance.props.changeBoard).not.toHaveBeenCalled();
+    });
+
+    it('pops once on a browser back to the previous board', () => {
+      const instance = buildInstance();
+
+      instance.UNSAFE_componentWillReceiveProps(
+        nextPropsFor(instance, { urlId: 'food', activeId: 'soup' })
+      );
+
+      expect(instance.props.changeBoard).toHaveBeenCalledWith('food');
+      expect(instance.props.previousBoard).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not treat a folder click forward as a back action', () => {
+      const instance = buildInstance({
+        navHistory: ['root', 'food'],
+        board: { id: 'food' },
+        match: { params: { id: 'food' } }
+      });
+
+      instance.UNSAFE_componentWillReceiveProps(
+        nextPropsFor(instance, {
+          urlId: 'soup',
+          activeId: 'soup',
+          navHistory: ['root', 'food', 'soup']
+        })
+      );
+
+      expect(instance.props.previousBoard).not.toHaveBeenCalled();
+      expect(instance.props.changeBoard).not.toHaveBeenCalled();
+    });
+
+    it('removes a missing board from history on a browser back', () => {
+      const instance = buildInstance({
+        boards: [{ id: 'root' }, { id: 'soup' }]
+      });
+
+      instance.UNSAFE_componentWillReceiveProps(
+        nextPropsFor(instance, { urlId: 'food', activeId: 'soup' })
+      );
+
+      expect(instance.props.historyRemoveBoard).toHaveBeenCalledWith('food');
+      expect(instance.props.previousBoard).not.toHaveBeenCalled();
+    });
+  });
 });
