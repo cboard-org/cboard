@@ -183,6 +183,41 @@ class Navigation extends React.Component {
             <List>
               <ListItem>
                 <ListItemText
+                  primary={
+                    <FormattedMessage {...messages.boardNavigationMode} />
+                  }
+                  secondary={
+                    <FormattedMessage
+                      {...messages.boardNavigationModeDescription}
+                    />
+                  }
+                />
+                <Select
+                  className="Navigation__mode-select"
+                  inputProps={{
+                    'aria-label': this.props.intl.formatMessage(
+                      messages.boardNavigationMode
+                    )
+                  }}
+                  value={this.state.boardNavigationMode || 'scroll'}
+                  onChange={(event) =>
+                    this.onNavigationSettingsChange(
+                      'boardNavigationMode',
+                      event
+                    )
+                  }
+                >
+                  <MenuItem value="scroll">
+                    <FormattedMessage {...messages.scroll} />
+                  </MenuItem>
+                  <MenuItem value="pagination">
+                    <FormattedMessage {...messages.pagination} />
+                  </MenuItem>
+                </Select>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText
                   className="Navigation__ListItemText"
                   primary={<FormattedMessage {...messages.enable} />}
                   secondary={<FormattedMessage {...messages.enableSecondary} />}
