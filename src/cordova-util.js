@@ -377,7 +377,6 @@ export const requestCvaPermissions = async () => {
     const androidPermissions = {
       READ_EXTERNAL_STORAGE: 'READ_EXTERNAL_STORAGE',
       RECORD_AUDIO: 'RECORD_AUDIO',
-      READ_MEDIA_IMAGES: 'READ_MEDIA_IMAGES',
       READ_MEDIA_AUDIO: 'READ_MEDIA_AUDIO'
     };
 
