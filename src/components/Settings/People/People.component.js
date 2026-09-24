@@ -4,11 +4,14 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import TextField from '@material-ui/core/TextField';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './People.messages';
@@ -67,6 +70,8 @@ const People = ({
   const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState(false);
   const [isDeletingAccount, setIsDeletingAccount] = useState(false);
   const [errorDeletingAccount, setErrorDeletingAccount] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleCloseDeleteDialog = () => {
     setOpenDeleteConfirmation(false);
@@ -97,22 +102,47 @@ const People = ({
         <Paper>
           <List>
             <ListItem>
-              <div className="Settings__UserIcon__Container">
-                <UserIcon />
-              </div>
-              <ListItemText primary={name} />
-              <ListItemSecondaryAction className="Settings--secondaryAction">
-                <Button
-                  disabled={!isLogged}
-                  variant="outlined"
-                  color="primary"
-                  onClick={logout}
-                  component={Link}
-                  to="/"
-                >
-                  <FormattedMessage {...messages.logout} />
-                </Button>
-              </ListItemSecondaryAction>
+              {isMobile && (
+                <Box width="100%">
+                  <Box display="flex" alignItems="center" width="100%">
+                    <div className="Settings__UserIcon__Container">
+                      <UserIcon />
+                    </div>
+                    <ListItemText primary={name} />
+                  </Box>
+                  <Button
+                    fullWidth
+                    disabled={!isLogged}
+                    variant="outlined"
+                    color="primary"
+                    onClick={logout}
+                    component={Link}
+                    to="/"
+                  >
+                    <FormattedMessage {...messages.logout} />
+                  </Button>
+                </Box>
+              )}
+              {!isMobile && (
+                <div className="Settings__UserIcon__Container">
+                  <UserIcon />
+                </div>
+              )}
+              {!isMobile && <ListItemText primary={name} />}
+              {!isMobile && (
+                <ListItemSecondaryAction className="Settings--secondaryAction">
+                  <Button
+                    disabled={!isLogged}
+                    variant="outlined"
+                    color="primary"
+                    onClick={logout}
+                    component={Link}
+                    to="/"
+                  >
+                    <FormattedMessage {...messages.logout} />
+                  </Button>
+                </ListItemSecondaryAction>
+              )}
             </ListItem>
             <ListItem>
               <ListItemText
