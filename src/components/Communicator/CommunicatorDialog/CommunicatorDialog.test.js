@@ -1,168 +1,147 @@
 import React from 'react';
-import { shallowMatchSnapshot } from '../../../common/test_utils';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import CommunicatorDialog from './CommunicatorDialog.component';
-import { TAB_INDEXES } from './CommunicatorDialog.constants';
+import { SECTIONS } from './CommunicatorDialog.constants';
 
-jest.mock('./CommunicatorDialog.messages', () => {
-  return {
-    title: {
-      id: 'cboard.components.CommunicatorDialog.title',
-      defaultMessage: 'My Communicator'
-    },
-    menu: {
-      id: 'cboard.components.CommunicatorDialog.menu',
-      defaultMessage: 'Menu'
-    },
-    search: {
-      id: 'cboard.components.CommunicatorDialog.search',
-      defaultMessage: 'Search'
-    },
-    author: {
-      id: 'cboard.components.CommunicatorDialog.author',
-      defaultMessage: 'By {author}'
-    },
-    addBoard: {
-      id: 'cboard.components.CommunicatorDialog.addBoard',
-      defaultMessage: 'Add Board'
-    },
-    removeBoard: {
-      id: 'cboard.components.CommunicatorDialog.removeBoard',
-      defaultMessage: 'Remove Board'
-    },
-    communicatorBoards: {
-      id: 'cboard.components.CommunicatorDialog.communicatorBoards',
-      defaultMessage: 'Included Boards'
-    },
-    allBoards: {
-      id: 'cboard.components.CommunicatorDialog.allBoards',
-      defaultMessage: 'All Boards'
-    },
-    myBoards: {
-      id: 'cboard.components.CommunicatorDialog.myBoards',
-      defaultMessage: 'My Boards'
-    },
-    boardsQty: {
-      id: 'cboard.components.CommunicatorDialog.boardsQty',
-      defaultMessage: '{qty} boards'
+// react-intl is auto-mocked, so the real messages module resolves to undefined.
+// Provide a proxy that returns a descriptor for any key the component reads.
+jest.mock('./CommunicatorDialog.messages', () => ({
+  __esModule: true,
+  default: new Proxy(
+    {},
+    {
+      get: (target, prop) => ({
+        id: String(prop),
+        defaultMessage: String(prop)
+      })
     }
-  };
-});
-
-let selectedTab = TAB_INDEXES.COMMUNICATOR_BOARDS;
-let loading = false;
-
-const mockBoard = {
-  name: 'tewt',
-  id: '12345678901234567',
-  tiles: [{ id: '1234567890123456', loadBoard: '456456456456456456456' }],
-  isPublic: true,
-  caption: 'test',
-  email: 'asd@qwe.com',
-  markToUpdate: true
-};
-const mockComm = {
-  id: 'cboard_default',
-  name: "Cboard's Communicator",
-  description: "Cboard's default communicator",
-  author: 'Cboard Team',
-  email: 'support@cboard.io',
-  rootBoard: '12345678901234567',
-  boards: ['root', '12345678901234567']
-};
+  )
+}));
 
 const intlMock = {
-  formatMessage: ({ id }) => id
+  formatMessage: ({ defaultMessage }) => defaultMessage
 };
 
-const COMPONENT_PROPS = {
+const mockCommunicator = {
+  id: 'comm-1',
+  name: 'My Communicator',
+  rootBoard: 'board-1',
+  boards: ['board-1', 'board-2']
+};
+
+const buildProps = (overrides = {}) => ({
+  open: true,
   intl: intlMock,
-  selectedTab,
-  loading,
-  userData: {
-    authToken: 'something'
-  },
-  communicator: mockComm,
-  board: mockBoard,
-  onTabChange: (event, value = TAB_INDEXES.COMMUNICATOR_BOARDS) => {
-    loading = true;
-    selectedTab = value;
-  },
-  deleteMyBoard: jest.fn(),
+  onClose: jest.fn(),
+  userData: { authToken: 'token', name: 'Tester', email: 'tester@cboard.io' },
+  language: { lang: 'en-US' },
+  communicators: [mockCommunicator],
+  currentCommunicator: mockCommunicator,
+  communicatorBoards: [],
+  availableBoards: [],
+  activeBoardId: 'board-1',
+  communicatorTour: {},
+  isSymbolSearchTourEnabled: false,
+  createBoard: jest.fn(),
+  updateBoard: jest.fn(),
+  replaceBoard: jest.fn(),
+  addBoards: jest.fn(),
+  deleteBoard: jest.fn(),
+  deleteApiBoard: jest.fn(),
+  updateApiBoard: jest.fn(),
+  updateApiObjectsNoChild: jest.fn(),
+  addBoardCommunicator: jest.fn(),
+  verifyAndUpsertCommunicator: jest.fn(),
+  upsertApiCommunicator: jest.fn(),
   showNotification: jest.fn(),
-  copyBoard: jest.fn(),
-  publishBoard: jest.fn(),
-  addOrRemoveBoard: jest.fn(),
-  setRootBoard: jest.fn(),
-  publishBoardAction: jest.fn(),
-  updateMyBoard: jest.fn(),
-  boardReport: jest.fn(),
   disableTour: jest.fn(),
-  communicatorTour: {}
-};
+  switchBoard: jest.fn(),
+  ...overrides
+});
 
-describe('CommunicatorDialog tests', () => {
-  beforeEach(() => {
-    selectedTab = TAB_INDEXES.COMMUNICATOR_BOARDS;
-    loading = false;
+describe('CommunicatorDialog (dashboard)', () => {
+  test('renders the dashboard shell', () => {
+    const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  test('default renderer', () => {
-    shallowMatchSnapshot(<CommunicatorDialog {...COMPONENT_PROPS} />);
+  test('renders the navigation and section header', () => {
+    const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+    expect(wrapper.find('DashboardNav').length).toBe(1);
+    expect(wrapper.find('SectionHeader').length).toBe(1);
   });
 
-  test('tabs behavior', () => {
-    let wrapper = shallow(
-      <CommunicatorDialog {...COMPONENT_PROPS} selectedTab={selectedTab} />
+  test('starts on the My Boards section', () => {
+    const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+    expect(wrapper.find('DashboardNav').prop('section')).toBe(
+      SECTIONS.MY_BOARDS
     );
-    let tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
-    let tabsBar = wrapper.find('.CommunicatorDialog__tabs');
-
-    // First tab is active (tabs value = 0)
-    expect(selectedTab).toBe(0);
-    expect(tabsBar.children().get(selectedTab).props.className).toBe('active');
-
-    tabsBar.simulate('change', {}, TAB_INDEXES.PUBLIC_BOARDS);
-    expect(selectedTab).toBe(TAB_INDEXES.PUBLIC_BOARDS);
-    // Mount with new tab selected
-    wrapper = shallow(
-      <CommunicatorDialog {...COMPONENT_PROPS} selectedTab={selectedTab} />
-    );
-    tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
-    tabsBar = wrapper.find('.CommunicatorDialog__tabs');
-    expect(tabsBar.children().get(selectedTab).props.className).toBe('active');
   });
 
-  test('loading behavior', () => {
-    let wrapper = shallow(
-      <CommunicatorDialog
-        {...COMPONENT_PROPS}
-        selectedTab={selectedTab}
-        loading={loading}
-      />
+  test('renders the quick access tray on My Communicator', () => {
+    const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+    wrapper.find('DashboardNav').prop('onChange')(SECTIONS.MY_COMMUNICATOR);
+    expect(wrapper.find('QuickAccessTray').length).toBe(1);
+    expect(wrapper.find('BoardsView').length).toBe(0);
+  });
+
+  test('renders the boards view and details surface on the default section', () => {
+    const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+    expect(wrapper.find('BoardsView').length).toBe(1);
+    expect(wrapper.find('BoardDetailsSurface').length).toBe(1);
+  });
+
+  test('renders a live region', () => {
+    const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+    expect(wrapper.find('LiveRegion').length).toBe(1);
+  });
+
+  test('hides search and the view toggle on quick access', () => {
+    const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+    expect(wrapper.find('ContentToolbar').length).toBe(1);
+
+    wrapper.find('DashboardNav').prop('onChange')(SECTIONS.MY_COMMUNICATOR);
+    expect(wrapper.find('ContentToolbar').length).toBe(0);
+  });
+
+  test('switching section updates the active section', () => {
+    const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+    wrapper.find('DashboardNav').prop('onChange')(SECTIONS.COMMUNITY);
+    expect(wrapper.find('DashboardNav').prop('section')).toBe(
+      SECTIONS.COMMUNITY
     );
-    let tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
-    let tabsBar = wrapper.find('.CommunicatorDialog__tabs');
-
-    tabsBar.simulate('change', {}, TAB_INDEXES.PUBLIC_BOARDS);
-    expect(selectedTab).toBe(TAB_INDEXES.PUBLIC_BOARDS);
-
-    expect(wrapper.find('.CommunicatorDialog__spinner').length).toBe(0);
-
-    // Mount with new tab selected
-    wrapper = shallow(
-      <CommunicatorDialog
-        {...COMPONENT_PROPS}
-        selectedTab={selectedTab}
-        loading={loading}
-      />
+    expect(wrapper.find('SectionHeader').prop('section')).toBe(
+      SECTIONS.COMMUNITY
     );
-    tree = toJson(wrapper);
-    expect(tree).toMatchSnapshot();
-    expect(wrapper.find('.CommunicatorDialog__spinner').length).toBe(1);
+  });
+
+  test('drops a pending search when the section changes', () => {
+    jest.useFakeTimers();
+    const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
+
+    wrapper.find('ContentToolbar').prop('onSearchChange')('abc');
+    wrapper.find('DashboardNav').prop('onChange')(SECTIONS.COMMUNITY);
+
+    jest.advanceTimersByTime(1000);
+    wrapper.update();
+
+    expect(wrapper.find('ContentToolbar').prop('search')).toBe('');
+    expect(wrapper.find('BoardsView').prop('hasSearch')).toBe(false);
+    jest.useRealTimers();
+  });
+
+  test('opens with the default view mode when storage is unavailable', () => {
+    const getItem = jest
+      .spyOn(window.localStorage.__proto__, 'getItem')
+      .mockImplementation(() => {
+        throw new Error('blocked');
+      });
+
+    expect(() =>
+      shallow(<CommunicatorDialog {...buildProps()} />)
+    ).not.toThrow();
+
+    getItem.mockRestore();
   });
 });
