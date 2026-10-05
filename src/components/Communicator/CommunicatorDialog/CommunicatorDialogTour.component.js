@@ -19,6 +19,7 @@ import KeyIcon from '@material-ui/icons/VpnKey';
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 import DeleteIcon from '@material-ui/icons/Delete';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 
 import './CommunicatorDialog.css';
 import messages from './CommunicatorDialog.messages';
@@ -167,7 +168,7 @@ const SECTION_STEPS = {
       content: legend(intl, messages.walkthroughBoardActionButton, [
         {
           key: 'remove',
-          icon: <StarIcon />,
+          icon: <RemoveCircleOutlineIcon />,
           label: messages.walkthroughBoardActionsRemove
         },
         {
