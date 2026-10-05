@@ -404,6 +404,10 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.removeFromQuickAccess',
     defaultMessage: 'Remove from quick access'
   },
+  boardOptions: {
+    id: 'cboard.components.CommunicatorDialog.boardOptions',
+    defaultMessage: 'Board options'
+  },
   moveUp: {
     id: 'cboard.components.CommunicatorDialog.moveUp',
     defaultMessage: 'Move up'

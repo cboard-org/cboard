@@ -28,11 +28,10 @@ const SECTION_LABELS = {
 };
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  titleGroup: {
     display: 'flex',
     alignItems: 'center',
     gap: theme.spacing(1),
-    flex: '1 1 240px',
     minWidth: 0
   },
   navButton: {
@@ -45,12 +44,6 @@ const useStyles = makeStyles((theme) => ({
   titleBlock: {
     flex: 1,
     minWidth: 0
-  },
-  // Quick Access has no ContentToolbar, so a growing title block would strand
-  // the chip against the far edge of the bar. Shrink-wrap the title instead so
-  // the count stays attached to it.
-  titleBlockInline: {
-    flex: '0 1 auto'
   },
   title: {
     fontWeight: 700,
@@ -69,39 +62,41 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+// Renders the title/description as one grid item and the chip as a second,
+// separate grid item so the parent header grid can give the chip its own
+// fixed-width column — independent of whether a third (toolbar) column
+// is present.
 const SectionHeader = ({ intl, section, total, onOpenNav }) => {
   const classes = useStyles();
   const meta = SECTION_LABELS[section];
 
   return (
-    <div className={classes.root}>
-      {onOpenNav && (
-        <IconButton
-          className={classes.navButton}
-          edge="start"
-          aria-label={intl.formatMessage(messages.navigation)}
-          onClick={onOpenNav}
-        >
-          <MenuIcon />
-        </IconButton>
-      )}
-      <div
-        className={`${classes.titleBlock} ${
-          section === SECTIONS.MY_COMMUNICATOR ? classes.titleBlockInline : ''
-        }`}
-      >
-        <Typography variant="h6" component="h2" className={classes.title}>
-          {intl.formatMessage(messages[meta.title])}
-        </Typography>
-        <Typography variant="body2" className={classes.hint}>
-          {intl.formatMessage(messages[meta.hint])}
-        </Typography>
+    <>
+      <div className={classes.titleGroup}>
+        {onOpenNav && (
+          <IconButton
+            className={classes.navButton}
+            edge="start"
+            aria-label={intl.formatMessage(messages.navigation)}
+            onClick={onOpenNav}
+          >
+            <MenuIcon />
+          </IconButton>
+        )}
+        <div className={classes.titleBlock}>
+          <Typography variant="h6" component="h2" className={classes.title}>
+            {intl.formatMessage(messages[meta.title])}
+          </Typography>
+          <Typography variant="body2" className={classes.hint}>
+            {intl.formatMessage(messages[meta.hint])}
+          </Typography>
+        </div>
       </div>
       <TonalChip
         className={classes.chip}
         label={intl.formatMessage(messages.boardsQty, { qty: total })}
       />
-    </div>
+    </>
   );
 };
 

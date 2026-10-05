@@ -17,7 +17,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     gap: theme.spacing(1),
-    maxWidth: 720
+    width: '100%',
+    maxWidth: 820,
+    marginLeft: 'auto',
+    marginRight: 'auto'
   },
   explainer: {
     color: theme.palette.text.secondary,
@@ -120,6 +123,7 @@ const QuickAccessTray = ({
             <QuickAccessRow
               intl={intl}
               board={board}
+              position={index + 1}
               isRoot={communicator.rootBoard === board.id}
               isActive={activeBoardId === board.id}
               isFirst={index === 0}

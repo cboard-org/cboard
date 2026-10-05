@@ -379,6 +379,7 @@
   "cboard.components.CommunicatorDialog.quickAccessAddFromMyBoards": "Add a board from My Boards",
   "cboard.components.CommunicatorDialog.addToQuickAccess": "Add to quick access",
   "cboard.components.CommunicatorDialog.removeFromQuickAccess": "Remove from quick access",
+  "cboard.components.CommunicatorDialog.boardOptions": "Board options",
   "cboard.components.CommunicatorDialog.moveUp": "Move up",
   "cboard.components.CommunicatorDialog.moveDown": "Move down",
   "cboard.components.CommunicatorDialog.boardMoved": "{name} moved to position {position} of {total}",

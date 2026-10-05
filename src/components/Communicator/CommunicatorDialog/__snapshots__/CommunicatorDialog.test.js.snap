@@ -39,23 +39,27 @@ exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
           section="myBoards"
           total={0}
         />
-        <ContentToolbar
-          intl={
-            Object {
-              "formatMessage": [Function],
+        <div
+          className="makeStyles-toolbarSlot-4"
+        >
+          <ContentToolbar
+            intl={
+              Object {
+                "formatMessage": [Function],
+              }
             }
-          }
-          onSearchChange={[Function]}
-          onViewModeChange={[Function]}
-          search=""
-          viewMode="grid"
-        />
+            onSearchChange={[Function]}
+            onViewModeChange={[Function]}
+            search=""
+            viewMode="grid"
+          />
+        </div>
       </div>
       <div
-        className="makeStyles-scrollAreaWithPanel-5"
+        className="makeStyles-scrollAreaWithPanel-6"
       >
         <div
-          className="makeStyles-boards-6"
+          className="makeStyles-boards-7"
         >
           <BoardsView
             activeBoardId="board-1"
@@ -87,6 +91,7 @@ exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
             page={1}
             registerTrigger={[Function]}
             selectedId={null}
+            showQuickAccess={true}
             totalPages={0}
             viewMode="grid"
           />

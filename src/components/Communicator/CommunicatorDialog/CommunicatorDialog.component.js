@@ -50,14 +50,35 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     flexShrink: 0,
-    display: 'flex',
+    display: 'grid',
+    // Title block / chip / toolbar each own a track, so when the toolbar
+    // track is empty (Quick Access has no ContentToolbar) the title and
+    // chip stay put instead of the row re-centering around fewer children.
+    gridTemplateColumns: 'minmax(0, 1fr) auto minmax(0, 1fr)',
     alignItems: 'center',
-    flexWrap: 'wrap',
     gap: theme.spacing(1, 2),
 
     padding: theme.spacing(2, 2),
     backgroundColor: theme.palette.background.default,
-    borderBottom: `1px solid ${theme.palette.divider}`
+    borderBottom: `1px solid ${theme.palette.divider}`,
+
+    [theme.breakpoints.only('md')]: {
+      gridTemplateColumns: 'none',
+      gridAutoFlow: 'column',
+      justifyContent: 'space-between'
+    },
+
+    [theme.breakpoints.down('xs')]: {
+      gridTemplateColumns: 'minmax(0, 1fr) auto',
+      '& $toolbarSlot': {
+        gridColumn: '1 / -1'
+      }
+    }
+  },
+  toolbarSlot: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    minWidth: 0
   },
   scrollArea: {
     flex: 1,
@@ -356,13 +377,15 @@ const CommunicatorDialog = ({
               onOpenNav={() => setMobileNavOpen(true)}
             />
             {section !== SECTIONS.MY_COMMUNICATOR && (
-              <ContentToolbar
-                intl={intl}
-                search={searchInput}
-                onSearchChange={handleSearchChange}
-                viewMode={viewMode}
-                onViewModeChange={handleViewModeChange}
-              />
+              <div className={classes.toolbarSlot}>
+                <ContentToolbar
+                  intl={intl}
+                  search={searchInput}
+                  onSearchChange={handleSearchChange}
+                  viewMode={viewMode}
+                  onViewModeChange={handleViewModeChange}
+                />
+              </div>
             )}
           </div>
 
