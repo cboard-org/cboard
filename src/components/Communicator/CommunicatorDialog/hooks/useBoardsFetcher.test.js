@@ -93,6 +93,46 @@ describe('useBoardsFetcher (communicator local source)', () => {
     expect(get().total).toBe(2);
   });
 
+  it('treats regex special characters in the search as plain text', () => {
+    const communicatorBoards = [
+      { id: 'a', name: 'Food (snacks)', author: 'X' },
+      { id: 'b', name: 'Food', author: 'X' }
+    ];
+    const { get } = renderHook({
+      section: SECTIONS.MY_COMMUNICATOR,
+      search: '(',
+      communicatorBoards,
+      availableBoards: [],
+      userData: {}
+    });
+
+    expect(get().error).toBeNull();
+    expect(get().boards.map((board) => board.id)).toEqual(['a']);
+  });
+
+  it('falls back to local boards with a special-character search when offline', async () => {
+    const API = require('../../../../api').default;
+    API.getMyBoards.mockRejectedValueOnce(new Error('offline'));
+
+    const { get } = renderHook({
+      section: SECTIONS.MY_BOARDS,
+      search: '[',
+      communicatorBoards: [],
+      availableBoards: [
+        { id: 'mine', name: 'List [1]', email: 'tester@cboard.io' },
+        { id: 'other', name: 'List', email: 'tester@cboard.io' }
+      ],
+      userData: { email: 'tester@cboard.io' }
+    });
+
+    await act(async () => {
+      await Promise.resolve();
+    });
+
+    expect(get().error).toBeNull();
+    expect(get().boards.map((board) => board.id)).toEqual(['mine']);
+  });
+
   it('removes a board from the visible list optimistically', () => {
     const communicatorBoards = makeBoards(3);
     const { get } = renderHook({

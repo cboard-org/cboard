@@ -48,6 +48,26 @@ const useCommunicatorBoards = ({
     ]
   );
 
+  /**
+   * My Boards and Community list boards straight from the API, but the tray
+   * and the board view only resolve boards that are in the local store. Pull
+   * in any board that just joined the communicator so it can be shown.
+   */
+  const ensureBoardIsLocal = useCallback(
+    async (board) => {
+      if (availableBoards.findIndex((b) => b.id === board.id) >= 0) {
+        return;
+      }
+      const boards = [];
+      try {
+        const boardData = await API.getBoard(board.id);
+        boards.push(boardData);
+      } catch (e) {}
+      addBoards(boards);
+    },
+    [availableBoards, addBoards]
+  );
+
   const addOrRemoveFromCommunicator = useCallback(
     async (board) => {
       const currentIds = currentCommunicator.boards;
@@ -66,24 +86,14 @@ const useCommunicatorBoards = ({
 
       await persistCommunicatorBoardIds(nextIds);
 
-      // Fetch board if it's not locally available.
-      if (
-        !isMember &&
-        availableBoards.findIndex((b) => b.id === board.id) < 0
-      ) {
-        const boards = [];
-        try {
-          const boardData = await API.getBoard(board.id);
-          boards.push(boardData);
-        } catch (e) {}
-        addBoards(boards);
+      if (!isMember) {
+        await ensureBoardIsLocal(board);
       }
     },
     [
       currentCommunicator,
-      availableBoards,
       persistCommunicatorBoardIds,
-      addBoards,
+      ensureBoardIsLocal,
       showNotification,
       intl
     ]
@@ -109,11 +119,21 @@ const useCommunicatorBoards = ({
     ]
   );
 
+  /**
+   * Home can be set from My Boards on a board that is not in Quick access yet.
+   * The root must always be a member of the communicator: the tray only lists
+   * member boards, and the add-to-Quick-access action is disabled for the
+   * root, so a non-member root could never be added afterwards.
+   */
   const setRootBoard = useCallback(
     async (board) => {
+      const currentIds = currentCommunicator.boards;
       const updatedCommunicatorData = {
         ...currentCommunicator,
-        rootBoard: board.id
+        rootBoard: board.id,
+        boards: currentIds.includes(board.id)
+          ? currentIds
+          : [...currentIds, board.id]
       };
       const upsertedCommunicator = verifyAndUpsertCommunicator(
         updatedCommunicatorData
@@ -125,12 +145,14 @@ const useCommunicatorBoards = ({
       } catch (err) {
         console.error('Error upserting communicator', err);
       }
+      await ensureBoardIsLocal(board);
     },
     [
       currentCommunicator,
       userData,
       verifyAndUpsertCommunicator,
-      upsertApiCommunicator
+      upsertApiCommunicator,
+      ensureBoardIsLocal
     ]
   );
 

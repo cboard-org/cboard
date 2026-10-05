@@ -17,9 +17,11 @@ const filterLocalBoards = (boards, criteria, page, search = '') => {
     );
   }
   if (search) {
-    const re = new RegExp(search, 'i');
+    const term = search.toLowerCase();
+    const matches = (value) =>
+      typeof value === 'string' && value.toLowerCase().includes(term);
     result = result.filter(
-      (board) => re.test(board.name) || re.test(board.author)
+      (board) => matches(board.name) || matches(board.author)
     );
   }
   return {

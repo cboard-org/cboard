@@ -64,7 +64,7 @@ export const getBoardActions = ({
       ? t(messages.removeFromQuickAccess)
       : t(messages.addToQuickAccess),
     icon: inCommunicator ? <StarIcon /> : <StarBorderIcon />,
-    disabled: isRoot,
+    disabled: isRoot && inCommunicator,
     onClick: () => handlers.onAddRemove(board)
   };
 

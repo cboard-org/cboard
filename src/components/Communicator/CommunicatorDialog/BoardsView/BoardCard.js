@@ -201,7 +201,7 @@ const BoardCard = ({
                 })}
                 aria-label={toggleLabel}
                 aria-pressed={inQuickAccess}
-                disabled={isRoot}
+                disabled={isRoot && inQuickAccess}
                 onClick={handleToggle}
               >
                 {inQuickAccess ? <StarIcon /> : <StarBorderIcon />}
