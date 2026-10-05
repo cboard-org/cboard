@@ -152,8 +152,9 @@ function CommunicatorDialogTour({
     },
     {
       hideCloseButton: true,
-      target: '[data-testid="quick-access-tray"]',
-      placement: 'left',
+      target: '[data-tour="quick-access-actions"]',
+      placement: 'bottom',
+      disableOverlay: true,
       content: (
         <div className="CommunicatorDialog__Tour">
           <Grid
