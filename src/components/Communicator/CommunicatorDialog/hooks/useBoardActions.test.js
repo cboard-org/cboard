@@ -142,6 +142,46 @@ describe('useBoardActions', () => {
     );
   });
 
+  it('adds a non-member board to the communicator when setting it as root', async () => {
+    const args = baseArgs({ section: SECTIONS.MY_BOARDS });
+    const get = renderActions(args);
+
+    await act(async () => {
+      await get().setRootBoard({ id: 'b3' });
+    });
+
+    expect(args.verifyAndUpsertCommunicator).toHaveBeenCalledWith(
+      expect.objectContaining({ rootBoard: 'b3', boards: ['b1', 'b2', 'b3'] })
+    );
+  });
+
+  it('fetches the new root into the local store when it is missing', async () => {
+    const API = require('../../../../api').default;
+    API.getBoard.mockResolvedValueOnce({ id: 'b3' });
+    const args = baseArgs({ section: SECTIONS.MY_BOARDS });
+    const get = renderActions(args);
+
+    await act(async () => {
+      await get().setRootBoard({ id: 'b3' });
+    });
+
+    expect(API.getBoard).toHaveBeenCalledWith('b3');
+    expect(args.addBoards).toHaveBeenCalledWith([{ id: 'b3' }]);
+  });
+
+  it('keeps the board order when setting a member board as root', async () => {
+    const args = baseArgs({ section: SECTIONS.MY_COMMUNICATOR });
+    const get = renderActions(args);
+
+    await act(async () => {
+      await get().setRootBoard({ id: 'b2' });
+    });
+
+    expect(args.verifyAndUpsertCommunicator).toHaveBeenCalledWith(
+      expect.objectContaining({ rootBoard: 'b2', boards: ['b1', 'b2'] })
+    );
+  });
+
   it('does not persist a move that is already at the end', async () => {
     const args = baseArgs({ section: SECTIONS.MY_COMMUNICATOR });
     const get = renderActions(args);
