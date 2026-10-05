@@ -23,6 +23,8 @@ import {
 } from '../CommunicatorDialog.styles';
 import messages from '../CommunicatorDialog.messages';
 
+const THUMB_SIZE = 56;
+
 const useStyles = makeStyles((theme) => ({
   row: {
     position: 'relative',
@@ -31,25 +33,53 @@ const useStyles = makeStyles((theme) => ({
     gap: theme.spacing(1.5),
     padding: theme.spacing(1, 1.5),
     borderRadius: softRadius(theme),
-    ...surfaceInteractive(theme)
+    ...surfaceInteractive(theme),
+    [theme.breakpoints.down('xs')]: {
+      display: 'grid',
+      gridTemplateColumns: `${THUMB_SIZE}px minmax(0, 1fr)`,
+      rowGap: 0
+    }
   },
   accent: surfaceAccent(theme),
   thumb: {
-    width: 56,
-    height: 56,
+    width: THUMB_SIZE,
+    height: THUMB_SIZE,
     flexShrink: 0,
     borderRadius: theme.shape.borderRadius,
-    border: `1px solid ${theme.palette.divider}`
+    border: `1px solid ${theme.palette.divider}`,
+    [theme.breakpoints.down('xs')]: {
+      gridRow: 'span 2'
+    }
   },
   main: {
     flex: 1,
-    minWidth: 0
+    minWidth: 0,
+    [theme.breakpoints.down('xs')]: {
+      alignSelf: 'end',
+      display: 'flex',
+      alignItems: 'center',
+      gap: theme.spacing(1),
+      '& > .MuiChip-root': {
+        flexShrink: 0
+      }
+    }
+  },
+  actions: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: theme.spacing(1.5),
+    [theme.breakpoints.down('xs')]: {
+      alignSelf: 'start',
+      gap: 0,
+      marginLeft: -10
+    }
   },
   title: {
     fontWeight: 600,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    minWidth: 0
   },
   control: {
     minWidth: 44,
@@ -97,65 +127,67 @@ const QuickAccessRow = ({
         )}
       </div>
 
-      <Tooltip title={t(messages.moveUp)}>
-        <span>
-          <IconButton
-            size="small"
-            data-testid="move-up"
-            className={classes.control}
-            aria-label={`${t(messages.moveUp)}: ${title}`}
-            disabled={isFirst}
-            onClick={onMoveUp}
-          >
-            <ArrowUpwardIcon />
-          </IconButton>
-        </span>
-      </Tooltip>
+      <div className={classes.actions}>
+        <Tooltip title={t(messages.moveUp)}>
+          <span>
+            <IconButton
+              size="small"
+              data-testid="move-up"
+              className={classes.control}
+              aria-label={`${t(messages.moveUp)}: ${title}`}
+              disabled={isFirst}
+              onClick={onMoveUp}
+            >
+              <ArrowUpwardIcon />
+            </IconButton>
+          </span>
+        </Tooltip>
 
-      <Tooltip title={t(messages.moveDown)}>
-        <span>
-          <IconButton
-            size="small"
-            data-testid="move-down"
-            className={classes.control}
-            aria-label={`${t(messages.moveDown)}: ${title}`}
-            disabled={isLast}
-            onClick={onMoveDown}
-          >
-            <ArrowDownwardIcon />
-          </IconButton>
-        </span>
-      </Tooltip>
+        <Tooltip title={t(messages.moveDown)}>
+          <span>
+            <IconButton
+              size="small"
+              data-testid="move-down"
+              className={classes.control}
+              aria-label={`${t(messages.moveDown)}: ${title}`}
+              disabled={isLast}
+              onClick={onMoveDown}
+            >
+              <ArrowDownwardIcon />
+            </IconButton>
+          </span>
+        </Tooltip>
 
-      <Tooltip title={t(messages.menuRootBoardOption)}>
-        <span>
-          <IconButton
-            size="small"
-            data-testid="set-root"
-            className={classes.control}
-            aria-label={`${t(messages.menuRootBoardOption)}: ${title}`}
-            disabled={isRoot || !hasAuth}
-            onClick={onSetRoot}
-          >
-            <HomeIcon />
-          </IconButton>
-        </span>
-      </Tooltip>
+        <Tooltip title={t(messages.menuRootBoardOption)}>
+          <span>
+            <IconButton
+              size="small"
+              data-testid="set-root"
+              className={classes.control}
+              aria-label={`${t(messages.menuRootBoardOption)}: ${title}`}
+              disabled={isRoot || !hasAuth}
+              onClick={onSetRoot}
+            >
+              <HomeIcon />
+            </IconButton>
+          </span>
+        </Tooltip>
 
-      <Tooltip title={t(messages.removeFromQuickAccess)}>
-        <span>
-          <IconButton
-            size="small"
-            data-testid="remove"
-            className={classes.control}
-            aria-label={`${t(messages.removeFromQuickAccess)}: ${title}`}
-            disabled={isRoot}
-            onClick={onRemove}
-          >
-            <StarIcon />
-          </IconButton>
-        </span>
-      </Tooltip>
+        <Tooltip title={t(messages.removeFromQuickAccess)}>
+          <span>
+            <IconButton
+              size="small"
+              data-testid="remove"
+              className={classes.control}
+              aria-label={`${t(messages.removeFromQuickAccess)}: ${title}`}
+              disabled={isRoot}
+              onClick={onRemove}
+            >
+              <StarIcon />
+            </IconButton>
+          </span>
+        </Tooltip>
+      </div>
     </Paper>
   );
 };
