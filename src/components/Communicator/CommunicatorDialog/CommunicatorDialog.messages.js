@@ -5,10 +5,6 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.title',
     defaultMessage: 'My Communicator'
   },
-  menu: {
-    id: 'cboard.components.CommunicatorDialog.menu',
-    defaultMessage: 'Menu'
-  },
   menuRootBoardOption: {
     id: 'cboard.components.CommunicatorDialog.menuRootBoardOption',
     defaultMessage: 'Set as Root Board'
@@ -25,10 +21,6 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.emptyBoardsList',
     defaultMessage: 'No boards :('
   },
-  loadNextPage: {
-    id: 'cboard.components.CommunicatorDialog.loadNextPage',
-    defaultMessage: 'Load More'
-  },
   search: {
     id: 'cboard.components.CommunicatorDialog.search',
     defaultMessage: 'Search'
@@ -36,18 +28,6 @@ export default defineMessages({
   author: {
     id: 'cboard.components.CommunicatorDialog.author',
     defaultMessage: 'By {author}'
-  },
-  addBoard: {
-    id: 'cboard.components.CommunicatorDialog.addBoard',
-    defaultMessage: 'Add Board'
-  },
-  removeBoard: {
-    id: 'cboard.components.CommunicatorDialog.removeBoard',
-    defaultMessage: 'Remove Board'
-  },
-  communicatorBoards: {
-    id: 'cboard.components.CommunicatorDialog.communicatorBoards',
-    defaultMessage: 'Boards'
   },
   allBoards: {
     id: 'cboard.components.CommunicatorDialog.allBoards',
@@ -60,14 +40,6 @@ export default defineMessages({
   boardsQty: {
     id: 'cboard.components.CommunicatorDialog.boardsQty',
     defaultMessage: '{qty} boards'
-  },
-  helpAndSupport: {
-    id: 'cboard.components.CommunicatorDialog.helpAndSupport',
-    defaultMessage: 'Help And Support'
-  },
-  termsOfService: {
-    id: 'cboard.components.CommunicatorDialog.termsOfService',
-    defaultMessage: 'Terms Of Service'
   },
   tilesQty: {
     id: 'cboard.components.CommunicatorDialog.tilesQty',
@@ -104,10 +76,6 @@ export default defineMessages({
   boardInfoId: {
     id: 'cboard.components.CommunicatorDialog.boardInfoId',
     defaultMessage: 'Board ID'
-  },
-  boardInfoUrl: {
-    id: 'cboard.components.CommunicatorDialog.boardInfoUrl',
-    defaultMessage: 'Board URL'
   },
   boardInfoDate: {
     id: 'cboard.components.CommunicatorDialog.boardInfoDate',
@@ -146,6 +114,22 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.activeBoard',
     defaultMessage: 'Active Board'
   },
+  statusPublic: {
+    id: 'cboard.components.CommunicatorDialog.statusPublic',
+    defaultMessage: 'Public'
+  },
+  statusPrivate: {
+    id: 'cboard.components.CommunicatorDialog.statusPrivate',
+    defaultMessage: 'Private'
+  },
+  statusRoot: {
+    id: 'cboard.components.CommunicatorDialog.statusRoot',
+    defaultMessage: 'Root'
+  },
+  statusActive: {
+    id: 'cboard.components.CommunicatorDialog.statusActive',
+    defaultMessage: 'Active'
+  },
   copyBoard: {
     id: 'cboard.components.CommunicatorDialog.copyBoard',
     defaultMessage: 'Copy Board into your communicator'
@@ -176,14 +160,6 @@ export default defineMessages({
   accept: {
     id: 'cboard.components.CommunicatorDialog.accept',
     defaultMessage: 'Accept'
-  },
-  imageBoard: {
-    id: 'cboard.components.CommunicatorDialog.imageBoard',
-    defaultMessage: 'Edit Board Image'
-  },
-  imageBoardDescription: {
-    id: 'cboard.components.CommunicatorDialog.imageBoardDescription',
-    defaultMessage: 'You can either upload or look for symbols from libraries.'
   },
   imageSearch: {
     id: 'cboard.components.CommunicatorDialog.imageSearch',
@@ -281,14 +257,6 @@ export default defineMessages({
     defaultMessage:
       'Remove board from the communicator, but it will not delete the board from the database and it will be still available under All My Boards tab.'
   },
-  walkthroughAllMyBoardsEditBoardImage: {
-    id: 'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsEditBoardImage',
-    defaultMessage: 'You can edit the image that represents the board.'
-  },
-  walkthroughAllMyBoardsEditBoardName: {
-    id: 'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsEditBoardName',
-    defaultMessage: 'You can edit the board title and description.'
-  },
   walkthroughAllMyBoardsAddBoard: {
     id: 'cboard.components.CommunicatorDialog.walkthroughAllMyBoardsAddBoard',
     defaultMessage: 'Add board into the communicator.'
@@ -345,5 +313,155 @@ export default defineMessages({
   boardInfoLocale: {
     id: 'cboard.components.CommunicatorDialog.boardInfoLanguage',
     defaultMessage: 'Language'
+  },
+  // --- Dashboard layout ---
+  sectionMyBoards: {
+    id: 'cboard.components.CommunicatorDialog.sectionMyBoards',
+    defaultMessage: 'My Boards'
+  },
+  sectionMyBoardsHint: {
+    id: 'cboard.components.CommunicatorDialog.sectionMyBoardsHint',
+    defaultMessage: 'All the boards you have created'
+  },
+  sectionCommunity: {
+    id: 'cboard.components.CommunicatorDialog.sectionCommunity',
+    defaultMessage: 'Community'
+  },
+  sectionCommunityHint: {
+    id: 'cboard.components.CommunicatorDialog.sectionCommunityHint',
+    defaultMessage: 'Discover and copy public boards'
+  },
+  navigation: {
+    id: 'cboard.components.CommunicatorDialog.navigation',
+    defaultMessage: 'Navigation'
+  },
+  expandNavigation: {
+    id: 'cboard.components.CommunicatorDialog.expandNavigation',
+    defaultMessage: 'Expand navigation'
+  },
+  collapseNavigation: {
+    id: 'cboard.components.CommunicatorDialog.collapseNavigation',
+    defaultMessage: 'Collapse navigation'
+  },
+  searchBoardsPlaceholder: {
+    id: 'cboard.components.CommunicatorDialog.searchBoardsPlaceholder',
+    defaultMessage: 'Search by name or author'
+  },
+  clearSearch: {
+    id: 'cboard.components.CommunicatorDialog.clearSearch',
+    defaultMessage: 'Clear search'
+  },
+  gridView: {
+    id: 'cboard.components.CommunicatorDialog.gridView',
+    defaultMessage: 'Grid view'
+  },
+  listView: {
+    id: 'cboard.components.CommunicatorDialog.listView',
+    defaultMessage: 'List view'
+  },
+  openBoardInNewTab: {
+    id: 'cboard.components.CommunicatorDialog.openBoardInNewTab',
+    defaultMessage: 'Open in a new tab'
+  },
+  errorGettingBoards: {
+    id: 'cboard.components.CommunicatorDialog.errorGettingBoards',
+    defaultMessage: 'There was an error loading the boards.'
+  },
+  tryAgain: {
+    id: 'cboard.components.CommunicatorDialog.tryAgain',
+    defaultMessage: 'Try again'
+  },
+  noBoardsFound: {
+    id: 'cboard.components.CommunicatorDialog.noBoardsFound',
+    defaultMessage: 'No boards match your search.'
+  },
+  sectionQuickAccess: {
+    id: 'cboard.components.CommunicatorDialog.sectionQuickAccess',
+    defaultMessage: 'Quick access'
+  },
+  sectionQuickAccessHint: {
+    id: 'cboard.components.CommunicatorDialog.sectionQuickAccessHint',
+    defaultMessage: 'Boards you can reach from the communicator bar'
+  },
+  quickAccessExplainer: {
+    id: 'cboard.components.CommunicatorDialog.quickAccessExplainer',
+    defaultMessage:
+      'These {qty} boards appear in your communicator bar. They all live in My Boards.'
+  },
+  quickAccessEmpty: {
+    id: 'cboard.components.CommunicatorDialog.quickAccessEmpty',
+    defaultMessage: 'Your communicator bar is empty.'
+  },
+  quickAccessAddFromMyBoards: {
+    id: 'cboard.components.CommunicatorDialog.quickAccessAddFromMyBoards',
+    defaultMessage: 'Add a board from My Boards'
+  },
+  addToQuickAccess: {
+    id: 'cboard.components.CommunicatorDialog.addToQuickAccess',
+    defaultMessage: 'Add to quick access'
+  },
+  removeFromQuickAccess: {
+    id: 'cboard.components.CommunicatorDialog.removeFromQuickAccess',
+    defaultMessage: 'Remove from quick access'
+  },
+  boardOptions: {
+    id: 'cboard.components.CommunicatorDialog.boardOptions',
+    defaultMessage: 'Board options'
+  },
+  moveUp: {
+    id: 'cboard.components.CommunicatorDialog.moveUp',
+    defaultMessage: 'Move up'
+  },
+  moveDown: {
+    id: 'cboard.components.CommunicatorDialog.moveDown',
+    defaultMessage: 'Move down'
+  },
+  boardMoved: {
+    id: 'cboard.components.CommunicatorDialog.boardMoved',
+    defaultMessage: '{name} moved to position {position} of {total}'
+  },
+  boardDetails: {
+    id: 'cboard.components.CommunicatorDialog.boardDetails',
+    defaultMessage: 'Board details'
+  },
+  selectBoardPrompt: {
+    id: 'cboard.components.CommunicatorDialog.selectBoardPrompt',
+    defaultMessage: 'Select a board to see its details and actions'
+  },
+  closeDetails: {
+    id: 'cboard.components.CommunicatorDialog.closeDetails',
+    defaultMessage: 'Close details'
+  },
+  showBoard: {
+    id: 'cboard.components.CommunicatorDialog.showBoard',
+    defaultMessage: 'Show'
+  },
+  cloneBoard: {
+    id: 'cboard.components.CommunicatorDialog.cloneBoard',
+    defaultMessage: 'Clone'
+  },
+  cloneBoardUnavailable: {
+    id: 'cboard.components.CommunicatorDialog.cloneBoardUnavailable',
+    defaultMessage: 'Cloning is not available yet'
+  },
+  exportBoard: {
+    id: 'cboard.components.CommunicatorDialog.exportBoard',
+    defaultMessage: 'Export'
+  },
+  exportBoardToPdf: {
+    id: 'cboard.components.CommunicatorDialog.exportBoardToPdf',
+    defaultMessage: 'Save as PDF'
+  },
+  exportingBoard: {
+    id: 'cboard.components.CommunicatorDialog.exportingBoard',
+    defaultMessage: 'Exporting {name}…'
+  },
+  boardExported: {
+    id: 'cboard.components.CommunicatorDialog.boardExported',
+    defaultMessage: '{name} exported'
+  },
+  boardExportError: {
+    id: 'cboard.components.CommunicatorDialog.boardExportError',
+    defaultMessage: 'Could not export {name}'
   }
 });

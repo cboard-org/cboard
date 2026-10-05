@@ -80,12 +80,15 @@ export const mapStateToProps = (
     (communicator) => communicator.id === activeCommunicatorId
   );
   const activeBoardId = board.activeBoardId;
-  const boards = getVisibleBoards({ board }).filter(
-    (board) =>
-      board !== null &&
-      board.id !== null &&
-      currentCommunicator.boards.includes(board.id)
+  const visibleBoards = getVisibleBoards({ board }).filter(
+    (board) => board !== null && board.id !== null
   );
+  // Render in the order stored on the communicator so the toolbar matches the
+  // Quick access tray. Ids with no visible board (deleted, not yet synced) are
+  // skipped rather than rendered as holes.
+  const boards = currentCommunicator.boards
+    .map((boardId) => visibleBoards.find((board) => board.id === boardId))
+    .filter(Boolean);
   const currentBoard = boards.find((board) => board.id === activeBoardId);
 
   return {

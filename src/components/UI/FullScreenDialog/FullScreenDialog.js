@@ -16,8 +16,10 @@ import './FullScreenDialog.css';
 
 FullScreenDialog.propTypes = {
   disableSubmit: PropTypes.bool,
+  disableAppBarElevation: PropTypes.bool,
   open: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  fullHeight: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   onClose: PropTypes.func,
   onSubmit: PropTypes.func,
@@ -59,6 +61,10 @@ const styles = {
   },
   contentFullWidth: {
     margin: '0 auto'
+  },
+  contentFullHeight: {
+    margin: '0 auto',
+    height: '100%'
   }
 };
 
@@ -93,10 +99,12 @@ function FullScreenDialog(props) {
     title,
     buttons,
     disableSubmit,
+    disableAppBarElevation,
     onClose,
     onSubmit,
     transition = transitions.UP,
-    fullWidth
+    fullWidth,
+    fullHeight
   } = props;
 
   const theme = useTheme();
@@ -109,7 +117,10 @@ function FullScreenDialog(props) {
       TransitionComponent={getTransition(transition)}
       onClose={onClose}
     >
-      <AppBar className={classes.appBar}>
+      <AppBar
+        className={classes.appBar}
+        elevation={disableAppBarElevation ? 0 : 4}
+      >
         <Toolbar disableGutters>
           <BackButton onClick={onClose} />
 
@@ -144,7 +155,15 @@ function FullScreenDialog(props) {
         </Toolbar>
       </AppBar>
       <div className={dark ? classes.containerDark : classes.container}>
-        <div className={fullWidth ? classes.contentFullWidth : classes.content}>
+        <div
+          className={
+            fullHeight
+              ? classes.contentFullHeight
+              : fullWidth
+                ? classes.contentFullWidth
+                : classes.content
+          }
+        >
           {children}
         </div>
       </div>
