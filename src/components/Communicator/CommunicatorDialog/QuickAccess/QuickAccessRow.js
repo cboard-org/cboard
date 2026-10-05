@@ -127,7 +127,7 @@ const QuickAccessRow = ({
         )}
       </div>
 
-      <div className={classes.actions}>
+      <div className={classes.actions} data-tour="quick-access-actions">
         <Tooltip title={t(messages.moveUp)}>
           <span>
             <IconButton
