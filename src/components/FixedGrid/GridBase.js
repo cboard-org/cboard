@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Scannable } from 'react-scannable';
 
 import * as utils from './utils.ts';
 import Row from './Row/Row';
@@ -20,6 +21,7 @@ function GridBase(props) {
     renderItem,
     rows,
     page,
+    rowScanning,
     ...other
   } = props;
 
@@ -34,38 +36,52 @@ function GridBase(props) {
 
   return (
     <div className={gridClassName} {...other}>
-      {grid.map((row, rowIndex) => (
-        <Row key={rowIndex}>
-          {row.map((item, columnIndex) => {
-            const yPosition = page * rows + rowIndex;
-            const idWithPosition = `${columnIndex}-${yPosition}`;
-            return (
-              <DroppableCell
-                key={columnIndex}
-                id={idWithPosition}
-                accept={'grid-item'}
-                onDrop={(item) => {
-                  const position = { row: rowIndex, column: columnIndex };
+      {grid.map((row, rowIndex) => {
+        const rowHasItem = row.some((item) => item);
+        const cells = row.map((item, columnIndex) => {
+          const yPosition = page * rows + rowIndex;
+          const idWithPosition = `${columnIndex}-${yPosition}`;
+          return (
+            <DroppableCell
+              key={columnIndex}
+              id={idWithPosition}
+              accept={'grid-item'}
+              onDrop={(item) => {
+                const position = { row: rowIndex, column: columnIndex };
 
-                  onItemDrop(item, position);
-                }}
-              >
-                {item ? (
-                  <DraggableItem
-                    type={'grid-item'}
-                    id={item.id}
-                    disabled={!dragAndDropEnabled}
-                  >
-                    {renderItem(item, itemIndex++)}
-                  </DraggableItem>
-                ) : (
-                  renderEmptyCell && renderEmptyCell()
-                )}
-              </DroppableCell>
-            );
-          })}
-        </Row>
-      ))}
+                onItemDrop(item, position);
+              }}
+            >
+              {item ? (
+                <DraggableItem
+                  key={item.id}
+                  type={'grid-item'}
+                  id={item.id}
+                  disabled={!dragAndDropEnabled}
+                >
+                  {renderItem(item, itemIndex++)}
+                </DraggableItem>
+              ) : (
+                renderEmptyCell && renderEmptyCell()
+              )}
+            </DroppableCell>
+          );
+        });
+
+        // During scanning, wrap each non-empty row in a Scannable so the scanner
+        // iterates rows first and descends into a row's tiles when selected
+        // (row-column scanning). Scannable renders no wrapper node, so the CSS
+        // grid layout is preserved.
+        if (rowScanning && rowHasItem) {
+          return (
+            <Scannable key={rowIndex}>
+              <Row className="BoardScanRow">{cells}</Row>
+            </Scannable>
+          );
+        }
+
+        return <Row key={rowIndex}>{cells}</Row>;
+      })}
     </div>
   );
 }
@@ -101,7 +117,11 @@ GridBase.propTypes = {
   /**
    * Number of rows.
    */
-  rows: PropTypes.number.isRequired
+  rows: PropTypes.number.isRequired,
+  /**
+   * If `true`, wrap each non-empty row in a Scannable for row-column scanning.
+   */
+  rowScanning: PropTypes.bool
 };
 
 GridBase.defaultProps = {

@@ -24,6 +24,13 @@
   outline: 4px solid rgba(255, 0, 0, 1);
 }
 
+/* Row-column scanning: highlight the whole row while it is being scanned. */
+.BoardScanRow.scanner__focused {
+  outline: 4px solid rgba(255, 0, 0, 1);
+  outline-offset: -4px;
+  border-radius: 8px;
+}
+
 .Board__navbar {
   position: relative;
   right: 0;

@@ -1,8 +1,5 @@
 export const isCordova = () => !!window.cordova;
 
-export const isAndroid = () =>
-  isCordova() && window.cordova.platformId === 'android';
-
 export const isElectron = () =>
   isCordova() && window.cordova.platformId === 'electron';
 
@@ -13,6 +10,9 @@ export const isIOS = () => isCordova() && window.cordova.platformId === 'ios';
 // Android file://, iOS app://localhost).
 export const isPackagedApp = () =>
   window.location.protocol !== 'http:' && window.location.protocol !== 'https:';
+
+export const isAndroid = () =>
+  isPackagedApp() && isCordova() && window.cordova.platformId === 'android';
 
 export const onCordovaReady = (onReady) =>
   document.addEventListener('deviceready', onReady, false);
@@ -343,13 +343,40 @@ export const requestCvaWritePermissions = () => {
   }
 };
 
+// getUserMedia video inside the Android WebView is denied unless the app holds
+// the runtime CAMERA permission, and unlike the browser it never shows a native
+// prompt on its own. Request it explicitly before starting eye control.
+// Resolves to true when the camera may be used (web/iOS handle their own prompt).
+export const requestCvaCameraPermission = async () => {
+  if (!isAndroid()) return true;
+
+  const permissions = window.cordova?.plugins?.permissions;
+  if (!permissions) return true;
+
+  const hasCameraPermission = await new Promise((resolve) => {
+    permissions.checkPermission(
+      permissions.CAMERA,
+      (status) => resolve(!!status.hasPermission),
+      () => resolve(false)
+    );
+  });
+  if (hasCameraPermission) return true;
+
+  return new Promise((resolve) => {
+    permissions.requestPermission(
+      permissions.CAMERA,
+      (status) => resolve(!!status.hasPermission),
+      () => resolve(false)
+    );
+  });
+};
+
 export const requestCvaPermissions = async () => {
   if (isAndroid()) {
     var permissions = window.cordova.plugins.permissions;
     const androidPermissions = {
       READ_EXTERNAL_STORAGE: 'READ_EXTERNAL_STORAGE',
       RECORD_AUDIO: 'RECORD_AUDIO',
-      READ_MEDIA_IMAGES: 'READ_MEDIA_IMAGES',
       READ_MEDIA_AUDIO: 'READ_MEDIA_AUDIO'
     };
 

@@ -56,13 +56,23 @@ const INITIAL_SCANNING_SETTINGS = {
   strategy: SCANNING_METHOD_AUTOMATIC
 };
 
+const INITIAL_GAZE_SETTINGS = {
+  active: false,
+  blinkThreshold: 0.5,
+  dwellMs: 500,
+  cooldownMs: 900,
+  showPreview: true
+};
+
 let scanningSettings = INITIAL_SCANNING_SETTINGS;
 
 const COMPONENT_PROPS = {
   scanningSettings,
+  gazeSwitchSettings: INITIAL_GAZE_SETTINGS,
   updateScanningSettings: (payload) => {
     scanningSettings = { ...scanningSettings, ...payload };
   },
+  updateGazeSwitchSettings: () => {},
   onClose: () => {}
 };
 

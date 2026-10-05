@@ -8,12 +8,15 @@ import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Scanning.messages';
 import {
   SCANNING_METHOD_AUTOMATIC,
-  SCANNING_METHOD_MANUAL
+  SCANNING_METHOD_MANUAL,
+  EYE_CONTROL_DWELL_OPTIONS,
+  EYE_CONTROL_SENSITIVITY_OPTIONS
 } from './Scanning.constants';
 
 import './Scanning.css';
@@ -23,7 +26,9 @@ const propTypes = {
    * Callback fired when clicking the back button
    */
   onClose: PropTypes.func,
-  updateScannerSettings: PropTypes.func
+  updateScannerSettings: PropTypes.func,
+  updateGazeSwitchSettings: PropTypes.func,
+  gazeSwitchSettings: PropTypes.object
 };
 
 const SCANNER_MESSAGES_KEYMAP = {
@@ -59,13 +64,19 @@ class Scanning extends React.Component {
     super(props);
 
     this.state = {
-      ...props.scanningSettings
+      ...props.scanningSettings,
+      gaze: { ...props.gazeSwitchSettings }
     };
   }
 
   toggleScanner = () => {
-    this.setState({
-      active: !this.state.active
+    this.setState((prevState) => {
+      const active = !prevState.active;
+      // Eye control (and its preview) depend on scanning being enabled.
+      const gaze = active
+        ? prevState.gaze
+        : { ...prevState.gaze, active: false, showPreview: false };
+      return { active, gaze };
     });
   };
 
@@ -75,8 +86,30 @@ class Scanning extends React.Component {
     });
   };
 
+  toggleGaze = (property) => () => {
+    this.setState((prevState) => {
+      const gaze = { ...prevState.gaze, [property]: !prevState.gaze[property] };
+      // Camera preview only applies while blink selection is enabled.
+      if (property === 'active' && !gaze.active) {
+        gaze.showPreview = false;
+      }
+      return { gaze };
+    });
+  };
+
+  changeGazeSelect = (property) => (event) => {
+    const { value } = event.target;
+    this.setState((prevState) => ({
+      gaze: { ...prevState.gaze, [property]: value }
+    }));
+  };
+
   onSubmit = () => {
-    this.props.updateScannerSettings(this.state);
+    const { gaze, ...scanningSettings } = this.state;
+    this.props.updateScannerSettings(scanningSettings);
+    if (this.props.updateGazeSwitchSettings) {
+      this.props.updateGazeSwitchSettings(gaze);
+    }
   };
 
   render() {
@@ -167,6 +200,118 @@ class Scanning extends React.Component {
                 <FormattedMessage {...messages.scannerHowToDeactivate} />
               </div>
             </div>
+
+            <List
+              subheader={
+                <ListSubheader disableSticky>
+                  <FormattedMessage {...messages.eyeControl} />
+                </ListSubheader>
+              }
+            >
+              <ListItem>
+                <ListItemText
+                  className="Scanning__ListItemText"
+                  primary={<FormattedMessage {...messages.eyeControlEnable} />}
+                  secondary={
+                    <FormattedMessage
+                      {...(this.state.active
+                        ? messages.eyeControlEnableSecondary
+                        : messages.eyeControlRequiresScanning)}
+                    />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={!!this.state.gaze.active}
+                    onChange={this.toggleGaze('active')}
+                    disabled={!this.state.active}
+                    value="eyeControlActive"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  className="Scanning__ListItemText"
+                  primary={<FormattedMessage {...messages.eyeControlDwell} />}
+                  secondary={
+                    <FormattedMessage {...messages.eyeControlDwellSecondary} />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Select
+                    value={this.state.gaze.dwellMs}
+                    onChange={this.changeGazeSelect('dwellMs')}
+                    disabled={!this.state.gaze.active}
+                    inputProps={{
+                      name: 'dwellMs',
+                      id: 'eye-control-dwell'
+                    }}
+                  >
+                    {EYE_CONTROL_DWELL_OPTIONS.map((value) => (
+                      <MenuItem key={value} value={value}>
+                        <FormattedMessage
+                          {...messages.eyeControlMilliseconds}
+                          values={{ value }}
+                        />
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  className="Scanning__ListItemText"
+                  primary={
+                    <FormattedMessage {...messages.eyeControlSensitivity} />
+                  }
+                  secondary={
+                    <FormattedMessage
+                      {...messages.eyeControlSensitivitySecondary}
+                    />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Select
+                    value={this.state.gaze.blinkThreshold}
+                    onChange={this.changeGazeSelect('blinkThreshold')}
+                    disabled={!this.state.gaze.active}
+                    inputProps={{
+                      name: 'blinkThreshold',
+                      id: 'eye-control-sensitivity'
+                    }}
+                  >
+                    {EYE_CONTROL_SENSITIVITY_OPTIONS.map(({ value, label }) => (
+                      <MenuItem key={value} value={value}>
+                        <FormattedMessage {...messages[label]} />
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  className="Scanning__ListItemText"
+                  primary={
+                    <FormattedMessage {...messages.eyeControlShowPreview} />
+                  }
+                  secondary={
+                    <FormattedMessage
+                      {...messages.eyeControlShowPreviewSecondary}
+                    />
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={!!this.state.gaze.showPreview}
+                    onChange={this.toggleGaze('showPreview')}
+                    disabled={!this.state.gaze.active}
+                    value="eyeControlShowPreview"
+                    color="secondary"
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+            </List>
           </Paper>
         </FullScreenDialog>
       </div>

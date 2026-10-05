@@ -31,11 +31,12 @@ jobs:
       # run tests
       - run:
           name: Run Unit Tests
-          command: npm test -- --silent --updateSnapshot --runInBand --no-watchman --testPathPattern="/Board|Communicator|App|Settings|Account|UI/"
+          command: npm test -- --silent --updateSnapshot --runInBand --no-watchman --testPathPattern="/Board|Communicator|App|Settings|Account|UI|/idb/"
   image:
     docker:
       # specify the version you desire here
       - image: cimg/node:22.23.2
+    resource_class: large
     working_directory: ~/repo
     steps:
       - checkout

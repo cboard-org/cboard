@@ -76,4 +76,26 @@ test.describe('Cboard - Scanning Settings', () => {
 
     await cboard.verifyScanningSettingsUI();
   });
+
+  test('should show eye control section', async ({ page }) => {
+    await cboard.verifyEyeControlSection();
+  });
+
+  test('should disable eye control options when scanning is disabled', async ({
+    page
+  }) => {
+    await cboard.verifyEyeControlDisabledWhenScanningOff();
+  });
+
+  test('should enable eye control options after enabling scanning', async ({
+    page
+  }) => {
+    await cboard.verifyEyeControlEnabledAfterScanning();
+  });
+
+  test('should show eye control dwell and sensitivity settings', async ({
+    page
+  }) => {
+    await cboard.verifyEyeControlDwellAndSensitivitySettings();
+  });
 });

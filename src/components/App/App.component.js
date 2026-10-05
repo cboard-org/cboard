@@ -17,6 +17,7 @@ import Settings from '../Settings';
 import WelcomeScreen from '../WelcomeScreen';
 import Analytics from '../Analytics';
 import AccessViewer from '../AccessViewer';
+import GazeSwitchProvider from '../../providers/GazeSwitchProvider';
 import './App.css';
 import LoginRequiredModal from '../LoggedInFeature/LoginRequiredModal';
 
@@ -90,6 +91,7 @@ export class App extends Component {
         <PremiumRequiredModal />
         <LoginRequiredModal />
         <OfflineNotificationModal />
+        <GazeSwitchProvider />
       </div>
     );
   }

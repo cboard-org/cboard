@@ -12,6 +12,7 @@ import { appInsights } from './appInsights';
 import appReducer from './components/App/App.reducer';
 import languageProviderReducer from './providers/LanguageProvider/LanguageProvider.reducer';
 import scannerProviderReducer from './providers/ScannerProvider/ScannerProvider.reducer';
+import gazeSwitchProviderReducer from './providers/GazeSwitchProvider/GazeSwitchProvider.reducer';
 import speechProviderReducer from './providers/SpeechProvider/SpeechProvider.reducer';
 import boardReducer from './components/Board/Board.reducer';
 import communicatorReducer from './components/Communicator/Communicator.reducer';
@@ -162,6 +163,7 @@ export default function createReducer() {
     board: boardReducer,
     communicator: communicatorReducer,
     scanner: scannerProviderReducer,
+    gazeSwitch: gazeSwitchProviderReducer,
     notification: notificationsReducer,
     subscription: subscriptionProviderReducer
   });

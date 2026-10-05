@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 import Scanning from './Scanning.component';
 import { updateScannerSettings } from '../../../providers/ScannerProvider/ScannerProvider.actions';
+import { updateGazeSwitchSettings } from '../../../providers/GazeSwitchProvider/GazeSwitchProvider.actions';
 import API from '../../../api';
 
 export class ScanningContainer extends PureComponent {
@@ -19,13 +20,15 @@ export class ScanningContainer extends PureComponent {
   };
 
   render() {
-    const { history, scanningSettings } = this.props;
+    const { history, scanningSettings, gazeSwitchSettings } = this.props;
 
     return (
       <Scanning
         onClose={history.goBack}
         updateScannerSettings={this.updateScannerSettings}
         scanningSettings={scanningSettings}
+        updateGazeSwitchSettings={this.props.updateGazeSwitchSettings}
+        gazeSwitchSettings={gazeSwitchSettings}
       />
     );
   }
@@ -34,15 +37,22 @@ export class ScanningContainer extends PureComponent {
 ScanningContainer.props = {
   history: PropTypes.object,
   updateScannerSettings: PropTypes.func.isRequired,
-  scanningSettings: PropTypes.object.isRequired
+  scanningSettings: PropTypes.object.isRequired,
+  updateGazeSwitchSettings: PropTypes.func.isRequired,
+  gazeSwitchSettings: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({ scanner: scanningSettings }) => ({
-  scanningSettings
+const mapStateToProps = ({
+  scanner: scanningSettings,
+  gazeSwitch: gazeSwitchSettings
+}) => ({
+  scanningSettings,
+  gazeSwitchSettings
 });
 
 const mapDispatchToProps = {
-  updateScannerSettings
+  updateScannerSettings,
+  updateGazeSwitchSettings
 };
 
 export default connect(

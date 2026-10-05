@@ -24,6 +24,7 @@ import './Board.css';
 import BoardTour from './BoardTour/BoardTour';
 import ImprovePhraseOutput from './ImprovePhraseOutput';
 import { resolveBoardName } from '../../helpers';
+import { ROW_SCAN_PASSES_BEFORE_RETURN } from './Board.constants';
 
 export class Board extends Component {
   static propTypes = {
@@ -118,6 +119,41 @@ export class Board extends Component {
     this.boardContainerRef = React.createRef();
     this.fixedBoardContainerRef = React.createRef();
   }
+
+  // Tracks tiles focused during the current row descent to detect a full pass.
+  scanTileCycle = null;
+
+  // Row-column scanning: when a row's tiles are scanned one full pass without a
+  // selection, return to row-by-row scanning instead of looping the row forever.
+  handleScannerFocus = (element, scanner) => {
+    const { selectedPath, focusedId, elementsToIterate } = scanner.state;
+    const node = elementsToIterate[focusedId];
+    const isLeafLevel = node && !node.children;
+
+    // Only applies while iterating a row's tiles (container -> row -> tiles).
+    if (selectedPath.length < 2 || !isLeafLevel) {
+      this.scanTileCycle = null;
+      return;
+    }
+
+    const pathKey = selectedPath.join('/');
+    if (!this.scanTileCycle || this.scanTileCycle.pathKey !== pathKey) {
+      this.scanTileCycle = { pathKey, seen: new Set(), passes: 0 };
+    }
+
+    const cycle = this.scanTileCycle;
+    if (cycle.seen.has(focusedId)) {
+      cycle.passes += 1;
+      if (cycle.passes >= ROW_SCAN_PASSES_BEFORE_RETURN) {
+        this.scanTileCycle = null;
+        scanner.setSelectedPath(selectedPath.slice(0, -1));
+        return;
+      }
+      cycle.seen = new Set();
+    }
+
+    cycle.seen.add(focusedId);
+  };
 
   componentDidMount() {
     if (this.props.scannerSettings.active) {
@@ -215,6 +251,7 @@ export class Board extends Component {
         iterationInterval={scannerSettings.delay}
         strategy={scannerSettings.strategy}
         onDeactivation={deactivateScanner}
+        onFocus={this.handleScannerFocus}
       >
         <div
           className={classNames('Board', {

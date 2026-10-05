@@ -14,6 +14,7 @@ import {
   computeScrollState,
   notifyLockCountdown
 } from '../Board/Board.utils';
+import { ROW_SCAN_PASSES_BEFORE_RETURN } from '../Board/Board.constants';
 import { resolveTileLabel } from '../../helpers';
 import {
   speak,
@@ -89,6 +90,41 @@ const AccessViewer = ({
 
   const currentBoard =
     boardHistory.length > 0 ? boardHistory[boardHistory.length - 1] : null;
+
+  // Row-column scanning: return to row scanning after one full pass over a
+  // row's tiles with no selection, instead of looping the row forever.
+  const scanTileCycleRef = useRef(null);
+  const handleScannerFocus = useCallback((element, scanner) => {
+    const { selectedPath, focusedId, elementsToIterate } = scanner.state;
+    const node = elementsToIterate[focusedId];
+    const isLeafLevel = node && !node.children;
+
+    if (selectedPath.length < 2 || !isLeafLevel) {
+      scanTileCycleRef.current = null;
+      return;
+    }
+
+    const pathKey = selectedPath.join('/');
+    if (
+      !scanTileCycleRef.current ||
+      scanTileCycleRef.current.pathKey !== pathKey
+    ) {
+      scanTileCycleRef.current = { pathKey, seen: new Set(), passes: 0 };
+    }
+
+    const cycle = scanTileCycleRef.current;
+    if (cycle.seen.has(focusedId)) {
+      cycle.passes += 1;
+      if (cycle.passes >= ROW_SCAN_PASSES_BEFORE_RETURN) {
+        scanTileCycleRef.current = null;
+        scanner.setSelectedPath(selectedPath.slice(0, -1));
+        return;
+      }
+      cycle.seen = new Set();
+    }
+
+    cycle.seen.add(focusedId);
+  }, []);
 
   // Load all boards in a single request on mount; clear output on enter and leave
   useEffect(() => {
@@ -235,6 +271,7 @@ const AccessViewer = ({
       active={scannerSettings.active}
       iterationInterval={scannerSettings.delay}
       strategy={scannerSettings.strategy}
+      onFocus={handleScannerFocus}
     >
       <div className="AccessViewer">
         {client && (

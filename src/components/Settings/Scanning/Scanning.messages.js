@@ -54,5 +54,62 @@ export default defineMessages({
     id: 'cboard.components.Settings.Scanning.scannerAutomaticStrategy',
     defaultMessage:
       'Scanner will iterate over elements, press any key to select them.'
+  },
+  eyeControl: {
+    id: 'cboard.components.Settings.Scanning.eyeControl',
+    defaultMessage: 'Eye control'
+  },
+  eyeControlEnable: {
+    id: 'cboard.components.Settings.Scanning.eyeControlEnable',
+    defaultMessage: 'Select with a blink'
+  },
+  eyeControlEnableSecondary: {
+    id: 'cboard.components.Settings.Scanning.eyeControlEnableSecondary',
+    defaultMessage:
+      'Use the webcam to select the highlighted item with a deliberate blink. All processing happens on your device.'
+  },
+  eyeControlRequiresScanning: {
+    id: 'cboard.components.Settings.Scanning.eyeControlRequiresScanning',
+    defaultMessage: 'Enable scanning first to use eye control.'
+  },
+  eyeControlDwell: {
+    id: 'cboard.components.Settings.Scanning.eyeControlDwell',
+    defaultMessage: 'Blink hold time'
+  },
+  eyeControlDwellSecondary: {
+    id: 'cboard.components.Settings.Scanning.eyeControlDwellSecondary',
+    defaultMessage: 'How long to keep the eyes closed to make a selection'
+  },
+  eyeControlSensitivity: {
+    id: 'cboard.components.Settings.Scanning.eyeControlSensitivity',
+    defaultMessage: 'Sensitivity'
+  },
+  eyeControlSensitivitySecondary: {
+    id: 'cboard.components.Settings.Scanning.eyeControlSensitivitySecondary',
+    defaultMessage: 'How strongly the eyes must close to count as a blink'
+  },
+  eyeControlShowPreview: {
+    id: 'cboard.components.Settings.Scanning.eyeControlShowPreview',
+    defaultMessage: 'Show camera preview'
+  },
+  eyeControlShowPreviewSecondary: {
+    id: 'cboard.components.Settings.Scanning.eyeControlShowPreviewSecondary',
+    defaultMessage: 'Display a small camera window with blink feedback'
+  },
+  eyeControlMilliseconds: {
+    id: 'cboard.components.Settings.Scanning.eyeControlMilliseconds',
+    defaultMessage: '{value} ms'
+  },
+  eyeControlSensitivityLow: {
+    id: 'cboard.components.Settings.Scanning.eyeControlSensitivityLow',
+    defaultMessage: 'Low'
+  },
+  eyeControlSensitivityMedium: {
+    id: 'cboard.components.Settings.Scanning.eyeControlSensitivityMedium',
+    defaultMessage: 'Medium'
+  },
+  eyeControlSensitivityHigh: {
+    id: 'cboard.components.Settings.Scanning.eyeControlSensitivityHigh',
+    defaultMessage: 'High'
   }
 });

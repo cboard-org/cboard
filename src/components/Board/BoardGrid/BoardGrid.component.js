@@ -92,6 +92,7 @@ const BoardGrid = ({
               label={tile.label}
               keyPath={tile.keyPath}
               labelpos={displaySettings.labelPosition}
+              cacheRemoteImage
             />
             {isSelecting && !isSaving && (
               <div className="CheckCircle">
@@ -132,6 +133,7 @@ const BoardGrid = ({
           label={tile.label}
           keyPath={tile.keyPath}
           labelpos={displaySettings.labelPosition}
+          cacheRemoteImage
         />
         {isSelecting && !isSaving && (
           <div className="CheckCircle">
@@ -205,6 +207,7 @@ const BoardGrid = ({
               setIsScroll={setIsScroll}
               isBigScrollBtns={navigationSettings.bigScrollButtonsActive}
               isNavigationButtonsOnTheSide={isNavigationButtonsOnTheSide}
+              rowScanning={scannerSettings.active && !isSelecting}
             />
           )}
 

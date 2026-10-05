@@ -52,6 +52,11 @@ export const DEFAULT_ROWS_NUMBER = 5;
 export const DEFAULT_COLUMNS_NUMBER = 5;
 export const SHORT_ID_MAX_LENGTH = 14;
 
+// Row-column scanning: number of idle passes over a row's tiles (no selection)
+// before scanning returns to row-by-row. More than one pass gives slower
+// switch/eye-control users enough time to select late tiles (e.g. folders).
+export const ROW_SCAN_PASSES_BEFORE_RETURN = 3;
+
 export const SYNC_STATUS = {
   SYNCED: 'synced',
   PENDING: 'pending',

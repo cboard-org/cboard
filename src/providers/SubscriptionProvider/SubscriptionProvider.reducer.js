@@ -12,6 +12,7 @@ import {
   LOGOUT,
   LOGIN_SUCCESS
 } from '../../components/Account/Login/Login.constants';
+import { normalizeStatus } from './SubscriptionProvider.helpers';
 
 const initialState = {
   subscriberId: '',
@@ -79,7 +80,7 @@ function subscriptionProviderReducer(state = initialState, action) {
       return {
         ...state,
         subscriberId: id,
-        status: status,
+        status: normalizeStatus(status),
         expiryDate: expiry
       };
     case LOGOUT:
