@@ -109,6 +109,12 @@ describe('QuickAccessTray', () => {
     expect(onGoToMyBoards).toHaveBeenCalled();
   });
 
+  it('marks each row controls as the walkthrough target', () => {
+    expect(
+      render().find('[data-tour="quick-access-actions"]').hostNodes()
+    ).toHaveLength(3);
+  });
+
   it('disables set as home board when the user is not logged in', () => {
     const setRoot = render({ hasAuth: false })
       .find(IconButton)
