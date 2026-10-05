@@ -221,11 +221,7 @@ const QuickAccessRow = ({
           {actions.map((action) => (
             <React.Fragment key={action.key}>
               {action.startsGroup && (
-                <Divider
-                  flexItem
-                  orientation="vertical"
-                  className={classes.separator}
-                />
+                <Divider orientation="vertical" className={classes.separator} />
               )}
               <Tooltip title={action.label}>
                 <span>
