@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import { FormattedMessage, defineMessages } from 'react-intl';
+import classNames from 'classnames';
+import { defineMessages } from 'react-intl';
 import { Scannable } from 'react-scannable';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+
+import '../../NavigationButtons/NavigationButtons.css';
 
 const messages = defineMessages({
   previous: {
@@ -29,54 +31,63 @@ const messages = defineMessages({
   }
 });
 
-export default function BoardPagination({ page, pageCount, onChange }) {
+export default function BoardPagination({ page, pageCount, onChange, intl }) {
+  const disabled = pageCount <= 1;
+  const buttonClassName = (position) =>
+    classNames('SideNavigationButton', position, { disable: disabled });
+
   return (
-    <Paper className="BoardPagination" elevation={0} square>
-      <Scannable disabled={pageCount <= 1}>
-        <Button
-          variant="contained"
-          color="primary"
-          disabled={pageCount <= 1}
-          onClick={() => onChange((page - 1 + pageCount) % pageCount)}
-        >
-          <FormattedMessage
-            {...(pageCount > 1 && page === 0
-              ? messages.last
-              : messages.previous)}
-          />
-        </Button>
-      </Scannable>
-      <Typography
-        component="span"
-        color="textPrimary"
+    <div className="SideNavigationButtonsContainer BoardPagination">
+      <div className={buttonClassName('SideButtonScrollUp')}>
+        <Scannable disabled={disabled}>
+          <button
+            type="button"
+            aria-label={intl.formatMessage(
+              !disabled && page === 0 ? messages.last : messages.previous
+            )}
+            disabled={disabled}
+            onClick={() => onChange((page - 1 + pageCount) % pageCount)}
+          >
+            <KeyboardArrowUpIcon />
+            <span className="BoardPagination__counter" aria-hidden="true">
+              {page + 1} / {pageCount}
+            </span>
+          </button>
+        </Scannable>
+      </div>
+      <div className={buttonClassName('SideButtonScrollDown')}>
+        <Scannable disabled={disabled}>
+          <button
+            type="button"
+            aria-label={intl.formatMessage(
+              !disabled && page === pageCount - 1
+                ? messages.first
+                : messages.next
+            )}
+            disabled={disabled}
+            onClick={() => onChange((page + 1) % pageCount)}
+          >
+            <KeyboardArrowDownIcon />
+          </button>
+        </Scannable>
+      </div>
+      <span
+        className="BoardPagination__status"
         role="status"
         aria-live="polite"
         aria-atomic="true"
       >
-        <FormattedMessage
-          {...messages.status}
-          values={{ page: page + 1, pages: pageCount }}
-        />
-      </Typography>
-      <Scannable disabled={pageCount <= 1}>
-        <Button
-          variant="contained"
-          color="primary"
-          disabled={pageCount <= 1}
-          onClick={() => onChange((page + 1) % pageCount)}
-        >
-          <FormattedMessage
-            {...(pageCount > 1 && page === pageCount - 1
-              ? messages.first
-              : messages.next)}
-          />
-        </Button>
-      </Scannable>
-    </Paper>
+        {intl.formatMessage(messages.status, {
+          page: page + 1,
+          pages: pageCount
+        })}
+      </span>
+    </div>
   );
 }
 BoardPagination.propTypes = {
   page: PropTypes.number.isRequired,
   pageCount: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
 };
