@@ -116,21 +116,36 @@
 }
 
 .BoardPagination {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 8px;
   flex-shrink: 0;
 }
 
-.BoardPagination button {
-  min-height: 48px;
-  flex: 1;
+.BoardPagination .SideNavigationButton button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
 
-.BoardPagination [role='status'] {
+.BoardPagination .SideNavigationButton button:disabled {
+  cursor: default;
+}
+
+.BoardPagination__counter {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
   font-variant-numeric: tabular-nums;
-  text-align: center;
+}
+
+.BoardPagination__status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
