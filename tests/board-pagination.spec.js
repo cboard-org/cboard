@@ -139,7 +139,7 @@ for (const fixed of [false, true]) {
       ).toBe(true);
       const next = page.getByRole('button', { name: /^(Next|First) page$/ });
       await expect(next).toBeEnabled();
-      await expect(next).toHaveText(
+      await expect(next).toHaveAccessibleName(
         index === pageCount - 1 ? 'First page' : 'Next page'
       );
       await next.focus();
@@ -230,7 +230,9 @@ test('switch scanning selects Next page and continues scanning the new page', as
     }
     await expect(next).toHaveClass(/scanner__focused/);
     await expect(next).toHaveCSS('outline-width', '4px');
-    await expect(next).toHaveText(index === 6 ? 'First page' : 'Next page');
+    await expect(next).toHaveAccessibleName(
+      index === 6 ? 'First page' : 'Next page'
+    );
     expect(await next.boundingBox()).toEqual(bounds);
     await page.keyboard.press('Enter');
     await expect(status).toHaveText(`Page ${((index + 1) % 7) + 1} of 7`);
@@ -246,19 +248,30 @@ test('switch scanning selects Next page and continues scanning the new page', as
   await expect(status).toHaveText('Page 7 of 7');
 });
 
-test('pagination uses the app primary color and readable counter in dark mode', async ({
+test('pagination uses the eye gaze side button style in both themes', async ({
   page
 }) => {
-  await seedBoard(page, false, 'pagination', false, true);
-  const next = page.getByRole('button', { name: /^(Next|First) page$/ });
-  await expect(next).toHaveCSS('background-color', 'rgb(120, 144, 156)');
-  await expect(page.locator('.BoardPagination')).toHaveCSS(
-    'background-color',
-    'rgb(66, 66, 66)'
-  );
-  await expect(page.locator('.BoardPagination [role="status"]')).toHaveCSS(
-    'color',
-    'rgb(255, 255, 255)'
-  );
-  await page.screenshot({ path: 'test-results/pagination-dark.png' });
+  for (const dark of [false, true]) {
+    await seedBoard(page, false, 'pagination', false, dark);
+    const column = page.locator(
+      '.BoardPagination.SideNavigationButtonsContainer'
+    );
+    await expect(column).toBeVisible();
+    const tiles = await page.locator('#BoardTilesContainer').boundingBox();
+    expect((await column.boundingBox()).x).toBeGreaterThanOrEqual(
+      tiles.x + tiles.width - 1
+    );
+    for (const button of await column.locator('.SideNavigationButton').all()) {
+      await expect(button).toHaveCSS(
+        'background-color',
+        'rgba(255, 0, 0, 0.5)'
+      );
+    }
+    const counter = page.locator('.BoardPagination__counter');
+    await expect(counter).toHaveText(/^1 \/ \d+$/);
+    await expect(counter).toHaveCSS('color', 'rgb(255, 255, 255)');
+    await page.screenshot({
+      path: `test-results/pagination-${dark ? 'dark' : 'light'}.png`
+    });
+  }
 });
