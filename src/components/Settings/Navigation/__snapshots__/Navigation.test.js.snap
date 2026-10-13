@@ -117,7 +117,9 @@ exports[`Navigation tests switchs behavior 1`] = `
           </WithStyles(ForwardRef(ListItemSecondaryAction))>
         </WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(Divider)) />
-        <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))
+          disabled={false}
+        >
           <WithStyles(ForwardRef(ListItemText))
             className="Navigation__ListItemText"
             primary={
@@ -135,6 +137,7 @@ exports[`Navigation tests switchs behavior 1`] = `
             <WithStyles(ForwardRef(Switch))
               checked={false}
               color="secondary"
+              disabled={false}
               onChange={[Function]}
               value="active"
             />
@@ -540,7 +543,9 @@ exports[`Navigation tests switchs behavior 2`] = `
           </WithStyles(ForwardRef(ListItemSecondaryAction))>
         </WithStyles(ForwardRef(ListItem))>
         <WithStyles(ForwardRef(Divider)) />
-        <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))
+          disabled={false}
+        >
           <WithStyles(ForwardRef(ListItemText))
             className="Navigation__ListItemText"
             primary={
@@ -558,6 +563,7 @@ exports[`Navigation tests switchs behavior 2`] = `
             <WithStyles(ForwardRef(Switch))
               checked={true}
               color="secondary"
+              disabled={false}
               onChange={[Function]}
               value="active"
             />
