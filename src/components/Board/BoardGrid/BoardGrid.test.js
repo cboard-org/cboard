@@ -1,15 +1,20 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import { shallow } from 'enzyme';
 import BoardGrid from './BoardGrid.component';
-import Button from '@material-ui/core/Button';
 import { Scannable } from 'react-scannable';
 import BoardPagination from './BoardPagination';
 import Grid from '../../Grid';
 import FixedGrid from '../../FixedGrid';
 import ScrollButtons from '../../ScrollButtons';
+import NavigationButtons from '../../NavigationButtons';
+import { NAVIGATION_BUTTONS_STYLE_TOP } from '../../Settings/Navigation/Navigation.constants';
 
 jest.unmock('react-intl');
+
+const paginationIntl = {
+  formatMessage: ({ defaultMessage }, values = {}) =>
+    defaultMessage.replace(/\{(\w+)\}/g, (_, key) => values[key])
+};
 
 const props = {
   board: {
@@ -65,6 +70,27 @@ it.each([undefined, 'scroll'])(
     expect(wrapper.find(ScrollButtons)).toHaveLength(1);
   }
 );
+it.each([
+  ['pagination', true],
+  ['scroll', false]
+])(
+  'back buttons in %s mode are on the sides: %s, even with the overlay style',
+  (mode, onTheSide) => {
+    const wrapper = shallow(
+      <BoardGrid
+        {...props}
+        navigationSettings={{
+          boardNavigationMode: mode,
+          caBackButtonActive: true,
+          navigationButtonsStyle: NAVIGATION_BUTTONS_STYLE_TOP
+        }}
+      />
+    );
+    expect(
+      wrapper.find(NavigationButtons).prop('isNavigationButtonsOnTheSide')
+    ).toBe(onTheSide);
+  }
+);
 it('edits the complete board, even when pagination is the preferred navigation mode', () => {
   const wrapper = shallow(<BoardGrid {...props} isSelecting />);
   expect(wrapper.find(BoardPagination)).toHaveLength(0);
@@ -90,20 +116,30 @@ it.each([0, 1, 2])(
   (page) => {
     const onChange = jest.fn();
     const wrapper = shallow(
-      <BoardPagination page={page} pageCount={3} onChange={onChange} />
+      <BoardPagination
+        page={page}
+        pageCount={3}
+        onChange={onChange}
+        intl={paginationIntl}
+      />
     );
-    const buttons = wrapper.find(Button);
+    const buttons = wrapper.find('button');
     expect(buttons).toHaveLength(2);
     buttons.forEach((button) => {
       expect(button.prop('disabled')).toBe(false);
-      expect(button.prop('color')).toBe('primary');
     });
-    const labels = wrapper.find(FormattedMessage);
-    expect(labels.at(0).prop('defaultMessage')).toBe(
+    expect(wrapper.find('.SideNavigationButton.disable')).toHaveLength(0);
+    expect(buttons.at(0).prop('aria-label')).toBe(
       page === 0 ? 'Last page' : 'Previous page'
     );
-    expect(labels.at(2).prop('defaultMessage')).toBe(
+    expect(buttons.at(1).prop('aria-label')).toBe(
       page === 2 ? 'First page' : 'Next page'
+    );
+    expect(buttons.at(0).find('.BoardPagination__counter').text()).toBe(
+      `${page + 1} / 3`
+    );
+    expect(wrapper.find('[role="status"]').text()).toBe(
+      `Page ${page + 1} of 3`
     );
     buttons.at(0).simulate('click');
     expect(onChange).toHaveBeenLastCalledWith((page + 2) % 3);
@@ -114,13 +150,19 @@ it.each([0, 1, 2])(
     ).toBe(true);
   }
 );
-it('disables page controls and scanning when there is only one page', () => {
+it('greys out page controls and disables scanning when there is only one page', () => {
   const wrapper = shallow(
-    <BoardPagination page={0} pageCount={1} onChange={jest.fn()} />
+    <BoardPagination
+      page={0}
+      pageCount={1}
+      onChange={jest.fn()}
+      intl={paginationIntl}
+    />
   );
   expect(
-    wrapper.find(Button).everyWhere((button) => button.prop('disabled'))
+    wrapper.find('button').everyWhere((button) => button.prop('disabled'))
   ).toBe(true);
+  expect(wrapper.find('.SideNavigationButton.disable')).toHaveLength(2);
   expect(
     wrapper.find(Scannable).everyWhere((control) => control.prop('disabled'))
   ).toBe(true);
