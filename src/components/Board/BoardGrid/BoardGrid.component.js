@@ -61,6 +61,7 @@ const BoardGrid = ({
   const bigScrollButtonsActive =
     navigationSettings.bigScrollButtonsActive && !paginated;
   const isNavigationButtonsOnTheSide =
+    paginated ||
     navigationSettings.navigationButtonsStyle === undefined ||
     navigationSettings.navigationButtonsStyle ===
       NAVIGATION_BUTTONS_STYLE_SIDES;
@@ -252,14 +253,16 @@ const BoardGrid = ({
             />
           </div>
         </Scannable>
-        {paginated && (
-          <BoardPagination
-            page={page}
-            pageCount={pageCount}
-            onChange={setPage}
-          />
-        )}
       </div>
+
+      {paginated && (
+        <BoardPagination
+          page={page}
+          pageCount={pageCount}
+          onChange={setPage}
+          intl={intl}
+        />
+      )}
 
       {bigScrollButtonsActive && (
         <ScrollButtons
