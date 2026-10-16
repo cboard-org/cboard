@@ -1264,50 +1264,43 @@ export function updateApiObjectsNoChild(
   return async (dispatch, getState) => {
     //create - update parent board
     const action = createParentBoard ? createApiBoard : updateApiBoard;
-    return await dispatch(action(parentBoard, parentBoard.id))
-      .then((res) => {
-        const updatedParentBoardId = res.id;
-        //add new boards to the active communicator
-        if (parentBoard.id !== updatedParentBoardId) {
-          dispatch(
-            replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
-          );
-        }
-
+    return await dispatch(action(parentBoard, parentBoard.id)).then((res) => {
+      const updatedParentBoardId = res.id;
+      //add new boards to the active communicator
+      if (parentBoard.id !== updatedParentBoardId) {
         dispatch(
-          replaceDefaultHomeBoardIfIsNescesary(
-            parentBoard.id,
-            updatedParentBoardId
-          )
+          replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
         );
+      }
 
-        //check if parent board is the root board of the communicator
-        const comm = getState().communicator.communicators.find(
-          (communicator) =>
-            communicator.id === getState().communicator.activeCommunicatorId
-        );
-        if (comm.rootBoard === parentBoard.id) {
-          comm.rootBoard = updatedParentBoardId;
-          comm.activeBoardId = updatedParentBoardId;
-          dispatch(upsertCommunicator(comm));
-        }
-        return dispatch(upsertApiCommunicator(comm))
-          .then(async () => {
-            await dispatch(updateApiMarkedBoards());
-            return updatedParentBoardId;
-          })
-          .catch((e) => {
-            throw new Error(e.message);
-          });
-      })
-      .catch((e) => {
-        throw new Error(e.message);
+      dispatch(
+        replaceDefaultHomeBoardIfIsNescesary(
+          parentBoard.id,
+          updatedParentBoardId
+        )
+      );
+
+      //check if parent board is the root board of the communicator
+      const comm = getState().communicator.communicators.find(
+        (communicator) =>
+          communicator.id === getState().communicator.activeCommunicatorId
+      );
+      if (comm.rootBoard === parentBoard.id) {
+        comm.rootBoard = updatedParentBoardId;
+        comm.activeBoardId = updatedParentBoardId;
+        dispatch(upsertCommunicator(comm));
+      }
+      return dispatch(upsertApiCommunicator(comm)).then(async () => {
+        await dispatch(updateApiMarkedBoards());
+        return updatedParentBoardId;
       });
+    });
   };
 }
 export function updateApiMarkedBoards() {
   return async (dispatch, getState) => {
     const allBoards = [...getState().board.boards];
+    const failures = [];
     for await (const board of allBoards) {
       const boardsIds = getState().board.boards?.map((board) => board.id);
       if (!boardsIds.includes(board.id)) continue;
@@ -1323,7 +1316,7 @@ export function updateApiMarkedBoards() {
           await dispatch(updateApiBoard(board));
           dispatch(unmarkBoard(board.id));
         } catch (e) {
-          throw new Error(e.message);
+          failures.push({ boardId: board.id, operation: 'update', error: e });
         }
       }
       if (isLocalBoard(board) && board.shouldCreateBoard) {
@@ -1350,9 +1343,16 @@ export function updateApiMarkedBoards() {
             replaceBoard({ ...boardData }, { ...boardData, id: boardId })
           );
         } catch (err) {
-          console.log(err.message);
+          failures.push({ boardId: board.id, operation: 'create', error: err });
         }
       }
+    }
+    if (failures.length > 0) {
+      const error = new Error(
+        `Failed to sync marked boards: ${failures.map(({ boardId }) => boardId).join(', ')}`
+      );
+      error.failures = failures;
+      throw error;
     }
   };
 }
@@ -1371,68 +1371,56 @@ export function updateApiObjects(
 ) {
   return (dispatch, getState) => {
     //create child board
-    return dispatch(createApiBoard(childBoard, childBoard.id))
-      .then((res) => {
-        const updatedChildBoardId = res.id;
-        //create - update parent board
-        const updateTilesParentBoard = () =>
-          parentBoard.tiles.map((tile) => {
-            if (tile.loadBoard === childBoard.id)
-              return { ...tile, loadBoard: updatedChildBoardId };
-            return tile;
-          });
-        const updatedParentBoard = {
-          ...parentBoard,
-          tiles: createParentBoard
-            ? updateTilesParentBoard()
-            : parentBoard.tiles
-        };
-        const action = createParentBoard ? createApiBoard : updateApiBoard;
-        return dispatch(action(updatedParentBoard, parentBoard.id))
-          .then((res) => {
-            const updatedParentBoardId = res.id;
-            //add new boards to the active communicator
+    return dispatch(createApiBoard(childBoard, childBoard.id)).then((res) => {
+      const updatedChildBoardId = res.id;
+      //create - update parent board
+      const updateTilesParentBoard = () =>
+        parentBoard.tiles.map((tile) => {
+          if (tile.loadBoard === childBoard.id)
+            return { ...tile, loadBoard: updatedChildBoardId };
+          return tile;
+        });
+      const updatedParentBoard = {
+        ...parentBoard,
+        tiles: createParentBoard ? updateTilesParentBoard() : parentBoard.tiles
+      };
+      const action = createParentBoard ? createApiBoard : updateApiBoard;
+      return dispatch(action(updatedParentBoard, parentBoard.id)).then(
+        (res) => {
+          const updatedParentBoardId = res.id;
+          //add new boards to the active communicator
+          dispatch(
+            replaceBoardCommunicator(childBoard.id, updatedChildBoardId)
+          );
+          if (parentBoard.id !== updatedParentBoardId) {
             dispatch(
-              replaceBoardCommunicator(childBoard.id, updatedChildBoardId)
+              replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
             );
-            if (parentBoard.id !== updatedParentBoardId) {
-              dispatch(
-                replaceBoardCommunicator(parentBoard.id, updatedParentBoardId)
-              );
-            }
+          }
 
-            dispatch(
-              replaceDefaultHomeBoardIfIsNescesary(
-                parentBoard.id,
-                updatedParentBoardId
-              )
-            );
+          dispatch(
+            replaceDefaultHomeBoardIfIsNescesary(
+              parentBoard.id,
+              updatedParentBoardId
+            )
+          );
 
-            //check if parent board is the root board of the communicator
-            const comm = getState().communicator.communicators.find(
-              (communicator) =>
-                communicator.id === getState().communicator.activeCommunicatorId
-            );
-            if (comm.rootBoard === parentBoard.id) {
-              comm.rootBoard = updatedParentBoardId;
-              comm.activeBoardId = updatedParentBoardId;
-              dispatch(upsertCommunicator(comm));
-            }
-            return dispatch(upsertApiCommunicator(comm))
-              .then(() => {
-                dispatch(updateApiMarkedBoards());
-                return updatedParentBoardId;
-              })
-              .catch((e) => {
-                throw new Error(e.message);
-              });
-          })
-          .catch((e) => {
-            throw new Error(e.message);
+          //check if parent board is the root board of the communicator
+          const comm = getState().communicator.communicators.find(
+            (communicator) =>
+              communicator.id === getState().communicator.activeCommunicatorId
+          );
+          if (comm.rootBoard === parentBoard.id) {
+            comm.rootBoard = updatedParentBoardId;
+            comm.activeBoardId = updatedParentBoardId;
+            dispatch(upsertCommunicator(comm));
+          }
+          return dispatch(upsertApiCommunicator(comm)).then(async () => {
+            await dispatch(updateApiMarkedBoards());
+            return updatedParentBoardId;
           });
-      })
-      .catch((e) => {
-        throw new Error(e.message);
-      });
+        }
+      );
+    });
   };
 }
