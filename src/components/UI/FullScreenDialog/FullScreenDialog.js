@@ -23,7 +23,8 @@ FullScreenDialog.propTypes = {
   onSubmit: PropTypes.func,
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
+  TransitionProps: PropTypes.object
 };
 
 FullScreenDialog.defaultProps = {
@@ -96,7 +97,8 @@ function FullScreenDialog(props) {
     onClose,
     onSubmit,
     transition = transitions.UP,
-    fullWidth
+    fullWidth,
+    TransitionProps
   } = props;
 
   const theme = useTheme();
@@ -107,6 +109,7 @@ function FullScreenDialog(props) {
       fullScreen
       open={open}
       TransitionComponent={getTransition(transition)}
+      TransitionProps={TransitionProps}
       onClose={onClose}
     >
       <AppBar className={classes.appBar}>

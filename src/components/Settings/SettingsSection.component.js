@@ -30,6 +30,7 @@ export class SettingsSection extends PureComponent {
     return (
       <Paper className="Settings__section">
         <List
+          className="Settings__list"
           subheader={
             <ListSubheader>
               <FormattedMessage {...subheader} />
@@ -55,11 +56,8 @@ export class SettingsSection extends PureComponent {
 
               return (
                 <Fragment key={index}>
-                  <ListItem {...listItemProps}>
-                    <div
-                      className="Settings__Item__Container"
-                      id={item.text.defaultMessage}
-                    >
+                  <ListItem {...listItemProps} id={item.text.defaultMessage}>
+                    <div className="Settings__Item__Container">
                       <ListItemIcon>{item.icon}</ListItemIcon>
                       <ListItemText
                         primary={<FormattedMessage {...item.text} />}

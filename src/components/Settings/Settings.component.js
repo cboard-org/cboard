@@ -46,6 +46,13 @@ const propTypes = {
 };
 
 export class Settings extends PureComponent {
+  state = { isDialogEntered: false };
+
+  handleDialogEntered = () => {
+    // Tour targets must be measured after the dialog's slide transition settles.
+    this.setState({ isDialogEntered: true });
+  };
+
   getSettingsSections() {
     const { isLogged, logout, user, isInFreeCountry } = this.props;
 
@@ -242,6 +249,7 @@ export class Settings extends PureComponent {
         open
         title={<FormattedMessage {...messages.settings} />}
         onClose={this.handleGoBack}
+        TransitionProps={{ onEntered: this.handleDialogEntered }}
         buttons={
           isSettingsLocation &&
           !isSettingsTourEnabled &&
@@ -274,13 +282,15 @@ export class Settings extends PureComponent {
               key={index}
             />
           ))}
-        {isSettingsLocation && isSettingsTourEnabled && (
-          <SettingsTour
-            intl={intl}
-            disableTour={disableTour}
-            isSettingsTourEnabled={isSettingsTourEnabled}
-          />
-        )}
+        {isSettingsLocation &&
+          isSettingsTourEnabled &&
+          this.state.isDialogEntered && (
+            <SettingsTour
+              intl={intl}
+              disableTour={disableTour}
+              isSettingsTourEnabled={isSettingsTourEnabled}
+            />
+          )}
       </FullScreenDialog>
     );
   }
