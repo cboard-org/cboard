@@ -17,6 +17,11 @@
   margin-bottom: 8px;
 }
 
+/* Joyride measures row offsets from the fixed dialog, not individual lists. */
+.Settings__section .Settings__list {
+  position: static;
+}
+
 .adSense__marker {
   display: none;
   height: 198px;

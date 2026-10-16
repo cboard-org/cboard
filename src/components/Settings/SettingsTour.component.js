@@ -315,11 +315,11 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
         steps={settingsTourSteps}
         continuous={true}
         showSkipButton={true}
-        //disableScrollParentFix={true}
+        disableScrollParentFix={true}
         showProgress={false}
         disableOverlayClose={true}
         run={isSettingsTourEnabled}
-        scrollOffset={500}
+        scrollOffset={20}
         spotlightPadding={4}
         styles={joyRideStyles}
         scrollDuration={100}
