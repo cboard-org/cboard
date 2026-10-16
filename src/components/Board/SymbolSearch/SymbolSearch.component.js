@@ -479,10 +479,27 @@ export class SymbolSearch extends PureComponent {
     );
   }
 
-  renderSuggestionsContainer(options) {
+  handleFilterBarResize = (bottom) => {
+    const parentTop =
+      this.suggestionsContainer?.offsetParent?.getBoundingClientRect().top || 0;
+    this.setState({ suggestionsTop: Math.ceil(bottom - parentTop + 4) });
+  };
+
+  renderSuggestionsContainer = (options) => {
     const { containerProps, children } = options;
-    return <div {...containerProps}>{children}</div>;
-  }
+    return (
+      <div
+        {...containerProps}
+        ref={(node) => {
+          this.suggestionsContainer = node;
+          containerProps.ref(node);
+        }}
+        style={{ ...containerProps.style, top: this.state.suggestionsTop }}
+      >
+        {children}
+      </div>
+    );
+  };
 
   handleChangeOption = (opt) => {
     const newSymbolSets = this.state.symbolSets.map((option) => {
@@ -610,6 +627,7 @@ export class SymbolSearch extends PureComponent {
           <FilterBar
             options={this.state.symbolSets}
             onChange={this.handleChangeOption}
+            onResize={this.handleFilterBarResize}
           />
           {symbolNotFound}
           {isSymbolSearchTourEnabled && (

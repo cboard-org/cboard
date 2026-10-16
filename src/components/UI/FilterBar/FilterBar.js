@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -7,10 +7,28 @@ import Switch from '@material-ui/core/Switch';
 import './FilterBar.css';
 
 function FilterBar(props) {
-  const { onChange, options } = props;
+  const { onChange, options, onResize } = props;
+  const barRef = useRef(null);
+
+  useLayoutEffect(() => {
+    if (!onResize) return;
+    const measure = () =>
+      onResize(barRef.current.getBoundingClientRect().bottom);
+    measure();
+    const observer =
+      typeof ResizeObserver !== 'undefined'
+        ? new ResizeObserver(measure)
+        : null;
+    observer?.observe(barRef.current);
+    window.addEventListener('resize', measure);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, [onResize]);
 
   return (
-    <div className="FilterBar">
+    <div className="FilterBar" ref={barRef}>
       <FormGroup className="FilterBar__FormGroup" row>
         {options.map((opt) => {
           return (
@@ -38,6 +56,7 @@ function FilterBar(props) {
 }
 
 FilterBar.propTypes = {
+  onResize: PropTypes.func,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
