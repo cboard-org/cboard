@@ -816,11 +816,7 @@ export function pushLocalChangesToApi(remoteBoards = []) {
 
     const userName = getState().app?.userData?.name || '';
     const locale = getState().language?.lang;
-    const {
-      boards,
-      activeBoardId: activeBoardIdBeforePush,
-      syncMeta
-    } = getState().board;
+    const { boards, syncMeta } = getState().board;
 
     const { boardsToSync, boardsToDelete } = classifyBoardsForPush({
       boards,
@@ -862,9 +858,6 @@ export function pushLocalChangesToApi(remoteBoards = []) {
             updateApiObjectsNoChild(board, true)
           );
           dispatch(replaceBoard(board, { ...board, id: newBoardId }));
-          if (activeBoardIdBeforePush === board.id) {
-            replaceHistoryWithActiveBoardId(getState);
-          }
         } else {
           await dispatch(updateApiBoard(board));
         }
@@ -1065,6 +1058,13 @@ export function createApiBoard(boardData, boardId) {
     return API.createBoard(boardData)
       .then((res) => {
         dispatch(createApiBoardSuccess(res, boardId));
+        // Repair the route before later communicator/cascade work can fail.
+        if (history.location.pathname === `/board/${boardId}`) {
+          history.replace({
+            ...history.location,
+            pathname: `/board/${res.id}`
+          });
+        }
         return res;
       })
       .catch((err) => {

@@ -506,6 +506,13 @@ function boardReducer(state = initialState, action) {
         ...state,
         isFetching: false,
         boards: finalBoards,
+        activeBoardId:
+          state.activeBoardId === action.boardId
+            ? action.board.id
+            : state.activeBoardId,
+        navHistory: state.navHistory.map((id) =>
+          id === action.boardId ? action.board.id : id
+        ),
         syncMeta: createdBoard
           ? setSyncMeta(newSyncMeta, action.board.id, {
               status: createdStillPending
