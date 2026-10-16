@@ -30,8 +30,28 @@
 
 @media (max-width: 500px) {
   .FilterBar > .FilterBar__FormGroup {
-    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4px 8px;
     justify-content: center;
     align-items: center;
+  }
+
+  .FilterBar .MuiFormControlLabel-root {
+    flex-direction: row;
+    margin: 0;
+    min-width: 0;
+    min-height: 44px;
+  }
+
+  .FilterBar .MuiSwitch-root {
+    flex-shrink: 0;
+  }
+
+  .FilterBar .MuiFormControlLabel-label {
+    min-width: 0;
+    font-size: 0.8125rem;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
   }
 }
