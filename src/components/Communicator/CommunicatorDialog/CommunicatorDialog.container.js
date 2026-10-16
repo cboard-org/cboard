@@ -59,7 +59,7 @@ const findBoards = (boards, criteria, page, search = '') => {
   };
 };
 
-class CommunicatorDialogContainer extends React.Component {
+export class CommunicatorDialogContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -315,15 +315,13 @@ class CommunicatorDialogContainer extends React.Component {
         try {
           const nextBoard = await API.getBoard(tile.loadBoard);
           await this.createBoardsRecursively(nextBoard, records);
-        } catch (err) {
-          if (!err.respose || err.response?.status === 404) {
-            //look for this board in available boards
-            const localBoard = availableBoards.find(
-              (b) => b.id === tile.loadBoard
-            );
-            if (localBoard) {
-              await this.createBoardsRecursively(localBoard, records);
-            }
+        } catch {
+          // Preserve local copying after any API failure.
+          const localBoard = availableBoards.find(
+            (b) => b.id === tile.loadBoard
+          );
+          if (localBoard) {
+            await this.createBoardsRecursively(localBoard, records);
           }
         }
       }
