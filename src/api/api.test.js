@@ -286,6 +286,32 @@ describe('Cboard API calls', () => {
       expect(sanitized.tiles[1].sound).toBe('https://cdn.example.com/keep.mp3');
     });
 
+    it('uses the audio MIME type for the uploaded sound filename', async () => {
+      const tryUploadDataURL = jest
+        .spyOn(API, 'tryUploadDataURL')
+        .mockResolvedValue({
+          url: 'https://cdn.example.com/sound.webm',
+          unrecoverable: false
+        });
+
+      const board = {
+        id: 'b1',
+        tiles: [{ id: 't1', sound: 'data:audio/webm;base64,AAAA' }]
+      };
+
+      const { board: sanitized, hadFailure } =
+        await API.uploadBoardLocalMedia(board);
+
+      expect(hadFailure).toBe(false);
+      expect(tryUploadDataURL).toHaveBeenCalledWith(
+        'data:audio/webm;base64,AAAA',
+        't1.webm'
+      );
+      expect(sanitized.tiles[0].sound).toBe(
+        'https://cdn.example.com/sound.webm'
+      );
+    });
+
     it('replaces both image and sound on the same tile', async () => {
       jest
         .spyOn(API, 'tryUploadDataURL')
