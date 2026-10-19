@@ -545,13 +545,16 @@ class API {
 
   async uploadTileSoundMedia(tile) {
     if (isDataURL(tile.sound)) {
+      const mime =
+        tile.sound.match(/^data:(audio\/[^;,]+)/)?.[1] ?? 'audio/mpeg';
+      const subtype = mime.split('/')[1]?.toLowerCase();
+      const ext = subtype === 'mpeg' ? 'mp3' : subtype || 'mp3';
       const { url, unrecoverable } = await this.tryUploadDataURL(
         tile.sound,
-        `${tile.id}.mp3`
+        `${tile.id}.${ext}`
       );
       return { attempted: true, url, unrecoverable };
     }
-
     return { attempted: false, url: null, unrecoverable: false };
   }
 
