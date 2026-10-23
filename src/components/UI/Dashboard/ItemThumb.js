@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 
-import { isCordova } from '../../../../cordova-util';
+import { isCordova } from '../../../cordova-util';
 
 const useStyles = makeStyles((theme) => {
   const dark = theme.palette.type === 'dark';
@@ -36,31 +36,42 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const resolveCaption = (caption) => {
-  if (isCordova() && caption && caption.search('/') === 0) {
-    return `.${caption}`;
+const resolveSrc = (src) => {
+  if (isCordova() && src && src.search('/') === 0) {
+    return `.${src}`;
   }
-  return caption;
+  return src;
 };
 
-const BoardThumb = ({ board, className }) => {
+/**
+ * Thumbnail slot for a dashboard item: `children` (e.g. a generated QR code)
+ * take precedence over `src`; with neither, the placeholder icon is shown.
+ */
+const ItemThumb = ({ src, alt, icon: Icon, children, className }) => {
   const classes = useStyles();
-  const caption = resolveCaption(board.caption);
+  const resolvedSrc = resolveSrc(src);
 
-  return (
-    <div className={`${classes.root} ${className || ''}`}>
-      {caption ? (
-        <img className={classes.image} src={caption} alt={board.name || ''} />
-      ) : (
-        <ViewModuleIcon className={classes.placeholder} />
-      )}
-    </div>
-  );
+  let content = <Icon className={classes.placeholder} />;
+  if (children) {
+    content = children;
+  } else if (resolvedSrc) {
+    content = <img className={classes.image} src={resolvedSrc} alt={alt} />;
+  }
+
+  return <div className={`${classes.root} ${className || ''}`}>{content}</div>;
 };
 
-BoardThumb.propTypes = {
-  board: PropTypes.object.isRequired,
+ItemThumb.propTypes = {
+  src: PropTypes.string,
+  alt: PropTypes.string,
+  icon: PropTypes.elementType,
+  children: PropTypes.node,
   className: PropTypes.string
 };
 
-export default BoardThumb;
+ItemThumb.defaultProps = {
+  alt: '',
+  icon: ViewModuleIcon
+};
+
+export default ItemThumb;
