@@ -1,10 +1,10 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Drawer from '@material-ui/core/Drawer';
-import BoardDetailsSurface from './BoardDetailsSurface';
-import BoardDetails from './BoardDetails';
+import ItemDetailsSurface from './ItemDetailsSurface';
+import ItemDetails from './ItemDetails';
 
-jest.mock('../CommunicatorDialog.messages', () => ({
+jest.mock('./Dashboard.messages', () => ({
   __esModule: true,
   default: new Proxy(
     {},
@@ -17,7 +17,7 @@ jest.mock('../CommunicatorDialog.messages', () => ({
   )
 }));
 
-jest.mock('../shared/BoardThumb', () => ({
+jest.mock('./ItemThumb', () => ({
   __esModule: true,
   default: () => null
 }));
@@ -35,28 +35,31 @@ const setViewport = (matches) => {
   }));
 };
 
-const board = {
-  id: 'b1',
-  name: 'Comidas',
-  tiles: [],
-  lastEdited: '2026-01-01T00:00:00.000Z'
+const item = {
+  selectedKey: 'b1',
+  title: 'Comidas',
+  meta: ['01/01/2026']
 };
 
 let plainWrappers = [];
 let attachedWrappers = [];
 let attachedNodes = [];
 
+const element = (props) => (
+  <ItemDetailsSurface
+    intl={intl}
+    label="Details"
+    emptyMessage="Select an item"
+    {...item}
+    actions={[]}
+    busy={false}
+    onClose={jest.fn()}
+    {...props}
+  />
+);
+
 const render = (props = {}) => {
-  const wrapper = mount(
-    <BoardDetailsSurface
-      intl={intl}
-      board={board}
-      actions={[]}
-      busy={false}
-      onClose={jest.fn()}
-      {...props}
-    />
-  );
+  const wrapper = mount(element(props));
   plainWrappers.push(wrapper);
   return wrapper;
 };
@@ -65,17 +68,7 @@ const renderAttached = (props = {}) => {
   const host = document.createElement('div');
   document.body.appendChild(host);
   attachedNodes.push(host);
-  const wrapper = mount(
-    <BoardDetailsSurface
-      intl={intl}
-      board={board}
-      actions={[]}
-      busy={false}
-      onClose={jest.fn()}
-      {...props}
-    />,
-    { attachTo: host }
-  );
+  const wrapper = mount(element(props), { attachTo: host });
   attachedWrappers.push(wrapper);
   return wrapper;
 };
@@ -87,7 +80,7 @@ const appendOutsideButton = () => {
   return outside;
 };
 
-describe('BoardDetailsSurface', () => {
+describe('ItemDetailsSurface', () => {
   afterEach(() => {
     plainWrappers.forEach((wrapper) => {
       if (wrapper.length) {
@@ -114,7 +107,14 @@ describe('BoardDetailsSurface', () => {
     setViewport(false);
     const wrapper = render();
     expect(wrapper.find(Drawer)).toHaveLength(0);
-    expect(wrapper.find(BoardDetails)).toHaveLength(1);
+    expect(wrapper.find(ItemDetails)).toHaveLength(1);
+  });
+
+  it('titles the panel with the label when nothing is selected', () => {
+    setViewport(false);
+    const wrapper = render({ selectedKey: null });
+    expect(wrapper.find('h2').first().text()).toBe('Details');
+    expect(wrapper.text()).toContain('Select an item');
   });
 
   it('renders a bottom drawer on narrow viewports', () => {
@@ -125,9 +125,9 @@ describe('BoardDetailsSurface', () => {
     expect(drawer.prop('anchor')).toBe('bottom');
   });
 
-  it('opens the drawer only when a board is selected', () => {
+  it('opens the drawer only when an item is selected', () => {
     setViewport(true);
-    expect(render({ board: null }).find(Drawer).prop('open')).toBe(false);
+    expect(render({ selectedKey: null }).find(Drawer).prop('open')).toBe(false);
     expect(render().find(Drawer).prop('open')).toBe(true);
   });
 
@@ -136,7 +136,7 @@ describe('BoardDetailsSurface', () => {
     const onClose = jest.fn();
     const wrapper = render({ onClose });
 
-    wrapper.find('button[data-testid="close-board-details"]').simulate('click');
+    wrapper.find('button[data-testid="close-item-details"]').simulate('click');
 
     expect(onClose).toHaveBeenCalled();
   });
@@ -147,7 +147,7 @@ describe('BoardDetailsSurface', () => {
     const wrapper = render({ onClose });
 
     wrapper
-      .find('[data-testid="board-details-panel"]')
+      .find('[data-testid="item-details-panel"]')
       .first()
       .simulate('keydown', {
         key: 'Escape'
@@ -156,24 +156,24 @@ describe('BoardDetailsSurface', () => {
     expect(onClose).toHaveBeenCalled();
   });
 
-  it('does not re-take focus when the selected board object is replaced', () => {
+  it('does not re-take focus when the selected item data changes', () => {
     setViewport(false);
     const outside = appendOutsideButton();
     const wrapper = renderAttached();
 
     outside.focus();
-    wrapper.setProps({ board: { ...board, isPublic: true } });
+    wrapper.setProps({ meta: ['02/01/2026'] });
 
     expect(document.activeElement).toBe(outside);
   });
 
-  it('moves focus into the details when a different board is selected', () => {
+  it('moves focus into the details when a different item is selected', () => {
     setViewport(false);
     const outside = appendOutsideButton();
     const wrapper = renderAttached();
 
     outside.focus();
-    wrapper.setProps({ board: { ...board, id: 'b2', name: 'Escuela' } });
+    wrapper.setProps({ selectedKey: 'b2', title: 'Escuela' });
 
     expect(document.activeElement.tagName).toBe('H2');
   });
