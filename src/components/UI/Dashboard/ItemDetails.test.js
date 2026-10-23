@@ -1,34 +1,12 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Button from '@material-ui/core/Button';
-import BoardDetails from './BoardDetails';
+import ItemDetails from './ItemDetails';
 
-jest.mock('../CommunicatorDialog.messages', () => ({
-  __esModule: true,
-  default: new Proxy(
-    {},
-    {
-      get: (target, prop) => ({
-        id: String(prop),
-        defaultMessage: String(prop)
-      })
-    }
-  )
-}));
-
-jest.mock('../shared/BoardThumb', () => ({
+jest.mock('./ItemThumb', () => ({
   __esModule: true,
   default: () => null
 }));
-
-const intl = { formatMessage: ({ defaultMessage }) => defaultMessage };
-
-const board = {
-  id: 'b1',
-  name: 'Comidas',
-  tiles: [{ id: 't1' }, { id: 't2' }],
-  lastEdited: '2026-01-01T00:00:00.000Z'
-};
 
 const actions = [
   { key: 'show', label: 'Show', icon: null, onClick: jest.fn() },
@@ -50,19 +28,30 @@ const actions = [
 
 const render = (props = {}) =>
   mount(
-    <BoardDetails
-      intl={intl}
-      board={board}
+    <ItemDetails
+      title="Comidas"
+      meta={['2 Tiles', '01/01/2026']}
       actions={actions}
       busy={false}
-      onClose={jest.fn()}
+      emptyMessage="Select an item"
       {...props}
     />
   );
 
-describe('BoardDetails', () => {
-  it('renders the board name', () => {
-    expect(render().text()).toContain('Comidas');
+describe('ItemDetails', () => {
+  it('renders the title and meta', () => {
+    const text = render().text();
+    expect(text).toContain('Comidas');
+    expect(text).toContain('2 Tiles');
+    expect(text).toContain('01/01/2026');
+  });
+
+  it('hides the title when asked to', () => {
+    expect(render({ hideTitle: true }).find('h2')).toHaveLength(0);
+  });
+
+  it('renders the chips slot', () => {
+    expect(render({ chips: <span>Root</span> }).text()).toContain('Root');
   });
 
   it('renders one button per action with a visible label', () => {
@@ -103,7 +92,7 @@ describe('BoardDetails', () => {
     expect(onClick).toHaveBeenCalled();
   });
 
-  it('renders a prompt when nothing is selected', () => {
-    expect(render({ board: null }).text()).toContain('selectBoardPrompt');
+  it('renders the empty message when nothing is selected', () => {
+    expect(render({ empty: true }).text()).toBe('Select an item');
   });
 });
