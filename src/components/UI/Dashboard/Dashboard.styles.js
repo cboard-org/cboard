@@ -1,13 +1,5 @@
 import { alpha } from '@material-ui/core/styles';
 
-/**
- * Shared presentational tokens for the dashboard surfaces (cards / rows).
- * Everything is derived from the active theme so light/dark and custom
- * primary colors keep working; values fall back gracefully if a theme token
- * is missing.
- */
-
-// Softer, more modern corner than the default 4px.
 export const softRadius = (theme) => (theme.shape.borderRadius || 4) * 2;
 
 const surfaceTransition = (theme) =>
@@ -15,10 +7,6 @@ const surfaceTransition = (theme) =>
     duration: theme.transitions.duration.shorter
   });
 
-/**
- * Hover / focus treatment shared by BoardCard and BoardRow so both surfaces
- * react identically. `lift` adds a subtle upward translate (cards only).
- */
 export const surfaceInteractive = (theme, { lift = false } = {}) => ({
   transition: surfaceTransition(theme),
   '&:hover': {
@@ -32,19 +20,11 @@ export const surfaceInteractive = (theme, { lift = false } = {}) => ({
   }
 });
 
-/**
- * Accent border used when a board is the communicator root or the active
- * board, so its status reads at a glance without extra chrome.
- */
 export const surfaceAccent = (theme) => ({
   borderColor: alpha(theme.palette.primary.main, 0.6),
   boxShadow: `inset 3px 0 0 0 ${theme.palette.primary.main}`
 });
 
-/**
- * Theme-aware busy overlay. The previous hard-coded white wash was invisible
- * (and wrong) in dark mode.
- */
 export const busyOverlay = (theme) => ({
   position: 'absolute',
   inset: 0,
