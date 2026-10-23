@@ -10,48 +10,20 @@ import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import StarIcon from '@material-ui/icons/Star';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import PublicIcon from '@material-ui/icons/Public';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-import {
-  SECTIONS,
-  SECTION_ORDER,
-  NAV_COLLAPSED_STORAGE_KEY
-} from '../CommunicatorDialog.constants';
-import messages from '../CommunicatorDialog.messages';
+import messages from './Dashboard.messages';
 
 export const NAV_WIDTH = 260;
 export const NAV_WIDTH_COLLAPSED = 64;
 
-// Icons are static; message lookups are done at render time so importing this
-// module has no side effects (react-intl is auto-mocked in tests).
-const SECTION_ICONS = {
-  [SECTIONS.MY_BOARDS]: DashboardIcon,
-  [SECTIONS.MY_COMMUNICATOR]: StarIcon,
-  [SECTIONS.COMMUNITY]: PublicIcon
-};
-
-const SECTION_LABELS = {
-  [SECTIONS.MY_BOARDS]: {
-    label: 'sectionMyBoards',
-    hint: 'sectionMyBoardsHint'
-  },
-  [SECTIONS.MY_COMMUNICATOR]: {
-    label: 'sectionQuickAccess',
-    hint: 'sectionQuickAccessHint'
-  },
-  [SECTIONS.COMMUNITY]: {
-    label: 'sectionCommunity',
-    hint: 'sectionCommunityHint'
+const readStoredCollapsed = (storageKey) => {
+  if (!storageKey) {
+    return false;
   }
-};
-
-const readStoredCollapsed = () => {
   try {
-    return window.localStorage.getItem(NAV_COLLAPSED_STORAGE_KEY) === 'true';
+    return window.localStorage.getItem(storageKey) === 'true';
   } catch (e) {
     return false;
   }
@@ -167,20 +139,17 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const NavList = ({ intl, section, onChange, collapsed }) => {
+const NavList = ({ sections, idPrefix, section, onChange, collapsed }) => {
   const classes = useStyles();
   return (
     <List className={classes.list} component="nav">
-      {SECTION_ORDER.map((key) => {
-        const meta = SECTION_LABELS[key];
-        const Icon = SECTION_ICONS[key];
+      {sections.map(({ key, label, hint, icon: Icon }) => {
         const selected = section === key;
-        const label = intl.formatMessage(messages[meta.label]);
         const item = (
           <ListItem
             button
             key={key}
-            id={`CommunicatorDialog__nav-${key}`}
+            id={`${idPrefix}__nav-${key}`}
             selected={selected}
             className={classes.item}
             onClick={() => onChange(key)}
@@ -203,7 +172,7 @@ const NavList = ({ intl, section, onChange, collapsed }) => {
               }}
               secondaryTypographyProps={{ noWrap: true }}
               primary={label}
-              secondary={intl.formatMessage(messages[meta.hint])}
+              secondary={hint}
             />
           </ListItem>
         );
@@ -224,13 +193,18 @@ const NavList = ({ intl, section, onChange, collapsed }) => {
 
 const DashboardNav = ({
   intl,
+  sections,
   section,
   onChange,
   mobileOpen,
-  onMobileClose
+  onMobileClose,
+  idPrefix,
+  collapsedStorageKey
 }) => {
   const classes = useStyles();
-  const [collapsed, setCollapsed] = useState(readStoredCollapsed);
+  const [collapsed, setCollapsed] = useState(() =>
+    readStoredCollapsed(collapsedStorageKey)
+  );
 
   const handleChange = (key) => {
     onChange(key);
@@ -240,8 +214,11 @@ const DashboardNav = ({
   const handleToggle = () => {
     const next = !collapsed;
     setCollapsed(next);
+    if (!collapsedStorageKey) {
+      return;
+    }
     try {
-      window.localStorage.setItem(NAV_COLLAPSED_STORAGE_KEY, String(next));
+      window.localStorage.setItem(collapsedStorageKey, String(next));
     } catch (e) {
       // storage unavailable (private mode) — collapse state stays session-only
     }
@@ -271,15 +248,16 @@ const DashboardNav = ({
                 onClick={handleToggle}
                 aria-label={toggleLabel}
                 aria-expanded={!collapsed}
-                aria-controls="CommunicatorDialog__nav-list"
+                aria-controls={`${idPrefix}__nav-list`}
               >
                 {collapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
               </IconButton>
             </Tooltip>
           </div>
-          <div id="CommunicatorDialog__nav-list">
+          <div id={`${idPrefix}__nav-list`}>
             <NavList
-              intl={intl}
+              sections={sections}
+              idPrefix={idPrefix}
               section={section}
               onChange={onChange}
               collapsed={collapsed}
@@ -295,7 +273,12 @@ const DashboardNav = ({
           ModalProps={{ keepMounted: true }}
           classes={{ paper: classes.temporaryPaper }}
         >
-          <NavList intl={intl} section={section} onChange={handleChange} />
+          <NavList
+            sections={sections}
+            idPrefix={idPrefix}
+            section={section}
+            onChange={handleChange}
+          />
         </Drawer>
       </Hidden>
     </>
@@ -304,15 +287,26 @@ const DashboardNav = ({
 
 DashboardNav.propTypes = {
   intl: intlShape.isRequired,
+  sections: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      hint: PropTypes.string,
+      icon: PropTypes.elementType.isRequired
+    })
+  ).isRequired,
   section: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   mobileOpen: PropTypes.bool,
-  onMobileClose: PropTypes.func
+  onMobileClose: PropTypes.func,
+  idPrefix: PropTypes.string,
+  collapsedStorageKey: PropTypes.string
 };
 
 DashboardNav.defaultProps = {
   mobileOpen: false,
-  onMobileClose: () => {}
+  onMobileClose: () => {},
+  idPrefix: 'Dashboard'
 };
 
 export default DashboardNav;
