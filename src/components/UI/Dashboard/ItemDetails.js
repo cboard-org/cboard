@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { intlShape } from 'react-intl';
-import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
-import BoardThumb from '../shared/BoardThumb';
-import BoardStatusChips from '../shared/BoardStatusChips';
-import { formatBoardLocale } from '../utils/boardLocale';
-import PremiumFeature from '../../../PremiumFeature';
-import messages from '../CommunicatorDialog.messages';
+import ItemThumb from './ItemThumb';
+import PremiumFeature from '../../PremiumFeature';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -92,39 +87,40 @@ ActionButton.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const BoardDetails = ({
-  intl,
-  board,
+const ItemDetails = ({
+  empty,
+  emptyMessage,
+  title,
+  meta,
+  chips,
+  thumb,
   actions,
   busy,
-  communicator,
-  activeBoardId,
   headingRef,
   hideTitle
 }) => {
   const classes = useStyles();
 
-  if (!board) {
+  if (empty) {
     return (
       <div className={classes.empty}>
-        <Typography variant="body2">
-          {intl.formatMessage(messages.selectBoardPrompt)}
-        </Typography>
+        <Typography variant="body2">{emptyMessage}</Typography>
       </div>
     );
   }
 
-  const title = board.name || board.id;
-  const locale = formatBoardLocale(intl, board.locale);
-  const metaParts = [
-    intl.formatMessage(messages.tilesQty, { qty: board.tiles.length }),
-    locale,
-    moment(board.lastEdited).format('DD/MM/YYYY')
-  ].filter(Boolean);
+  const metaParts = meta.filter(Boolean);
 
   return (
     <div className={classes.root}>
-      <BoardThumb board={board} className={classes.thumb} />
+      <ItemThumb
+        className={classes.thumb}
+        src={thumb.src}
+        alt={thumb.alt}
+        icon={thumb.icon}
+      >
+        {thumb.content}
+      </ItemThumb>
 
       <div className={classes.header}>
         {!hideTitle && (
@@ -150,14 +146,7 @@ const BoardDetails = ({
             </React.Fragment>
           ))}
         </Typography>
-        {communicator && (
-          <BoardStatusChips
-            intl={intl}
-            board={board}
-            isRoot={communicator.rootBoard === board.id}
-            isActive={activeBoardId === board.id}
-          />
-        )}
+        {chips}
       </div>
 
       <Divider />
@@ -176,21 +165,42 @@ const BoardDetails = ({
   );
 };
 
-BoardDetails.defaultProps = {
+ItemDetails.defaultProps = {
+  empty: false,
+  meta: [],
+  thumb: {},
   actions: [],
   busy: false,
   hideTitle: false
 };
 
-BoardDetails.propTypes = {
-  intl: intlShape.isRequired,
-  board: PropTypes.object,
-  actions: PropTypes.array,
+ItemDetails.propTypes = {
+  empty: PropTypes.bool,
+  emptyMessage: PropTypes.node,
+  title: PropTypes.string,
+  meta: PropTypes.arrayOf(PropTypes.string),
+  chips: PropTypes.node,
+  thumb: PropTypes.shape({
+    src: PropTypes.string,
+    alt: PropTypes.string,
+    icon: PropTypes.elementType,
+    content: PropTypes.node
+  }),
+  actions: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      label: PropTypes.node.isRequired,
+      icon: PropTypes.node,
+      hint: PropTypes.string,
+      disabled: PropTypes.bool,
+      destructive: PropTypes.bool,
+      premium: PropTypes.bool,
+      onClick: PropTypes.func
+    })
+  ),
   busy: PropTypes.bool,
-  communicator: PropTypes.object,
-  activeBoardId: PropTypes.string,
   headingRef: PropTypes.object,
   hideTitle: PropTypes.bool
 };
 
-export default BoardDetails;
+export default ItemDetails;
