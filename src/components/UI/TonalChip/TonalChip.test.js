@@ -58,6 +58,15 @@ describe('TonalChip', () => {
     });
   });
 
+  it('tints the error tone with the theme error hue', () => {
+    const theme = createTheme();
+    const chip = render({ tone: 'error' }, theme).find('.MuiChip-root').first();
+    const colors = cssFor(chip.getDOMNode())
+      .map((style) => style.color)
+      .filter(Boolean);
+    expect(colors).toContain(theme.palette.error.dark);
+  });
+
   it('adapts the label shade to a dark theme', () => {
     const shadeFor = (theme) =>
       cssFor(
