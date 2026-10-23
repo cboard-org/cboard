@@ -9,9 +9,9 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-import BoardDetails from './BoardDetails';
-import { softRadius } from '../CommunicatorDialog.styles';
-import messages from '../CommunicatorDialog.messages';
+import ItemDetails from './ItemDetails';
+import { softRadius } from './Dashboard.styles';
+import messages from './Dashboard.messages';
 
 const PANEL_WIDTH = 380;
 
@@ -100,34 +100,38 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 /**
- * Chooses how the details for the selected board are presented:
+ * Chooses how the details for the selected item are presented:
  * a self-scrolling column beside the list on wide viewports, a bottom sheet on
- * phones so the board list never gets pushed off screen.
+ * phones so the item list never gets pushed off screen.
  */
-const BoardDetailsSurface = ({
+const ItemDetailsSurface = ({
   intl,
-  board,
+  selectedKey,
+  label,
+  emptyMessage,
+  title,
+  meta,
+  chips,
+  thumb,
   actions,
   busy,
-  communicator,
-  activeBoardId,
   onClose
 }) => {
   const classes = useStyles();
   const theme = useTheme();
   const isNarrow = useMediaQuery(theme.breakpoints.down('sm'));
   const headingRef = useRef(null);
+  const open = !!selectedKey;
 
-  // Explicit activation: once a board is chosen, focus moves into the details
+  // Explicit activation: once an item is chosen, focus moves into the details
   // so keyboard and screen reader users land on the actions, not back at the
-  // top of the list. Keyed on the id so a re-fetched board object does not
+  // top of the list. Keyed on the item key so a re-fetched item does not
   // steal focus back from the control the user just used.
-  const selectedBoardId = board && board.id;
   useEffect(() => {
-    if (selectedBoardId && headingRef.current) {
+    if (selectedKey && headingRef.current) {
       headingRef.current.focus();
     }
-  }, [selectedBoardId]);
+  }, [selectedKey]);
 
   const handleKeyDown = (event) => {
     if (event.key === 'Escape') {
@@ -136,13 +140,15 @@ const BoardDetailsSurface = ({
   };
 
   const details = (hideTitle) => (
-    <BoardDetails
-      intl={intl}
-      board={board}
+    <ItemDetails
+      empty={!open}
+      emptyMessage={emptyMessage}
+      title={title}
+      meta={meta}
+      chips={chips}
+      thumb={thumb}
       actions={actions}
       busy={busy}
-      communicator={communicator}
-      activeBoardId={activeBoardId}
       headingRef={headingRef}
       hideTitle={hideTitle}
     />
@@ -151,7 +157,7 @@ const BoardDetailsSurface = ({
   const closeButton = (className) => (
     <IconButton
       size="small"
-      data-testid="close-board-details"
+      data-testid="close-item-details"
       className={className}
       aria-label={intl.formatMessage(messages.closeDetails)}
       onClick={onClose}
@@ -164,10 +170,10 @@ const BoardDetailsSurface = ({
     return (
       <Drawer
         anchor="bottom"
-        open={!!board}
+        open={open}
         onClose={onClose}
         classes={{ paper: classes.sheet }}
-        aria-label={intl.formatMessage(messages.boardDetails)}
+        aria-label={label}
       >
         <div className={classes.sheetHeader}>
           <span className={classes.handle} />
@@ -182,9 +188,9 @@ const BoardDetailsSurface = ({
     <Paper
       variant="outlined"
       component="aside"
-      data-testid="board-details-panel"
+      data-testid="item-details-panel"
       className={classes.panel}
-      aria-label={intl.formatMessage(messages.boardDetails)}
+      aria-label={label}
       onKeyDown={handleKeyDown}
     >
       <div className={classes.panelHeader}>
@@ -192,34 +198,37 @@ const BoardDetailsSurface = ({
           variant="subtitle1"
           component="h2"
           className={classes.panelTitle}
-          title={board ? board.name || board.id : undefined}
+          title={open ? title : undefined}
           tabIndex={-1}
           ref={headingRef}
         >
-          {board
-            ? board.name || board.id
-            : intl.formatMessage(messages.boardDetails)}
+          {open ? title : label}
         </Typography>
-        {board && closeButton()}
+        {open && closeButton()}
       </div>
       <div className={classes.panelBody}>{details(true)}</div>
     </Paper>
   );
 };
 
-BoardDetailsSurface.defaultProps = {
+ItemDetailsSurface.defaultProps = {
+  selectedKey: null,
   actions: [],
   busy: false
 };
 
-BoardDetailsSurface.propTypes = {
+ItemDetailsSurface.propTypes = {
   intl: intlShape.isRequired,
-  board: PropTypes.object,
+  selectedKey: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  emptyMessage: PropTypes.node,
+  title: PropTypes.string,
+  meta: PropTypes.arrayOf(PropTypes.string),
+  chips: PropTypes.node,
+  thumb: PropTypes.object,
   actions: PropTypes.array,
   busy: PropTypes.bool,
-  communicator: PropTypes.object,
-  activeBoardId: PropTypes.string,
   onClose: PropTypes.func.isRequired
 };
 
-export default BoardDetailsSurface;
+export default ItemDetailsSurface;
