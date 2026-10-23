@@ -6,26 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import TonalChip from '../../../UI/TonalChip';
-import { SECTIONS } from '../CommunicatorDialog.constants';
-import messages from '../CommunicatorDialog.messages';
-
-// Message keys resolved at render time (react-intl is auto-mocked in tests, so
-// the imported `messages` object is undefined there — avoid top-level access).
-const SECTION_LABELS = {
-  [SECTIONS.MY_COMMUNICATOR]: {
-    title: 'sectionQuickAccess',
-    hint: 'sectionQuickAccessHint'
-  },
-  [SECTIONS.MY_BOARDS]: {
-    title: 'sectionMyBoards',
-    hint: 'sectionMyBoardsHint'
-  },
-  [SECTIONS.COMMUNITY]: {
-    title: 'sectionCommunity',
-    hint: 'sectionCommunityHint'
-  }
-};
+import TonalChip from '../TonalChip';
+import messages from './Dashboard.messages';
 
 const useStyles = makeStyles((theme) => ({
   titleGroup: {
@@ -66,9 +48,8 @@ const useStyles = makeStyles((theme) => ({
 // separate grid item so the parent header grid can give the chip its own
 // fixed-width column — independent of whether a third (toolbar) column
 // is present.
-const SectionHeader = ({ intl, section, total, onOpenNav }) => {
+const SectionHeader = ({ intl, title, hint, chipLabel, onOpenNav }) => {
   const classes = useStyles();
-  const meta = SECTION_LABELS[section];
 
   return (
     <>
@@ -85,25 +66,25 @@ const SectionHeader = ({ intl, section, total, onOpenNav }) => {
         )}
         <div className={classes.titleBlock}>
           <Typography variant="h6" component="h2" className={classes.title}>
-            {intl.formatMessage(messages[meta.title])}
+            {title}
           </Typography>
-          <Typography variant="body2" className={classes.hint}>
-            {intl.formatMessage(messages[meta.hint])}
-          </Typography>
+          {hint && (
+            <Typography variant="body2" className={classes.hint}>
+              {hint}
+            </Typography>
+          )}
         </div>
       </div>
-      <TonalChip
-        className={classes.chip}
-        label={intl.formatMessage(messages.boardsQty, { qty: total })}
-      />
+      {chipLabel && <TonalChip className={classes.chip} label={chipLabel} />}
     </>
   );
 };
 
 SectionHeader.propTypes = {
   intl: intlShape.isRequired,
-  section: PropTypes.string.isRequired,
-  total: PropTypes.number.isRequired,
+  title: PropTypes.node.isRequired,
+  hint: PropTypes.node,
+  chipLabel: PropTypes.node,
   onOpenNav: PropTypes.func
 };
 
