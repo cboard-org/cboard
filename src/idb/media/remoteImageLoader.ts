@@ -1,4 +1,5 @@
 import { getCachedImage, putCachedImage } from './imageCache';
+import { dropStoredImageMiss } from './storedImageUrls';
 
 const handled = new Set<string>();
 
@@ -23,6 +24,7 @@ export async function storeRemoteImage(url: string): Promise<void> {
     }
 
     await putCachedImage({ url, type, data: await response.arrayBuffer() });
+    dropStoredImageMiss(url);
   } catch (error) {
     handled.delete(url);
   }

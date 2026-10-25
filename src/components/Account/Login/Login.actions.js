@@ -1,6 +1,7 @@
 import API from '../../../api';
 import { LOGIN_SUCCESS, LOGOUT } from './Login.constants';
 import { clearCachedMedia } from '../../../idb/media/imageCache';
+import { clearStoredImageUrls } from '../../../idb/media/storedImageUrls';
 import {
   changeVoice,
   changePitch,
@@ -79,6 +80,7 @@ export function logout() {
     dispatch(updateUnloggedUserLocation());
     dispatch(logoutSuccess());
     clearCachedMedia();
+    clearStoredImageUrls();
   };
 }
 
