@@ -1,11 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-/**
- * Polite screen-reader announcer for asynchronous results (export finished,
- * board moved). Visually hidden but never `display: none`, which would stop
- * assistive tech from reading it.
- */
 const visuallyHidden = {
   position: 'absolute',
   width: 1,
