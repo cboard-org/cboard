@@ -1,6 +1,23 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
+  boardNavigationMode: {
+    id: 'cboard.components.Settings.Navigation.boardNavigationMode',
+    defaultMessage: 'Board navigation mode'
+  },
+  boardNavigationModeDescription: {
+    id: 'cboard.components.Settings.Navigation.boardNavigationModeDescription',
+    defaultMessage:
+      'Use scrolling or page buttons to reach all symbols. Editing always uses scrolling.'
+  },
+  scroll: {
+    id: 'cboard.components.Settings.Navigation.scroll',
+    defaultMessage: 'Scroll'
+  },
+  pagination: {
+    id: 'cboard.components.Settings.Navigation.pagination',
+    defaultMessage: 'Pagination'
+  },
   navigation: {
     id: 'cboard.components.Settings.Navigation.navigation',
     defaultMessage: 'Navigation & Buttons'
