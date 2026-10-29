@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { intlShape } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -46,7 +46,6 @@ const useStyles = makeStyles((theme) => {
       borderRight: `1px solid ${theme.palette.divider}`,
       overflowX: 'hidden',
       transition: widthTransition,
-      // Subtly recede the sidebar from the content surface in both modes.
       backgroundColor: dark
         ? alpha(theme.palette.common.white, 0.03)
         : theme.palette.grey[50]
@@ -81,7 +80,6 @@ const useStyles = makeStyles((theme) => {
       padding: theme.spacing(1, 1.5),
       width: 'auto',
       transition: theme.transitions.create(['background-color']),
-      // Left accent bar that grows in when the section is selected.
       '&::before': {
         content: '""',
         position: 'absolute',
@@ -104,14 +102,9 @@ const useStyles = makeStyles((theme) => {
         }
       }
     },
-    // Padding and icon slot stay identical in both states: margin (8) +
-    // padding (12) + half the icon (12) puts the glyph on the centre line of
-    // the collapsed rail, so it never travels during the width animation.
     itemIcon: {
       minWidth: 40
     },
-    // The label keeps a fixed width and never wraps, so the shrinking paper
-    // clips it instead of reflowing it; opacity does the visible work.
     itemText: {
       flex: '0 0 auto',
       width: NAV_WIDTH - 88,
@@ -176,9 +169,6 @@ const NavList = ({ sections, idPrefix, section, onChange, collapsed }) => {
             />
           </ListItem>
         );
-
-        // Collapsed items show only the icon, so the label also goes in a
-        // tooltip (which MUI exposes on keyboard focus too).
         return collapsed ? (
           <Tooltip key={key} title={label} placement="right">
             {item}
@@ -309,4 +299,4 @@ DashboardNav.defaultProps = {
   idPrefix: 'Dashboard'
 };
 
-export default DashboardNav;
+export default injectIntl(DashboardNav);
