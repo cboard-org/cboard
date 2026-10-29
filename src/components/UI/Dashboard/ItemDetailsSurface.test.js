@@ -22,8 +22,6 @@ jest.mock('./ItemThumb', () => ({
   default: () => null
 }));
 
-const intl = { formatMessage: ({ defaultMessage }) => defaultMessage };
-
 const setViewport = (matches) => {
   window.matchMedia = jest.fn().mockImplementation((query) => ({
     matches,
@@ -47,7 +45,6 @@ let attachedNodes = [];
 
 const element = (props) => (
   <ItemDetailsSurface
-    intl={intl}
     label="Details"
     emptyMessage="Select an item"
     {...item}
