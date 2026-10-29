@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(0.5),
     lineHeight: 1.4
   },
-  date: {
+  caption: {
     color: theme.palette.text.hint,
     marginTop: theme.spacing(0.25),
     lineHeight: 1.4
@@ -86,17 +86,12 @@ const useStyles = makeStyles((theme) => ({
     gap: theme.spacing(1),
     borderTop: `1px solid ${theme.palette.divider}`
   },
-  footerNoStar: {
+  footerNoAction: {
     padding: theme.spacing(2)
   },
   busy: busyOverlay(theme)
 }));
 
-/**
- * Selectable dashboard card: thumbnail, title, meta lines and a footer with a
- * status slot and an optional action (kept outside the activation area so it
- * never selects the card).
- */
 const ItemCard = ({
   title,
   meta,
@@ -161,7 +156,7 @@ const ItemCard = ({
           {caption && (
             <Typography
               variant="caption"
-              className={classes.date}
+              className={classes.caption}
               component="p"
             >
               {caption}
@@ -173,7 +168,7 @@ const ItemCard = ({
       {(status || action) && (
         <div
           className={classNames(classes.footer, {
-            [classes.footerNoStar]: !action
+            [classes.footerNoAction]: !action
           })}
         >
           {status}
