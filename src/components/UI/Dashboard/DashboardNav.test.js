@@ -20,8 +20,6 @@ jest.mock('./Dashboard.messages', () => ({
   )
 }));
 
-const intl = { formatMessage: ({ defaultMessage }) => defaultMessage };
-
 const sections = [
   {
     key: 'qrCodes',
@@ -42,7 +40,6 @@ const STORAGE_KEY = 'test-nav-collapsed';
 const render = (props = {}) =>
   mount(
     <DashboardNav
-      intl={intl}
       sections={sections}
       section="qrCodes"
       onChange={jest.fn()}
