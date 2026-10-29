@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { intlShape } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
@@ -88,4 +88,4 @@ SectionHeader.propTypes = {
   onOpenNav: PropTypes.func
 };
 
-export default SectionHeader;
+export default injectIntl(SectionHeader);
