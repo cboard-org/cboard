@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { intlShape } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 import { alpha, makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Drawer from '@material-ui/core/Drawer';
@@ -231,4 +231,4 @@ ItemDetailsSurface.propTypes = {
   onClose: PropTypes.func.isRequired
 };
 
-export default ItemDetailsSurface;
+export default injectIntl(ItemDetailsSurface);
