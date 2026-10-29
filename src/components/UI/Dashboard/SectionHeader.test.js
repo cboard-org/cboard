@@ -17,12 +17,9 @@ jest.mock('./Dashboard.messages', () => ({
   )
 }));
 
-const intl = { formatMessage: ({ defaultMessage }) => defaultMessage };
-
 const render = (props = {}) =>
   mount(
     <SectionHeader
-      intl={intl}
       title="QR codes"
       hint="Print, download, share"
       chipLabel="3 QR codes"
