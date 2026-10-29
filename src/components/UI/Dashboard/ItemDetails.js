@@ -136,7 +136,7 @@ const ItemDetails = ({
         )}
         <Typography variant="caption" component="p" className={classes.meta}>
           {metaParts.map((part, index) => (
-            <React.Fragment key={part}>
+            <React.Fragment key={index}>
               {index > 0 && (
                 <span className={classes.separator} aria-hidden="true">
                   ·
