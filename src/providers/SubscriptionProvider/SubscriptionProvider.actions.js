@@ -257,7 +257,8 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
         const nowInMillis = Date.now();
         const isExpired = nowInMillis > expiryDateMillis;
 
-        const daysGracePeriod = state.subscription.ownedProduct?.platform === 'institutional' ? 0 : 7;
+        const daysGracePeriod =
+          state.subscription.ownedProduct?.platform === 'institutional' ? 0 : 7;
 
         const billingRetryPeriodFinishDate =
           status === ACTIVE
