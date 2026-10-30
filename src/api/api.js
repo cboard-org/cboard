@@ -849,6 +849,13 @@ class API {
     return data;
   }
 
+  async institutionalActivation(action, body) {
+    const authToken = getAuthToken();
+    if (!authToken) throw new Error('Sign in to your invited Cboard account first');
+    const { data } = await this.axiosInstance.post(`/api/institutions/activation/${action}`, body, { headers: { Authorization: `Bearer ${authToken}` } });
+    return data;
+  }
+
   async deleteAccount() {
     const userId = getUserData().id;
     if (userId) {
