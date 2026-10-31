@@ -345,6 +345,30 @@ exports[`Display tests default renderer 1`] = `
           />
         </WithStyles(ForwardRef(ListItemSecondaryAction))>
       </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItemText))
+          className="Display__ListItemText"
+          primary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+          secondary={
+            <FormattedMessage
+              values={Object {}}
+            />
+          }
+        />
+        <WithStyles(ForwardRef(ListItemSecondaryAction))>
+          <WithStyles(ForwardRef(Switch))
+            checked={false}
+            color="secondary"
+            onChange={[Function]}
+            value="active"
+          />
+        </WithStyles(ForwardRef(ListItemSecondaryAction))>
+      </WithStyles(ForwardRef(ListItem))>
     </WithStyles(ForwardRef(List))>
   </WithStyles(ForwardRef(Paper))>
 </WithStyles(FullScreenDialog)>
