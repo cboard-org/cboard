@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isPackagedApp } from '../../../cordova-util';
@@ -8,8 +8,10 @@ import messages from '../Board.messages';
 import { LABEL_POSITION_BELOW } from '../../Settings/Display/Display.constants';
 import './Symbol.css';
 import { Typography } from '@material-ui/core';
-import { getArasaacDB } from '../../../idb/arasaac/arasaacdb';
-import { getCachedImage } from '../../../idb/media/imageCache';
+import {
+  acquireStoredImageUrl,
+  dropStoredImageMisses
+} from '../../../idb/media/storedImageUrls';
 import { storeRemoteImage } from '../../../idb/media/remoteImageLoader';
 
 const propTypes = {
@@ -40,55 +42,74 @@ function formatSrc(src) {
 
 const isRemote = (src) => /^https?:\/\//.test(src ?? '');
 
-async function getStoredImage(image, keyPath) {
-  if (keyPath) {
-    try {
-      const media = await getArasaacDB().getImageById(keyPath);
-      if (media) return media;
-    } catch (error) {
-      console.error('Failed to fetch Arasaac image from Indexed DB:', error);
-    }
-  }
-
-  return isRemote(image) ? getCachedImage(image) : undefined;
-}
-
 function SymbolImage({ image, keyPath, cacheRemoteImage }) {
   const remoteSrc = image ? formatSrc(image) : '';
   const [src, setSrc] = useState(remoteSrc);
   const [loaded, setLoaded] = useState(false);
-  const blobUrl = useRef(null);
+  const [hideUntilLoaded, setHideUntilLoaded] = useState(
+    () => isRemote(image) && !navigator.onLine
+  );
+  const releaseStoredUrl = useRef(null);
+  const usingStoredUrl = useRef(false);
   const mounted = useRef(true);
-  const hideUntilLoaded = useRef(isRemote(image) && !navigator.onLine).current;
 
   useEffect(
     () => () => {
       mounted.current = false;
-      if (blobUrl.current) URL.revokeObjectURL(blobUrl.current);
+      if (releaseStoredUrl.current) {
+        releaseStoredUrl.current();
+        releaseStoredUrl.current = null;
+      }
     },
     []
   );
 
-  const showStoredImage = useCallback(async () => {
-    if (blobUrl.current) return;
+  useEffect(() => {
+    if (src || usingStoredUrl.current || (!image && !keyPath)) return undefined;
 
-    const media = await getStoredImage(image, keyPath);
+    let cancelled = false;
+    const { promise, release } = acquireStoredImageUrl(image, keyPath);
+    releaseStoredUrl.current = release;
 
-    if (!media || blobUrl.current || !mounted.current) return;
+    promise.then((url) => {
+      if (cancelled || !mounted.current) return;
+      if (!url) {
+        release();
+        if (releaseStoredUrl.current === release) {
+          releaseStoredUrl.current = null;
+        }
+        return;
+      }
+      usingStoredUrl.current = true;
+      setSrc(url);
+    });
 
-    blobUrl.current = URL.createObjectURL(
-      new Blob([media.data], { type: media.type })
-    );
-    setSrc(blobUrl.current);
-  }, [image, keyPath]);
+    return () => {
+      cancelled = true;
+      if (!usingStoredUrl.current && releaseStoredUrl.current === release) {
+        release();
+        releaseStoredUrl.current = null;
+      }
+    };
+  }, [src, image, keyPath]);
 
   useEffect(() => {
-    if (!src) showStoredImage();
-  }, [src, showStoredImage]);
+    if (src || !isRemote(image)) return undefined;
+
+    const handleOnline = () => {
+      dropStoredImageMisses();
+      setHideUntilLoaded(false);
+      setLoaded(false);
+      setSrc(remoteSrc);
+    };
+
+    window.addEventListener('online', handleOnline);
+    return () => window.removeEventListener('online', handleOnline);
+  }, [src, image, remoteSrc]);
 
   const handleLoad = () => {
     if (hideUntilLoaded && !loaded) setLoaded(true);
-    if (blobUrl.current || !cacheRemoteImage || !isRemote(image)) return;
+    if (usingStoredUrl.current || !cacheRemoteImage || !isRemote(image)) return;
     storeRemoteImage(image);
   };
 
