@@ -110,6 +110,18 @@ export class SubscriptionProvider extends Component {
           ? receipt.transaction
           : transformReceipt(receipt);
 
+        // Apple's "application" pseudo-receipt has no real purchase and its
+        // id is not a valid App Store transaction id. Posting it makes the
+        // API's App Store verification fail with "Invalid transaction id"
+        // (errorCode 4000006), so skip it here.
+        if (isIOS() && transaction?.id === 'appstore.application') {
+          callback({
+            ok: false,
+            message: 'Skipping application pseudo-receipt'
+          });
+          return;
+        }
+
         const res = await API.postTransaction(transaction);
         if (!res.ok) throw res;
         callback({
