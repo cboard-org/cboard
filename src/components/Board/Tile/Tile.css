@@ -8,8 +8,35 @@
 
   --folder-flap-height: 12px;
 
+  /*
+   * Issue #2064: guarantee a tap target that scales with user text size.
+   * 2.75rem ~= 44px at default root font size, matching Apple HIG and
+   * WCAG 2.5.5 minimum touch target. Using `rem` means the hit area
+   * grows with iOS Dynamic Type / system Text Size so the visible label
+   * and the tappable region stay aligned.
+   */
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+
+  /* Suppress the iOS 300ms double-tap-zoom delay that can make taps feel
+   * unresponsive on high Dynamic Type settings. */
+  touch-action: manipulation;
+
   /* HACK: fixes iOS flicker on scroll */
   transform: translateZ(0);
+}
+
+/*
+ * Issue #2064: ensure taps always reach the <button> even when the
+ * Symbol overlay's decorative children (image, label) visually overflow
+ * or sit on top of the button. Without this the Typography label could
+ * absorb taps on iOS Safari when Dynamic Type scaled it past the tile
+ * bounds, producing "off-center" tap behavior.
+ */
+.Tile .Symbol,
+.Tile .Symbol__image-container,
+.Tile .Symbol__label {
+  pointer-events: none;
 }
 
 .Tile:not(.scanner__focused) {
