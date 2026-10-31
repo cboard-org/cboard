@@ -4,7 +4,8 @@ exports[`AuthScreen tests default renderer 1`] = `
 <AuthScreen
   history={
     Object {
-      "goBack": [Function],
+      "goBack": [MockFunction],
+      "push": [MockFunction],
     }
   }
   intl={
