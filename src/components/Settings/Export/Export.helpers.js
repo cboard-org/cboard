@@ -372,6 +372,26 @@ pdfMake.tableLayouts = {
     paddingRight: function (i, node) {
       return 0;
     }
+  },
+  pdfGridLayoutWithBorders: {
+    hLineWidth: function (i, node) {
+      return PDF_BORDER_WIDTH;
+    },
+    vLineWidth: function (i) {
+      return PDF_BORDER_WIDTH;
+    },
+    hLineColor: function (i) {
+      return '#000000';
+    },
+    vLineColor: function (i) {
+      return '#000000';
+    },
+    paddingLeft: function (i) {
+      return 0;
+    },
+    paddingRight: function (i, node) {
+      return 0;
+    }
   }
 };
 
@@ -387,7 +407,8 @@ async function generatePDFBoard(
   intl,
   breakPage = true,
   picsee = false,
-  labelFontSize
+  labelFontSize,
+  showTileBorders = false
 ) {
   const header = {
     absolutePosition: { x: 0, y: 5 },
@@ -407,7 +428,7 @@ async function generatePDFBoard(
       widths: cellWidths,
       body: [{}]
     },
-    layout: 'pdfGridLayout'
+    layout: showTileBorders ? 'pdfGridLayoutWithBorders' : 'pdfGridLayout'
   };
 
   if (breakPage) {
@@ -903,7 +924,8 @@ export async function pdfExportAdapter(
   boards = [],
   labelFontSize,
   intl,
-  picsee = false
+  picsee = false,
+  showTileBorders = false
 ) {
   const font = definePDFfont(intl);
   const docDefinition = {
@@ -984,7 +1006,8 @@ export async function pdfExportAdapter(
       intl,
       breakPage,
       picsee,
-      labelFontSize
+      labelFontSize,
+      showTileBorders
     );
     return prevContent.concat(boardPDFData);
   }, Promise.resolve([]));

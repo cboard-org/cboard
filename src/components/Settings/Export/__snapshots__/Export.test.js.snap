@@ -132,6 +132,26 @@ exports[`Export tests default renderer 1`] = `
             </div>
           </WithStyles(ForwardRef(ListItemSecondaryAction))>
         </WithStyles(ForwardRef(ListItem))>
+        <WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItemText))
+            primary={
+              <FormattedMessage
+                values={Object {}}
+              />
+            }
+          />
+          <WithStyles(ForwardRef(ListItemSecondaryAction))>
+            <WithStyles(ForwardRef(Switch))
+              checked={false}
+              inputProps={
+                Object {
+                  "aria-label": "Show tile borders",
+                }
+              }
+              onChange={[Function]}
+            />
+          </WithStyles(ForwardRef(ListItemSecondaryAction))>
+        </WithStyles(ForwardRef(ListItem))>
       </WithStyles(ForwardRef(List))>
     </WithStyles(ForwardRef(Paper))>
     <WithStyles(ForwardRef(Paper))

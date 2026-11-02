@@ -21,7 +21,8 @@ export class ExportContainer extends PureComponent {
     type = 'cboard',
     singleBoard = '',
     labelFontSize = '',
-    doneCallback
+    doneCallback,
+    showTileBorders = false
   ) => {
     const exportConfig = EXPORT_CONFIG_BY_TYPE[type];
     const EXPORT_HELPERS = await import('./Export.helpers');
@@ -46,17 +47,20 @@ export class ExportContainer extends PureComponent {
             [singleBoard],
             labelFontSize,
             intl,
-            true
+            true,
+            showTileBorders
           );
         } else {
           const currentBoard = boards.filter(
             (board) => board.id === activeBoardId
           );
+
           await EXPORT_HELPERS[exportConfig.callback](
             currentBoard,
             labelFontSize,
             intl,
-            true
+            true,
+            showTileBorders
           );
         }
       } else if (type !== 'pdf' && !singleBoard) {
@@ -67,20 +71,41 @@ export class ExportContainer extends PureComponent {
         );
       } else {
         if (singleBoard) {
-          await EXPORT_HELPERS[exportConfig.callback](
-            [singleBoard],
-            labelFontSize,
-            intl
-          );
+          if (type === 'pdf') {
+            await EXPORT_HELPERS[exportConfig.callback](
+              [singleBoard],
+              labelFontSize,
+              intl,
+              false,
+              showTileBorders
+            );
+          } else {
+            await EXPORT_HELPERS[exportConfig.callback](
+              [singleBoard],
+              labelFontSize,
+              intl
+            );
+          }
         } else {
           const currentBoard = boards.filter(
             (board) => board.id === activeBoardId
           );
-          await EXPORT_HELPERS[exportConfig.callback](
-            currentBoard,
-            labelFontSize,
-            intl
-          );
+
+          if (type === 'pdf') {
+            await EXPORT_HELPERS[exportConfig.callback](
+              currentBoard,
+              labelFontSize,
+              intl,
+              false,
+              showTileBorders
+            );
+          } else {
+            await EXPORT_HELPERS[exportConfig.callback](
+              currentBoard,
+              labelFontSize,
+              intl
+            );
+          }
         }
       }
       const showBoardDowloadedNotification = () => {

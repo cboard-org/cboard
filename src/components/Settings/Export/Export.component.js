@@ -14,6 +14,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import GetAppIcon from '@material-ui/icons/GetApp';
+import Switch from '@material-ui/core/Switch';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
 import messages from './Export.messages';
@@ -50,7 +51,8 @@ class Export extends React.Component {
       singleBoard: '',
       loadingSingle: false,
       loadingAll: false,
-      boardError: false
+      boardError: false,
+      showTileBorders: false
     };
   }
 
@@ -76,6 +78,12 @@ class Export extends React.Component {
     });
   };
 
+  handleTileBordersChange = (event) => {
+    this.setState({
+      showTileBorders: event.target.checked
+    });
+  };
+
   handleSingleBoardChange = (event) => {
     this.setState({ exportSingleBoard: event.target.value });
   };
@@ -92,7 +100,8 @@ class Export extends React.Component {
         this.state.exportAllBoard,
         '',
         this.state.labelFontSize,
-        doneCallback
+        doneCallback,
+        this.state.showTileBorders
       );
     });
   };
@@ -108,7 +117,8 @@ class Export extends React.Component {
         this.state.exportSingleBoard,
         this.state.singleBoard,
         this.state.labelFontSize,
-        doneCallback
+        doneCallback,
+        this.state.showTileBorders
       );
     });
   };
@@ -234,6 +244,18 @@ class Export extends React.Component {
                       </div>
                     )}
                   </div>
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary={<FormattedMessage {...messages.tileBorders} />}
+                />
+                <ListItemSecondaryAction>
+                  <Switch
+                    checked={this.state.showTileBorders}
+                    onChange={this.handleTileBordersChange}
+                    inputProps={{ 'aria-label': 'Show tile borders' }}
+                  />
                 </ListItemSecondaryAction>
               </ListItem>
             </List>

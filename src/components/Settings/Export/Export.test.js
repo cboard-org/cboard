@@ -2,6 +2,7 @@ import React from 'react';
 import { shallowMatchSnapshot } from '../../../common/test_utils';
 import { shallow } from 'enzyme';
 import Export from './Export.component';
+import Switch from '@material-ui/core/Switch';
 
 jest.mock('./Export.messages', () => {
   return {
@@ -100,5 +101,72 @@ describe('Export tests', () => {
     wrapper.setState({ exportSingleBoard: 'pdf' });
     wrapper.instance().handleSingleExport();
     expect(wrapper.state('boardError')).toBe(true);
+  });
+
+  test('tile borders switch is rendered unchecked by default', () => {
+    const wrapper = shallow(<Export {...COMPONENT_PROPS} />);
+
+    const tileBordersSwitch = wrapper.find(Switch);
+
+    expect(tileBordersSwitch.exists()).toBe(true);
+    expect(tileBordersSwitch.prop('checked')).toBe(false);
+  });
+
+  test('updates tile borders state when switch is changed', () => {
+    const wrapper = shallow(<Export {...COMPONENT_PROPS} />);
+
+    const tileBordersSwitch = wrapper.find(Switch);
+
+    tileBordersSwitch.simulate('change', {
+      target: { checked: true }
+    });
+
+    expect(wrapper.state('showTileBorders')).toBe(true);
+    expect(wrapper.find(Switch).prop('checked')).toBe(true);
+  });
+
+  test('passes tile borders option when exporting a single board', () => {
+    const onExportClick = jest.fn();
+    const wrapper = shallow(
+      <Export {...COMPONENT_PROPS} onExportClick={onExportClick} />
+    );
+
+    wrapper.setState({
+      singleBoard: { id: 'board1', name: 'Test Board' },
+      exportSingleBoard: 'pdf',
+      showTileBorders: true
+    });
+
+    wrapper.instance().handleSingleExport();
+
+    expect(onExportClick).toHaveBeenCalledWith(
+      'pdf',
+      { id: 'board1', name: 'Test Board' },
+      wrapper.state('labelFontSize'),
+      expect.any(Function),
+      true
+    );
+  });
+
+  test('passes tile borders option when exporting all boards', () => {
+    const onExportClick = jest.fn();
+    const wrapper = shallow(
+      <Export {...COMPONENT_PROPS} onExportClick={onExportClick} />
+    );
+
+    wrapper.setState({
+      exportAllBoard: 'pdf',
+      showTileBorders: true
+    });
+
+    wrapper.instance().handleAllExport();
+
+    expect(onExportClick).toHaveBeenCalledWith(
+      'pdf',
+      '',
+      wrapper.state('labelFontSize'),
+      expect.any(Function),
+      true
+    );
   });
 });

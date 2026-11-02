@@ -73,5 +73,9 @@ export default defineMessages({
   large: {
     id: 'cboard.components.Settings.Export.large',
     defaultMessage: 'Large'
+  },
+  tileBorders: {
+    id: 'cboard.components.Settings.Export.tileBorders',
+    defaultMessage: 'Show tile borders'
   }
 });
