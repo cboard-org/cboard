@@ -1,4 +1,8 @@
-import { hasUnsyncedChildReference, processTileClick } from '../Board.utils';
+import {
+  computeScrollState,
+  hasUnsyncedChildReference,
+  processTileClick
+} from '../Board.utils';
 import { DEFAULT_BOARD_EMAIL } from '../Board.constants';
 
 const localChild = { id: 'local1', tiles: [] };
@@ -69,6 +73,121 @@ describe('hasUnsyncedChildReference', () => {
   it('defaults boards to an empty list', () => {
     const parent = parentLinkingTo('local1');
     expect(hasUnsyncedChildReference(parent)).toBe(false);
+  });
+});
+
+describe('computeScrollState', () => {
+  describe('white-box branch coverage', () => {
+    it('CB01: does not scroll when the item count equals the row capacity', () => {
+      const state = computeScrollState(12, 4, 3);
+
+      expect(state.isScroll).toBe(false);
+    });
+  });
+
+  describe('black-box characterization', () => {
+    it('CP01: reports no scroll when the item count is below capacity', () => {
+      expect(computeScrollState(11, 4, 3)).toEqual({
+        isScroll: false,
+        totalRows: 3
+      });
+    });
+
+    it('CP02: reports no scroll when the item count exactly fills the rows', () => {
+      expect(computeScrollState(12, 4, 3)).toEqual({
+        isScroll: false,
+        totalRows: 3
+      });
+    });
+
+    it('CP03: reports scroll when one item exceeds the row capacity', () => {
+      expect(computeScrollState(13, 4, 3)).toEqual({
+        isScroll: true,
+        totalRows: 4
+      });
+    });
+
+    it('CP04: returns zero rows and no scroll for an empty board', () => {
+      expect(computeScrollState(0, 4, 3)).toEqual({
+        isScroll: false,
+        totalRows: 0
+      });
+    });
+
+    it('CP05: returns one row for a single item', () => {
+      expect(computeScrollState(1, 1, 3)).toEqual({
+        isScroll: false,
+        totalRows: 1
+      });
+    });
+
+    it('CP06: counts all rows when the board exceeds capacity by several rows', () => {
+      expect(computeScrollState(25, 4, 3)).toEqual({
+        isScroll: true,
+        totalRows: 7
+      });
+    });
+
+    it('CP07: allows zero visible rows and reports scroll for a non-empty board', () => {
+      expect(computeScrollState(1, 4, 0)).toEqual({
+        isScroll: true,
+        totalRows: 1
+      });
+    });
+  });
+
+  describe('TDD01: columns must be a positive integer', () => {
+    it.each([0, -1, 1.5, NaN, Infinity])(
+      'throws RangeError when cols is %s',
+      (cols) => {
+        expect(() => computeScrollState(1, cols, 3)).toThrow(RangeError);
+      }
+    );
+  });
+
+  describe('TDD02: item count and row limit must be non-negative integers', () => {
+    it.each([
+      [-1, 4, 3],
+      [1.5, 4, 3],
+      [NaN, 4, 3],
+      [1, 4, -1],
+      [1, 4, Infinity]
+    ])(
+      'throws RangeError for itemCount=%s, cols=%s, rows=%s',
+      (itemCount, cols, rows) => {
+        expect(() => computeScrollState(itemCount, cols, rows)).toThrow(
+          RangeError
+        );
+      }
+    );
+  });
+
+  describe('additional post-TDD checks', () => {
+    it('RF01: rejects a numeric string as the item count', () => {
+      expect(() => computeScrollState('4', 4, 3)).toThrow(RangeError);
+    });
+
+    it('RF02: rejects a null row limit', () => {
+      expect(() => computeScrollState(1, 4, null)).toThrow(RangeError);
+    });
+
+    it('RF03: rejects an empty string as the item count', () => {
+      expect(() => computeScrollState('', 4, 3)).toThrow(RangeError);
+    });
+
+    it('RF04: rejects an undefined item count', () => {
+      expect(() => computeScrollState(undefined, 4, 3)).toThrow(RangeError);
+    });
+
+    it('RF05: rejects an undefined column count', () => {
+      expect(() => computeScrollState(1, undefined, 3)).toThrow(RangeError);
+    });
+
+    it('RF06: rejects a Symbol row limit', () => {
+      expect(() => computeScrollState(1, 4, Symbol('rows'))).toThrow(
+        RangeError
+      );
+    });
   });
 });
 
