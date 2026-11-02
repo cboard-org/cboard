@@ -39,6 +39,11 @@
   right: -10px;
 }
 
+[dir='rtl'] .SymbolOutput__value__IconButton {
+  right: auto;
+  left: -10px;
+}
+
 .LiveSymbolOutput__value > .SymbolOutput__value__IconButton {
   --close-button-top-live-difference: -5px;
   top: -5px;
