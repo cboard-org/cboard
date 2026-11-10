@@ -63,6 +63,11 @@ export const GOOGLE_FIREBASE_WEB_CLIENT_ID =
   process.env.REACT_APP_GOOGLE_FIREBASE_WEB_CLIENT_ID ||
   '772840497386-4m51j455n7aqi54uhfm7ub6p645or2ed.apps.googleusercontent.com';
 
+// Cboard Access related constants
+export const ACCESS_APP_URL = 'https://app.cboard.io';
+export const ACCESS_SUPPORT_EMAIL_URL =
+  'mailto:support@cboard.io?subject=Cboard Access';
+
 // ElevenLabs related constants
 export const ELEVENLABS_API_BASE_URL = 'https://api.elevenlabs.io';
 export const ELEVENLABS_DEFAULT_TIMEOUT = 10000;
