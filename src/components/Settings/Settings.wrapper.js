@@ -14,6 +14,7 @@ import Scanning from './Scanning';
 import Navigation from './Navigation';
 import Help from './Help';
 import Symbols from './Symbols';
+import AccessDashboard from './AccessDashboard';
 
 const SettingsWrapper = ({ match }) => (
   <Fragment>
@@ -31,6 +32,10 @@ const SettingsWrapper = ({ match }) => (
       <Route path={`${match.url}/scanning`} component={Scanning} />
       <Route path={`${match.url}/navigation`} component={Navigation} />
       <Route path={`${match.url}/symbols`} component={Symbols} />
+      <Route
+        path={`${match.url}/access-dashboard`}
+        component={AccessDashboard}
+      />
     </Switch>
   </Fragment>
 );
