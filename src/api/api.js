@@ -892,6 +892,39 @@ class API {
       return { phrase: '' };
     }
   }
+
+  async getMyAccessClients() {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { data } = await this.axiosInstance.get(`/access/me/clients`, {
+      headers
+    });
+    return data;
+  }
+
+  async getMyAccessClientStats(clientSlug) {
+    const authToken = getAuthToken();
+    if (!(authToken && authToken.length)) {
+      throw new Error('Need to be authenticated to perform this request');
+    }
+
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const { data } = await this.axiosInstance.get(
+      `/access/me/clients/${clientSlug}/stats`,
+      { headers }
+    );
+    return data;
+  }
 }
 
 const API_INSTANCE = new API({});
