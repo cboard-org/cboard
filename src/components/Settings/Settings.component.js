@@ -18,6 +18,7 @@ import HelpIcon from '@material-ui/icons/Help';
 import IconButton from '../UI/IconButton';
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 import SymbolsIcon from '@material-ui/icons/EmojiSymbols';
+import AccessDashboardIcon from '@material-ui/icons/CropFree';
 
 import messages from './Settings.messages';
 import SettingsSection from './SettingsSection.component';
@@ -102,6 +103,15 @@ export class Settings extends PureComponent {
         url: '/settings/subscribe'
       };
       peopleSettings.push(subscribeSection);
+    }
+
+    if (isLogged && user.isAccessClient) {
+      peopleSettings.push({
+        icon: <AccessDashboardIcon />,
+        text: messages.accessDashboard,
+        secondary: <FormattedMessage {...messages.accessDashboardSecondary} />,
+        url: '/settings/access-dashboard'
+      });
     }
 
     const systemSettings = [
