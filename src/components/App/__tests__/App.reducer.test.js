@@ -40,6 +40,7 @@ describe('reducer', () => {
         darkThemeActive: false
       },
       navigationSettings: {
+        boardNavigationMode: 'scroll',
         active: false,
         bigScrollButtonsActive: false,
         caBackButtonActive: false,
@@ -170,7 +171,10 @@ describe('reducer', () => {
     };
     expect(appReducer(initialState, updateNavigationSettings)).toEqual({
       ...initialState,
-      navigationSettings: mockApp.navigationSettings
+      navigationSettings: {
+        ...mockApp.navigationSettings,
+        boardNavigationMode: 'scroll'
+      }
     });
   });
   it('should handle finishFirstVisit ', () => {
