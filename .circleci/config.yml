@@ -31,7 +31,7 @@ jobs:
       # run tests
       - run:
           name: Run Unit Tests
-          command: npm test -- --silent --ci --runInBand --no-watchman --testPathPattern="/Board|Communicator|App|Settings|Account|UI|/idb/"
+          command: npm test -- --silent --ci --runInBand --no-watchman
   image:
     docker:
       # specify the version you desire here
