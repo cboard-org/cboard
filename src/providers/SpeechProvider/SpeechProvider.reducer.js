@@ -13,7 +13,6 @@ import {
   RECEIVE_TTS_DEFAULT_ENGINE,
   RECEIVE_TTS_ENGINE,
   CACHE_ELEVENLABS_VOICES,
-  CLEAR_ELEVENLABS_CACHE,
   CHANGE_ELEVENLABS_STABILITY,
   CHANGE_ELEVENLABS_SIMILARITY,
   CHANGE_ELEVENLABS_STYLE,
@@ -276,15 +275,6 @@ function speechProviderReducer(state = initialState, action) {
           ...state.elevenLabsCache,
           voices: action.voices,
           timestamp: Date.now()
-        }
-      };
-    case CLEAR_ELEVENLABS_CACHE:
-      return {
-        ...state,
-        elevenLabsCache: {
-          ...state.elevenLabsCache,
-          voices: [],
-          timestamp: null
         }
       };
     case CHANGE_ELEVENLABS_STABILITY:
