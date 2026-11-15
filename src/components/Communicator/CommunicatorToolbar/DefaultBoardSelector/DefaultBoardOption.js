@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { CardContent } from '@material-ui/core';
-import { Card, CardMedia, Typography } from '@material-ui/core';
+import { CardContent, Card, CardMedia, Typography } from '@material-ui/core';
 
 import { isPackagedApp } from '../../../../cordova-util';
 import styles from './DefaultBoardSelector.module.css';

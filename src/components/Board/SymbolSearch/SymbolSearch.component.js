@@ -260,7 +260,7 @@ export class SymbolSearch extends PureComponent {
       intl: { locale }
     } = this.props;
     try {
-      let language = locale !== 'me' ? locale : 'cnr';
+      const language = locale !== 'me' ? locale : 'cnr';
       this.setState({
         isFetchingGlobalsymbols: true
       });
@@ -274,7 +274,7 @@ export class SymbolSearch extends PureComponent {
             (suggestion) => !suggestion.fromGlobalsymbols
           )
         ];
-        let globalsymbolsSuggestions = [];
+        const globalsymbolsSuggestions = [];
         data.forEach(function (element) {
           const fixEspecialCharacters = (text) => {
             if (!text) return '';

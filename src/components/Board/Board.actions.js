@@ -1226,7 +1226,7 @@ export function downloadImages() {
 async function storeImage(image, id, type) {
   let element = null;
   try {
-    let response = await fetch(image);
+    const response = await fetch(image);
     const blob = await response.blob();
     const fileName = getFileNameFromUrl(image);
     if (isAndroid()) {
@@ -1332,7 +1332,7 @@ export function updateApiMarkedBoards() {
         const userName = state.app.userData.name;
         const locale = state.language?.lang;
 
-        let boardData = transformBoardForUser(
+        const boardData = transformBoardForUser(
           board,
           userEmail,
           userName,

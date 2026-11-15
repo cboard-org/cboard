@@ -12,10 +12,9 @@ import {
   upsertApiCommunicator,
   pushCommunicator
 } from '../Communicator.actions';
-import { deleteBoard, deleteApiBoard } from '../../Board/Board.actions';
-import { showNotification } from '../../Notifications/Notifications.actions';
-import { getVisibleBoards } from '../../Board/Board.selectors';
 import {
+  deleteBoard,
+  deleteApiBoard,
   addBoards,
   replaceBoard,
   createBoard,
@@ -23,6 +22,8 @@ import {
   updateApiObjectsNoChild,
   updateApiBoard
 } from '../../Board/Board.actions';
+import { showNotification } from '../../Notifications/Notifications.actions';
+import { getVisibleBoards } from '../../Board/Board.selectors';
 import { disableTour } from '../../App/App.actions';
 import messages from './CommunicatorDialog.messages';
 
@@ -36,7 +37,7 @@ const INITIAL_STATE = {
 
 const findBoards = (boards, criteria, page, search = '') => {
   let result = boards;
-  for (let [key, value] of Object.entries(criteria)) {
+  for (const [key, value] of Object.entries(criteria)) {
     result = result.filter(
       (board) =>
         (board.hasOwnProperty(key) && board[key] === value) ||
@@ -44,7 +45,7 @@ const findBoards = (boards, criteria, page, search = '') => {
     );
   }
   if (search) {
-    let re = new RegExp(search);
+    const re = new RegExp(search);
     result = result.filter(
       (board) => re.test(board.name) || re.test(board.author)
     );
@@ -253,7 +254,7 @@ class CommunicatorDialogContainer extends React.Component {
     }
     if (records) {
       //get the list of next boards in records
-      let nextBoardsRecords = records.map((entry) => entry.next);
+      const nextBoardsRecords = records.map((entry) => entry.next);
       if (nextBoardsRecords.includes(board.id)) {
         return;
       }
@@ -377,7 +378,7 @@ class CommunicatorDialogContainer extends React.Component {
 
   async addOrRemoveAction(board) {
     // If All My Boards Tab is selected, the board should be added/removed to/from the Communicator
-    let communicatorBoards = [...this.props.communicatorBoards];
+    const communicatorBoards = [...this.props.communicatorBoards];
     const boardIndex = communicatorBoards.findIndex((b) => b.id === board.id);
     if (boardIndex >= 0) {
       communicatorBoards.splice(boardIndex, 1);
@@ -398,7 +399,7 @@ class CommunicatorDialogContainer extends React.Component {
       boardIndex < 0 &&
       this.props.availableBoards.findIndex((b) => b.id === board.id) < 0
     ) {
-      let boards = [];
+      const boards = [];
       try {
         const boardData = await API.getBoard(board.id);
         boards.push(boardData);

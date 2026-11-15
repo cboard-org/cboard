@@ -15,7 +15,7 @@ Object.defineProperty(window, 'speechSynthesis', {
 });
 
 global.window.speechSynthesis = Object.create(speechSynthesis);
-let voices = [
+const voices = [
   { voiceURI: 'Google Deutsch', lang: 'de-DE', name: 'Google Deutsch' },
   { voiceURI: 'Google US English', lang: 'en-US', name: 'Google US English' },
   {

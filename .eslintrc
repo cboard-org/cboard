@@ -1,6 +1,10 @@
 {
   "extends": ["react-app", "prettier"],
   "rules": {
-    "import/no-extraneous-dependencies": "error"
+    "import/no-extraneous-dependencies": "error",
+    "import/no-duplicates": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    "react/jsx-key": "error"
   }
 }

@@ -81,7 +81,7 @@ function communicatorReducer(state = initialState, action) {
       const communicatorIndex = state.communicators.findIndex(
         (c) => c.id === action.payload.id
       );
-      let newState = { ...state };
+      const newState = { ...state };
 
       if (communicatorIndex >= 0) {
         const updatedCommunicator = {

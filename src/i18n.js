@@ -9,7 +9,7 @@ const splitLangRgx = /[_-]+/;
 
 APP_LANGS.forEach((lang) => {
   const locale = lang.slice(0, 2);
-  var localeData = null;
+  let localeData = null;
   try {
     localeData = require(`react-intl/locale-data/${locale}`);
   } catch (err) {
@@ -31,7 +31,7 @@ export function stripRegionCode(lang) {
 
 export function normalizeLanguageCode(lang) {
   const splittedLang = lang.split(splitLangRgx);
-  let normalizedLang =
+  const normalizedLang =
     splittedLang.length === 1
       ? splittedLang[0].toLowerCase()
       : `${splittedLang[0].toLowerCase()}-${splittedLang[1].toUpperCase()}`;
@@ -43,7 +43,7 @@ export function standardizeLanguageCode(lang) {
   if (splittedLang.length < 1) {
     return lang;
   }
-  let standardLang =
+  const standardLang =
     splittedLang[0].length === 3
       ? alpha3TToAlpha2(splittedLang[0]) || splittedLang[0]
       : splittedLang[0];
@@ -52,7 +52,7 @@ export function standardizeLanguageCode(lang) {
     return standardLang;
   }
 
-  let standardCountry =
+  const standardCountry =
     splittedLang[1].length === 3
       ? alpha3ToAlpha2(splittedLang[1]) || splittedLang[1]
       : splittedLang[1];
@@ -104,7 +104,7 @@ export function getSupportedLangs(voices) {
 }
 
 export function filterLocalLangs(voices) {
-  let localVoices = [
+  const localVoices = [
     ...new Set(voices.filter((voice) => voice.voiceSource === 'local'))
   ].sort();
   let localLangs = localVoices.map((voice) => voice.lang);
@@ -120,7 +120,7 @@ export function filterLocalLangs(voices) {
 }
 
 export function getVoiceURI(language, voices) {
-  let nVoices = voices.map(({ voiceURI, name, lang }) => ({
+  const nVoices = voices.map(({ voiceURI, name, lang }) => ({
     voiceURI,
     name,
     lang: normalizeLanguageCode(standardizeLanguageCode(lang))

@@ -233,7 +233,7 @@ export function updateIsSubscribed(requestOrigin = 'unkwnown') {
 
       isSubscribed = false;
       status = NOT_SUBSCRIBED;
-      let ownedProduct = '';
+      const ownedProduct = '';
       const isSubscriberNotFound =
         (err.response?.data?.error || err.error) === 'subscriber not found';
 
@@ -358,7 +358,7 @@ export function updatePlans() {
   }
 
   function getActivePlans(subscriptions) {
-    let plans = [];
+    const plans = [];
     if (subscriptions)
       subscriptions.forEach((subscription) => {
         if (subscription.plans)

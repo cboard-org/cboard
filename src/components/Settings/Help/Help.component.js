@@ -70,9 +70,9 @@ class Help extends React.Component {
   }
 
   componentDidUpdate() {
-    let hash = window.location.hash.replace('#', '');
+    const hash = window.location.hash.replace('#', '');
     if (hash) {
-      let node = window.document.getElementsByName(hash)[0];
+      const node = window.document.getElementsByName(hash)[0];
       if (node) {
         node.scrollIntoView();
       }

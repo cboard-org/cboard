@@ -29,7 +29,7 @@ const downloadablesTts = require('./downloadablesTts.json');
 
 const sortLangs = (activeLang, langs = [], localLangs = []) => {
   const cloudLangs = langs.filter((lang) => !localLangs.includes(lang));
-  let sortedLangs = localLangs.concat(cloudLangs);
+  const sortedLangs = localLangs.concat(cloudLangs);
   const activeLangIndex = sortedLangs.indexOf(activeLang);
   if (activeLangIndex > 0) {
     sortedLangs.splice(activeLangIndex, 1);

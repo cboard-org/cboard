@@ -211,7 +211,7 @@ export const readCvaFile = async (name) => {
             function (fileEntry) {
               fileEntry.file(
                 function (file) {
-                  var reader = new FileReader();
+                  const reader = new FileReader();
                   reader.onloadend = function () {
                     console.log('Successful file read: ' + this.result);
                     resolve(this.result);
@@ -317,7 +317,7 @@ export const fileCvaOpen = (filePath, type) => {
 
 export const requestCvaWritePermissions = () => {
   if (isCordova()) {
-    var permissions = window.cordova.plugins.permissions;
+    const permissions = window.cordova.plugins.permissions;
     permissions.checkPermission(
       permissions.WRITE_EXTERNAL_STORAGE,
       function (status) {
@@ -373,14 +373,14 @@ export const requestCvaCameraPermission = async () => {
 
 export const requestCvaPermissions = async () => {
   if (isAndroid()) {
-    var permissions = window.cordova.plugins.permissions;
+    const permissions = window.cordova.plugins.permissions;
     const androidPermissions = {
       READ_EXTERNAL_STORAGE: 'READ_EXTERNAL_STORAGE',
       RECORD_AUDIO: 'RECORD_AUDIO',
       READ_MEDIA_AUDIO: 'READ_MEDIA_AUDIO'
     };
 
-    for (let permission in androidPermissions) {
+    for (const permission in androidPermissions) {
       try {
         const { hasPermission } = await new Promise((resolve, reject) => {
           permissions.checkPermission(

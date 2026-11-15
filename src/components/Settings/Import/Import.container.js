@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 import shortid from 'shortid';
 
-import { addBoards, changeBoard } from '../../Board/Board.actions';
+import { addBoards, changeBoard, switchBoard } from '../../Board/Board.actions';
 import { getVisibleBoards } from '../../Board/Board.selectors';
 import { pushCommunicator } from '../../Communicator/Communicator.actions';
-import { switchBoard } from '../../Board/Board.actions';
 import { showNotification } from '../../Notifications/Notifications.actions';
 import Import from './Import.component';
 import API from '../../../api';

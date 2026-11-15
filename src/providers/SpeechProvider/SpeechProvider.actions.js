@@ -239,7 +239,7 @@ export function getVoices() {
           voiceSource,
           voice_id
         }) => {
-          let voice = {};
+          const voice = {};
           if (lang) {
             voice.lang = lang;
           } else if (Locale) {

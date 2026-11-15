@@ -450,7 +450,7 @@ export class BoardContainer extends Component {
       verifyAndUpsertCommunicator
     } = this.props;
 
-    var createBoard = false;
+    let createBoard = false;
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       this.setState({ isSaving: true });
@@ -529,11 +529,11 @@ export class BoardContainer extends Component {
   };
 
   getDefaultOrdering = (tiles) => {
-    let order = [];
+    const order = [];
     let tilesIndex = 0;
-    for (var i = 0; i < DEFAULT_ROWS_NUMBER; i++) {
+    for (let i = 0; i < DEFAULT_ROWS_NUMBER; i++) {
       order[i] = [];
-      for (var j = 0; j < DEFAULT_COLUMNS_NUMBER; j++) {
+      for (let j = 0; j < DEFAULT_COLUMNS_NUMBER; j++) {
         if (tilesIndex < tiles.length && tiles[tilesIndex]) {
           order[i][j] = tiles[tilesIndex].id;
         } else {
@@ -1009,7 +1009,7 @@ export class BoardContainer extends Component {
     if (tile && tile.sound && tile.sound.startsWith('data')) {
       const { userData } = this.props;
       try {
-        var blob = new Blob([this.convertDataURIToBinary(tile.sound)], {
+        const blob = new Blob([this.convertDataURIToBinary(tile.sound)], {
           type: 'audio/mp3; codecs=opus'
         });
         const audioUrl = await API.uploadFile(blob, userData.email + '.mp3');
@@ -1022,12 +1022,12 @@ export class BoardContainer extends Component {
   }
 
   convertDataURIToBinary(dataURI) {
-    var BASE64_MARKER = ';base64,';
-    var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
-    var base64 = dataURI.substring(base64Index);
-    var raw = window.atob(base64);
-    var rawLength = raw.length;
-    var array = new Uint8Array(new ArrayBuffer(rawLength));
+    const BASE64_MARKER = ';base64,';
+    const base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+    const base64 = dataURI.substring(base64Index);
+    const raw = window.atob(base64);
+    const rawLength = raw.length;
+    const array = new Uint8Array(new ArrayBuffer(rawLength));
 
     for (let i = 0; i < rawLength; i++) {
       array[i] = raw.charCodeAt(i);
@@ -1065,16 +1065,16 @@ export class BoardContainer extends Component {
         tile = await this.uploadTileSound(tile);
       }
       if (editedTiles) {
-        let _editedTiles = [];
-        for (let _tile of editedTiles) {
+        const _editedTiles = [];
+        for (const _tile of editedTiles) {
           _editedTiles.push(await this.uploadTileSound(_tile));
         }
         editedTiles = _editedTiles;
       }
 
-      var createParentBoard = false;
-      var createChildBoard = false;
-      var childBoardData = null;
+      let createParentBoard = false;
+      let createChildBoard = false;
+      let childBoardData = null;
 
       let uTiles = [];
       if (deletedTilesiIds) {
@@ -1271,7 +1271,7 @@ export class BoardContainer extends Component {
     }
     if (records) {
       //get the list of next boards in records
-      let nextBoardsRecords = records.map((entry) => entry.next);
+      const nextBoardsRecords = records.map((entry) => entry.next);
       if (nextBoardsRecords.includes(board.id)) {
         return null;
       }
@@ -1508,7 +1508,7 @@ export class BoardContainer extends Component {
     // Loggedin user?
     if ('name' in userData && 'email' in userData) {
       try {
-        let newParentBoard = {
+        const newParentBoard = {
           ...boardData,
           hidden: false,
           author: userData.name,

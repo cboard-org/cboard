@@ -146,7 +146,7 @@ describe('CommunicatorDialog tests', () => {
     );
     let tree = toJson(wrapper);
     expect(tree).toMatchSnapshot();
-    let tabsBar = wrapper.find('.CommunicatorDialog__tabs');
+    const tabsBar = wrapper.find('.CommunicatorDialog__tabs');
 
     tabsBar.simulate('change', {}, TAB_INDEXES.PUBLIC_BOARDS);
     expect(selectedTab).toBe(TAB_INDEXES.PUBLIC_BOARDS);

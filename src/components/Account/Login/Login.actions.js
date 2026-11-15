@@ -197,7 +197,7 @@ export function login({ email, password, activatedData }, type = 'local') {
       if (e.response != null) {
         return Promise.reject(e.response.data);
       }
-      var disonnected = {
+      const disonnected = {
         message: 'Unable to contact server. Try in a moment'
       };
       return Promise.reject(disonnected);

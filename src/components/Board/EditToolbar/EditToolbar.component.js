@@ -10,8 +10,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import EditIcon from '@material-ui/icons/Edit';
 import AddBoxIcon from '@material-ui/icons/AddBox';
-import { MdContentCopy } from 'react-icons/md';
-import { MdContentPaste } from 'react-icons/md';
+import { MdContentCopy, MdContentPaste } from 'react-icons/md';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';

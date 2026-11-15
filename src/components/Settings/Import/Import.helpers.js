@@ -80,8 +80,8 @@ async function getTilesData(obfBoard, boards = {}, images = {}) {
       }
 
       if (button['image_id']) {
-        let imageID = button['image_id'];
-        let image = obfBoard.images.find((image) => image.id === imageID);
+        const imageID = button['image_id'];
+        const image = obfBoard.images.find((image) => image.id === imageID);
 
         if (image) {
           let imageData = image.data || null;
@@ -256,7 +256,7 @@ export async function obzImportAdapter(file, intl, allBoards) {
   );
 
   const cboardBoards = [];
-  for (let key in boards) {
+  for (const key in boards) {
     const board = await obfToCboard(boards[key], boards, images);
     cboardBoards.push(board);
   }

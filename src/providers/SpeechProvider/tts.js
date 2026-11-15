@@ -16,7 +16,7 @@ import { ELEVEN_LABS } from './SpeechProvider.constants';
 let synth = window.speechSynthesis;
 
 // this is the cloud synthesizer
-var azureSynthesizer;
+let azureSynthesizer;
 
 /**
  * @type {ElevenLabsEngine | null}
@@ -26,8 +26,8 @@ let elevenLabsSynthesizer = null;
 const audioElement = new Audio();
 
 let appleFirstCloudPlay = IS_BROWSING_FROM_APPLE;
-var speakQueue = [];
-var platformVoices = [];
+let speakQueue = [];
+let platformVoices = [];
 
 const getStateVoices = () => {
   const store = getStore();
@@ -46,11 +46,11 @@ const getConnectionStatus = () => {
 };
 
 const initAzureSynthesizer = () => {
-  var azureSpeechConfig = azureSdk.SpeechConfig.fromSubscription(
+  const azureSpeechConfig = azureSdk.SpeechConfig.fromSubscription(
     AZURE_SPEECH_SUBSCR_KEY,
     AZURE_SPEECH_SERVICE_REGION
   );
-  var azureAudioConfig = null;
+  const azureAudioConfig = null;
   azureSynthesizer = new azureSdk.SpeechSynthesizer(
     azureSpeechConfig,
     azureAudioConfig

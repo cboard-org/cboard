@@ -89,7 +89,7 @@ function getBase64Image(base64Str = '') {
   // https://gist.github.com/fupslot/5015897
   const ab = new ArrayBuffer(byteString.length);
   const ia = new Uint8Array(ab);
-  for (var i = 0; i < byteString.length; i++) {
+  for (let i = 0; i < byteString.length; i++) {
     ia[i] = byteString.charCodeAt(i);
   }
 
@@ -594,7 +594,7 @@ const addTileToGrid = async (
     image.startsWith('data:image/svg+xml') ||
     image.startsWith('data:image/png')
   ) {
-    let url = image;
+    const url = image;
     const styles = {};
     if (tile.backgroundColor) {
       styles.backgroundColor = tile.backgroundColor;
@@ -1003,7 +1003,7 @@ export async function pdfExportAdapter(
       requestCvaWritePermissions();
       const getBuffer = (callback) => {
         pdfObj.getBuffer((buffer) => {
-          var blob = new Blob([buffer], { type: 'application/pdf' });
+          const blob = new Blob([buffer], { type: 'application/pdf' });
           const name =
             'Download/' + prefix + EXPORT_CONFIG_BY_TYPE.pdf.filename;
           writeCvaFile(name, blob);

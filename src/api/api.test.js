@@ -383,7 +383,7 @@ describe('Cboard API calls', () => {
   });
 
   it('fetches results from unauthorized api', () => {
-    let catchFn = jest.fn(),
+    const catchFn = jest.fn(),
       thenFn = jest.fn();
     const store = getStore();
     store.getState().app.userData = null;

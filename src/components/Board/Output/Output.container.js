@@ -18,7 +18,7 @@ import SymbolOutput from './SymbolOutput';
 
 function translateOutput(output, intl) {
   const translatedOutput = output.map((value) => {
-    let translatedValue = { ...value };
+    const translatedValue = { ...value };
 
     if (value.labelKey && intl.messages[value.labelKey]) {
       translatedValue.label = intl.formatMessage({ id: value.labelKey });
@@ -145,7 +145,7 @@ export class OutputContainer extends Component {
 
   playAudio(src) {
     return new Promise((resolve, reject) => {
-      let audio = new Audio();
+      const audio = new Audio();
 
       audio.onended = () => {
         resolve();

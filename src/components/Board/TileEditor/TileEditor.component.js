@@ -179,7 +179,7 @@ export class TileEditor extends Component {
     if (this.editingTile()) {
       const { imageUploadedData } = this.state;
       if (imageUploadedData.length) {
-        let tilesToAdd = JSON.parse(JSON.stringify(this.state.editingTiles));
+        const tilesToAdd = JSON.parse(JSON.stringify(this.state.editingTiles));
         await Promise.all(
           imageUploadedData.map(async (obj, index) => {
             if (obj.isUploaded) {
@@ -260,7 +260,7 @@ export class TileEditor extends Component {
 
   createimageUploadedDataArray() {
     if (this.editingTile()) {
-      let imageUploadedDataArray = new Array(this.state.editingTiles.length);
+      const imageUploadedDataArray = new Array(this.state.editingTiles.length);
       imageUploadedDataArray.fill(this.defaultimageUploadedData);
       this.setState({ imageUploadedData: imageUploadedDataArray });
     } else {
@@ -286,7 +286,7 @@ export class TileEditor extends Component {
 
   setimageUploadedData = (isUploaded, fileName, blobHQ = null, blob = null) => {
     const { activeStep } = this.state;
-    let imageUploadedData = this.state.imageUploadedData.map((item, indx) => {
+    const imageUploadedData = this.state.imageUploadedData.map((item, indx) => {
       if (indx === activeStep) {
         return {
           ...item,

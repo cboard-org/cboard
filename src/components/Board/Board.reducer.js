@@ -265,7 +265,7 @@ function boardReducer(state = initialState, action) {
     case REPLACE_BOARD: {
       const nH = [...state.navHistory];
       const { prev, current } = action.payload;
-      let boards = [...state.boards];
+      const boards = [...state.boards];
       let syncMeta = state.syncMeta;
 
       if (prev.id !== current.id) {
@@ -332,7 +332,7 @@ function boardReducer(state = initialState, action) {
       if (dnavHistory.length < 2) {
         return state;
       }
-      for (var i = 0; i < dnavHistory.length; i++) {
+      for (let i = 0; i < dnavHistory.length; i++) {
         if (dnavHistory[i] === action.removedBoardId) {
           dnavHistory.splice(i, 1);
         }

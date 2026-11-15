@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { hideLoginRequired } from '../../providers/SubscriptionProvider/SubscriptionProvider.actions';
-import { Dialog } from '@material-ui/core';
+import { Dialog, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
 
 import WarningIcon from '@material-ui/icons/Warning';
 import DialogContent from '@material-ui/core/DialogContent';
-import { Typography } from '@material-ui/core';
 
 import messages from './LoginRequiredModal.messages';
 import { FormattedMessage } from 'react-intl';

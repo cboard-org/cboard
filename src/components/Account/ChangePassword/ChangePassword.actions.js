@@ -37,7 +37,7 @@ export function storePassword(userid, password, url) {
       if (err.response != null) {
         return Promise.reject(err.response.data);
       }
-      var disonnected = {
+      const disonnected = {
         message: 'Unable to contact server. Try in a moment'
       };
       return Promise.reject(disonnected);

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import messages from '../CommunicatorToolbar.messages';
 
-import { IconButton } from '@material-ui/core';
+import { IconButton, Fade, Typography } from '@material-ui/core';
 import AppsIcon from '@material-ui/icons/Apps';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -13,8 +13,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Slide from '@material-ui/core/Slide';
-import { Fade } from '@material-ui/core';
-import { Typography } from '@material-ui/core';
 
 import styles from './DefaultBoardSelector.module.css';
 import DefaultBoardsGallery from './DefaultBoardsGallery';

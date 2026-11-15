@@ -35,7 +35,7 @@ const joyRideStyles = {
 };
 
 const imgFolderPath = '../../../images/tour/settingsTour/';
-let settingsTourImages = {
+const settingsTourImages = {
   display: [
     {
       src: imgFolderPath + 'elementsSize.png',
@@ -119,7 +119,7 @@ function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
     }
   };
 
-  let settingsTourSteps = [
+  const settingsTourSteps = [
     {
       target: 'body',
       placement: 'center',
