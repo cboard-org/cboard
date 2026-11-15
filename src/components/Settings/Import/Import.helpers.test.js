@@ -1,6 +1,6 @@
 import JSZip from 'jszip';
 import JSZipUtils from 'jszip-utils';
-import { obzImportAdapter } from './Import.helpers';
+import { obzImportAdapter, requestQuota } from './Import.helpers';
 
 jest.mock('jszip-utils', () => ({ getBinaryContent: jest.fn() }));
 // With no uploaded URL to use, the importer keeps the image as a data URL.
@@ -62,5 +62,39 @@ describe('obzImportAdapter', () => {
     });
 
     expect(board.tiles[0].image).toBe(SVG_DATA_URL);
+  });
+});
+
+describe('requestQuota', () => {
+  // Just over the 4 MB limit once serialized.
+  const largeImport = [{ id: 'big', tiles: [{ image: 'x'.repeat(4200000) }] }];
+
+  afterEach(() => {
+    delete navigator.webkitPersistentStorage;
+  });
+
+  it('lets a large import through in a browser without the quota API', async () => {
+    await expect(requestQuota(largeImport)).resolves.toBeGreaterThan(
+      4 * 1024 * 1024
+    );
+  });
+
+  it('asks for quota for a large import where the API exists', async () => {
+    const quotaRequest = jest.fn((size, granted) => granted(size));
+    navigator.webkitPersistentStorage = { requestQuota: quotaRequest };
+
+    await requestQuota(largeImport);
+
+    expect(quotaRequest).toHaveBeenCalledTimes(1);
+  });
+
+  it('fails a large import when the browser grants too little quota', async () => {
+    navigator.webkitPersistentStorage = {
+      requestQuota: (size, granted) => granted(0)
+    };
+
+    await expect(requestQuota(largeImport)).rejects.toThrow(
+      'Granted size is below the limit'
+    );
   });
 });

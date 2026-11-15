@@ -320,9 +320,9 @@ export async function requestQuota(json) {
       } catch (e) {
         throw new Error(e);
       }
-    } else {
-      throw new Error("Can't request quota");
     }
+    // Without this Chrome-only API there is nothing to request. Boards are
+    // stored in IndexedDB, whose quota the browser manages itself.
   }
 
   return size;
