@@ -243,8 +243,12 @@ export async function obzImportAdapter(file, intl, allBoards) {
             boards[k] = tempBoard;
           }
         } else {
-          if (k.startsWith('images//')) {
-            images[k.substring(7)] = result;
+          // JSZip normalizes entry names when it loads a zip, so the
+          // "images//..." names written by the Cboard export are only
+          // visible in unsafeOriginalName.
+          const originalName = zipFile.files[k].unsafeOriginalName || k;
+          if (originalName.startsWith('images//')) {
+            images[originalName.substring(7)] = result;
           } else {
             images[k] = result;
           }
