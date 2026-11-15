@@ -1,5 +1,5 @@
 import { saveAs } from 'file-saver';
-import { openboardExportOneAdapter } from './Export.helpers';
+import { generateImageId, openboardExportOneAdapter } from './Export.helpers';
 import { CBOARD_OBF_CONSTANTS, EMPTY_IMAGE } from './Export.constants';
 
 jest.mock('file-saver', () => ({ saveAs: jest.fn() }));
@@ -103,6 +103,19 @@ const embeddedImage = (id) => ({
   content_type: 'image/png',
   width: 300,
   height: 300
+});
+
+describe('generateImageId', () => {
+  it('returns a 24-character lowercase hex string', () => {
+    for (let i = 0; i < 50; i++) {
+      expect(generateImageId()).toMatch(/^[0-9a-f]{24}$/);
+    }
+  });
+
+  it('returns a different id on each call', () => {
+    const ids = new Set(Array.from({ length: 1000 }, generateImageId));
+    expect(ids.size).toBe(1000);
+  });
 });
 
 describe('OpenBoard export of a single board', () => {
