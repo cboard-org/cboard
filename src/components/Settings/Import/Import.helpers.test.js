@@ -3,10 +3,9 @@ import JSZipUtils from 'jszip-utils';
 import { obzImportAdapter } from './Import.helpers';
 
 jest.mock('jszip-utils', () => ({ getBinaryContent: jest.fn() }));
-// The upload fails for a user who is not signed in, and the importer then
-// keeps the image as a data URL.
+// With no uploaded URL to use, the importer keeps the image as a data URL.
 jest.mock('../../../api', () => ({
-  uploadFromDataURL: jest.fn(() => Promise.reject(new Error('offline')))
+  uploadFromDataURL: jest.fn(() => Promise.resolve(undefined))
 }));
 
 const SVG = '<svg xmlns="http://www.w3.org/2000/svg"/>';
@@ -30,7 +29,6 @@ async function importOBZ({ imagePath, zipEntryName }) {
   zip.file(zipEntryName, SVG);
   const data = await zip.generateAsync({ type: 'arraybuffer' });
 
-  global.URL.createObjectURL = jest.fn(() => 'blob:obz');
   JSZipUtils.getBinaryContent.mockImplementation((path, callback) =>
     callback(null, data)
   );
@@ -39,6 +37,11 @@ async function importOBZ({ imagePath, zipEntryName }) {
 }
 
 describe('obzImportAdapter', () => {
+  beforeAll(() => {
+    // jsdom has no URL.createObjectURL.
+    global.URL.createObjectURL = jest.fn(() => 'blob:obz');
+  });
+
   it('finds the images of an OBZ exported by Cboard', async () => {
     // The Cboard export stores each image under "images/" + path, and path
     // starts with a slash.
