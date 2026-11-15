@@ -5,7 +5,7 @@
  * src/ is present in src/translations/src/cboard.json.
  *
  * Usage:
- *   node scripts/check-messages.js           # report missing keys only
+ *   node scripts/check-messages.js           # report missing keys; exits 1 if any
  *   node scripts/check-messages.js --write   # report and add missing keys
  */
 const fs = require('fs');
@@ -176,4 +176,6 @@ if (process.argv.includes('--write') && missing.length) {
   }
   fs.writeFileSync(cboardPath, JSON.stringify(cboard, null, 2) + '\n', 'utf8');
   console.log('Added', missing.length, 'keys to cboard.json');
+} else if (missing.length) {
+  process.exitCode = 1;
 }
