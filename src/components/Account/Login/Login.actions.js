@@ -8,6 +8,7 @@ import {
   changeElevenLabsApiKey,
   getVoices
 } from '../../../providers/SpeechProvider/SpeechProvider.actions';
+import { EMPTY_VOICES } from '../../../providers/SpeechProvider/SpeechProvider.constants';
 import {
   disableTour,
   setUnloggedUserLocation,
@@ -105,7 +106,6 @@ export function login({ email, password, activatedData }, type = 'local') {
         options: { lang: deviceVoiceLang, voiceURI: deviceVoiceUri }
       }
     } = getState(); //ATENTION speech options on DB is under Speech directly. on state is under options
-    const emptyVoiceString = 'empty voices';
     const appLanguageCode = appLang?.substring(0, 2);
     const deviceVoiceLanguageCode = deviceVoiceLang?.substring(0, 2);
 
@@ -151,8 +151,8 @@ export function login({ email, password, activatedData }, type = 'local') {
 
       const defaultVoiceUri = getVoiceURI(appLang, voices);
 
-      if (defaultVoiceUri === emptyVoiceString) {
-        dispatch(changeVoice(emptyVoiceString, ''));
+      if (defaultVoiceUri === EMPTY_VOICES) {
+        dispatch(changeVoice(EMPTY_VOICES, ''));
         return;
       }
       //if the api stored voice is unavailable. Set default voice
@@ -163,7 +163,7 @@ export function login({ email, password, activatedData }, type = 'local') {
       return;
     }
     if (deviceVoiceLang === null) {
-      dispatch(changeVoice(emptyVoiceString, ''));
+      dispatch(changeVoice(EMPTY_VOICES, ''));
       return;
     }
   };

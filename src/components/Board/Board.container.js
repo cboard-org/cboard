@@ -72,7 +72,8 @@ import {
   processTileClick,
   getScannerStrategyNotificationMessages,
   computeScrollState,
-  notifyLockCountdown
+  notifyLockCountdown,
+  isLocalBoard
 } from './Board.utils';
 import LoadingIcon from '../UI/LoadingIcon';
 import PinDialog from '../UI/PinDialog';
@@ -474,7 +475,7 @@ export class BoardContainer extends Component {
           verifyAndUpsertCommunicator(communicatorData);
         }
         //check if we have to create a copy of the board
-        if (boardData.id.length < 14) {
+        if (isLocalBoard(boardData)) {
           createBoard = true;
           boardData = {
             ...boardData,
@@ -1133,7 +1134,7 @@ export class BoardContainer extends Component {
         updateBoard(childBoardData);
       }
       //check if we have to create a copy of the parent
-      if (parentBoardData.id.length < 14) {
+      if (isLocalBoard(parentBoardData)) {
         createParentBoard = true;
         parentBoardData = {
           ...parentBoardData,
