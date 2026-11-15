@@ -98,7 +98,7 @@ Creates a Docker image with Cboard built for production. The image is tagged as 
 
 ### `make run`
 
-Runs the `cboard/cboard:latest` Docker image.
+Runs the `cboard/cboard:latest` Docker image and serves it at http://localhost:8080.
 
 ## Secrets Management
 
