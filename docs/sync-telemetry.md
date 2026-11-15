@@ -77,7 +77,7 @@ boards was the signature of the 2026-07-01 incident).
 | `manifestSize`      | measurements | boards in the remote manifest                                                                                                |
 | `localBoards`       | measurements | total local boards                                                                                                           |
 | `localServerBoards` | measurements | local boards with a server id                                                                                                |
-| `untrackedBefore`   | measurements | local boards with no `syncMeta` entry                                                                                        |
+| `untrackedBefore`   | measurements | local boards with no `syncMeta` entry that the engine would onboard (owned by the user, or created while logged out)         |
 
 ### `Sync_Completed`
 
@@ -85,13 +85,13 @@ On every **board-sync cycle**, success or failure. Scope is the board phase only
 (`syncBoards()`); it does not cover the communicators phase. For the whole sync flight, see
 `Sync_FullRun`.
 
-| field            | bag          | meaning                                                                                                                                                    |
-| ---------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `outcome`        | properties   | `success` \| `failure`                                                                                                                                     |
-| `durationMs`     | measurements | wall time of the cycle                                                                                                                                     |
-| `pendingBefore`  | measurements | PENDING boards pre-sync                                                                                                                                    |
-| `pendingAfter`   | measurements | PENDING boards post-sync                                                                                                                                   |
-| `untrackedAfter` | measurements | local boards with no `syncMeta` entry post-sync (pairs with `Sync_BoardsStarted.untrackedBefore`; a device where this never reaches 0 is graduation-stuck) |
+| field            | bag          | meaning                                                                                                                                                                |
+| ---------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `outcome`        | properties   | `success` \| `failure`                                                                                                                                                 |
+| `durationMs`     | measurements | wall time of the cycle                                                                                                                                                 |
+| `pendingBefore`  | measurements | PENDING boards pre-sync                                                                                                                                                |
+| `pendingAfter`   | measurements | PENDING boards post-sync                                                                                                                                               |
+| `untrackedAfter` | measurements | onboardable local boards with no `syncMeta` entry post-sync (pairs with `Sync_BoardsStarted.untrackedBefore`; a device where this never reaches 0 is graduation-stuck) |
 
 ### `Sync_FullRun`
 
