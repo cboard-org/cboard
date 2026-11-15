@@ -12,14 +12,25 @@ import {
 describe('cordova-util platform predicates', () => {
   const originalLocation = window.location;
 
+  let locationReplaced = false;
+
+  // jsdom cannot navigate to another scheme, so the location object is
+  // replaced. This works on the jsdom that Jest 27 ships; newer jsdom makes
+  // window.location non-configurable. The assertion makes that upgrade fail
+  // here, with a clear cause, instead of in the predicates below.
   const setProtocol = (protocol) => {
     delete window.location;
     window.location = { protocol };
+    locationReplaced = true;
+    expect(window.location.protocol).toBe(protocol);
   };
 
   afterEach(() => {
     delete window.cordova;
-    window.location = originalLocation;
+    if (locationReplaced) {
+      window.location = originalLocation;
+      locationReplaced = false;
+    }
   });
 
   it('reports a plain browser when there is no cordova global', () => {

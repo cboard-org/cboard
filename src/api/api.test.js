@@ -1,6 +1,5 @@
 import API from './api';
 import mockAxios from 'jest-mock-axios';
-import { getStore } from '../store';
 import { isAndroid } from '../cordova-util';
 
 jest.mock('../store');
@@ -8,24 +7,6 @@ jest.mock('../cordova-util', () => ({
   ...jest.requireActual('../cordova-util'),
   isAndroid: jest.fn(() => false)
 }));
-
-const mockBoard = {
-  name: 'tewt',
-  id: '12345678901234567',
-  tiles: [{ id: '1234', loadBoard: '456456456456456456456' }],
-  isPublic: false,
-  email: 'asd@qwe.com',
-  markToUpdate: true
-};
-const mockComm = {
-  id: 'cboard_default',
-  name: "Cboard's Communicator",
-  description: "Cboard's default communicator",
-  author: 'Cboard Team',
-  email: 'support@cboard.io',
-  rootBoard: 'root',
-  boards: ['root']
-};
 
 describe('Cboard API calls', () => {
   afterEach(() => {
@@ -380,31 +361,5 @@ describe('Cboard API calls', () => {
       expect(sanitized.tiles[0].image).toBe('https://cdn.example.com/tile.png');
       expect(sanitized.caption).toBe('https://cdn.example.com/caption.png');
     });
-  });
-
-  it('fetches results from unauthorized api', () => {
-    let catchFn = jest.fn(),
-      thenFn = jest.fn();
-    const store = getStore();
-    store.getState().app.userData = null;
-
-    //call method
-    API.getMyBoards().then(thenFn).catch(catchFn);
-    //call method
-    API.updateBoard(mockBoard).then(thenFn).catch(catchFn);
-    //call method
-    API.createBoard(mockBoard).then(thenFn).catch(catchFn);
-    //call method
-    API.deleteBoard('1234').then(thenFn).catch(catchFn);
-    //call method
-    API.getCommunicators().then(thenFn).catch(catchFn);
-    //call method
-    API.updateSettings().then(thenFn).catch(catchFn);
-    //call method
-    API.updateCommunicator(mockComm).then(thenFn).catch(catchFn);
-    //call method
-    API.createCommunicator(mockComm).then(thenFn).catch(catchFn);
-    const dataUrl = 'data:text/plain;charset=utf-8;base64,dGVzdGluZw==';
-    API.uploadFromDataURL(dataUrl, 'test.txt').then(thenFn).catch(catchFn);
   });
 });

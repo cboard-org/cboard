@@ -106,6 +106,7 @@
     "decompress-zip": "^0.3.3",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "3.3.5",
+    "eslint": "8.57.1",
     "eslint-config-prettier": "10.1.8",
     "fake-indexeddb": "^4.0.2",
     "husky": "9.1.7",

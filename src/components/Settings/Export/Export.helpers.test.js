@@ -133,6 +133,8 @@ describe('OpenBoard export of a single board', () => {
         },
         {
           id: 't2',
+          // Pinned, not endorsed: a label the user typed is looked up as a
+          // message id. Update this expectation if that is ever fixed.
           label: 'translated:My snack',
           vocalization: 'I want my snack',
           image_id: 'image-2'
