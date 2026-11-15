@@ -31,7 +31,8 @@ const intlMock = {
 };
 it('renders without crashing', () => {
   const props = {
-    intlMock,
+    intl: intlMock,
+    classes: {},
     finishFirstVisit: jest.fn()
   };
   shallow(<WelcomeScreen {...props} />);
