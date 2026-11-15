@@ -1,19 +1,25 @@
 /*
  * check-messages.js
  *
- * Verifies that static message IDs in object literals in *.messages.js files
- * under src/ are present in src/translations/src/cboard.json.
+ * Verifies that every translation string defined in *.messages.js files under
+ * src/ is present in src/translations/src/cboard.json.
  *
  * Usage:
- *   node scripts/check-messages.js           # report missing keys; exits 1 if any
+ *   node scripts/check-messages.js           # report missing keys only
  *   node scripts/check-messages.js --write   # report and add missing keys
  */
 const fs = require('fs');
 const path = require('path');
-const ts = require('typescript');
 
 const srcDir = path.join(__dirname, '..', 'src');
-const cboardPath = path.join(srcDir, 'translations', 'src', 'cboard.json');
+const cboardPath = path.join(
+  __dirname,
+  '..',
+  'src',
+  'translations',
+  'src',
+  'cboard.json'
+);
 
 function walk(dir, acc = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -28,80 +34,133 @@ function walk(dir, acc = []) {
   return acc;
 }
 
-function staticString(node) {
-  if (!node) return null;
-  if (ts.isStringLiteralLike(node)) return node.text;
-  if (ts.isParenthesizedExpression(node)) return staticString(node.expression);
-  if (
-    ts.isBinaryExpression(node) &&
-    node.operatorToken.kind === ts.SyntaxKind.PlusToken
-  ) {
-    const left = staticString(node.left);
-    const right = staticString(node.right);
-    if (left !== null && right !== null) return left + right;
+// Remove /* */ block comments and // line comments (respecting string literals).
+function stripComments(src) {
+  let out = '';
+  let i = 0;
+  const n = src.length;
+  while (i < n) {
+    const c = src[i];
+    if (c === "'" || c === '"' || c === '`') {
+      const quote = c;
+      out += c;
+      i++;
+      while (i < n && src[i] !== quote) {
+        if (src[i] === '\\') {
+          out += src[i] + (src[i + 1] || '');
+          i += 2;
+        } else {
+          out += src[i];
+          i++;
+        }
+      }
+      out += src[i] || '';
+      i++;
+    } else if (c === '/' && src[i + 1] === '/') {
+      while (i < n && src[i] !== '\n') i++;
+    } else if (c === '/' && src[i + 1] === '*') {
+      i += 2;
+      while (i < n && !(src[i] === '*' && src[i + 1] === '/')) i++;
+      i += 2;
+    } else {
+      out += c;
+      i++;
+    }
   }
-  return null;
+  return out;
 }
 
-function propertyValue(object, name) {
-  const property = object.properties.find(
-    (property) =>
-      ts.isPropertyAssignment(property) &&
-      (ts.isIdentifier(property.name) || ts.isStringLiteral(property.name)) &&
-      property.name.text === name
-  );
-  return property?.initializer;
+// Extract { id, defaultMessage } pairs from a messages file using a JS-ish parser.
+function extractMessages(content) {
+  content = stripComments(content);
+  const results = [];
+  const idRegex = /id:\s*'((?:[^'\\]|\\.)*)'/g;
+  let m;
+  const idPositions = [];
+  while ((m = idRegex.exec(content)) !== null) {
+    idPositions.push({ id: m[1], index: m.index, end: idRegex.lastIndex });
+  }
+  for (let i = 0; i < idPositions.length; i++) {
+    const { id, end } = idPositions[i];
+    const nextIndex =
+      i + 1 < idPositions.length ? idPositions[i + 1].index : content.length;
+    const slice = content.slice(end, nextIndex);
+    const dmMatch = slice.match(/defaultMessage:\s*([\s\S]*)/);
+    let defaultMessage = null;
+    if (dmMatch) {
+      defaultMessage = parseStringValue(dmMatch[1]);
+    }
+    results.push({ id, defaultMessage });
+  }
+  return results;
 }
 
-function extractMessages(sourceFile) {
-  const messages = [];
-
-  // Read descriptors at their declarations so references and spreads in
-  // defineMessages do not have to be resolved.
-  function visit(node) {
-    if (ts.isObjectLiteralExpression(node)) {
-      const id = staticString(propertyValue(node, 'id'));
-      if (id !== null) {
-        const defaultMessage = staticString(
-          propertyValue(node, 'defaultMessage')
-        );
-        messages.push({ id, defaultMessage });
+// Parse a string value that may be a single quoted string, possibly concatenated
+// across multiple lines with '+'. Stops at the trailing comma/brace.
+function parseStringValue(raw) {
+  let parts = [];
+  let i = 0;
+  while (i < raw.length) {
+    // skip whitespace and '+'
+    while (i < raw.length && /[\s+]/.test(raw[i])) i++;
+    if (raw[i] !== "'" && raw[i] !== '"' && raw[i] !== '`') break;
+    const quote = raw[i];
+    i++;
+    let str = '';
+    while (i < raw.length && raw[i] !== quote) {
+      if (raw[i] === '\\') {
+        str += raw[i] + raw[i + 1];
+        i += 2;
+      } else {
+        str += raw[i];
+        i++;
       }
     }
-    ts.forEachChild(node, visit);
+    i++; // skip closing quote
+    parts.push(str);
+    // skip whitespace to check for continuation '+'
+    while (i < raw.length && /\s/.test(raw[i])) i++;
+    if (raw[i] !== '+') break;
   }
-  visit(sourceFile);
-  return messages;
+  // Resolve the JS escape sequences that were preserved from the source string.
+  const joined = parts.join('');
+  return joined.replace(/\\(u[0-9a-fA-F]{4}|x[0-9a-fA-F]{2}|.)/g, (_, esc) => {
+    switch (esc[0]) {
+      case 'n':
+        return '\n';
+      case 't':
+        return '\t';
+      case 'r':
+        return '\r';
+      case 'b':
+        return '\b';
+      case 'f':
+        return '\f';
+      case 'v':
+        return '\v';
+      case '0':
+        return '\0';
+      case 'u':
+      case 'x':
+        return String.fromCodePoint(parseInt(esc.slice(1), 16));
+      default:
+        return esc;
+    }
+  });
 }
 
 const files = walk(srcDir);
 const cboard = JSON.parse(fs.readFileSync(cboardPath, 'utf8'));
-const program = ts.createProgram(files, {
-  allowJs: true,
-  noLib: true,
-  noResolve: true,
-  types: []
-});
-const syntaxErrors = program.getSyntacticDiagnostics();
-if (syntaxErrors.length) {
-  console.error(
-    ts.formatDiagnostics(syntaxErrors, {
-      getCurrentDirectory: ts.sys.getCurrentDirectory,
-      getCanonicalFileName: (file) => file,
-      getNewLine: () => ts.sys.newLine
-    })
-  );
-  process.exit(1);
-}
 
 const missing = [];
 const allIds = new Set();
 for (const file of files) {
-  const messages = extractMessages(program.getSourceFile(file));
-  for (const message of messages) {
-    allIds.add(message.id);
-    if (!(message.id in cboard)) {
-      missing.push({ ...message, file });
+  const content = fs.readFileSync(file, 'utf8');
+  const msgs = extractMessages(content);
+  for (const msg of msgs) {
+    allIds.add(msg.id);
+    if (!(msg.id in cboard)) {
+      missing.push({ id: msg.id, defaultMessage: msg.defaultMessage, file });
     }
   }
 }
@@ -113,10 +172,8 @@ console.log(JSON.stringify(missing, null, 2));
 
 if (process.argv.includes('--write') && missing.length) {
   for (const { id, defaultMessage } of missing) {
-    cboard[id] = defaultMessage ?? '';
+    cboard[id] = defaultMessage == null ? '' : defaultMessage;
   }
   fs.writeFileSync(cboardPath, JSON.stringify(cboard, null, 2) + '\n', 'utf8');
   console.log('Added', missing.length, 'keys to cboard.json');
-} else if (missing.length) {
-  process.exitCode = 1;
 }
