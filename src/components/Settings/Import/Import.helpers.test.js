@@ -1,8 +1,15 @@
 import JSZip from 'jszip';
 import JSZipUtils from 'jszip-utils';
+import localForage from 'localforage';
 import { obzImportAdapter, requestQuota } from './Import.helpers';
 
 jest.mock('jszip-utils', () => ({ getBinaryContent: jest.fn() }));
+jest.mock('localforage', () => ({
+  INDEXEDDB: 'asyncStorage',
+  LOCALSTORAGE: 'localStorageWrapper',
+  ready: jest.fn(),
+  driver: jest.fn()
+}));
 // With no uploaded URL to use, the importer keeps the image as a data URL.
 jest.mock('../../../api', () => ({
   uploadFromDataURL: jest.fn(() => Promise.resolve(undefined))
@@ -69,6 +76,11 @@ describe('requestQuota', () => {
   // Just over the 4 MB limit once serialized.
   const largeImport = [{ id: 'big', tiles: [{ image: 'x'.repeat(4200000) }] }];
 
+  beforeEach(() => {
+    localForage.ready.mockResolvedValue();
+    localForage.driver.mockReturnValue(localForage.INDEXEDDB);
+  });
+
   afterEach(() => {
     delete navigator.webkitPersistentStorage;
   });
@@ -76,6 +88,14 @@ describe('requestQuota', () => {
   it('lets a large import through in a browser without the quota API', async () => {
     await expect(requestQuota(largeImport)).resolves.toBeGreaterThan(
       4 * 1024 * 1024
+    );
+  });
+
+  it('fails a large import without the quota API when boards are kept in localStorage', async () => {
+    localForage.driver.mockReturnValue(localForage.LOCALSTORAGE);
+
+    await expect(requestQuota(largeImport)).rejects.toThrow(
+      "Can't request quota"
     );
   });
 

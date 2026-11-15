@@ -1,6 +1,7 @@
 import JSZipUtils from 'jszip-utils';
 import JSZip from 'jszip';
 import shortid from 'shortid';
+import localForage from 'localforage';
 import { IMPORT_PATHS, CBOARD_EXT_PREFIX } from './Import.constants';
 import API from '../../../api';
 
@@ -320,9 +321,16 @@ export async function requestQuota(json) {
       } catch (e) {
         throw new Error(e);
       }
+    } else {
+      // Without this Chrome-only API there is nothing to request. The
+      // browser manages the quota of IndexedDB itself, but where IndexedDB
+      // is missing localForage falls back to localStorage, which cannot hold
+      // an import this large.
+      await localForage.ready();
+      if (localForage.driver() !== localForage.INDEXEDDB) {
+        throw new Error("Can't request quota");
+      }
     }
-    // Without this Chrome-only API there is nothing to request. Boards are
-    // stored in IndexedDB, whose quota the browser manages itself.
   }
 
   return size;
