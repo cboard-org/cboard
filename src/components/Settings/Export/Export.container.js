@@ -62,12 +62,6 @@ export class ExportContainer extends PureComponent {
             true
           );
         }
-      } else if (type !== 'pdf' && !singleBoard) {
-        await EXPORT_HELPERS[exportConfig.callback](
-          boards,
-          labelFontSize,
-          intl
-        );
       } else {
         if (singleBoard) {
           await EXPORT_HELPERS[exportConfig.callback](

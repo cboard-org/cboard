@@ -4,9 +4,7 @@ import { ExportContainer } from './Export.container';
 import * as exportHelpers from './Export.helpers';
 
 jest.mock('./Export.helpers', () => ({
-  openboardExportAdapter: jest.fn(),
-  cboardExportAdapter: jest.fn(),
-  pdfExportAdapter: jest.fn()
+  openboardExportAdapter: jest.fn()
 }));
 
 jest.mock('./Export.messages', () => ({
