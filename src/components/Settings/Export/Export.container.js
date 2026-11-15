@@ -36,8 +36,11 @@ export class ExportContainer extends PureComponent {
     const { boards, intl, activeBoardId, showNotification } = this.props;
     // TODO: Make this block easier to follow.
     try {
-      if (type === 'openboard' && singleBoard) {
-        await EXPORT_HELPERS.openboardExportAdapter(singleBoard, intl);
+      if (type === 'openboard') {
+        await EXPORT_HELPERS.openboardExportAdapter(
+          singleBoard || boards,
+          intl
+        );
       } else if (type === 'cboard') {
         await EXPORT_HELPERS.cboardExportAdapter(boards, singleBoard);
       } else if (type === 'picsee_pdf') {
