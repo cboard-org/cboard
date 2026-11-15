@@ -1,8 +1,8 @@
 /*
  * check-messages.js
  *
- * Verifies that every translation string defined in *.messages.js files under
- * src/ is present in src/translations/src/cboard.json.
+ * Verifies that static message IDs in object literals in *.messages.js files
+ * under src/ are present in src/translations/src/cboard.json.
  *
  * Usage:
  *   node scripts/check-messages.js           # report missing keys; exits 1 if any
@@ -54,47 +54,18 @@ function propertyValue(object, name) {
 }
 
 function extractMessages(sourceFile) {
-  const factories = new Set();
-  for (const statement of sourceFile.statements) {
-    if (
-      !ts.isImportDeclaration(statement) ||
-      statement.moduleSpecifier.text !== 'react-intl'
-    ) {
-      continue;
-    }
-    const bindings = statement.importClause?.namedBindings;
-    if (!bindings || !ts.isNamedImports(bindings)) continue;
-    for (const binding of bindings.elements) {
-      if ((binding.propertyName ?? binding.name).text === 'defineMessages') {
-        factories.add(binding.name.text);
-      }
-    }
-  }
-
   const messages = [];
+
+  // Read descriptors at their declarations so references and spreads in
+  // defineMessages do not have to be resolved.
   function visit(node) {
-    if (
-      ts.isCallExpression(node) &&
-      ts.isIdentifier(node.expression) &&
-      factories.has(node.expression.text)
-    ) {
-      const [map] = node.arguments;
-      if (map && ts.isObjectLiteralExpression(map)) {
-        for (const property of map.properties) {
-          if (
-            !ts.isPropertyAssignment(property) ||
-            !ts.isObjectLiteralExpression(property.initializer)
-          ) {
-            continue;
-          }
-          const descriptor = property.initializer;
-          const id = staticString(propertyValue(descriptor, 'id'));
-          if (id === null) continue;
-          const defaultMessage = staticString(
-            propertyValue(descriptor, 'defaultMessage')
-          );
-          messages.push({ id, defaultMessage });
-        }
+    if (ts.isObjectLiteralExpression(node)) {
+      const id = staticString(propertyValue(node, 'id'));
+      if (id !== null) {
+        const defaultMessage = staticString(
+          propertyValue(node, 'defaultMessage')
+        );
+        messages.push({ id, defaultMessage });
       }
     }
     ts.forEachChild(node, visit);

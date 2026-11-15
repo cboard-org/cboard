@@ -81,3 +81,38 @@ test('reports missing template literal IDs and writes their default text', (t) =
   assert.deepEqual(readCatalog(), { 'cboard.review.missing': 'Use a symbol.' });
   assert.equal(check().status, 0);
 });
+
+const composedMessages = [
+  {
+    name: 'referenced through a same-file variable',
+    source: `const greeting = {
+       id: 'cboard.review.greeting',
+       defaultMessage: 'Hello'
+     };
+     export default defineMessages({ greeting });`
+  },
+  {
+    name: 'included through a spread',
+    source: `const greetings = {
+       greeting: { id: 'cboard.review.greeting', defaultMessage: 'Hello' }
+     };
+     export default defineMessages({ ...greetings });`
+  }
+];
+
+for (const { name, source } of composedMessages) {
+  test(`finds a missing descriptor ${name}`, (t) => {
+    const { check, readCatalog } = fixture(
+      t,
+      `import { defineMessages } from 'react-intl';
+       ${source}`
+    );
+
+    const checked = check();
+    assert.equal(checked.status, 1, checked.stderr || checked.stdout);
+    assert.match(checked.stdout, /"id": "cboard\.review\.greeting"/);
+    assert.equal(check('--write').status, 0);
+    assert.deepEqual(readCatalog(), { 'cboard.review.greeting': 'Hello' });
+    assert.equal(check().status, 0);
+  });
+}
