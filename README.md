@@ -18,11 +18,11 @@ The app uses the browser's Speech Synthesis API to generate speech when a symbol
 
 This video shows Srna. She is one of the children who have received the Cboard Communicator thanks to UNICEF’s ["For every child, a voice"](https://www.unicef.org/innovation/stories/giving-every-child-voice-aac-technology) project.
 
-<a href="https://youtu.be/wqLauXnyLhY"><img src="https://img.youtube.com/vi/wqLauXnyLhY/0.jpg" alt="Video: Srna communicating with Cboard" width="480" height="360"></a>
+<a href="https://youtu.be/wqLauXnyLhY"><img src="https://img.youtube.com/vi/wqLauXnyLhY/0.jpg" alt="Watch the Cboard video on YouTube" width="480" height="360"></a>
 
 ## Translations
 
-Cboard is available in more than 40 languages, but almost all of them were machine translated and have never been reviewed by a human speaker. There are no official translators on the team: for most languages, the first person to proofread them is a volunteer from the community or a special translator chosen for that language.
+Cboard is available in more than 50 locales (language and region variants), but almost all of them were machine translated and have never been reviewed by a human speaker. There are no official translators on the team: for most languages, the first person to proofread them is a volunteer from the community or a special translator chosen for that language.
 
 **You do not need to be a programmer!** Machine translation gets the words roughly right and the meaning often wrong — a speaker who knows the language and sees the app in context produces something no automatic translation can match. For a child using Cboard to communicate, that difference is the difference between a board that makes sense and one that does not.
 
@@ -53,10 +53,7 @@ In order to pull the latest translations from Crowdin into the codebase, you can
 
 ## Getting Started
 
-Cboard is developed with the Node.js version pinned in `.nvmrc`.
-
-1. Clone the repo with `git clone https://github.com/cboard-org/cboard.git`
-2. Run `npm ci` in the root `cboard` folder.
+Cboard is developed with the Node.js version pinned in `.nvmrc`. Clone the repo and install dependencies first — see [Setting Up a Local Copy](CONTRIBUTING.md#setting-up-a-local-copy).
 
 ### `npm start`
 
@@ -75,7 +72,7 @@ By default, runs tests related to files changed since the last commit.
 
 ### `npm run test:e2e`
 
-Runs the end-to-end tests with Playwright. Run `npm run test:e2e:install` once beforehand to install the browsers.
+Runs the end-to-end tests with Playwright. The tests run against the deployed QA site (`https://app.qa.cboard.io`, set as `baseURL` in `playwright.config.ts`), not your local dev server, so they do not exercise local changes. Run `npm run test:e2e:install` once beforehand to install the browsers.
 
 ### `npm run build`
 
@@ -83,7 +80,7 @@ Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.<br>
-By default, it also [includes a service worker](https://create-react-app.dev/docs/making-a-progressive-web-app/) so that Cboard loads from local cache on future visits.
+It also generates a service worker with [sw-precache](https://github.com/GoogleChromeLabs/sw-precache) so that Cboard loads from local cache on future visits.
 
 Cboard is ready to be deployed.
 
@@ -101,7 +98,7 @@ Creates a Docker image with Cboard built for production. The image is tagged as 
 
 ### `make run`
 
-Runs the `cboard/cboard:latest` Docker image on port 5000.
+Runs the `cboard/cboard:latest` Docker image and serves Cboard at [http://localhost:8080](http://localhost:8080).
 
 ## Secrets Management
 
