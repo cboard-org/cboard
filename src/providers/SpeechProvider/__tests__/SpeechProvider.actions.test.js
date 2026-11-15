@@ -1,10 +1,13 @@
 import * as actions from '../SpeechProvider.actions';
 import * as types from '../SpeechProvider.constants';
+import tts from '../tts';
 
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
+
+jest.mock('../../../store');
 
 let initialState;
 initialState = {
@@ -54,6 +57,10 @@ initialState = {
   }
 };
 describe('actions', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it('should create an action to request voices', () => {
     const expectedAction = {
       type: types.REQUEST_VOICES
@@ -77,10 +84,13 @@ describe('actions', () => {
     const expectedAction = {
       type: types.CHANGE_VOICE,
       voiceURI,
-      lang
+      lang,
+      isCloud: false
     };
 
-    expect(actions.changeVoice(voiceURI, lang)).toEqual(expectedAction);
+    const store = mockStore(initialState);
+    store.dispatch(actions.changeVoice(voiceURI, lang));
+    expect(store.getActions()).toEqual([expectedAction]);
   });
 
   it('should create an action to change pitch', () => {
@@ -100,14 +110,43 @@ describe('actions', () => {
     };
     expect(actions.changeRate(rate)).toEqual(expectedAction);
   });
-  it('should create an action to cancelSpeech', () => {
-    const dispatch = jest.fn();
-    actions.cancelSpeech()(dispatch);
+  it('should cancel speech in the store and in the tts engine', () => {
+    const cancel = jest.spyOn(tts, 'cancel').mockImplementation(() => {});
+    const store = mockStore(initialState);
+
+    store.dispatch(actions.cancelSpeech());
+
+    expect(store.getActions()).toEqual([
+      { type: types.CANCEL_SPEECH, isSpeaking: false }
+    ]);
+    expect(cancel).toHaveBeenCalledTimes(1);
   });
-  it('should create an action to speak ', () => {
+
+  it('should start speech, then end it when the tts engine finishes', () => {
+    const speak = jest.spyOn(tts, 'speak').mockImplementation(() => {});
     const store = mockStore(initialState);
     const onend = jest.fn();
-    const dispatch = jest.fn();
-    store.dispatch(actions.speak('aaa', onend(dispatch)));
+
+    store.dispatch(actions.speak('aaa', onend));
+
+    const startAction = {
+      type: types.START_SPEECH,
+      isSpeaking: true,
+      text: 'aaa'
+    };
+    expect(store.getActions()).toEqual([startAction]);
+    expect(speak).toHaveBeenCalledTimes(1);
+    const [text, options] = speak.mock.calls[0];
+    expect(text).toBe('aaa');
+    expect(options).toMatchObject(initialState.speech.options);
+    expect(onend).not.toHaveBeenCalled();
+
+    options.onend();
+
+    expect(onend).toHaveBeenCalledTimes(1);
+    expect(store.getActions()).toEqual([
+      startAction,
+      { type: types.END_SPEECH, isSpeaking: false }
+    ]);
   });
 });
