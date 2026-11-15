@@ -38,9 +38,6 @@ import {
   GET_API_MY_BOARDS_SUCCESS,
   GET_API_MY_BOARDS_FAILURE,
   GET_API_MY_BOARDS_STARTED,
-  DOWNLOAD_IMAGES_STARTED,
-  DOWNLOAD_IMAGE_SUCCESS,
-  DOWNLOAD_IMAGE_FAILURE,
   UNMARK_SHOULD_CREATE_API_BOARD,
   SYNC_BOARDS_STARTED,
   SYNC_BOARDS_SUCCESS,
@@ -586,25 +583,6 @@ function boardReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: true
-      };
-    case DOWNLOAD_IMAGES_STARTED:
-      if (!Array.isArray(state.images)) {
-        return {
-          ...state,
-          images: []
-        };
-      }
-      return state;
-    case DOWNLOAD_IMAGE_SUCCESS:
-      const imgs = [...state.images];
-      imgs.push(action.element);
-      return {
-        ...state,
-        images: imgs
-      };
-    case DOWNLOAD_IMAGE_FAILURE:
-      return {
-        ...state
       };
     case CHANGE_IMPROVED_PHRASE:
       return {

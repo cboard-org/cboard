@@ -43,7 +43,6 @@ import {
   historyRemoveBoard,
   updateApiObjects,
   updateApiObjectsNoChild,
-  downloadImages,
   createApiBoard,
   upsertApiBoard,
   changeDefaultBoard,
@@ -181,7 +180,6 @@ export class BoardContainer extends Component {
      * Adds a Board to the Active Communicator
      */
     addBoardCommunicator: PropTypes.func.isRequired,
-    downloadImages: PropTypes.func,
     lang: PropTypes.string,
     isRootBoardTourEnabled: PropTypes.bool,
     isSymbolSearchTourEnabled: PropTypes.bool,
@@ -230,14 +228,7 @@ export class BoardContainer extends Component {
       }
     } = this.props;
 
-    const {
-      board,
-      boards,
-      communicator,
-      changeBoard,
-      history
-      //downloadImages
-    } = this.props;
+    const { board, boards, communicator, changeBoard, history } = this.props;
 
     let boardExists = null;
 
@@ -291,8 +282,6 @@ export class BoardContainer extends Component {
 
     //set board type
     this.setState({ isFixedBoard: !!boardExists.isFixed });
-
-    // if (isAndroid()) downloadImages();
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -1882,7 +1871,6 @@ const mapDispatchToProps = {
   addBoardCommunicator,
   updateApiObjects,
   updateApiObjectsNoChild,
-  downloadImages,
   disableTour,
   createApiBoard,
   upsertApiBoard,
