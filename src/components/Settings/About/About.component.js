@@ -104,7 +104,12 @@ function About({ history, onClose }) {
           </Typography>
           <div className="imageContainer">
             {itemData.map((item) => (
-              <img src={item.img} alt={item.title} className="imageItem" />
+              <img
+                key={item.img}
+                src={item.img}
+                alt={item.title}
+                className="imageItem"
+              />
             ))}
           </div>
         </FullScreenDialogContent>

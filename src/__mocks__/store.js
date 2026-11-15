@@ -3,8 +3,7 @@ import thunk from 'redux-thunk';
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-let initialState;
-initialState = {
+const initialState = {
   app: {
     userData: {
       authToken:

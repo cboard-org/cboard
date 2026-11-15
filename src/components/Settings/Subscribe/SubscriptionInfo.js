@@ -85,7 +85,7 @@ const SubscriptionInfo = ({
     paymentLabel: formatedDate
   };
 
-  return [
+  return (
     <Paper elevation={3} className="Subscribe__Info">
       <Typography variant="h5">
         <FormattedMessage {...messages.subscriptionInfo} />
@@ -229,7 +229,7 @@ const SubscriptionInfo = ({
         </Dialog>
       </div>
     </Paper>
-  ];
+  );
 };
 
 SubscriptionInfo.propTypes = propTypes;

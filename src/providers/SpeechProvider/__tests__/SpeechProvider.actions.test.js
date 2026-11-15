@@ -8,8 +8,7 @@ const mockStore = configureMockStore(middlewares);
 
 jest.mock('../../../store');
 
-let initialState;
-initialState = {
+const initialState = {
   app: {
     userData: {
       authToken:
