@@ -6,6 +6,8 @@ import thunk from 'redux-thunk';
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
+jest.mock('../../../store');
+
 let initialState;
 initialState = {
   app: {
@@ -77,10 +79,13 @@ describe('actions', () => {
     const expectedAction = {
       type: types.CHANGE_VOICE,
       voiceURI,
-      lang
+      lang,
+      isCloud: false
     };
 
-    expect(actions.changeVoice(voiceURI, lang)).toEqual(expectedAction);
+    const store = mockStore(initialState);
+    store.dispatch(actions.changeVoice(voiceURI, lang));
+    expect(store.getActions()).toEqual([expectedAction]);
   });
 
   it('should create an action to change pitch', () => {
