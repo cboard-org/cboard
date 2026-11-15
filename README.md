@@ -53,6 +53,37 @@ In order to pull the latest translations from CrowdIn into the codebase, you can
 
 ## Getting Started
 
+### Requirements
+
+- Node.js 22 (the exact version is in [`.nvmrc`](.nvmrc); with nvm, run `nvm use`).
+- npm 10, which ships with Node.js 22.
+
+Install dependencies with `npm install`.
+
+### Environment variables
+
+None are required: `npm start` runs without any of them, and you can use the app as a guest. Set them in a `.env.local` file in the project root (it is git-ignored) and restart `npm start`. They are read at build time, so a change needs a restart or a rebuild.
+
+| Variable                                  | Used for                                           | If unset                                                                                                                           |
+| ----------------------------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `REACT_APP_DEV_API_URL`                   | Base URL of the Cboard API (login, sync, settings) | On the web the app calls `api.<current host>`, which is `http://api.localhost:3000` locally. Packaged apps call the production API |
+| `REACT_APP_CBOARD_SYMBOLS_API_BASE`       | Base URL of the Cboard symbols API                 | `http://localhost:3000/api/cboard-symbols` in development, the hosted service in production                                        |
+| `REACT_APP_AZURE_SPEECH_KEY`              | Azure Speech key for cloud voices                  | A built-in default                                                                                                                 |
+| `REACT_APP_AZURE_SPEECH_SERVICE_REGION`   | Azure Speech region                                | `eastus`                                                                                                                           |
+| `REACT_APP_AZURE_INST_KEY`                | Azure Application Insights key for telemetry       | A built-in default                                                                                                                 |
+| `REACT_APP_GOOGLE_FIREBASE_WEB_CLIENT_ID` | Google sign-in in the Android and iOS apps         | A built-in default                                                                                                                 |
+| `REACT_APP_FACEBOOK_APP_ID`               | Facebook sign-in in the Android and iOS apps       | A built-in default                                                                                                                 |
+| `REACT_APP_FACEBOOK_APP_NAME`             | Facebook sign-in in the Android and iOS apps       | `Cboard`                                                                                                                           |
+| `REACT_APP_FACEBOOK_CLIENT_TOKEN`         | Facebook sign-in in the Android and iOS apps       | A placeholder value                                                                                                                |
+
+### Using an API locally
+
+Without `REACT_APP_DEV_API_URL`, a local run looks for the API at `http://api.localhost:3000`, so login, sign-up and sync fail unless something answers there. To work on those features, run [cboard-api](https://github.com/cboard-org/cboard-api) and point the app at it in `.env.local`:
+
+```
+REACT_APP_DEV_API_URL=<URL of your running cboard-api>
+```
+
 ### `npm start`
 
 Runs the app in development mode.<br>
@@ -66,15 +97,13 @@ You will see the build errors and lint warnings in the console.
 Runs the test watcher in an interactive mode.<br>
 By default, runs tests related to files changed since the last commit.
 
-[Read more about testing.](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#running-tests)
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.<br>
-By default, it also [includes a service worker](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#making-a-progressive-web-app) so that Cboard loads from local cache on future visits.
+By default, it also includes a service worker so that Cboard loads from local cache on future visits.
 
 Cboard is ready to be deployed.
 
