@@ -1,8 +1,14 @@
+import axios from 'axios';
+import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
-import { openboardExportOneAdapter } from './Export.helpers';
+import {
+  openboardExportManyAdapter,
+  openboardExportOneAdapter
+} from './Export.helpers';
 import { CBOARD_OBF_CONSTANTS, EMPTY_IMAGE } from './Export.constants';
 
 jest.mock('file-saver', () => ({ saveAs: jest.fn() }));
+jest.mock('axios');
 jest.mock('../../../store');
 // The PDF font bundle cannot be evaluated under Jest and is not used by the
 // OpenBoard export.
@@ -202,6 +208,75 @@ describe('OpenBoard export of a single board', () => {
         ]
       },
       description_html: ''
+    });
+  });
+});
+
+describe('OpenBoard export of all boards in the Cordova and Electron apps', () => {
+  const svg = (name) =>
+    `<svg xmlns="http://www.w3.org/2000/svg" id="${name}"/>`;
+
+  beforeEach(() => {
+    saveAs.mockClear();
+    window.cordova = { platformId: 'electron' };
+    axios.mockImplementation(({ url }) =>
+      Promise.resolve({
+        data: Uint8Array.from(svg(url), (c) => c.charCodeAt(0)).buffer,
+        headers: { 'content-type': 'image/svg+xml' }
+      })
+    );
+  });
+
+  afterEach(() => {
+    delete window.cordova;
+  });
+
+  it('writes each image to its own file in the OBZ', async () => {
+    const boards = [
+      {
+        id: 'root',
+        name: 'Home',
+        tiles: [
+          { id: 'a', label: 'yes', image: '/symbols/yes.svg' },
+          { id: 'b', label: 'no', image: '/symbols/no.svg' }
+        ]
+      },
+      {
+        id: 'food',
+        name: 'Food',
+        tiles: [
+          { id: 'c', label: 'apple', image: 'file:///photos/apple.svg' },
+          { id: 'd', label: 'pear', image: 'file:///photos/pear.svg' }
+        ]
+      }
+    ];
+
+    await openboardExportManyAdapter(boards, intl);
+    // The archive is generated after the adapter returns.
+    for (let i = 0; i < 50 && !saveAs.mock.calls.length; i++) {
+      await new Promise((resolve) => setTimeout(resolve, 10));
+    }
+    expect(saveAs).toHaveBeenCalledTimes(1);
+
+    const zip = await JSZip.loadAsync(saveAs.mock.calls[0][0]);
+    const imageFor = {};
+    for (const board of boards) {
+      const obf = JSON.parse(
+        await zip.file(`boards/${board.id}.obf`).async('string')
+      );
+      for (const button of obf.buttons) {
+        const image = obf.images.find(({ id }) => id === button.image_id);
+        const file = zip.file(`images/${image.path}`.replace('//', '/'));
+        imageFor[button.id] = file && (await file.async('string'));
+      }
+    }
+
+    // Bundled images are loaded from "./symbols/..." in the app.
+    expect(imageFor).toEqual({
+      a: svg('./symbols/yes.svg'),
+      b: svg('./symbols/no.svg'),
+      c: svg('file:///photos/apple.svg'),
+      d: svg('file:///photos/pear.svg')
     });
   });
 });
