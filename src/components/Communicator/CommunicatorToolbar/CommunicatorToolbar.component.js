@@ -12,7 +12,6 @@ import Avatar from '@material-ui/core/Avatar';
 import LayersIcon from '@material-ui/icons/Layers';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 import FormDialog from '../../UI/FormDialog';
 import messages from './CommunicatorToolbar.messages';
@@ -91,8 +90,6 @@ class CommunicatorToolbar extends React.Component {
         ''
     });
   };
-
-  handleNewBoardClick = () => {};
 
   boardCaption = (board) => {
     // Cordova path cannot be absolute
@@ -193,20 +190,6 @@ class CommunicatorToolbar extends React.Component {
           </Button>
         </div>
         <div className="CommunicatorToolbar__group CommunicatorToolbar__group--end">
-          {false && (
-            <div>
-              <Button
-                label={intl.formatMessage(messages.addBoardButton)}
-                onClick={this.handleNewBoardClick}
-                //TODO: need to implement function
-                disabled={isSelecting}
-                color="inherit"
-              >
-                {intl.formatMessage(messages.addBoardButton)}
-                <AddCircleIcon />
-              </Button>
-            </div>
-          )}
           {this.props.isLoggedIn && <SyncButton />}
           <DefaultBoardSelector
             isDarkMode={isDark}

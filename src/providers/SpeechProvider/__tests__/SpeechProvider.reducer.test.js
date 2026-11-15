@@ -28,14 +28,19 @@ describe('reducer', () => {
         isCloud: null,
         pitch: 1.0,
         rate: 1.0,
-        volume: 1
+        volume: 1,
+        elevenLabsStability: 0.5,
+        elevenLabsSimilarity: 0.75,
+        elevenLabsStyle: 0.0
       },
       isSpeaking: false,
       elevenLabsCache: {
         voices: [],
         timestamp: null,
         ttl: 24 * 60 * 60 * 1000
-      }
+      },
+      elevenLabsApiKey: '',
+      elevenLabsVoiceSettings: {}
     };
     mockApSpeechProvider = {
       isSpeaking: true,

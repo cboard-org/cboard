@@ -1,24 +1,6 @@
 import lodash from 'lodash';
 import { TileItem } from './../../types';
-export interface Grid {
-  rows: number;
-  columns: number;
-  order: GridOrder;
-}
-
 export type GridOrder = (string | null)[][];
-
-export function createGrid(rows: number = 2, columns: number = 2): Grid {
-  const order = createMatrix(rows, columns);
-
-  const grid = {
-    order,
-    rows,
-    columns
-  };
-
-  return grid;
-}
 
 function createMatrix(rows: number, columns: number): any[][] {
   const matrix = [...Array(rows)].map(() => [...Array(columns)]);
@@ -121,12 +103,6 @@ export function getNewOrder({
     grid[rowIndex][columnIndex] = tile?.id;
   });
   return grid;
-}
-
-export function removeOrderItems(ids: string, order: GridOrder): GridOrder {
-  return order.map((row) =>
-    row.map((id) => (id && ids.includes(id) ? null : id))
-  );
 }
 
 function getDeprecatedOrderedPages({
