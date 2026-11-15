@@ -28,6 +28,12 @@ jobs:
       - run:
           name: Check formatting
           command: npm run format:check
+      - run:
+          name: Lint
+          command: npm run lint
+      - run:
+          name: Type check
+          command: npm run typecheck
       # run tests
       - run:
           name: Run Unit Tests
