@@ -13,7 +13,6 @@ import {
   END_SPEECH,
   CANCEL_SPEECH,
   CACHE_ELEVENLABS_VOICES,
-  CLEAR_ELEVENLABS_CACHE,
   CHANGE_ELEVENLABS_STABILITY,
   CHANGE_ELEVENLABS_SIMILARITY,
   CHANGE_ELEVENLABS_STYLE,
@@ -340,12 +339,6 @@ export function cacheElevenLabsVoices(voices) {
   return {
     type: CACHE_ELEVENLABS_VOICES,
     voices
-  };
-}
-
-export function clearElevenLabsCache() {
-  return {
-    type: CLEAR_ELEVENLABS_CACHE
   };
 }
 

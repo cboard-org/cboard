@@ -8,7 +8,7 @@ This directory contains end-to-end tests for the Cboard AAC web application usin
 
 Contains sophisticated Page Object Model classes that encapsulate page interactions, locators, and workflows.
 
-- **`cboard.js`** - Comprehensive page object for the Cboard application with 2800+ lines of methods and locators
+- **`cboard.js`** - Comprehensive page object for the Cboard application, with its methods and locators
 - **`index.js`** - Main entry point for importing page objects
 
 **Key Features:**
@@ -26,23 +26,24 @@ Contains sophisticated Page Object Model classes that encapsulate page interacti
 // Navigation and Basic Operations
 await cboard.goto();
 await cboard.navigateToSettings();
-await cboard.clickUnlock(); // 4-click unlock sequence
+await cboard.clickUnlock();
 
 // Display Settings Automation
-await cboard.selectFontSize('Large');
-await cboard.selectFontFamily('Roboto');
+await cboard.selectFontSizeOption('Large');
+await cboard.selectFontFamilyOption('Roboto');
 await cboard.toggleOutputBarVisibility();
-await cboard.verifyDisplayChanges();
+await cboard.verifyFontSizeChanged();
 
 // Export Workflows
-await cboard.selectBoard('Cboard Classic Home');
-await cboard.exportSingleBoardAsPDF();
-await cboard.verifyExportSuccess();
+await cboard.selectSingleBoard('Cboard Classic Home');
+await cboard.selectSingleBoardFormat('PDF');
+const download = await cboard.triggerSingleBoardExportAndWaitForDownload();
+await cboard.verifyDownloadedPdfFile(download);
 
 // Communication and Navigation
-await cboard.addWordToCommunicationBar('food');
 await cboard.navigateToCategory('emotions');
-await cboard.verifyBoardContent();
+await cboard.verifyCategoryHeadingVisible('emotions');
+await cboard.expectWordInCommunicationBar('food');
 ```
 
 **Usage:**
@@ -79,7 +80,7 @@ Contains tests for user settings and display preferences when not logged in:
 - **`import.spec.js`** - Import settings tests for board and configuration imports
 - **`language.spec.js`** - Language and localization settings tests
 - **`scanning.spec.js`** - Scanning and accessibility navigation settings tests
-- **`speech.spec.js`** - Text-to-speech and voice settings tests
+- **`navigation.spec.js`** - Navigation settings tests, including PIN lock
 - **`symbols.spec.js`** - Symbol set and library configuration tests
 
 ### 📁 `/unlogged`
@@ -91,6 +92,8 @@ Contains tests for non-authenticated user functionality:
 - **`communication-bar.spec.js`** - Communication sentence building, word management, and output functionality tests
 - **`mobile-responsiveness.spec.js`** - Mobile viewport compatibility, touch interactions, and responsive design tests
 - **`navigation.spec.js`** - Category navigation, board traversal, and navigation control tests
+- **`public-board-report-restriction.spec.js`** - Public board reporting is restricted for unauthenticated users
+- **`symbols.spec.js`** - Symbol search with the Cboard Symbols provider
 - **`unlock.spec.js`** - Advanced feature unlock mechanism and security tests
 
 ### 📁 `/logged`
@@ -98,6 +101,8 @@ Contains tests for non-authenticated user functionality:
 Contains tests for authenticated user functionality:
 
 - **`authentication.spec.js`** - Login, logout, and user session management tests
+- **`board-sync.spec.js`** - Board changes syncing for a logged-in user
+- **`settings/speech.spec.js`** - Text-to-speech and voice settings tests
 
 ### 📁 Root Level
 
@@ -144,10 +149,10 @@ The export settings tests fully automate board export workflows:
 
 **Page Object Methods:**
 
-- `selectBoard()` - Chooses specific board for export
-- `selectExportFormat()` - Selects export format type
-- `exportSingleBoardAsPDF()` - Complete PDF export workflow
-- `verifyExportSuccess()` - Confirms successful export completion
+- `selectSingleBoard()` - Chooses specific board for export
+- `selectSingleBoardFormat()` - Selects export format type
+- `triggerSingleBoardExportAndWaitForDownload()` - Starts the export and returns the download
+- `verifyDownloadedPdfFile()` - Checks the downloaded PDF
 - `verifyExportSettingsUI()` - Validates export interface elements
 
 ## Test Coverage
@@ -238,7 +243,7 @@ The test suite provides comprehensive coverage across the following areas:
 - RTL (Right-to-Left) language support
 - Language persistence across sessions
 
-### 11. Speech Settings (`settings/speech.spec.js`)
+### 11. Speech Settings (`logged/settings/speech.spec.js`)
 
 - Text-to-speech configuration
 - Voice selection and settings
@@ -327,17 +332,15 @@ The tests are configured to run against `https://app.qa.cboard.io` by default. T
 
 - Chromium (Chrome)
 - Firefox
-- WebKit (Safari)
 - Mobile Chrome (Pixel 5)
-- Mobile Safari (iPhone 12)
 
 ### Features
 
-- Automatic screenshots on failure
-- Video recording on failure
-- Trace collection for debugging
 - Parallel test execution
 - Cross-browser testing
+- JUnit (`test-results/results.xml`) and HTML reports
+
+Screenshots, video, traces and retries are turned off for speed. Turn them on in `playwright.config.ts` when debugging.
 
 ## Best Practices
 
@@ -347,7 +350,7 @@ The tests follow Playwright best practices:
 2. **Auto-waiting assertions**: Using `expect().toBeVisible()` and similar assertions
 3. **Avoiding strict mode violations**: Using `.filter()` when needed
 4. **Proper test isolation**: Each test is independent and can run in parallel
-5. **Page object pattern**: Not implemented yet but recommended for larger test suites
+5. **Page object pattern**: Locators and workflows live in `page-objects/cboard.js`
 
 ## Test Data
 
@@ -361,12 +364,13 @@ The tests use the actual production-like environment at `app.qa.cboard.io` and t
 
 ## Continuous Integration
 
-These tests are designed to run in CI/CD pipelines with:
+On every push to `master`, CircleCI deploys to QA and then runs this suite on BrowserStack (the `e2e-qa` job, `npm run test:e2e-browserstack`, configured in `browserstack.yml`). The job:
 
-- Retry mechanism for flaky tests
-- Proper reporting
-- Artifact collection (screenshots, videos, traces)
-- Multiple browser testing
+- Stores the JUnit results for CircleCI test insights
+- Saves the HTML report and test results as build artifacts
+- Posts the outcome to Discord
+
+When `CI` is set, a leftover `test.only` fails the run.
 
 ## Contributing
 
@@ -404,8 +408,8 @@ The test suite has achieved comprehensive automation across all major Cboard fun
 ✅ **Complete Settings Automation** - All settings categories fully automated with verification
 ✅ **Export/Import Workflows** - PDF generation, board exports, and file operations
 ✅ **Display Customization** - Font sizes, themes, UI scaling, and output bar management
-✅ **Robust Page Object Model** - 2800+ lines of reusable methods and locators
-✅ **Cross-Browser Compatibility** - Chrome, Firefox, WebKit support
+✅ **Robust Page Object Model** - Reusable methods and locators
+✅ **Cross-Browser Compatibility** - Chrome and Firefox, plus mobile Chrome
 ✅ **Mobile Responsiveness** - Touch interactions and responsive design validation
 ✅ **Accessibility Compliance** - ARIA, keyboard navigation, and screen reader support
 ✅ **Communication Workflows** - Sentence building and output functionality
