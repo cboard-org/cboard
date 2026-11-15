@@ -1,2 +1,5 @@
 # Prettier 3 repository-wide mechanical formatting baseline (PR #2316)
 05843a0412c3ee0809587a13c8780f8169955ce7
+
+# Lint autofix: no-var, prefer-const, import/no-duplicates
+be79eec1b148c4b30bd34592d850b5ab59c2ab63
