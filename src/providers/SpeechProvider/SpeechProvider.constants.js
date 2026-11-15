@@ -16,7 +16,6 @@ export const REQUEST_TTS_ENGINE = 'cboard/Speech/REQUEST_TTS_ENGINE';
 export const RECEIVE_TTS_ENGINE = 'cboard/Speech/RECEIVE_TTS_ENGINE';
 export const EMPTY_VOICES = 'empty voices';
 export const CACHE_ELEVENLABS_VOICES = 'cboard/Speech/CACHE_ELEVENLABS_VOICES';
-export const CLEAR_ELEVENLABS_CACHE = 'cboard/Speech/CLEAR_ELEVENLABS_CACHE';
 export const CHANGE_ELEVENLABS_STABILITY =
   'cboard/Speech/CHANGE_ELEVENLABS_STABILITY';
 export const CHANGE_ELEVENLABS_SIMILARITY =
