@@ -36,7 +36,9 @@ jobs:
           command: npm run typecheck
       - run:
           name: Check translation source messages
-          command: node scripts/check-messages.js
+          command: |
+            node --test scripts/check-messages.test.js
+            node scripts/check-messages.js
       # run tests
       - run:
           name: Run Unit Tests
