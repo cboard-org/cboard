@@ -151,6 +151,8 @@
     "build-cordova-debug": "craco build --verbose --cordova-debug",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
+    "lint": "eslint src --max-warnings=0",
+    "typecheck": "tsc --noEmit",
     "prepare": "husky",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
