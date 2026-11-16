@@ -195,10 +195,19 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
               return `/${_.join(components, '/')}.${extension}`;
             };
 
+            // On Cordova the image was loaded from a relative path, so name
+            // it after the tile's own path, or after the tile if it has none.
+            const getCordovaImagePath = () =>
+              tile.image.startsWith('/')
+                ? tile.image
+                : `/custom/${board.id}/${tile.id}.${mime.extension(
+                    imageResponse['content_type']
+                  )}`;
+
             const path = image.startsWith('data:')
               ? getCustomImagePath()
               : isCordova()
-                ? ''
+                ? getCordovaImagePath()
                 : image.startsWith('/')
                   ? image
                   : `/${image}`;

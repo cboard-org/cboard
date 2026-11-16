@@ -1,6 +1,7 @@
 import JSZipUtils from 'jszip-utils';
 import JSZip from 'jszip';
 import shortid from 'shortid';
+import localForage from 'localforage';
 import { IMPORT_PATHS, CBOARD_EXT_PREFIX } from './Import.constants';
 import API from '../../../api';
 
@@ -243,8 +244,10 @@ export async function obzImportAdapter(file, intl, allBoards) {
             boards[k] = tempBoard;
           }
         } else {
-          if (k.startsWith('images//')) {
-            images[k.substring(7)] = result;
+          // JSZip normalizes entry names when it loads a zip, so the "images//..." names written by the Cboard export are only visible in unsafeOriginalName.
+          const originalName = zipFile.files[k].unsafeOriginalName || k;
+          if (originalName.startsWith('images//')) {
+            images[originalName.substring(7)] = result;
           } else {
             images[k] = result;
           }
@@ -317,7 +320,11 @@ export async function requestQuota(json) {
         throw new Error(e);
       }
     } else {
-      throw new Error("Can't request quota");
+      // Without this Chrome-only API there is nothing to request. The browser manages the quota of IndexedDB itself, but where IndexedDB is missing localForage falls back to localStorage, which cannot hold an import this large.
+      await localForage.ready();
+      if (localForage.driver() !== localForage.INDEXEDDB) {
+        throw new Error("Can't request quota");
+      }
     }
   }
 
