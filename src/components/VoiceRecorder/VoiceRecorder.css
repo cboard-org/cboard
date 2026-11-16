@@ -1,7 +1,12 @@
 .VoiceRecorder {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   padding: 12px 0;
+}
+
+.VoiceRecorder__file-error {
+  flex-basis: 100%;
 }
 
 .VoiceRecorder__progress {

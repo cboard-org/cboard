@@ -12,5 +12,13 @@ export default defineMessages({
   record: {
     id: 'cboard.components.VoiceRecorder.record',
     defaultMessage: 'Record'
+  },
+  attachAudioFile: {
+    id: 'cboard.components.VoiceRecorder.attachAudioFile',
+    defaultMessage: 'Attach audio file'
+  },
+  audioFileError: {
+    id: 'cboard.components.VoiceRecorder.audioFileError',
+    defaultMessage: 'Could not read this file. Choose a non-empty audio file.'
   }
 });

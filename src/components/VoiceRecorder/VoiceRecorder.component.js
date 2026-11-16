@@ -1,16 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import MicIcon from '@material-ui/icons/Mic';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ClearIcon from '@material-ui/icons/Clear';
+import AttachFileIcon from '@material-ui/icons/AttachFile';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 import IconButton from '../UI/IconButton';
 import messages from './VoiceRecorder.messages';
 import './VoiceRecorder.css';
 let mediaStream = undefined;
-class VoiceRecorder extends Component {
+export class VoiceRecorder extends Component {
   static propTypes = {
     /**
      * Audio source
@@ -29,7 +31,44 @@ class VoiceRecorder extends Component {
 
   state = {
     isRecording: false,
-    isPlaying: false
+    isPlaying: false,
+    isReadingFile: false,
+    audioFileError: false
+  };
+
+  audioInput = createRef();
+
+  componentWillUnmount() {
+    if (this.audioReader) {
+      this.audioReader.onloadend = null;
+      this.audioReader.abort();
+    }
+  }
+
+  handleAudioFileChange = (event) => {
+    const input = event.currentTarget;
+    const file = input.files[0];
+    input.value = '';
+    if (!file) return;
+
+    if (!file.size || !file.type.startsWith('audio/')) {
+      this.setState({ audioFileError: true });
+      return;
+    }
+
+    const reader = new FileReader();
+    this.audioReader = reader;
+    this.setState({ isReadingFile: true, audioFileError: false });
+    reader.onloadend = () => {
+      this.audioReader = null;
+      const sound = reader.result;
+      this.setState({
+        isReadingFile: false,
+        audioFileError: typeof sound !== 'string'
+      });
+      if (typeof sound === 'string') this.props.onChange(sound);
+    };
+    reader.readAsDataURL(file);
   };
 
   startRecording = () => {
@@ -91,6 +130,7 @@ class VoiceRecorder extends Component {
     if (this.state.isRecording) {
       this.stopRecording();
     } else {
+      this.setState({ audioFileError: false });
       this.startRecording();
     }
   };
@@ -103,16 +143,19 @@ class VoiceRecorder extends Component {
 
   handleClear = () => {
     const { onChange } = this.props;
+    this.setState({ audioFileError: false });
     onChange('');
   };
 
   render() {
     const { src, intl } = this.props;
+    const { isRecording, isPlaying, isReadingFile, audioFileError } =
+      this.state;
     const recordStyle = {
-      color: this.state.isRecording ? 'red' : 'grey'
+      color: isRecording ? 'red' : 'grey'
     };
     const playStyle = {
-      color: this.state.isPlaying ? 'green' : 'grey'
+      color: isPlaying ? 'green' : 'grey'
     };
 
     return (
@@ -120,15 +163,30 @@ class VoiceRecorder extends Component {
         <IconButton
           onClick={this.handleRecordClick}
           label={intl.formatMessage(messages.record)}
+          disabled={isReadingFile}
         >
           <MicIcon fontSize="large" style={recordStyle} />
         </IconButton>
-        {this.state.isRecording && (
+        <IconButton
+          onClick={() => this.audioInput.current.click()}
+          label={intl.formatMessage(messages.attachAudioFile)}
+          disabled={isRecording || isPlaying || isReadingFile}
+        >
+          <AttachFileIcon fontSize="large" />
+        </IconButton>
+        <input
+          ref={this.audioInput}
+          type="file"
+          accept="audio/*"
+          hidden
+          onChange={this.handleAudioFileChange}
+        />
+        {(isRecording || isReadingFile) && (
           <div className="VoiceRecorder__progress">
             <LinearProgress color="secondary" />
           </div>
         )}
-        {src && !this.state.isRecording && (
+        {src && !isRecording && !isReadingFile && (
           <>
             <IconButton
               onClick={this.handlePlayClick}
@@ -143,6 +201,15 @@ class VoiceRecorder extends Component {
               <ClearIcon fontSize="large" style={{ color: 'grey' }} />
             </IconButton>
           </>
+        )}
+        {audioFileError && (
+          <FormHelperText
+            className="VoiceRecorder__file-error"
+            error
+            role="alert"
+          >
+            {intl.formatMessage(messages.audioFileError)}
+          </FormHelperText>
         )}
       </div>
     );
