@@ -25,8 +25,8 @@ import QrCodesView from './QrCodesView';
 import PlanView from './PlanView';
 import ExpiredAlerts from './ExpiredAlerts';
 import ClientStatusChip from './ClientStatusChip';
-import { getGateItems, getAccessUrl } from './accessGates';
-import { printQrCode, downloadQrCode } from './qrCodeActions';
+import { getGateItems, getAccessUrl, isClientPaused } from './accessGates';
+import { isPrintSupported } from './qrCodeActions';
 import messages from './AccessDashboard.messages';
 
 const SECTIONS = {
@@ -138,7 +138,9 @@ const AccessDashboard = ({
   onRetry,
   onClose,
   onOpenBoard,
-  onCopyLink
+  onCopyLink,
+  onPrintQr,
+  onDownloadQr
 }) => {
   const classes = useStyles();
   const [section, setSection] = useState(SECTIONS.QR_CODES);
@@ -180,6 +182,10 @@ const AccessDashboard = ({
     const qrNotGeneratedHint = qrNotGenerated
       ? intl.formatMessage(messages.qrNotGenerated)
       : undefined;
+    const paused = isClientPaused(client);
+    const pausedHint = paused
+      ? intl.formatMessage(messages.gatePaused)
+      : undefined;
 
     return {
       title: client.clientName,
@@ -194,13 +200,13 @@ const AccessDashboard = ({
       chips: (
         <>
           <Typography variant="caption" component="p" color="textSecondary">
-            {intl.formatMessage(messages.scans, { count: gate.viewsCount })}
+            {intl.formatMessage(messages.views, { count: gate.viewsCount })}
             {gate.lastAccessAt && (
               <>
                 <span className={classes.separator} aria-hidden="true">
                   ·
                 </span>
-                {intl.formatMessage(messages.lastScan, {
+                {intl.formatMessage(messages.lastView, {
                   time: intl.formatRelative(gate.lastAccessAt)
                 })}
               </>
@@ -217,16 +223,21 @@ const AccessDashboard = ({
           <div className={classes.statusChips}>
             <ClientStatusChip intl={intl} client={client} />
           </div>
+          {paused && (
+            <Typography variant="caption" component="p" color="textSecondary">
+              {pausedHint}
+            </Typography>
+          )}
         </>
       ),
       actions: [
-        {
+        isPrintSupported() && {
           key: 'print',
           label: intl.formatMessage(messages.print),
           icon: <PrintIcon />,
           disabled: qrNotGenerated,
           hint: qrNotGeneratedHint,
-          onClick: () => printQrCode(gate.qrCodeUrl, client.clientName)
+          onClick: () => onPrintQr(client, gate)
         },
         {
           key: 'download',
@@ -234,8 +245,7 @@ const AccessDashboard = ({
           icon: <DownloadIcon />,
           disabled: qrNotGenerated,
           hint: qrNotGeneratedHint,
-          onClick: () =>
-            downloadQrCode(gate.qrCodeUrl, `${client.slug}-${gate.code}.png`)
+          onClick: () => onDownloadQr(client, gate)
         },
         {
           key: 'copyLink',
@@ -247,9 +257,11 @@ const AccessDashboard = ({
           key: 'openBoard',
           label: intl.formatMessage(messages.openBoard),
           icon: <OpenInNewIcon />,
+          disabled: paused,
+          hint: pausedHint,
           onClick: () => onOpenBoard(client, gate)
         }
-      ]
+      ].filter(Boolean)
     };
   };
 
@@ -382,7 +394,9 @@ AccessDashboard.propTypes = {
   onRetry: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   onOpenBoard: PropTypes.func.isRequired,
-  onCopyLink: PropTypes.func.isRequired
+  onCopyLink: PropTypes.func.isRequired,
+  onPrintQr: PropTypes.func.isRequired,
+  onDownloadQr: PropTypes.func.isRequired
 };
 
 export default AccessDashboard;
