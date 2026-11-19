@@ -33,14 +33,14 @@ export default defineMessages({
     id: 'cboard.components.Settings.AccessDashboard.planDescription',
     defaultMessage: 'Subscription status of each location'
   },
-  scans: {
-    id: 'cboard.components.Settings.AccessDashboard.scans',
+  views: {
+    id: 'cboard.components.Settings.AccessDashboard.views',
     defaultMessage:
-      '{count, plural, =0 {No scans yet} one {# scan} other {# scans}}'
+      '{count, plural, =0 {No visits yet} one {# visit} other {# visits}}'
   },
-  lastScan: {
-    id: 'cboard.components.Settings.AccessDashboard.lastScan',
-    defaultMessage: 'Last scan {time}'
+  lastView: {
+    id: 'cboard.components.Settings.AccessDashboard.lastView',
+    defaultMessage: 'Last visit {time}'
   },
   opensBoard: {
     id: 'cboard.components.Settings.AccessDashboard.opensBoard',
@@ -57,6 +57,31 @@ export default defineMessages({
   statusExpired: {
     id: 'cboard.components.Settings.AccessDashboard.statusExpired',
     defaultMessage: 'Expired'
+  },
+  statusScheduled: {
+    id: 'cboard.components.Settings.AccessDashboard.statusScheduled',
+    defaultMessage: 'Scheduled'
+  },
+  startsOn: {
+    id: 'cboard.components.Settings.AccessDashboard.startsOn',
+    defaultMessage: 'Starts on {date}'
+  },
+  gatePaused: {
+    id: 'cboard.components.Settings.AccessDashboard.gatePaused',
+    defaultMessage:
+      'This QR code is paused. Visitors see an error until it is active again.'
+  },
+  qrSaved: {
+    id: 'cboard.components.Settings.AccessDashboard.qrSaved',
+    defaultMessage: 'QR code saved to Downloads'
+  },
+  qrSaveFailed: {
+    id: 'cboard.components.Settings.AccessDashboard.qrSaveFailed',
+    defaultMessage: 'Could not save the QR code'
+  },
+  qrPrintFailed: {
+    id: 'cboard.components.Settings.AccessDashboard.qrPrintFailed',
+    defaultMessage: 'Could not load the QR code to print'
   },
   print: {
     id: 'cboard.components.Settings.AccessDashboard.print',
