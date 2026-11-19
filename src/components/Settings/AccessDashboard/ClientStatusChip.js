@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import PauseCircleFilledIcon from '@material-ui/icons/PauseCircleFilled';
+import ScheduleIcon from '@material-ui/icons/Schedule';
 
 import TonalChip from '../../UI/TonalChip';
-import { isClientPaused } from './accessGates';
+import { isClientNotStarted, isClientPaused } from './accessGates';
 import messages from './AccessDashboard.messages';
 
 const ClientStatusChip = ({ intl, client, showExpired }) => {
@@ -15,6 +16,16 @@ const ClientStatusChip = ({ intl, client, showExpired }) => {
         tone="success"
         icon={<CheckCircleIcon />}
         label={intl.formatMessage(messages.statusActive)}
+      />
+    );
+  }
+
+  if (client.isActive && !client.isExpired && isClientNotStarted(client)) {
+    return (
+      <TonalChip
+        tone="neutral"
+        icon={<ScheduleIcon />}
+        label={intl.formatMessage(messages.statusScheduled)}
       />
     );
   }
