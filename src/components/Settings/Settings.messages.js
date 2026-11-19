@@ -13,6 +13,14 @@ export default defineMessages({
     id: 'cboard.components.Settings.subscribe',
     defaultMessage: 'Subscribe'
   },
+  accessDashboard: {
+    id: 'cboard.components.Settings.accessDashboard',
+    defaultMessage: 'Cboard Access'
+  },
+  accessDashboardSecondary: {
+    id: 'cboard.components.Settings.accessDashboardSecondary',
+    defaultMessage: 'View your QR code, scans & plan'
+  },
   guest: {
     id: 'cboard.components.Settings.guest',
     defaultMessage: 'Guest'

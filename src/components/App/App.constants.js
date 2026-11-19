@@ -87,5 +87,6 @@ export const USER_DATA_PROPERTIES = [
   'createdAt',
   'updatedAt',
   'authToken',
-  'isAdmin'
+  'isAdmin',
+  'isAccessClient'
 ];
