@@ -15,7 +15,7 @@ const QrCodesView = ({ intl, items, selectedKey, onSelect }) => (
         <ItemCard
           title={client.clientName}
           meta={[gate.code, gate.rootBoard && gate.rootBoard.name]}
-          caption={intl.formatMessage(messages.scans, {
+          caption={intl.formatMessage(messages.views, {
             count: gate.viewsCount
           })}
           thumb={{
