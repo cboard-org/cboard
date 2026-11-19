@@ -6,7 +6,7 @@ import Alert from '@material-ui/lab/Alert';
 import AccessDashboard from './AccessDashboard.component';
 import { ItemCard, ItemDetailsSurface } from '../../UI/Dashboard';
 import ClientStatusChip from './ClientStatusChip';
-import { printQrCode, downloadQrCode } from './qrCodeActions';
+import { isPrintSupported } from './qrCodeActions';
 
 jest.mock('react-intl', () => ({
   ...jest.requireActual('../../../__mocks__/react-intl'),
@@ -14,8 +14,7 @@ jest.mock('react-intl', () => ({
 }));
 
 jest.mock('./qrCodeActions', () => ({
-  printQrCode: jest.fn(),
-  downloadQrCode: jest.fn()
+  isPrintSupported: jest.fn(() => true)
 }));
 
 jest.mock('../../UI/Dashboard/ItemThumb', () => ({
@@ -78,6 +77,8 @@ const render = (props = {}) => {
       onClose={jest.fn()}
       onOpenBoard={jest.fn()}
       onCopyLink={jest.fn()}
+      onPrintQr={jest.fn()}
+      onDownloadQr={jest.fn()}
       {...props}
     />
   );
@@ -96,6 +97,8 @@ const clickAction = (wrapper, key) => {
 
 describe('AccessDashboard', () => {
   beforeEach(() => {
+    // CRA resets mock implementations between tests
+    isPrintSupported.mockReturnValue(true);
     window.matchMedia = jest.fn().mockImplementation((query) => ({
       matches: false,
       media: query,
@@ -167,23 +170,67 @@ describe('AccessDashboard', () => {
     const surface = wrapper.find(ItemDetailsSurface);
     expect(surface.prop('selectedKey')).toBe('cafe-don-pedro/CAFE01');
     expect(surface.prop('meta')).toEqual(['CAFE01', 'Opens Menú Principal']);
-    expect(surface.text()).toContain('Last scan 2 hours ago');
+    expect(surface.text()).toContain('Last visit 2 hours ago');
     expect(wrapper.find(ItemCard).at(0).prop('selected')).toBe(true);
   });
 
+  it('labels the gate counter as visits', () => {
+    const cards = render().find(ItemCard);
+    expect(cards.at(0).prop('caption')).toContain('visits');
+    expect(cards.at(0).prop('caption')).not.toContain('scan');
+  });
+
   it('prints and downloads the generated QR code', () => {
-    const wrapper = render();
+    const onPrintQr = jest.fn();
+    const onDownloadQr = jest.fn();
+    const wrapper = render({ onPrintQr, onDownloadQr });
     selectCard(wrapper, 0);
-    const { qrCodeUrl } = activeClient.accessGates[0];
+    const gate = activeClient.accessGates[0];
 
     clickAction(wrapper, 'print');
     clickAction(wrapper, 'download');
 
-    expect(printQrCode).toHaveBeenCalledWith(qrCodeUrl, 'Cafetería Don Pedro');
-    expect(downloadQrCode).toHaveBeenCalledWith(
-      qrCodeUrl,
-      'cafe-don-pedro-CAFE01.png'
+    expect(onPrintQr).toHaveBeenCalledWith(activeClient, gate);
+    expect(onDownloadQr).toHaveBeenCalledWith(activeClient, gate);
+  });
+
+  it('hides print where printing is not supported', () => {
+    isPrintSupported.mockReturnValue(false);
+    const wrapper = render();
+    selectCard(wrapper, 0);
+
+    expect(wrapper.find('button[data-action-key="print"]')).toHaveLength(0);
+    expect(wrapper.find('button[data-action-key="download"]')).toHaveLength(1);
+  });
+
+  it('disables opening the board of a paused gate', () => {
+    const onOpenBoard = jest.fn();
+    const wrapper = render({ onOpenBoard });
+    selectCard(wrapper, 1);
+
+    const openBoard = wrapper.find('button[data-action-key="openBoard"]');
+    expect(openBoard.prop('disabled')).toBe(true);
+    expect(openBoard.prop('title')).toContain('This QR code is paused');
+    expect(wrapper.find(ItemDetailsSurface).text()).toContain(
+      'This QR code is paused'
     );
+  });
+
+  it('shows a client whose subscription has not started as scheduled', () => {
+    const scheduledClient = {
+      ...activeClient,
+      slug: 'scheduled',
+      subscriptionStart: new Date(Date.now() + 7 * 864e5).toISOString()
+    };
+    const wrapper = render({ clients: [scheduledClient] });
+
+    expect(wrapper.find(ItemCard).find(ClientStatusChip).text()).toBe(
+      'Scheduled'
+    );
+    selectCard(wrapper, 0);
+    expect(
+      wrapper.find('button[data-action-key="openBoard"]').prop('disabled')
+    ).toBe(true);
   });
 
   it('disables print and download until the QR code is generated', () => {
