@@ -76,7 +76,7 @@ import {
 } from './Board.utils';
 import LoadingIcon from '../UI/LoadingIcon';
 import PinDialog from '../UI/PinDialog';
-import { resolveTileLabel } from '../../helpers';
+import { isDataURL, resolveTileLabel } from '../../helpers';
 //import { isAndroid } from '../../cordova-util';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -1009,33 +1009,11 @@ export class BoardContainer extends Component {
   };
 
   async uploadTileSound(tile) {
-    if (tile && tile.sound && tile.sound.startsWith('data')) {
-      const { userData } = this.props;
-      try {
-        var blob = new Blob([this.convertDataURIToBinary(tile.sound)], {
-          type: 'audio/mp3; codecs=opus'
-        });
-        const audioUrl = await API.uploadFile(blob, userData.email + '.mp3');
-        tile.sound = audioUrl;
-      } catch (err) {
-        console.log(err.message);
-      }
+    if (isDataURL(tile?.sound)) {
+      const audioUrl = await API.uploadFromDataURL(tile.sound, tile.id, true);
+      if (audioUrl) tile.sound = audioUrl;
     }
     return tile;
-  }
-
-  convertDataURIToBinary(dataURI) {
-    var BASE64_MARKER = ';base64,';
-    var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
-    var base64 = dataURI.substring(base64Index);
-    var raw = window.atob(base64);
-    var rawLength = raw.length;
-    var array = new Uint8Array(new ArrayBuffer(rawLength));
-
-    for (let i = 0; i < rawLength; i++) {
-      array[i] = raw.charCodeAt(i);
-    }
-    return array;
   }
 
   handleApiUpdates = async (

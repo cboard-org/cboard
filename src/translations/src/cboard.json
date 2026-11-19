@@ -691,6 +691,8 @@
   "cboard.components.VoiceRecorder.play": "Play recording",
   "cboard.components.VoiceRecorder.clear": "Clear recording",
   "cboard.components.VoiceRecorder.record": "Record",
+  "cboard.components.VoiceRecorder.attachAudioFile": "Attach audio file",
+  "cboard.components.VoiceRecorder.audioFileError": "Could not read this file. Choose a non-empty audio file.",
   "cboard.components.PremiumFeature.tryPeriodFinishTittle": "Your free trial has ended",
   "cboard.components.PremiumFeature.featureBlockedTittle": "This feature is blocked",
   "cboard.components.PremiumFeature.upgradeNow": "Upgrade now",

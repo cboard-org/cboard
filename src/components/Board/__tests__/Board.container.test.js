@@ -1,5 +1,6 @@
 import { mapStateToProps, BoardContainer } from '../Board.container';
 import { SYNC_STATUS } from '../Board.constants';
+import API from '../../../api';
 
 jest.mock('dom-to-image', () => ({}));
 jest.mock('../Board.component', () => () => null);
@@ -44,6 +45,39 @@ const createState = (boards, syncMeta = {}) => ({
 });
 
 describe('Board.container', () => {
+  describe('uploadTileSound', () => {
+    const sound = 'data:audio/wav;base64,AA==';
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('uploads attached audio with its original MIME type', async () => {
+      const url = 'https://example.com/tile-1.wav';
+      const uploadFile = jest.spyOn(API, 'uploadFile').mockResolvedValue(url);
+      const tile = { id: 'tile-1', sound };
+
+      await expect(
+        new BoardContainer({}).uploadTileSound(tile)
+      ).resolves.toEqual({
+        id: 'tile-1',
+        sound: url
+      });
+      expect(uploadFile).toHaveBeenCalledWith(
+        expect.objectContaining({ type: 'audio/wav' }),
+        'tile-1.wav'
+      );
+    });
+
+    it('keeps local audio available when the upload fails', async () => {
+      jest.spyOn(API, 'uploadFile').mockRejectedValue(new Error('offline'));
+      const tile = { id: 'tile-1', sound };
+
+      const result = await new BoardContainer({}).uploadTileSound(tile);
+      expect(result.sound).toBe(sound);
+    });
+  });
+
   describe('mapStateToProps', () => {
     describe('active board handling', () => {
       it('returns undefined for active board that is soft-deleted', () => {

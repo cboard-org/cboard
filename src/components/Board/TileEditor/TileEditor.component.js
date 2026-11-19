@@ -720,6 +720,7 @@ export class TileEditor extends Component {
                       </FormLabel>
                       <PremiumFeature>
                         <VoiceRecorder
+                          key={this.state.activeStep}
                           src={this.currentTileProp('sound')}
                           onChange={this.handleSoundChange}
                         />
