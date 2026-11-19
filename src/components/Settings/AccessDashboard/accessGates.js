@@ -1,7 +1,13 @@
 import { isCordova } from '../../../cordova-util';
 import { ACCESS_APP_URL } from '../../../constants';
 
-export const isClientPaused = (client) => !client.isActive || client.isExpired;
+// The public endpoint rejects gates whose subscription has not started yet.
+export const isClientNotStarted = (client, now = new Date()) =>
+  !!client.subscriptionStart && new Date(client.subscriptionStart) > now;
+
+// A paused client's gates return an error to visitors.
+export const isClientPaused = (client, now = new Date()) =>
+  !client.isActive || client.isExpired || isClientNotStarted(client, now);
 
 export const getGateItems = (clients) =>
   clients.reduce(
