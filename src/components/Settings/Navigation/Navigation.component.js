@@ -137,6 +137,17 @@ class Navigation extends React.Component {
     this.setState({ [navigationSetting]: value });
   }
 
+  isPagination() {
+    return this.state.boardNavigationMode === 'pagination';
+  }
+
+  isNavigationButtonsStyleDisabled() {
+    return (
+      this.isPagination() ||
+      !(this.state.bigScrollButtonsActive || this.state.caBackButtonActive)
+    );
+  }
+
   renderNavigationButtonsLocationSelect() {
     const name = 'navigationButtonsStyle';
     const actualButtonsStyle = NAVIGATION_BUTTONS_STYLES.filter(
@@ -153,11 +164,7 @@ class Navigation extends React.Component {
             actualButtonsStyle?.value || NAVIGATION_BUTTONS_STYLES[0].value
           }
           onChange={(e) => this.onNavigationSettingsChange(name, e)}
-          disabled={
-            !(
-              this.state.bigScrollButtonsActive || this.state.caBackButtonActive
-            )
-          }
+          disabled={this.isNavigationButtonsStyleDisabled()}
         >
           {NAVIGATION_BUTTONS_STYLES.map((style) => (
             <MenuItem key={style?.value} value={style?.value}>
@@ -171,6 +178,7 @@ class Navigation extends React.Component {
 
   render() {
     const { onClose } = this.props;
+    const isPagination = this.isPagination();
     return (
       <div className="Navigation">
         <FullScreenDialog
@@ -181,6 +189,41 @@ class Navigation extends React.Component {
         >
           <Paper>
             <List>
+              <ListItem>
+                <ListItemText
+                  primary={
+                    <FormattedMessage {...messages.boardNavigationMode} />
+                  }
+                  secondary={
+                    <FormattedMessage
+                      {...messages.boardNavigationModeDescription}
+                    />
+                  }
+                />
+                <Select
+                  className="Navigation__mode-select"
+                  inputProps={{
+                    'aria-label': this.props.intl.formatMessage(
+                      messages.boardNavigationMode
+                    )
+                  }}
+                  value={this.state.boardNavigationMode || 'scroll'}
+                  onChange={(event) =>
+                    this.onNavigationSettingsChange(
+                      'boardNavigationMode',
+                      event
+                    )
+                  }
+                >
+                  <MenuItem value="scroll">
+                    <FormattedMessage {...messages.scroll} />
+                  </MenuItem>
+                  <MenuItem value="pagination">
+                    <FormattedMessage {...messages.pagination} />
+                  </MenuItem>
+                </Select>
+              </ListItem>
+              <Divider />
               <ListItem>
                 <ListItemText
                   className="Navigation__ListItemText"
@@ -197,7 +240,7 @@ class Navigation extends React.Component {
                 </ListItemSecondaryAction>
               </ListItem>
               <Divider />
-              <ListItem>
+              <ListItem disabled={isPagination}>
                 <ListItemText
                   className="Navigation__ListItemText"
                   primary={<FormattedMessage {...messages.bigScroll} />}
@@ -211,18 +254,12 @@ class Navigation extends React.Component {
                     onChange={this.toggleCAScrollButton}
                     value="active"
                     color="secondary"
+                    disabled={isPagination}
                   />
                 </ListItemSecondaryAction>
               </ListItem>
               <Divider />
-              <ListItem
-                disabled={
-                  !(
-                    this.state.bigScrollButtonsActive ||
-                    this.state.caBackButtonActive
-                  )
-                }
-              >
+              <ListItem disabled={this.isNavigationButtonsStyleDisabled()}>
                 <ListItemText
                   className="Display__ListItemText"
                   primary={
