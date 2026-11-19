@@ -1,4 +1,5 @@
 import {
+  isClientNotStarted,
   isClientPaused,
   getGateItems,
   getAccessPath,
@@ -23,6 +24,23 @@ describe('accessGates', () => {
     expect(isClientPaused(client)).toBe(false);
     expect(isClientPaused({ ...client, isActive: false })).toBe(true);
     expect(isClientPaused({ ...client, isExpired: true })).toBe(true);
+  });
+
+  it('pauses a client whose subscription has not started yet', () => {
+    const now = new Date('2026-11-19T00:00:00.000Z');
+    const scheduled = {
+      ...client,
+      subscriptionStart: '2026-11-26T00:00:00.000Z'
+    };
+    const started = {
+      ...client,
+      subscriptionStart: '2026-11-01T00:00:00.000Z'
+    };
+
+    expect(isClientNotStarted(scheduled, now)).toBe(true);
+    expect(isClientPaused(scheduled, now)).toBe(true);
+    expect(isClientNotStarted(started, now)).toBe(false);
+    expect(isClientPaused(started, now)).toBe(false);
   });
 
   it('flattens the clients into one item per gate', () => {
