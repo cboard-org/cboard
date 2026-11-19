@@ -13,7 +13,7 @@ import EmailIcon from '@material-ui/icons/Email';
 
 import ClientStatusChip from './ClientStatusChip';
 import { formatDate } from './ExpiredAlerts';
-import { isClientPaused } from './accessGates';
+import { isClientNotStarted, isClientPaused } from './accessGates';
 import { ACCESS_SUPPORT_EMAIL_URL } from '../../../constants';
 import messages from './AccessDashboard.messages';
 
@@ -27,7 +27,13 @@ const getSecondary = (intl, client) => {
       intl.formatMessage(messages.qrPaused)
     ].join(' · ');
   }
-  const parts = [intl.formatMessage(messages.validUntil, { date })];
+  const parts = isClientNotStarted(client)
+    ? [
+        intl.formatMessage(messages.startsOn, {
+          date: formatDate(intl, client.subscriptionStart)
+        })
+      ]
+    : [intl.formatMessage(messages.validUntil, { date })];
   parts.push(
     isClientPaused(client)
       ? intl.formatMessage(messages.qrPaused)
