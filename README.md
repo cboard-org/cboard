@@ -55,6 +55,30 @@ In order to pull the latest translations from Crowdin into the codebase, you can
 
 Cboard is developed with the Node.js version pinned in `.nvmrc`. Clone the repo and install dependencies first — see [Setting Up a Local Copy](CONTRIBUTING.md#setting-up-a-local-copy).
 
+### Environment variables
+
+None are required: `npm start` runs without any of them, and you can use the app as a guest. Set them in a `.env.local` file in the project root (it is git-ignored) and restart `npm start`. They are read at build time, so a change needs a restart or a rebuild.
+
+| Variable                                  | Used for                                           | If unset                                                                                                                           |
+| ----------------------------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `REACT_APP_DEV_API_URL`                   | Base URL of the Cboard API (login, sync, settings) | On the web the app calls `api.<current host>`, which is `http://api.localhost:3000` locally. Packaged apps call the production API |
+| `REACT_APP_CBOARD_SYMBOLS_API_BASE`       | Base URL of the Cboard symbols API                 | `http://localhost:3000/api/cboard-symbols` in development, the hosted service in production                                        |
+| `REACT_APP_AZURE_SPEECH_KEY`              | Azure Speech key for cloud voices                  | A built-in default                                                                                                                 |
+| `REACT_APP_AZURE_SPEECH_SERVICE_REGION`   | Azure Speech region                                | `eastus`                                                                                                                           |
+| `REACT_APP_AZURE_INST_KEY`                | Azure Application Insights key for telemetry       | A built-in default                                                                                                                 |
+| `REACT_APP_GOOGLE_FIREBASE_WEB_CLIENT_ID` | Google sign-in in the Android and iOS apps         | A built-in default                                                                                                                 |
+| `REACT_APP_FACEBOOK_APP_ID`               | Facebook sign-in in the Android and iOS apps       | A built-in default                                                                                                                 |
+| `REACT_APP_FACEBOOK_APP_NAME`             | Facebook sign-in in the Android and iOS apps       | `Cboard`                                                                                                                           |
+| `REACT_APP_FACEBOOK_CLIENT_TOKEN`         | Facebook sign-in in the Android and iOS apps       | A placeholder value                                                                                                                |
+
+### Using an API locally
+
+Without `REACT_APP_DEV_API_URL`, a local run looks for the API at `http://api.localhost:3000`, so login, sign-up and sync fail unless something answers there. To work on those features, run [cboard-api](https://github.com/cboard-org/cboard-api) and point the app at it in `.env.local`:
+
+```
+REACT_APP_DEV_API_URL=<URL of your running cboard-api>
+```
+
 ### `npm start`
 
 Runs the app in development mode.<br>
