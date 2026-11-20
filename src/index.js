@@ -18,7 +18,6 @@ import {
 import history from './history';
 import './index.css';
 import './polyfills';
-import './env';
 import LanguageProvider from './providers/LanguageProvider';
 import SpeechProvider from './providers/SpeechProvider';
 import ThemeProvider from './providers/ThemeProvider';

@@ -38,12 +38,22 @@ import {
 import { getStore } from '../../../store';
 import * as _ from 'lodash';
 import mime from 'mime-types';
-import mongoose from 'mongoose';
 import * as utils from '../../../components/FixedGrid/utils';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const imageElement = new Image();
+
+// A random 24-character hex id, the same shape as the ObjectId strings this
+// export has always written. It only links a button to its image inside one
+// exported file.
+export function generateImageId() {
+  let id = '';
+  for (let i = 0; i < 24; i++) {
+    id += Math.floor(Math.random() * 16).toString(16);
+  }
+  return id;
+}
 
 function toSnakeCase(str) {
   const value = str.replace(/([A-Z])/g, ($1) => '_' + $1.toLowerCase());
@@ -203,7 +213,7 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
                   ? image
                   : `/${image}`;
 
-            const imageID = new mongoose.Types.ObjectId().toString();
+            const imageID = generateImageId();
             fetchedImages[imageID] = _.defaults({ path }, imageResponse);
             button['image_id'] = imageID;
             images[imageID] = {
