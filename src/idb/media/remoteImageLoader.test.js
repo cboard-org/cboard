@@ -1,9 +1,14 @@
 import { getCachedImage, putCachedImage } from './imageCache';
 import { storeRemoteImage } from './remoteImageLoader';
+import { dropStoredImageMiss } from './storedImageUrls';
 
 jest.mock('./imageCache', () => ({
   getCachedImage: jest.fn(),
   putCachedImage: jest.fn()
+}));
+
+jest.mock('./storedImageUrls', () => ({
+  dropStoredImageMiss: jest.fn()
 }));
 
 const image = (url = 'https://example.com/symbol.png') => ({
@@ -170,4 +175,14 @@ it('shares one fetch and one cache write for concurrent misses', async () => {
 
   expect(global.fetch).toHaveBeenCalledTimes(1);
   expect(putCachedImage).toHaveBeenCalledTimes(1);
+});
+
+it('drops any memoized miss once the image is cached', async () => {
+  const fetched = image('https://example.com/invalidate-miss.png');
+  getCachedImage.mockResolvedValue(undefined);
+  global.fetch.mockResolvedValue(okResponse(fetched.type, fetched.data));
+
+  await storeRemoteImage(fetched.url);
+
+  expect(dropStoredImageMiss).toHaveBeenCalledWith(fetched.url);
 });

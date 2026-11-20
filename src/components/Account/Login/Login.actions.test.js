@@ -15,6 +15,10 @@ jest.mock('../../../appInsights', () => ({
   }
 }));
 
+jest.mock('../../../idb/media/storedImageUrls', () => ({
+  clearStoredImageUrls: jest.fn()
+}));
+
 // isCordova is now derived from the URL protocol at module load, so window.cordova
 // no longer toggles it. Mock the util to drive the packaged-app branches in tests.
 jest.mock('../../../cordova-util', () => ({
@@ -25,6 +29,7 @@ jest.mock('../../../cordova-util', () => ({
 
 const { appInsights } = require('../../../appInsights');
 const cordovaUtil = require('../../../cordova-util');
+const { clearStoredImageUrls } = require('../../../idb/media/storedImageUrls');
 
 const mockBoard = {
   name: 'tewt',
@@ -428,4 +433,13 @@ it('should clear App Insights authenticated user context on logout', async () =>
   await store.dispatch(actions.logout());
 
   expect(appInsights.clearAuthenticatedUserContext).toHaveBeenCalled();
+});
+
+it('should clear memoized stored image urls on logout', async () => {
+  clearStoredImageUrls.mockClear();
+  const store = mockStore(initialState);
+
+  await store.dispatch(actions.logout());
+
+  expect(clearStoredImageUrls).toHaveBeenCalledTimes(1);
 });

@@ -3,6 +3,7 @@ import { act } from 'react-dom/test-utils';
 import { shallow, mount } from 'enzyme';
 import Symbol from './Symbol';
 import { getCachedImage, putCachedImage } from '../../../idb/media/imageCache';
+import { clearStoredImageUrls } from '../../../idb/media/storedImageUrls';
 
 // IndexedDB open + get resolve over several macrotasks, not just microtasks
 const flush = () =>
@@ -10,8 +11,6 @@ const flush = () =>
 
 // jsdom implements neither
 let blobUrlCount = 0;
-global.URL.createObjectURL = () => `blob:test/${++blobUrlCount}`;
-global.URL.revokeObjectURL = () => {};
 
 const srcOf = (wrapper) => wrapper.update().find('.Symbol__image').prop('src');
 const imageCount = (wrapper) => wrapper.update().find('.Symbol__image').length;
@@ -25,7 +24,16 @@ const setOnLine = (value) =>
     configurable: true
   });
 
-afterEach(() => setOnLine(true));
+beforeEach(() => {
+  blobUrlCount = 0;
+  global.URL.createObjectURL = jest.fn(() => `blob:test/${++blobUrlCount}`);
+  global.URL.revokeObjectURL = jest.fn();
+});
+
+afterEach(() => {
+  setOnLine(true);
+  clearStoredImageUrls();
+});
 
 it('renders without crashing', () => {
   shallow(<Symbol label="dummy label" labelpos="Below" />);
@@ -246,4 +254,99 @@ it('renders with label', () => {
     <Symbol label="dummy label" type="p" labelpos="Below" />
   );
   expect(wrapper.find('.Symbol__label')).toHaveLength(1);
+});
+
+it('reuses the memoized blob url across mounts without revoking on unmount', async () => {
+  const img = 'https://globalsymbols.com/reused-across-mounts.png';
+  await putCachedImage({
+    url: img,
+    type: 'image/png',
+    data: new ArrayBuffer(8)
+  });
+
+  const first = mount(<Symbol label="dummy label" image={img} />);
+  first.find('.Symbol__image').simulate('error');
+  await flush();
+
+  const firstBlobUrl = srcOf(first);
+  expect(firstBlobUrl).toBe('blob:test/1');
+  expect(global.URL.createObjectURL).toHaveBeenCalledTimes(1);
+
+  first.unmount();
+  expect(global.URL.revokeObjectURL).not.toHaveBeenCalled();
+
+  const second = mount(<Symbol label="dummy label" image={img} />);
+  second.find('.Symbol__image').simulate('error');
+  await flush();
+
+  expect(srcOf(second)).toBe(firstBlobUrl);
+  expect(global.URL.createObjectURL).toHaveBeenCalledTimes(1);
+  second.unmount();
+  expect(global.URL.revokeObjectURL).not.toHaveBeenCalled();
+});
+
+it('collapses two tiles failing in one tick into one object url', async () => {
+  const img = 'https://globalsymbols.com/shared-tick.png';
+  await putCachedImage({
+    url: img,
+    type: 'image/png',
+    data: new ArrayBuffer(8)
+  });
+
+  const wrapper = mount(
+    <div>
+      <Symbol label="first" image={img} />
+      <Symbol label="second" image={img} />
+    </div>
+  );
+
+  wrapper.find('.Symbol__image').forEach((node) => node.simulate('error'));
+  await flush();
+
+  const images = wrapper.update().find('.Symbol__image');
+  expect(images).toHaveLength(2);
+  expect(images.at(0).prop('src')).toBe('blob:test/1');
+  expect(images.at(1).prop('src')).toBe('blob:test/1');
+  expect(global.URL.createObjectURL).toHaveBeenCalledTimes(1);
+
+  wrapper.unmount();
+  expect(global.URL.revokeObjectURL).not.toHaveBeenCalled();
+});
+
+it('repaints a blank tile on an online event and caches it for the next offline mount', async () => {
+  const img = 'https://globalsymbols.com/online-recovery.png';
+  global.fetch = jest.fn().mockResolvedValue({
+    ok: true,
+    status: 200,
+    headers: { get: () => 'image/png' },
+    arrayBuffer: async () => new ArrayBuffer(8)
+  });
+  setOnLine(false);
+
+  const wrapper = mount(
+    <Symbol label="dummy label" image={img} cacheRemoteImage />
+  );
+  wrapper.find('.Symbol__image').simulate('error');
+  await flush();
+  expect(imageCount(wrapper)).toBe(0);
+
+  setOnLine(true);
+  act(() => {
+    window.dispatchEvent(new Event('online'));
+  });
+
+  expect(srcOf(wrapper)).toBe(img);
+  expect(isHidden(wrapper)).toBe(false);
+
+  wrapper.find('.Symbol__image').simulate('load');
+  await flush();
+  wrapper.unmount();
+
+  setOnLine(false);
+  const offlineMount = mount(<Symbol label="dummy label" image={img} />);
+  offlineMount.find('.Symbol__image').simulate('error');
+  await flush();
+
+  expect(srcOf(offlineMount)).toBe('blob:test/1');
+  offlineMount.unmount();
 });
