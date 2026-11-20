@@ -20,6 +20,7 @@ import AccessViewer from '../AccessViewer';
 import GazeSwitchProvider from '../../providers/GazeSwitchProvider';
 import './App.css';
 import LoginRequiredModal from '../LoggedInFeature/LoginRequiredModal';
+import InstitutionalAccess from '../InstitutionalAccess/InstitutionalAccess';
 
 export class App extends Component {
   static propTypes = {
@@ -61,6 +62,7 @@ export class App extends Component {
 
         <Notifications />
         <Switch>
+          <Route path="/institutional-access" component={InstitutionalAccess} />
           <Route path="/access/:slug/:code" component={AccessViewer} />
           <RedirectIfLogged
             component={AuthScreen}
