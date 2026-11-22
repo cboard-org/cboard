@@ -6,7 +6,8 @@ describe('actions', () => {
     const lang = 'en';
     const expectedAction = {
       type: types.CHANGE_LANG,
-      lang
+      lang,
+      isNewVoiceAvailable: false
     };
     expect(actions.changeLang(lang)).toEqual(expectedAction);
   });

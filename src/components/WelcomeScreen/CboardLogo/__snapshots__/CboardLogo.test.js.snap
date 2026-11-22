@@ -10,7 +10,7 @@ exports[`CboardLogo tests default renderer 1`] = `
   <img
     alt="Cboard Logo"
     className="CboardLogo"
-    src="/images/logo_no_words.svg"
+    src="/images/logo-white-slogan.png"
   />
 </CSSTransition>
 `;

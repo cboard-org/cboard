@@ -86,7 +86,7 @@ Server (API)                          Local (Redux)
 ## 3. Entry Point
 
 **Function:** `getApiMyBoards()`
-**File:** `src/components/Board/Board.actions.js:532`
+**File:** `src/components/Board/Board.actions.js`
 
 ```
 App sync trigger (logged in + online — see §11)
@@ -113,7 +113,7 @@ App sync trigger (logged in + online — see §11)
 
 ## 4. Orchestrator: `syncBoards()`
 
-**File:** `src/components/Board/Board.actions.js:817`
+**File:** `src/components/Board/Board.actions.js`
 
 `syncBoards(remoteBoards)` is the master orchestrator. It is a Redux thunk that:
 
@@ -147,7 +147,7 @@ await dispatch(pushLocalChangesToApi(remoteBoards));
 
 ### 5.1 `classifyRemoteBoards(localBoards, remoteBoards, syncMeta)`
 
-**File:** `src/components/Board/Board.utils.js:78-116`
+**File:** `src/components/Board/Board.utils.js`
 
 Compares the **sync manifest** (`{ id, lastEdited }` entries) against local state and returns three lists. Each `boardsToAdd` / `boardsToUpdate` element is the lightweight manifest entry — its full body is fetched in PULL (see 5.2):
 
@@ -165,7 +165,7 @@ Compares the **sync manifest** (`{ id, lastEdited }` entries) against local stat
 
 ### 5.2 `applyRemoteChangesToState({ boardsToAdd, boardsToUpdate, boardIdsToDelete })`
 
-**File:** `src/components/Board/Board.actions.js:579`
+**File:** `src/components/Board/Board.actions.js`
 
 Applies the classified changes to Redux state in three steps. The
 `boardIdsToDelete` it receives are the `boardIdsToVerifyDeletion` candidates whose
@@ -249,7 +249,7 @@ contract break rather than silently syncing garbage.
 
 ### 6.1 `classifyBoardsForPush({ boards, syncMeta, userEmail, userName, locale, remoteBoards, dispatch })`
 
-**File:** `src/components/Board/Board.actions.js:623-692`
+**File:** `src/components/Board/Board.actions.js`
 
 A **three-pass algorithm** that determines which boards to push and which to delete:
 
@@ -286,7 +286,7 @@ Only boards explicitly marked via user action (which triggers `DELETE_BOARD` →
 
 ### 6.2 `pushLocalChangesToApi(remoteBoards)`
 
-**File:** `src/components/Board/Board.actions.js:703-776`
+**File:** `src/components/Board/Board.actions.js`
 
 Executes the classified push operations:
 
@@ -338,7 +338,7 @@ Before the sync engine existed, boards were stored in Redux without any sync tra
 
 ### The Solution: Pass 2 of `classifyBoardsForPush`
 
-**File:** `src/components/Board/Board.actions.js:662-682`
+**File:** `src/components/Board/Board.actions.js`
 
 Pass 2 specifically targets boards with **no `syncMeta` entry** and onboards them into the sync system. This is the migration path that ensures every board eventually gets tracked.
 
@@ -436,7 +436,7 @@ defaults are protected from deletion by their short ID (`localHasSyncStatus`,
 
 ## 8. `updateApiObjectsNoChild()` Deep Dive
 
-**File:** `src/components/Board/Board.actions.js:992-1039`
+**File:** `src/components/Board/Board.actions.js`
 
 This function creates or updates a single board on the server and handles **all cascading side effects** related to ID changes and communicator consistency. Despite its name, it does significantly more than a simple API call.
 
@@ -493,7 +493,7 @@ updateApiObjectsNoChild(board, createParentBoard)
 
 ### 8.1 The `CREATE_API_BOARD_SUCCESS` Reducer Cascade
 
-**File:** `src/components/Board/Board.reducer.js:363-431`
+**File:** `src/components/Board/Board.reducer.js`
 
 When `createApiBoard` succeeds, the reducer does more than update the created board. It scans **all boards** for tiles that reference the old (local) board ID via `tile.loadBoard` and triggers a cascade:
 
@@ -542,7 +542,7 @@ update path.
 
 ### 8.2 `updateApiMarkedBoards()`
 
-**File:** `src/components/Board/Board.actions.js:1040-1089`
+**File:** `src/components/Board/Board.actions.js`
 
 Processes the flags set by the `CREATE_API_BOARD_SUCCESS` reducer:
 
@@ -573,7 +573,7 @@ Board ID length < 14 chars  →  LOCAL board (shortid-generated)
 Board ID length >= 14 chars →  SERVER board (MongoDB ObjectId)
 ```
 
-**Constant:** `SHORT_ID_MAX_LENGTH = 14` (`src/components/Board/Board.constants.js:48`)
+**Constant:** `SHORT_ID_MAX_LENGTH = 14` (`src/components/Board/Board.constants.js`)
 
 ### Board Type Decision Tree
 
@@ -867,17 +867,17 @@ USER ACTION (edit board / create tile / delete board)
 
 | Scenario                             | Handling                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Location                                                     |
 | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| `syncBoards()` throws                | Catches error, dispatches `SYNC_BOARDS_FAILURE`, returns `{ success: false }`                                                                                                                                                                                                                                                                                                                                                                                                                                    | `Board.actions.js:848`                                       |
-| Bulk body fetch fails (PULL)         | `console.error`, **returns without throwing**. Deletions stay applied; adds/updates deferred to next sync; PUSH still runs.                                                                                                                                                                                                                                                                                                                                                                                      | `Board.actions.js:605`                                       |
-| Bulk body fetch returns bad shape    | Throws `'Bulk board fetch returned an unexpected shape'` — surfaces a contract break.                                                                                                                                                                                                                                                                                                                                                                                                                            | `Board.actions.js:597`                                       |
+| `syncBoards()` throws                | Catches error, dispatches `SYNC_BOARDS_FAILURE`, returns `{ success: false }`                                                                                                                                                                                                                                                                                                                                                                                                                                    | `syncBoards` (`Board.actions.js`)                            |
+| Bulk body fetch fails (PULL)         | `console.error`, **returns without throwing**. Deletions stay applied; adds/updates deferred to next sync; PUSH still runs.                                                                                                                                                                                                                                                                                                                                                                                      | `applyRemoteChangesToState` (`Board.actions.js`)             |
+| Bulk body fetch returns bad shape    | Throws `'Bulk board fetch returned an unexpected shape'` — surfaces a contract break.                                                                                                                                                                                                                                                                                                                                                                                                                            | `applyRemoteChangesToState` (`Board.actions.js`)             |
 | Board absent from manifest           | Deletion candidate — hard deleted only when a fresh `POST /board/byids` read also omits it (server confirms by id). Any request failure keeps the board for the next cycle.                                                                                                                                                                                                                                                                                                                                      | `Board.actions.js` → `syncBoards` / `confirmServerDeletions` |
-| Requested id missing from body fetch | Skipped (board deleted in race window); self-heals on next sync.                                                                                                                                                                                                                                                                                                                                                                                                                                                 | `Board.actions.js:579`                                       |
-| Individual board push fails          | `console.error`, continues to next board. Failed board remains `PENDING` for next sync.                                                                                                                                                                                                                                                                                                                                                                                                                          | `Board.actions.js:783`                                       |
+| Requested id missing from body fetch | Skipped (board deleted in race window); self-heals on next sync.                                                                                                                                                                                                                                                                                                                                                                                                                                                 | `applyRemoteChangesToState` (`Board.actions.js`)             |
+| Individual board push fails          | `console.error`, continues to next board. Failed board remains `PENDING` for next sync.                                                                                                                                                                                                                                                                                                                                                                                                                          | `pushLocalChangesToApi` (`Board.actions.js`)                 |
 | Board push returns 404               | The board was deleted on the server (another device / web / account op) — hard delete locally via `deleteApiBoardSuccess` so it stops re-pushing forever. Only when the board is **also absent from this cycle's manifest AND a fresh `POST /board/byids` read also omits it** (a PUT 404 that either contradicts the manifest or isn't reproduced by the fresh read is treated as transient — no delete). Covers untracked zombies and the edit-vs-delete conflict: delete wins once the server confirms by id. | `Board.actions.js` push-loop catch                           |
-| Board delete fails with non-404      | `console.error`, continues. Board remains marked `isDeleted` for next sync.                                                                                                                                                                                                                                                                                                                                                                                                                                      | `Board.actions.js:803`                                       |
-| Board delete fails with 404          | Treated as success — board already gone from server. Dispatches `deleteApiBoardSuccess`.                                                                                                                                                                                                                                                                                                                                                                                                                         | `Board.actions.js:799-800`                                   |
+| Board delete fails with non-404      | `console.error`, continues. Board remains marked `isDeleted` for next sync.                                                                                                                                                                                                                                                                                                                                                                                                                                      | `pushLocalChangesToApi` (`Board.actions.js`)                 |
+| Board delete fails with 404          | Treated as success — board already gone from server. Dispatches `deleteApiBoardSuccess`.                                                                                                                                                                                                                                                                                                                                                                                                                         | `pushLocalChangesToApi` (`Board.actions.js`)                 |
 | 403 from any API call                | Axios interceptor triggers automatic logout.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Global API config                                            |
-| No `userEmail` in state              | `pushLocalChangesToApi` returns immediately — no push occurs.                                                                                                                                                                                                                                                                                                                                                                                                                                                    | `Board.actions.js:733`                                       |
+| No `userEmail` in state              | `pushLocalChangesToApi` returns immediately — no push occurs.                                                                                                                                                                                                                                                                                                                                                                                                                                                    | `pushLocalChangesToApi` (`Board.actions.js`)                 |
 
 ### Known Edge Cases
 
@@ -898,12 +898,12 @@ USER ACTION (edit board / create tile / delete board)
 
 ## 15. File Reference Table
 
-| Component                 | Path                                      | Key Lines                                                                                                                                                                                                     |
-| ------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Actions (sync engine)** | `src/components/Board/Board.actions.js`   | `syncBoards` (817), `applyRemoteChangesToState` (579), `classifyBoardsForPush` (654), `pushLocalChangesToApi` (734), `updateApiObjectsNoChild` (1027), `updateApiMarkedBoards` (1075), `getApiMyBoards` (532) |
-| **Utilities**             | `src/components/Board/Board.utils.js`     | `classifyRemoteBoards` (78), `isLocalBoard` (26), `isServerBoard` (27), `transformBoardForUser` (60), `isUnloggedCreatedBoard` (32), `hasDefaultOrNoEmail` (29), `isDefaultBoard` (23)                        |
-| **Reducer**               | `src/components/Board/Board.reducer.js`   | `syncMeta` handling throughout, `CREATE_API_BOARD_SUCCESS` cascade (363), `SYNC_BOARDS_*` (521-537)                                                                                                           |
-| **Constants**             | `src/components/Board/Board.constants.js` | `SYNC_STATUS` (50), `SHORT_ID_MAX_LENGTH` (48), `DEFAULT_BOARD_EMAIL` (55)                                                                                                                                    |
-| **API**                   | `src/api/api.js`                          | `getBoardsSync` (280, `GET /board/sync/:email` manifest), `getBoardsByIds` (262, `POST /board/byids`), `getMyBoards`, `getBoard`, `createBoard`, `updateBoard`, `deleteBoard`                                 |
-| **Sync triggers**         | `src/components/App/App.container.js`     | `handleDataRefresh` (142), trigger handlers (171-185), `THROTTLE_MS` (138)                                                                                                                                    |
-| **Container**             | `src/components/Board/Board.container.js` | `getApiObjects` dispatch on mount                                                                                                                                                                             |
+| Component                 | Path                                      | Key Symbols                                                                                                                                                         |
+| ------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Actions (sync engine)** | `src/components/Board/Board.actions.js`   | `syncBoards`, `applyRemoteChangesToState`, `classifyBoardsForPush`, `pushLocalChangesToApi`, `updateApiObjectsNoChild`, `updateApiMarkedBoards`, `getApiMyBoards`   |
+| **Utilities**             | `src/components/Board/Board.utils.js`     | `classifyRemoteBoards`, `isLocalBoard`, `isServerBoard`, `transformBoardForUser`, `isUnloggedCreatedBoard`, `hasDefaultOrNoEmail`, `isDefaultBoard`                 |
+| **Reducer**               | `src/components/Board/Board.reducer.js`   | `syncMeta` handling throughout, `CREATE_API_BOARD_SUCCESS` cascade, `SYNC_BOARDS_*`                                                                                 |
+| **Constants**             | `src/components/Board/Board.constants.js` | `SYNC_STATUS`, `SHORT_ID_MAX_LENGTH`, `DEFAULT_BOARD_EMAIL`                                                                                                         |
+| **API**                   | `src/api/api.js`                          | `getBoardsSync` (`GET /board/sync/:email` manifest), `getBoardsByIds` (`POST /board/byids`), `getMyBoards`, `getBoard`, `createBoard`, `updateBoard`, `deleteBoard` |
+| **Sync triggers**         | `src/components/App/App.container.js`     | `handleDataRefresh`, trigger handlers, `THROTTLE_MS`                                                                                                                |
+| **Container**             | `src/components/Board/Board.container.js` | `getApiObjects` dispatch on mount                                                                                                                                   |

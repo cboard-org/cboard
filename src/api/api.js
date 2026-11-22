@@ -328,7 +328,15 @@ class API {
   }
 
   async getBoard(id) {
-    const { data } = await this.axiosInstance.get(`/board/${id}`);
+    // Public boards load anonymously; the token lets owners read private boards.
+    const authToken = getAuthToken();
+    const headers =
+      authToken && authToken.length
+        ? { Authorization: `Bearer ${authToken}` }
+        : undefined;
+    const { data } = await this.axiosInstance.get(`/board/${id}`, {
+      headers
+    });
     return data;
   }
 

@@ -39,7 +39,7 @@ Once it is done, you can modify any file locally and run `npm start`, `npm test`
 
 To help with translations and proofreading please use our translation management platform: https://crowdin.com/project/cboard
 
-We currently support 40 languages, most of which were machine translated and require proofreading.
+Cboard is available in more than 50 locales, most of which were machine translated and require proofreading.
 Help us make Cboard available in your country!
 
 ## As a manual tester
@@ -54,8 +54,7 @@ We have never written a test plan for cboard and it feels really bad. We will ap
 ## As an automation tester
 
 If you are proficient with automation testing, we will be happy if you can help us!.
-We have developed a little automation framework based on [Webdriver.io](https://webdriver.io/), that runs using the cloud service provided by [Browserstack](https://www.browserstack.com/). Here you can find the repository to start collaborating:
-https://github.com/cboard-org/cboard-webdriverio
+The end-to-end tests use [Playwright](https://playwright.dev/) and live in this repository under [`tests/`](tests/README.md). They run against the QA site on [Browserstack](https://www.browserstack.com/) after each deploy.
 
 ## Financial contributions
 
@@ -67,7 +66,7 @@ Anyone can file an expense. If the expense makes sense for the development of th
 ### Contributors
 
 Thank you to all the people who have already contributed to cboard!
-<a href="graphs/contributors"><img src="https://opencollective.com/cboard/contributors.svg?width=890" /></a>
+<a href="https://github.com/cboard-org/cboard/graphs/contributors"><img src="https://opencollective.com/cboard/contributors.svg?width=890" /></a>
 
 ### Backers
 
