@@ -40,3 +40,9 @@ export const normalizeStatus = (status) => {
   const aliased = STATUS_ALIASES[lowered] || lowered;
   return KNOWN_STATUSES.includes(aliased) ? aliased : NOT_SUBSCRIBED;
 };
+
+export const hasCurrentSubscription = (subscription, now = Date.now()) => {
+  if (!subscription?.isSubscribed) return false;
+  if (subscription.ownedProduct?.platform !== 'institutional') return true;
+  return Date.parse(subscription.expiryDate) > now;
+};
