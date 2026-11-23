@@ -350,7 +350,30 @@ export function classifyRemoteBoards(localBoards, remoteBoards, syncMeta = {}) {
   };
 }
 
-export const computeScrollState = (itemCount, cols, rows) => ({
-  isScroll: itemCount / cols > rows,
-  totalRows: Math.ceil(itemCount / cols)
-});
+export const computeScrollState = (itemCount, cols, rows) => {
+  const isItemCountInteger = Number.isInteger(itemCount);
+  const isItemCountNonNegative =
+    typeof itemCount === 'number' && itemCount >= 0;
+  const isColsInteger = Number.isInteger(cols);
+  const isColsPositive = typeof cols === 'number' && cols > 0;
+  const isRowsInteger = Number.isInteger(rows);
+  const isRowsNonNegative = typeof rows === 'number' && rows >= 0;
+  const hasValidInputs =
+    isItemCountInteger &&
+    isItemCountNonNegative &&
+    isColsInteger &&
+    isColsPositive &&
+    isRowsInteger &&
+    isRowsNonNegative;
+  if (!hasValidInputs) {
+    throw new RangeError(
+      'itemCount and rows must be non-negative integers, and cols must be a positive integer'
+    );
+  }
+
+  const exactRows = Math.ceil(itemCount / cols);
+  return {
+    isScroll: exactRows > rows,
+    totalRows: exactRows
+  };
+};
