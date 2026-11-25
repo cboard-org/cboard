@@ -3,25 +3,26 @@ import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import StarIcon from '@material-ui/icons/Star';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import PublicIcon from '@material-ui/icons/Public';
 import { debounce } from 'lodash';
 
 import FullScreenDialog from '../../UI/FullScreenDialog';
+import { DashboardNav, SectionHeader, LiveRegion } from '../../UI/Dashboard';
 import {
   SECTIONS,
+  SECTION_ORDER,
   VIEW_MODES,
   VIEW_MODE_STORAGE_KEY,
+  NAV_COLLAPSED_STORAGE_KEY,
   SECTION_TOUR_FLAGS
 } from './CommunicatorDialog.constants';
 import messages from './CommunicatorDialog.messages';
 
 import useBoardsFetcher from './hooks/useBoardsFetcher';
 import useBoardActions from './hooks/useBoardActions';
-import {
-  DashboardNav,
-  SectionHeader,
-  ContentToolbar,
-  LiveRegion
-} from './Dashboard';
+import { ContentToolbar } from './Dashboard';
 import BoardsView from './BoardsView';
 import CommunicatorDialogTour from './CommunicatorDialogTour.component';
 import useBoardSelection from './hooks/useBoardSelection';
@@ -104,6 +105,27 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 2, 0)
   }
 }));
+
+const SECTION_ICONS = {
+  [SECTIONS.MY_BOARDS]: DashboardIcon,
+  [SECTIONS.MY_COMMUNICATOR]: StarIcon,
+  [SECTIONS.COMMUNITY]: PublicIcon
+};
+
+const SECTION_LABELS = {
+  [SECTIONS.MY_BOARDS]: {
+    label: 'sectionMyBoards',
+    hint: 'sectionMyBoardsHint'
+  },
+  [SECTIONS.MY_COMMUNICATOR]: {
+    label: 'sectionQuickAccess',
+    hint: 'sectionQuickAccessHint'
+  },
+  [SECTIONS.COMMUNITY]: {
+    label: 'sectionCommunity',
+    hint: 'sectionCommunityHint'
+  }
+};
 
 const readStoredViewMode = () => {
   try {
@@ -325,6 +347,14 @@ const CommunicatorDialog = ({
     }
   };
 
+  const navSections = SECTION_ORDER.map((key) => ({
+    key,
+    label: intl.formatMessage(messages[SECTION_LABELS[key].label]),
+    hint: intl.formatMessage(messages[SECTION_LABELS[key].hint]),
+    icon: SECTION_ICONS[key]
+  }));
+  const currentSection = navSections.find(({ key }) => key === section);
+
   const selectedActions = selection.selectedBoard
     ? getBoardActions({
         section,
@@ -361,19 +391,23 @@ const CommunicatorDialog = ({
     >
       <div className={classes.dashboard}>
         <DashboardNav
-          intl={intl}
+          sections={navSections}
           section={section}
           onChange={handleSectionChange}
           mobileOpen={mobileNavOpen}
           onMobileClose={() => setMobileNavOpen(false)}
+          idPrefix="CommunicatorDialog"
+          collapsedStorageKey={NAV_COLLAPSED_STORAGE_KEY}
         />
 
         <main className={classes.content}>
           <div className={classes.header}>
             <SectionHeader
-              intl={intl}
-              section={section}
-              total={fetcher.total}
+              title={currentSection.label}
+              hint={currentSection.hint}
+              chipLabel={intl.formatMessage(messages.boardsQty, {
+                qty: fetcher.total
+              })}
               onOpenNav={() => setMobileNavOpen(true)}
             />
             {section !== SECTIONS.MY_COMMUNICATOR && (
