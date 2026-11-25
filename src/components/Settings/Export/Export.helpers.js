@@ -190,7 +190,7 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
             // each would otherwise share one file in the zip, and a label
             // like "yes/no" would add a folder.
             const getCustomImagePath = () => {
-              const components = ['custom', board.id, tile.id];
+              const components = ['custom', board.id, tile.id || `tile-${i}`];
               const extension = mime.extension(imageResponse['content_type']);
               return `/${_.join(components, '/')}.${extension}`;
             };

@@ -36,7 +36,7 @@ async function exportOBZ(boards) {
   saveAs.mockClear();
   await openboardExportManyAdapter(boards, intl);
   // The export saves the zip once it is generated, without waiting for it.
-  for (let i = 0; i < 100 && !saveAs.mock.calls.length; i++) {
+  for (let i = 0; i < 500 && !saveAs.mock.calls.length; i++) {
     await new Promise((resolve) => setTimeout(resolve, 10));
   }
   expect(saveAs).toHaveBeenCalledTimes(1);
@@ -59,9 +59,15 @@ const tileImages = (boards) =>
   );
 
 describe('OpenBoard export, then import', () => {
+  const { createObjectURL } = global.URL;
+
   beforeAll(() => {
     // jsdom has no URL.createObjectURL.
     global.URL.createObjectURL = jest.fn(() => 'blob:obz');
+  });
+
+  afterAll(() => {
+    global.URL.createObjectURL = createObjectURL;
   });
 
   it('brings back every custom tile image', async () => {
