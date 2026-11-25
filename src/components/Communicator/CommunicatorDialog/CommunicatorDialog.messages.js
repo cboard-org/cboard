@@ -331,18 +331,6 @@ export default defineMessages({
     id: 'cboard.components.CommunicatorDialog.sectionCommunityHint',
     defaultMessage: 'Discover and copy public boards'
   },
-  navigation: {
-    id: 'cboard.components.CommunicatorDialog.navigation',
-    defaultMessage: 'Navigation'
-  },
-  expandNavigation: {
-    id: 'cboard.components.CommunicatorDialog.expandNavigation',
-    defaultMessage: 'Expand navigation'
-  },
-  collapseNavigation: {
-    id: 'cboard.components.CommunicatorDialog.collapseNavigation',
-    defaultMessage: 'Collapse navigation'
-  },
   searchBoardsPlaceholder: {
     id: 'cboard.components.CommunicatorDialog.searchBoardsPlaceholder',
     defaultMessage: 'Search by name or author'
@@ -427,10 +415,6 @@ export default defineMessages({
   selectBoardPrompt: {
     id: 'cboard.components.CommunicatorDialog.selectBoardPrompt',
     defaultMessage: 'Select a board to see its details and actions'
-  },
-  closeDetails: {
-    id: 'cboard.components.CommunicatorDialog.closeDetails',
-    defaultMessage: 'Close details'
   },
   showBoard: {
     id: 'cboard.components.CommunicatorDialog.showBoard',
