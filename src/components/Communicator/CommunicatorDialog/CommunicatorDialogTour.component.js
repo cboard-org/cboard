@@ -114,7 +114,7 @@ const statusIconsStep = (intl) => ({
 
 const detailsStep = (intl, items) => ({
   hideCloseButton: true,
-  target: '[data-testid="board-details-panel"]',
+  target: '[data-testid="item-details-panel"]',
   placement: 'left',
   content: legend(intl, messages.walkthroughBoardActionButton, items)
 });
