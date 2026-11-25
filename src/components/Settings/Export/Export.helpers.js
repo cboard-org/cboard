@@ -185,12 +185,12 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
           }
 
           if (imageResponse) {
+            // Name custom images after the board and tile ids, not their
+            // names and labels: two boards called "Home" with a "Hi" tile
+            // each would otherwise share one file in the zip, and a label
+            // like "yes/no" would add a folder.
             const getCustomImagePath = () => {
-              const components = [
-                'custom',
-                board.name || board.nameKey,
-                tile.label || tile.labelKey || tile.id
-              ];
+              const components = ['custom', board.id, tile.id];
               const extension = mime.extension(imageResponse['content_type']);
               return `/${_.join(components, '/')}.${extension}`;
             };
