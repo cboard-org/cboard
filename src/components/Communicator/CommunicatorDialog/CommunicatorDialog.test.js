@@ -72,6 +72,21 @@ describe('CommunicatorDialog (dashboard)', () => {
     expect(wrapper.find('SectionHeader').length).toBe(1);
   });
 
+  test('keeps the communicator nav ids and collapse storage key', () => {
+    const nav = shallow(<CommunicatorDialog {...buildProps()} />).find(
+      'DashboardNav'
+    );
+    expect(nav.prop('idPrefix')).toBe('CommunicatorDialog');
+    expect(nav.prop('collapsedStorageKey')).toBe(
+      'cboard-communicator-nav-collapsed'
+    );
+    expect(nav.prop('sections').map(({ key }) => key)).toEqual([
+      SECTIONS.MY_BOARDS,
+      SECTIONS.MY_COMMUNICATOR,
+      SECTIONS.COMMUNITY
+    ]);
+  });
+
   test('starts on the My Boards section', () => {
     const wrapper = shallow(<CommunicatorDialog {...buildProps()} />);
     expect(wrapper.find('DashboardNav').prop('section')).toBe(
@@ -111,8 +126,8 @@ describe('CommunicatorDialog (dashboard)', () => {
     expect(wrapper.find('DashboardNav').prop('section')).toBe(
       SECTIONS.COMMUNITY
     );
-    expect(wrapper.find('SectionHeader').prop('section')).toBe(
-      SECTIONS.COMMUNITY
+    expect(wrapper.find('SectionHeader').prop('title')).toBe(
+      'sectionCommunity'
     );
   });
 
