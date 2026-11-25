@@ -13,15 +13,55 @@ exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
     className="makeStyles-dashboard-1"
   >
     <DashboardNav
-      intl={
-        Object {
-          "formatMessage": [Function],
-        }
-      }
+      collapsedStorageKey="cboard-communicator-nav-collapsed"
+      idPrefix="CommunicatorDialog"
       mobileOpen={false}
       onChange={[Function]}
       onMobileClose={[Function]}
       section="myBoards"
+      sections={
+        Array [
+          Object {
+            "hint": "sectionMyBoardsHint",
+            "icon": Object {
+              "$$typeof": Symbol(react.memo),
+              "compare": null,
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "render": [Function],
+              },
+            },
+            "key": "myBoards",
+            "label": "sectionMyBoards",
+          },
+          Object {
+            "hint": "sectionQuickAccessHint",
+            "icon": Object {
+              "$$typeof": Symbol(react.memo),
+              "compare": null,
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "render": [Function],
+              },
+            },
+            "key": "myCommunicator",
+            "label": "sectionQuickAccess",
+          },
+          Object {
+            "hint": "sectionCommunityHint",
+            "icon": Object {
+              "$$typeof": Symbol(react.memo),
+              "compare": null,
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "render": [Function],
+              },
+            },
+            "key": "community",
+            "label": "sectionCommunity",
+          },
+        ]
+      }
     />
     <main
       className="makeStyles-content-2"
@@ -30,14 +70,10 @@ exports[`CommunicatorDialog (dashboard) renders the dashboard shell 1`] = `
         className="makeStyles-header-3"
       >
         <SectionHeader
-          intl={
-            Object {
-              "formatMessage": [Function],
-            }
-          }
+          chipLabel="boardsQty"
+          hint="sectionMyBoardsHint"
           onOpenNav={[Function]}
-          section="myBoards"
-          total={0}
+          title="sectionMyBoards"
         />
         <div
           className="makeStyles-toolbarSlot-4"
