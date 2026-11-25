@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import Drawer from '@material-ui/core/Drawer';
 import BoardDetailsSurface from './BoardDetailsSurface';
-import BoardDetails from './BoardDetails';
+import ItemDetails from '../../../UI/Dashboard/ItemDetails';
 
 jest.mock('../CommunicatorDialog.messages', () => ({
   __esModule: true,
@@ -17,7 +17,20 @@ jest.mock('../CommunicatorDialog.messages', () => ({
   )
 }));
 
-jest.mock('../shared/BoardThumb', () => ({
+jest.mock('../../../UI/Dashboard/Dashboard.messages', () => ({
+  __esModule: true,
+  default: new Proxy(
+    {},
+    {
+      get: (target, prop) => ({
+        id: String(prop),
+        defaultMessage: String(prop)
+      })
+    }
+  )
+}));
+
+jest.mock('../../../UI/Dashboard/ItemThumb', () => ({
   __esModule: true,
   default: () => null
 }));
@@ -114,7 +127,7 @@ describe('BoardDetailsSurface', () => {
     setViewport(false);
     const wrapper = render();
     expect(wrapper.find(Drawer)).toHaveLength(0);
-    expect(wrapper.find(BoardDetails)).toHaveLength(1);
+    expect(wrapper.find(ItemDetails)).toHaveLength(1);
   });
 
   it('renders a bottom drawer on narrow viewports', () => {
@@ -123,6 +136,18 @@ describe('BoardDetailsSurface', () => {
     const drawer = wrapper.find(Drawer);
     expect(drawer).toHaveLength(1);
     expect(drawer.prop('anchor')).toBe('bottom');
+  });
+
+  it('renders a prompt when nothing is selected', () => {
+    setViewport(false);
+    expect(render({ board: null }).text()).toContain('selectBoardPrompt');
+  });
+
+  it('renders the board name and its metadata', () => {
+    setViewport(false);
+    const text = render().text();
+    expect(text).toContain('Comidas');
+    expect(text).toContain('tilesQty');
   });
 
   it('opens the drawer only when a board is selected', () => {
@@ -136,7 +161,7 @@ describe('BoardDetailsSurface', () => {
     const onClose = jest.fn();
     const wrapper = render({ onClose });
 
-    wrapper.find('button[data-testid="close-board-details"]').simulate('click');
+    wrapper.find('button[data-testid="close-item-details"]').simulate('click');
 
     expect(onClose).toHaveBeenCalled();
   });
@@ -147,7 +172,7 @@ describe('BoardDetailsSurface', () => {
     const wrapper = render({ onClose });
 
     wrapper
-      .find('[data-testid="board-details-panel"]')
+      .find('[data-testid="item-details-panel"]')
       .first()
       .simulate('keydown', {
         key: 'Escape'
