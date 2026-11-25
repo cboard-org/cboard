@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
   primary: { '&&': tone(theme, theme.palette.primary) },
   secondary: { '&&': tone(theme, theme.palette.secondary) },
   success: { '&&': tone(theme, theme.palette.success || { main: '#369b00' }) },
+  error: { '&&': tone(theme, theme.palette.error) },
   neutral: { '&&': tone(theme, theme.palette.text.secondary) }
 }));
 
@@ -92,7 +93,13 @@ TonalChip.defaultProps = {
 };
 
 TonalChip.propTypes = {
-  tone: PropTypes.oneOf(['primary', 'secondary', 'success', 'neutral']),
+  tone: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'success',
+    'error',
+    'neutral'
+  ]),
   icon: PropTypes.element,
   label: PropTypes.node.isRequired,
   title: PropTypes.string,
