@@ -20,14 +20,14 @@ import HomeIcon from '@material-ui/icons/Home';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 
-import BoardThumb from '../shared/BoardThumb';
+import { ItemThumb } from '../../../UI/Dashboard';
 import BoardStatusChips from '../shared/BoardStatusChips';
 import {
   softRadius,
   surfaceInteractive,
   surfaceAccent,
   busyOverlay
-} from '../CommunicatorDialog.styles';
+} from '../../../UI/Dashboard/Dashboard.styles';
 import messages from '../CommunicatorDialog.messages';
 
 const useStyles = makeStyles((theme) => ({
@@ -169,7 +169,11 @@ const QuickAccessRow = ({
         {position}
       </Typography>
 
-      <BoardThumb board={board} className={classes.thumb} />
+      <ItemThumb
+        className={classes.thumb}
+        src={board.caption}
+        alt={board.name || ''}
+      />
 
       <div className={classes.main}>
         <Typography className={classes.title} title={title}>
