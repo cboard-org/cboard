@@ -14,7 +14,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
-import BoardThumb from '../shared/BoardThumb';
+import { ItemThumb } from '../../../UI/Dashboard';
 import BoardStatusIcons from '../shared/BoardStatusIcons';
 import { formatBoardLocale } from '../utils/boardLocale';
 import {
@@ -22,7 +22,7 @@ import {
   surfaceInteractive,
   surfaceAccent,
   busyOverlay
-} from '../CommunicatorDialog.styles';
+} from '../../../UI/Dashboard/Dashboard.styles';
 import messages from '../CommunicatorDialog.messages';
 
 const useStyles = makeStyles((theme) => ({
@@ -145,7 +145,11 @@ const BoardRow = ({
         ref={(node) => registerTrigger(board.id, node)}
         onClick={() => onSelect(board.id)}
       >
-        <BoardThumb board={board} className={classes.thumb} />
+        <ItemThumb
+          className={classes.thumb}
+          src={board.caption}
+          alt={board.name || ''}
+        />
         <div className={classes.main}>
           <Typography className={classes.title} title={title}>
             {title}
