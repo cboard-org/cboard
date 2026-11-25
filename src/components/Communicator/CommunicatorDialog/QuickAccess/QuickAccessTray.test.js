@@ -16,7 +16,7 @@ jest.mock('../CommunicatorDialog.messages', () => ({
   )
 }));
 
-jest.mock('../shared/BoardThumb', () => ({
+jest.mock('../../../UI/Dashboard/ItemThumb', () => ({
   __esModule: true,
   default: () => null
 }));
