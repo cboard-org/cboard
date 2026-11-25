@@ -15,7 +15,7 @@ import InboxIcon from '@material-ui/icons/Inbox';
 
 import BoardCard from './BoardCard';
 import BoardRow from './BoardRow';
-import { softRadius } from '../CommunicatorDialog.styles';
+import { softRadius } from '../../../UI/Dashboard/Dashboard.styles';
 import { VIEW_MODES, BOARDS_PAGE_LIMIT } from '../CommunicatorDialog.constants';
 import messages from '../CommunicatorDialog.messages';
 
