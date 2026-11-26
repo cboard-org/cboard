@@ -31,9 +31,9 @@ export class ThemeProvider extends Component {
   render() {
     const { dir, children, darkThemeActive, fontFamilyName } = this.props;
 
-    const fontFamily = FONTS_FAMILIES.filter(
-      (font) => font.fontName === fontFamilyName
-    )[0].fontFamily;
+    const { fontFamily } =
+      FONTS_FAMILIES.find((font) => font.fontName === fontFamilyName) ||
+      FONTS_FAMILIES.find((font) => font.fontName === DEFAULT_FONT_FAMILY);
 
     setRootFontFamily(fontFamily);
 

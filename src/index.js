@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'fontsource-roboto';
+import 'fontsource-roboto/700.css';
+import './fonts/fonts.css';
 import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
 import { TouchBackend } from 'react-dnd-touch-backend';

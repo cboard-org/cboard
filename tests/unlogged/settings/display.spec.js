@@ -36,28 +36,34 @@ test.describe('Cboard - Display Settings', () => {
   test('should allow font family modification', async ({ page }) => {
     await cboard.clickFontFamily();
     await cboard.verifyFontFamilyOptions([
+      'Andika',
       'Chilanka',
+      'Comic Neue',
       'Hind',
       'Indie Flower',
+      'Lexend',
       'Montserrat',
       'Nunito',
       'Oswald',
       'Roboto'
     ]);
   });
-  test('should change font family to Roboto and save', async ({ page }) => {
+  test('should change font family to Andika and save', async ({ page }) => {
     await cboard.clickFontFamily();
     await cboard.verifyFontFamilyOptions([
+      'Andika',
       'Chilanka',
+      'Comic Neue',
       'Hind',
       'Indie Flower',
+      'Lexend',
       'Montserrat',
       'Nunito',
       'Oswald',
       'Roboto'
     ]);
-    await cboard.selectFontFamilyOption('Roboto');
-    await cboard.verifyFontFamilySelected('Roboto');
+    await cboard.selectFontFamilyOption('Andika');
+    await cboard.verifyFontFamilySelected('Andika');
     await cboard.saveDisplaySettings();
     await cboard.goto();
 

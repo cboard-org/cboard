@@ -15,5 +15,6 @@ package-lock.json
 public/ogv/
 public/symbols/
 src/vfs_fonts.js
+src/fonts/fonts.css
 src/translations/
 **/*.snap

@@ -1,5 +1,4 @@
 const FONTS_FAMILIES_LIST = [
-  //Default font
   {
     fontName: 'Montserrat',
     fontFamily: ['Montserrat', 'sans-serif'].join(',')
@@ -12,7 +11,7 @@ const FONTS_FAMILIES_LIST = [
     fontName: 'Chilanka',
     fontFamily: ['Chilanka', 'cursive'].join(',')
   },
-  { fontName: 'Hind', fontFamily: ['Hind'].join(',') },
+  { fontName: 'Hind', fontFamily: ['Hind', 'sans-serif'].join(',') },
   {
     fontName: 'Nunito',
     fontFamily: [
@@ -27,10 +26,19 @@ const FONTS_FAMILIES_LIST = [
   {
     fontName: 'Indie Flower',
     fontFamily: ['Indie Flower', 'cursive'].join(',')
+  },
+  { fontName: 'Andika', fontFamily: ['Andika', 'sans-serif'].join(',') },
+  {
+    fontName: 'Comic Neue',
+    fontFamily: ['Comic Neue', 'Comic Sans MS', 'cursive'].join(',')
+  },
+  {
+    fontName: 'Lexend',
+    fontFamily: ['Lexend', 'Century Gothic', 'sans-serif'].join(',')
   }
 ];
 
-export const DEFAULT_FONT_FAMILY = FONTS_FAMILIES_LIST[0].fontName;
+export const DEFAULT_FONT_FAMILY = 'Roboto';
 
 export const FONTS_FAMILIES = FONTS_FAMILIES_LIST.sort(
   ({ fontName: aFontName }, { fontName: bFontName }) => {
