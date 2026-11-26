@@ -1,5 +1,4 @@
 const FONTS_FAMILIES_LIST = [
-  //Default font
   {
     fontName: 'Montserrat',
     fontFamily: ['Montserrat', 'sans-serif'].join(',')
@@ -30,7 +29,7 @@ const FONTS_FAMILIES_LIST = [
   }
 ];
 
-export const DEFAULT_FONT_FAMILY = FONTS_FAMILIES_LIST[0].fontName;
+export const DEFAULT_FONT_FAMILY = 'Roboto';
 
 export const FONTS_FAMILIES = FONTS_FAMILIES_LIST.sort(
   ({ fontName: aFontName }, { fontName: bFontName }) => {

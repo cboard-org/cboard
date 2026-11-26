@@ -99,10 +99,10 @@ exports[`Display tests default renderer 1`] = `
               onChange={[Function]}
               style={
                 Object {
-                  "fontFamily": "Montserrat,sans-serif",
+                  "fontFamily": "Roboto,Helvetica,Arial,sans-serif",
                 }
               }
-              value="Montserrat"
+              value="Roboto"
             >
               <WithStyles(ForwardRef(MenuItem))
                 style={
