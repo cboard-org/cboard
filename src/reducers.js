@@ -129,7 +129,20 @@ export const boardMigrations = {
       ...state.board,
       syncMeta: state.board?.syncMeta ?? {}
     }
-  })
+  }),
+  2: (state) => {
+    if (state.app?.displaySettings?.fontFamily !== 'Montserrat') return state;
+    return {
+      ...state,
+      app: {
+        ...state.app,
+        displaySettings: {
+          ...state.app.displaySettings,
+          fontFamily: 'Roboto'
+        }
+      }
+    };
+  }
 };
 
 // isSyncing describes a sync in flight in the current JS process, so a
@@ -144,7 +157,7 @@ const config = {
   key: 'root',
   storage: migratingStorage,
   blacklist: ['language'],
-  version: 1,
+  version: 2,
   migrate: createMigrate(boardMigrations, { debug: false }),
   transforms: [boardSyncTransform]
 };

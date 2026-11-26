@@ -183,4 +183,33 @@ describe('boardMigrations', () => {
       expect(result.board.syncMeta).toEqual({});
     });
   });
+
+  describe('migration 2 – Montserrat to Roboto', () => {
+    it('changes a saved Montserrat font to Roboto', () => {
+      const state = {
+        app: {
+          displaySettings: { fontFamily: 'Montserrat', fontSize: 'large' }
+        },
+        board: { boards: [] }
+      };
+      const result = boardMigrations[2](state);
+      expect(result.app.displaySettings).toEqual({
+        fontFamily: 'Roboto',
+        fontSize: 'large'
+      });
+      expect(result.board).toBe(state.board);
+    });
+
+    it('leaves other fonts untouched', () => {
+      const state = { app: { displaySettings: { fontFamily: 'Nunito' } } };
+      expect(boardMigrations[2](state)).toEqual(state);
+    });
+
+    it('returns state unchanged when app or displaySettings is missing', () => {
+      expect(boardMigrations[2]({ board: { boards: [] } })).toEqual({
+        board: { boards: [] }
+      });
+      expect(boardMigrations[2]({ app: {} })).toEqual({ app: {} });
+    });
+  });
 });
