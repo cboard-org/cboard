@@ -7,23 +7,13 @@ import messages from './../Board.messages';
 import './../Board.css';
 
 import DefaultBoardsGallery from '../../Communicator/CommunicatorToolbar/DefaultBoardSelector/DefaultBoardsGallery';
+import { useJoyrideStyles } from '../../UI/Joyride/joyrideStyles';
 
 const propTypes = {
   isRootBoardTourEnabled: PropTypes.bool,
   isUnlockedTourEnabled: PropTypes.bool,
   isLocked: PropTypes.bool,
   disableTour: PropTypes.func.isRequired
-};
-
-const joyRideStyles = {
-  options: {
-    arrowColor: '#eee',
-    backgroundColor: '#eee',
-    primaryColor: '#aa00ff',
-    textColor: '#333',
-    width: 500,
-    zIndex: 1000
-  }
 };
 
 const mobileLockedHelpStepStyles = {
@@ -50,6 +40,9 @@ function BoardTour({
   intl,
   onDefaultBoardOptionClick
 }) {
+  const joyRideStyles = useJoyrideStyles({
+    options: { zIndex: 1000 }
+  });
   const unlockedHelpSteps = [
     {
       target: 'body',

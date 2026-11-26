@@ -259,8 +259,16 @@
   color: #838383;
 }
 
+.CommunicatorDialog__Tour--dark svg {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .CommunicatorDialog__Tour__boardProperty svg {
   color: #369b00;
+}
+
+.CommunicatorDialog__Tour--dark.CommunicatorDialog__Tour__boardProperty svg {
+  color: #81c784;
 }
 
 .CommunicatorDialog__Tour li {
