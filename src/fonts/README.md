@@ -2,8 +2,9 @@
 
 The fonts offered in Settings → Display → Font family, as `.woff2` files with
 one `@font-face` rule per font, weight and alphabet in `fonts.css`.
-`src/index.js` imports `fonts.css`. Roboto is not here: it comes from the
-`fontsource-roboto` package.
+`src/index.js` imports `fonts.css`. Roboto, the default, is not here: it
+comes from the `fontsource-roboto` package (`index.css` for regular and
+`700.css` for bold, both imported in `src/index.js`).
 
 ## Source
 
