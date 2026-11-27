@@ -11,6 +11,7 @@ import 'swiper/components/pagination/pagination.min.css';
 
 import './Settings.css';
 import { isCordova } from '../../cordova-util';
+import { useJoyrideStyles } from '../UI/Joyride/joyrideStyles';
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
@@ -18,20 +19,6 @@ const propTypes = {
   isSettingsTourEnabled: PropTypes.bool.isRequired,
   disableTour: PropTypes.func.isRequired,
   intl: intlShape.isRequired
-};
-
-const joyRideStyles = {
-  options: {
-    arrowColor: '#eee',
-    backgroundColor: '#eee',
-    primaryColor: '#aa00ff',
-    textColor: '#333',
-    width: 500,
-    zIndex: 10000
-  },
-  tooltipContent: {
-    padding: '5px 5px'
-  }
 };
 
 const imgFolderPath = '../../../images/tour/settingsTour/';
@@ -95,6 +82,11 @@ let settingsTourImages = {
 };
 
 function SettingsTour({ intl, disableTour, isSettingsTourEnabled }) {
+  const joyRideStyles = useJoyrideStyles({
+    tooltipContent: {
+      padding: '5px 5px'
+    }
+  });
   const [tooltipSwiperText, setTooltipSwiperText] = useState({
     title: '',
     description: ''

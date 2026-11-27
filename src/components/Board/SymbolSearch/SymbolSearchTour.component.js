@@ -9,6 +9,7 @@ import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 
 import './SymbolSearch.css';
+import { useJoyrideStyles } from '../../UI/Joyride/joyrideStyles';
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
@@ -18,21 +19,12 @@ const propTypes = {
   intl: intlShape.isRequired
 };
 
-const joyRideStyles = {
-  options: {
-    arrowColor: '#eee',
-    backgroundColor: '#eee',
-    primaryColor: '#aa00ff',
-    textColor: '#333',
-    width: 500,
-    zIndex: 10000
-  },
-  tooltipContent: {
-    padding: '5px 5px'
-  }
-};
-
 function SymbolSearchTour({ intl, disableTour, isSymbolSearchTourEnabled }) {
+  const joyRideStyles = useJoyrideStyles({
+    tooltipContent: {
+      padding: '5px 5px'
+    }
+  });
   const symbolSearchTourSteps = [
     {
       target: 'body',

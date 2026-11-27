@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, intlShape } from 'react-intl';
 import Joyride, { STATUS } from 'react-joyride';
+import classNames from 'classnames';
 
 import { TAB_INDEXES } from './CommunicatorDialog.constants';
 import Typography from '@material-ui/core/Typography';
@@ -22,31 +23,27 @@ import InputIcon from '@material-ui/icons/Input';
 
 import './CommunicatorDialog.css';
 import messages from './CommunicatorDialog.messages';
+import { useJoyrideStyles } from '../../UI/Joyride/joyrideStyles';
 
 const propTypes = {
   communicatorTour: PropTypes.object.isRequired,
   selectedTab: PropTypes.number,
   disableTour: PropTypes.func.isRequired,
-  intl: intlShape.isRequired
-};
-
-const joyrideStyles = {
-  options: {
-    arrowColor: '#eee',
-    backgroundColor: '#eee',
-    primaryColor: '#aa00ff',
-    textColor: '#333',
-    width: 500,
-    zIndex: 10000
-  }
+  intl: intlShape.isRequired,
+  dark: PropTypes.bool
 };
 
 function CommunicatorDialogTour({
   communicatorTour,
   selectedTab,
   disableTour,
-  intl
+  intl,
+  dark
 }) {
+  const joyrideStyles = useJoyrideStyles();
+  const tourClassName = classNames('CommunicatorDialog__Tour', {
+    'is-dark': dark
+  });
   const commBoardsHelpSteps = [
     {
       target: 'body',
@@ -99,7 +96,9 @@ function CommunicatorDialogTour({
       hideCloseButton: true,
       target: '[name="CommunicatorDialog__PropertyOption"]',
       content: (
-        <div className="CommunicatorDialog__Tour CommunicatorDialog__Tour__boardProperty">
+        <div
+          className={`${tourClassName} CommunicatorDialog__Tour__boardProperty`}
+        >
           <Grid
             container
             spacing={0}
@@ -155,7 +154,7 @@ function CommunicatorDialogTour({
       target: '.CommunicatorDialog__boards__item__actions',
       placement: 'left',
       content: (
-        <div className="CommunicatorDialog__Tour">
+        <div className={tourClassName}>
           <Grid
             container
             spacing={0}
@@ -217,7 +216,7 @@ function CommunicatorDialogTour({
       target: '.CommunicatorDialog__boards__item__actions',
       placement: 'left',
       content: (
-        <div className="CommunicatorDialog__Tour">
+        <div className={tourClassName}>
           <Grid
             container
             spacing={0}
@@ -293,7 +292,7 @@ function CommunicatorDialogTour({
       target: '.CommunicatorDialog__boards__item__actions',
       placement: 'left',
       content: (
-        <div className="CommunicatorDialog__Tour">
+        <div className={tourClassName}>
           <Grid
             container
             spacing={0}
