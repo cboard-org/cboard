@@ -156,6 +156,7 @@ const CommunicatorDialog = ({
                   selectedTab={selectedTab}
                   disableTour={disableTour}
                   intl={intl}
+                  dark={dark}
                 />
 
                 {page < totalPages && (
