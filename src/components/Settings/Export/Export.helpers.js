@@ -185,20 +185,29 @@ async function boardToOBF(boardsMap, board = {}, intl, { embed = false }) {
           }
 
           if (imageResponse) {
+            // Name custom images after the board and tile ids, not their
+            // names and labels: two boards called "Home" with a "Hi" tile
+            // each would otherwise share one file in the zip, and a label
+            // like "yes/no" would add a folder.
             const getCustomImagePath = () => {
-              const components = [
-                'custom',
-                board.name || board.nameKey,
-                tile.label || tile.labelKey || tile.id
-              ];
+              const components = ['custom', board.id, tile.id || `tile-${i}`];
               const extension = mime.extension(imageResponse['content_type']);
               return `/${_.join(components, '/')}.${extension}`;
             };
 
+            // On Cordova the image was loaded from a relative path, so name
+            // it after the tile's own path, or after the tile if it has none.
+            const getCordovaImagePath = () =>
+              tile.image.startsWith('/')
+                ? tile.image
+                : `/custom/${board.id}/${tile.id}.${mime.extension(
+                    imageResponse['content_type']
+                  )}`;
+
             const path = image.startsWith('data:')
               ? getCustomImagePath()
               : isCordova()
-                ? ''
+                ? getCordovaImagePath()
                 : image.startsWith('/')
                   ? image
                   : `/${image}`;
