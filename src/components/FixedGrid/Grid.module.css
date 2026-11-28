@@ -11,3 +11,8 @@
   flex-shrink: 0;
   /* scroll-snap-align: start; */
 }
+
+.paginated {
+  overflow: hidden;
+  overscroll-behavior: none;
+}

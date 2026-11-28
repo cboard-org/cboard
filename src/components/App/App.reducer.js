@@ -45,6 +45,7 @@ const initialState = {
     darkThemeActive: false
   },
   navigationSettings: {
+    boardNavigationMode: 'scroll',
     active: false,
     shareShowActive: false,
     bigScrollButtonsActive: false,
